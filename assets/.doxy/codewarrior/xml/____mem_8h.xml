@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="____mem_8h" kind="file" language="C++">
+    <compoundname>__mem.h</compoundname>
+    <includes refid="stddef_8h" local="no">stddef.h</includes>
+    <includedby refid="____mem_8c" local="no">__mem.c</includedby>
+    <includedby refid="____start__for__spuce_8c" local="no">__start_for_spuce.c</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>__mem.h</label>
+        <link refid="____mem_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>__mem.h</label>
+        <link refid="____mem_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>__mem.c</label>
+        <link refid="____mem_8c"/>
+      </node>
+      <node id="3">
+        <label>__start_for_spuce.c</label>
+        <link refid="____start__for__spuce_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="____mem_8h_1ab15dd0a01835f878ce6d2420374f9914" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * memcpy</definition>
+        <argsstring>(void *dst, const void *src, size_t n)</argsstring>
+        <name>memcpy</name>
+        <param>
+          <type>void *</type>
+          <declname>dst</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/__mem.h" line="40" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__mem.c" bodystart="38" bodyend="57" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/__mem.h" declline="40" declcolumn="7"/>
+        <referencedby refid="____start__for__spuce_8c_1a29042f5e82cd758707d2581c92dc8164" compoundref="____start__for__spuce_8c" startline="249" endline="255">__copy_rom_section</referencedby>
+        <referencedby refid="printf_8c_1a7f653f83cd3b8d2140e154e6fa1e9ec6" compoundref="printf_8c" startline="1477" endline="1488">__StringWrite</referencedby>
+        <referencedby refid="direct__io_8c_1ac7a633f6567456e45e219b4767ba4b98" compoundref="direct__io_8c" startline="29" endline="168">fread</referencedby>
+        <referencedby refid="direct__io_8c_1ae00d0cb316e37e22bd675085e909b0ff" compoundref="direct__io_8c" startline="170" endline="299">fwrite</referencedby>
+        <referencedby refid="mem_8c_1a5f10005a1dae01954387dea94f62674a" compoundref="mem_8c" startline="198" endline="351">memmove</referencedby>
+        <referencedby refid="wmem_8h_1a1bd2bf1add546d1ed389ba4fd4d878e6" compoundref="wmem_8c" startline="34" endline="37">wmemcpy</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="____mem_8h_1a2d47386aa9092c784c4758fff434a625" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * memset</definition>
+        <argsstring>(void *dst, int val, size_t n)</argsstring>
+        <name>memset</name>
+        <param>
+          <type>void *</type>
+          <declname>dst</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/__mem.h" line="41" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c" bodystart="355" bodyend="360" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/__mem.h" declline="41" declcolumn="7"/>
+        <references refid="mem__funcs_8h_1a6521b1a05cdf20b7c093c471f316f55f" compoundref="mem__funcs_8c" startline="477" endline="553">__fill_mem</references>
+        <referencedby refid="ansi__files_8c_1a882daf170464a00fcf4288111f7b237f" compoundref="ansi__files_8c" startline="261" endline="285">__find_unopened_file</referencedby>
+        <referencedby refid="____start__for__spuce_8c_1a279991fd79438fc53ce93fb196a3281f" compoundref="____start__for__spuce_8c" startline="268" endline="273">__init_bss_section</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="____mem_8h_1a6521b1a05cdf20b7c093c471f316f55f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __fill_mem</definition>
+        <argsstring>(void *dst, int val, unsigned long n)</argsstring>
+        <name>__fill_mem</name>
+        <param>
+          <type>void *</type>
+          <declname>dst</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/__mem.h" line="42" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c" bodystart="477" bodyend="553" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/__mem.h" declline="42" declcolumn="6"/>
+        <references refid="____mem_8c_1a90040cbec48e5b05be4ac823e256226c" compoundref="____mem_8c" startline="65">cpd</references>
+        <references refid="____mem_8c_1a79ab5cc20d2cc1e2f3c71f60b26849df" compoundref="____mem_8c" startline="68">deref_auto_inc</references>
+        <references refid="____mem_8c_1a8347c3ad6c2c8efc446e258dcc643f88" compoundref="____mem_8c" startline="67">lpd</references>
+        <referencedby refid="____mem_8c_1a2d47386aa9092c784c4758fff434a625" compoundref="____mem_8c" startline="131" endline="136">memset</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment">FILE</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/><sp/><sp/>__mem.h</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="7"><highlight class="comment">DESCRIPTION</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/><sp/><sp/><sp/>Standalone<sp/>Standard<sp/>C<sp/>Library<sp/>Implementation<sp/>for<sp/>memory<sp/>operations.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/><sp/><sp/><sp/>This<sp/>is<sp/>a<sp/>target-specific<sp/>implementation<sp/>for<sp/>PowerPC.<sp/><sp/>It<sp/>will</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/><sp/><sp/><sp/>probably<sp/>work<sp/>for<sp/>other<sp/>target<sp/>processors<sp/>as<sp/>well,<sp/>but<sp/>this<sp/>one</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/><sp/><sp/><sp/>has<sp/>been<sp/>improved<sp/>specifically<sp/>for<sp/>PowerPC.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/><sp/><sp/><sp/>memcpy<sp/>and<sp/>memset<sp/>are<sp/><sp/>put<sp/>into<sp/>the<sp/>.init<sp/>section<sp/>so<sp/>that<sp/>they<sp/>will</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/><sp/><sp/><sp/>be<sp/>available<sp/>for<sp/>use<sp/>in<sp/>copying<sp/>sections<sp/>(e.g.<sp/>.text)<sp/>from<sp/>rom<sp/>into<sp/>ram.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/><sp/><sp/><sp/>Derived<sp/>from<sp/>MSL<sp/>C<sp/>(CodeWarrior<sp/>10).</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/><sp/><sp/><sp/>__memcpy</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/><sp/><sp/><sp/>__memset</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"></highlight></codeline>
+<codeline lineno="22"><highlight class="comment">COPYRIGHT</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"></highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/><sp/><sp/><sp/>(c)<sp/>1996-7<sp/>Metrowerks<sp/>Corporation</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stddef_8h" kindref="compound">stddef.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>section<sp/>code_type<sp/>&quot;.init&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><ref refid="____mem_8h_1ab15dd0a01835f878ce6d2420374f9914" kindref="member">memcpy</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>dst,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>src,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><ref refid="____mem_8h_1a2d47386aa9092c784c4758fff434a625" kindref="member">memset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>dst,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>val,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="____mem_8h_1a6521b1a05cdf20b7c093c471f316f55f" kindref="member">__fill_mem</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>dst,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>val,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>section<sp/>code_type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/__mem.h"/>
+  </compounddef>
+</doxygen>

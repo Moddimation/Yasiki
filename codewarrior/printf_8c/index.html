@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File printf.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-printfc">File printf.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>printf.c</strong></a></p>
+<p><a href="../printf_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;ansi_fp.h&gt;</code></li>
+<li><code>#include &lt;ctype.h&gt;</code></li>
+<li><code>#include &lt;float.h&gt;</code></li>
+<li><code>#include &lt;limits.h&gt;</code></li>
+<li><code>#include &lt;stdarg.h&gt;</code></li>
+<li><code>#include &lt;stdio.h&gt;</code></li>
+<li><code>#include &lt;string.h&gt;</code></li>
+<li><code>#include &lt;cstdlib&gt;</code></li>
+<li><code>#include "string_io.h"</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structprint__format/"><strong>print_format</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-argument_options"><strong>argument_options</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-justification_options"><strong>justification_options</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-sign_options"><strong>sign_options</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-__filewrite"><strong>__FileWrite</strong></a> (void * File, const char * Buffer, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> NumChars) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-__stringwrite"><strong>__StringWrite</strong></a> (void * osc, const char * Buffer, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> NumChars) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-fprintf"><strong>fprintf</strong></a> (FILE * file, const char * format, ...) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-snprintf"><strong>snprintf</strong></a> (char * s, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> n, const char * format, ...) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-vfprintf"><strong>vfprintf</strong></a> (FILE * file, const char * format, <a href="../structva__list/"><strong>va_list</strong></a> arg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-vprintf"><strong>vprintf</strong></a> (const char * format, <a href="../structva__list/"><strong>va_list</strong></a> arg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-vsnprintf"><strong>vsnprintf</strong></a> (char * s, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> n, const char * format, <a href="../structva__list/"><strong>va_list</strong></a> arg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-vsprintf"><strong>vsprintf</strong></a> (char * s, const char * format, <a href="../structva__list/"><strong>va_list</strong></a> arg) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-__pformatter"><strong>__pformatter</strong></a> (void *(*)(void *, const char *, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a>) WriteProc, void * WriteProcArg, const char * format_str, <a href="../structva__list/"><strong>va_list</strong></a> arg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">char *</td>
+<td style="text-align: left;"><a href="#function-float2str"><strong>float2str</strong></a> (<a href="../structva__list/"><strong>va_list</strong></a> arg, char * buff, <a href="../structprint__format/"><strong>print_format</strong></a> * format, int vecIndex) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">char *</td>
+<td style="text-align: left;"><a href="#function-long2str"><strong>long2str</strong></a> (long num, char * buff, <a href="../structprint__format/"><strong>print_format</strong></a> * format) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const char *</td>
+<td style="text-align: left;"><a href="#function-parse_format"><strong>parse_format</strong></a> (const char * format_string, <a href="../structva__list/"><strong>va_list</strong></a> * arg, <a href="../structprint__format/"><strong>print_format</strong></a> * format) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-round_decimal"><strong>round_decimal</strong></a> (<a href="../structdecimal/"><strong>decimal</strong></a> * dec, int new_length) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max_sig_dig"><strong>MAX_SIG_DIG</strong></a>  <code>32                  /\* mm 970609 \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-bad_conversion"><strong>bad_conversion</strong></a>  <code>0xFF</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-conversion_buff_size"><strong>conversion_buff_size</strong></a>  <code>512</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-conversion_max"><strong>conversion_max</strong></a>  <code>509</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="enum-argument_options">enum argument_options</h3>
+<pre><code class="language-C++">enum argument_options {
+    normal_argument,
+    char_argument,
+    short_argument,
+    long_argument,
+    long_double_argument,
+    wchar_argument
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-justification_options">enum justification_options</h3>
+<pre><code class="language-C++">enum justification_options {
+    left_justification,
+    right_justification,
+    zero_fill
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-sign_options">enum sign_options</h3>
+<pre><code class="language-C++">enum sign_options {
+    only_minus,
+    sign_always,
+    space_holder
+};
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-__filewrite">function __FileWrite</h3>
+<pre><code class="language-C++">void * __FileWrite (
+    void * File,
+    const char * Buffer,
+    size_t NumChars
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__stringwrite">function __StringWrite</h3>
+<pre><code class="language-C++">void * __StringWrite (
+    void * osc,
+    const char * Buffer,
+    size_t NumChars
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fprintf">function fprintf</h3>
+<pre><code class="language-C++">int fprintf (
+    FILE * file,
+    const char * format,
+    ...
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-snprintf">function snprintf</h3>
+<pre><code class="language-C++">int snprintf (
+    char * s,
+    size_t n,
+    const char * format,
+    ...
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-vfprintf">function vfprintf</h3>
+<pre><code class="language-C++">int vfprintf (
+    FILE * file,
+    const char * format,
+    va_list arg
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-vprintf">function vprintf</h3>
+<pre><code class="language-C++">int vprintf (
+    const char * format,
+    va_list arg
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-vsnprintf">function vsnprintf</h3>
+<pre><code class="language-C++">int vsnprintf (
+    char * s,
+    size_t n,
+    const char * format,
+    va_list arg
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-vsprintf">function vsprintf</h3>
+<pre><code class="language-C++">int vsprintf (
+    char * s,
+    const char * format,
+    va_list arg
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-__pformatter">function __pformatter</h3>
+<pre><code class="language-C++">static int __pformatter (
+    void *(*)(void *, const char *, size_t ) WriteProc,
+    void * WriteProcArg,
+    const char * format_str,
+    va_list arg
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-float2str">function float2str</h3>
+<pre><code class="language-C++">static char * float2str (
+    va_list arg,
+    char * buff,
+    print_format * format,
+    int vecIndex
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-long2str">function long2str</h3>
+<pre><code class="language-C++">static char * long2str (
+    long num,
+    char * buff,
+    print_format * format
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-parse_format">function parse_format</h3>
+<pre><code class="language-C++">static const char * parse_format (
+    const char * format_string,
+    va_list * arg,
+    print_format * format
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-round_decimal">function round_decimal</h3>
+<pre><code class="language-C++">static void round_decimal (
+    decimal * dec,
+    int new_length
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-max_sig_dig">define MAX_SIG_DIG</h3>
+<pre><code class="language-C++">#define MAX_SIG_DIG `32                  /* mm 970609 */`
+</code></pre>
+<hr>
+
+<h3 id="define-bad_conversion">define bad_conversion</h3>
+<pre><code class="language-C++">#define bad_conversion `0xFF`
+</code></pre>
+<hr>
+
+<h3 id="define-conversion_buff_size">define conversion_buff_size</h3>
+<pre><code class="language-C++">#define conversion_buff_size `512`
+</code></pre>
+<hr>
+
+<h3 id="define-conversion_max">define conversion_max</h3>
+<pre><code class="language-C++">#define conversion_max `509`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/printf.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

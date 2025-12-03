@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File abort_exit.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-abort_exitc">File abort_exit.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>abort_exit.c</strong></a></p>
+<p><a href="../abort__exit_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "abort_exit.h"</code></li>
+<li><code>#include "critical_regions.h"</code></li>
+<li><code>#include "misc_io.h"</code></li>
+<li><code>#include &lt;signal.h&gt;</code></li>
+<li><code>#include &lt;setjmp.h&gt;</code></li>
+<li><code>#include &lt;cstdlib&gt;</code></li>
+<li><code>#include &lt;stdio.h&gt;</code></li>
+<li><code>#include &lt;pool_alloc.h&gt;</code></li>
+<li><code>#include &lt;console.h&gt;</code></li>
+<li><code>#include &lt;SegLoad.h&gt;</code></li>
+<li><code>#include &lt;Processes.h&gt;</code></li>
+<li><code>#include &lt;WINDEF.H&gt;</code></li>
+<li><code>#include &lt;WINBASE.H&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void(*</td>
+<td style="text-align: left;"><a href="#variable-___atexit_hook"><strong>___atexit_hook</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-__aborting"><strong>__aborting</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void(*</td>
+<td style="text-align: left;"><a href="#variable-__atexit_hook"><strong>__atexit_hook</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void(*</td>
+<td style="text-align: left;"><a href="#variable-__console_exit"><strong>__console_exit</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void(*</td>
+<td style="text-align: left;"><a href="#variable-__stdio_exit"><strong>__stdio_exit</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">long</td>
+<td style="text-align: left;"><a href="#variable-__atexit_curr_func"><strong>__atexit_curr_func</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void(*</td>
+<td style="text-align: left;"><a href="#variable-__atexit_funcs"><strong>__atexit_funcs</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">long</td>
+<td style="text-align: left;"><a href="#variable-atexit_curr_func"><strong>atexit_curr_func</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void(*</td>
+<td style="text-align: left;"><a href="#variable-atexit_funcs"><strong>atexit_funcs</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">short</td>
+<td style="text-align: left;"><a href="#variable-exitsetup"><strong>exitSetup</strong></a>   = <code>0</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-_cleanupmsl"><strong>_CleanUpMSL</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-___teardown_be"><strong>___teardown_be</strong></a> (int) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-__atexit"><strong>__atexit</strong></a> (void(*)(void) func) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__destroy_global_chain"><strong>__destroy_global_chain</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__exit"><strong>__exit</strong></a> (int status) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__setup_exit"><strong>__setup_exit</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-_libc_exit_"><strong>_libc_exit_</strong></a> (int status) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-abort"><strong>abort</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-atexit"><strong>atexit</strong></a> (void(*)(void) func) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-ansi_exit"><strong>ANSI_Exit</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-ansi__exit"><strong>ANSI__Exit</strong></a> (void) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max_funcs"><strong>max_funcs</strong></a>  <code>64</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-___atexit_hook">variable ___atexit_hook</h3>
+<pre><code class="language-C++">void(* ___atexit_hook) (void);
+</code></pre>
+<hr>
+
+<h3 id="variable-__aborting">variable __aborting</h3>
+<pre><code class="language-C++">int __aborting;
+</code></pre>
+<hr>
+
+<h3 id="variable-__atexit_hook">variable __atexit_hook</h3>
+<pre><code class="language-C++">void(* __atexit_hook) (void);
+</code></pre>
+<hr>
+
+<h3 id="variable-__console_exit">variable __console_exit</h3>
+<pre><code class="language-C++">void(* __console_exit) (void)=0;
+</code></pre>
+<hr>
+
+<h3 id="variable-__stdio_exit">variable __stdio_exit</h3>
+<pre><code class="language-C++">void(* __stdio_exit) (void)=0;
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-__atexit_curr_func">variable __atexit_curr_func</h3>
+<pre><code class="language-C++">long __atexit_curr_func;
+</code></pre>
+<hr>
+
+<h3 id="variable-__atexit_funcs">variable __atexit_funcs</h3>
+<pre><code class="language-C++">void(* __atexit_funcs[max_funcs])(void);
+</code></pre>
+<hr>
+
+<h3 id="variable-atexit_curr_func">variable atexit_curr_func</h3>
+<pre><code class="language-C++">long atexit_curr_func;
+</code></pre>
+<hr>
+
+<h3 id="variable-atexit_funcs">variable atexit_funcs</h3>
+<pre><code class="language-C++">void(* atexit_funcs[max_funcs])(void);
+</code></pre>
+<hr>
+
+<h3 id="variable-exitsetup">variable exitSetup</h3>
+<pre><code class="language-C++">short exitSetup;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-_cleanupmsl">function _CleanUpMSL</h3>
+<pre><code class="language-C++">void _CleanUpMSL () 
+</code></pre>
+<hr>
+
+<h3 id="function-___teardown_be">function ___teardown_be</h3>
+<pre><code class="language-C++">void ___teardown_be (
+    int
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__atexit">function __atexit</h3>
+<pre><code class="language-C++">int __atexit (
+    void(*)(void) func
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__destroy_global_chain">function __destroy_global_chain</h3>
+<pre><code class="language-C++">void __destroy_global_chain (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__exit">function __exit</h3>
+<pre><code class="language-C++">void __exit (
+    int status
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__setup_exit">function __setup_exit</h3>
+<pre><code class="language-C++">void __setup_exit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-_libc_exit_">function _libc_exit_</h3>
+<pre><code class="language-C++">void _libc_exit_ (
+    int status
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-abort">function abort</h3>
+<pre><code class="language-C++">void abort (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-atexit">function atexit</h3>
+<pre><code class="language-C++">int atexit (
+    void(*)(void) func
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-ansi_exit">function ANSI_Exit</h3>
+<pre><code class="language-C++">static void ANSI_Exit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ansi__exit">function ANSI__Exit</h3>
+<pre><code class="language-C++">static void ANSI__Exit (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-max_funcs">define max_funcs</h3>
+<pre><code class="language-C++">#define max_funcs `64`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

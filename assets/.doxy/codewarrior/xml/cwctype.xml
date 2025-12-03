@@ -1,0 +1,316 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="cwctype" kind="file" language="C++">
+    <compoundname>cwctype</compoundname>
+    <includedby refid="wctrans_8h" local="no">wctrans.h</includedby>
+    <includedby refid="wctype_8h" local="no">wctype.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>cwctype</label>
+        <link refid="cwctype"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>wctrans.h</label>
+        <link refid="wctrans_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>wctype.h</label>
+        <link refid="wctype_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>wcstold.c</label>
+        <link refid="wcstold_8c"/>
+      </node>
+      <node id="6">
+        <label>wcstoul.c</label>
+        <link refid="wcstoul_8c"/>
+      </node>
+      <node id="3">
+        <label>wctrans.c</label>
+        <link refid="wctrans_8c"/>
+      </node>
+      <node id="7">
+        <label>wctype.c</label>
+        <link refid="wctype_8c"/>
+      </node>
+      <node id="8">
+        <label>wprintf.c</label>
+        <link refid="wprintf_8c"/>
+      </node>
+      <node id="9">
+        <label>wscanf.c</label>
+        <link refid="wscanf_8c"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/07/30<sp/>00:42:25<sp/>$</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.4.1<sp/>$</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>cwctype</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__cwctype</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__cwctype</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__NO_WIDE_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>981020<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ansi_parms.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;eof.h&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>vss<sp/>980817<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wchar_t.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>#include<sp/>&lt;cstdio&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/<sp/>/*<sp/>vss<sp/>980817<sp/>*/<sp/>/*<sp/>mm<sp/>970918*/</highlight></codeline>
+<codeline><highlight class="normal">/*#include<sp/>&lt;cstddef&gt;*/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>990217<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>#include<sp/>&lt;wchar.h&gt;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align<sp/>=<sp/>native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal">namespace<sp/>std</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>&quot;C&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_WCTYPE_T_DEFINED</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_WCTYPE_T_DEFINED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>wchar_t<sp/>wint_t;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>wchar_t<sp/>wctype_t;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>int<sp/><sp/><sp/><sp/><sp/>mbstate_t;<sp/>/*<sp/>mm<sp/>980627<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>wchar_t<sp/>Wint_t;<sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>980627<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>ifndef<sp/>_WCTYPE_T_DEFINED<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>WEOF</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>WEOF<sp/>(wint_t)<sp/>(0xFFFF)</highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>ifndef<sp/>WEOF<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">extern<sp/>_MSL_DLLDATA<sp/>wchar_t<sp/>__wctype_map[];</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>_MSL_DLLDATA<sp/>wchar_t<sp/>__wlower_map[];</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>_MSL_DLLDATA<sp/>wchar_t<sp/>__wupper_map[];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>__wcontrol_char<sp/>0x01</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wmotion_char<sp/><sp/>0x02</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wspace_char<sp/><sp/><sp/>0x04</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wpunctuation<sp/><sp/>0x08</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wdigit<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x10</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__whex_digit<sp/><sp/><sp/><sp/>0x20</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wlower_case<sp/><sp/><sp/>0x40</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wupper_case<sp/><sp/><sp/>0x80</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>__wletter<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(__wlower_case<sp/>|<sp/>__wupper_case)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__walphanumeric<sp/>(__wletter<sp/>|<sp/>__wdigit)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wgraphic<sp/><sp/><sp/><sp/><sp/><sp/>(__walphanumeric<sp/>|<sp/>__wpunctuation)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wprintable<sp/><sp/><sp/><sp/>(__wgraphic<sp/>|<sp/>__wspace_char)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wwhitespace<sp/><sp/><sp/>(__wmotion_char<sp/>|<sp/>__wspace_char)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wcontrol<sp/><sp/><sp/><sp/><sp/><sp/>(__wmotion_char<sp/>|<sp/>__wcontrol_char)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wz_fill(c)<sp/><sp/><sp/><sp/>((wchar_t)(wchar_t)(c))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__WCMAP_SIZE<sp/><sp/><sp/><sp/>256</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>//<sp/>extern<sp/>&quot;C&quot;<sp/><sp/>//<sp/>hh<sp/>981221</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/>begin<sp/>mm<sp/>980626<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswalnum<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__walphanumeric)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswalpha<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wletter)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswcntrl<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wcontrol)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswdigit<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wdigit)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswgraph<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wgraphic)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswlower<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wlower_case)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswprint<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wprintable)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswpunct<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wpunctuation)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswspace<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wwhitespace)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswupper<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wupper_case)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">iswxdigit<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__whex_digit)<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/>begin<sp/>mm<sp/>970918*/</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>wint_t</highlight></codeline>
+<codeline><highlight class="normal">towlower<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&gt;=<sp/>__WCMAP_SIZE)<sp/>?<sp/>c<sp/>:<sp/>((wint_t)__wlower_map[__wz_fill<sp/>(c)]));</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>/*<sp/>mm<sp/>980205<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>wint_t</highlight></codeline>
+<codeline><highlight class="normal">towupper<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&gt;=<sp/>__WCMAP_SIZE)<sp/>?<sp/>c<sp/>:<sp/>((wint_t)__wupper_map[__wz_fill<sp/>(c)]));</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>/*<sp/>mm<sp/>980205<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/>end<sp/>mm<sp/>970918*/</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">wctob<sp/>(wint_t<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>((c<sp/>&amp;<sp/>0xFF00)<sp/>?<sp/>EOF<sp/>:<sp/>(int)c);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>980625<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">extern<sp/>&quot;C&quot;</highlight></codeline>
+<codeline><highlight class="normal">{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>981221</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>!__cplusplus<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswalnum<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswalpha<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswcntrl<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswdigit<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswgraph<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswlower<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswprint<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswpunct<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswspace<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswupper<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>iswxdigit<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">wchar_t<sp/>towlower<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">wchar_t<sp/>towupper<sp/>(wint_t);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>wctob<sp/>(wint_t);<sp/>/*<sp/>mm<sp/>980625<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>iswalnum(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__walphanumeric)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswalpha(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wletter)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswcntrl(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wcontrol)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswdigit(c)<sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wdigit)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswgraph(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wgraphic)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswlower(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wlower_case)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswprint(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wprintable)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswpunct(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wpunctuation)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswspace(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wwhitespace)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswupper(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__wupper_case)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>iswxdigit(c)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((int)(((c<sp/>&lt;<sp/>__WCMAP_SIZE)<sp/>?<sp/>(__wctype_map[__wz_fill<sp/>(c)]<sp/>&amp;<sp/>__whex_digit)<sp/>:<sp/>0)))</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>end<sp/>mm<sp/>980626<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>__cplusplus<sp/>*/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>990401<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wctype_t<sp/>wctype<sp/>(const<sp/>char*<sp/>property);<sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>980629<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/><sp/>iswctype<sp/>(wint_t<sp/>wc,<sp/>wctype_t<sp/>desc);<sp/>/*<sp/>mm<sp/>980629<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align<sp/>=<sp/>reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>RC_INVOKED<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*#ifndef<sp/>__NO_WIDE_CHAR<sp/><sp/><sp/><sp/><sp/>*/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>981020<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>__cwctype__<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Change<sp/>Record</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>980121<sp/><sp/>JCM<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>rjk<sp/>980313<sp/>added<sp/>_MSL_DLLDATA</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>mm<sp/>980625<sp/><sp/>Added<sp/>declarations<sp/>for<sp/>wctob.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>mm<sp/>980626<sp/><sp/>Considerable<sp/>rewrite<sp/>of<sp/>the<sp/>wc<sp/>classification<sp/>functions,<sp/>towlower<sp/>and<sp/>towupper<sp/>to</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>match<sp/>C9x</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>mm<sp/>980627<sp/><sp/>Inserted<sp/>missing<sp/>typedefs<sp/>for<sp/>mbstate_t<sp/>and<sp/>Wint_t</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>mm<sp/>980629<sp/><sp/>Added<sp/>prototypes<sp/>for<sp/>wctype()<sp/>and<sp/>iswctype().</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>vss<sp/>980817<sp/><sp/>Added<sp/>eof.h<sp/>to<sp/>get<sp/>EOF<sp/>defined,<sp/>removed<sp/>&lt;cstdio&gt;<sp/>because<sp/>of<sp/>circular<sp/>dependency</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>mm<sp/>981020<sp/><sp/>Added<sp/>#ifndef<sp/>__NO_WIDE_CHAR<sp/>wrappers</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>hh<sp/>981221<sp/><sp/>Made<sp/>inline<sp/>methods<sp/>extern<sp/>&quot;C++&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>mm<sp/>990217<sp/><sp/>Replaced<sp/>include<sp/>of<sp/>cstddef<sp/>with<sp/>one<sp/>of<sp/><sp/>wchar_t.h</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>mm<sp/>990401<sp/><sp/><sp/>Moved<sp/>#endif<sp/>to<sp/>include<sp/>defines<sp/>of<sp/>iswalnum()...<sp/>inside<sp/>!__cplusplus</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/cwctype"/>
+  </compounddef>
+</doxygen>

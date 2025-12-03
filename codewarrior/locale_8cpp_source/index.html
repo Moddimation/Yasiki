@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File locale.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-localecpp">File locale.cpp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_5dfda252c22d458fde1d653b341676b1/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../locale_8cpp/"><strong>locale.cpp</strong></a></p>
+<p><a href="../locale_8cpp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:58:23 $ 
+ *  $Revision: 1.1.6.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+#include &lt;locale&gt;
+
+#ifndef _MSL_NO_IO
+
+#include &lt;ios&gt;
+#include &lt;streambuf&gt;
+#include &lt;stdexcept&gt;
+#include &lt;typeinfo&gt;
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+size_t locale::id::id_count_s = 0;
+
+_RefCountedPtr&lt;__locale_imp&lt;true&gt; &gt; locale::global_s;
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+    #define MAKE_LOCALE(MyFacet)                              \
+        locale::locale(const locale&amp; other, MyFacet* f)       \
+        {                                                     \
+            if (f == 0)                                       \
+                imp_ = other.imp_;                            \
+            else {                                            \
+                imp_ = new __locale_imp&lt;true&gt;(*other.imp_);   \
+                imp_-&gt;replace(*f);                            \
+                imp_-&gt;name() = &quot;*&quot;;                           \
+            }                                                 \
+        }
+
+    MAKE_LOCALE(_STD::collate&lt;char&gt;)
+    MAKE_LOCALE(_STD::ctype&lt;char&gt;)
+    typedef _STD::codecvt&lt;char, char, mbstate_t&gt; __codecvt1;
+    MAKE_LOCALE(__codecvt1)
+    MAKE_LOCALE(_STD::numpunct&lt;char&gt;)
+    MAKE_LOCALE(_STD::num_get&lt;char&gt;)
+    typedef _STD::num_get&lt;char, char*&gt; __num_get1;
+    MAKE_LOCALE(__num_get1)
+    MAKE_LOCALE(_STD::num_put&lt;char&gt;)
+    MAKE_LOCALE(_STD::timepunct&lt;char&gt;)
+    MAKE_LOCALE(_STD::time_get&lt;char&gt;)
+    MAKE_LOCALE(_STD::time_put&lt;char&gt;)
+    MAKE_LOCALE(_STD::moneypunct&lt;char&gt;)
+    typedef _STD::moneypunct&lt;char, true&gt; __moneypunct1;
+    MAKE_LOCALE(__moneypunct1)
+    MAKE_LOCALE(_STD::money_get&lt;char&gt;)
+    MAKE_LOCALE(_STD::money_put&lt;char&gt;)
+    #ifndef _MSL_NO_WCHART
+        MAKE_LOCALE(_STD::collate&lt;wchar_t&gt;)
+        MAKE_LOCALE(_STD::ctype&lt;wchar_t&gt;)
+        typedef _STD::codecvt&lt;wchar_t, char, mbstate_t&gt; __codecvt2;
+        MAKE_LOCALE(__codecvt2)
+        MAKE_LOCALE(_STD::numpunct&lt;wchar_t&gt;)
+        MAKE_LOCALE(_STD::num_get&lt;wchar_t&gt;)
+        MAKE_LOCALE(_STD::num_put&lt;wchar_t&gt;)
+        MAKE_LOCALE(_STD::timepunct&lt;wchar_t&gt;)
+        MAKE_LOCALE(_STD::time_get&lt;wchar_t&gt;)
+        MAKE_LOCALE(_STD::time_put&lt;wchar_t&gt;)
+        MAKE_LOCALE(_STD::moneypunct&lt;wchar_t&gt;)
+        typedef _STD::moneypunct&lt;wchar_t, true&gt; __moneypunct2;
+        MAKE_LOCALE(__moneypunct2)
+        MAKE_LOCALE(_STD::money_get&lt;wchar_t&gt;)
+        MAKE_LOCALE(_STD::money_put&lt;wchar_t&gt;)
+    #endif
+
+    #undef MAKE_LOCALE
+#endif
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+    bool
+    locale::operator()(const string&amp; s1, const string&amp; s2) const
+    {
+        return _USE_FACET(_STD::collate&lt;char&gt;, *this).compare(
+            s1.data(), s1.data()+s1.size(), s2.data(), s2.data()+s2.size()
+        ) &lt; 0;
+    }
+
+    #ifndef _MSL_NO_WCHART
+        bool
+        locale::operator()(const wstring&amp; s1, const wstring&amp; s2) const
+        {
+            return _USE_FACET(_STD::collate&lt;wchar_t&gt;, *this).compare(
+                s1.data(), s1.data()+s1.size(), s2.data(), s2.data()+s2.size()
+            ) &lt; 0;
+        }
+    #endif
+#endif
+
+locale
+locale::global(const locale&amp; loc)
+{
+    _RefCountedPtr&lt;__locale_imp&lt;true&gt; &gt; result = global_s;
+    if (result == 0)
+        result = classic().imp_;
+    global_s = loc.imp_;
+    if (loc.name() != &quot;*&quot;)
+        setlocale(LC_ALL, loc.name().c_str());
+    return locale(result);
+}
+
+const locale&amp;
+locale::classic()
+{
+    static locale C = make_classic();
+    return C;
+}
+
+locale
+locale::make_classic()
+{
+    _RefCountedPtr&lt;__locale_imp&lt;true&gt; &gt; result = new __locale_imp&lt;true&gt;;
+    result-&gt;name() = &quot;C&quot;;
+    return locale(result);
+}
+
+#ifndef _MSL_NO_WCHART
+
+    // ctype&lt;wchar_t&gt;
+
+    template&lt;&gt;
+    locale::id ctype&lt;wchar_t&gt;::id;
+
+    // hh 980803 added.  non-standard
+    template&lt;&gt;
+    wstring
+    ctype&lt;wchar_t&gt;::widen(const string&amp; s) const
+    {
+        wstring result;
+        result.resize(s.size());
+        const char* s0 = s.c_str();
+        widen(s0, s0 + s.size(), &amp;result[0]);
+        return result;
+    }
+
+    template&lt;&gt;
+    const wchar_t*
+    ctype&lt;wchar_t&gt;::do_is(const wchar_t* low, const wchar_t* high, mask* vec) const
+    {
+        const wchar_t* p;
+        for (p = low; p &lt; high; ++p)
+            vec[p-low] = classify(*p);
+        return high;
+    }
+
+    template&lt;&gt;
+    const wchar_t*
+    ctype&lt;wchar_t&gt;::do_scan_is(mask m, const wchar_t* low, const wchar_t* high) const
+    {
+        const wchar_t* p;
+        for (p = low; p &lt; high; ++p)
+            if (classify(*p) &amp; m)
+                break;
+        return p;
+    }
+
+    template&lt;&gt;
+    const wchar_t*
+    ctype&lt;wchar_t&gt;::do_scan_not(mask m, const wchar_t* low, const wchar_t* high) const
+    {
+        const wchar_t* p;
+        for (p = low; p &lt; high; ++p)
+            if (!(classify(*p) &amp; m))
+                break;
+        return p;
+    }
+
+    template&lt;&gt;
+    const wchar_t*
+    ctype&lt;wchar_t&gt;::do_toupper(wchar_t* low, const wchar_t* high) const
+    {
+        for (;low &lt; high; ++low)
+            *low = towupper(*low);
+        return high;
+    }
+
+    template&lt;&gt;
+    const wchar_t*
+    ctype&lt;wchar_t&gt;::do_tolower(wchar_t* low, const wchar_t* high) const
+    {
+        for (;low &lt; high; ++low)
+            *low = towlower(*low);
+        return high;
+    }
+
+    template&lt;&gt;
+    const char*
+    ctype&lt;wchar_t&gt;::do_widen(const char* low, const char* high, wchar_t* dest) const
+    {
+        while (low &lt; high)
+            *dest++ = wchar_t(*low++);
+        return high;
+    }
+
+    template&lt;&gt;
+    const wchar_t*
+    ctype&lt;wchar_t&gt;::do_narrow(const wchar_t* low, const wchar_t* high, char dfault, char* dest) const
+    {
+        while (low &lt; high)
+            *dest++ = do_narrow(*low++, dfault);
+        return high;
+    }
+
+    // hh 990330
+    template&lt;&gt;
+    ctype_base::mask
+    ctype&lt;wchar_t&gt;::classify(wchar_t c) const
+    {
+        if (iswpunct(c))
+            return punct;
+        bool cn = (bool)iswcntrl(c);
+        bool s = (bool)iswspace(c);
+        if (cn &amp; !s)
+            return mask(0x01);
+        else if (cn &amp; s)
+            return mask(0x02);
+        else if (!cn &amp; s)
+            return mask(0x04);
+        if (iswxdigit(c))
+        {
+            if (iswdigit(c))
+                return mask(xdigit | digit);
+            if (iswlower(c))
+                return mask(xdigit | lower);
+            return mask(xdigit | upper);
+        }
+        if (iswlower(c))
+            return lower;
+        if (iswupper(c))
+            return upper;
+        return mask(0);
+    }
+
+#endif
+
+// ctype&lt;char&gt;
+
+// hh 990109
+#define __ct ctype_base::mask(0x01)
+#define __mt ctype_base::mask(0x02)
+#define __sp ctype_base::mask(0x04)
+#define __pt ctype_base::mask(0x08)
+#define __hd ctype_base::mask(0x30)
+#define __lw ctype_base::mask(0x40)
+#define __up ctype_base::mask(0x80)
+#define __hl ctype_base::mask(0x60)
+#define __hu ctype_base::mask(0xA0)
+
+ctype_base::mask __mask_map[ctype&lt;char&gt;::table_size] =
+{
+//   -0    -1    -2    -3    -4    -5    -6    -7    -8    -9    -A    -B    -C    -D    -E    -F
+    __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __mt, __mt, __mt, __mt, __mt, __ct, __ct, // 0-
+    __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, __ct, // 1-
+    __sp, __pt, __pt, __pt, __pt, __pt, __pt, __pt, __pt, __pt, __pt, __pt, __pt, __pt, __pt, __pt, // 2-
+    __hd, __hd, __hd, __hd, __hd, __hd, __hd, __hd, __hd, __hd, __pt, __pt, __pt, __pt, __pt, __pt, // 3-
+    __pt, __hu, __hu, __hu, __hu, __hu, __hu, __up, __up, __up, __up, __up, __up, __up, __up, __up, // 4-
+    __up, __up, __up, __up, __up, __up, __up, __up, __up, __up, __up, __pt, __pt, __pt, __pt, __pt, // 5-
+    __pt, __hl, __hl, __hl, __hl, __hl, __hl, __lw, __lw, __lw, __lw, __lw, __lw, __lw, __lw, __lw, // 6-
+    __lw, __lw, __lw, __lw, __lw, __lw, __lw, __lw, __lw, __lw, __lw, __pt, __pt, __pt, __pt, __ct  // 7-
+};
+
+template &lt;&gt;
+ctype&lt;char&gt;::ctype(const mask* tab, bool del, size_t refs)
+    : locale::facet(refs),
+    table_(tab),
+    owns_(del)
+{
+    if (table_ == 0)
+    {
+        table_ = classic_table();
+        owns_ = false;
+    }
+}
+
+template &lt;&gt;
+ctype&lt;char&gt;::~ctype()
+{
+    if (owns_)
+        delete [] table_;
+}
+
+template&lt;&gt;
+const char*
+ctype&lt;char&gt;::is(const char* low, const char* high, mask* vec) const
+{
+    for (const char* p = low; p &lt; high; ++low)
+        vec[p-low] = table_[(unsigned char)*p];
+    return high;
+}
+
+template&lt;&gt;
+const char*
+ctype&lt;char&gt;::scan_is(mask m, const char* low, const char* high) const
+{
+    const char* p;
+    for (p = low; p &lt; high; ++p)
+        if (table_[(unsigned char)*p] &amp; m)
+            break;
+    return p;
+}
+
+template&lt;&gt;
+const char*
+ctype&lt;char&gt;::scan_not(mask m, const char* low, const char* high) const
+{
+    const char* p;
+    for (p = low; p &lt; high; ++p)
+        if (!(table_[(unsigned char)*p] &amp; m))
+            break;
+    return p;
+}
+
+template&lt;&gt;
+locale::id ctype&lt;char&gt;::id;
+
+template&lt;&gt;
+const char*
+ctype&lt;char&gt;::do_toupper(char* low, const char* high) const
+{
+    for (;low &lt; high; ++low)
+        *low = char(_CSTD::toupper(*low));
+    return high;
+}
+
+template&lt;&gt;
+const char*
+ctype&lt;char&gt;::do_tolower(char* low, const char* high) const
+{
+    for (;low &lt; high; ++low)
+        *low = char(_CSTD::tolower(*low));
+    return high;
+}
+
+// ctype_byname&lt;char&gt;
+
+template&lt;&gt;
+ctype_byname&lt;char&gt;::ctype_byname(const char* name, size_t refs)
+    : ctype(0, false, refs),
+    loc_(name),
+    facet_(_USE_FACET(ctype&lt;char&gt;, loc_))
+{
+}
+
+// codecvt&lt;char, char, mbstate_t&gt;
+
+template &lt;&gt;
+codecvt&lt;char, char, mbstate_t&gt;::codecvt(size_t refs)
+    : _Generic_codecvt(refs)
+{
+}
+
+template &lt;&gt;
+locale::id codecvt&lt;char, char, mbstate_t&gt;::id;
+
+// hh 990109  No longer used
+//  template &lt;&gt;
+//  codecvt_base::result
+//  codecvt&lt;char, char, mbstate_t&gt;::do_nothing(
+//      const char* from, const char* from_end, const char*&amp; from_next,
+//      char* to, char* to_limit, char*&amp; to_next) const
+//  {
+//      size_t len = size_t(from_end - from);
+//      size_t temp = size_t(to_limit - to);
+//      result r = noconv;
+//      if (len &gt; temp)
+//          len = temp;
+//      from_next = from;
+//      to_next = to;
+//      memcpy(to, from, len);
+//      return r;
+//  }
+
+#ifndef _MSL_NO_WCHART
+
+    // codecvt&lt;wchar_t, char, mbstate_t&gt;
+
+    template &lt;&gt;
+    codecvt&lt;wchar_t, char, mbstate_t&gt;::codecvt(size_t refs)
+        : _Generic_codecvt(refs)
+    {
+    }
+
+    template &lt;&gt;
+    locale::id codecvt&lt;wchar_t, char, mbstate_t&gt;::id;
+
+    template &lt;&gt;
+    codecvt_base::result
+    codecvt&lt;wchar_t, char, mbstate_t&gt;::do_out(mbstate_t&amp;,
+        const wchar_t* from, const wchar_t* from_end, const wchar_t*&amp; from_next,
+        char* to, char* to_limit, char*&amp; to_next) const
+    {
+        size_t ilen = size_t(from_end - from);
+        size_t xlen = size_t(to_limit - to);
+        size_t n = ilen;
+        result r = ok;
+        if (xlen &lt; ilen)
+        {
+            r = partial;
+            n = xlen;
+        }
+        from_next = from;
+        to_next = to;
+        for (size_t e = 0; e &lt; n; ++e)
+            *to_next++ = (char)*from_next++;
+        return r;
+    }
+
+    template &lt;&gt;
+    codecvt_base::result
+    codecvt&lt;wchar_t, char, mbstate_t&gt;::do_in(mbstate_t&amp;,
+        const char* from, const char* from_end, const char*&amp; from_next,
+        wchar_t* to, wchar_t* to_limit, wchar_t*&amp; to_next) const
+    {
+        size_t xlen = size_t(from_end - from);
+        size_t ilen = size_t(to_limit - to);
+        size_t n = xlen;
+        result r = ok;
+        if (ilen &lt; xlen)
+        {
+            r = partial;
+            n = ilen;
+        }
+        from_next = from;
+        to_next = to;
+        for (size_t e = 0; e &lt; n; ++e)
+            *to_next++ = (wchar_t)*from_next++;
+        return r;
+    }
+
+#endif
+
+// numpunct&lt;char&gt;
+
+template &lt;&gt;
+numpunct&lt;char&gt;::numpunct(size_t refs)
+    : _Generic_numpunct(refs)
+{
+}
+
+template &lt;&gt;
+locale::id numpunct&lt;char&gt;::id;
+
+#ifndef _MSL_NO_WCHART
+
+    // numpunct&lt;wchar_t&gt;
+
+    template &lt;&gt;
+    numpunct&lt;wchar_t&gt;::numpunct(size_t refs)
+        : _Generic_numpunct(refs)
+    {
+    }
+
+    template &lt;&gt;
+    locale::id numpunct&lt;wchar_t&gt;::id;
+
+#endif
+
+// timepunct&lt;char&gt;
+
+template &lt;&gt;
+timepunct&lt;char&gt;::timepunct(size_t refs)
+    : _Generic_timepunct(refs)
+{
+}
+
+template &lt;&gt;
+locale::id timepunct&lt;char&gt;::id;
+
+template &lt;&gt;
+const char*
+timepunct&lt;char&gt;::do_weekday_name(size_t d) const
+{
+    static const char* name[] = {
+        &quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;, &quot;&quot;
+    };
+    if (d &lt; 7)
+        return name[d];
+    return name[7];
+}
+
+template &lt;&gt;
+const char*
+timepunct&lt;char&gt;::do_month_name(size_t m) const
+{
+    static const char* name[] = {
+        &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;,
+        &quot;July&quot;, &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;, &quot;&quot;
+    };
+    if (m &lt; 12)
+        return name[m];
+    return name[12];
+}
+
+template &lt;&gt;
+const char*
+timepunct&lt;char&gt;::do_am_pm(int hour) const
+{
+    static const char* name[] = {&quot;am&quot;, &quot;pm&quot;};
+    return name[hour/12];
+}
+
+#ifndef _MSL_NO_WCHART
+
+    // timepunct&lt;wchar_t&gt;
+
+    template &lt;&gt;
+    timepunct&lt;wchar_t&gt;::timepunct(size_t refs)
+        : _Generic_timepunct(refs)
+    {
+    }
+
+    template &lt;&gt;
+    locale::id timepunct&lt;wchar_t&gt;::id;
+
+    template &lt;&gt;
+    const wchar_t*
+    timepunct&lt;wchar_t&gt;::do_weekday_name(size_t d) const
+    {
+        static const wchar_t* name[] = {
+            L&quot;Sunday&quot;, L&quot;Monday&quot;, L&quot;Tuesday&quot;, L&quot;Wednesday&quot;, L&quot;Thursday&quot;, L&quot;Friday&quot;, L&quot;Saturday&quot;, L&quot;&quot;
+        };
+        if (d &lt; 7)
+            return name[d];
+        return name[7];
+    }
+
+    template &lt;&gt;
+    const wchar_t*
+    timepunct&lt;wchar_t&gt;::do_month_name(size_t m) const
+    {
+        static const wchar_t* name[] = {
+            L&quot;January&quot;, L&quot;February&quot;, L&quot;March&quot;, L&quot;April&quot;, L&quot;May&quot;, L&quot;June&quot;,
+            L&quot;July&quot;, L&quot;August&quot;, L&quot;September&quot;, L&quot;October&quot;, L&quot;November&quot;, L&quot;December&quot;, L&quot;&quot;
+        };
+        if (m &lt; 12)
+            return name[m];
+        return name[12];
+    }
+
+    template &lt;&gt;
+    const wchar_t*
+    timepunct&lt;wchar_t&gt;::do_am_pm(int hour) const
+    {
+        static const wchar_t* name[] = {L&quot;am&quot;, L&quot;pm&quot;};
+        return name[hour/12];
+    }
+
+#endif
+
+// moneypunct&lt;char, false&gt;
+
+template &lt;&gt;
+moneypunct&lt;char, false&gt;::moneypunct(size_t refs)
+    : _Generic_moneypunct(refs)
+{
+}
+
+template &lt;&gt;
+locale::id moneypunct&lt;char, false&gt;::id;
+
+// moneypunct&lt;char, true&gt;
+
+template &lt;&gt;
+moneypunct&lt;char, true&gt;::moneypunct(size_t refs)
+    : _Generic_moneypunct(refs)
+{
+}
+
+template &lt;&gt;
+locale::id moneypunct&lt;char, true&gt;::id;
+
+#ifndef _MSL_NO_WCHART
+
+    // moneypunct&lt;wchar_t, false&gt;
+
+    template &lt;&gt;
+    moneypunct&lt;wchar_t, false&gt;::moneypunct(size_t refs)
+        : _Generic_moneypunct(refs)
+    {
+    }
+
+    template &lt;&gt;
+    locale::id moneypunct&lt;wchar_t, false&gt;::id;
+
+    // moneypunct&lt;wchar_t, true&gt;
+
+    template &lt;&gt;
+    moneypunct&lt;wchar_t, true&gt;::moneypunct(size_t refs)
+        : _Generic_moneypunct(refs)
+    {
+    }
+
+    template &lt;&gt;
+    locale::id moneypunct&lt;wchar_t, true&gt;::id;
+
+#endif
+
+#ifndef _No_Floating_Point
+
+    // Binary Coded Decimal class
+    // hh 980802 Added to assist in the printing of floating point values
+
+    _BCD::_BCD(long double x, int limit)
+        : exp_(0)
+    {   // hh 990401
+    #ifdef __MSL_LONGLONG_SUPPORT__
+        if (limit &lt;= DECIMAL_DIG)
+        {
+    #endif
+            round_ = false;
+            if (limit &lt; 1)  // hh 990328
+                limit = 1;
+            char buff[512];
+            sprintf(buff, &quot;%#.*Le&quot;, limit-1,  x);
+            mantissa_ = buff;
+            // Get exponent
+            string::iterator i = mantissa_.begin() + limit + 3;
+            while (i != mantissa_.end())
+            {
+                exp_ *= 10;
+                exp_ += short(*i - '0');
+                ++i;
+            }
+            i = mantissa_.begin() + limit + 2;
+            if (*i == '-')
+                exp_ = short(-exp_);
+            --i;
+            // Remove exponent and decimal point
+            mantissa_.erase(i, mantissa_.end());
+            mantissa_.erase(mantissa_.begin() + 1);
+            for (i = mantissa_.begin(); i != mantissa_.end(); ++i)
+                *i -= '0';
+    #ifdef __MSL_LONGLONG_SUPPORT__
+        }
+        else
+        {
+            round_ = true;
+            static const _BCD one_half(&quot;5&quot;, -1);
+            if (x &gt; 0)
+            {
+                int exp;
+                long double frac = frexpl(x, &amp;exp);
+                _BCD bit = __two_exp(short(exp));
+                while (frac != 0)
+                {
+                    long double integer;
+                    frac = modfl(2*frac, &amp;integer);
+                    --exp;
+                    bit *= one_half;
+                    if (integer != 0)
+                        *this += bit;
+                }
+            }
+        }
+    #endif
+    }
+
+    string
+    _BCD::to_string(int precision, int&amp; exponent) const
+    {
+        string result(mantissa_, 0, size_t(precision+1));
+        exponent = exp_;
+        string::iterator i = result.end() - 1;
+        if (precision &lt; result.size())
+        {
+            if (round_ &amp;&amp; *i &gt;= 5)
+            {
+                --i;
+                while (true)
+                {
+                    if (*i &lt; 9)
+                    {
+                        (*i)++;
+                        break;
+                    }
+                    *i = char();
+                    if (i == result.begin())
+                    {
+                        result.insert(result.begin(), char(1));
+                        result.resize(result.size()-1);
+                        ++exponent;
+                        break;
+                    }
+                    --i;
+                }
+            }
+            result.resize(result.size()-1);
+        }
+        for (i = result.begin(); i != result.end(); ++i)
+            *i += '0';
+        return result;
+    }
+
+    _BCD::_BCD(const char* mantissa, int exponent)
+        : mantissa_(mantissa),
+          exp_((short)exponent),
+          round_(true)
+    {
+        string::iterator i = mantissa_.begin();
+        while (i != mantissa_.end())
+            *i++ -= '0';
+        trim();
+    }
+
+    _BCD&amp;
+    _BCD::operator += (_BCD rhs)
+    {
+        if (rhs.mantissa_.size() == 0)
+            return *this;
+        if (mantissa_.size() == 0)
+        {
+            *this = rhs;
+            return *this;
+        }
+        if (exp_ &gt; rhs.exp_)
+        {
+            rhs.mantissa_.insert(rhs.mantissa_.begin(), size_t(exp_ - rhs.exp_), char());
+            rhs.exp_ = exp_;
+        }
+        else if (exp_ &lt; rhs.exp_)
+        {
+            mantissa_.insert(mantissa_.begin(), size_t(rhs.exp_ - exp_), char());
+            exp_ = rhs.exp_;
+        }
+        if (rhs.mantissa_.size() &gt; mantissa_.size())
+            mantissa_.resize(rhs.mantissa_.size(), char());
+        else if (rhs.mantissa_.size() &lt; mantissa_.size())
+            rhs.mantissa_.resize(mantissa_.size(), char());
+        size_t i = mantissa_.size() - 1;
+        char carry = char();
+        while (i &gt; 0)
+        {
+            mantissa_[i] += char(rhs.mantissa_[i] + carry);
+            if (mantissa_[i] &gt; 9)
+            {
+                carry = char(mantissa_[i] / 10);
+                mantissa_[i] %= char(10);
+            }
+            else
+                carry = char();
+            --i;
+        }
+        mantissa_[0] += char(rhs.mantissa_[0] + carry);
+        if (mantissa_[0] &gt; 9)
+        {
+            carry = char(mantissa_[0] / 10);
+            mantissa_[0] %= char(10);
+            mantissa_.insert(mantissa_.begin(), carry);
+            ++exp_;
+        }
+        trim();
+        return *this;
+    }
+
+    _BCD&amp;
+    _BCD::operator *= (_BCD rhs)
+    {   // hh 990401
+    #ifdef __MSL_LONGLONG_SUPPORT__
+        if (mantissa_.size() == 0)
+            return *this;
+        if (rhs.mantissa_.size() == 0)
+        {
+            *this = rhs;
+            return *this;
+        }
+        _BCD lhs(*this);
+        unsigned long long accumulator = 0;
+        mantissa_.clear();
+        mantissa_.resize(lhs.mantissa_.size() + rhs.mantissa_.size() - 1, char());
+        for (long i = (long)mantissa_.size()-1; i &gt;= 0; --i)
+        {
+            long k = (long)rhs.mantissa_.size() - 1;
+            long j = i - k;
+            if (j &lt; 0)
+            {
+                j = 0;
+                k = i;
+            }
+            while (j &lt; lhs.mantissa_.size() &amp;&amp; k &gt;= 0)
+            {
+                accumulator += (unsigned long)lhs.mantissa_[size_t(j)] * rhs.mantissa_[size_t(k)];
+                --k;
+                ++j;
+            }
+            mantissa_[size_t(i)] = char(accumulator % 10);
+            accumulator /= 10;
+        }
+        exp_ = short(lhs.exp_ + rhs.exp_);
+        while (accumulator &gt; 0)
+        {
+            mantissa_.insert(mantissa_.begin(), char(accumulator % 10));
+            accumulator /= 10;
+            ++exp_;
+        }
+        trim();
+    #endif
+        return *this;
+    }
+
+    _BCD
+    __two_exp(short x)
+    {
+        static const _BCD one_sixteenth(&quot;625&quot;, -2);
+        static const _BCD one_eighth(&quot;125&quot;, -1);
+        static const _BCD one_fourth(&quot;25&quot;, -1);
+        static const _BCD one_half(&quot;5&quot;, -1);
+        static const _BCD one(&quot;1&quot;, 0);
+        static const _BCD two(&quot;2&quot;, 0);
+        static const _BCD four(&quot;4&quot;, 0);
+        static const _BCD eight(&quot;8&quot;, 0);
+        static const _BCD sixteen(&quot;16&quot;, 1);
+        switch (x)
+        {
+        case -4:
+            return one_sixteenth;
+        case -3:
+            return one_eighth;
+        case -2:
+            return one_fourth;
+        case -1:
+            return one_half;
+        case 0:
+            return one;
+        case 1:
+            return two;
+        case 2:
+            return four;
+        case 3:
+            return eight;
+        case 4:
+            return sixteen;
+        }
+        _BCD temp = __two_exp(short(x/2));
+        temp *= temp;
+        if (x % 2)
+        {
+            if (x &gt; 0)
+                temp *= two;
+            else
+                temp *= one_half;
+        }
+        return temp;
+    }
+
+#endif // _No_Floating_Point
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    }
+#endif
+
+#endif // _MSL_NO_IO
+
+// hh 980811 reworded dhex, uhex and lhex defines
+// hh 980816 ARM/Standard neutral for-scoping
+// hh 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT
+// hh 980915 Modified file so that it would work without MSIPL_EXPLICIT_FUNC_TEMPLATE_ARG
+// hh 981018 Modified _BCD helper class to not round if it uses sprintf
+// hh 981111 Removed dependence on compiler support for default template args in string declarations
+// hh 990109 Created a C lib independent ctype_base::mask (suggested by bc).
+// hh 990109 do_nothing no longer used
+// hh 990120 changed name of MSIPL flags
+// hh 990328 Fixed bug in floating point output rounding
+// hh 990330 Rewrote classify().  It was completely bonkers
+// hh 990401 _BCD::operator *= uses a long long.  Put this and any code that uses it
+//           inside of #ifdef __MSL_LONGLONG_SUPPORT__
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

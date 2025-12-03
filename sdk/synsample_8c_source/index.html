@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File synsample.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-synsamplec">File synsample.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_69283c2dbc63a8d4f909cdea61511c2a/"><strong>syn</strong></a> <strong>&gt;</strong> <a href="../synsample_8c/"><strong>synsample.c</strong></a></p>
+<p><a href="../synsample_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+#include &lt;dolphin/syn.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;fake_tgmath.h&quot;
+#include &quot;SYNPrivate.h&quot;
+
+// functions
+static u32  __SYNGetNibbleAddress (u32 count);
+static void __SYNSetupAdpcm (struct SYNVOICE* voice);
+static void __SYNSetupPcm16 (struct SYNVOICE* voice);
+static void __SYNSetupPcm8 (struct SYNVOICE* voice);
+
+static u32
+__SYNGetNibbleAddress (u32 count)
+{
+    u32 samples = count;
+    u32 frames = (samples / 14);
+    u32 samplesLeft = (samples % 14);
+
+    return (frames * 0x10) + 2 + samplesLeft;
+}
+
+static void
+__SYNSetupAdpcm (struct SYNVOICE* voice)
+{
+    AXVPB* axvpb = voice-&gt;axvpb;
+
+    if ((voice-&gt;region-&gt;loopStart + voice-&gt;region-&gt;loopLength) != 0)
+    {
+        u32  sampleStart;
+        u32  sampleLoop;
+        u32  sampleEnd;
+        u32* p;
+        u32* adpcm;
+        u16* adpcmloop;
+
+        adpcm = (void*)&amp;voice-&gt;adpcm-&gt;a;
+        voice-&gt;type = 1;
+        sampleStart = voice-&gt;synth-&gt;aramBaseNibble + voice-&gt;sample-&gt;offset;
+        sampleLoop = sampleStart + __SYNGetNibbleAddress (voice-&gt;region-&gt;loopStart - 1);
+        sampleEnd = sampleStart + __SYNGetNibbleAddress (voice-&gt;region-&gt;loopStart +
+                                                         voice-&gt;region-&gt;loopLength - 2);
+        ASSERTLINE (0x48, (sampleStart &amp; 0x000f) == 0);
+        ASSERTLINE (0x49, (sampleLoop &amp; 0x000f) &gt; 1);
+        ASSERTLINE (0x4A, (sampleEnd &amp; 0x000f) &gt; 1);
+
+        // the hell? why not just write the struct members??? what is this doing???
+        // why not just write to the members directly?
+        sampleStart = sampleStart + 2;
+        p = (u32*)&amp;axvpb-&gt;pb.addr;
+        *(p) = 0x10000;
+        p += 1;
+        *(p) = sampleLoop;
+        p += 1;
+        *(p) = sampleEnd;
+        p += 1;
+        *(p) = sampleStart;
+        p += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        adpcmloop = (void*)(adpcm);
+        axvpb-&gt;pb.adpcmLoop.loop_pred_scale = *(adpcmloop);
+        adpcmloop += 1;
+        axvpb-&gt;pb.adpcmLoop.loop_yn1 = *(adpcmloop);
+        adpcmloop += 1;
+        axvpb-&gt;pb.adpcmLoop.loop_yn2 = *(adpcmloop);
+        adpcmloop += 1;
+        axvpb-&gt;sync &amp;= 0xFFFE1FFF;
+        axvpb-&gt;sync |= 0x121000;
+    }
+    else
+    {
+        u32  sampleStart;
+        u32  sampleEnd;
+        u32* p;
+        u32* adpcm;
+
+        adpcm = (void*)&amp;voice-&gt;adpcm-&gt;a;
+        voice-&gt;type = 0;
+        sampleStart = voice-&gt;synth-&gt;aramBaseNibble + voice-&gt;sample-&gt;offset;
+        sampleEnd = sampleStart + __SYNGetNibbleAddress (voice-&gt;sample-&gt;length - 1);
+
+        ASSERTLINE (0x7E, (sampleStart &amp; 0x000f) == 0);
+        ASSERTLINE (0x7F, (sampleEnd &amp; 0x000f) &gt; 1);
+
+        // same wtf writes here
+        sampleStart = sampleStart + 2;
+        p = (void*)&amp;axvpb-&gt;pb.addr;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = sampleEnd;
+        p += 1;
+        *(p) = sampleStart;
+        p += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        *(p) = *(adpcm);
+        p += 1, adpcm += 1;
+        axvpb-&gt;sync &amp;= 0xFFFE1FFF;
+        axvpb-&gt;sync |= 0x21000;
+    }
+}
+
+static void
+__SYNSetupPcm16 (struct SYNVOICE* voice)
+{
+    AXVPB* axvpb = voice-&gt;axvpb;
+
+    if ((voice-&gt;region-&gt;loopStart + voice-&gt;region-&gt;loopLength) != 0)
+    {
+        u32  sampleStart;
+        u32  sampleLoop;
+        u32  sampleEnd;
+        u32* p;
+
+        voice-&gt;type = 1;
+        sampleStart = voice-&gt;synth-&gt;aramBaseWord + voice-&gt;sample-&gt;offset;
+        sampleLoop = sampleStart + voice-&gt;region-&gt;loopStart - 1;
+        sampleEnd = sampleLoop + voice-&gt;region-&gt;loopLength - 1;
+
+        p = (u32*)&amp;axvpb-&gt;pb.addr;
+        *(p) = 0x1000A;
+        p += 1;
+        *(p) = sampleLoop;
+        p += 1;
+        *(p) = sampleEnd;
+        p += 1;
+        *(p) = sampleStart;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0x08000000;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+    }
+    else
+    {
+        u32  sampleStart;
+        u32  sampleEnd;
+        u32* p;
+
+        voice-&gt;type = 0;
+        sampleStart = voice-&gt;synth-&gt;aramBaseWord + voice-&gt;sample-&gt;offset;
+        sampleEnd = sampleStart + voice-&gt;sample-&gt;length - 1;
+
+        p = (u32*)&amp;axvpb-&gt;pb.addr;
+        *(p) = 0x0000A;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = sampleEnd;
+        p += 1;
+        *(p) = sampleStart;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0x08000000;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+    }
+    axvpb-&gt;sync &amp;= 0xFFFE1FFF;
+    axvpb-&gt;sync |= 0x21000;
+}
+
+static void
+__SYNSetupPcm8 (struct SYNVOICE* voice)
+{
+    AXVPB* axvpb = voice-&gt;axvpb;
+
+    if ((voice-&gt;region-&gt;loopStart + voice-&gt;region-&gt;loopLength) != 0)
+    {
+        u32  sampleStart;
+        u32  sampleLoop;
+        u32  sampleEnd;
+        u32* p;
+
+        voice-&gt;type = 1;
+        sampleStart = voice-&gt;synth-&gt;aramBaseByte + voice-&gt;sample-&gt;offset;
+        sampleLoop = sampleStart + voice-&gt;region-&gt;loopStart - 1;
+        sampleEnd = sampleLoop + voice-&gt;region-&gt;loopLength - 1;
+        p = (u32*)&amp;axvpb-&gt;pb.addr;
+        *(p) = 0x10019;
+        p += 1;
+        *(p) = sampleLoop;
+        p += 1;
+        *(p) = sampleEnd;
+        p += 1;
+        *(p) = sampleStart;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0x01000000;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+    }
+    else
+    {
+        u32  sampleStart;
+        u32  sampleEnd;
+        u32* p;
+
+        voice-&gt;type = 0;
+        sampleStart = voice-&gt;synth-&gt;aramBaseByte + voice-&gt;sample-&gt;offset;
+        sampleEnd = sampleStart + voice-&gt;sample-&gt;length - 1;
+        p = (u32*)&amp;axvpb-&gt;pb.addr;
+        *(p) = 0x19;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = sampleEnd;
+        p += 1;
+        *(p) = sampleStart;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+        *(p) = 0x01000000;
+        p += 1;
+        *(p) = 0;
+        p += 1;
+    }
+    axvpb-&gt;sync &amp;= 0xFFFE1FFF;
+    axvpb-&gt;sync |= 0x21000;
+}
+
+void
+__SYNSetupSample (struct SYNVOICE* voice)
+{
+    ASSERTLINE (0x15C, voice);
+    switch (voice-&gt;sample-&gt;format)
+    {
+        case SYN_SAMPLE_FORMAT_ADPCM:
+            __SYNSetupAdpcm (voice);
+            return;
+        case SYN_SAMPLE_FORMAT_PCM16:
+            __SYNSetupPcm16 (voice);
+            return;
+        case SYN_SAMPLE_FORMAT_PCM8:
+            __SYNSetupPcm8 (voice);
+            return;
+        default:
+            ASSERTMSGLINE (0x174, FALSE, &quot;unknown sample format¥n&quot;);
+            return;
+    }
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CharacterEventObserver.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-charactereventobserverh">File CharacterEventObserver.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_b9837e7912a2e62dbadd80ce5876b790/"><strong>Project</strong></a> <strong>&gt;</strong> <a href="../dir_e9f5f664b7d8a26223d14dd7fedffb79/"><strong>sources</strong></a> <strong>&gt;</strong> <a href="../dir_9fe0a947080822e90509f3f3e5cdb9ae/"><strong>Koga</strong></a> <strong>&gt;</strong> <a href="../dir_ac979847baa7fefd28f0aba72629da54/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../_character_event_observer_8h/"><strong>CharacterEventObserver.h</strong></a></p>
+<p><a href="../_character_event_observer_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef CHARACTER_EVENT_OBSERVER_H_
+#define CHARACTER_EVENT_OBSERVER_H_
+
+#include &quot;Koga/Observer.h&quot;
+
+namespace Koga
+{
+class CharacterEvent
+{
+public:
+    CharacterEvent (const int&amp; message);
+
+    int mMessage;
+    int mUnk1;
+    int mUnk2;
+    int mUnk3;
+    int mUnk4;
+    int mUnk5;
+    int mUnk6;
+
+    bool* mUnknownEntityBools;
+};
+
+class CharacterEventObserver : public Observer&lt;CharacterEvent, bool&gt;
+{
+public:
+    virtual bool receiveMessage (CharacterEvent* msg);
+
+    /* Called while the actor is inside the flashlight cone. */
+    virtual bool onEnteredFlashlightBeam (CharacterEvent* msg);
+
+    /* Called when the actor's HP hits 0 while being fished. */
+    virtual bool onCaptureBegin (CharacterEvent* msg);
+    /* Called when the actor has been sucked into the Poltergust. */
+    virtual bool onCaptureEnd (CharacterEvent* msg);
+
+    /* TODO: What does this do? */
+    virtual bool FUN_800ea380 (CharacterEvent* msg);
+
+    /* Called when the actor collides with the player. */
+    virtual bool onCollideWithPlayer (CharacterEvent* msg);
+
+    /* Called when the actor is exposed to fire. */
+    virtual bool onSprayedWithFire (CharacterEvent* msg);
+    /* Called when the actor is exposed to ice. */
+    virtual bool onSprayedWithIce (CharacterEvent* msg);
+    /* Called when the actor is exposed to water. */
+    virtual bool onSprayedWithWater (CharacterEvent* msg);
+
+    /* Called when the actor is hit with a fire elemental ball. */
+    virtual bool onHitWithFireBall (CharacterEvent* msg);
+    /* Called when the actor is hit with an ice elemental ball. */
+    virtual bool onHitWithIceBall (CharacterEvent* msg);
+    /* Called when the actor is hit with a water elemental ball. */
+    virtual bool onHitWithWaterBall (CharacterEvent* msg);
+
+    /* Called when the actor is hooked by the Poltergust. */
+    virtual bool onFishingBegin (CharacterEvent* msg);
+
+    /* Called when the player leaves the actor's current room. */
+    virtual bool onPlayerLeftRoom (CharacterEvent* msg);
+    /* Called when the player enters the actor's current room. */
+    virtual bool onPlayerEnteredRoom (CharacterEvent* msg);
+
+    /* Called when the player presses the A button on the actor; treasure chests
+     * only? */
+    virtual bool onPlayerTapped (CharacterEvent* msg);
+
+    /* TODO: What does this do? */
+    virtual bool FUN_800ea44c (CharacterEvent* msg);
+};
+} // namespace Koga
+#endif
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dolformat_8h" kind="file" language="C++">
+    <compoundname>dolformat.h</compoundname>
+    <includes refid="types_8h" local="no">types.h</includes>
+    <includedby refid="_d_o_l_loader_8c" local="no">DOLLoader.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>dolformat.h</label>
+        <link refid="dolformat_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>dolformat.h</label>
+        <link refid="dolformat_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DOLLoader.c</label>
+        <link refid="_d_o_l_loader_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_dol_image" prot="public">DolImage</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="dolformat_8h_1a0026ff6d93d18116bd2fc767c04bdb5f" prot="public" static="no">
+        <name>DOL_MAX_TEXT</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/dolformat.h" line="12" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/dolformat.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="dolformat_8h_1a7d5aa3ca8a1541762b8d75be37769a4e" prot="public" static="no">
+        <name>DOL_MAX_DATA</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/dolformat.h" line="13" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/dolformat.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="dolformat_8h_1ab390519616137b9486b5ad8d61ba3380" prot="public" static="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_dol_image" kindref="compound">DolImage</ref></type>
+        <definition>typedef struct DolImage DolImage</definition>
+        <argsstring></argsstring>
+        <name>DolImage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/dolformat.h" line="27" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dolformat_8h_1ab9ecf24f990328bb3f035076cf33e11e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void * DOLLoadImage</definition>
+        <argsstring>(u8 *buffer, BOOL verbose)</argsstring>
+        <name>DOLLoadImage</name>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+          <declname>verbose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/dolformat.h" line="29" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/dolformat/DOLLoader.c" bodystart="22" bodyend="103" declfile="decomp/DolphinSDK/include/dolphin/dolformat.h" declline="29" declcolumn="6"/>
+        <references refid="ai_8c_1afacf0f5f5bb482c160a5d05965598d32" compoundref="ai_8c" startline="16">buffer</references>
+        <references refid="_d_o_l_loader_8c_1adf189701363187cecddcd7c454d38146" compoundref="_d_o_l_loader_8c" startline="10" endline="19">bzero</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="db_8h_1aef4a898604e9d15dca1476beb2551cec" compoundref="db_8c" startline="82" endline="89">DBPrintf</references>
+        <references refid="_o_s_cache_8h_1ac8eec6bbf9334efd0e1387586212ea99">DCFlushRange</references>
+        <references refid="dolformat_8h_1a7d5aa3ca8a1541762b8d75be37769a4e" compoundref="dolformat_8h" startline="13">DOL_MAX_DATA</references>
+        <references refid="dolformat_8h_1a0026ff6d93d18116bd2fc767c04bdb5f" compoundref="dolformat_8h" startline="12">DOL_MAX_TEXT</references>
+        <references refid="_o_s_i_c_8h_1abfdc4b48f079e44019ed3d91c5c63339" compoundref="_o_s_cache_8c" startline="308" endline="317">ICFlashInvalidate</references>
+        <references refid="_o_s_i_c_8h_1a75d6e31dc939812889805bea7692d622" compoundref="_o_s_cache_8c" startline="381" endline="388">ICSync</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="dolformat_8h_1a7ada781ea66e0283e20cbcdf0671ec21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DOLRunApp</definition>
+        <argsstring>(void *entryPoint)</argsstring>
+        <name>DOLRunApp</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>entryPoint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/dolformat.h" line="30" column="7" declfile="decomp/DolphinSDK/include/dolphin/dolformat.h" declline="30" declcolumn="7"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_DOLFORMAT_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_DOLFORMAT_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8h" kindref="compound">types.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Maximum<sp/>number<sp/>of<sp/>segments<sp/>allowed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="dolformat_8h_1a0026ff6d93d18116bd2fc767c04bdb5f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DOL_MAX_TEXT<sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="dolformat_8h_1a7d5aa3ca8a1541762b8d75be37769a4e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DOL_MAX_DATA<sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="struct_dol_image" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_dol_image" kindref="compound">DolImage</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17" refid="struct_dol_image_1aa0e6938f8a100ca069b88b5fef71ed56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/><ref refid="struct_dol_image_1aa0e6938f8a100ca069b88b5fef71ed56" kindref="member">textData</ref>[<ref refid="dolformat_8h_1a0026ff6d93d18116bd2fc767c04bdb5f" kindref="member">DOL_MAX_TEXT</ref>];</highlight></codeline>
+<codeline lineno="18" refid="struct_dol_image_1ab8c7057edc15c5b0b43c6469c0333304" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/><ref refid="struct_dol_image_1ab8c7057edc15c5b0b43c6469c0333304" kindref="member">dataData</ref>[<ref refid="dolformat_8h_1a7d5aa3ca8a1541762b8d75be37769a4e" kindref="member">DOL_MAX_DATA</ref>];</highlight></codeline>
+<codeline lineno="19" refid="struct_dol_image_1a923124cc445211057ff41feafc4ca4e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_dol_image_1a923124cc445211057ff41feafc4ca4e2" kindref="member">text</ref>[<ref refid="dolformat_8h_1a0026ff6d93d18116bd2fc767c04bdb5f" kindref="member">DOL_MAX_TEXT</ref>];</highlight></codeline>
+<codeline lineno="20" refid="struct_dol_image_1a1d9bdbf37e3b61f10f2549ebc11f35f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_dol_image_1a1d9bdbf37e3b61f10f2549ebc11f35f2" kindref="member">data</ref>[<ref refid="dolformat_8h_1a7d5aa3ca8a1541762b8d75be37769a4e" kindref="member">DOL_MAX_DATA</ref>];</highlight></codeline>
+<codeline lineno="21" refid="struct_dol_image_1a2e35559f3ee6863fe4c42cc88f6e6790" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_dol_image_1a2e35559f3ee6863fe4c42cc88f6e6790" kindref="member">textLen</ref>[<ref refid="dolformat_8h_1a0026ff6d93d18116bd2fc767c04bdb5f" kindref="member">DOL_MAX_TEXT</ref>];</highlight></codeline>
+<codeline lineno="22" refid="struct_dol_image_1a5749af385d74aac69b1b827a716a28d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_dol_image_1a5749af385d74aac69b1b827a716a28d2" kindref="member">dataLen</ref>[<ref refid="dolformat_8h_1a7d5aa3ca8a1541762b8d75be37769a4e" kindref="member">DOL_MAX_DATA</ref>];</highlight></codeline>
+<codeline lineno="23" refid="struct_dol_image_1a0985d3c8629af8e47d6b464cafd7a4a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_dol_image_1a0985d3c8629af8e47d6b464cafd7a4a8" kindref="member">bss</ref>;</highlight></codeline>
+<codeline lineno="24" refid="struct_dol_image_1a7a34c91242d69e1750f8a8a29d9c56bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_dol_image_1a7a34c91242d69e1750f8a8a29d9c56bc" kindref="member">bssLen</ref>;</highlight></codeline>
+<codeline lineno="25" refid="struct_dol_image_1aa6bcbd71bbb7315a7f8f27b1a34a452a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_dol_image_1aa6bcbd71bbb7315a7f8f27b1a34a452a" kindref="member">entry</ref>;</highlight></codeline>
+<codeline lineno="26" refid="struct_dol_image_1a58703f69bddf9f13f0dbf8e025d67edf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><ref refid="struct_dol_image_1a58703f69bddf9f13f0dbf8e025d67edf" kindref="member">padding</ref>[28];</highlight></codeline>
+<codeline lineno="27" refid="dolformat_8h_1ab390519616137b9486b5ad8d61ba3380" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_dol_image" kindref="compound">DolImage</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="dolformat_8h_1ab9ecf24f990328bb3f035076cf33e11e" kindref="member">DOLLoadImage</ref><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/><ref refid="ai_8c_1afacf0f5f5bb482c160a5d05965598d32" kindref="member">buffer</ref>,<sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">verbose</ref>);</highlight></codeline>
+<codeline lineno="30" refid="dolformat_8h_1a7ada781ea66e0283e20cbcdf0671ec21" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="dolformat_8h_1a7ada781ea66e0283e20cbcdf0671ec21" kindref="member">DOLRunApp</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">entryPoint</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/include/dolphin/dolformat.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="math__inlines_8c" kind="file" language="C++">
+    <compoundname>math_inlines.c</compoundname>
+    <includes refid="math_8h" local="no">math.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>cmath</label>
+        <link refid="cmath"/>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+        <link refid="math_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>math_inlines.c</label>
+        <link refid="math__inlines_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="math__inlines_8c_1ab87521a75ef827a85807f89a6c10629a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double sqrt</definition>
+        <argsstring>(double x)</argsstring>
+        <name>sqrt</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/math_inlines.c" line="20" column="8" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/math_inlines.c" bodystart="20" bodyend="38"/>
+        <references refid="sqrtf_8c_1ac0ada590840a122f275d33c657ded5ef">__frsqrte</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Math_Inlines.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Added<sp/>for<sp/>Nintendo<sp/>since<sp/>linking<sp/>was<sp/>not<sp/>working</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>when<sp/>upgrading<sp/>from<sp/>an<sp/>older<sp/>MSL<sp/>without<sp/>the<sp/>same</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>inlines<sp/>to<sp/>the<sp/>newer<sp/>version<sp/>where<sp/>sqrt<sp/>was<sp/>inlined.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>When<sp/>a<sp/>function<sp/>is<sp/>made<sp/>inline,<sp/>the<sp/>previous<sp/>version</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>of<sp/>the<sp/>function<sp/>should<sp/>be<sp/>placed<sp/>here,<sp/>so<sp/>that<sp/>older</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>versions<sp/>of<sp/>the<sp/>library<sp/>will<sp/>link.<sp/>Also,<sp/>the<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>should<sp/>have<sp/>a<sp/>#if<sp/>!__option(dont_inline)<sp/>that<sp/>has</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>inline<sp/>version<sp/>of<sp/>the<sp/>function.<sp/>If<sp/>the<sp/>user<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>is<sp/>inlining,<sp/>then<sp/>the<sp/>header<sp/>version<sp/>will<sp/>be<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>not,<sp/>this<sp/>version<sp/>will<sp/>be<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>swells<sp/>on<sp/>06-26-00</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="math_8h" kindref="compound">math.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="math__inlines_8c_1ab87521a75ef827a85807f89a6c10629a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="math__inlines_8c_1ab87521a75ef827a85807f89a6c10629a" kindref="member">sqrt</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(x<sp/>&gt;<sp/>0.0f)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>guess<sp/>=<sp/><ref refid="sqrtf_8c_1ac0ada590840a122f275d33c657ded5ef" kindref="member">__frsqrte</ref>(x);<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>returns<sp/>an<sp/>approximation<sp/>to<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/>guess<sp/>=<sp/>.5*guess*(3.0<sp/>-<sp/>guess*guess*x);<sp/><sp/></highlight><highlight class="comment">//<sp/>now<sp/>have<sp/>8<sp/>sig<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/>guess<sp/>=<sp/>.5*guess*(3.0<sp/>-<sp/>guess*guess*x);<sp/><sp/></highlight><highlight class="comment">//<sp/>now<sp/>have<sp/>16<sp/>sig<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/>guess<sp/>=<sp/>.5*guess*(3.0<sp/>-<sp/>guess*guess*x);<sp/><sp/></highlight><highlight class="comment">//<sp/>now<sp/>have<sp/>32<sp/>sig<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/>guess<sp/>=<sp/>.5*guess*(3.0<sp/>-<sp/>guess*guess*x);<sp/><sp/></highlight><highlight class="comment">//<sp/>now<sp/>have<sp/>&gt;<sp/>53<sp/>sig<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x*guess<sp/>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>x<sp/>==<sp/>0<sp/>)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>x<sp/>)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NAN;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>INFINITY;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/math_inlines.c"/>
+  </compounddef>
+</doxygen>

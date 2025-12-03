@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File List.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-listc">File List.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_7636aa5346774086801f2528daa452d7/"><strong>support</strong></a> <strong>&gt;</strong> <a href="../_list_8c/"><strong>List.c</strong></a></p>
+<p><a href="../_list_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;charPipeline/structures/List.h&gt;
+
+void
+DSInitList (DSListPtr list, Ptr obj, DSLinkPtr link)
+{
+    list-&gt;Head = NULL;
+    list-&gt;Tail = NULL;
+    list-&gt;Offset = (Ptr)link - obj;
+}
+
+void
+DSInsertListObject (DSListPtr list, Ptr cursor, Ptr obj)
+{
+    DSLinkPtr link;
+    DSLinkPtr linkNext;
+    DSLinkPtr linkPrev;
+
+    link = (DSLinkPtr)(obj + list-&gt;Offset);
+    if (list-&gt;Head)
+    {
+        if (!cursor)
+        {
+            linkPrev = (DSLinkPtr)(list-&gt;Tail + list-&gt;Offset);
+            linkPrev-&gt;Next = obj;
+            link-&gt;Prev = list-&gt;Tail;
+            link-&gt;Next = NULL;
+            list-&gt;Tail = obj;
+            return;
+        }
+        else
+        {
+            linkNext = (DSLinkPtr)(cursor + list-&gt;Offset);
+            if (cursor == list-&gt;Head)
+            {
+                list-&gt;Head = obj;
+                link-&gt;Next = cursor;
+                linkNext-&gt;Prev = obj;
+                return;
+            }
+            else
+            {
+                linkPrev = (DSLinkPtr)(linkNext-&gt;Prev + list-&gt;Offset);
+                link-&gt;Next = cursor;
+                link-&gt;Prev = linkNext-&gt;Prev;
+                linkNext-&gt;Prev = obj;
+                linkPrev-&gt;Next = obj;
+            }
+        }
+    }
+    else
+    {
+        list-&gt;Tail = obj;
+        list-&gt;Head = obj;
+        link-&gt;Next = link-&gt;Prev = NULL;
+    }
+}
+
+void
+DSRemoveListObject (DSListPtr list, Ptr obj)
+{
+    DSLinkPtr link = (DSLinkPtr)(obj + list-&gt;Offset);
+
+    if (obj)
+    {
+        if (link-&gt;Prev)
+        {
+            ((DSLinkPtr)(link-&gt;Prev + list-&gt;Offset))-&gt;Next = link-&gt;Next;
+        }
+        else
+        {
+            list-&gt;Head = link-&gt;Next;
+        }
+        if (link-&gt;Next)
+        {
+            ((DSLinkPtr)(link-&gt;Next + list-&gt;Offset))-&gt;Prev = link-&gt;Prev;
+        }
+        else
+        {
+            list-&gt;Tail = link-&gt;Prev;
+        }
+        link-&gt;Prev = NULL;
+        link-&gt;Next = NULL;
+    }
+}
+
+void
+DSAttachList (DSListPtr baseList, DSListPtr attachList)
+{
+    DSLinkPtr link;
+    DSLinkPtr linkPrev;
+
+    if (baseList-&gt;Offset == attachList-&gt;Offset &amp;&amp; (attachList-&gt;Head || attachList-&gt;Tail))
+    {
+        linkPrev = (DSLinkPtr)(attachList-&gt;Head + attachList-&gt;Offset);
+        if (baseList-&gt;Head)
+        {
+            link = (DSLinkPtr)(baseList-&gt;Tail + baseList-&gt;Offset);
+            link-&gt;Next = attachList-&gt;Head;
+            linkPrev-&gt;Prev = baseList-&gt;Tail;
+            baseList-&gt;Tail = attachList-&gt;Tail;
+            return;
+        }
+        baseList-&gt;Head = attachList-&gt;Head;
+        baseList-&gt;Tail = attachList-&gt;Tail;
+        linkPrev; // needed to match
+    }
+}
+
+void*
+DSNextListObj (DSListPtr list, Ptr obj)
+{
+    if (!list)
+    {
+        return NULL;
+    }
+    if (!obj)
+    {
+        return list-&gt;Head;
+    }
+    return ((DSLinkPtr)(obj + list-&gt;Offset))-&gt;Next;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

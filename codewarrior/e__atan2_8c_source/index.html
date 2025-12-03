@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File e_atan2.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-e_atan2c">File e_atan2.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="../e__atan2_8c/"><strong>e_atan2.c</strong></a></p>
+<p><a href="../e__atan2_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+#ifndef _No_Floating_Point  
+/* @(#)e_atan2.c 1.2 95/01/04 */
+/* $Id: e_atan2.c,v 1.2.4.1 1999/12/06 19:47:52 fassiott Exp $ */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
+ *
+ */
+
+/* __ieee754_atan2(y,x)
+ * Method :
+ *  1. Reduce y to positive by atan2(y,x)=-atan2(-y,x).
+ *  2. Reduce x to positive by (if x and y are unexceptional): 
+ *      ARG (x+iy) = arctan(y/x)       ... if x &gt; 0,
+ *      ARG (x+iy) = pi - arctan[y/(-x)]   ... if x &lt; 0,
+ *
+ * Special cases:
+ *
+ *  ATAN2((anything), NaN ) is NaN;
+ *  ATAN2(NAN , (anything) ) is NaN;
+ *  ATAN2(+-0, +(anything but NaN)) is +-0  ;
+ *  ATAN2(+-0, -(anything but NaN)) is +-pi ;
+ *  ATAN2(+-(anything but 0 and NaN), 0) is +-pi/2;
+ *  ATAN2(+-(anything but INF and NaN), +INF) is +-0 ;
+ *  ATAN2(+-(anything but INF and NaN), -INF) is +-pi;
+ *  ATAN2(+-INF,+INF ) is +-pi/4 ;
+ *  ATAN2(+-INF,-INF ) is +-3pi/4;
+ *  ATAN2(+-INF, (anything but,0,NaN, and INF)) is +-pi/2;
+ *
+ * Constants:
+ * The hexadecimal values are the intended ones for the following 
+ * constants. The decimal values may be used, provided that the 
+ * compiler will convert from decimal to binary accurately enough 
+ * to produce the hexadecimal values shown.
+ */
+
+#include &quot;fdlibm.h&quot;
+
+#ifdef __STDC__
+static const double 
+#else
+static double 
+#endif
+tiny  = 1.0e-300,
+zero  = 0.0,
+pi_o_4  = 7.8539816339744827900E-01, /* 0x3FE921FB, 0x54442D18 */
+pi_o_2  = 1.5707963267948965580E+00, /* 0x3FF921FB, 0x54442D18 */
+pi      = 3.1415926535897931160E+00, /* 0x400921FB, 0x54442D18 */
+pi_lo   = 1.2246467991473531772E-16; /* 0x3CA1A626, 0x33145C07 */
+
+#ifdef __STDC__
+    double __ieee754_atan2(double y, double x)
+#else
+    double __ieee754_atan2(y,x)
+    double  y,x;
+#endif
+{  
+    double z;
+    int k,m,hx,hy,ix,iy;
+    unsigned lx,ly;
+
+    hx = __HI(x); ix = hx&amp;0x7fffffff;
+    lx = __LO(x);
+    hy = __HI(y); iy = hy&amp;0x7fffffff;
+    ly = __LO(y);
+    if(((ix|((lx|-lx)&gt;&gt;31))&gt;0x7ff00000)||
+       ((iy|((ly|-ly)&gt;&gt;31))&gt;0x7ff00000))    /* x or y is NaN */
+       return x+y;
+    if((hx-0x3ff00000|lx)==0) return atan(y);   /* x=1.0 */
+    m = ((hy&gt;&gt;31)&amp;1)|((hx&gt;&gt;30)&amp;2);  /* 2*sign(x)+sign(y) */
+
+    /* when y = 0 */
+    if((iy|ly)==0) {
+        switch(m) {
+        case 0: 
+        case 1: return y;   /* atan(+-0,+anything)=+-0 */
+        case 2: return  pi+tiny;/* atan(+0,-anything) = pi */
+        case 3: return -pi-tiny;/* atan(-0,-anything) =-pi */
+        }
+    }
+    /* when x = 0 */
+    if((ix|lx)==0) return (hy&lt;0)?  -pi_o_2-tiny: pi_o_2+tiny;
+
+    /* when x is INF */
+    if(ix==0x7ff00000) {
+        if(iy==0x7ff00000) {
+        switch(m) {
+            case 0: return  pi_o_4+tiny;/* atan(+INF,+INF) */
+            case 1: return -pi_o_4-tiny;/* atan(-INF,+INF) */
+            case 2: return  3.0*pi_o_4+tiny;/*atan(+INF,-INF)*/
+            case 3: return -3.0*pi_o_4-tiny;/*atan(-INF,-INF)*/
+        }
+        } else {
+        switch(m) {
+            case 0: return  zero  ; /* atan(+...,+INF) */
+            case 1: return -zero  ; /* atan(-...,+INF) */
+            case 2: return  pi+tiny  ;  /* atan(+...,-INF) */
+            case 3: return -pi-tiny  ;  /* atan(-...,-INF) */
+        }
+        }
+    }
+    /* when y is INF */
+    if(iy==0x7ff00000) return (hy&lt;0)? -pi_o_2-tiny: pi_o_2+tiny;
+
+    /* compute y/x */
+    k = (iy-ix)&gt;&gt;20;
+    if(k &gt; 60) z=pi_o_2+0.5*pi_lo;  /* |y/x| &gt;  2**60 */
+    else if(hx&lt;0&amp;&amp;k&lt;-60) z=0.0;     /* |y|/x &lt; -2**60 */
+    else z=atan(fabs(y/x));     /* safe to do y/x */
+    switch (m) {
+        case 0: return       z  ;   /* atan(+,+) */
+        case 1: __HI(z) ^= 0x80000000;
+            return       z  ;   /* atan(-,+) */
+        case 2: return  pi-(z-pi_lo);/* atan(+,-) */
+        default: /* case 3 */
+                return  (z-pi_lo)-pi;/* atan(-,-) */
+    }
+}
+#endif /* _No_Floating_Point  */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

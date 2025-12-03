@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Class AITurara - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="class-aiturara">Class AITurara</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>AITurara</strong></a></p>
+<ul>
+<li><code>#include &lt;AITurara.h&gt;</code></li>
+</ul>
+<p>Inherits the following classes: <a href="../class_enemy_typical_strategy/">EnemyTypicalStrategy</a></p>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">u8</td>
+<td style="text-align: left;"><a href="#variable-mdummy"><strong>mDummy</strong></a>  <br><em>0x01D8</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">s32</td>
+<td style="text-align: left;"><a href="#variable-miciclecharacteridxs"><strong>mIcicleCharacterIdxs</strong></a>  <br><em>0x01B0</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">s32</td>
+<td style="text-align: left;"><a href="#variable-miciclecount"><strong>mIcicleCount</strong></a>  <br><em>0x01AC</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">s32</td>
+<td style="text-align: left;"><a href="#variable-mrespawntimer"><strong>mRespawnTimer</strong></a>  <br><em>0x01A8</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">float</td>
+<td style="text-align: left;"><a href="#variable-mscale"><strong>mScale</strong></a>  <br><em>0x01F0</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-inherited-from-enemytypicalstrategy">Public Attributes inherited from EnemyTypicalStrategy</h2>
+<p>See <a href="../class_enemy_typical_strategy/">EnemyTypicalStrategy</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../class_en_tsuri_strategies/"><strong>EnTsuriStrategies</strong></a></td>
+<td style="text-align: left;"><a href="../class_enemy_typical_strategy/#variable-mtsuristrategies"><strong>mTsuriStrategies</strong></a>  <br><em>0x20</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-inherited-from-enemystrategydecorator">Public Attributes inherited from EnemyStrategyDecorator</h2>
+<p>See <a href="../class_enemy_strategy_decorator/">EnemyStrategyDecorator</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">s16</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy_decorator/#variable-mtsuristate"><strong>mTsuriState</strong></a>  <br><em>0x18</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../class_enemy_strategy/"><strong>EnemyStrategy</strong></a> *</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy_decorator/#variable-mptsuristrategy"><strong>mpTsuriStrategy</strong></a>  <br><em>0x14</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-inherited-from-enemystrategy">Public Attributes inherited from EnemyStrategy</h2>
+<p>See <a href="../class_enemy_strategy/">EnemyStrategy</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">u16</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#variable-mcurstate"><strong>mCurState</strong></a>  <br><em>0x0E</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">u16</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#variable-mnextstate"><strong>mNextState</strong></a>  <br><em>0x0C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">s32</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#variable-mtimer"><strong>mTimer</strong></a>  <br><em>0x10</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#variable-mpuserdata"><strong>mpUserData</strong></a>  <br><em>0x08</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#variable-mpzako"><strong>mpZako</strong></a>  <br><em>0x04</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-aiturara"><strong>AITurara</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="#function-fun_800ea44c"><strong>FUN_800ea44c</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>Koga::CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-dobehavior"><strong>doBehavior</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-dobehaviorinit"><strong>doBehaviorInit</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="#function-onplayerleftroom"><strong>onPlayerLeftRoom</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>Koga::CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-procinit"><strong>procInit</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-procinit_init"><strong>procInit_init</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-procwait"><strong>procWait</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-procwait_init"><strong>procWait_init</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-spawnicicles"><strong>spawnIcicles</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual s32</td>
+<td style="text-align: left;"><a href="#function-unkenemystrategyfunc01"><strong>unkEnemyStrategyFunc01</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual</td>
+<td style="text-align: left;"><a href="#function-aiturara"><strong>~AITurara</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-enemytypicalstrategy">Public Functions inherited from EnemyTypicalStrategy</h2>
+<p>See <a href="../class_enemy_typical_strategy/">EnemyTypicalStrategy</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_enemy_typical_strategy/#function-onfishingbegin"><strong>onFishingBegin</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>Koga::CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual</td>
+<td style="text-align: left;"><a href="../class_enemy_typical_strategy/#function-enemytypicalstrategy"><strong>~EnemyTypicalStrategy</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-enemystrategydecorator">Public Functions inherited from EnemyStrategyDecorator</h2>
+<p>See <a href="../class_enemy_strategy_decorator/">EnemyStrategyDecorator</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../class_enemy_strategy_decorator/#function-enemystrategydecorator"><strong>EnemyStrategyDecorator</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">s32</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy_decorator/#function-settsuristrategy"><strong>setTsuriStrategy</strong></a> (<a href="../class_enemy_strategy/"><strong>EnemyStrategy</strong></a> * i_tsuriStrategy) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy_decorator/#function-update"><strong>update</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-enemystrategy">Public Functions inherited from EnemyStrategy</h2>
+<p>See <a href="../class_enemy_strategy/">EnemyStrategy</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-enemystrategy"><strong>EnemyStrategy</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-changestate"><strong>changeState</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-dobehavior"><strong>doBehavior</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-dobehaviorinit"><strong>doBehaviorInit</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-init"><strong>init</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-setnextstate"><strong>setNextState</strong></a> (s16 i_nextState) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual s32</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-unkenemystrategyfunc01"><strong>unkEnemyStrategyFunc01</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-unkenemystrategyfunc02"><strong>unkEnemyStrategyFunc02</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-update"><strong>update</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-enemystrategy"><strong>~EnemyStrategy</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-kogacharactereventobserver">Public Functions inherited from Koga::CharacterEventObserver</h2>
+<p>See <a href="../class_koga_1_1_character_event_observer/">Koga::CharacterEventObserver</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-fun_800ea380"><strong>FUN_800ea380</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-fun_800ea44c"><strong>FUN_800ea44c</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-oncapturebegin"><strong>onCaptureBegin</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-oncaptureend"><strong>onCaptureEnd</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-oncollidewithplayer"><strong>onCollideWithPlayer</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onenteredflashlightbeam"><strong>onEnteredFlashlightBeam</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onfishingbegin"><strong>onFishingBegin</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onhitwithfireball"><strong>onHitWithFireBall</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onhitwithiceball"><strong>onHitWithIceBall</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onhitwithwaterball"><strong>onHitWithWaterBall</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onplayerenteredroom"><strong>onPlayerEnteredRoom</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onplayerleftroom"><strong>onPlayerLeftRoom</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onplayertapped"><strong>onPlayerTapped</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onsprayedwithfire"><strong>onSprayedWithFire</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onsprayedwithice"><strong>onSprayedWithIce</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-onsprayedwithwater"><strong>onSprayedWithWater</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_character_event_observer/#function-receivemessage"><strong>receiveMessage</strong></a> (<a href="../class_koga_1_1_character_event/"><strong>CharacterEvent</strong></a> * msg) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-kogaobserver">Public Functions inherited from Koga::Observer</h2>
+<p>See <a href="../class_koga_1_1_observer/">Koga::Observer</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">virtual Ret</td>
+<td style="text-align: left;"><a href="../class_koga_1_1_observer/#function-receivemessage"><strong>receiveMessage</strong></a> (Msg * msg) = 0<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions-inherited-from-enemystrategy">Public Static Functions inherited from EnemyStrategy</h2>
+<p>See <a href="../class_enemy_strategy/">EnemyStrategy</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-operator-delete"><strong>operator delete</strong></a> (void * mem) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="../class_enemy_strategy/#function-operator-new"><strong>operator new</strong></a> (<a href="../_enemy_strategy_8h/#typedef-size_t"><strong>size_t</strong></a> size, void * mem) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-mdummy">variable mDummy</h3>
+<p><em>0x01D8</em> </p>
+<pre><code class="language-C++">u8 AITurara::mDummy[0x18];
+</code></pre>
+<hr>
+
+<h3 id="variable-miciclecharacteridxs">variable mIcicleCharacterIdxs</h3>
+<p><em>0x01B0</em> </p>
+<pre><code class="language-C++">s32 AITurara::mIcicleCharacterIdxs[10];
+</code></pre>
+<hr>
+
+<h3 id="variable-miciclecount">variable mIcicleCount</h3>
+<p><em>0x01AC</em> </p>
+<pre><code class="language-C++">s32 AITurara::mIcicleCount;
+</code></pre>
+<hr>
+
+<h3 id="variable-mrespawntimer">variable mRespawnTimer</h3>
+<p><em>0x01A8</em> </p>
+<pre><code class="language-C++">s32 AITurara::mRespawnTimer;
+</code></pre>
+<hr>
+
+<h3 id="variable-mscale">variable mScale</h3>
+<p><em>0x01F0</em> </p>
+<pre><code class="language-C++">float AITurara::mScale;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-aiturara">function AITurara</h3>
+<pre><code class="language-C++">AITurara::AITurara () 
+</code></pre>
+<hr>
+
+<h3 id="function-fun_800ea44c">function FUN_800ea44c</h3>
+<pre><code class="language-C++">virtual bool AITurara::FUN_800ea44c (
+    Koga::CharacterEvent * msg
+) 
+</code></pre>
+<p>Implements <a href="../class_koga_1_1_character_event_observer/#function-fun_800ea44c"><em>Koga::CharacterEventObserver::FUN_800ea44c</em></a></p>
+<hr>
+
+<h3 id="function-dobehavior">function doBehavior</h3>
+<pre><code class="language-C++">virtual void AITurara::doBehavior () 
+</code></pre>
+<p>Implements <a href="../class_enemy_strategy/#function-dobehavior"><em>EnemyStrategy::doBehavior</em></a></p>
+<hr>
+
+<h3 id="function-dobehaviorinit">function doBehaviorInit</h3>
+<pre><code class="language-C++">virtual void AITurara::doBehaviorInit () 
+</code></pre>
+<p>Implements <a href="../class_enemy_strategy/#function-dobehaviorinit"><em>EnemyStrategy::doBehaviorInit</em></a></p>
+<hr>
+
+<h3 id="function-onplayerleftroom">function onPlayerLeftRoom</h3>
+<pre><code class="language-C++">virtual bool AITurara::onPlayerLeftRoom (
+    Koga::CharacterEvent * msg
+) 
+</code></pre>
+<p>Implements <a href="../class_koga_1_1_character_event_observer/#function-onplayerleftroom"><em>Koga::CharacterEventObserver::onPlayerLeftRoom</em></a></p>
+<hr>
+
+<h3 id="function-procinit">function procInit</h3>
+<pre><code class="language-C++">bool AITurara::procInit () 
+</code></pre>
+<hr>
+
+<h3 id="function-procinit_init">function procInit_init</h3>
+<pre><code class="language-C++">bool AITurara::procInit_init () 
+</code></pre>
+<hr>
+
+<h3 id="function-procwait">function procWait</h3>
+<pre><code class="language-C++">bool AITurara::procWait () 
+</code></pre>
+<hr>
+
+<h3 id="function-procwait_init">function procWait_init</h3>
+<pre><code class="language-C++">bool AITurara::procWait_init () 
+</code></pre>
+<hr>
+
+<h3 id="function-spawnicicles">function spawnIcicles</h3>
+<pre><code class="language-C++">void AITurara::spawnIcicles () 
+</code></pre>
+<hr>
+
+<h3 id="function-unkenemystrategyfunc01">function unkEnemyStrategyFunc01</h3>
+<pre><code class="language-C++">virtual s32 AITurara::unkEnemyStrategyFunc01 () 
+</code></pre>
+<p>Implements <a href="../class_enemy_strategy/#function-unkenemystrategyfunc01"><em>EnemyStrategy::unkEnemyStrategyFunc01</em></a></p>
+<hr>
+
+<h3 id="function-aiturara_1">function ~AITurara</h3>
+<pre><code class="language-C++">virtual AITurara::~AITurara () 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/Project/sources/Sato/include/AITurara.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

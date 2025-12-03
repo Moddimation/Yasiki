@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File time.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-timec">File time.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>time.c</strong></a></p>
+<p><a href="../time_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "arith.h"</code></li>
+<li><code>#include &lt;limits.h&gt;</code></li>
+<li><code>#include &lt;stdarg.h&gt;</code></li>
+<li><code>#include &lt;stdlib.h&gt;</code></li>
+<li><code>#include &lt;stdio.h&gt;</code></li>
+<li><code>#include &lt;string.h&gt;</code></li>
+<li><code>#include &lt;time.h&gt;</code></li>
+<li><code>#include &lt;ThreadLocalData.h&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">const short</td>
+<td style="text-align: left;"><a href="#variable-__month_to_days"><strong>__month_to_days</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">const char *</td>
+<td style="text-align: left;"><a href="#variable-day_name"><strong>day_name</strong></a>   = <code>{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const char *</td>
+<td style="text-align: left;"><a href="#variable-month_name"><strong>month_name</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-__leap_year"><strong>__leap_year</strong></a> (int year) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">clock_t</td>
+<td style="text-align: left;"><a href="#function-clock"><strong>clock</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">time_t</td>
+<td style="text-align: left;"><a href="#function-time"><strong>time</strong></a> (time_t * timer) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__time2tm"><strong>__time2tm</strong></a> (time_t inTime, struct tm * tm) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-__tm2time"><strong>__tm2time</strong></a> (struct tm * tm, time_t * time) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-adjust"><strong>adjust</strong></a> (int * x, int y, int * z) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-asciitime"><strong>asciitime</strong></a> (struct tm tm, char * str) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-clear_tm"><strong>clear_tm</strong></a> (struct tm * tm) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-emit"><strong>emit</strong></a> (char * str, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> size, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> * max_size, const char * format_str, ...) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-leap_days"><strong>leap_days</strong></a> (int year, int mon) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-week_num"><strong>week_num</strong></a> (const struct tm * tm, int starting_day) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-seconds_per_day"><strong>seconds_per_day</strong></a>  <code>(24L \* [**seconds\_per\_hour**](time_8c.md#define-seconds_per_hour))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-seconds_per_hour"><strong>seconds_per_hour</strong></a>  <code>(60L \* [**seconds\_per\_minute**](time_8c.md#define-seconds_per_minute))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-seconds_per_minute"><strong>seconds_per_minute</strong></a>  <code>(60L)</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__month_to_days">variable __month_to_days</h3>
+<pre><code class="language-C++">const short __month_to_days[2][13];
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-day_name">variable day_name</h3>
+<pre><code class="language-C++">const char* day_name[];
+</code></pre>
+<hr>
+
+<h3 id="variable-month_name">variable month_name</h3>
+<pre><code class="language-C++">const char* month_name[];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-__leap_year">function __leap_year</h3>
+<pre><code class="language-C++">int __leap_year (
+    int year
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-clock">function clock</h3>
+<pre><code class="language-C++">clock_t clock (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-time">function time</h3>
+<pre><code class="language-C++">time_t time (
+    time_t * timer
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-__time2tm">function __time2tm</h3>
+<pre><code class="language-C++">static void __time2tm (
+    time_t inTime,
+    struct tm * tm
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__tm2time">function __tm2time</h3>
+<pre><code class="language-C++">static int __tm2time (
+    struct tm * tm,
+    time_t * time
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-adjust">function adjust</h3>
+<pre><code class="language-C++">static int adjust (
+    int * x,
+    int y,
+    int * z
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asciitime">function asciitime</h3>
+<pre><code class="language-C++">static void asciitime (
+    struct tm tm,
+    char * str
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-clear_tm">function clear_tm</h3>
+<pre><code class="language-C++">static void clear_tm (
+    struct tm * tm
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-emit">function emit</h3>
+<pre><code class="language-C++">static int emit (
+    char * str,
+    size_t size,
+    size_t * max_size,
+    const char * format_str,
+    ...
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-leap_days">function leap_days</h3>
+<pre><code class="language-C++">static int leap_days (
+    int year,
+    int mon
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-week_num">function week_num</h3>
+<pre><code class="language-C++">static int week_num (
+    const struct tm * tm,
+    int starting_day
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-seconds_per_day">define seconds_per_day</h3>
+<pre><code class="language-C++">#define seconds_per_day `(24L * seconds_per_hour )`
+</code></pre>
+<hr>
+
+<h3 id="define-seconds_per_hour">define seconds_per_hour</h3>
+<pre><code class="language-C++">#define seconds_per_hour `(60L * seconds_per_minute )`
+</code></pre>
+<hr>
+
+<h3 id="define-seconds_per_minute">define seconds_per_minute</h3>
+<pre><code class="language-C++">#define seconds_per_minute `(60L)`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/time.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

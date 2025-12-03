@@ -1,0 +1,391 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="support_8c" kind="file" language="C++">
+    <compoundname>support.c</compoundname>
+    <includes refid="support_8h" local="yes">Portable/support.h</includes>
+    <includes refid="msgbuf_8h" local="yes">Portable/msgbuf.h</includes>
+    <includes refid="msg_8h" local="yes">Portable/msg.h</includes>
+    <includes refid="serpoll_8h" local="yes">Portable/serpoll.h</includes>
+    <includes refid="msghndlr_8h" local="yes">Portable/msghndlr.h</includes>
+    <includes refid="stddef_8h" local="yes">stddef.h</includes>
+    <includes refid="string_8h" local="yes">string.h</includes>
+    <incdepgraph>
+      <node id="8">
+        <label>Portable/msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Portable/msgbuf.h</label>
+        <link refid="msgbuf_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Portable/msghndlr.h</label>
+        <link refid="msghndlr_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Portable/serpoll.h</label>
+        <link refid="serpoll_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Portable/support.h</label>
+        <link refid="support_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>support.c</label>
+        <link refid="support_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="12">
+        <label>cstring</label>
+        <link refid="cstring"/>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>string.h</label>
+        <link refid="string_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="support_8c_1a854fab9a6aa5fb8a16021f32df8b68f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKSuppAccessFile</definition>
+        <argsstring>(u32 file_handle, u8 *data, size_t *count, DSIOResult *io_result, BOOL need_reply, BOOL read)</argsstring>
+        <name>TRKSuppAccessFile</name>
+        <param>
+          <type>u32</type>
+          <declname>file_handle</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref> *</type>
+          <declname>io_result</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>need_reply</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>read</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/support.c" line="9" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/support.c" bodystart="9" bodyend="103"/>
+        <references refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58">count</references>
+        <references refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384acb1188feeea1a6620028be3681ea915d" compoundref="trk_8h" startline="54">DS_IONoError</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55bad70af7fcaf93bb87639a6f6a7a58e22b" compoundref="trk_8h" startline="22">DS_ParameterError</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa5d8e4eacaf01479931e9b58f72b1ea3b" compoundref="trk_8h" startline="84">DSMSG_ReadFile</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa82669fbeea5bcca2fd7d81320608c786" compoundref="trk_8h" startline="83">DSMSG_WriteFile</references>
+        <references refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3">exit</references>
+        <references refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" compoundref="trk_8h" startline="208">TRKBuffer::length</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <references refid="msgbuf_8h_1aa599fc23a6704a209587bb74f8364ec3" compoundref="msgbuf_8c" startline="158" endline="175">TRKAppendBuffer1_ui16</references>
+        <references refid="msgbuf_8h_1a3bc47ac2930bb78b6e3de38d3f726c55" compoundref="msgbuf_8c" startline="177" endline="196">TRKAppendBuffer1_ui32</references>
+        <references refid="msgbuf_8h_1a1472cd706c5851d7a9c117733365a29c" compoundref="msgbuf_8h" startline="22" endline="31">TRKAppendBuffer1_ui8</references>
+        <references refid="msgbuf_8h_1af5f5cd432b8eb29cf440090e9f141a1b" compoundref="msgbuf_8c" startline="222" endline="232">TRKAppendBuffer_ui8</references>
+        <references refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" compoundref="msgbuf_8c" startline="50" endline="58">TRKGetBuffer</references>
+        <references refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" compoundref="msgbuf_8c" startline="24" endline="48">TRKGetFreeBuffer</references>
+        <references refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" compoundref="msg_8c" startline="5" endline="9">TRKMessageSend</references>
+        <references refid="msgbuf_8h_1addef81a91119d2e5de274901b22d603c" compoundref="msgbuf_8c" startline="251" endline="275">TRKReadBuffer1_ui16</references>
+        <references refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" compoundref="msgbuf_8c" startline="246" endline="249">TRKReadBuffer1_ui8</references>
+        <references refid="msgbuf_8h_1a01bebba04b7dbea851480746fa04072a" compoundref="msgbuf_8c" startline="337" endline="347">TRKReadBuffer_ui8</references>
+        <references refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</references>
+        <references refid="support_8c_1af9c283ab3b5d7f2ff2fc875d02c9f84f" compoundref="support_8c" startline="105" endline="177">TRKRequestSend</references>
+        <references refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" compoundref="msgbuf_8c" startline="81" endline="97">TRKSetBufferPosition</references>
+        <referencedby refid="targimpl_8h_1a6ebf7e476dd31372a01e2e19b8950941" compoundref="targimpl_8c" startline="969" endline="1001">TRKTargetSupportRequest</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="support_8c_1af9c283ab3b5d7f2ff2fc875d02c9f84f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKRequestSend</definition>
+        <argsstring>(TRKBuffer *msgBuf, int *bufferId, u32 p1, u32 p2, int p3)</argsstring>
+        <name>TRKRequestSend</name>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>msgBuf</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>bufferId</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>p1</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>p2</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>p3</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/support.c" line="105" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/support.c" bodystart="105" bodyend="177"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55badb1961643ec37f093427aee7cb5704d8" compoundref="trk_8h" startline="40">DS_Error800</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa7d848956e52c016356e74f1155417426" compoundref="trk_8h" startline="78">DSMSG_ReplyACK</references>
+        <references refid="trk_8h_1aec22e8e81f3f173090f2c04ac256d143a600345694d4558f64efcd1457129395d" compoundref="trk_8h" startline="109">DSREPLY_NoError</references>
+        <references refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" compoundref="trk_8h" startline="208">TRKBuffer::length</references>
+        <references refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" compoundref="msgbuf_8c" startline="50" endline="58">TRKGetBuffer</references>
+        <references refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" compoundref="msg_8c" startline="5" endline="9">TRKMessageSend</references>
+        <references refid="serpoll_8h_1a1fefa327b68ac9b923df22fbecadf89d" compoundref="serpoll_8c" startline="63" endline="71">TRKProcessInput</references>
+        <references refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" compoundref="msgbuf_8c" startline="246" endline="249">TRKReadBuffer1_ui8</references>
+        <references refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</references>
+        <references refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" compoundref="msgbuf_8c" startline="81" endline="97">TRKSetBufferPosition</references>
+        <references refid="serpoll_8h_1af64c66110bd037b1a16f7a5bcc80f3d6" compoundref="serpoll_8c" startline="12" endline="41">TRKTestForPacket</references>
+        <referencedby refid="notify_8h_1a568b242b6bffbf5d5c5e8867832c8dfb" compoundref="notify_8c" startline="7" endline="40">TRKDoNotifyStopped</referencedby>
+        <referencedby refid="support_8h_1a854fab9a6aa5fb8a16021f32df8b68f5" compoundref="support_8c" startline="9" endline="103">TRKSuppAccessFile</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="support_8h" kindref="compound">Portable/support.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msgbuf_8h" kindref="compound">Portable/msgbuf.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">Portable/msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="serpoll_8h" kindref="compound">Portable/serpoll.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msghndlr_8h" kindref="compound">Portable/msghndlr.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stddef_8h" kindref="compound">stddef.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="string_8h" kindref="compound">string.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="support_8h_1a854fab9a6aa5fb8a16021f32df8b68f5" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="support_8c_1a854fab9a6aa5fb8a16021f32df8b68f5" kindref="member">TRKSuppAccessFile</ref>(u32<sp/>file_handle,<sp/>u8*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/><ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref>,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref>*<sp/>io_result,<sp/>BOOL<sp/>need_reply,<sp/>BOOL<sp/>read)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/>error;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>replyBufferId;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>replyBuffer;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufferId;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>buffer;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/>length;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/>done;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/>replyIOResult;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>u16<sp/>replyLength;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOL<sp/><ref refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3" kindref="member">exit</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data<sp/>==<sp/><ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref><sp/>||<sp/>*<ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref><sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55bad70af7fcaf93bb87639a6f6a7a58e22b" kindref="member">DS_ParameterError</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3" kindref="member">exit</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>FALSE;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>*io_result<sp/>=<sp/><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384acb1188feeea1a6620028be3681ea915d" kindref="member">DS_IONoError</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>done<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>error<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!<ref refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3" kindref="member">exit</ref><sp/>&amp;&amp;<sp/>done<sp/>&lt;<sp/>*<ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref><sp/>&amp;&amp;<sp/>error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref><sp/>&amp;&amp;<sp/>*io_result<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*<ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref><sp/>-<sp/>done<sp/>&gt;<sp/>0x800)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length<sp/>=<sp/>0x800;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length<sp/>=<sp/>*<ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref><sp/>-<sp/>done;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" kindref="member">TRKGetFreeBuffer</ref>(&amp;bufferId,<sp/>&amp;buffer);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1a1472cd706c5851d7a9c117733365a29c" kindref="member">TRKAppendBuffer1_ui8</ref>(buffer,<sp/>read<sp/>?<sp/><ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa5d8e4eacaf01479931e9b58f72b1ea3b" kindref="member">DSMSG_ReadFile</ref></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa82669fbeea5bcca2fd7d81320608c786" kindref="member">DSMSG_WriteFile</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1a3bc47ac2930bb78b6e3de38d3f726c55" kindref="member">TRKAppendBuffer1_ui32</ref>(buffer,<sp/>file_handle);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1aa599fc23a6704a209587bb74f8364ec3" kindref="member">TRKAppendBuffer1_ui16</ref>(buffer,<sp/>length);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!read<sp/>&amp;&amp;<sp/>error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1af5f5cd432b8eb29cf440090e9f141a1b" kindref="member">TRKAppendBuffer_ui8</ref>(buffer,<sp/>data<sp/>+<sp/>done,<sp/>length);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(need_reply)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>replyLength<sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>replyIOResult<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="support_8c_1af9c283ab3b5d7f2ff2fc875d02c9f84f" kindref="member">TRKRequestSend</ref>(buffer,<sp/>&amp;replyBufferId,<sp/>read<sp/>?<sp/>5<sp/>:<sp/>5,<sp/>3,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>!(read<sp/>&amp;&amp;<sp/>file_handle<sp/>==<sp/>0));</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>replyBuffer<sp/>=<sp/>(<ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*)<ref refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" kindref="member">TRKGetBuffer</ref>(replyBufferId);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" kindref="member">TRKSetBufferPosition</ref>(replyBuffer,<sp/>2);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" kindref="member">TRKReadBuffer1_ui8</ref>(replyBuffer,<sp/>&amp;replyIOResult);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1addef81a91119d2e5de274901b22d603c" kindref="member">TRKReadBuffer1_ui16</ref>(replyBuffer,<sp/>&amp;replyLength);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(read<sp/>&amp;&amp;<sp/>error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(replyBuffer-&gt;<ref refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" kindref="member">length</ref><sp/>!=<sp/>replyLength<sp/>+<sp/>5)<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>replyLength<sp/>=<sp/>replyBuffer-&gt;<ref refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" kindref="member">length</ref><sp/>-<sp/>5;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(replyIOResult<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>replyIOResult<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(replyLength<sp/>&lt;=<sp/>length)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1a01bebba04b7dbea851480746fa04072a" kindref="member">TRKReadBuffer_ui8</ref>(replyBuffer,<sp/>data<sp/>+<sp/>done,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>replyLength);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(replyLength<sp/>!=<sp/>length)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((!read<sp/>||<sp/>replyLength<sp/>&gt;=<sp/>length)<sp/>&amp;&amp;<sp/>replyIOResult<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>replyIOResult<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length<sp/>=<sp/>replyLength;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3" kindref="member">exit</ref><sp/><sp/><sp/>=<sp/>TRUE;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*io_result<sp/>=<sp/>(<ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref>)replyIOResult;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" kindref="member">TRKReleaseBuffer</ref>(replyBufferId);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" kindref="member">TRKMessageSend</ref>((<ref refid="struct___t_r_k___msg" kindref="compound">TRK_Msg</ref>*)buffer);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" kindref="member">TRKReleaseBuffer</ref>(bufferId);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>done<sp/>+=<sp/>length;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref><sp/>=<sp/>done;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>error;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="support_8c_1af9c283ab3b5d7f2ff2fc875d02c9f84f" kindref="member">TRKRequestSend</ref>(<ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>msgBuf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>bufferId,<sp/>u32<sp/>p1,<sp/>u32<sp/>p2,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>p3)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>error<sp/>=<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>buffer;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/>timer;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tries;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/>msg_command;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/>msg_error;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOL<sp/>badReply<sp/>=<sp/>TRUE;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>*bufferId<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(tries<sp/>=<sp/>p2<sp/>+<sp/>1;<sp/>tries<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>*bufferId<sp/>==<sp/>-1<sp/>&amp;&amp;<sp/>error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tries--)<sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" kindref="member">TRKMessageSend</ref>((<ref refid="struct___t_r_k___msg" kindref="compound">TRK_Msg</ref>*)msgBuf);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p3)<sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timer<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(TRUE)<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*bufferId<sp/>=<sp/><ref refid="serpoll_8h_1af64c66110bd037b1a16f7a5bcc80f3d6" kindref="member">TRKTestForPacket</ref>();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*bufferId<sp/>!=<sp/>-1)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!p3<sp/>||<sp/>++timer<sp/>&lt;<sp/>79999980);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*bufferId<sp/>==<sp/>-1)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>badReply<sp/>=<sp/>FALSE;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer<sp/>=<sp/><ref refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" kindref="member">TRKGetBuffer</ref>(*bufferId);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" kindref="member">TRKSetBufferPosition</ref>(buffer,<sp/>0);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((error<sp/>=<sp/><ref refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" kindref="member">TRKReadBuffer1_ui8</ref>(buffer,<sp/>&amp;msg_command))</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>!=<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg_command<sp/>&gt;=<sp/><ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa7d848956e52c016356e74f1155417426" kindref="member">DSMSG_ReplyACK</ref>)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="serpoll_8h_1a1fefa327b68ac9b923df22fbecadf89d" kindref="member">TRKProcessInput</ref>(*bufferId);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*bufferId<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*bufferId<sp/>!=<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer-&gt;<ref refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" kindref="member">length</ref><sp/>&lt;<sp/>p1)<sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>badReply<sp/>=<sp/>TRUE;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref><sp/>&amp;&amp;<sp/>!badReply)<sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" kindref="member">TRKReadBuffer1_ui8</ref>(buffer,<sp/>&amp;msg_error);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref><sp/>&amp;&amp;<sp/>!badReply)<sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg_command<sp/>!=<sp/><ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa7d848956e52c016356e74f1155417426" kindref="member">DSMSG_ReplyACK</ref></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>msg_error<sp/>!=<sp/><ref refid="trk_8h_1aec22e8e81f3f173090f2c04ac256d143a600345694d4558f64efcd1457129395d" kindref="member">DSREPLY_NoError</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>badReply<sp/>=<sp/>TRUE;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>!=<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref><sp/>||<sp/>badReply)<sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" kindref="member">TRKReleaseBuffer</ref>(*bufferId);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*bufferId<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*bufferId<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55badb1961643ec37f093427aee7cb5704d8" kindref="member">DS_Error800</ref>;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>error;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/support.c"/>
+  </compounddef>
+</doxygen>

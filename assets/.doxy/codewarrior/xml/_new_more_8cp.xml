@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_new_more_8cp" kind="file" language="C++">
+    <compoundname>NewMore.cp</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Project...:<sp/>Standard<sp/>C++<sp/>Library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Name......:<sp/>NewMore.cp<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose...:<sp/>standard<sp/>C++<sp/>library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Copyright.:<sp/>Copyright<sp/>1993-1997<sp/>Metrowerks,<sp/>Inc.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__MWERKS__<sp/>&amp;&amp;<sp/>!__embedded_cplusplus</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>exceptions<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;new&gt;</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>__dest_os<sp/>==<sp/>__mac_os</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;MacMemory.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;CPlusLib.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#else<sp/>__PPC_EABI__</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;MWMemory.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;MWCPlusLib.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;stdio.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;stdlib.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971207<sp/>Added<sp/>namespace<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__MC68K__</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>a6frames<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__throws_bad_alloc<sp/>=<sp/>1;<sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>default:<sp/>throw<sp/>bad_alloc<sp/>exception</highlight></codeline>
+<codeline><highlight class="normal">new_handler<sp/><sp/><sp/><sp/><sp/>__new_handler;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>throw<sp/>a<sp/>bad_alloc<sp/>excpetion<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>__throw_bad_alloc()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(__throws_bad_alloc)<sp/></highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>bad_alloc<sp/>();</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,&quot;Could<sp/>not<sp/>allocate<sp/>memory\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Set<sp/>new_handler<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>new_handler<sp/>function<sp/>pointer<sp/>(or<sp/>NULL)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>old<sp/>new_handler<sp/>function<sp/>pointer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>new_handler<sp/>set_new_handler(new_handler<sp/>new_new_handler)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>new_handler<sp/>old_new_handler<sp/>=<sp/>__new_handler;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__new_handler<sp/>=<sp/>new_new_handler;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>old_new_handler;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__dest_os<sp/>==<sp/>__mac_os</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Allocate<sp/>memory<sp/>(handle)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>memory<sp/>to<sp/>allocate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>handle<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>*__new_hdl(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>*ptr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((ptr=NewHandle(size))!=NULL)<sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(!_STD::__new_handler)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_STD::__throw_bad_alloc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_STD::__new_handler();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Dispose<sp/>memory<sp/>(handle)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>handle<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/>(no<sp/>action<sp/>if<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>__del_hdl(void<sp/>*hdl)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(hdl)<sp/>DisposeHandle((Handle)hdl);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>__dest_os<sp/>==<sp/>__mac_os<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971207<sp/>Added<sp/>namespace<sp/>support</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>bds<sp/>990322<sp/>ifdefed<sp/>MacOS-specific<sp/>code<sp/>so<sp/>this<sp/>compiles<sp/>on<sp/>BeOS</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/NewMore.cp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dolphin_trk.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dolphin_trkc">File dolphin_trk.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_25028620cc1a8a9857c414f885e69890/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_6f2d6a2144e1eea12d16d0bd9685bdc9/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../dir_c356d50d36c69ac9e068ee6cfcebacd1/"><strong>Os</strong></a> <strong>&gt;</strong> <a href="../dir_620a2d14b5c78596f4b6e2cb4db579d5/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>dolphin_trk.c</strong></a></p>
+<p><a href="../dolphin__trk_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "Os/dolphin/dolphin_trk.h"</code></li>
+<li><code>#include "Portable/main_TRK.h"</code></li>
+<li><code>#include "Portable/mem_TRK.h"</code></li>
+<li><code>#include "Os/dolphin/dolphin_trk_glue.h"</code></li>
+<li><code>#include "Processor/ppc/Generic/targimpl.h"</code></li>
+<li><code>#include "Processor/ppc/Generic/flush_cache.h"</code></li>
+<li><code>#include "dolphin/ar.h"</code></li>
+<li><code>#include "stddef.h"</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">u8</td>
+<td style="text-align: left;"><a href="#variable-gtrkinterruptvectortable"><strong>gTRKInterruptVectorTable</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#variable-trk_isr_offsets"><strong>TRK_ISR_OFFSETS</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#variable-lc_base"><strong>lc_base</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-enablemetrotrkinterrupts"><strong>EnableMetroTRKInterrupts</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-initmetrotrk"><strong>InitMetroTRK</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkinitializetarget"><strong>TRKInitializeTarget</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#function-trktargettranslate"><strong>TRKTargetTranslate</strong></a> (u32 param_0) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trk_copy_vector"><strong>TRK_copy_vector</strong></a> (u32 offset) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__trk_copy_vectors"><strong>__TRK_copy_vectors</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-__declspec"><strong>__declspec</strong></a> (section ".init") <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exceptionmask_addr"><strong>EXCEPTIONMASK_ADDR</strong></a>  <code>0x80000044</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-gtrkinterruptvectortable">variable gTRKInterruptVectorTable</h3>
+<pre><code class="language-C++">u8 gTRKInterruptVectorTable[];
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-trk_isr_offsets">variable TRK_ISR_OFFSETS</h3>
+<pre><code class="language-C++">u32 TRK_ISR_OFFSETS[15];
+</code></pre>
+<hr>
+
+<h3 id="variable-lc_base">variable lc_base</h3>
+<pre><code class="language-C++">u32 lc_base;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-enablemetrotrkinterrupts">function EnableMetroTRKInterrupts</h3>
+<pre><code class="language-C++">void EnableMetroTRKInterrupts (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-initmetrotrk">function InitMetroTRK</h3>
+<pre><code class="language-C++">asm void InitMetroTRK () 
+</code></pre>
+<hr>
+
+<h3 id="function-trkinitializetarget">function TRKInitializeTarget</h3>
+<pre><code class="language-C++">DSError TRKInitializeTarget () 
+</code></pre>
+<hr>
+
+<h3 id="function-trktargettranslate">function TRKTargetTranslate</h3>
+<pre><code class="language-C++">u32 TRKTargetTranslate (
+    u32 param_0
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trk_copy_vector">function TRK_copy_vector</h3>
+<pre><code class="language-C++">void TRK_copy_vector (
+    u32 offset
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__trk_copy_vectors">function __TRK_copy_vectors</h3>
+<pre><code class="language-C++">void __TRK_copy_vectors (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__declspec">function __declspec</h3>
+<pre><code class="language-C++">__declspec (
+    section &quot;.init&quot;
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-exceptionmask_addr">define EXCEPTIONMASK_ADDR</h3>
+<pre><code class="language-C++">#define EXCEPTIONMASK_ADDR `0x80000044`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

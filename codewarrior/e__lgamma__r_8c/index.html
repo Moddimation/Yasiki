@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File e_lgamma_r.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-e_lgamma_rc">File e_lgamma_r.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="./"><strong>e_lgamma_r.c</strong></a></p>
+<p><a href="../e__lgamma__r_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "fdlibm.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a0"><strong>a0</strong></a>   = <code>7.72156649015328655494e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a1"><strong>a1</strong></a>   = <code>3.22467033424113591611e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a10"><strong>a10</strong></a>   = <code>2.52144565451257326939e-05</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a11"><strong>a11</strong></a>   = <code>4.48640949618915160150e-05</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a2"><strong>a2</strong></a>   = <code>6.73523010531292681824e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a3"><strong>a3</strong></a>   = <code>2.05808084325167332806e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a4"><strong>a4</strong></a>   = <code>7.38555086081402883957e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a5"><strong>a5</strong></a>   = <code>2.89051383673415629091e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a6"><strong>a6</strong></a>   = <code>1.19270763183362067845e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a7"><strong>a7</strong></a>   = <code>5.10069792153511336608e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a8"><strong>a8</strong></a>   = <code>2.20862790713908385557e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-a9"><strong>a9</strong></a>   = <code>1.08011567247583939954e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-half"><strong>half</strong></a>   = <code>5.00000000000000000000e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-one"><strong>one</strong></a>   = <code>1.00000000000000000000e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pi"><strong>pi</strong></a>   = <code>3.14159265358979311600e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-r1"><strong>r1</strong></a>   = <code>1.39200533467621045958e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-r2"><strong>r2</strong></a>   = <code>7.21935547567138069525e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-r3"><strong>r3</strong></a>   = <code>1.71933865632803078993e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-r4"><strong>r4</strong></a>   = <code>1.86459191715652901344e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-r5"><strong>r5</strong></a>   = <code>7.77942496381893596434e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-r6"><strong>r6</strong></a>   = <code>7.32668430744625636189e-06</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-s0"><strong>s0</strong></a>   = <code>-7.72156649015328655494e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-s1"><strong>s1</strong></a>   = <code>2.14982415960608852501e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-s2"><strong>s2</strong></a>   = <code>3.25778796408930981787e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-s3"><strong>s3</strong></a>   = <code>1.46350472652464452805e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-s4"><strong>s4</strong></a>   = <code>2.66422703033638609560e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-s5"><strong>s5</strong></a>   = <code>1.84028451407337715652e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-s6"><strong>s6</strong></a>   = <code>3.19475326584100867617e-05</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t0"><strong>t0</strong></a>   = <code>4.83836122723810047042e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t1"><strong>t1</strong></a>   = <code>-1.47587722994593911752e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t10"><strong>t10</strong></a>   = <code>8.81081882437654011382e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t11"><strong>t11</strong></a>   = <code>-5.38595305356740546715e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t12"><strong>t12</strong></a>   = <code>3.15632070903625950361e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t13"><strong>t13</strong></a>   = <code>-3.12754168375120860518e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t14"><strong>t14</strong></a>   = <code>3.35529192635519073543e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t2"><strong>t2</strong></a>   = <code>6.46249402391333854778e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t3"><strong>t3</strong></a>   = <code>-3.27885410759859649565e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t4"><strong>t4</strong></a>   = <code>1.79706750811820387126e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t5"><strong>t5</strong></a>   = <code>-1.03142241298341437450e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t6"><strong>t6</strong></a>   = <code>6.10053870246291332635e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t7"><strong>t7</strong></a>   = <code>-3.68452016781138256760e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t8"><strong>t8</strong></a>   = <code>2.25964780900612472250e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-t9"><strong>t9</strong></a>   = <code>-1.40346469989232843813e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-tc"><strong>tc</strong></a>   = <code>1.46163214496836224576e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-tf"><strong>tf</strong></a>   = <code>-1.21486290535849611461e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-tt"><strong>tt</strong></a>   = <code>-3.63867699703950536541e-18</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-two52"><strong>two52</strong></a>   = <code>4.50359962737049600000e+15</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-u0"><strong>u0</strong></a>   = <code>-7.72156649015328655494e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-u1"><strong>u1</strong></a>   = <code>6.32827064025093366517e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-u2"><strong>u2</strong></a>   = <code>1.45492250137234768737e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-u3"><strong>u3</strong></a>   = <code>9.77717527963372745603e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-u4"><strong>u4</strong></a>   = <code>2.28963728064692451092e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-u5"><strong>u5</strong></a>   = <code>1.33810918536787660377e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-v1"><strong>v1</strong></a>   = <code>2.45597793713041134822e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-v2"><strong>v2</strong></a>   = <code>2.12848976379893395361e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-v3"><strong>v3</strong></a>   = <code>7.69285150456672783825e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-v4"><strong>v4</strong></a>   = <code>1.04222645593369134254e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-v5"><strong>v5</strong></a>   = <code>3.21709242282423911810e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-w0"><strong>w0</strong></a>   = <code>4.18938533204672725052e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-w1"><strong>w1</strong></a>   = <code>8.33333333333329678849e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-w2"><strong>w2</strong></a>   = <code>-2.77777777728775536470e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-w3"><strong>w3</strong></a>   = <code>7.93650558643019558500e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-w4"><strong>w4</strong></a>   = <code>-5.95187557450339963135e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-w5"><strong>w5</strong></a>   = <code>8.36339918996282139126e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-w6"><strong>w6</strong></a>   = <code>-1.63092934096575273989e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-zero"><strong>zero</strong></a>   = <code>0.00000000000000000000e+00</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#function-__ieee754_lgamma_r"><strong>__ieee754_lgamma_r</strong></a> (double x, int * signgamp) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#function-sin_pi"><strong>sin_pi</strong></a> (double x) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-a0">variable a0</h3>
+<pre><code class="language-C++">double a0;
+</code></pre>
+<hr>
+
+<h3 id="variable-a1">variable a1</h3>
+<pre><code class="language-C++">double a1;
+</code></pre>
+<hr>
+
+<h3 id="variable-a10">variable a10</h3>
+<pre><code class="language-C++">double a10;
+</code></pre>
+<hr>
+
+<h3 id="variable-a11">variable a11</h3>
+<pre><code class="language-C++">double a11;
+</code></pre>
+<hr>
+
+<h3 id="variable-a2">variable a2</h3>
+<pre><code class="language-C++">double a2;
+</code></pre>
+<hr>
+
+<h3 id="variable-a3">variable a3</h3>
+<pre><code class="language-C++">double a3;
+</code></pre>
+<hr>
+
+<h3 id="variable-a4">variable a4</h3>
+<pre><code class="language-C++">double a4;
+</code></pre>
+<hr>
+
+<h3 id="variable-a5">variable a5</h3>
+<pre><code class="language-C++">double a5;
+</code></pre>
+<hr>
+
+<h3 id="variable-a6">variable a6</h3>
+<pre><code class="language-C++">double a6;
+</code></pre>
+<hr>
+
+<h3 id="variable-a7">variable a7</h3>
+<pre><code class="language-C++">double a7;
+</code></pre>
+<hr>
+
+<h3 id="variable-a8">variable a8</h3>
+<pre><code class="language-C++">double a8;
+</code></pre>
+<hr>
+
+<h3 id="variable-a9">variable a9</h3>
+<pre><code class="language-C++">double a9;
+</code></pre>
+<hr>
+
+<h3 id="variable-half">variable half</h3>
+<pre><code class="language-C++">double half;
+</code></pre>
+<hr>
+
+<h3 id="variable-one">variable one</h3>
+<pre><code class="language-C++">double one;
+</code></pre>
+<hr>
+
+<h3 id="variable-pi">variable pi</h3>
+<pre><code class="language-C++">double pi;
+</code></pre>
+<hr>
+
+<h3 id="variable-r1">variable r1</h3>
+<pre><code class="language-C++">double r1;
+</code></pre>
+<hr>
+
+<h3 id="variable-r2">variable r2</h3>
+<pre><code class="language-C++">double r2;
+</code></pre>
+<hr>
+
+<h3 id="variable-r3">variable r3</h3>
+<pre><code class="language-C++">double r3;
+</code></pre>
+<hr>
+
+<h3 id="variable-r4">variable r4</h3>
+<pre><code class="language-C++">double r4;
+</code></pre>
+<hr>
+
+<h3 id="variable-r5">variable r5</h3>
+<pre><code class="language-C++">double r5;
+</code></pre>
+<hr>
+
+<h3 id="variable-r6">variable r6</h3>
+<pre><code class="language-C++">double r6;
+</code></pre>
+<hr>
+
+<h3 id="variable-s0">variable s0</h3>
+<pre><code class="language-C++">double s0;
+</code></pre>
+<hr>
+
+<h3 id="variable-s1">variable s1</h3>
+<pre><code class="language-C++">double s1;
+</code></pre>
+<hr>
+
+<h3 id="variable-s2">variable s2</h3>
+<pre><code class="language-C++">double s2;
+</code></pre>
+<hr>
+
+<h3 id="variable-s3">variable s3</h3>
+<pre><code class="language-C++">double s3;
+</code></pre>
+<hr>
+
+<h3 id="variable-s4">variable s4</h3>
+<pre><code class="language-C++">double s4;
+</code></pre>
+<hr>
+
+<h3 id="variable-s5">variable s5</h3>
+<pre><code class="language-C++">double s5;
+</code></pre>
+<hr>
+
+<h3 id="variable-s6">variable s6</h3>
+<pre><code class="language-C++">double s6;
+</code></pre>
+<hr>
+
+<h3 id="variable-t0">variable t0</h3>
+<pre><code class="language-C++">double t0;
+</code></pre>
+<hr>
+
+<h3 id="variable-t1">variable t1</h3>
+<pre><code class="language-C++">double t1;
+</code></pre>
+<hr>
+
+<h3 id="variable-t10">variable t10</h3>
+<pre><code class="language-C++">double t10;
+</code></pre>
+<hr>
+
+<h3 id="variable-t11">variable t11</h3>
+<pre><code class="language-C++">double t11;
+</code></pre>
+<hr>
+
+<h3 id="variable-t12">variable t12</h3>
+<pre><code class="language-C++">double t12;
+</code></pre>
+<hr>
+
+<h3 id="variable-t13">variable t13</h3>
+<pre><code class="language-C++">double t13;
+</code></pre>
+<hr>
+
+<h3 id="variable-t14">variable t14</h3>
+<pre><code class="language-C++">double t14;
+</code></pre>
+<hr>
+
+<h3 id="variable-t2">variable t2</h3>
+<pre><code class="language-C++">double t2;
+</code></pre>
+<hr>
+
+<h3 id="variable-t3">variable t3</h3>
+<pre><code class="language-C++">double t3;
+</code></pre>
+<hr>
+
+<h3 id="variable-t4">variable t4</h3>
+<pre><code class="language-C++">double t4;
+</code></pre>
+<hr>
+
+<h3 id="variable-t5">variable t5</h3>
+<pre><code class="language-C++">double t5;
+</code></pre>
+<hr>
+
+<h3 id="variable-t6">variable t6</h3>
+<pre><code class="language-C++">double t6;
+</code></pre>
+<hr>
+
+<h3 id="variable-t7">variable t7</h3>
+<pre><code class="language-C++">double t7;
+</code></pre>
+<hr>
+
+<h3 id="variable-t8">variable t8</h3>
+<pre><code class="language-C++">double t8;
+</code></pre>
+<hr>
+
+<h3 id="variable-t9">variable t9</h3>
+<pre><code class="language-C++">double t9;
+</code></pre>
+<hr>
+
+<h3 id="variable-tc">variable tc</h3>
+<pre><code class="language-C++">double tc;
+</code></pre>
+<hr>
+
+<h3 id="variable-tf">variable tf</h3>
+<pre><code class="language-C++">double tf;
+</code></pre>
+<hr>
+
+<h3 id="variable-tt">variable tt</h3>
+<pre><code class="language-C++">double tt;
+</code></pre>
+<hr>
+
+<h3 id="variable-two52">variable two52</h3>
+<pre><code class="language-C++">double two52;
+</code></pre>
+<hr>
+
+<h3 id="variable-u0">variable u0</h3>
+<pre><code class="language-C++">double u0;
+</code></pre>
+<hr>
+
+<h3 id="variable-u1">variable u1</h3>
+<pre><code class="language-C++">double u1;
+</code></pre>
+<hr>
+
+<h3 id="variable-u2">variable u2</h3>
+<pre><code class="language-C++">double u2;
+</code></pre>
+<hr>
+
+<h3 id="variable-u3">variable u3</h3>
+<pre><code class="language-C++">double u3;
+</code></pre>
+<hr>
+
+<h3 id="variable-u4">variable u4</h3>
+<pre><code class="language-C++">double u4;
+</code></pre>
+<hr>
+
+<h3 id="variable-u5">variable u5</h3>
+<pre><code class="language-C++">double u5;
+</code></pre>
+<hr>
+
+<h3 id="variable-v1">variable v1</h3>
+<pre><code class="language-C++">double v1;
+</code></pre>
+<hr>
+
+<h3 id="variable-v2">variable v2</h3>
+<pre><code class="language-C++">double v2;
+</code></pre>
+<hr>
+
+<h3 id="variable-v3">variable v3</h3>
+<pre><code class="language-C++">double v3;
+</code></pre>
+<hr>
+
+<h3 id="variable-v4">variable v4</h3>
+<pre><code class="language-C++">double v4;
+</code></pre>
+<hr>
+
+<h3 id="variable-v5">variable v5</h3>
+<pre><code class="language-C++">double v5;
+</code></pre>
+<hr>
+
+<h3 id="variable-w0">variable w0</h3>
+<pre><code class="language-C++">double w0;
+</code></pre>
+<hr>
+
+<h3 id="variable-w1">variable w1</h3>
+<pre><code class="language-C++">double w1;
+</code></pre>
+<hr>
+
+<h3 id="variable-w2">variable w2</h3>
+<pre><code class="language-C++">double w2;
+</code></pre>
+<hr>
+
+<h3 id="variable-w3">variable w3</h3>
+<pre><code class="language-C++">double w3;
+</code></pre>
+<hr>
+
+<h3 id="variable-w4">variable w4</h3>
+<pre><code class="language-C++">double w4;
+</code></pre>
+<hr>
+
+<h3 id="variable-w5">variable w5</h3>
+<pre><code class="language-C++">double w5;
+</code></pre>
+<hr>
+
+<h3 id="variable-w6">variable w6</h3>
+<pre><code class="language-C++">double w6;
+</code></pre>
+<hr>
+
+<h3 id="variable-zero">variable zero</h3>
+<pre><code class="language-C++">double zero;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-__ieee754_lgamma_r">function __ieee754_lgamma_r</h3>
+<pre><code class="language-C++">double __ieee754_lgamma_r (
+    double x,
+    int * signgamp
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-sin_pi">function sin_pi</h3>
+<pre><code class="language-C++">static double sin_pi (
+    double x
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_lgamma_r.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

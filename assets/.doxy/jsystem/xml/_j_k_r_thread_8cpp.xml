@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_j_k_r_thread_8cpp" kind="file" language="C++">
+    <compoundname>JKRThread.cpp</compoundname>
+    <includes local="no">dolphin/os.h</includes>
+    <includes refid="_j_k_r_heap_8h" local="no">JKRHeap.h</includes>
+    <includes refid="_j_k_r_thread_8h" local="no">JKRThread.h</includes>
+    <includes local="yes">dolphin/os/OSMessage.h</includes>
+    <includes local="yes">dolphin/os/OSThread.h</includes>
+    <includes refid="_j_k_r_disposer_8h" local="yes">JKRDisposer.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>JKRDisposer.h</label>
+        <link refid="_j_k_r_disposer_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>JKRHeap.h</label>
+        <link refid="_j_k_r_heap_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>JKRThread.h</label>
+        <link refid="_j_k_r_thread_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>JKRThread.cpp</label>
+        <link refid="_j_k_r_thread_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>JSUList.h</label>
+        <link refid="_j_s_u_list_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>JUTTypes.h</label>
+        <link refid="_j_u_t_types_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/os.h</label>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSMessage.h</label>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSThread.h</label>
+      </node>
+      <node id="7">
+        <label>macros.h</label>
+      </node>
+      <node id="9">
+        <label>new</label>
+      </node>
+      <node id="10">
+        <label>size_t.h</label>
+      </node>
+      <node id="8">
+        <label>types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_j_k_r_thread_8cpp_1aa6083cef81d6a93dc4e1e7afba8fe6cc" prot="public" static="no">
+        <name>ALIGN_VAL</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/src/JKRThread.cpp" line="10" column="9" bodyfile="decomp/JSystem/System/JKernel/src/JKRThread.cpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_j_k_r_thread_8cpp_1aa316d8b8536480fb04e8f94c9cf227fe" prot="public" static="no" mutable="no">
+        <type><ref refid="class_j_s_u_list" kindref="compound">JSUList</ref>&lt; <ref refid="class_j_k_r_thread" kindref="compound">JKRThread</ref> &gt;</type>
+        <definition>JSUList&lt;JKRThread&gt; sThreadList</definition>
+        <argsstring></argsstring>
+        <name>sThreadList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/src/JKRThread.cpp" line="12" column="9" bodyfile="decomp/JSystem/System/JKernel/src/JKRThread.cpp" bodystart="12" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_thread_1a59f4e49bd1517855434a52cad2557e4a" compoundref="_j_k_r_thread_8cpp" startline="15" endline="23">JKRThread::setCommon_mesgQueue</referencedby>
+        <referencedby refid="class_j_k_r_thread_1aace095bb2bab6bf3577f4c637dcaf0ea" compoundref="_j_k_r_thread_8cpp" startline="54" endline="68">JKRThread::~JKRThread</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;dolphin/os.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_j_k_r_heap_8h" kindref="compound">JKRHeap.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_j_k_r_thread_8h" kindref="compound">JKRThread.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dolphin/os/OSMessage.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dolphin/os/OSThread.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_j_k_r_disposer_8h" kindref="compound">JKRDisposer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="_j_k_r_thread_8cpp_1aa6083cef81d6a93dc4e1e7afba8fe6cc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ALIGN_VAL<sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="_j_k_r_thread_8cpp_1aa316d8b8536480fb04e8f94c9cf227fe" refkind="member"><highlight class="normal"><ref refid="class_j_s_u_list" kindref="compound">JSUList&lt;JKRThread&gt;</ref><sp/><ref refid="_j_k_r_thread_8cpp_1aa316d8b8536480fb04e8f94c9cf227fe" kindref="member">sThreadList</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="class_j_k_r_thread_1a59f4e49bd1517855434a52cad2557e4a" refkind="member"><highlight class="normal"><ref refid="class_j_k_r_thread_1a59f4e49bd1517855434a52cad2557e4a" kindref="member">JKRThread::setCommon_mesgQueue</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mesg_count)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1ac87789764f6d11e15b868b9bef32a32b" kindref="member">mMesgCount</ref><sp/>=<sp/>mesg_count;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a145d8a559cf176ba05d437fa510667cf" kindref="member">mMesgArray</ref><sp/>=<sp/><ref refid="_j_k_r_heap_8h_1a0057c49788644b52abc12fd9d4ac7701" kindref="member">JKRAllocFromHeap</ref><sp/>(<ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref>,<sp/>(u32)(<ref refid="class_j_k_r_thread_1ac87789764f6d11e15b868b9bef32a32b" kindref="member">mMesgCount</ref><sp/>&lt;&lt;<sp/>2),<sp/>4);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>OSInitMessageQueue<sp/>(&amp;<ref refid="class_j_k_r_thread_1a419b3bcfeb24da5967237d2d3e14678e" kindref="member">mMesgQueue</ref>,<sp/><ref refid="class_j_k_r_thread_1a145d8a559cf176ba05d437fa510667cf" kindref="member">mMesgArray</ref>,<sp/><ref refid="class_j_k_r_thread_1ac87789764f6d11e15b868b9bef32a32b" kindref="member">mMesgCount</ref>);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_j_k_r_thread_8cpp_1aa316d8b8536480fb04e8f94c9cf227fe" kindref="member">sThreadList</ref>.append<sp/>(&amp;<ref refid="class_j_k_r_thread_1a8fabdb0e00530959a96c6551b77c47e5" kindref="member">mLink</ref>);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="class_j_k_r_thread_1a09a068824cee1060f8f44ee5508f234b" refkind="member"><highlight class="normal"><ref refid="class_j_k_r_thread_1a09a068824cee1060f8f44ee5508f234b" kindref="member">JKRThread::setCommon_heapSpecified</ref><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pri)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a6a3a4fc14a565250eba4234ef5a4015f" kindref="member">mStackSize</ref><sp/><sp/><sp/><sp/>=<sp/>ALIGN_PREV<sp/>(size,<sp/><ref refid="_j_k_r_thread_8cpp_1aa6083cef81d6a93dc4e1e7afba8fe6cc" kindref="member">ALIGN_VAL</ref>);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a7f83b1ee26ff5ec226f2ee22b0ccab71" kindref="member">mStack</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_j_k_r_heap_8h_1a0057c49788644b52abc12fd9d4ac7701" kindref="member">JKRAllocFromHeap</ref><sp/>(<ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref>,<sp/><ref refid="class_j_k_r_thread_1a6a3a4fc14a565250eba4234ef5a4015f" kindref="member">mStackSize</ref>,<sp/><ref refid="_j_k_r_thread_8cpp_1aa6083cef81d6a93dc4e1e7afba8fe6cc" kindref="member">ALIGN_VAL</ref>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1afb5ab41f33def4212234b8f4ff4a8460" kindref="member">mThreadRecord</ref><sp/>=<sp/>(OSThread*)<ref refid="_j_k_r_heap_8h_1a0057c49788644b52abc12fd9d4ac7701" kindref="member">JKRAllocFromHeap</ref><sp/>(<ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref>,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(OSThread),<sp/><ref refid="_j_k_r_thread_8cpp_1aa6083cef81d6a93dc4e1e7afba8fe6cc" kindref="member">ALIGN_VAL</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>OSCreateThread<sp/>(<ref refid="class_j_k_r_thread_1afb5ab41f33def4212234b8f4ff4a8460" kindref="member">mThreadRecord</ref>,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a8332d6fd28b53aa050b23a9c5b306e90" kindref="member">start</ref>,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)</highlight><highlight class="keyword">this</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)((u32)<ref refid="class_j_k_r_thread_1a7f83b1ee26ff5ec226f2ee22b0ccab71" kindref="member">mStack</ref><sp/>+<sp/><ref refid="class_j_k_r_thread_1a6a3a4fc14a565250eba4234ef5a4015f" kindref="member">mStackSize</ref>),</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a6a3a4fc14a565250eba4234ef5a4015f" kindref="member">mStackSize</ref>,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pri,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(u16)1);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="class_j_k_r_thread_1aaad91fda82b56672006e96bbb29ad1dc" refkind="member"><highlight class="normal"><ref refid="class_j_k_r_thread_1a9293abc3bf3fd75b28e88d3d90f05e8b" kindref="member">JKRThread::JKRThread</ref><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>p1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pri)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>:<sp/><ref refid="class_j_k_r_disposer" kindref="compound">JKRDisposer</ref>(),</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>mLink<sp/>(this)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref><sp/>=<sp/><ref refid="class_j_k_r_heap_1a77de0a45ee9b249a2b4b9f1e5cd5acfc" kindref="member">JKRHeap::findFromRoot</ref><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref><sp/>==<sp/><ref refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" kindref="member">Nil</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref><sp/>=<sp/><ref refid="class_j_k_r_heap_1a3df939abb6f6608b3e533fa1a12e19b5" kindref="member">JKRHeap::getSystemHeap</ref>();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a09a068824cee1060f8f44ee5508f234b" kindref="member">setCommon_heapSpecified</ref><sp/>(size,<sp/>pri);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_thread_1a59f4e49bd1517855434a52cad2557e4a" kindref="member">setCommon_mesgQueue</ref><sp/>(p1);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="class_j_k_r_thread_1aace095bb2bab6bf3577f4c637dcaf0ea" refkind="member"><highlight class="normal"><ref refid="class_j_k_r_thread_1aace095bb2bab6bf3577f4c637dcaf0ea" kindref="member">JKRThread::~JKRThread</ref><sp/>()</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_j_k_r_thread_8cpp_1aa316d8b8536480fb04e8f94c9cf227fe" kindref="member">sThreadList</ref>.remove<sp/>(&amp;<ref refid="class_j_k_r_thread_1a8fabdb0e00530959a96c6551b77c47e5" kindref="member">mLink</ref>);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref><sp/>!=<sp/><ref refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" kindref="member">Nil</ref>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!OSIsThreadTerminated<sp/>(<ref refid="class_j_k_r_thread_1afb5ab41f33def4212234b8f4ff4a8460" kindref="member">mThreadRecord</ref>))</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OSDetachThread<sp/>(<ref refid="class_j_k_r_thread_1afb5ab41f33def4212234b8f4ff4a8460" kindref="member">mThreadRecord</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OSCancelThread<sp/>(<ref refid="class_j_k_r_thread_1afb5ab41f33def4212234b8f4ff4a8460" kindref="member">mThreadRecord</ref>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_j_k_r_heap_8h_1a06354742b42c48813c72679838e535d5" kindref="member">JKRFreeToHeap</ref><sp/>(<ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref>,<sp/><ref refid="class_j_k_r_thread_1a7f83b1ee26ff5ec226f2ee22b0ccab71" kindref="member">mStack</ref>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_j_k_r_heap_8h_1a06354742b42c48813c72679838e535d5" kindref="member">JKRFreeToHeap</ref><sp/>(<ref refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" kindref="member">mCurrHeap</ref>,<sp/><ref refid="class_j_k_r_thread_1afb5ab41f33def4212234b8f4ff4a8460" kindref="member">mThreadRecord</ref>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_j_k_r_heap_8h_1a30c901525a054238c15a39f11efa0885" kindref="member">JKRFree</ref><sp/>(<ref refid="class_j_k_r_thread_1a145d8a559cf176ba05d437fa510667cf" kindref="member">mMesgArray</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight></codeline>
+<codeline lineno="71" refid="class_j_k_r_thread_1a8332d6fd28b53aa050b23a9c5b306e90" refkind="member"><highlight class="normal"><ref refid="class_j_k_r_thread_1a8332d6fd28b53aa050b23a9c5b306e90" kindref="member">JKRThread::start</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>_this)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((<ref refid="class_j_k_r_thread" kindref="compound">JKRThread</ref>*)_this)-&gt;run();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/JSystem/System/JKernel/src/JKRThread.cpp"/>
+  </compounddef>
+</doxygen>

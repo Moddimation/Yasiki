@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mainloop_8c" kind="file" language="C++">
+    <compoundname>mainloop.c</compoundname>
+    <includes refid="serpoll_8h" local="yes">Portable/serpoll.h</includes>
+    <includes refid="msgbuf_8h" local="yes">Portable/msgbuf.h</includes>
+    <includes refid="dispatch_8h" local="yes">Portable/dispatch.h</includes>
+    <includes refid="targcont_8h" local="yes">Os/dolphin/targcont.h</includes>
+    <includes refid="targimpl_8h" local="yes">Processor/ppc/Generic/targimpl.h</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>Os/dolphin/targcont.h</label>
+        <link refid="targcont_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Portable/dispatch.h</label>
+        <link refid="dispatch_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Portable/msgbuf.h</label>
+        <link refid="msgbuf_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Portable/nubevent.h</label>
+        <link refid="nubevent_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Portable/serpoll.h</label>
+        <link refid="serpoll_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Processor/ppc/Generic/targimpl.h</label>
+        <link refid="targimpl_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mainloop.c</label>
+        <link refid="mainloop_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="mainloop_8c_1a25ff502ac1480292ba829b813ba5ad65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKHandleRequestEvent</definition>
+        <argsstring>(TRKEvent *event)</argsstring>
+        <name>TRKHandleRequestEvent</name>
+        <param>
+          <type><ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" line="7" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" bodystart="7" bodyend="11"/>
+        <references refid="struct_t_r_k_event_1ae2c442156900b1a5bcb6243cbbc3e2dd" compoundref="nubevent_8h" startline="15">TRKEvent::msgBufID</references>
+        <references refid="dispatch_8h_1a45a937113594c8d5a9d69cdda1eeb0ea" compoundref="dispatch_8c" startline="31" endline="43">TRKDispatchMessage</references>
+        <references refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" compoundref="msgbuf_8c" startline="50" endline="58">TRKGetBuffer</references>
+        <referencedby refid="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" compoundref="mainloop_8c" startline="22" endline="70">TRKNubMainLoop</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mainloop_8c_1a7299c3bf7baa9c95141d32ed1faea556" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKHandleSupportEvent</definition>
+        <argsstring>(TRKEvent *event)</argsstring>
+        <name>TRKHandleSupportEvent</name>
+        <param>
+          <type><ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" line="13" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" bodystart="13" bodyend="13"/>
+        <references refid="targimpl_8h_1a6ebf7e476dd31372a01e2e19b8950941" compoundref="targimpl_8c" startline="969" endline="1001">TRKTargetSupportRequest</references>
+        <referencedby refid="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" compoundref="mainloop_8c" startline="22" endline="70">TRKNubMainLoop</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKIdle</definition>
+        <argsstring>()</argsstring>
+        <name>TRKIdle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" line="15" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" bodystart="15" bodyend="20"/>
+        <references refid="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" compoundref="targcont_8c" startline="5" endline="12">TRKTargetContinue</references>
+        <references refid="targimpl_8h_1ae48095356ebe78ea030c8d3b92e585e1" compoundref="targimpl_8c" startline="1013" endline="1013">TRKTargetStopped</references>
+        <referencedby refid="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" compoundref="mainloop_8c" startline="22" endline="70">TRKNubMainLoop</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mainloop_8c_1aaa62953a8415458781de6741f5fa8e3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKNubMainLoop</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKNubMainLoop</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" line="22" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" bodystart="22" bodyend="70"/>
+        <references refid="struct_t_r_k_event_1aca28443d10ca7e86a6c768bc3161e10d" compoundref="nubevent_8h" startline="13">TRKEvent::eventType</references>
+        <references refid="serpoll_8h_1ae109e4378b14752efd522823436116ae" compoundref="serpoll_8c" startline="10">gTRKInputPendingPtr</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127aa660875c25379e47ce86e38c79aad27c" compoundref="trk_8h" startline="155">NUBEVENT_Breakpoint</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a93368cd4e38607bee1e07f4a7b7d1948" compoundref="trk_8h" startline="156">NUBEVENT_Exception</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a1ab6b10689a550d00658b00568335a74" compoundref="trk_8h" startline="152">NUBEVENT_Null</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127acd386a53a984fdc0d65e02f71f31743e" compoundref="trk_8h" startline="154">NUBEVENT_Request</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a753dd1ca19d45f5013180a2b5312f5e8" compoundref="trk_8h" startline="153">NUBEVENT_Shutdown</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a635c32cdba4c6f699587ce9753006232" compoundref="trk_8h" startline="157">NUBEVENT_Support</references>
+        <references refid="nubevent_8h_1a497ec2095f59c64fe63495e6673c4e4e" compoundref="nubevent_8c" startline="72" endline="72">TRKDestructEvent</references>
+        <references refid="serpoll_8h_1aab6da4f57ef633a2abe4cb390fb0a892" compoundref="serpoll_8c" startline="43" endline="61">TRKGetInput</references>
+        <references refid="nubevent_8h_1a5d975b17017b89a5908d96313dca92f8" compoundref="nubevent_8c" startline="24" endline="39">TRKGetNextEvent</references>
+        <references refid="mainloop_8c_1a25ff502ac1480292ba829b813ba5ad65" compoundref="mainloop_8c" startline="7" endline="11">TRKHandleRequestEvent</references>
+        <references refid="mainloop_8c_1a7299c3bf7baa9c95141d32ed1faea556" compoundref="mainloop_8c" startline="13" endline="13">TRKHandleSupportEvent</references>
+        <references refid="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" compoundref="mainloop_8c" startline="15" endline="20">TRKIdle</references>
+        <references refid="targimpl_8h_1a8ed359d07fddc63055f82f800dc5fb3e" compoundref="targimpl_8c" startline="813" endline="829">TRKTargetInterrupt</references>
+        <referencedby refid="main___t_r_k_8h_1a591e3b76e11affee132799e9f2b0a99c" compoundref="main___t_r_k_8c" startline="6" endline="17">TRK_main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="serpoll_8h" kindref="compound">Portable/serpoll.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msgbuf_8h" kindref="compound">Portable/msgbuf.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dispatch_8h" kindref="compound">Portable/dispatch.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="targcont_8h" kindref="compound">Os/dolphin/targcont.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="targimpl_8h" kindref="compound">Processor/ppc/Generic/targimpl.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="mainloop_8c_1a25ff502ac1480292ba829b813ba5ad65" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mainloop_8c_1a25ff502ac1480292ba829b813ba5ad65" kindref="member">TRKHandleRequestEvent</ref>(<ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref>*<sp/>event)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>buffer<sp/>=<sp/><ref refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" kindref="member">TRKGetBuffer</ref>(event-&gt;<ref refid="struct_t_r_k_event_1ae2c442156900b1a5bcb6243cbbc3e2dd" kindref="member">msgBufID</ref>);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dispatch_8h_1a45a937113594c8d5a9d69cdda1eeb0ea" kindref="member">TRKDispatchMessage</ref>(buffer);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="mainloop_8c_1a7299c3bf7baa9c95141d32ed1faea556" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mainloop_8c_1a7299c3bf7baa9c95141d32ed1faea556" kindref="member">TRKHandleSupportEvent</ref>(<ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref>*<sp/>event)<sp/>{<sp/><ref refid="targimpl_8h_1a6ebf7e476dd31372a01e2e19b8950941" kindref="member">TRKTargetSupportRequest</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" kindref="member">TRKIdle</ref>()</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="targimpl_8h_1ae48095356ebe78ea030c8d3b92e585e1" kindref="member">TRKTargetStopped</ref>()<sp/>==<sp/>FALSE)<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" kindref="member">TRKTargetContinue</ref>();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mainloop_8c_1aaa62953a8415458781de6741f5fa8e3b" kindref="member">TRKNubMainLoop</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>msg;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref><sp/>event;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOL<sp/>isShutdownRequested;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOL<sp/>isNewInput;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>isShutdownRequested<sp/>=<sp/>FALSE;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>isNewInput<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>FALSE;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(isShutdownRequested<sp/>==<sp/>FALSE)<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="nubevent_8h_1a5d975b17017b89a5908d96313dca92f8" kindref="member">TRKGetNextEvent</ref>(&amp;event)<sp/>!=<sp/>FALSE)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>isNewInput<sp/>=<sp/>FALSE;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(event.<ref refid="struct_t_r_k_event_1aca28443d10ca7e86a6c768bc3161e10d" kindref="member">eventType</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a1ab6b10689a550d00658b00568335a74" kindref="member">NUBEVENT_Null</ref>:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127acd386a53a984fdc0d65e02f71f31743e" kindref="member">NUBEVENT_Request</ref>:</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mainloop_8c_1a25ff502ac1480292ba829b813ba5ad65" kindref="member">TRKHandleRequestEvent</ref>(&amp;event);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a753dd1ca19d45f5013180a2b5312f5e8" kindref="member">NUBEVENT_Shutdown</ref>:</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>isShutdownRequested<sp/>=<sp/>TRUE;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127aa660875c25379e47ce86e38c79aad27c" kindref="member">NUBEVENT_Breakpoint</ref>:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a93368cd4e38607bee1e07f4a7b7d1948" kindref="member">NUBEVENT_Exception</ref>:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="targimpl_8h_1a8ed359d07fddc63055f82f800dc5fb3e" kindref="member">TRKTargetInterrupt</ref>(&amp;event);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a635c32cdba4c6f699587ce9753006232" kindref="member">NUBEVENT_Support</ref>:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mainloop_8c_1a7299c3bf7baa9c95141d32ed1faea556" kindref="member">TRKHandleSupportEvent</ref>(&amp;event);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="nubevent_8h_1a497ec2095f59c64fe63495e6673c4e4e" kindref="member">TRKDestructEvent</ref>(&amp;event);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((isNewInput<sp/>==<sp/>FALSE)<sp/>||<sp/>(*(u8*)<ref refid="serpoll_8h_1ae109e4378b14752efd522823436116ae" kindref="member">gTRKInputPendingPtr</ref><sp/>!=<sp/></highlight><highlight class="stringliteral">&apos;ﾂ･0&apos;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>isNewInput<sp/>=<sp/>TRUE;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="serpoll_8h_1aab6da4f57ef633a2abe4cb390fb0a892" kindref="member">TRKGetInput</ref>();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" kindref="member">TRKIdle</ref>();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>isNewInput<sp/>=<sp/>FALSE;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c"/>
+  </compounddef>
+</doxygen>

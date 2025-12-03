@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OS.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osc">File OS.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OS.c</strong></a></p>
+<p><a href="../_o_s_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/db.h&gt;</code></li>
+<li><code>#include &lt;dolphin/exi.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include &lt;DolphinTrkInit.h&gt;</code></li>
+<li><code>#include &lt;string.h&gt;</code></li>
+<li><code>#include "OSPrivate.h"</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__arenahi"><strong>__ArenaHi</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__arenalo"><strong>__ArenaLo</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dvdlongfilenameflag"><strong>__DVDLongFileNameFlag</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__padspec"><strong>__PADSpec</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s8"><strong>s8</strong></a></td>
+<td style="text-align: left;"><a href="#variable-_stack_addr"><strong>_stack_addr</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-areweinitialized"><strong>AreWeInitialized</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-bi2debugflag"><strong>BI2DebugFlag</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_boot_info__s/"><strong>OSBootInfo_s</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-bootinfo"><strong>BootInfo</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(**</td>
+<td style="text-align: left;"><a href="#variable-osexceptiontable"><strong>OSExceptionTable</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>double</strong></a></td>
+<td style="text-align: left;"><a href="#variable-zerof"><strong>ZeroF</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__osexceptionlocations"><strong>__OSExceptionLocations</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdefaultexceptionhandler"><strong>OSDefaultExceptionHandler</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_o_s_exception_8h/#typedef-__osexception"><strong>__OSException</strong></a> exception, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetconsoletype"><strong>OSGetConsoleType</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osinit"><strong>OSInit</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dbvector"><strong>__DBVECTOR</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdbintend"><strong>__OSDBINTEND</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdbintstart"><strong>__OSDBINTSTART</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdbjumpend"><strong>__OSDBJUMPEND</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdbjumpstart"><strong>__OSDBJUMPSTART</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osevend"><strong>__OSEVEnd</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osevsetnumber"><strong>__OSEVSetNumber</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osevstart"><strong>__OSEVStart</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osexceptionvector"><strong>__OSExceptionVector</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetdiconfig"><strong>__OSGetDIConfig</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_exception_8h/#typedef-__osexceptionhandler"><strong>__OSExceptionHandler</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetexceptionhandler"><strong>__OSGetExceptionHandler</strong></a> (<a href="../_o_s_exception_8h/#typedef-__osexception"><strong>__OSException</strong></a> exception) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osisdebuggerpresent"><strong>__OSIsDebuggerPresent</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ospsinit"><strong>__OSPSInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_exception_8h/#typedef-__osexceptionhandler"><strong>__OSExceptionHandler</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossetexceptionhandler"><strong>__OSSetExceptionHandler</strong></a> (<a href="../_o_s_exception_8h/#typedef-__osexception"><strong>__OSException</strong></a> exception, <a href="../_o_s_exception_8h/#typedef-__osexceptionhandler"><strong>__OSExceptionHandler</strong></a> handler) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osunhandledexception"><strong>__OSUnhandledException</strong></a> (<a href="../_o_s_exception_8h/#typedef-__osexception"><strong>__OSException</strong></a> exception, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dsisr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dar) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdefaultexceptionhandler"><strong>OSDefaultExceptionHandler</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> exception, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osexceptioninit"><strong>OSExceptionInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osexceptionvector"><strong>OSExceptionVector</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdbintegrator"><strong>__OSDBIntegrator</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdbjump"><strong>__OSDBJump</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osinitfprs"><strong>__OSInitFPRs</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-db_exceptiondest_offset"><strong>DB_EXCEPTIONDEST_OFFSET</strong></a>  <code>0x8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-db_exceptionret_offset"><strong>DB_EXCEPTIONRET_OFFSET</strong></a>  <code>0xC</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-debugflag_addr"><strong>DEBUGFLAG_ADDR</strong></a>  <code>0x800030E8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-debugflag_addr"><strong>DEBUGFLAG_ADDR</strong></a>  <code>0x800030E8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-nop"><strong>NOP</strong></a>  <code>0x60000000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_bi2_debugflag_offset"><strong>OS_BI2_DEBUGFLAG_OFFSET</strong></a>  <code>0xC</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_bi2_debug_address"><strong>OS_BI2_DEBUG_ADDRESS</strong></a>  <code>0x800000F4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_bi2_debug_address"><strong>OS_BI2_DEBUG_ADDRESS</strong></a>  <code>0x800000F4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_cached_region_prefix"><strong>OS_CACHED_REGION_PREFIX</strong></a>  <code>0x8000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_currentcontext_paddr"><strong>OS_CURRENTCONTEXT_PADDR</strong></a>  <code>0x00C0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_dbjumppoint_addr"><strong>OS_DBJUMPPOINT_ADDR</strong></a>  <code>0x60</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_debug_address_2"><strong>OS_DEBUG_ADDRESS_2</strong></a>  <code>0x800030E9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_debug_address_2"><strong>OS_DEBUG_ADDRESS_2</strong></a>  <code>0x800030E9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_dvd_devicecode"><strong>OS_DVD_DEVICECODE</strong></a>  <code>0x800030E6</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_exceptiontable_addr"><strong>OS_EXCEPTIONTABLE_ADDR</strong></a>  <code>0x3000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad3_button_addr"><strong>PAD3_BUTTON_ADDR</strong></a>  <code>0x800030E4</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__arenahi">variable __ArenaHi</h3>
+<pre><code class="language-C++">u16 __ArenaHi[];
+</code></pre>
+<hr>
+
+<h3 id="variable-__arenalo">variable __ArenaLo</h3>
+<pre><code class="language-C++">u16 __ArenaLo[];
+</code></pre>
+<hr>
+
+<h3 id="variable-__dvdlongfilenameflag">variable __DVDLongFileNameFlag</h3>
+<pre><code class="language-C++">u32 __DVDLongFileNameFlag;
+</code></pre>
+<hr>
+
+<h3 id="variable-__padspec">variable __PADSpec</h3>
+<pre><code class="language-C++">u32 __PADSpec;
+</code></pre>
+<hr>
+
+<h3 id="variable-_stack_addr">variable _stack_addr</h3>
+<pre><code class="language-C++">s8 _stack_addr[];
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-areweinitialized">variable AreWeInitialized</h3>
+<pre><code class="language-C++">int AreWeInitialized;
+</code></pre>
+<hr>
+
+<h3 id="variable-bi2debugflag">variable BI2DebugFlag</h3>
+<pre><code class="language-C++">u32* BI2DebugFlag;
+</code></pre>
+<hr>
+
+<h3 id="variable-bootinfo">variable BootInfo</h3>
+<pre><code class="language-C++">struct OSBootInfo_s* BootInfo;
+</code></pre>
+<hr>
+
+<h3 id="variable-osexceptiontable">variable OSExceptionTable</h3>
+<pre><code class="language-C++">void(** OSExceptionTable) (u8, OSContext *);
+</code></pre>
+<hr>
+
+<h3 id="variable-zerof">variable ZeroF</h3>
+<pre><code class="language-C++">double ZeroF;
+</code></pre>
+<hr>
+
+<h3 id="variable-__osexceptionlocations">variable __OSExceptionLocations</h3>
+<pre><code class="language-C++">u32 __OSExceptionLocations[];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-osdefaultexceptionhandler">function OSDefaultExceptionHandler</h3>
+<pre><code class="language-C++">asm  void OSDefaultExceptionHandler (
+    register  __OSException exception,
+    register  OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetconsoletype">function OSGetConsoleType</h3>
+<pre><code class="language-C++">u32 OSGetConsoleType () 
+</code></pre>
+<hr>
+
+<h3 id="function-osinit">function OSInit</h3>
+<pre><code class="language-C++">void OSInit () 
+</code></pre>
+<hr>
+
+<h3 id="function-__dbvector">function __DBVECTOR</h3>
+<pre><code class="language-C++">void __DBVECTOR (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdbintend">function __OSDBINTEND</h3>
+<pre><code class="language-C++">void __OSDBINTEND (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdbintstart">function __OSDBINTSTART</h3>
+<pre><code class="language-C++">void __OSDBINTSTART (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdbjumpend">function __OSDBJUMPEND</h3>
+<pre><code class="language-C++">void __OSDBJUMPEND (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdbjumpstart">function __OSDBJUMPSTART</h3>
+<pre><code class="language-C++">void __OSDBJUMPSTART (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osevend">function __OSEVEnd</h3>
+<pre><code class="language-C++">void __OSEVEnd (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osevsetnumber">function __OSEVSetNumber</h3>
+<pre><code class="language-C++">void __OSEVSetNumber (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osevstart">function __OSEVStart</h3>
+<pre><code class="language-C++">void __OSEVStart (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osexceptionvector">function __OSExceptionVector</h3>
+<pre><code class="language-C++">void __OSExceptionVector (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetdiconfig">function __OSGetDIConfig</h3>
+<pre><code class="language-C++">u8 __OSGetDIConfig (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetexceptionhandler">function __OSGetExceptionHandler</h3>
+<pre><code class="language-C++">__OSExceptionHandler __OSGetExceptionHandler (
+    __OSException exception
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osisdebuggerpresent">function __OSIsDebuggerPresent</h3>
+<pre><code class="language-C++">u32 __OSIsDebuggerPresent () 
+</code></pre>
+<hr>
+
+<h3 id="function-__ospsinit">function __OSPSInit</h3>
+<pre><code class="language-C++">void __OSPSInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossetexceptionhandler">function __OSSetExceptionHandler</h3>
+<pre><code class="language-C++">__OSExceptionHandler __OSSetExceptionHandler (
+    __OSException exception,
+    __OSExceptionHandler handler
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osunhandledexception">function __OSUnhandledException</h3>
+<pre><code class="language-C++">void __OSUnhandledException (
+    __OSException exception,
+    OSContext * context,
+    u32 dsisr,
+    u32 dar
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-osdefaultexceptionhandler_1">function OSDefaultExceptionHandler</h3>
+<pre><code class="language-C++">static void OSDefaultExceptionHandler (
+    u8 exception,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osexceptioninit">function OSExceptionInit</h3>
+<pre><code class="language-C++">static void OSExceptionInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osexceptionvector">function OSExceptionVector</h3>
+<pre><code class="language-C++">static asm  void OSExceptionVector (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdbintegrator">function __OSDBIntegrator</h3>
+<pre><code class="language-C++">static asm  void __OSDBIntegrator (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdbjump">function __OSDBJump</h3>
+<pre><code class="language-C++">static asm  void __OSDBJump (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osinitfprs">function __OSInitFPRs</h3>
+<pre><code class="language-C++">static asm  void __OSInitFPRs (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-db_exceptiondest_offset">define DB_EXCEPTIONDEST_OFFSET</h3>
+<pre><code class="language-C++">#define DB_EXCEPTIONDEST_OFFSET `0x8`
+</code></pre>
+<hr>
+
+<h3 id="define-db_exceptionret_offset">define DB_EXCEPTIONRET_OFFSET</h3>
+<pre><code class="language-C++">#define DB_EXCEPTIONRET_OFFSET `0xC`
+</code></pre>
+<hr>
+
+<h3 id="define-debugflag_addr">define DEBUGFLAG_ADDR</h3>
+<pre><code class="language-C++">#define DEBUGFLAG_ADDR `0x800030E8`
+</code></pre>
+<hr>
+
+<h3 id="define-debugflag_addr_1">define DEBUGFLAG_ADDR</h3>
+<pre><code class="language-C++">#define DEBUGFLAG_ADDR `0x800030E8`
+</code></pre>
+<hr>
+
+<h3 id="define-nop">define NOP</h3>
+<pre><code class="language-C++">#define NOP `0x60000000`
+</code></pre>
+<hr>
+
+<h3 id="define-os_bi2_debugflag_offset">define OS_BI2_DEBUGFLAG_OFFSET</h3>
+<pre><code class="language-C++">#define OS_BI2_DEBUGFLAG_OFFSET `0xC`
+</code></pre>
+<hr>
+
+<h3 id="define-os_bi2_debug_address">define OS_BI2_DEBUG_ADDRESS</h3>
+<pre><code class="language-C++">#define OS_BI2_DEBUG_ADDRESS `0x800000F4`
+</code></pre>
+<hr>
+
+<h3 id="define-os_bi2_debug_address_1">define OS_BI2_DEBUG_ADDRESS</h3>
+<pre><code class="language-C++">#define OS_BI2_DEBUG_ADDRESS `0x800000F4`
+</code></pre>
+<hr>
+
+<h3 id="define-os_cached_region_prefix">define OS_CACHED_REGION_PREFIX</h3>
+<pre><code class="language-C++">#define OS_CACHED_REGION_PREFIX `0x8000`
+</code></pre>
+<hr>
+
+<h3 id="define-os_currentcontext_paddr">define OS_CURRENTCONTEXT_PADDR</h3>
+<pre><code class="language-C++">#define OS_CURRENTCONTEXT_PADDR `0x00C0`
+</code></pre>
+<hr>
+
+<h3 id="define-os_dbjumppoint_addr">define OS_DBJUMPPOINT_ADDR</h3>
+<pre><code class="language-C++">#define OS_DBJUMPPOINT_ADDR `0x60`
+</code></pre>
+<hr>
+
+<h3 id="define-os_debug_address_2">define OS_DEBUG_ADDRESS_2</h3>
+<pre><code class="language-C++">#define OS_DEBUG_ADDRESS_2 `0x800030E9`
+</code></pre>
+<hr>
+
+<h3 id="define-os_debug_address_3">define OS_DEBUG_ADDRESS_2</h3>
+<pre><code class="language-C++">#define OS_DEBUG_ADDRESS_2 `0x800030E9`
+</code></pre>
+<hr>
+
+<h3 id="define-os_dvd_devicecode">define OS_DVD_DEVICECODE</h3>
+<pre><code class="language-C++">#define OS_DVD_DEVICECODE `0x800030E6`
+</code></pre>
+<hr>
+
+<h3 id="define-os_exceptiontable_addr">define OS_EXCEPTIONTABLE_ADDR</h3>
+<pre><code class="language-C++">#define OS_EXCEPTIONTABLE_ADDR `0x3000`
+</code></pre>
+<hr>
+
+<h3 id="define-pad3_button_addr">define PAD3_BUTTON_ADDR</h3>
+<pre><code class="language-C++">#define PAD3_BUTTON_ADDR `0x800030E4`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/os/OS.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

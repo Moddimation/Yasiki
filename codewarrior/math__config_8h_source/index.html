@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File math_config.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-math_configh">File math_config.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_27c31b18688c2d3b7fe1d239b44a1620/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../math__config_8h/"><strong>math_config.h</strong></a></p>
+<p><a href="../math__config_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef __math_config__
+#define __math_config__
+
+#include &lt;msl_t.h&gt;
+
+
+
+#if __option(little_endian)
+# define __HI(x)  ( sizeof(x)==8 ? *(1+(_INT32*)&amp;x) : (*(_INT32*)&amp;x))
+# define __LO(x)  (*(_INT32*)&amp;x)
+# define __UHI(x) ( sizeof(x)==8 ? *(1+(_UINT32*)&amp;x) : (*(_UINT32*)&amp;x))
+# define __ULO(x) (*(_UINT32*)&amp;x)
+#else
+# define __LO(x)  ( sizeof(x)==8 ? *(1+(_INT32*)&amp;x) : (*(_INT32*)&amp;x))
+# define __HI(x)  (*(_INT32*)&amp;x)
+# define __ULO(x) ( sizeof(x)==8 ? *(1+(_UINT32*)&amp;x) : (*(_UINT32*)&amp;x))
+# define __UHI(x) (*(_UINT32*)&amp;x)
+#endif
+
+
+
+extern float _inv_sqrtf(float x); /* implementation in sqrtf.c */
+#if !__MIPS__
+#define __float2int__(x)    (*(_INT32*)&amp;x)
+#define __int2float__(x)    (*(float*)&amp;x)
+#endif
+
+/*
+note the platform specific header below may contain actual inlined definitions of
+the standard C functions they are therefore in namespace std
+*/
+
+#ifdef __cplusplus
+    #ifdef _MSL_USING_NAMESPACE
+        namespace std {
+    #endif
+#endif
+#if __MIPS__
+#  include &lt;math_mips.h&gt;
+#elif __m56800__                                    
+#  include &lt;m56800_math.h&gt;                          
+#elif __m56300__                                    
+#  include &lt;m56300_math.h&gt;  
+#elif __POWERPC__
+#  include &lt;math_ppc.h&gt;                     
+#endif                                              
+
+#ifdef __cplusplus
+    #ifdef _MSL_USING_NAMESPACE
+        }
+    #endif
+#endif
+
+#endif
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSSerial.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osserialc">File OSSerial.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="../_o_s_serial_8c/"><strong>OSSerial.c</strong></a></p>
+<p><a href="../_o_s_serial_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin.h&gt;
+#include &lt;dolphin/os.h&gt;
+#define CHAN_NONE                 -1
+
+#define SI_MAX_CHAN               4
+
+#define SI_COMCSR_IDX             13
+#define SI_STATUS_IDX             14
+
+#define SI_COMCSR_TCINT_MASK      (1 &lt;&lt; 31)
+#define SI_COMCSR_TCINTMSK_MASK   (1 &lt;&lt; 30)
+#define SI_COMCSR_COMERR_MASK     (1 &lt;&lt; 29)
+#define SI_COMCSR_RDSTINT_MASK    (1 &lt;&lt; 28)
+#define SI_COMCSR_RDSTINTMSK_MASK (1 &lt;&lt; 27)
+// 4 bits of padding
+#define SI_COMCSR_OUTLNGTH_MASK                                                                \
+    (1 &lt;&lt; 22) | (1 &lt;&lt; 21) | (1 &lt;&lt; 20) | (1 &lt;&lt; 19) | (1 &lt;&lt; 18) | (1 &lt;&lt; 17) | (1 &lt;&lt; 16)
+// 1 bit of padding
+#define SI_COMCSR_INLNGTH_MASK                                                                 \
+    (1 &lt;&lt; 14) | (1 &lt;&lt; 13) | (1 &lt;&lt; 12) | (1 &lt;&lt; 11) | (1 &lt;&lt; 10) | (1 &lt;&lt; 9) | (1 &lt;&lt; 8)
+// 5 bits of padding
+#define SI_COMCSR_CHANNEL_MASK (1 &lt;&lt; 2) | (1 &lt;&lt; 1)
+#define SI_COMCSR_TSTART_MASK  (1 &lt;&lt; 0)
+#define ROUND(n, a)            (((u32)(n) + (a) - 1) &amp; ~((a) - 1))
+
+typedef struct SIControl
+{
+    s32   chan;                               
+    u32   poll;                               
+    u32   inputBytes;                         
+    void* input;                              
+    void  (*callback) (s32, u32, OSContext*); 
+} SIControl;
+
+typedef struct SIPacket
+{
+    s32   chan;                               
+    void* output;                             
+    u32   outputBytes;                        
+    void* input;                              
+    u32   inputBytes;                         
+    void  (*callback) (s32, u32, OSContext*); 
+    s64   time;                               
+} SIPacket;
+
+static struct SIControl Si = {
+    /* chan */ -1,
+    /* poll */ 0,
+    /* inputBytes*/ 0,
+    /* input */ NULL,
+    /* callback */ NULL
+};
+
+static struct SIPacket Packet[4];
+static struct OSAlarm  Alarm[4];
+
+static u32  CompleteTransfer ();
+static void SITransferNext (s32 chan);
+static void SIIntrruptHandler (s16 unused, OSContext* context);
+static int  __SITransfer (s32   chan,
+                          void* output,
+                          u32   outputBytes,
+                          void* input,
+                          u32   inputBytes,
+                          void  (*callback) (s32, u32, OSContext*));
+static void AlarmHandler (struct OSAlarm* alarm, OSContext* context);
+
+int
+SIBusy ()
+{
+    return (Si.chan != -1) ? 1 : 0;
+}
+
+static u32
+CompleteTransfer ()
+{
+    u32  sr;
+    u32  i;
+    u32  rLen;
+    u16* input;
+    u32  temp;
+
+    sr = __SIRegs[SI_STATUS_IDX];
+    __SIRegs[SI_COMCSR_IDX] = (u32)SI_COMCSR_TCINT_MASK;
+
+    if (Si.chan != -1)
+    {
+        input = Si.input;
+        rLen = (Si.inputBytes / 4);
+        for (i = 0; i &lt; rLen; i++) { *((u32*)input)++ = __SIRegs[i + 0x20]; }
+
+        rLen = Si.inputBytes &amp; 3;
+        if (rLen != 0)
+        {
+            temp = __SIRegs[i + 32];
+            for (i = 0; i &lt; rLen; i++) { *((u8*)input)++ = (u8)(temp &gt;&gt; ((3 - i) * 8)); }
+        }
+        sr &gt;&gt;= ((3 - Si.chan) * 8);
+        sr &amp;= 0xF;
+        Si.chan = -1;
+    }
+
+    return sr;
+}
+
+static void
+SITransferNext (s32 chan)
+{
+    int              i;
+    struct SIPacket* packet;
+
+    for (i = 0; i &lt; 4; i++)
+    {
+        chan++;
+        chan %= 4;
+        packet = &amp;Packet[chan];
+
+        if (packet-&gt;chan != -1)
+        {
+            if (packet-&gt;time &lt;= OSGetTime())
+            {
+                if (__SITransfer (packet-&gt;chan,
+                                  packet-&gt;output,
+                                  packet-&gt;outputBytes,
+                                  packet-&gt;input,
+                                  packet-&gt;inputBytes,
+                                  packet-&gt;callback) != 0)
+                {
+                    OSCancelAlarm (&amp;Alarm[chan]);
+                    packet-&gt;chan = -1;
+                }
+                return;
+            }
+        }
+    }
+}
+
+static void
+SIIntrruptHandler (s16 unused, OSContext* context)
+{
+#pragma unused(unused)
+
+    s32 chan;
+    u32 sr;
+
+    void (*callback) (s32, u32, OSContext*);
+
+    ASSERTLINE (0xE2, Si.chan != CHAN_NONE);
+
+    chan = Si.chan;
+    sr = CompleteTransfer();
+    callback = Si.callback;
+    Si.callback = NULL;
+    SITransferNext (chan);
+    if (callback)
+    {
+        callback (chan, sr, context);
+    }
+}
+
+void
+SIInit ()
+{
+    Packet[0].chan = Packet[1].chan = Packet[2].chan = Packet[3].chan = -1;
+    __SIRegs[0x30 / 4] = 0;
+    do {
+    }
+    while (__SIRegs[SI_COMCSR_IDX] &amp; SI_COMCSR_TSTART_MASK);
+    __SIRegs[SI_COMCSR_IDX] = (u32)SI_COMCSR_TCINT_MASK;
+    __OSSetInterruptHandler (0x14, SIIntrruptHandler);
+    __OSUnmaskInterrupts (0x800);
+}
+
+static BOOL
+__SITransfer (s32   chan,
+              void* output,
+              u32   outputBytes,
+              void* input,
+              u32   inputBytes,
+              void  (*callback) (s32, u32, OSContext*))
+{
+    BOOL enabled;
+    u32  rLen;
+    u32  i;
+    u32  sr;
+
+    union
+    {
+        u32 val;
+
+        struct
+        {
+            u32 tcint      : 1;
+            u32 tcintmsk   : 1;
+            u32 comerr     : 1;
+            u32 rdstint    : 1;
+            u32 rdstintmsk : 1;
+            u32 pad2       : 4;
+            u32 outlngth   : 7;
+            u32 pad1       : 1;
+            u32 inlngth    : 7;
+            u32 pad0       : 5;
+            u32 channel    : 2;
+            u32 tstart     : 1;
+        } f;
+    } comcsr;
+
+    ASSERTMSGLINE (0x12A, (chan &gt;= 0) &amp;&amp; (chan &lt; 4), &quot;SITransfer(): invalid channel.&quot;);
+    ASSERTMSGLINE (0x12C,
+                   (outputBytes != 0) &amp;&amp; (outputBytes &lt;= 128),
+                   &quot;SITransfer(): output size is out of range (must be 1 to 128).&quot;);
+    ASSERTMSGLINE (0x12E,
+                   (inputBytes != 0) &amp;&amp; (inputBytes &lt;= 128),
+                   &quot;SITransfer(): input size is out of range (must be 1 to 128).&quot;);
+
+    enabled = OSDisableInterrupts();
+    if (Si.chan != -1)
+    {
+        OSRestoreInterrupts (enabled);
+        return FALSE;
+    }
+    ASSERTLINE (0x138,
+                (__SIRegs[SI_COMCSR_IDX] &amp; (SI_COMCSR_TSTART_MASK | SI_COMCSR_TCINT_MASK)) ==
+                    0);
+    sr = __SIRegs[SI_STATUS_IDX];
+    sr &amp;= (0x0F000000 &gt;&gt; (chan * 8));
+    __SIRegs[SI_STATUS_IDX] = sr;
+
+    Si.chan = chan;
+    Si.callback = callback;
+    Si.inputBytes = inputBytes;
+    Si.input = input;
+
+    rLen = ROUND (outputBytes, 4) / 4;
+    for (i = 0; i &lt; rLen; i++) { __SIRegs[i + 0x20] = ((u32*)output)[i]; }
+
+    comcsr.val = 0;
+    comcsr.f.tcint = 1;
+    comcsr.f.tcintmsk = callback ? 1 : 0;
+    comcsr.f.outlngth = outputBytes == 0x80 ? 0 : outputBytes;
+    comcsr.f.inlngth = inputBytes == 0x80 ? 0 : inputBytes;
+    comcsr.f.channel = chan;
+    comcsr.f.tstart = 1;
+
+    __SIRegs[SI_COMCSR_IDX] = comcsr.val;
+    OSRestoreInterrupts (enabled);
+
+    return TRUE;
+}
+
+u32
+SISync ()
+{
+    int enabled;                              // r31
+    u32 sr;                                   // r30
+
+    do {
+    }
+    while (__SIRegs[SI_COMCSR_IDX] &amp; SI_COMCSR_TSTART_MASK);
+
+    enabled = OSDisableInterrupts();
+    sr = CompleteTransfer();
+    SITransferNext (4);
+
+    OSRestoreInterrupts (enabled);
+
+    return sr;
+}
+
+u32
+SIGetStatus ()
+{
+    return __SIRegs[SI_STATUS_IDX];
+}
+
+void
+SISetCommand (s32 chan, u32 command)
+{
+    ASSERTMSGLINE (0x197, (chan &gt;= 0) &amp;&amp; (chan &lt; 4), &quot;SISetCommand(): invalid channel.&quot;);
+    __SIRegs[chan * 3] = command;
+}
+
+u32
+SIGetCommand (s32 chan)
+{
+    ASSERTMSGLINE (0x1A9, (chan &gt;= 0) &amp;&amp; (chan &lt; 4), &quot;SIGetCommand(): invalid channel.&quot;);
+
+    return __SIRegs[chan * 3];
+}
+
+void
+SITransferCommands ()
+{
+    __SIRegs[SI_STATUS_IDX] = (u32)SI_COMCSR_TCINT_MASK;
+}
+
+u32
+SISetXY (u32 x, u32 y)
+{
+    u32 poll;
+    int enabled;
+
+    ASSERTMSGLINE (0x1CA, x &gt;= 8, &quot;SISetXY(): x is out of range (8 &lt;= x &lt;= 255).&quot;);
+    ASSERTMSGLINE (0x1CB, x &lt;= 255, &quot;SISetXY(): x is out of range (8 &lt;= x &lt;= 255).&quot;);
+    ASSERTMSGLINE (0x1CC, y &lt;= 255, &quot;SISetXY(): y is out of range (0 &lt;= y &lt;= 255).&quot;);
+
+    poll = x &lt;&lt; 0x10;
+    poll |= y &lt;&lt; 8;
+    enabled = OSDisableInterrupts();
+    Si.poll &amp;= 0xFC0000FF;
+    Si.poll |= poll;
+    poll = Si.poll;
+
+    OSRestoreInterrupts (enabled);
+
+    return poll;
+}
+
+u32
+SIEnablePolling (u32 poll)
+{
+    int enabled;
+    u32 en;
+
+    ASSERTMSGLINE (0x1E8, !(poll &amp; 0x0FFFFFFF), &quot;SIEnablePolling(): invalid chan bit(s).&quot;);
+    if (poll == 0)
+    {
+        return Si.poll;
+    }
+
+    enabled = OSDisableInterrupts();
+    poll = poll &gt;&gt; 24;
+    en = poll &amp; 0xF0;
+    ASSERTLINE (0x202, en);
+    poll &amp;= ((en &gt;&gt; 4) | 0x03FFFFF0);
+    poll &amp;= 0xFC0000FF;
+
+    Si.poll &amp;= ~(en &gt;&gt; 4);
+    Si.poll |= poll;
+    poll = Si.poll;
+    __SIRegs[0x38 / 4] = 0x80000000;
+    __SIRegs[0x30 / 4] = poll;
+
+    OSRestoreInterrupts (enabled);
+
+    return poll;
+}
+
+u32
+SIDisablePolling (u32 poll)
+{
+    int enabled;
+
+    ASSERTMSGLINE (0x22D, !(poll &amp; 0x0FFFFFFF), &quot;SIDisablePolling(): invalid chan bit(s).&quot;);
+    if (poll == 0)
+    {
+        return Si.poll;
+    }
+    enabled = OSDisableInterrupts();
+    poll = poll &gt;&gt; 24;
+    poll &amp;= 0xF0;
+    ASSERTLINE (0x23A, poll);
+    poll = Si.poll &amp; ~poll;
+    __SIRegs[0x30 / 4] = poll;
+    Si.poll = poll;
+
+    OSRestoreInterrupts (enabled);
+
+    return poll;
+}
+
+void
+SIGetResponse (s32 chan, void* data)
+{
+    ASSERTMSGLINE (0x250, ((chan &gt;= 0) &amp;&amp; (chan &lt; 4)), &quot;SIGetResponse(): invalid channel.&quot;);
+    ((u32*)data)[0] = __SIRegs[chan * 3 + 1];
+    ((u32*)data)[1] = __SIRegs[chan * 3 + 2];
+}
+
+static void
+AlarmHandler (struct OSAlarm* alarm, OSContext* context)
+{
+#pragma unused(context)
+
+    s32              chan;
+    struct SIPacket* packet;
+
+    chan = alarm - Alarm;
+
+    ASSERTLINE (0x266, 0 &lt;= chan &amp;&amp; chan &lt; SI_MAX_CHAN);
+    ASSERTLINE (0x267,
+                packet-&gt;time &lt;= OSGetTime()); // WTF? Dereferencing a NULL POINTER?
+    packet = &amp;Packet[chan];
+
+    if (packet-&gt;chan != -1 &amp;&amp; __SITransfer (packet-&gt;chan,
+                                            packet-&gt;output,
+                                            packet-&gt;outputBytes,
+                                            packet-&gt;input,
+                                            packet-&gt;inputBytes,
+                                            packet-&gt;callback))
+    {
+        packet-&gt;chan = -1;
+    }
+}
+
+BOOL
+SITransfer (s32   chan,
+            void* output,
+            u32   outputBytes,
+            void* input,
+            u32   inputBytes,
+            void  (*callback) (s32, u32, OSContext*),
+            s64   time)
+{
+    BOOL             enabled;
+    struct SIPacket* packet;
+    s64              now;
+
+    packet = &amp;Packet[chan];
+    enabled = OSDisableInterrupts();
+
+    if (packet-&gt;chan != -1)
+    {
+        OSRestoreInterrupts (enabled);
+        return FALSE;
+    }
+    now = OSGetTime();
+    if (time == 0)
+    {
+        time = now;
+    }
+    if (now &lt; time)
+    {
+        OSSetAbsAlarm (&amp;Alarm[chan], time, AlarmHandler);
+    }
+    else if (__SITransfer (chan, output, outputBytes, input, inputBytes, callback))
+    {
+        OSRestoreInterrupts (enabled);
+        return TRUE;
+    }
+    packet-&gt;chan = chan;
+    packet-&gt;output = output;
+    packet-&gt;outputBytes = outputBytes;
+    packet-&gt;input = input;
+    packet-&gt;inputBytes = inputBytes;
+    packet-&gt;callback = callback;
+    packet-&gt;time = time;
+
+    OSRestoreInterrupts (enabled);
+
+    return TRUE;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

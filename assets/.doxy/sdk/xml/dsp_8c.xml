@@ -1,0 +1,940 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dsp_8c" kind="file" language="C++">
+    <compoundname>dsp.c</compoundname>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes refid="dsp__private_8h" local="yes">dsp_private.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>dolphin/dsp.h</label>
+        <link refid="dsp_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>dsp.c</label>
+        <link refid="dsp_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>dsp_private.h</label>
+        <link refid="dsp__private_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dsp_8c_1a75e5275846fd6024db9e76e144510e26" prot="public" static="yes" mutable="no">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL __DSP_init_flag</definition>
+        <argsstring></argsstring>
+        <name>__DSP_init_flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="53" column="14" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="53" bodyend="-1"/>
+        <referencedby refid="dsp_8h_1a0234a2d82027499ab430a18371b76758" compoundref="dsp_8c" startline="150" endline="171">DSPAddTask</referencedby>
+        <referencedby refid="dsp_8h_1ad11d95b77d22b0c4ee825ec53396f55d" compoundref="dsp_8c" startline="195" endline="230">DSPAssertTask</referencedby>
+        <referencedby refid="dsp_8h_1a588dbb9200adc8b789bbbbb8dffac687" compoundref="dsp_8c" startline="174" endline="189">DSPCancelTask</referencedby>
+        <referencedby refid="dsp_8h_1afb33ec0bd1d965002d534e9bee5d6f01" compoundref="dsp_8c" startline="92" endline="95">DSPCheckInit</referencedby>
+        <referencedby refid="dsp_8h_1a50522be3d6cd6631bca1a31d80e99fc1" compoundref="dsp_8c" startline="61" endline="88">DSPInit</referencedby>
+        <referencedby refid="dsp_8h_1ae88f51f90b7786d2bf5900a375185d34" compoundref="dsp_8c" startline="98" endline="111">DSPReset</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp_8c_1ae4d11addde73d9a955b0c466b0d43be0" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_first_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_first_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="54" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="54" bodyend="-1"/>
+        <referencedby refid="dsp_8h_1a0234a2d82027499ab430a18371b76758" compoundref="dsp_8c" startline="150" endline="171">DSPAddTask</referencedby>
+        <referencedby refid="dsp_8h_1a50522be3d6cd6631bca1a31d80e99fc1" compoundref="dsp_8c" startline="61" endline="88">DSPInit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp_8c_1a2b47790156d66d7601210ecad8082241" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_last_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_last_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="55" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="55" bodyend="-1"/>
+        <referencedby refid="dsp_8h_1a50522be3d6cd6631bca1a31d80e99fc1" compoundref="dsp_8c" startline="61" endline="88">DSPInit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_curr_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_curr_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="56" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="56" bodyend="-1"/>
+        <referencedby refid="dsp_8h_1ad11d95b77d22b0c4ee825ec53396f55d" compoundref="dsp_8c" startline="195" endline="230">DSPAssertTask</referencedby>
+        <referencedby refid="dsp_8h_1a50522be3d6cd6631bca1a31d80e99fc1" compoundref="dsp_8c" startline="61" endline="88">DSPInit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp_8c_1a05e5d0f89f933542ce075b5fb0c210d5" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_tmp_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_tmp_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="57" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="57" bodyend="-1"/>
+        <referencedby refid="dsp_8h_1a50522be3d6cd6631bca1a31d80e99fc1" compoundref="dsp_8c" startline="61" endline="88">DSPInit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_rude_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_rude_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="191" column="20" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="14" bodyend="-1" declfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" declline="191" declcolumn="20"/>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+        <referencedby refid="dsp_8h_1ad11d95b77d22b0c4ee825ec53396f55d" compoundref="dsp_8c" startline="195" endline="230">DSPAssertTask</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int __DSP_rude_task_pending</definition>
+        <argsstring></argsstring>
+        <name>__DSP_rude_task_pending</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="192" column="21" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="15" bodyend="-1" declfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" declline="192" declcolumn="21"/>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+        <referencedby refid="dsp_8h_1ad11d95b77d22b0c4ee825ec53396f55d" compoundref="dsp_8c" startline="195" endline="230">DSPAssertTask</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dsp_8c_1a0e550c90eb199a29bd19afeeb75240da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DSPCheckMailToDSP</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPCheckMailToDSP</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="8" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="8" bodyend="11"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="_a_x_out_8c_1a28b35a0e075805945c0e7adc660b05b4" compoundref="_a_x_out_8c" startline="27" endline="68">__AXOutNewFrame</referencedby>
+        <referencedby refid="dsp__private_8h_1a5124f7f6320ebb147b592f584a74ff9c" compoundref="dsp__task_8c" startline="240" endline="278">__DSP_boot_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a0ca11dbcad7a99a785c28f41f16253ae" compoundref="dsp__task_8c" startline="188" endline="237">__DSP_exec_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+        <referencedby refid="_c_a_r_d_unlock_8c_1ae09bd8b80f0c5a0b3cd77575756df4f7" compoundref="_c_a_r_d_unlock_8c" startline="331" endline="357">InitCallback</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1afecce32d89f9a1372b3181dca348794a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DSPCheckMailFromDSP</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPCheckMailFromDSP</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="14" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="14" bodyend="17"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="dsp__private_8h_1a5124f7f6320ebb147b592f584a74ff9c" compoundref="dsp__task_8c" startline="240" endline="278">__DSP_boot_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1afb2642810aaf3fe2afe1d02c0c267f27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DSPReadCPUToDSPMbox</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPReadCPUToDSPMbox</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="20" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="20" bodyend="23"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1a8eb64a47c193b072da2e67280f98c85e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DSPReadMailFromDSP</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPReadMailFromDSP</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="26" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="26" bodyend="29"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="dsp__private_8h_1a5124f7f6320ebb147b592f584a74ff9c" compoundref="dsp__task_8c" startline="240" endline="278">__DSP_boot_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1a49c7877588d38b5301260975b74cfb7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSPSendMailToDSP</definition>
+        <argsstring>(u32 mail)</argsstring>
+        <name>DSPSendMailToDSP</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>mail</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="32" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="32" bodyend="36"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="_a_x_out_8c_1a28b35a0e075805945c0e7adc660b05b4" compoundref="_a_x_out_8c" startline="27" endline="68">__AXOutNewFrame</referencedby>
+        <referencedby refid="dsp__private_8h_1a5124f7f6320ebb147b592f584a74ff9c" compoundref="dsp__task_8c" startline="240" endline="278">__DSP_boot_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a0ca11dbcad7a99a785c28f41f16253ae" compoundref="dsp__task_8c" startline="188" endline="237">__DSP_exec_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+        <referencedby refid="_c_a_r_d_unlock_8c_1ae09bd8b80f0c5a0b3cd77575756df4f7" compoundref="_c_a_r_d_unlock_8c" startline="331" endline="357">InitCallback</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1ac9c5f8eb0fa4d6eddca831898ed07b5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSPAssertInt</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPAssertInt</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="39" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="39" bodyend="51"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" compoundref="dvd_8c" startline="17">tmp</references>
+        <referencedby refid="dsp_8h_1ad11d95b77d22b0c4ee825ec53396f55d" compoundref="dsp_8c" startline="195" endline="230">DSPAssertTask</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1a50522be3d6cd6631bca1a31d80e99fc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSPInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="61" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="61" bodyend="88"/>
+        <references refid="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" compoundref="dsp_8c" startline="56">__DSP_curr_task</references>
+        <references refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" compoundref="dsp__debug_8c" startline="12" endline="13">__DSP_debug_printf</references>
+        <references refid="dsp_8c_1ae4d11addde73d9a955b0c466b0d43be0" compoundref="dsp_8c" startline="54">__DSP_first_task</references>
+        <references refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" compoundref="dsp_8c" startline="53">__DSP_init_flag</references>
+        <references refid="dsp_8c_1a2b47790156d66d7601210ecad8082241" compoundref="dsp_8c" startline="55">__DSP_last_task</references>
+        <references refid="dsp_8c_1a05e5d0f89f933542ce075b5fb0c210d5" compoundref="dsp_8c" startline="57">__DSP_tmp_task</references>
+        <references refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</references>
+        <references refid="_o_s_interrupt_8h_1a47dc6136ea35a70dddea9933b2afcdbc" compoundref="_o_s_interrupt_8c" startline="112" endline="124">__OSSetInterruptHandler</references>
+        <references refid="_o_s_interrupt_8h_1a23d24150de606226d6d4f07b1fd72934" compoundref="_o_s_interrupt_8c" startline="385" endline="401">__OSUnmaskInterrupts</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="_o_s_interrupt_8h_1af653f458989bda120d949165cf8d2218" compoundref="_o_s_interrupt_8h" startline="57">OS_INTERRUPTMASK_DSP_DSP</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" compoundref="dvd_8c" startline="17">tmp</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_a_x_out_8c_1a3943b69615796192495bb6b52cac1444" compoundref="_a_x_out_8c" startline="112" endline="137">__AXOutInitDSP</referencedby>
+        <referencedby refid="card_8h_1a0373f746bf885bf1a12f665790c1a215" compoundref="_c_a_r_d_bios_8c" startline="689" endline="712">CARDInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1afb33ec0bd1d965002d534e9bee5d6f01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL DSPCheckInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPCheckInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="92" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="92" bodyend="95"/>
+        <references refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" compoundref="dsp_8c" startline="53">__DSP_init_flag</references>
+        <referencedby refid="_a_x_out_8c_1a3943b69615796192495bb6b52cac1444" compoundref="_a_x_out_8c" startline="112" endline="137">__AXOutInitDSP</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1ae88f51f90b7786d2bf5900a375185d34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSPReset</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPReset</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="98" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="98" bodyend="111"/>
+        <references refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" compoundref="dsp_8c" startline="53">__DSP_init_flag</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" compoundref="dvd_8c" startline="17">tmp</references>
+        <referencedby refid="_a_x_out_8c_1a653e76f7aafb3bad59e2e04e74e0b21a" compoundref="_a_x_out_8c" startline="163" endline="179">__AXOutQuit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1a2cb4e018b53df6f522f274c3b880f3fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSPHalt</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPHalt</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="114" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="114" bodyend="126"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" compoundref="dvd_8c" startline="17">tmp</references>
+        <referencedby refid="_a_x_out_8c_1a653e76f7aafb3bad59e2e04e74e0b21a" compoundref="_a_x_out_8c" startline="163" endline="179">__AXOutQuit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1a166a64ff9c37de37e95311adaab84483" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSPUnhalt</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPUnhalt</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="129" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="129" bodyend="141"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" compoundref="dvd_8c" startline="17">tmp</references>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1a47b9bbeca7a7137e777ad4d39a91d4d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DSPGetDMAStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DSPGetDMAStatus</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="144" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="144" bodyend="147"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="_a_x_out_8c_1a653e76f7aafb3bad59e2e04e74e0b21a" compoundref="_a_x_out_8c" startline="163" endline="179">__AXOutQuit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1a0234a2d82027499ab430a18371b76758" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo * DSPAddTask</definition>
+        <argsstring>(DSPTaskInfo *task)</argsstring>
+        <name>DSPAddTask</name>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="150" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="150" bodyend="171"/>
+        <references refid="dsp__private_8h_1a5124f7f6320ebb147b592f584a74ff9c" compoundref="dsp__task_8c" startline="240" endline="278">__DSP_boot_task</references>
+        <references refid="dsp_8c_1ae4d11addde73d9a955b0c466b0d43be0" compoundref="dsp_8c" startline="54">__DSP_first_task</references>
+        <references refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" compoundref="dsp_8c" startline="53">__DSP_init_flag</references>
+        <references refid="dsp__private_8h_1a07c77bafc7589c7f5b611b363539b2f7" compoundref="dsp__task_8c" startline="281" endline="319">__DSP_insert_task</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" compoundref="dsp_8h" startline="12">STRUCT_DSP_TASK::flags</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" compoundref="dsp_8h" startline="10">STRUCT_DSP_TASK::state</references>
+        <references refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" compoundref="_a_x_out_8c" startline="11">task</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_a_x_out_8c_1a3943b69615796192495bb6b52cac1444" compoundref="_a_x_out_8c" startline="112" endline="137">__AXOutInitDSP</referencedby>
+        <referencedby refid="_c_a_r_d_private_8h_1a767dc0b05a1ffcddb2e77e98eb469569" compoundref="_c_a_r_d_unlock_8c" startline="207" endline="328">__CARDUnlock</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1a588dbb9200adc8b789bbbbb8dffac687" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo * DSPCancelTask</definition>
+        <argsstring>(DSPTaskInfo *task)</argsstring>
+        <name>DSPCancelTask</name>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="174" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="174" bodyend="189"/>
+        <references refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" compoundref="dsp_8c" startline="53">__DSP_init_flag</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" compoundref="dsp_8h" startline="12">STRUCT_DSP_TASK::flags</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" compoundref="_a_x_out_8c" startline="11">task</references>
+      </memberdef>
+      <memberdef kind="function" id="dsp_8c_1ad11d95b77d22b0c4ee825ec53396f55d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo * DSPAssertTask</definition>
+        <argsstring>(DSPTaskInfo *task)</argsstring>
+        <name>DSPAssertTask</name>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" line="195" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp.c" bodystart="195" bodyend="230"/>
+        <references refid="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" compoundref="dsp_8c" startline="56">__DSP_curr_task</references>
+        <references refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" compoundref="dsp_8c" startline="53">__DSP_init_flag</references>
+        <references refid="dsp_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" compoundref="dsp__task_8c" startline="14">__DSP_rude_task</references>
+        <references refid="dsp_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" compoundref="dsp__task_8c" startline="15">__DSP_rude_task_pending</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="dsp_8c_1ac9c5f8eb0fa4d6eddca831898ed07b5f" compoundref="dsp_8c" startline="39" endline="51">DSPAssertInt</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" compoundref="dsp_8h" startline="12">STRUCT_DSP_TASK::flags</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1aa1bad9590317936d38c1e8815ea60700" compoundref="dsp_8h" startline="11">STRUCT_DSP_TASK::priority</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" compoundref="dsp_8h" startline="10">STRUCT_DSP_TASK::state</references>
+        <references refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" compoundref="_a_x_out_8c" startline="11">task</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_a_x_out_8c_1aaa09c596e469d11045041487c2643721" compoundref="_a_x_out_8c" startline="71" endline="85">__AXOutAiCallback</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dsp__private_8h" kindref="compound">dsp_private.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></highlight></codeline>
+<codeline lineno="8" refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[0]<sp/>&gt;&gt;<sp/>0xF<sp/>&amp;<sp/>1);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></highlight></codeline>
+<codeline lineno="14" refid="dsp_8h_1afecce32d89f9a1372b3181dca348794a" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1afecce32d89f9a1372b3181dca348794a" kindref="member">DSPCheckMailFromDSP</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[2]<sp/>&gt;&gt;<sp/>0xF<sp/>&amp;<sp/>1);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></highlight></codeline>
+<codeline lineno="20" refid="dsp_8h_1afb2642810aaf3fe2afe1d02c0c267f27" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1afb2642810aaf3fe2afe1d02c0c267f27" kindref="member">DSPReadCPUToDSPMbox</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[0]<sp/>&lt;&lt;<sp/>0x10)<sp/>|<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[1];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></highlight></codeline>
+<codeline lineno="26" refid="dsp_8h_1a8eb64a47c193b072da2e67280f98c85e" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a8eb64a47c193b072da2e67280f98c85e" kindref="member">DSPReadMailFromDSP</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[2]<sp/>&lt;&lt;<sp/>0x10)<sp/>|<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[3];</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref>)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[0]<sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref><sp/>&gt;&gt;<sp/>16);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[1]<sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref><sp/>&amp;<sp/>0xFFFF);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="dsp_8h_1ac9c5f8eb0fa4d6eddca831898ed07b5f" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1ac9c5f8eb0fa4d6eddca831898ed07b5f" kindref="member">DSPAssertInt</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/>old;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>old<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)((<ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/>&amp;<sp/>~0xA8)<sp/>|<sp/>2);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><sp/><ref refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" kindref="member">__DSP_init_flag</ref>;</highlight></codeline>
+<codeline lineno="54" refid="dsp_8c_1ae4d11addde73d9a955b0c466b0d43be0" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>;</highlight></codeline>
+<codeline lineno="55" refid="dsp_8c_1a2b47790156d66d7601210ecad8082241" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref>;</highlight></codeline>
+<codeline lineno="56" refid="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>;</highlight></codeline>
+<codeline lineno="57" refid="dsp_8c_1a05e5d0f89f933542ce075b5fb0c210d5" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp_8c_1a05e5d0f89f933542ce075b5fb0c210d5" kindref="member">__DSP_tmp_task</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>JAUDIO_OLD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="dsp_8h_1a50522be3d6cd6631bca1a31d80e99fc1" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a50522be3d6cd6631bca1a31d80e99fc1" kindref="member">DSPInit</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/>old;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" kindref="member">__DSP_debug_printf</ref><sp/>(</highlight><highlight class="stringliteral">&quot;DSPInit():<sp/>Build<sp/>Date:<sp/>%s<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">BUILD_DATE</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">BUILD_TIME</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" kindref="member">__DSP_init_flag</ref>)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>old<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_interrupt_8h_1a47dc6136ea35a70dddea9933b2afcdbc" kindref="member">__OSSetInterruptHandler</ref><sp/>(7,<sp/><ref refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" kindref="member">__DSPHandler</ref>);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_interrupt_8h_1a23d24150de606226d6d4f07b1fd72934" kindref="member">__OSUnmaskInterrupts</ref><sp/>(<ref refid="_o_s_interrupt_8h_1af653f458989bda120d949165cf8d2218" kindref="member">OS_INTERRUPTMASK_DSP_DSP</ref>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)((<ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/>&amp;<sp/>~0xA8)<sp/>|<sp/>0x800);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)(<ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/>&amp;<sp/>~0xAC);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref><sp/>=<sp/><ref refid="dsp_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/>=<sp/><ref refid="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>=<sp/><ref refid="dsp_8c_1a05e5d0f89f933542ce075b5fb0c210d5" kindref="member">__DSP_tmp_task</ref><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" kindref="member">__DSP_init_flag</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></highlight></codeline>
+<codeline lineno="92" refid="dsp_8h_1afb33ec0bd1d965002d534e9bee5d6f01" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1afb33ec0bd1d965002d534e9bee5d6f01" kindref="member">DSPCheckInit</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" kindref="member">__DSP_init_flag</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="dsp_8h_1ae88f51f90b7786d2bf5900a375185d34" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1ae88f51f90b7786d2bf5900a375185d34" kindref="member">DSPReset</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/>old;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>old<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)((<ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/>&amp;<sp/>~0xA8)<sp/>|<sp/>0x800<sp/>|<sp/>1);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/><sp/><sp/><sp/>=<sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" kindref="member">__DSP_init_flag</ref><sp/>=<sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="dsp_8h_1a2cb4e018b53df6f522f274c3b880f3fc" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a2cb4e018b53df6f522f274c3b880f3fc" kindref="member">DSPHalt</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/>old;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>old<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)((<ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/>&amp;<sp/>~0xA8)<sp/>|<sp/>4);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="dsp_8h_1a166a64ff9c37de37e95311adaab84483" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a166a64ff9c37de37e95311adaab84483" kindref="member">DSPUnhalt</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/>old;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>old<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)((<ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/>&amp;<sp/>~0xAC));</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></highlight></codeline>
+<codeline lineno="144" refid="dsp_8h_1a47b9bbeca7a7137e777ad4d39a91d4d3" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a47b9bbeca7a7137e777ad4d39a91d4d3" kindref="member">DSPGetDMAStatus</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>&amp;<sp/>(1<sp/>&lt;&lt;<sp/>9));</highlight></codeline>
+<codeline lineno="147"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*</highlight></codeline>
+<codeline lineno="150" refid="dsp_8h_1a0234a2d82027499ab430a18371b76758" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a0234a2d82027499ab430a18371b76758" kindref="member">DSPAddTask</ref><sp/>(<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/>old;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x21E,</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" kindref="member">__DSP_init_flag</ref><sp/>==<sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>,</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;DSPAddTask():<sp/>DSP<sp/>driver<sp/>not<sp/>initialized!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>old<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__private_8h_1a07c77bafc7589c7f5b611b363539b2f7" kindref="member">__DSP_insert_task</ref><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" kindref="member">flags</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref><sp/>==<sp/><ref refid="dsp_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>)</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__private_8h_1a5124f7f6320ebb147b592f584a74ff9c" kindref="member">__DSP_boot_task</ref><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*</highlight></codeline>
+<codeline lineno="174" refid="dsp_8h_1a588dbb9200adc8b789bbbbb8dffac687" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1a588dbb9200adc8b789bbbbb8dffac687" kindref="member">DSPCancelTask</ref><sp/>(<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/>old;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x242,</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" kindref="member">__DSP_init_flag</ref><sp/>==<sp/>1,</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;DSPCancelTask():<sp/>DSP<sp/>driver<sp/>not<sp/>initialized!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>old<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" kindref="member">flags</ref><sp/>|=<sp/>2;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref>;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref>;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*</highlight></codeline>
+<codeline lineno="195" refid="dsp_8h_1ad11d95b77d22b0c4ee825ec53396f55d" refkind="member"><highlight class="normal"><ref refid="dsp_8c_1ad11d95b77d22b0c4ee825ec53396f55d" kindref="member">DSPAssertTask</ref><sp/>(<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="196"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>old;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x261,</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1a75e5275846fd6024db9e76e144510e26" kindref="member">__DSP_init_flag</ref><sp/>==<sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>,</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;DSPAssertTask():<sp/>DSP<sp/>driver<sp/>not<sp/>initialized!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x262,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" kindref="member">flags</ref><sp/>&amp;<sp/>1,</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;DSPAssertTask():<sp/>Specified<sp/>task<sp/>not<sp/>in<sp/>active<sp/>task<sp/>list!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>old<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>==<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1aa1bad9590317936d38c1e8815ea60700" kindref="member">priority</ref><sp/>&lt;<sp/><ref refid="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1aa1bad9590317936d38c1e8815ea60700" kindref="member">priority</ref>)</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8c_1ac9c5f8eb0fa4d6eddca831898ed07b5f" kindref="member">DSPAssertInt</ref>();</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(old);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp.c"/>
+  </compounddef>
+</doxygen>

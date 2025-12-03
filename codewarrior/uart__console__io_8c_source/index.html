@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File uart_console_io.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-uart_console_ioc">File uart_console_io.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_1e8f7e80780abef8fc1b2377af773d8e/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../uart__console__io_8c/"><strong>uart_console_io.c</strong></a></p>
+<p><a href="../uart__console__io_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  Version 2.1.2  1997 July  */
+
+/*
+ *  uart_console_io.c
+ *  
+ *      Copyright 1997 Metrowerks, Inc.
+ *      All rights reserved.
+ *  
+ *  Routines
+ *  --------
+ *      __read_console
+ *      __write_console
+ *      __close_console
+ *
+ *  Implementation
+ *  --------------
+ *
+ *      These routines implement low-level console IO routines using
+ *      any UART library which conforms to the MetroTRK UART library
+ *      interface.  They are intended to provide basic console IO
+ *      services in an embedded environment which lacks OS console
+ *      support.
+ *
+ *
+ */
+
+#ifndef _No_Console
+
+#include &quot;UART.h&quot;
+#include &quot;console_io.h&quot;
+#include &quot;uart_console_config.h&quot;
+#include &quot;stdio.h&quot;
+
+
+static UARTError __init_uart_console(void);
+
+
+/************************************************************************/
+int     __read_console    (__file_handle handle, unsigned char * buffer, 
+                            size_t * count, __idle_proc idle_proc)
+{
+    #pragma unused( handle, idle_proc )
+
+    size_t limit;
+    UARTError err;
+
+    if (__init_uart_console() != kUARTNoError)
+        return( __io_error );
+
+    /*
+    ** A console read should return when it encounters a line-ending
+    ** or after it has read the requested number of characters.
+    */
+
+    limit = *count;
+    *count = 0;
+    err = kUARTNoError;
+
+    while( *count &lt;= limit &amp;&amp; err == kUARTNoError )
+    {
+#if  __PPCGEKKO__
+        /* Changed this to ReadUARTN and set the count to 1
+         * since it is the same functionality as ReadUART1,
+         * but ReadUART1 broke end user's implementations
+         */
+        err = ReadUARTN( (char *)buffer, 1 );
+#else       
+        err = ReadUART1( (char *)buffer );
+#endif      
+        ++(*count);
+        if (*buffer == '\r')
+            break;
+        ++buffer;
+    }
+
+    return( (err == kUARTNoError) ? __no_io_error : __io_error );
+}
+
+
+
+/************************************************************************/
+int     __write_console   (__file_handle handle, unsigned char * buffer, 
+                            size_t * count, __idle_proc idle_proc)
+{
+    #pragma unused( handle, idle_proc )
+
+    if (__init_uart_console() != kUARTNoError)
+        return( __io_error );
+
+    if (WriteUARTN( buffer, *count ) != kUARTNoError)
+    {
+        *count = 0;
+        return( __io_error );
+    }
+
+    return( __no_io_error );
+
+}
+
+
+
+/************************************************************************/
+int     __close_console   (__file_handle handle)
+{
+    #pragma unused( handle )
+
+    return( __no_io_error );
+}
+
+
+
+/************************************************************************/
+UARTError __init_uart_console()
+{
+    UARTError err = kUARTNoError;
+    static int initialized = 0;
+
+    if (initialized == 0)
+    {
+        err = InitializeUART( UART_CONSOLE_BAUD_RATE );
+
+        if (err == kUARTNoError)
+            initialized = 1;
+    }
+
+    return( err );
+}
+
+#endif /* _No_Console */
+
+/*  Change Record
+ *  09-Jul-97 SCM   Created
+ *  20-Aug-99 SCM   Enhanced __read_console() to return when it receives an EOL.
+*/
+
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="cerrno" kind="file" language="C++">
+    <compoundname>cerrno</compoundname>
+    <includedby refid="errno_8h" local="no">errno.h</includedby>
+    <includedby refid="wcstold_8c" local="no">wcstold.c</includedby>
+    <includedby refid="wcstoul_8c" local="no">wcstoul.c</includedby>
+    <includedby refid="wprintf_8c" local="no">wprintf.c</includedby>
+    <includedby refid="wscanf_8c" local="no">wscanf.c</includedby>
+    <includedby refid="wstring_8c" local="no">wstring.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>cerrno</label>
+        <link refid="cerrno"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>errno.h</label>
+        <link refid="errno_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>errno.c</label>
+        <link refid="errno_8c"/>
+      </node>
+      <node id="5">
+        <label>file_pos.c</label>
+        <link refid="file__pos_8c"/>
+      </node>
+      <node id="7">
+        <label>misc_io.c</label>
+        <link refid="misc__io_8c"/>
+      </node>
+      <node id="9">
+        <label>scanf.c</label>
+        <link refid="scanf_8c"/>
+      </node>
+      <node id="10">
+        <label>signal.c</label>
+        <link refid="signal_8c"/>
+      </node>
+      <node id="11">
+        <label>string.c</label>
+        <link refid="string_8c"/>
+      </node>
+      <node id="12">
+        <label>strtold.c</label>
+        <link refid="strtold_8c"/>
+      </node>
+      <node id="13">
+        <label>strtoul.c</label>
+        <link refid="strtoul_8c"/>
+      </node>
+      <node id="14">
+        <label>wcstold.c</label>
+        <link refid="wcstold_8c"/>
+      </node>
+      <node id="15">
+        <label>wcstoul.c</label>
+        <link refid="wcstoul_8c"/>
+      </node>
+      <node id="16">
+        <label>wprintf.c</label>
+        <link refid="wprintf_8c"/>
+      </node>
+      <node id="17">
+        <label>wscanf.c</label>
+        <link refid="wscanf_8c"/>
+      </node>
+      <node id="18">
+        <label>wstring.c</label>
+        <link refid="wstring_8c"/>
+      </node>
+      <node id="6">
+        <label>k_standard.c</label>
+        <link refid="k__standard_8c"/>
+      </node>
+      <node id="8">
+        <label>s_ldexp.c</label>
+        <link refid="s__ldexp_8c"/>
+      </node>
+      <node id="3">
+        <label>ansi_fp.c</label>
+        <link refid="ansi__fp_8c"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/03/09<sp/>17:15:24<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.10<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>cerrno<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hh<sp/><sp/>971206<sp/>filename<sp/>used<sp/>to<sp/>be<sp/>errno.h</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__cerrno__</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__cerrno__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ansi_parms.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>_MWMT<sp/>&amp;&amp;<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/><sp/>||<sp/>__dest_os<sp/>==<sp/>__wince_os)</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ThreadLocalData.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__dest_os<sp/>==<sp/>__be_os</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>970708<sp/>begin<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;Errors.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED<sp/><sp/><sp/>/*<sp/>hh<sp/>971230<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>ENOERR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EOK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ENOERR<sp/><sp/>/*<sp/>some<sp/>code<sp/>assumes<sp/>EOK<sp/>exists<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>hh<sp/><sp/>971206<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>extern<sp/>&quot;C&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">extern<sp/>int<sp/>*_errnop(void);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>errno<sp/>(*(_errnop()))</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/>/*<sp/>__cplusplus<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>970708<sp/>end<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>RC_INVOKED<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else<sp/><sp/>/*<sp/><sp/>not<sp/>BeOS<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>ENOERR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EDOM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>33</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>ERANGE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>34</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EFPOS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>35</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>ESIGPARM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>36</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>/*#define<sp/>ENOMEM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>37<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mm<sp/>970416*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>/*#define<sp/>EACCES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>38<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mm<sp/>970416*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>/*#define<sp/>ENOENT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>39<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mm<sp/>970416*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>/*#define<sp/>ENOSYS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>40<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mm<sp/>970416*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>(__dest_os<sp/><sp/>==<sp/>__win32_os<sp/>||<sp/>__dest_os<sp/><sp/>==<sp/>__wince_os)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<sp/>These<sp/>are<sp/>other<sp/>error<sp/>types<sp/>defined<sp/>in<sp/>Visual<sp/>C++.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<sp/>I&apos;m<sp/>not<sp/>sure<sp/>if<sp/>these<sp/>numbers<sp/>will<sp/>work<sp/>properly<sp/>with<sp/>the<sp/>constants</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<sp/>defined<sp/>above.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EPERM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EACCES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EBADF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EDEADLOCK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EMFILE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>ENOENT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>ENFILE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>ENOSPC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EINVAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>EIO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>ENOMEM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>ENOSYS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__dest_os<sp/>!=<sp/>__be_os<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>970708<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/>961219<sp/>KO<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>_MWMT<sp/>&amp;&amp;<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/><sp/>||<sp/>__dest_os<sp/>==<sp/>__wince_os)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>errno<sp/>(_GetThreadLocalData()-&gt;errno)<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>RC_INVOKED<sp/><sp/><sp/>/*<sp/>hh<sp/>971230<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extern<sp/>&quot;C&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__tls<sp/>extern<sp/>int<sp/>errno;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif<sp/>/*<sp/>RC_INVOKED<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/>/*<sp/><sp/>dest_os<sp/>==<sp/>win32<sp/>or<sp/>wince<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/>/*<sp/>dest_os<sp/>!=<sp/>be_os<sp/><sp/>*/<sp/><sp/><sp/>/*<sp/>mm<sp/>970708<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>__cerrno__<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>960829<sp/>bkoz<sp/><sp/>added<sp/>error<sp/>info<sp/>for<sp/>x86,<sp/>powerTV</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>960930<sp/>mm<sp/><sp/><sp/><sp/>changed<sp/>C++<sp/>comments<sp/>to<sp/>C<sp/>comments<sp/>for<sp/>ANSI<sp/>strict</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>961217<sp/>KO<sp/><sp/><sp/><sp/>Added<sp/>an<sp/>extern<sp/>C<sp/>wrapper<sp/>to<sp/>errno.<sp/>This<sp/>is<sp/>needed<sp/>for<sp/>the<sp/>new<sp/>CW11<sp/>x86</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>name<sp/>mangling.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>961219<sp/>KO<sp/><sp/><sp/><sp/>Added<sp/>a<sp/>Win32<sp/>ifdef<sp/>so<sp/>errno<sp/>is<sp/>part<sp/>of<sp/>the<sp/>thread<sp/>local<sp/>data<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rather<sp/>than<sp/>a<sp/>global.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>970416<sp/>mm<sp/><sp/><sp/><sp/>Removed<sp/>errors<sp/>that<sp/>no<sp/>longer<sp/>apply</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>mm<sp/>970708<sp/><sp/><sp/><sp/>Inserted<sp/>Be<sp/>changes</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>hh<sp/><sp/>971206<sp/><sp/><sp/>Changed<sp/>filename<sp/>from<sp/>errno.h<sp/>to<sp/>cerrno<sp/>and<sp/>added<sp/>namespace<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>hh<sp/>971230<sp/><sp/><sp/><sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>vss<sp/>990121<sp/><sp/><sp/>Remove<sp/>powerTV<sp/>wrappers</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>mf<sp/><sp/>030199<sp/><sp/><sp/>removed<sp/>errno<sp/>from<sp/>std,<sp/>and<sp/>also<sp/>added<sp/>guard<sp/>for<sp/>single<sp/>threaded<sp/>lib.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/cerrno"/>
+  </compounddef>
+</doxygen>

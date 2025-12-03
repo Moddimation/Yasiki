@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_o_s_cond" kind="struct" language="C++" prot="public">
+    <compoundname>OSCond</compoundname>
+    <includes refid="_o_s_mutex_8h" local="no">OSMutex.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_o_s_cond_1a589f00ff1643277e5a9702ad9c1c1a03" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_thread_queue" kindref="compound">OSThreadQueue</ref></type>
+        <definition>OSThreadQueue OSCond::queue</definition>
+        <argsstring></argsstring>
+        <name>queue</name>
+        <qualifiedname>OSCond::queue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSMutex.h" line="20" column="19" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSMutex.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>OSCond</label>
+        <link refid="struct_o_s_cond"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>queue</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>OSContext</label>
+        <link refid="struct_o_s_context"/>
+      </node>
+      <node id="6">
+        <label>OSMutex</label>
+        <link refid="struct_o_s_mutex"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>queue</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>thread</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>link</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OSMutexLink</label>
+        <link refid="struct_o_s_mutex_link"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>OSMutexQueue</label>
+        <link refid="struct_o_s_mutex_queue"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>OSThread</label>
+        <link refid="struct_o_s_thread"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>context</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>queue</edgelabel>
+          <edgelabel>queueJoin</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>link</edgelabel>
+          <edgelabel>linkActive</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mutex</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>queueMutex</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>OSThreadLink</label>
+        <link refid="struct_o_s_thread_link"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>OSThreadQueue</label>
+        <link refid="struct_o_s_thread_queue"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/DolphinSDK/include/dolphin/os/OSMutex.h" line="18" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSMutex.h" bodystart="19" bodyend="21"/>
+    <listofallmembers>
+      <member refid="struct_o_s_cond_1a589f00ff1643277e5a9702ad9c1c1a03" prot="public" virt="non-virtual"><scope>OSCond</scope><name>queue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

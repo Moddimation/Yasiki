@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSContext.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-oscontexth">File OSContext.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_2e13e6cf1d2e2aa91cbc210fef9f68a3/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSContext.h</strong></a></p>
+<p><a href="../_o_s_context_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;types.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_o_s_context/"><strong>OSContext</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-oscontext"><strong>OSContext</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osclearcontext"><strong>OSClearContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdumpcontext"><strong>OSDumpContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osfillfpucontext"><strong>OSFillFPUContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_context/"><strong>OSContext</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osgetcurrentcontext"><strong>OSGetCurrentContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetstackpointer"><strong>OSGetStackPointer</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osinitcontext"><strong>OSInitContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> pc, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newsp) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osloadcontext"><strong>OSLoadContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osloadfpucontext"><strong>OSLoadFPUContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * fpuContext) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossavecontext"><strong>OSSaveContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossavefpucontext"><strong>OSSaveFPUContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * fpuContext) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetcurrentcontext"><strong>OSSetCurrentContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-osswitchfiber"><strong>OSSwitchFiber</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> pc, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newsp) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osswitchstack"><strong>OSSwitchStack</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newsp) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_cr"><strong>OS_CONTEXT_CR</strong></a>  <code>128</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_ctr"><strong>OS_CONTEXT_CTR</strong></a>  <code>136</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr0"><strong>OS_CONTEXT_FPR0</strong></a>  <code>144</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr1"><strong>OS_CONTEXT_FPR1</strong></a>  <code>152</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr10"><strong>OS_CONTEXT_FPR10</strong></a>  <code>224</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr11"><strong>OS_CONTEXT_FPR11</strong></a>  <code>232</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr12"><strong>OS_CONTEXT_FPR12</strong></a>  <code>240</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr13"><strong>OS_CONTEXT_FPR13</strong></a>  <code>248</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr14"><strong>OS_CONTEXT_FPR14</strong></a>  <code>256</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr15"><strong>OS_CONTEXT_FPR15</strong></a>  <code>264</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr16"><strong>OS_CONTEXT_FPR16</strong></a>  <code>272</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr17"><strong>OS_CONTEXT_FPR17</strong></a>  <code>280</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr18"><strong>OS_CONTEXT_FPR18</strong></a>  <code>288</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr19"><strong>OS_CONTEXT_FPR19</strong></a>  <code>296</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr2"><strong>OS_CONTEXT_FPR2</strong></a>  <code>160</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr20"><strong>OS_CONTEXT_FPR20</strong></a>  <code>304</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr21"><strong>OS_CONTEXT_FPR21</strong></a>  <code>312</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr22"><strong>OS_CONTEXT_FPR22</strong></a>  <code>320</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr23"><strong>OS_CONTEXT_FPR23</strong></a>  <code>328</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr24"><strong>OS_CONTEXT_FPR24</strong></a>  <code>336</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr25"><strong>OS_CONTEXT_FPR25</strong></a>  <code>344</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr26"><strong>OS_CONTEXT_FPR26</strong></a>  <code>352</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr27"><strong>OS_CONTEXT_FPR27</strong></a>  <code>360</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr28"><strong>OS_CONTEXT_FPR28</strong></a>  <code>368</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr29"><strong>OS_CONTEXT_FPR29</strong></a>  <code>376</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr3"><strong>OS_CONTEXT_FPR3</strong></a>  <code>168</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr30"><strong>OS_CONTEXT_FPR30</strong></a>  <code>384</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr31"><strong>OS_CONTEXT_FPR31</strong></a>  <code>392</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr4"><strong>OS_CONTEXT_FPR4</strong></a>  <code>176</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr5"><strong>OS_CONTEXT_FPR5</strong></a>  <code>184</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr6"><strong>OS_CONTEXT_FPR6</strong></a>  <code>192</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr7"><strong>OS_CONTEXT_FPR7</strong></a>  <code>200</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr8"><strong>OS_CONTEXT_FPR8</strong></a>  <code>208</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpr9"><strong>OS_CONTEXT_FPR9</strong></a>  <code>216</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_fpscr"><strong>OS_CONTEXT_FPSCR</strong></a>  <code>400</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_gqr0"><strong>OS_CONTEXT_GQR0</strong></a>  <code>420</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_gqr1"><strong>OS_CONTEXT_GQR1</strong></a>  <code>424</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_gqr2"><strong>OS_CONTEXT_GQR2</strong></a>  <code>428</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_gqr3"><strong>OS_CONTEXT_GQR3</strong></a>  <code>432</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_gqr4"><strong>OS_CONTEXT_GQR4</strong></a>  <code>436</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_gqr5"><strong>OS_CONTEXT_GQR5</strong></a>  <code>440</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_gqr6"><strong>OS_CONTEXT_GQR6</strong></a>  <code>444</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_gqr7"><strong>OS_CONTEXT_GQR7</strong></a>  <code>448</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_lr"><strong>OS_CONTEXT_LR</strong></a>  <code>132</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_mode"><strong>OS_CONTEXT_MODE</strong></a>  <code>416</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf0"><strong>OS_CONTEXT_PSF0</strong></a>  <code>456</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf1"><strong>OS_CONTEXT_PSF1</strong></a>  <code>464</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf10"><strong>OS_CONTEXT_PSF10</strong></a>  <code>536</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf11"><strong>OS_CONTEXT_PSF11</strong></a>  <code>544</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf12"><strong>OS_CONTEXT_PSF12</strong></a>  <code>552</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf13"><strong>OS_CONTEXT_PSF13</strong></a>  <code>560</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf14"><strong>OS_CONTEXT_PSF14</strong></a>  <code>568</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf15"><strong>OS_CONTEXT_PSF15</strong></a>  <code>576</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf16"><strong>OS_CONTEXT_PSF16</strong></a>  <code>584</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf17"><strong>OS_CONTEXT_PSF17</strong></a>  <code>592</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf18"><strong>OS_CONTEXT_PSF18</strong></a>  <code>600</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf19"><strong>OS_CONTEXT_PSF19</strong></a>  <code>608</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf2"><strong>OS_CONTEXT_PSF2</strong></a>  <code>472</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf20"><strong>OS_CONTEXT_PSF20</strong></a>  <code>616</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf21"><strong>OS_CONTEXT_PSF21</strong></a>  <code>624</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf22"><strong>OS_CONTEXT_PSF22</strong></a>  <code>632</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf23"><strong>OS_CONTEXT_PSF23</strong></a>  <code>640</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf24"><strong>OS_CONTEXT_PSF24</strong></a>  <code>648</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf25"><strong>OS_CONTEXT_PSF25</strong></a>  <code>656</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf26"><strong>OS_CONTEXT_PSF26</strong></a>  <code>664</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf27"><strong>OS_CONTEXT_PSF27</strong></a>  <code>672</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf28"><strong>OS_CONTEXT_PSF28</strong></a>  <code>680</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf29"><strong>OS_CONTEXT_PSF29</strong></a>  <code>688</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf3"><strong>OS_CONTEXT_PSF3</strong></a>  <code>480</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf30"><strong>OS_CONTEXT_PSF30</strong></a>  <code>696</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf31"><strong>OS_CONTEXT_PSF31</strong></a>  <code>704</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf4"><strong>OS_CONTEXT_PSF4</strong></a>  <code>488</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf5"><strong>OS_CONTEXT_PSF5</strong></a>  <code>496</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf6"><strong>OS_CONTEXT_PSF6</strong></a>  <code>504</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf7"><strong>OS_CONTEXT_PSF7</strong></a>  <code>512</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf8"><strong>OS_CONTEXT_PSF8</strong></a>  <code>520</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_psf9"><strong>OS_CONTEXT_PSF9</strong></a>  <code>528</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r0"><strong>OS_CONTEXT_R0</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r1"><strong>OS_CONTEXT_R1</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r10"><strong>OS_CONTEXT_R10</strong></a>  <code>40</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r11"><strong>OS_CONTEXT_R11</strong></a>  <code>44</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r12"><strong>OS_CONTEXT_R12</strong></a>  <code>48</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r13"><strong>OS_CONTEXT_R13</strong></a>  <code>52</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r14"><strong>OS_CONTEXT_R14</strong></a>  <code>56</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r15"><strong>OS_CONTEXT_R15</strong></a>  <code>60</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r16"><strong>OS_CONTEXT_R16</strong></a>  <code>64</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r17"><strong>OS_CONTEXT_R17</strong></a>  <code>68</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r18"><strong>OS_CONTEXT_R18</strong></a>  <code>72</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r19"><strong>OS_CONTEXT_R19</strong></a>  <code>76</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r2"><strong>OS_CONTEXT_R2</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r20"><strong>OS_CONTEXT_R20</strong></a>  <code>80</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r21"><strong>OS_CONTEXT_R21</strong></a>  <code>84</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r22"><strong>OS_CONTEXT_R22</strong></a>  <code>88</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r23"><strong>OS_CONTEXT_R23</strong></a>  <code>92</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r24"><strong>OS_CONTEXT_R24</strong></a>  <code>96</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r25"><strong>OS_CONTEXT_R25</strong></a>  <code>100</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r26"><strong>OS_CONTEXT_R26</strong></a>  <code>104</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r27"><strong>OS_CONTEXT_R27</strong></a>  <code>108</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r28"><strong>OS_CONTEXT_R28</strong></a>  <code>112</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r29"><strong>OS_CONTEXT_R29</strong></a>  <code>116</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r3"><strong>OS_CONTEXT_R3</strong></a>  <code>12</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r30"><strong>OS_CONTEXT_R30</strong></a>  <code>120</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r31"><strong>OS_CONTEXT_R31</strong></a>  <code>124</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r4"><strong>OS_CONTEXT_R4</strong></a>  <code>16</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r5"><strong>OS_CONTEXT_R5</strong></a>  <code>20</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r6"><strong>OS_CONTEXT_R6</strong></a>  <code>24</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r7"><strong>OS_CONTEXT_R7</strong></a>  <code>28</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r8"><strong>OS_CONTEXT_R8</strong></a>  <code>32</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_r9"><strong>OS_CONTEXT_R9</strong></a>  <code>36</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_srr0"><strong>OS_CONTEXT_SRR0</strong></a>  <code>408</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_srr1"><strong>OS_CONTEXT_SRR1</strong></a>  <code>412</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_state"><strong>OS_CONTEXT_STATE</strong></a>  <code>418</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_state_exc"><strong>OS_CONTEXT_STATE_EXC</strong></a>  <code>0x02u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_state_fpsaved"><strong>OS_CONTEXT_STATE_FPSAVED</strong></a>  <code>0x01u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_context_xer"><strong>OS_CONTEXT_XER</strong></a>  <code>140</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__oscontext_padding"><strong>__OSCONTEXT_PADDING</strong></a>  <code>452</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_context_frame"><strong>__OS_CONTEXT_FRAME</strong></a>  <code>768</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-oscontext">typedef OSContext</h3>
+<pre><code class="language-C++">typedef struct OSContext OSContext;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-osclearcontext">function OSClearContext</h3>
+<pre><code class="language-C++">void OSClearContext (
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osdumpcontext">function OSDumpContext</h3>
+<pre><code class="language-C++">void OSDumpContext (
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osfillfpucontext">function OSFillFPUContext</h3>
+<pre><code class="language-C++">void OSFillFPUContext (
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetcurrentcontext">function OSGetCurrentContext</h3>
+<pre><code class="language-C++">OSContext * OSGetCurrentContext (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetstackpointer">function OSGetStackPointer</h3>
+<pre><code class="language-C++">u32 OSGetStackPointer (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osinitcontext">function OSInitContext</h3>
+<pre><code class="language-C++">void OSInitContext (
+    OSContext * context,
+    u32 pc,
+    u32 newsp
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osloadcontext">function OSLoadContext</h3>
+<pre><code class="language-C++">void OSLoadContext (
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osloadfpucontext">function OSLoadFPUContext</h3>
+<pre><code class="language-C++">void OSLoadFPUContext (
+    OSContext * fpuContext
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossavecontext">function OSSaveContext</h3>
+<pre><code class="language-C++">u32 OSSaveContext (
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossavefpucontext">function OSSaveFPUContext</h3>
+<pre><code class="language-C++">void OSSaveFPUContext (
+    OSContext * fpuContext
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetcurrentcontext">function OSSetCurrentContext</h3>
+<pre><code class="language-C++">void OSSetCurrentContext (
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osswitchfiber">function OSSwitchFiber</h3>
+<pre><code class="language-C++">int OSSwitchFiber (
+    u32 pc,
+    u32 newsp
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osswitchstack">function OSSwitchStack</h3>
+<pre><code class="language-C++">u32 OSSwitchStack (
+    u32 newsp
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-os_context_cr">define OS_CONTEXT_CR</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_CR `128`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_ctr">define OS_CONTEXT_CTR</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_CTR `136`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr0">define OS_CONTEXT_FPR0</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR0 `144`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr1">define OS_CONTEXT_FPR1</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR1 `152`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr10">define OS_CONTEXT_FPR10</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR10 `224`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr11">define OS_CONTEXT_FPR11</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR11 `232`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr12">define OS_CONTEXT_FPR12</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR12 `240`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr13">define OS_CONTEXT_FPR13</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR13 `248`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr14">define OS_CONTEXT_FPR14</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR14 `256`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr15">define OS_CONTEXT_FPR15</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR15 `264`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr16">define OS_CONTEXT_FPR16</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR16 `272`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr17">define OS_CONTEXT_FPR17</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR17 `280`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr18">define OS_CONTEXT_FPR18</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR18 `288`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr19">define OS_CONTEXT_FPR19</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR19 `296`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr2">define OS_CONTEXT_FPR2</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR2 `160`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr20">define OS_CONTEXT_FPR20</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR20 `304`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr21">define OS_CONTEXT_FPR21</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR21 `312`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr22">define OS_CONTEXT_FPR22</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR22 `320`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr23">define OS_CONTEXT_FPR23</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR23 `328`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr24">define OS_CONTEXT_FPR24</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR24 `336`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr25">define OS_CONTEXT_FPR25</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR25 `344`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr26">define OS_CONTEXT_FPR26</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR26 `352`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr27">define OS_CONTEXT_FPR27</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR27 `360`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr28">define OS_CONTEXT_FPR28</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR28 `368`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr29">define OS_CONTEXT_FPR29</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR29 `376`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr3">define OS_CONTEXT_FPR3</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR3 `168`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr30">define OS_CONTEXT_FPR30</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR30 `384`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr31">define OS_CONTEXT_FPR31</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR31 `392`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr4">define OS_CONTEXT_FPR4</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR4 `176`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr5">define OS_CONTEXT_FPR5</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR5 `184`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr6">define OS_CONTEXT_FPR6</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR6 `192`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr7">define OS_CONTEXT_FPR7</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR7 `200`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr8">define OS_CONTEXT_FPR8</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR8 `208`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpr9">define OS_CONTEXT_FPR9</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPR9 `216`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_fpscr">define OS_CONTEXT_FPSCR</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_FPSCR `400`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_gqr0">define OS_CONTEXT_GQR0</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_GQR0 `420`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_gqr1">define OS_CONTEXT_GQR1</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_GQR1 `424`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_gqr2">define OS_CONTEXT_GQR2</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_GQR2 `428`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_gqr3">define OS_CONTEXT_GQR3</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_GQR3 `432`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_gqr4">define OS_CONTEXT_GQR4</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_GQR4 `436`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_gqr5">define OS_CONTEXT_GQR5</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_GQR5 `440`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_gqr6">define OS_CONTEXT_GQR6</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_GQR6 `444`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_gqr7">define OS_CONTEXT_GQR7</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_GQR7 `448`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_lr">define OS_CONTEXT_LR</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_LR `132`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_mode">define OS_CONTEXT_MODE</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_MODE `416`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf0">define OS_CONTEXT_PSF0</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF0 `456`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf1">define OS_CONTEXT_PSF1</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF1 `464`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf10">define OS_CONTEXT_PSF10</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF10 `536`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf11">define OS_CONTEXT_PSF11</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF11 `544`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf12">define OS_CONTEXT_PSF12</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF12 `552`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf13">define OS_CONTEXT_PSF13</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF13 `560`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf14">define OS_CONTEXT_PSF14</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF14 `568`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf15">define OS_CONTEXT_PSF15</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF15 `576`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf16">define OS_CONTEXT_PSF16</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF16 `584`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf17">define OS_CONTEXT_PSF17</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF17 `592`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf18">define OS_CONTEXT_PSF18</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF18 `600`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf19">define OS_CONTEXT_PSF19</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF19 `608`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf2">define OS_CONTEXT_PSF2</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF2 `472`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf20">define OS_CONTEXT_PSF20</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF20 `616`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf21">define OS_CONTEXT_PSF21</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF21 `624`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf22">define OS_CONTEXT_PSF22</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF22 `632`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf23">define OS_CONTEXT_PSF23</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF23 `640`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf24">define OS_CONTEXT_PSF24</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF24 `648`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf25">define OS_CONTEXT_PSF25</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF25 `656`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf26">define OS_CONTEXT_PSF26</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF26 `664`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf27">define OS_CONTEXT_PSF27</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF27 `672`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf28">define OS_CONTEXT_PSF28</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF28 `680`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf29">define OS_CONTEXT_PSF29</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF29 `688`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf3">define OS_CONTEXT_PSF3</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF3 `480`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf30">define OS_CONTEXT_PSF30</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF30 `696`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf31">define OS_CONTEXT_PSF31</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF31 `704`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf4">define OS_CONTEXT_PSF4</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF4 `488`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf5">define OS_CONTEXT_PSF5</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF5 `496`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf6">define OS_CONTEXT_PSF6</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF6 `504`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf7">define OS_CONTEXT_PSF7</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF7 `512`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf8">define OS_CONTEXT_PSF8</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF8 `520`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_psf9">define OS_CONTEXT_PSF9</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_PSF9 `528`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r0">define OS_CONTEXT_R0</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R0 `0`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r1">define OS_CONTEXT_R1</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R1 `4`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r10">define OS_CONTEXT_R10</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R10 `40`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r11">define OS_CONTEXT_R11</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R11 `44`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r12">define OS_CONTEXT_R12</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R12 `48`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r13">define OS_CONTEXT_R13</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R13 `52`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r14">define OS_CONTEXT_R14</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R14 `56`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r15">define OS_CONTEXT_R15</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R15 `60`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r16">define OS_CONTEXT_R16</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R16 `64`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r17">define OS_CONTEXT_R17</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R17 `68`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r18">define OS_CONTEXT_R18</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R18 `72`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r19">define OS_CONTEXT_R19</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R19 `76`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r2">define OS_CONTEXT_R2</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R2 `8`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r20">define OS_CONTEXT_R20</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R20 `80`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r21">define OS_CONTEXT_R21</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R21 `84`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r22">define OS_CONTEXT_R22</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R22 `88`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r23">define OS_CONTEXT_R23</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R23 `92`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r24">define OS_CONTEXT_R24</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R24 `96`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r25">define OS_CONTEXT_R25</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R25 `100`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r26">define OS_CONTEXT_R26</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R26 `104`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r27">define OS_CONTEXT_R27</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R27 `108`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r28">define OS_CONTEXT_R28</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R28 `112`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r29">define OS_CONTEXT_R29</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R29 `116`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r3">define OS_CONTEXT_R3</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R3 `12`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r30">define OS_CONTEXT_R30</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R30 `120`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r31">define OS_CONTEXT_R31</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R31 `124`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r4">define OS_CONTEXT_R4</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R4 `16`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r5">define OS_CONTEXT_R5</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R5 `20`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r6">define OS_CONTEXT_R6</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R6 `24`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r7">define OS_CONTEXT_R7</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R7 `28`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r8">define OS_CONTEXT_R8</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R8 `32`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_r9">define OS_CONTEXT_R9</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_R9 `36`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_srr0">define OS_CONTEXT_SRR0</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_SRR0 `408`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_srr1">define OS_CONTEXT_SRR1</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_SRR1 `412`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_state">define OS_CONTEXT_STATE</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_STATE `418`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_state_exc">define OS_CONTEXT_STATE_EXC</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_STATE_EXC `0x02u`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_state_fpsaved">define OS_CONTEXT_STATE_FPSAVED</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_STATE_FPSAVED `0x01u`
+</code></pre>
+<hr>
+
+<h3 id="define-os_context_xer">define OS_CONTEXT_XER</h3>
+<pre><code class="language-C++">#define OS_CONTEXT_XER `140`
+</code></pre>
+<hr>
+
+<h3 id="define-__oscontext_padding">define __OSCONTEXT_PADDING</h3>
+<pre><code class="language-C++">#define __OSCONTEXT_PADDING `452`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_context_frame">define __OS_CONTEXT_FRAME</h3>
+<pre><code class="language-C++">#define __OS_CONTEXT_FRAME `768`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/os/OSContext.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

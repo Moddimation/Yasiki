@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Class JSUList - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="class-jsulist">Class JSUList</h1>
+<p><strong>template &lt;class T&gt;</strong></p>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>JSUList</strong></a></p>
+<ul>
+<li><code>#include &lt;JSUList.h&gt;</code></li>
+</ul>
+<p>Inherits the following classes: <a href="../class_j_s_u_ptr_list/">JSUPtrList</a></p>
+<p>Inherited by the following classes: <a href="../class_j_s_u_tree/">JSUTree</a>,  <a href="../class_j_s_u_tree/">JSUTree</a></p>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-jsulist-12"><strong>JSUList</strong></a> (<a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a> init) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-jsulist-22"><strong>JSUList</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-append"><strong>append</strong></a> (<a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; T &gt; * link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; T &gt; *</td>
+<td style="text-align: left;"><a href="#function-getend"><strong>getEnd</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; T &gt; *</td>
+<td style="text-align: left;"><a href="#function-getfirst"><strong>getFirst</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; T &gt; *</td>
+<td style="text-align: left;"><a href="#function-getlast"><strong>getLast</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#function-getnumlinks"><strong>getNumLinks</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-initiate"><strong>initiate</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-insert"><strong>insert</strong></a> (<a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; T &gt; * prev, <a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; T &gt; * next) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-prepend"><strong>prepend</strong></a> (<a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; T &gt; * link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-remove"><strong>remove</strong></a> (<a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; T &gt; * link) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-jsuptrlist">Public Functions inherited from JSUPtrList</h2>
+<p>See <a href="../class_j_s_u_ptr_list/">JSUPtrList</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-jsuptrlist-12"><strong>JSUPtrList</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-jsuptrlist-22"><strong>JSUPtrList</strong></a> (<a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a> do_init) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-append"><strong>append</strong></a> (<a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> * link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> *</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-getfirstlink"><strong>getFirstLink</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> *</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-getlastlink"><strong>getLastLink</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> *</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-getnthlink"><strong>getNthLink</strong></a> (u32 n) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-getnumlinks"><strong>getNumLinks</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-initiate"><strong>initiate</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-insert"><strong>insert</strong></a> (<a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> * last, <a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> * next) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-prepend"><strong>prepend</strong></a> (<a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> * link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-remove"><strong>remove</strong></a> (<a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> * link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-setfirst"><strong>setFirst</strong></a> (<a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> * link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-setlast"><strong>setLast</strong></a> (<a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> * link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-setnext"><strong>setNext</strong></a> (<a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> * link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#function-jsuptrlist"><strong>~JSUPtrList</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes-inherited-from-jsuptrlist">Protected Attributes inherited from JSUPtrList</h2>
+<p>See <a href="../class_j_s_u_ptr_list/">JSUPtrList</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#variable-mnumlinks"><strong>mNumLinks</strong></a>  <br><em>0x08 // number of links in list</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> *</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#variable-pfirst"><strong>pFirst</strong></a>  <br><em>0x00 // head link of list</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_ptr_link/"><strong>JSUPtrLink</strong></a> *</td>
+<td style="text-align: left;"><a href="../class_j_s_u_ptr_list/#variable-plast"><strong>pLast</strong></a>  <br><em>0x04 // tail link of list</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-jsulist-12">function JSUList [1/2]</h3>
+<pre><code class="language-C++">inline JSUList::JSUList (
+    BOOL init
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-jsulist-22">function JSUList [2/2]</h3>
+<pre><code class="language-C++">inline JSUList::JSUList () 
+</code></pre>
+<hr>
+
+<h3 id="function-append">function append</h3>
+<pre><code class="language-C++">inline BOOL JSUList::append (
+    JSULink &lt; T &gt; * link
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-getend">function getEnd</h3>
+<pre><code class="language-C++">inline JSULink &lt; T &gt; * JSUList::getEnd () const
+</code></pre>
+<hr>
+
+<h3 id="function-getfirst">function getFirst</h3>
+<pre><code class="language-C++">inline JSULink &lt; T &gt; * JSUList::getFirst () const
+</code></pre>
+<hr>
+
+<h3 id="function-getlast">function getLast</h3>
+<pre><code class="language-C++">inline JSULink &lt; T &gt; * JSUList::getLast () const
+</code></pre>
+<hr>
+
+<h3 id="function-getnumlinks">function getNumLinks</h3>
+<pre><code class="language-C++">inline u32 JSUList::getNumLinks () const
+</code></pre>
+<hr>
+
+<h3 id="function-initiate">function initiate</h3>
+<pre><code class="language-C++">inline void JSUList::initiate () 
+</code></pre>
+<hr>
+
+<h3 id="function-insert">function insert</h3>
+<pre><code class="language-C++">inline BOOL JSUList::insert (
+    JSULink &lt; T &gt; * prev,
+    JSULink &lt; T &gt; * next
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-prepend">function prepend</h3>
+<pre><code class="language-C++">inline BOOL JSUList::prepend (
+    JSULink &lt; T &gt; * link
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-remove">function remove</h3>
+<pre><code class="language-C++">inline BOOL JSUList::remove (
+    JSULink &lt; T &gt; * link
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/JSystem/System/JSupport/include/JSUList.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

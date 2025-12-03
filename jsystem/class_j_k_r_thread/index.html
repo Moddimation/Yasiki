@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Class JKRThread - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="class-jkrthread">Class JKRThread</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>JKRThread</strong></a></p>
+<ul>
+<li><code>#include &lt;JKRThread.h&gt;</code></li>
+</ul>
+<p>Inherits the following classes: <a href="../class_j_k_r_disposer/">JKRDisposer</a></p>
+<h2 id="protected-attributes">Protected Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../class_j_k_r_heap/"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-mcurrheap"><strong>mCurrHeap</strong></a>  <br><em>0x28</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; <a href="./"><strong>JKRThread</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-mlink"><strong>mLink</strong></a>  <br><em>0x18</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#variable-mmesgarray"><strong>mMesgArray</strong></a>  <br><em>0x50</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-mmesgcount"><strong>mMesgCount</strong></a>  <br><em>0x54</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">OSMessageQueue</td>
+<td style="text-align: left;"><a href="#variable-mmesgqueue"><strong>mMesgQueue</strong></a>  <br><em>0x30</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#variable-mstack"><strong>mStack</strong></a>  <br><em>0x58</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">size_t</td>
+<td style="text-align: left;"><a href="#variable-mstacksize"><strong>mStackSize</strong></a>  <br><em>0x5C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">OSThread *</td>
+<td style="text-align: left;"><a href="#variable-mthreadrecord"><strong>mThreadRecord</strong></a>  <br><em>0x2C</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes-inherited-from-jkrdisposer">Protected Attributes inherited from JKRDisposer</h2>
+<p>See <a href="../class_j_k_r_disposer/">JKRDisposer</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; <a href="../class_j_k_r_disposer/"><strong>JKRDisposer</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../class_j_k_r_disposer/#variable-mheaplink"><strong>mHeapLink</strong></a>  <br><em>0x04 // Link to disposer, for heap (?)</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../class_j_k_r_heap/"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="../class_j_k_r_disposer/#variable-pheapobj"><strong>pHeapObj</strong></a>  <br><em>0x00 // Pointer to inheriting heap (?)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions">Protected Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-constructor"><strong>constructor</strong></a></td>
+<td style="text-align: left;"><a href="#function-jkrthread-12"><strong>JKRThread</strong></a> (OSThread * thread, int i) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-constructor"><strong>constructor</strong></a></td>
+<td style="text-align: left;"><a href="#function-jkrthread-22"><strong>JKRThread</strong></a> (size_t size, int mesg_count, int priority) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void *</td>
+<td style="text-align: left;"><a href="#function-run"><strong>run</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-destructor"><strong>destructor</strong></a></td>
+<td style="text-align: left;"><a href="#function-jkrthread"><strong>~JKRThread</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions-inherited-from-jkrdisposer">Protected Functions inherited from JKRDisposer</h2>
+<p>See <a href="../class_j_k_r_disposer/">JKRDisposer</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-constructor"><strong>constructor</strong></a></td>
+<td style="text-align: left;"><a href="../class_j_k_r_disposer/#function-jkrdisposer"><strong>JKRDisposer</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-destructor"><strong>destructor</strong></a></td>
+<td style="text-align: left;"><a href="../class_j_k_r_disposer/#function-jkrdisposer"><strong>~JKRDisposer</strong></a> () <br><em>0x08v</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
+<h3 id="variable-mcurrheap">variable mCurrHeap</h3>
+<p><em>0x28</em> </p>
+<pre><code class="language-C++">JKRHeap* JKRThread::mCurrHeap;
+</code></pre>
+<hr>
+
+<h3 id="variable-mlink">variable mLink</h3>
+<p><em>0x18</em> </p>
+<pre><code class="language-C++">JSULink&lt;JKRThread&gt; JKRThread::mLink;
+</code></pre>
+<hr>
+
+<h3 id="variable-mmesgarray">variable mMesgArray</h3>
+<p><em>0x50</em> </p>
+<pre><code class="language-C++">void* JKRThread::mMesgArray;
+</code></pre>
+<hr>
+
+<h3 id="variable-mmesgcount">variable mMesgCount</h3>
+<p><em>0x54</em> </p>
+<pre><code class="language-C++">int JKRThread::mMesgCount;
+</code></pre>
+<hr>
+
+<h3 id="variable-mmesgqueue">variable mMesgQueue</h3>
+<p><em>0x30</em> </p>
+<pre><code class="language-C++">OSMessageQueue JKRThread::mMesgQueue;
+</code></pre>
+<hr>
+
+<h3 id="variable-mstack">variable mStack</h3>
+<p><em>0x58</em> </p>
+<pre><code class="language-C++">void* JKRThread::mStack;
+</code></pre>
+<hr>
+
+<h3 id="variable-mstacksize">variable mStackSize</h3>
+<p><em>0x5C</em> </p>
+<pre><code class="language-C++">size_t JKRThread::mStackSize;
+</code></pre>
+<hr>
+
+<h3 id="variable-mthreadrecord">variable mThreadRecord</h3>
+<p><em>0x2C</em> </p>
+<pre><code class="language-C++">OSThread* JKRThread::mThreadRecord;
+</code></pre>
+<hr>
+<h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
+<h3 id="function-jkrthread-12">function JKRThread [1/2]</h3>
+<pre><code class="language-C++">constructor JKRThread::JKRThread (
+    OSThread * thread,
+    int i
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-jkrthread-22">function JKRThread [2/2]</h3>
+<pre><code class="language-C++">constructor JKRThread::JKRThread (
+    size_t size,
+    int mesg_count,
+    int priority
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-run">function run</h3>
+<pre><code class="language-C++">inline virtual void * JKRThread::run () 
+</code></pre>
+<hr>
+
+<h3 id="function-jkrthread">function ~JKRThread</h3>
+<pre><code class="language-C++">destructor JKRThread::~JKRThread () 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/JSystem/System/JKernel/include/JKRThread.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

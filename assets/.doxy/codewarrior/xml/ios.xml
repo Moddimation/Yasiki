@@ -1,0 +1,1171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ios" kind="file" language="C++">
+    <compoundname>ios</compoundname>
+    <includedby refid="ios_8cpp" local="no">ios.cpp</includedby>
+    <includedby refid="ios_8h" local="no">ios.h</includedby>
+    <includedby refid="iostream_8cpp" local="no">iostream.cpp</includedby>
+    <includedby refid="locale_8cpp" local="no">locale.cpp</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>ios</label>
+        <link refid="ios"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ios.h</label>
+        <link refid="ios_8h"/>
+      </node>
+      <node id="2">
+        <label>ios.cpp</label>
+        <link refid="ios_8cpp"/>
+      </node>
+      <node id="4">
+        <label>iostream.cpp</label>
+        <link refid="iostream_8cpp"/>
+      </node>
+      <node id="5">
+        <label>locale.cpp</label>
+        <link refid="locale_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:58:50<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>ios</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_IOS</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_IOS</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;cstdlib&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;iosfwd&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;exception&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;MSLstring.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;utility&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;algorithm&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;string&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;locale&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>typedef<sp/><sp/>OFF_T<sp/><sp/><sp/>streamoff;<sp/><sp/>in<sp/>&lt;iosfwd&gt;<sp/>so<sp/>that<sp/>&lt;string&gt;<sp/>can<sp/>see<sp/>it</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>long<sp/>streamsize;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>fpos</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>fpos</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fpos(streamoff<sp/>o);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>operator<sp/>streamoff()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fpos&amp;<sp/>operator<sp/>+=<sp/>(streamoff<sp/>o);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fpos&amp;<sp/>operator<sp/>-=<sp/>(streamoff<sp/>o);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fpos<sp/>operator<sp/>+<sp/>(streamoff<sp/>o)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fpos<sp/>operator<sp/>-<sp/>(streamoff<sp/>o)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>_lib.fpos.members_<sp/>Members</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stateT<sp/>state()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>state(stateT<sp/>s);</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamoff<sp/>offset_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stateT<sp/>st_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;::fpos(streamoff<sp/>o)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>offset_(o),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>st_(stateT())</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;::operator<sp/>streamoff()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>offset_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;::operator<sp/>+=<sp/>(streamoff<sp/>o)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>offset_<sp/>+=<sp/>o;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;::operator<sp/>-=<sp/>(streamoff<sp/>o)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>offset_<sp/>-=<sp/>o;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;::operator<sp/>+<sp/>(streamoff<sp/>o)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>fpos&lt;stateT&gt;(offset_<sp/>+<sp/>o);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;::operator<sp/>-<sp/>(streamoff<sp/>o)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>fpos&lt;stateT&gt;(offset_<sp/>-<sp/>o);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">stateT</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;::state()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>st_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">fpos&lt;stateT&gt;::state(stateT<sp/>s)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>st_<sp/>=<sp/>s;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>stateT&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamoff</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>-<sp/>(const<sp/>fpos&lt;stateT&gt;&amp;<sp/>lhs,<sp/>const<sp/>fpos&lt;stateT&gt;&amp;<sp/>rhs)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>streamoff(lhs)<sp/>-<sp/>streamoff(rhs);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>ios_base</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>ios_base</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>failure;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>enum<sp/>fmtflags</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>boolalpha<sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dec<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fixed<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>2,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hex<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>3,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>internal<sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>4,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>left<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>5,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oct<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>6,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>right<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>7,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scientific<sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>8,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>showbase<sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>9,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>showpoint<sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/>10,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>showpos<sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/>11,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skipws<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/>12,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unitbuf<sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/>13,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uppercase<sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/>14,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>adjustfield<sp/>=<sp/>left<sp/>|<sp/>right<sp/>|<sp/>internal,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>basefield<sp/><sp/><sp/>=<sp/>dec<sp/>|<sp/>oct<sp/>|<sp/>hex,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>floatfield<sp/><sp/>=<sp/>scientific<sp/>|<sp/>fixed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>enum<sp/>iostate</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>goodbit<sp/>=<sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>badbit<sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eofbit<sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>failbit<sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>enum<sp/>openmode</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>app<sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ate<sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>binary<sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>2,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in<sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>3,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out<sp/><sp/><sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>4,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trunc<sp/><sp/>=<sp/>1<sp/>&lt;&lt;<sp/><sp/>5</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>enum<sp/>seekdir</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>beg<sp/>=<sp/>1<sp/>&lt;&lt;<sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cur<sp/>=<sp/>1<sp/>&lt;&lt;<sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end<sp/>=<sp/>1<sp/>&lt;&lt;<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>Init;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.fmtflags.state<sp/>fmtflags<sp/>state:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags<sp/>flags()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags<sp/>flags(fmtflags<sp/>fmtfl);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags<sp/>setf(fmtflags<sp/>fmtfl);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags<sp/>setf(fmtflags<sp/>fmtfl,<sp/>fmtflags<sp/>mask);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>unsetf(fmtflags<sp/>mask);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>precision()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>precision(streamsize<sp/>prec);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>width()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>width(streamsize<sp/>wide);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void*<sp/>rdbuf()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void*<sp/>rdbuf(void*<sp/>sb);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>good()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>eof()<sp/><sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>fail()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>bad()<sp/><sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iostate<sp/>exceptions()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>exceptions(iostate<sp/>except);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>operator<sp/>void*()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>operator!()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iostate<sp/>rdstate()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>clear(iostate<sp/>state<sp/>=<sp/>goodbit);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>setstate(iostate<sp/>state);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ios.base.locales<sp/>locales:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale<sp/>imbue(const<sp/>locale&amp;<sp/>loc);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale<sp/>getloc()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ios.base.storage<sp/>storage:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>int<sp/>xalloc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>long&amp;<sp/><sp/>iword(int<sp/>index);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void*&amp;<sp/>pword(int<sp/>index);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>copy<sp/>and<sp/>assginment</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base(const<sp/>ios_base&amp;<sp/>rhs);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base&amp;<sp/>operator=(const<sp/>ios_base&amp;<sp/>rhs);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>destructor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>~ios_base();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ios.base.callback<sp/>callbacks;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>enum<sp/>event<sp/>{<sp/>erase_event,<sp/>imbue_event,<sp/>copyfmt_event<sp/>};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>void<sp/>(*event_callback)(event,<sp/>ios_base&amp;,<sp/>int<sp/>index);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>register_callback(event_callback<sp/>fn,<sp/>int<sp/>index);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>bool<sp/>sync_with_stdio(bool<sp/>sync<sp/>=<sp/>true);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>init(void*<sp/>sb);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iostate&amp;<sp/>state();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>do_callbacks(event<sp/>evnt);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>pair&lt;event_callback,<sp/>int&gt;<sp/>event_data;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>int<sp/>index_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>event_data*<sp/>cb_vec_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>cb_siz_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>cb_cap_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>long*<sp/>iarray_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>isize_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void**<sp/>parray_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>psize_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale*<sp/>loc_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void*<sp/>rdbuf_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>precision_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>width_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags<sp/>fmtflags_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iostate<sp/>iostate_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iostate<sp/>exceptions_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>copy_ios_base(const<sp/>ios_base&amp;<sp/>rhs);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>failure</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>ios_base::failure</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>exception</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>failure(const<sp/>char*<sp/>msg);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>failure(const<sp/>string&amp;<sp/>msg);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>const<sp/>char*<sp/>what()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_MSLstring<sp/>what_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::failure::failure(const<sp/>char*<sp/>msg)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>what_(msg)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::failure::failure(const<sp/>string&amp;<sp/>msg)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>what_(msg)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>char*</highlight></codeline>
+<codeline><highlight class="normal">ios_base::failure::what()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>what_.c_str();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Init<sp/>-<sp/>implemented<sp/>in<sp/>iostream.cpp</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>ios_base::Init</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Init();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>~Init();</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>int<sp/>init_cnt_s;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>fmtflags</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>&amp;<sp/>(ios_base::fmtflags<sp/>x,<sp/>ios_base::fmtflags<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::fmtflags&gt;(static_cast&lt;int&gt;(x)<sp/>&amp;<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>|<sp/>(ios_base::fmtflags<sp/>x,<sp/>ios_base::fmtflags<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::fmtflags&gt;(static_cast&lt;int&gt;(x)<sp/>|<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>^<sp/>(ios_base::fmtflags<sp/>x,<sp/>ios_base::fmtflags<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::fmtflags&gt;(static_cast&lt;int&gt;(x)<sp/>^<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>~<sp/>(ios_base::fmtflags<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::fmtflags&gt;(~static_cast&lt;int&gt;(x));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>&amp;=<sp/>(ios_base::fmtflags&amp;<sp/>x,<sp/>ios_base::fmtflags<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>&amp;<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>|=<sp/>(ios_base::fmtflags&amp;<sp/>x,<sp/>ios_base::fmtflags<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>|<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>^=<sp/>(ios_base::fmtflags&amp;<sp/>x,<sp/>ios_base::fmtflags<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>^<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>iostate</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>&amp;<sp/>(ios_base::iostate<sp/>x,<sp/>ios_base::iostate<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::iostate&gt;(static_cast&lt;int&gt;(x)<sp/>&amp;<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>|<sp/>(ios_base::iostate<sp/>x,<sp/>ios_base::iostate<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::iostate&gt;(static_cast&lt;int&gt;(x)<sp/>|<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>^<sp/>(ios_base::iostate<sp/>x,<sp/>ios_base::iostate<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::iostate&gt;(static_cast&lt;int&gt;(x)<sp/>^<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>~<sp/>(ios_base::iostate<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::iostate&gt;(~static_cast&lt;int&gt;(x));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>&amp;=<sp/>(ios_base::iostate&amp;<sp/>x,<sp/>ios_base::iostate<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>&amp;<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>|=<sp/>(ios_base::iostate&amp;<sp/>x,<sp/>ios_base::iostate<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>|<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>^=<sp/>(ios_base::iostate&amp;<sp/>x,<sp/>ios_base::iostate<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>^<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>openmode</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::openmode</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>&amp;<sp/>(ios_base::openmode<sp/>x,<sp/>ios_base::openmode<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::openmode&gt;(static_cast&lt;int&gt;(x)<sp/>&amp;<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::openmode</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>|<sp/>(ios_base::openmode<sp/>x,<sp/>ios_base::openmode<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::openmode&gt;(static_cast&lt;int&gt;(x)<sp/>|<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::openmode</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>^<sp/>(ios_base::openmode<sp/>x,<sp/>ios_base::openmode<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::openmode&gt;(static_cast&lt;int&gt;(x)<sp/>^<sp/>static_cast&lt;int&gt;(y));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::openmode</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>~<sp/>(ios_base::openmode<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;ios_base::openmode&gt;(~static_cast&lt;int&gt;(x));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::openmode&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>&amp;=<sp/>(ios_base::openmode&amp;<sp/>x,<sp/>ios_base::openmode<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>&amp;<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::openmode&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>|=<sp/>(ios_base::openmode&amp;<sp/>x,<sp/>ios_base::openmode<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>|<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::openmode&amp;</highlight></codeline>
+<codeline><highlight class="normal">operator<sp/>^=<sp/>(ios_base::openmode&amp;<sp/>x,<sp/>ios_base::openmode<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x<sp/>=<sp/>x<sp/>^<sp/>y;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>ios_base<sp/>inline<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags</highlight></codeline>
+<codeline><highlight class="normal">ios_base::flags()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>fmtflags_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags</highlight></codeline>
+<codeline><highlight class="normal">ios_base::flags(fmtflags<sp/>fmtfl)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags<sp/>result<sp/>=<sp/>fmtflags_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags_<sp/>=<sp/>fmtfl;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags</highlight></codeline>
+<codeline><highlight class="normal">ios_base::setf(fmtflags<sp/>fmtfl)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags<sp/>result<sp/>=<sp/>fmtflags_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags_<sp/>|=<sp/>fmtfl;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fmtflags</highlight></codeline>
+<codeline><highlight class="normal">ios_base::setf(fmtflags<sp/>fmtfl,<sp/>fmtflags<sp/>mask)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags<sp/>result<sp/>=<sp/>fmtflags_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags_<sp/>&amp;=<sp/>~mask;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags_<sp/>|=<sp/>fmtfl<sp/>&amp;<sp/>mask;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">ios_base::unsetf(fmtflags<sp/>mask)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fmtflags_<sp/>&amp;=<sp/>~mask;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">ios_base::precision()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>precision_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">ios_base::precision(streamsize<sp/>prec)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>result<sp/>=<sp/>precision_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>precision_<sp/>=<sp/>prec;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">ios_base::width()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>width_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">ios_base::width(streamsize<sp/>wide)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>result<sp/>=<sp/>width_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>width_<sp/>=<sp/>wide;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void*</highlight></codeline>
+<codeline><highlight class="normal">ios_base::rdbuf()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>rdbuf_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">ios_base::clear(iostate<sp/>state)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iostate_<sp/>=<sp/>state;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf_<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iostate_<sp/>|=<sp/>badbit;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(iostate_<sp/>&amp;<sp/>exceptions_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>failure(&quot;ios_base<sp/>failure<sp/>in<sp/>clear&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__msl_error(&quot;ios_base<sp/>failure<sp/>in<sp/>clear\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void*</highlight></codeline>
+<codeline><highlight class="normal">ios_base::rdbuf(void*<sp/>sb)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void*<sp/>result<sp/>=<sp/>rdbuf_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rdbuf_<sp/>=<sp/>sb;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>clear();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">ios_base::good()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(iostate_<sp/>==<sp/>goodbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">ios_base::eof()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(iostate_<sp/>&amp;<sp/>eofbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">ios_base::fail()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(iostate_<sp/>&amp;<sp/>(failbit<sp/>|<sp/>badbit));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">ios_base::bad()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(iostate_<sp/>&amp;<sp/>badbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate</highlight></codeline>
+<codeline><highlight class="normal">ios_base::exceptions()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>exceptions_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">ios_base::exceptions(iostate<sp/>except)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>exceptions_<sp/>=<sp/>except;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf_<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iostate_<sp/>|=<sp/>badbit;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(iostate_<sp/>&amp;<sp/>exceptions_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>failure(&quot;ios_base<sp/>failure<sp/>in<sp/>exceptions&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__msl_error(&quot;ios_base<sp/>failure<sp/>in<sp/>exceptions\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::operator<sp/>void*()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>fail()<sp/>?<sp/>0<sp/>:<sp/>rdbuf_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">ios_base::operator!()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>fail();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate</highlight></codeline>
+<codeline><highlight class="normal">ios_base::rdstate()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>iostate_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">ios_base::setstate(iostate<sp/>state)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>clear(rdstate()<sp/>|<sp/>state);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">locale</highlight></codeline>
+<codeline><highlight class="normal">ios_base::getloc()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*loc_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">int</highlight></codeline>
+<codeline><highlight class="normal">ios_base::xalloc()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>index_++;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::ios_base(const<sp/>ios_base&amp;<sp/>rhs)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>cb_vec_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cb_cap_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iarray_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>isize_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>parray_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>psize_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>loc_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>rdbuf_(0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>copy_ios_base(rhs);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">ios_base::operator=(const<sp/>ios_base&amp;<sp/>rhs)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(this<sp/>!=<sp/>&amp;rhs)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>copy_ios_base(rhs);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::ios_base()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">ios_base::sync_with_stdio(bool)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base::iostate&amp;</highlight></codeline>
+<codeline><highlight class="normal">ios_base::state()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>iostate_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">ios_base::do_callbacks(event<sp/>evnt)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(size_t<sp/>i<sp/>=<sp/>cb_siz_;<sp/>i<sp/>&gt;<sp/>0;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>event_data&amp;<sp/>ev<sp/>=<sp/>cb_vec_[--i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ev.first(evnt,<sp/>*this,<sp/>ev.second);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_ios</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ios</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>ios_base</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>Types:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.basic.ios.cons<sp/>Constructor/destructor:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_ios(basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>sb);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.basic.ios.members<sp/>Members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ostream&lt;charT,<sp/>traits&gt;*<sp/>tie()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ostream&lt;charT,<sp/>traits&gt;*<sp/>tie(basic_ostream&lt;charT,<sp/>traits&gt;*<sp/>tiestr);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>rdbuf()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>rdbuf(basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>sb);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ios&amp;<sp/>copyfmt(const<sp/>basic_ios&amp;<sp/>rhs);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type<sp/>fill()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type<sp/>fill(char_type<sp/>ch);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ios.base.locales<sp/>locales:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale<sp/>imbue(const<sp/>locale&amp;<sp/>loc);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/><sp/>narrow(char_type<sp/>c,<sp/>char<sp/>dfault)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type<sp/>widen(char<sp/>c)<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ios();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>init(basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>sb);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ostream&lt;charT,<sp/>traits&gt;*<sp/>tiestr_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type<sp/>fill_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ios(const<sp/>basic_ios&amp;<sp/>);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>not<sp/>defined</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ios&amp;<sp/>operator=(const<sp/>basic_ios&amp;);<sp/><sp/><sp/><sp/>//<sp/><sp/>not<sp/>defined</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_ios<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::basic_ios(basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>sb)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>init(sb);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::basic_ios()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_ostream&lt;charT,<sp/>traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::tie()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tiestr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_ostream&lt;charT,<sp/>traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::tie(basic_ostream&lt;charT,<sp/>traits&gt;*<sp/>tiestr)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ostream&lt;charT,<sp/>traits&gt;*<sp/>result<sp/>=<sp/>tiestr_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tiestr_<sp/>=<sp/>tiestr;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::rdbuf()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;basic_streambuf&lt;charT,<sp/>traits&gt;*&gt;(ios_base::rdbuf());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::rdbuf(basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>sb)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;basic_streambuf&lt;charT,<sp/>traits&gt;*&gt;(ios_base::rdbuf(sb));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::copyfmt(const<sp/>basic_ios&amp;<sp/>rhs)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>do_callbacks(erase_event);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base::operator<sp/>=<sp/>(rhs);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>tiestr_<sp/>=<sp/>rhs.tiestr_;<sp/><sp/>//<sp/>???</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fill_<sp/>=<sp/>rhs.fill_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>do_callbacks(copyfmt_event);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>exceptions(rhs.exceptions());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_ios&lt;charT,<sp/>traits&gt;::char_type</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::fill()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>fill_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_ios&lt;charT,<sp/>traits&gt;::char_type</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::fill(char_type<sp/>ch)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type<sp/>result<sp/>=<sp/>fill_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fill_<sp/>=<sp/>ch;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">locale</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::imbue(const<sp/>locale&amp;<sp/>loc)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale<sp/>result<sp/>=<sp/>ios_base::imbue(loc);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rdbuf()-&gt;pubimbue(loc);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">char</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::narrow(char_type<sp/>c,<sp/>char<sp/>dfault)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>_USE_FACET(ctype&lt;char_type&gt;,<sp/>getloc()).narrow(c,<sp/>dfault);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_ios&lt;charT,<sp/>traits&gt;::char_type</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::widen(char<sp/>c)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>_USE_FACET(ctype&lt;char_type&gt;,<sp/>getloc()).widen(c);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_ios&lt;charT,<sp/>traits&gt;::init(basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>sb)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base::init(sb);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tiestr_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fill_<sp/>=<sp/>widen(&apos;<sp/>&apos;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.std.ios.manip,<sp/>manipulators:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">boolalpha(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::boolalpha);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">noboolalpha(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.unsetf(ios_base::boolalpha);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">showbase(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::showbase);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">noshowbase(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.unsetf(ios_base::showbase);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">showpoint(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::showpoint);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">noshowpoint(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.unsetf(ios_base::showpoint);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">showpos(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::showpos);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">noshowpos(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.unsetf(ios_base::showpos);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">skipws(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::skipws);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">noskipws(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.unsetf(ios_base::skipws);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">uppercase(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::uppercase);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">nouppercase(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.unsetf(ios_base::uppercase);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">unitbuf(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::unitbuf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">nounitbuf(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.unsetf(ios_base::unitbuf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.adjustfield.manip<sp/>adjustfield:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">internal(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::internal,<sp/>ios_base::adjustfield);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">left(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::left,<sp/>ios_base::adjustfield);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">right(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::right,<sp/>ios_base::adjustfield);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.basefield.manip<sp/>basefield:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">dec(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::dec,<sp/>ios_base::basefield);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">hex(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::hex,<sp/>ios_base::basefield);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">oct(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::oct,<sp/>ios_base::basefield);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.floatfield.manip<sp/>floatfield:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">fixed(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::fixed,<sp/>ios_base::floatfield);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ios_base&amp;</highlight></codeline>
+<codeline><highlight class="normal">scientific(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str.setf(ios_base::scientific,<sp/>ios_base::floatfield);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>str;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Auxillary<sp/>helper<sp/>class<sp/>to<sp/>that<sp/>saves<sp/>and<sp/>restores<sp/>ios_base::fmtflags<sp/>on<sp/>the<sp/>stack</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>_SaveFlags</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_SaveFlags(ios_base&amp;<sp/>str);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>~_SaveFlags();</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base&amp;<sp/>str_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base::fmtflags<sp/>flags_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_SaveFlags(const<sp/>_SaveFlags&amp;);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Not<sp/>defined</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_SaveFlags&amp;<sp/>operator=<sp/>(const<sp/>_SaveFlags&amp;);<sp/><sp/>//<sp/>Not<sp/>defined</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">_SaveFlags::_SaveFlags(ios_base&amp;<sp/>str)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>str_(str),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>flags_(str_.flags())</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">_SaveFlags::~_SaveFlags()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str_.flags(flags_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_IOS</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>added<sp/>wrapper<sp/>for<sp/>alignment</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Changed<sp/>filename<sp/>from<sp/>ios.h<sp/>to<sp/>ios</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980202<sp/>moved<sp/>streamoff<sp/>from<sp/>&lt;iosfwd&gt;<sp/>per<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980909<sp/>fpos<sp/>added</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981111<sp/>made<sp/>throwfailure()<sp/>public</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981220<sp/>Added<sp/>typename<sp/>to<sp/>appropriate<sp/>return<sp/>types</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981226<sp/>Added<sp/>mutex<sp/>accessor<sp/>to<sp/>help<sp/>encapsulate<sp/>future<sp/>changes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990524<sp/>Rewrote</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/ios"/>
+  </compounddef>
+</doxygen>

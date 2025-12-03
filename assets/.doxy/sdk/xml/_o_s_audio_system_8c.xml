@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_o_s_audio_system_8c" kind="file" language="C++">
+    <compoundname>OSAudioSystem.c</compoundname>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="_o_s_private_8h" local="yes">OSPrivate.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>OSAudioSystem.c</label>
+        <link refid="_o_s_audio_system_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>OSPrivate.h</label>
+        <link refid="_o_s_private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_o_s_audio_system_8c_1a1d2e4680da135bf3c4b73e3ab9a2008e" prot="public" static="no">
+        <name>__DSPWorkBuffer</name>
+        <initializer>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>*)0x81000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" line="19" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_o_s_audio_system_8c_1a0c0066c3bbb40606f6a687d82d4c00d1" prot="public" static="no">
+        <name>waitUntil</name>
+        <param><defname>load</defname></param>
+        <param><defname>mask</defname></param>
+        <initializer>    <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref> = (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">load</ref>);                                                                            \
+    <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">while</ref> (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref> &amp; (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mask</ref>)) { <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref> = (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">load</ref>); }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" line="91" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_o_s_audio_system_8c_1a0c7597d5699bfb32daabea13b95780e6" prot="public" static="yes" mutable="no">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+        <definition>u8 DSPInitCode[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>DSPInitCode</name>
+        <initializer>= {
+    0x02, 0x9F, 0x00, 0x10, 0x02, 0x9F, 0x00, 0x35, 0x02, 0x9F, 0x00, 0x36, 0x02, 0x9F, 0x00,
+    0x37, 0x02, 0x9F, 0x00, 0x38, 0x02, 0x9F, 0x00, 0x39, 0x02, 0x9F, 0x00, 0x3A, 0x02, 0x9F,
+    0x00, 0x3B, 0x12, 0x06, 0x12, 0x03, 0x12, 0x04, 0x12, 0x05, 0x8E, 0x00, 0x00, 0x92, 0x00,
+    0xFF, 0x00, 0x80, 0x80, 0x00, 0x00, 0x88, 0xFF, 0xFF, 0x00, 0x84, 0x10, 0x00, 0x00, 0x64,
+    0x00, 0x20, 0x02, 0x18, 0x00, 0x00, 0x00, 0x80, 0x10, 0x00, 0x00, 0x88, 0xFF, 0xFF, 0x00,
+    0x84, 0x08, 0x00, 0x00, 0x64, 0x00, 0x2A, 0x19, 0x1E, 0x00, 0x00, 0x26, 0xFC, 0x02, 0xA0,
+    0x80, 0x00, 0x02, 0x9C, 0x00, 0x2B, 0x16, 0xFC, 0x00, 0x54, 0x16, 0xFD, 0x43, 0x48, 0x00,
+    0x21, 0x02, 0xFF, 0x02, 0xFF, 0x02, 0xFF, 0x02, 0xFF, 0x02, 0xFF, 0x02, 0xFF, 0x02, 0xFF,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" line="7" column="11" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" bodystart="7" bodyend="17"/>
+        <referencedby refid="_o_s_audio_system_8c_1ab02ac1a7be96227a25cf7642787f4159" compoundref="_o_s_audio_system_8c" startline="22" endline="83">__OSInitAudioSystem</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_o_s_audio_system_8c_1ab02ac1a7be96227a25cf7642787f4159" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __OSInitAudioSystem</definition>
+        <argsstring>(void)</argsstring>
+        <name>__OSInitAudioSystem</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" line="22" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" bodystart="22" bodyend="83"/>
+        <references refid="_o_s_audio_system_8c_1a1d2e4680da135bf3c4b73e3ab9a2008e" compoundref="_o_s_audio_system_8c" startline="19">__DSPWorkBuffer</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_cache_8h_1ac8eec6bbf9334efd0e1387586212ea99">DCFlushRange</references>
+        <references refid="_o_s_audio_system_8c_1a0c7597d5699bfb32daabea13b95780e6" compoundref="_o_s_audio_system_8c" startline="7" endline="17">DSPInitCode</references>
+        <references refid="os_8h_1acd39b7eb8a0f4b65ee3188875b70b787" compoundref="_o_s_time_8c" startline="32" endline="42">OSGetTick</references>
+        <referencedby refid="os_8h_1afefd47bb79544cf1414a3c6954d71258" compoundref="_o_s_8c" startline="117" endline="214">OSInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_audio_system_8c_1a5f4a150d3f4ef62ff96cb49ade63e8c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __OSStopAudioSystem</definition>
+        <argsstring>(void)</argsstring>
+        <name>__OSStopAudioSystem</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" line="86" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c" bodystart="86" bodyend="111"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="os_8h_1acd39b7eb8a0f4b65ee3188875b70b787" compoundref="_o_s_time_8c" startline="32" endline="42">OSGetTick</references>
+        <references refid="_o_s_audio_system_8c_1a0c0066c3bbb40606f6a687d82d4c00d1">waitUntil</references>
+        <referencedby refid="_o_s_reset_8h_1a7036bb15abf7642d6b88165222033baf" compoundref="_o_s_reset_8c" startline="204" endline="244">OSResetSystem</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_o_s_private_8h" kindref="compound">OSPrivate.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="_o_s_audio_system_8c_1a0c7597d5699bfb32daabea13b95780e6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_o_s_audio_system_8c_1a0c7597d5699bfb32daabea13b95780e6" kindref="member">DSPInitCode</ref>[128]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>0x02,<sp/>0x9F,<sp/>0x00,<sp/>0x10,<sp/>0x02,<sp/>0x9F,<sp/>0x00,<sp/>0x35,<sp/>0x02,<sp/>0x9F,<sp/>0x00,<sp/>0x36,<sp/>0x02,<sp/>0x9F,<sp/>0x00,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>0x37,<sp/>0x02,<sp/>0x9F,<sp/>0x00,<sp/>0x38,<sp/>0x02,<sp/>0x9F,<sp/>0x00,<sp/>0x39,<sp/>0x02,<sp/>0x9F,<sp/>0x00,<sp/>0x3A,<sp/>0x02,<sp/>0x9F,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x3B,<sp/>0x12,<sp/>0x06,<sp/>0x12,<sp/>0x03,<sp/>0x12,<sp/>0x04,<sp/>0x12,<sp/>0x05,<sp/>0x8E,<sp/>0x00,<sp/>0x00,<sp/>0x92,<sp/>0x00,</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>0xFF,<sp/>0x00,<sp/>0x80,<sp/>0x80,<sp/>0x00,<sp/>0x00,<sp/>0x88,<sp/>0xFF,<sp/>0xFF,<sp/>0x00,<sp/>0x84,<sp/>0x10,<sp/>0x00,<sp/>0x00,<sp/>0x64,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x20,<sp/>0x02,<sp/>0x18,<sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x80,<sp/>0x10,<sp/>0x00,<sp/>0x00,<sp/>0x88,<sp/>0xFF,<sp/>0xFF,<sp/>0x00,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>0x84,<sp/>0x08,<sp/>0x00,<sp/>0x00,<sp/>0x64,<sp/>0x00,<sp/>0x2A,<sp/>0x19,<sp/>0x1E,<sp/>0x00,<sp/>0x00,<sp/>0x26,<sp/>0xFC,<sp/>0x02,<sp/>0xA0,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>0x80,<sp/>0x00,<sp/>0x02,<sp/>0x9C,<sp/>0x00,<sp/>0x2B,<sp/>0x16,<sp/>0xFC,<sp/>0x00,<sp/>0x54,<sp/>0x16,<sp/>0xFD,<sp/>0x43,<sp/>0x48,<sp/>0x00,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>0x21,<sp/>0x02,<sp/>0xFF,<sp/>0x02,<sp/>0xFF,<sp/>0x02,<sp/>0xFF,<sp/>0x02,<sp/>0xFF,<sp/>0x02,<sp/>0xFF,<sp/>0x02,<sp/>0xFF,<sp/>0x02,<sp/>0xFF,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="_o_s_audio_system_8c_1a1d2e4680da135bf3c4b73e3ab9a2008e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__DSPWorkBuffer<sp/>(void*)0x81000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="_o_s_audio_system_8c_1ab02ac1a7be96227a25cf7642787f4159" refkind="member"><highlight class="normal"><ref refid="_o_s_audio_system_8c_1ab02ac1a7be96227a25cf7642787f4159" kindref="member">__OSInitAudioSystem</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errFlag</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">start_tick</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">memcpy</ref><sp/>(<ref refid="_o_s_audio_system_8c_1a1d2e4680da135bf3c4b73e3ab9a2008e" kindref="member">__DSPWorkBuffer</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_o_s_audio_system_8c_1a0c7597d5699bfb32daabea13b95780e6" kindref="member">DSPInitCode</ref>,<sp/>128);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_cache_8h_1ac8eec6bbf9334efd0e1387586212ea99" kindref="member">DCFlushRange</ref><sp/>(<ref refid="_o_s_audio_system_8c_1a1d2e4680da135bf3c4b73e3ab9a2008e" kindref="member">__DSPWorkBuffer</ref>,<sp/>128);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[9]<sp/>=<sp/>0x43;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x67,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>!(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>&amp;<sp/>0x200),</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;__OSInitAudioSystem():<sp/>ARAM<sp/>DMA<sp/>already<sp/>in<sp/>progress&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x6B,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>!(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>&amp;<sp/>0x400),</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;__OSInitAudioSystem():<sp/>DSP<sp/>DMA<sp/>already<sp/>in<sp/>progress&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x6F,<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>&amp;<sp/>0x004),<sp/></highlight><highlight class="stringliteral">&quot;__OSInitAudioSystem():<sp/>DSP<sp/>already<sp/>working&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/>0x8AC;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>|=<sp/>1;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>&amp;<sp/>1)<sp/>{}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[2]<sp/>&lt;&lt;<sp/>16)<sp/>|<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[3])<sp/>&amp;<sp/>0x80000000)<sp/>{}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>*(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[16]<sp/>=<sp/>0x1000000;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>*(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[18]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>*(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[20]<sp/>=<sp/>0x20;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>&amp;<sp/>0x20))<sp/>{<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];<sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">start_tick</ref><sp/>=<sp/><ref refid="os_8h_1acd39b7eb8a0f4b65ee3188875b70b787" kindref="member">OSGetTick</ref>();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)(<ref refid="os_8h_1acd39b7eb8a0f4b65ee3188875b70b787" kindref="member">OSGetTick</ref>()<sp/>-<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">start_tick</ref>)<sp/>&lt;<sp/>0x892)<sp/>{}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>*(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[16]<sp/>=<sp/>0x1000000;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>*(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[18]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>*(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[20]<sp/>=<sp/>0x20;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>&amp;<sp/>0x20))<sp/>{<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];<sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>&amp;=<sp/>~0x800;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5])<sp/>&amp;<sp/>0x400)<sp/>{}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>&amp;=<sp/>~4;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errFlag</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[2];</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>nonmatching<sp/>part</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>&amp;<sp/>0x8000))<sp/>{<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[2];<sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>&lt;&lt;<sp/>16)<sp/>|<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[3])<sp/>+<sp/>0x7FAC0000U)<sp/>!=<sp/>0x4348)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xB7,<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;__OSInitAudioSystem():<sp/>DSP<sp/>returns<sp/>invalid<sp/>message&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>!=<sp/>42069;<sp/></highlight><highlight class="comment">//<sp/>needed<sp/>for<sp/>matching</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>|=<sp/>4;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/>0x8AC;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>|=<sp/>1;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>&amp;<sp/>1)<sp/>{}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="_o_s_audio_system_8c_1a5f4a150d3f4ef62ff96cb49ade63e8c4" refkind="member"><highlight class="normal"><ref refid="_o_s_audio_system_8c_1a5f4a150d3f4ef62ff96cb49ade63e8c4" kindref="member">__OSStopAudioSystem</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">start_tick</ref>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>waitUntil(load,<sp/>mask)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="92"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>reg16<sp/>=<sp/>(load);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="93"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>while<sp/>(reg16<sp/>&amp;<sp/>(mask))<sp/>{<sp/>reg16<sp/>=<sp/>(load);<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/>0x804;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[27];</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[27]<sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>&amp;<sp/>~0x8000);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_audio_system_8c_1a0c0066c3bbb40606f6a687d82d4c00d1" kindref="member">waitUntil</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5],<sp/>0x400);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_audio_system_8c_1a0c0066c3bbb40606f6a687d82d4c00d1" kindref="member">waitUntil</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5],<sp/>0x200);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/>0x8ac;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[2]<sp/>&lt;&lt;<sp/>16)<sp/>|<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[3])<sp/>&amp;<sp/>0x80000000)<sp/>{}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">start_tick</ref><sp/>=<sp/><ref refid="os_8h_1acd39b7eb8a0f4b65ee3188875b70b787" kindref="member">OSGetTick</ref>();</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)(<ref refid="os_8h_1acd39b7eb8a0f4b65ee3188875b70b787" kindref="member">OSGetTick</ref>()<sp/>-<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">start_tick</ref>)<sp/>&lt;<sp/>0x2c)<sp/>{}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/>(<ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reg16</ref><sp/>|<sp/>1);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_audio_system_8c_1a0c0066c3bbb40606f6a687d82d4c00d1" kindref="member">waitUntil</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5],<sp/>0x001);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>waitUntil</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/os/OSAudioSystem.c"/>
+  </compounddef>
+</doxygen>

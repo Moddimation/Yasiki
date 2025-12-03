@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File s_expm1.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-s_expm1c">File s_expm1.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="./"><strong>s_expm1.c</strong></a></p>
+<p><a href="../s__expm1_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "fdlibm.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-q1"><strong>Q1</strong></a>   = <code>-3.33333333333331316428e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-q2"><strong>Q2</strong></a>   = <code>1.58730158725481460165e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-q3"><strong>Q3</strong></a>   = <code>-7.93650757867487942473e-05</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-q4"><strong>Q4</strong></a>   = <code>4.00821782732936239552e-06</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-q5"><strong>Q5</strong></a>   = <code>-2.01099218183624371326e-07</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-big"><strong>big</strong></a>   = <code>1.0e+300</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-invln2"><strong>invln2</strong></a>   = <code>1.44269504088896338700e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ln2_hi"><strong>ln2_hi</strong></a>   = <code>6.93147180369123816490e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ln2_lo"><strong>ln2_lo</strong></a>   = <code>1.90821492927058770002e-10</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-o_threshold"><strong>o_threshold</strong></a>   = <code>7.09782712893383973096e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-one"><strong>one</strong></a>   = <code>1.0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-tiny"><strong>tiny</strong></a>   = <code>1.0e-300</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#function-__expm1"><strong>__expm1</strong></a> (double x) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-q1">variable Q1</h3>
+<pre><code class="language-C++">double Q1;
+</code></pre>
+<hr>
+
+<h3 id="variable-q2">variable Q2</h3>
+<pre><code class="language-C++">double Q2;
+</code></pre>
+<hr>
+
+<h3 id="variable-q3">variable Q3</h3>
+<pre><code class="language-C++">double Q3;
+</code></pre>
+<hr>
+
+<h3 id="variable-q4">variable Q4</h3>
+<pre><code class="language-C++">double Q4;
+</code></pre>
+<hr>
+
+<h3 id="variable-q5">variable Q5</h3>
+<pre><code class="language-C++">double Q5;
+</code></pre>
+<hr>
+
+<h3 id="variable-big">variable big</h3>
+<pre><code class="language-C++">double big;
+</code></pre>
+<hr>
+
+<h3 id="variable-invln2">variable invln2</h3>
+<pre><code class="language-C++">double invln2;
+</code></pre>
+<hr>
+
+<h3 id="variable-ln2_hi">variable ln2_hi</h3>
+<pre><code class="language-C++">double ln2_hi;
+</code></pre>
+<hr>
+
+<h3 id="variable-ln2_lo">variable ln2_lo</h3>
+<pre><code class="language-C++">double ln2_lo;
+</code></pre>
+<hr>
+
+<h3 id="variable-o_threshold">variable o_threshold</h3>
+<pre><code class="language-C++">double o_threshold;
+</code></pre>
+<hr>
+
+<h3 id="variable-one">variable one</h3>
+<pre><code class="language-C++">double one;
+</code></pre>
+<hr>
+
+<h3 id="variable-tiny">variable tiny</h3>
+<pre><code class="language-C++">double tiny;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-__expm1">function __expm1</h3>
+<pre><code class="language-C++">double __expm1 (
+    double x
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_expm1.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

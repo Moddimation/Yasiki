@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File os.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osh">File os.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>os.h</strong></a></p>
+<p><a href="../os_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;types.h&gt;</code></li>
+<li><code>#include &lt;dolphin/base/PPCArch.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSAlarm.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSAlloc.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSCache.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSContext.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSDC.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSError.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSException.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSFont.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSIC.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSInterrupt.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSL2.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSLC.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSMessage.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSModule.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSMutex.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSReset.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSResetSW.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSRtc.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSSerial.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSStopwatch.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSThread.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSTime.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSBootInfo.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_o_s_calendar_time/"><strong>OSCalendarTime</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_calendar_time/"><strong>OSCalendarTime</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-oscalendartime"><strong>OSCalendarTime</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__osbusclock"><strong>__OSBusClock</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__oscoreclock"><strong>__OSCoreClock</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osallocfromarenahi"><strong>OSAllocFromArenaHi</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> align) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osallocfromarenalo"><strong>OSAllocFromArenaLo</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> align) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscachedtophysical"><strong>OSCachedToPhysical</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * caddr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-oscachedtouncached"><strong>OSCachedToUncached</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * caddr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscalendartimetoticks"><strong>OSCalendarTimeToTicks</strong></a> (<a href="../struct_o_s_calendar_time/"><strong>OSCalendarTime</strong></a> * td) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdisableinterrupts"><strong>OSDisableInterrupts</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-osenableinterrupts"><strong>OSEnableInterrupts</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osgetarenahi"><strong>OSGetArenaHi</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osgetarenalo"><strong>OSGetArenaLo</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetconsolesimulatedmemsize"><strong>OSGetConsoleSimulatedMemSize</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetconsoletype"><strong>OSGetConsoleType</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetphysicalmemsize"><strong>OSGetPhysicalMemSize</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetsoundmode"><strong>OSGetSoundMode</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostick"><strong>OSTick</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgettick"><strong>OSGetTick</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgettime"><strong>OSGetTime</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osinit"><strong>OSInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ospanic"><strong>OSPanic</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * file, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> line, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * msg, ...) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osphysicaltocached"><strong>OSPhysicalToCached</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> paddr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osphysicaltouncached"><strong>OSPhysicalToUncached</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> paddr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osreport"><strong>OSReport</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * msg, ...) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-osrestoreinterrupts"><strong>OSRestoreInterrupts</strong></a> (<a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> level) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetarenahi"><strong>OSSetArenaHi</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * newHi) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetarenalo"><strong>OSSetArenaLo</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * newLo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetsoundmode"><strong>OSSetSoundMode</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ostickstocalendartime"><strong>OSTicksToCalendarTime</strong></a> (<a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a> ticks, <a href="../struct_o_s_calendar_time/"><strong>OSCalendarTime</strong></a> * td) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osuncachedtocached"><strong>OSUncachedToCached</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * ucaddr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osuncachedtophysical"><strong>OSUncachedToPhysical</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * ucaddr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ospsinit"><strong>__OSPSInit</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-oscachedtophysical"><strong>OSCachedToPhysical</strong></a> (caddr) <code>(([**u32**](types_8h.md#typedef-u32))(([**u32**](types_8h.md#typedef-u32))([**caddr**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) - [**OS\_BASE\_CACHED**](os_8h.md#define-os_base_cached)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-oscachedtouncached"><strong>OSCachedToUncached</strong></a> (caddr) <code>(([**void**](_c_a_r_d_private_8h.md#define-card_max_mount_step)\*)(([**u8**](types_8h.md#typedef-u8)\*)([**caddr**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) + ([**OS\_BASE\_UNCACHED**](os_8h.md#define-os_base_uncached) - [**OS\_BASE\_CACHED**](os_8h.md#define-os_base_cached))))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osmicrosecondstoticks"><strong>OSMicrosecondsToTicks</strong></a> (usec) <code>(((usec) \* ([**OS\_TIMER\_CLOCK**](os_8h.md#define-os_timer_clock) / 125000)) / 8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osmillisecondstoticks"><strong>OSMillisecondsToTicks</strong></a> (msec) <code>((msec) \* ([**OS\_TIMER\_CLOCK**](os_8h.md#define-os_timer_clock) / 1000))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osnanosecondstoticks"><strong>OSNanosecondsToTicks</strong></a> (nsec) <code>((([**nsec**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) \* ([**OS\_TIMER\_CLOCK**](os_8h.md#define-os_timer_clock) / 125000)) / 8000)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osphysicaltocached"><strong>OSPhysicalToCached</strong></a> (paddr) <code>(([**void**](_c_a_r_d_private_8h.md#define-card_max_mount_step)\*)(([**u32**](types_8h.md#typedef-u32))([**OS\_BASE\_CACHED**](os_8h.md#define-os_base_cached) + ([**u32**](types_8h.md#typedef-u32))([**paddr**](_c_a_r_d_private_8h.md#define-card_max_mount_step)))))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osphysicaltouncached"><strong>OSPhysicalToUncached</strong></a> (paddr) <code>(([**void**](_c_a_r_d_private_8h.md#define-card_max_mount_step)\*)(([**u32**](types_8h.md#typedef-u32))([**OS\_BASE\_UNCACHED**](os_8h.md#define-os_base_uncached) + ([**u32**](types_8h.md#typedef-u32))([**paddr**](_c_a_r_d_private_8h.md#define-card_max_mount_step)))))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osrounddown32b"><strong>OSRoundDown32B</strong></a> (x) <code>((([**u32**](types_8h.md#typedef-u32))(x)) &amp; ~(32 - 1))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osroundup32b"><strong>OSRoundUp32B</strong></a> (x) <code>((([**u32**](types_8h.md#typedef-u32))(x) + 32 - 1) &amp; ~(32 - 1))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ossecondstoticks"><strong>OSSecondsToTicks</strong></a> (sec) <code>((sec) \* ([**OS\_TIMER\_CLOCK**](os_8h.md#define-os_timer_clock)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ostickstomicroseconds"><strong>OSTicksToMicroseconds</strong></a> (ticks) <code>(([**ticks**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) \* 8 / ([**OS\_TIMER\_CLOCK**](os_8h.md#define-os_timer_clock) / 125000))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ostickstomilliseconds"><strong>OSTicksToMilliseconds</strong></a> (ticks) <code>(([**ticks**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) / ([**OS\_TIMER\_CLOCK**](os_8h.md#define-os_timer_clock) / 1000))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ostickstoseconds"><strong>OSTicksToSeconds</strong></a> (ticks) <code>(([**ticks**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) / ([**OS\_TIMER\_CLOCK**](os_8h.md#define-os_timer_clock)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osuncachedtocached"><strong>OSUncachedToCached</strong></a> (ucaddr) <code>(([**void**](_c_a_r_d_private_8h.md#define-card_max_mount_step)\*)(([**u8**](types_8h.md#typedef-u8)\*)([**ucaddr**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) - ([**OS\_BASE\_UNCACHED**](os_8h.md#define-os_base_uncached) - [**OS\_BASE\_CACHED**](os_8h.md#define-os_base_cached))))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osuncachedtophysical"><strong>OSUncachedToPhysical</strong></a> (ucaddr) <code>(([**u32**](types_8h.md#typedef-u32))(([**u32**](types_8h.md#typedef-u32))([**ucaddr**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) - [**OS\_BASE\_UNCACHED**](os_8h.md#define-os_base_uncached)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_base_cached"><strong>OS_BASE_CACHED</strong></a>  <code>([**OS\_CACHED\_REGION\_PREFIX**](os_8h.md#define-os_cached_region_prefix) &amp;lt;&amp;lt; 16)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_base_uncached"><strong>OS_BASE_UNCACHED</strong></a>  <code>([**OS\_UNCACHED\_REGION\_PREFIX**](os_8h.md#define-os_uncached_region_prefix) &amp;lt;&amp;lt; 16)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_bus_clock"><strong>OS_BUS_CLOCK</strong></a>  <code>[**\_\_OSBusClock**](os_8h.md#variable-__osbusclock)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_cached_region_prefix"><strong>OS_CACHED_REGION_PREFIX</strong></a>  <code>0x8000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_arthur"><strong>OS_CONSOLE_ARTHUR</strong></a>  <code>0x10000002</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_development"><strong>OS_CONSOLE_DEVELOPMENT</strong></a>  <code>0x10000000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_devhw1"><strong>OS_CONSOLE_DEVHW1</strong></a>  <code>0x10000004</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_devhw2"><strong>OS_CONSOLE_DEVHW2</strong></a>  <code>0x10000005</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_emulator"><strong>OS_CONSOLE_EMULATOR</strong></a>  <code>0x10000000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_minnow"><strong>OS_CONSOLE_MINNOW</strong></a>  <code>0x10000003</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_pc_emulator"><strong>OS_CONSOLE_PC_EMULATOR</strong></a>  <code>0x10000001</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_retail"><strong>OS_CONSOLE_RETAIL</strong></a>  <code>0x00000000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_retail1"><strong>OS_CONSOLE_RETAIL1</strong></a>  <code>0x00000001</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_console_retail2"><strong>OS_CONSOLE_RETAIL2</strong></a>  <code>0x00000002</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_core_clock"><strong>OS_CORE_CLOCK</strong></a>  <code>[**\_\_OSCoreClock**](os_8h.md#variable-__oscoreclock)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_physical_mask"><strong>OS_PHYSICAL_MASK</strong></a>  <code>0x3FFF</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_sound_mode_mono"><strong>OS_SOUND_MODE_MONO</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_sound_mode_stereo"><strong>OS_SOUND_MODE_STEREO</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_timer_clock"><strong>OS_TIMER_CLOCK</strong></a>  <code>([**OS\_BUS\_CLOCK**](os_8h.md#define-os_bus_clock) / 4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_uncached_region_prefix"><strong>OS_UNCACHED_REGION_PREFIX</strong></a>  <code>0xC000</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-oscalendartime">typedef OSCalendarTime</h3>
+<pre><code class="language-C++">typedef struct OSCalendarTime OSCalendarTime;
+</code></pre>
+<hr>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__osbusclock">variable __OSBusClock</h3>
+<pre><code class="language-C++">u32 __OSBusClock;
+</code></pre>
+<hr>
+
+<h3 id="variable-__oscoreclock">variable __OSCoreClock</h3>
+<pre><code class="language-C++">u32 __OSCoreClock;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-osallocfromarenahi">function OSAllocFromArenaHi</h3>
+<pre><code class="language-C++">void * OSAllocFromArenaHi (
+    u32 size,
+    u32 align
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osallocfromarenalo">function OSAllocFromArenaLo</h3>
+<pre><code class="language-C++">void * OSAllocFromArenaLo (
+    u32 size,
+    u32 align
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oscachedtophysical">function OSCachedToPhysical</h3>
+<pre><code class="language-C++">u32 OSCachedToPhysical (
+    void * caddr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oscachedtouncached">function OSCachedToUncached</h3>
+<pre><code class="language-C++">void * OSCachedToUncached (
+    void * caddr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oscalendartimetoticks">function OSCalendarTimeToTicks</h3>
+<pre><code class="language-C++">OSTime OSCalendarTimeToTicks (
+    OSCalendarTime * td
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osdisableinterrupts">function OSDisableInterrupts</h3>
+<pre><code class="language-C++">BOOL OSDisableInterrupts (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osenableinterrupts">function OSEnableInterrupts</h3>
+<pre><code class="language-C++">BOOL OSEnableInterrupts (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetarenahi">function OSGetArenaHi</h3>
+<pre><code class="language-C++">void * OSGetArenaHi (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetarenalo">function OSGetArenaLo</h3>
+<pre><code class="language-C++">void * OSGetArenaLo (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetconsolesimulatedmemsize">function OSGetConsoleSimulatedMemSize</h3>
+<pre><code class="language-C++">u32 OSGetConsoleSimulatedMemSize (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetconsoletype">function OSGetConsoleType</h3>
+<pre><code class="language-C++">u32 OSGetConsoleType (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetphysicalmemsize">function OSGetPhysicalMemSize</h3>
+<pre><code class="language-C++">u32 OSGetPhysicalMemSize (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetsoundmode">function OSGetSoundMode</h3>
+<pre><code class="language-C++">u32 OSGetSoundMode (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgettick">function OSGetTick</h3>
+<pre><code class="language-C++">OSTick OSGetTick (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgettime">function OSGetTime</h3>
+<pre><code class="language-C++">OSTime OSGetTime (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osinit">function OSInit</h3>
+<pre><code class="language-C++">void OSInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ospanic">function OSPanic</h3>
+<pre><code class="language-C++">void OSPanic (
+    char * file,
+    int line,
+    char * msg,
+    ...
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osphysicaltocached">function OSPhysicalToCached</h3>
+<pre><code class="language-C++">void * OSPhysicalToCached (
+    u32 paddr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osphysicaltouncached">function OSPhysicalToUncached</h3>
+<pre><code class="language-C++">void * OSPhysicalToUncached (
+    u32 paddr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osreport">function OSReport</h3>
+<pre><code class="language-C++">void OSReport (
+    char * msg,
+    ...
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osrestoreinterrupts">function OSRestoreInterrupts</h3>
+<pre><code class="language-C++">BOOL OSRestoreInterrupts (
+    BOOL level
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetarenahi">function OSSetArenaHi</h3>
+<pre><code class="language-C++">void OSSetArenaHi (
+    void * newHi
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetarenalo">function OSSetArenaLo</h3>
+<pre><code class="language-C++">void OSSetArenaLo (
+    void * newLo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetsoundmode">function OSSetSoundMode</h3>
+<pre><code class="language-C++">void OSSetSoundMode (
+    u32 mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ostickstocalendartime">function OSTicksToCalendarTime</h3>
+<pre><code class="language-C++">void OSTicksToCalendarTime (
+    OSTime ticks,
+    OSCalendarTime * td
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osuncachedtocached">function OSUncachedToCached</h3>
+<pre><code class="language-C++">void * OSUncachedToCached (
+    void * ucaddr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osuncachedtophysical">function OSUncachedToPhysical</h3>
+<pre><code class="language-C++">u32 OSUncachedToPhysical (
+    void * ucaddr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ospsinit">function __OSPSInit</h3>
+<pre><code class="language-C++">void __OSPSInit () 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-oscachedtophysical">define OSCachedToPhysical</h3>
+<pre><code class="language-C++">#define OSCachedToPhysical (
+    caddr
+) `(( u32 )(( u32 )( caddr ) - OS_BASE_CACHED ))`
+</code></pre>
+<hr>
+
+<h3 id="define-oscachedtouncached">define OSCachedToUncached</h3>
+<pre><code class="language-C++">#define OSCachedToUncached (
+    caddr
+) `(( void *)(( u8 *)( caddr ) + ( OS_BASE_UNCACHED - OS_BASE_CACHED )))`
+</code></pre>
+<hr>
+
+<h3 id="define-osmicrosecondstoticks">define OSMicrosecondsToTicks</h3>
+<pre><code class="language-C++">#define OSMicrosecondsToTicks (
+    usec
+) `(((usec) * ( OS_TIMER_CLOCK / 125000)) / 8)`
+</code></pre>
+<hr>
+
+<h3 id="define-osmillisecondstoticks">define OSMillisecondsToTicks</h3>
+<pre><code class="language-C++">#define OSMillisecondsToTicks (
+    msec
+) `((msec) * ( OS_TIMER_CLOCK / 1000))`
+</code></pre>
+<hr>
+
+<h3 id="define-osnanosecondstoticks">define OSNanosecondsToTicks</h3>
+<pre><code class="language-C++">#define OSNanosecondsToTicks (
+    nsec
+) `((( nsec ) * ( OS_TIMER_CLOCK / 125000)) / 8000)`
+</code></pre>
+<hr>
+
+<h3 id="define-osphysicaltocached">define OSPhysicalToCached</h3>
+<pre><code class="language-C++">#define OSPhysicalToCached (
+    paddr
+) `(( void *)(( u32 )( OS_BASE_CACHED + ( u32 )( paddr ))))`
+</code></pre>
+<hr>
+
+<h3 id="define-osphysicaltouncached">define OSPhysicalToUncached</h3>
+<pre><code class="language-C++">#define OSPhysicalToUncached (
+    paddr
+) `(( void *)(( u32 )( OS_BASE_UNCACHED + ( u32 )( paddr ))))`
+</code></pre>
+<hr>
+
+<h3 id="define-osrounddown32b">define OSRoundDown32B</h3>
+<pre><code class="language-C++">#define OSRoundDown32B (
+    x
+) `((( u32 )(x)) &amp; ~(32 - 1))`
+</code></pre>
+<hr>
+
+<h3 id="define-osroundup32b">define OSRoundUp32B</h3>
+<pre><code class="language-C++">#define OSRoundUp32B (
+    x
+) `((( u32 )(x) + 32 - 1) &amp; ~(32 - 1))`
+</code></pre>
+<hr>
+
+<h3 id="define-ossecondstoticks">define OSSecondsToTicks</h3>
+<pre><code class="language-C++">#define OSSecondsToTicks (
+    sec
+) `((sec) * ( OS_TIMER_CLOCK ))`
+</code></pre>
+<hr>
+
+<h3 id="define-ostickstomicroseconds">define OSTicksToMicroseconds</h3>
+<pre><code class="language-C++">#define OSTicksToMicroseconds (
+    ticks
+) `(( ticks ) * 8 / ( OS_TIMER_CLOCK / 125000))`
+</code></pre>
+<hr>
+
+<h3 id="define-ostickstomilliseconds">define OSTicksToMilliseconds</h3>
+<pre><code class="language-C++">#define OSTicksToMilliseconds (
+    ticks
+) `(( ticks ) / ( OS_TIMER_CLOCK / 1000))`
+</code></pre>
+<hr>
+
+<h3 id="define-ostickstoseconds">define OSTicksToSeconds</h3>
+<pre><code class="language-C++">#define OSTicksToSeconds (
+    ticks
+) `(( ticks ) / ( OS_TIMER_CLOCK ))`
+</code></pre>
+<hr>
+
+<h3 id="define-osuncachedtocached">define OSUncachedToCached</h3>
+<pre><code class="language-C++">#define OSUncachedToCached (
+    ucaddr
+) `(( void *)(( u8 *)( ucaddr ) - ( OS_BASE_UNCACHED - OS_BASE_CACHED )))`
+</code></pre>
+<hr>
+
+<h3 id="define-osuncachedtophysical">define OSUncachedToPhysical</h3>
+<pre><code class="language-C++">#define OSUncachedToPhysical (
+    ucaddr
+) `(( u32 )(( u32 )( ucaddr ) - OS_BASE_UNCACHED ))`
+</code></pre>
+<hr>
+
+<h3 id="define-os_base_cached">define OS_BASE_CACHED</h3>
+<pre><code class="language-C++">#define OS_BASE_CACHED `( OS_CACHED_REGION_PREFIX &lt;&lt; 16)`
+</code></pre>
+<hr>
+
+<h3 id="define-os_base_uncached">define OS_BASE_UNCACHED</h3>
+<pre><code class="language-C++">#define OS_BASE_UNCACHED `( OS_UNCACHED_REGION_PREFIX &lt;&lt; 16)`
+</code></pre>
+<hr>
+
+<h3 id="define-os_bus_clock">define OS_BUS_CLOCK</h3>
+<pre><code class="language-C++">#define OS_BUS_CLOCK `__OSBusClock`
+</code></pre>
+<hr>
+
+<h3 id="define-os_cached_region_prefix">define OS_CACHED_REGION_PREFIX</h3>
+<pre><code class="language-C++">#define OS_CACHED_REGION_PREFIX `0x8000`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_arthur">define OS_CONSOLE_ARTHUR</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_ARTHUR `0x10000002`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_development">define OS_CONSOLE_DEVELOPMENT</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_DEVELOPMENT `0x10000000`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_devhw1">define OS_CONSOLE_DEVHW1</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_DEVHW1 `0x10000004`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_devhw2">define OS_CONSOLE_DEVHW2</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_DEVHW2 `0x10000005`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_emulator">define OS_CONSOLE_EMULATOR</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_EMULATOR `0x10000000`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_minnow">define OS_CONSOLE_MINNOW</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_MINNOW `0x10000003`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_pc_emulator">define OS_CONSOLE_PC_EMULATOR</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_PC_EMULATOR `0x10000001`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_retail">define OS_CONSOLE_RETAIL</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_RETAIL `0x00000000`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_retail1">define OS_CONSOLE_RETAIL1</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_RETAIL1 `0x00000001`
+</code></pre>
+<hr>
+
+<h3 id="define-os_console_retail2">define OS_CONSOLE_RETAIL2</h3>
+<pre><code class="language-C++">#define OS_CONSOLE_RETAIL2 `0x00000002`
+</code></pre>
+<hr>
+
+<h3 id="define-os_core_clock">define OS_CORE_CLOCK</h3>
+<pre><code class="language-C++">#define OS_CORE_CLOCK `__OSCoreClock`
+</code></pre>
+<hr>
+
+<h3 id="define-os_physical_mask">define OS_PHYSICAL_MASK</h3>
+<pre><code class="language-C++">#define OS_PHYSICAL_MASK `0x3FFF`
+</code></pre>
+<hr>
+
+<h3 id="define-os_sound_mode_mono">define OS_SOUND_MODE_MONO</h3>
+<pre><code class="language-C++">#define OS_SOUND_MODE_MONO `0`
+</code></pre>
+<hr>
+
+<h3 id="define-os_sound_mode_stereo">define OS_SOUND_MODE_STEREO</h3>
+<pre><code class="language-C++">#define OS_SOUND_MODE_STEREO `1`
+</code></pre>
+<hr>
+
+<h3 id="define-os_timer_clock">define OS_TIMER_CLOCK</h3>
+<pre><code class="language-C++">#define OS_TIMER_CLOCK `( OS_BUS_CLOCK / 4)`
+</code></pre>
+<hr>
+
+<h3 id="define-os_uncached_region_prefix">define OS_UNCACHED_REGION_PREFIX</h3>
+<pre><code class="language-C++">#define OS_UNCACHED_REGION_PREFIX `0xC000`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/os.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

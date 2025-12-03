@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dolphin_trk_glue.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dolphin_trk_gluec">File dolphin_trk_glue.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_25028620cc1a8a9857c414f885e69890/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_6f2d6a2144e1eea12d16d0bd9685bdc9/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../dir_c356d50d36c69ac9e068ee6cfcebacd1/"><strong>Os</strong></a> <strong>&gt;</strong> <a href="../dir_620a2d14b5c78596f4b6e2cb4db579d5/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>dolphin_trk_glue.c</strong></a></p>
+<p><a href="../dolphin__trk__glue_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "Os/dolphin/dolphin_trk_glue.h"</code></li>
+<li><code>#include "Processor/ppc/Generic/targimpl.h"</code></li>
+<li><code>#include &lt;OdemuExi2Lib/DebuggerDriver.h&gt;</code></li>
+<li><code>#include &lt;dolphin/amcstubs/AmcExi2Stubs.h&gt;</code></li>
+<li><code>#include "trk.h"</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_b_comm_table/"><strong>DBCommTable</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gdbcommtable"><strong>gDBCommTable</strong></a>   = <code>{}</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-enableexi2interrupts"><strong>EnableEXI2Interrupts</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-initmetrotrkcommtable"><strong>InitMetroTRKCommTable</strong></a> (int hwId) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-reserveexi2port"><strong>ReserveEXI2Port</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trkexicallback"><strong>TRKEXICallBack</strong></a> (__OSInterrupt param_0, OSContext * ctx) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkinitializeintdrivenuart"><strong>TRKInitializeIntDrivenUART</strong></a> (u32 param_0, u32 param_1, u32 param_2, volatile u8 ** param_3) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-trkloadcontext"><strong>TRKLoadContext</strong></a> (OSContext * ctx, u32 r4) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-trkpolluart"><strong>TRKPollUART</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkreaduartn"><strong>TRKReadUARTN</strong></a> (void * bytes, u32 length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trkuartinterrupthandler"><strong>TRKUARTInterruptHandler</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkwriteuartn"><strong>TRKWriteUARTN</strong></a> (const void * bytes, u32 length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trk_board_display"><strong>TRK_board_display</strong></a> (char * str) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-unreserveexi2port"><strong>UnreserveEXI2Port</strong></a> (void) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-gdbcommtable">variable gDBCommTable</h3>
+<pre><code class="language-C++">DBCommTable gDBCommTable;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-enableexi2interrupts">function EnableEXI2Interrupts</h3>
+<pre><code class="language-C++">void EnableEXI2Interrupts (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-initmetrotrkcommtable">function InitMetroTRKCommTable</h3>
+<pre><code class="language-C++">int InitMetroTRKCommTable (
+    int hwId
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-reserveexi2port">function ReserveEXI2Port</h3>
+<pre><code class="language-C++">void ReserveEXI2Port (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkexicallback">function TRKEXICallBack</h3>
+<pre><code class="language-C++">void TRKEXICallBack (
+    __OSInterrupt param_0,
+    OSContext * ctx
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkinitializeintdrivenuart">function TRKInitializeIntDrivenUART</h3>
+<pre><code class="language-C++">DSError TRKInitializeIntDrivenUART (
+    u32 param_0,
+    u32 param_1,
+    u32 param_2,
+    volatile u8 ** param_3
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkloadcontext">function TRKLoadContext</h3>
+<pre><code class="language-C++">asm void TRKLoadContext (
+    OSContext * ctx,
+    u32 r4
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkpolluart">function TRKPollUART</h3>
+<pre><code class="language-C++">int TRKPollUART (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreaduartn">function TRKReadUARTN</h3>
+<pre><code class="language-C++">UARTError TRKReadUARTN (
+    void * bytes,
+    u32 length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkuartinterrupthandler">function TRKUARTInterruptHandler</h3>
+<pre><code class="language-C++">void TRKUARTInterruptHandler () 
+</code></pre>
+<hr>
+
+<h3 id="function-trkwriteuartn">function TRKWriteUARTN</h3>
+<pre><code class="language-C++">UARTError TRKWriteUARTN (
+    const void * bytes,
+    u32 length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trk_board_display">function TRK_board_display</h3>
+<pre><code class="language-C++">void TRK_board_display (
+    char * str
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-unreserveexi2port">function UnreserveEXI2Port</h3>
+<pre><code class="language-C++">void UnreserveEXI2Port (
+    void
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

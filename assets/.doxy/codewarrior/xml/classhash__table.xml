@@ -1,0 +1,2013 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhash__table" kind="class" language="C++" prot="public">
+    <compoundname>hash_table</compoundname>
+    <includes refid="hashtbl_8h" local="no">hashtbl.h</includes>
+    <innerclass refid="classhash__table_1_1const__iterator" prot="public">hash_table::const_iterator</innerclass>
+    <innerclass refid="structhash__table_1_1hash__node" prot="public">hash_table::hash_node</innerclass>
+    <innerclass refid="classhash__table_1_1iterator" prot="public">hash_table::iterator</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhash__table_1a07d693ea8325729a8d574133e4925fa0" prot="public" static="no">
+        <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+        <definition>typedef size_t hash_table::size_type</definition>
+        <argsstring></argsstring>
+        <name>size_type</name>
+        <qualifiedname>hash_table::size_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="58" column="50" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1aa48cd3663c164203576bc549bc918257" prot="public" static="no">
+        <type>Key</type>
+        <definition>typedef Key hash_table::key_type</definition>
+        <argsstring></argsstring>
+        <name>key_type</name>
+        <qualifiedname>hash_table::key_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="59" column="50" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" prot="public" static="no">
+        <type>Value</type>
+        <definition>typedef Value hash_table::value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <qualifiedname>hash_table::value_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="60" column="50" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1ab662b94f64aaf331e750813319977a3a" prot="public" static="no">
+        <type>HashFunction</type>
+        <definition>typedef HashFunction hash_table::hash_function</definition>
+        <argsstring></argsstring>
+        <name>hash_function</name>
+        <qualifiedname>hash_table::hash_function</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="61" column="50" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1aa445dafb26972b495b485bed3efc7d57" prot="public" static="no">
+        <type>ptrdiff_t</type>
+        <definition>typedef ptrdiff_t hash_table::difference_type</definition>
+        <argsstring></argsstring>
+        <name>difference_type</name>
+        <qualifiedname>hash_table::difference_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="62" column="50" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1a289ef8f76d6f13e8b2e13d5aa644c2bd" prot="public" static="no">
+        <type><ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+        <definition>typedef value_type&amp; hash_table::reference</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <qualifiedname>hash_table::reference</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="63" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1accb019a225eef385fcff4757deed909c" prot="public" static="no">
+        <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+        <definition>typedef const value_type&amp; hash_table::const_reference</definition>
+        <argsstring></argsstring>
+        <name>const_reference</name>
+        <qualifiedname>hash_table::const_reference</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="64" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1a8be26f3bcc8463d0d56ae168749d5688" prot="public" static="no">
+        <type><ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> *</type>
+        <definition>typedef value_type* hash_table::pointer</definition>
+        <argsstring></argsstring>
+        <name>pointer</name>
+        <qualifiedname>hash_table::pointer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="65" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1afc9fde4baace5b4aaaff1c5cdf7af97f" prot="public" static="no">
+        <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> *</type>
+        <definition>typedef const value_type* hash_table::const_pointer</definition>
+        <argsstring></argsstring>
+        <name>const_pointer</name>
+        <qualifiedname>hash_table::const_pointer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="66" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1aa6342fcde217cf455647266485ff649f" prot="public" static="no">
+        <type>pair&lt; <ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref>, <ref refid="stdbool_8h_1abb452686968e48b67397da5f97445f5b" kindref="member">bool</ref> &gt;</type>
+        <definition>typedef pair&lt;iterator, bool&gt; hash_table::pair_iterator_bool</definition>
+        <argsstring></argsstring>
+        <name>pair_iterator_bool</name>
+        <qualifiedname>hash_table::pair_iterator_bool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="69" column="34" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1acfce9094c0ed834f9010623883631718" prot="public" static="no">
+        <type>pair&lt; <ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref>, <ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref> &gt;</type>
+        <definition>typedef pair&lt;iterator, iterator&gt; hash_table::pair_iterator_iterator</definition>
+        <argsstring></argsstring>
+        <name>pair_iterator_iterator</name>
+        <qualifiedname>hash_table::pair_iterator_iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="70" column="30" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1abd8703589c12ac5f2f52ef259ef6631a" prot="public" static="no">
+        <type>pair&lt; <ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref>, <ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref> &gt;</type>
+        <definition>typedef pair&lt;const_iterator, const_iterator&gt; hash_table::pair_citerator_citerator</definition>
+        <argsstring></argsstring>
+        <name>pair_citerator_citerator</name>
+        <qualifiedname>hash_table::pair_citerator_citerator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="71" column="18" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" prot="public" static="no">
+        <type>hash_node_allocator_type::pointer</type>
+        <definition>typedef hash_node_allocator_type::pointer hash_table::link_type</definition>
+        <argsstring></argsstring>
+        <name>link_type</name>
+        <qualifiedname>hash_table::link_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="72" column="59" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhash__table_1a67171474c4da6cc8efe0c7fafefd2b2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>hash_table::iterator</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="55" column="25" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhash__table_1ac220ce1c155db1ac44146c12d178056f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>hash_table::const_iterator</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="56" column="25" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhash__table_1a6f484ff50aac3cc1d027239030142999" prot="protected" static="no" mutable="no">
+        <type>HashFunction</type>
+        <definition>HashFunction hash_table::hash</definition>
+        <argsstring></argsstring>
+        <name>hash</name>
+        <qualifiedname>hash_table::hash</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="377" column="19" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="377" bodyend="-1"/>
+        <referencedby refid="classhash__table_1aebf85ec687baaaabe6793dc176925c35" compoundref="hashtbl_8h" startline="366" endline="369">bkt_num_key</referencedby>
+        <referencedby refid="classhash__table_1ae192bbb3dc041043f49c2f86c0ea49a1" compoundref="hashtbl_8h" startline="497" endline="501">hash_funct</referencedby>
+        <referencedby refid="classhash__table_1a09b9c86b632363999aaac01d53614996" compoundref="hashtbl_8h" startline="415" endline="427">operator=</referencedby>
+        <referencedby refid="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" compoundref="hashtbl_8h" startline="430" endline="442">swap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" prot="protected" static="no" mutable="no">
+        <type>KeyEqual</type>
+        <definition>KeyEqual hash_table::equals</definition>
+        <argsstring></argsstring>
+        <name>equals</name>
+        <qualifiedname>hash_table::equals</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="378" column="19" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="378" bodyend="-1"/>
+        <referencedby refid="classhash__table_1aa8ad88e8c32f665a053ca1d7b710816e" compoundref="hashtbl_8h" startline="589" endline="598">count</referencedby>
+        <referencedby refid="classhash__table_1a36defaef2a09251419390437ef89dce0" compoundref="hashtbl_8h" startline="735" endline="753">equal_range</referencedby>
+        <referencedby refid="classhash__table_1a8ff476662a1de45b685479796dae8ae3" compoundref="hashtbl_8h" startline="755" endline="773">equal_range</referencedby>
+        <referencedby refid="classhash__table_1adf178262ef1fd3be8c05a1187400f462" compoundref="hashtbl_8h" startline="567" endline="576">find</referencedby>
+        <referencedby refid="classhash__table_1acbeb98c2798f467b14eb30d99626837d" compoundref="hashtbl_8h" startline="578" endline="587">find</referencedby>
+        <referencedby refid="classhash__table_1afbe08f6baea19d8c98ea753e4bd6819c" compoundref="hashtbl_8h" startline="492" endline="496">key_comp</referencedby>
+        <referencedby refid="classhash__table_1a21f69cdc4028ed5ff10b4efd6f84f58f" compoundref="hashtbl_8h" startline="679" endline="687">lower_bound</referencedby>
+        <referencedby refid="classhash__table_1a08438261a278050a5f666bbc991238cc" compoundref="hashtbl_8h" startline="689" endline="697">lower_bound</referencedby>
+        <referencedby refid="classhash__table_1a09b9c86b632363999aaac01d53614996" compoundref="hashtbl_8h" startline="415" endline="427">operator=</referencedby>
+        <referencedby refid="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" compoundref="hashtbl_8h" startline="430" endline="442">swap</referencedby>
+        <referencedby refid="classhash__table_1a678b3b29c286646d0a5b300a9ea46862" compoundref="hashtbl_8h" startline="699" endline="715">upper_bound</referencedby>
+        <referencedby refid="classhash__table_1a76bb98ff6b334d838d3e3db8eaa5efe9" compoundref="hashtbl_8h" startline="717" endline="733">upper_bound</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::num_elements</definition>
+        <argsstring></argsstring>
+        <name>num_elements</name>
+        <qualifiedname>hash_table::num_elements</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="379" column="19" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="379" bodyend="-1"/>
+        <referencedby refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</referencedby>
+        <referencedby refid="classhash__table_1af1fe1d15c087057042d404527fa6cb07" compoundref="hashtbl_8h" startline="223" endline="251">copy_from</referencedby>
+        <referencedby refid="classhash__table_1adc921f55d84f4559b5701a5c3ec45fa8" compoundref="hashtbl_8h" startline="253" endline="270">erase_bucket</referencedby>
+        <referencedby refid="classhash__table_1aebba8b1dcc64a3524aecec121243d600" compoundref="hashtbl_8h" startline="272" endline="283">erase_bucket</referencedby>
+        <referencedby refid="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" compoundref="hashtbl_8h" startline="559" endline="563">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a596862bd9da7baceb28a3e9c46138f6b" compoundref="hashtbl_8h" startline="638" endline="644">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a0ffd036cb9c1bce9d320158b5b503893" compoundref="hashtbl_8h" startline="654" endline="660">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a4c16f2a5c21746e98da5f8881c2c0c0f" compoundref="hashtbl_8h" startline="670" endline="676">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a03727b57327cbfe6fbdb43688d3ac79e" compoundref="hashtbl_8h" startline="553" endline="557">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1a309bb4c9c99e9ecfbea24b738fb4ae98" compoundref="hashtbl_8h" startline="630" endline="636">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1a696bf1a8c7c82c40b3ab6d20bf2713dd" compoundref="hashtbl_8h" startline="646" endline="652">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1ae04400aee1633196d522ee96a2950d4f" compoundref="hashtbl_8h" startline="662" endline="668">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1a71b5ceb997b0d1675cfc99eef0bab9bd" compoundref="hashtbl_8h" startline="474" endline="478">size</referencedby>
+        <referencedby refid="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" compoundref="hashtbl_8h" startline="430" endline="442">swap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" prot="protected" static="no" mutable="no">
+        <type>KeyOfValue</type>
+        <definition>KeyOfValue hash_table::get_key</definition>
+        <argsstring></argsstring>
+        <name>get_key</name>
+        <qualifiedname>hash_table::get_key</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="380" column="19" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="380" bodyend="-1"/>
+        <referencedby refid="classhash__table_1af96393990e7a4381bbb97c117d452c38" compoundref="hashtbl_8h" startline="361" endline="364">bkt_num</referencedby>
+        <referencedby refid="classhash__table_1ad786d7a0364bc5cc2b2e06a9b21152a1" compoundref="hashtbl_8h" startline="371" endline="374">bkt_num</referencedby>
+        <referencedby refid="classhash__table_1aa8ad88e8c32f665a053ca1d7b710816e" compoundref="hashtbl_8h" startline="589" endline="598">count</referencedby>
+        <referencedby refid="classhash__table_1a36defaef2a09251419390437ef89dce0" compoundref="hashtbl_8h" startline="735" endline="753">equal_range</referencedby>
+        <referencedby refid="classhash__table_1a8ff476662a1de45b685479796dae8ae3" compoundref="hashtbl_8h" startline="755" endline="773">equal_range</referencedby>
+        <referencedby refid="classhash__table_1adf178262ef1fd3be8c05a1187400f462" compoundref="hashtbl_8h" startline="567" endline="576">find</referencedby>
+        <referencedby refid="classhash__table_1acbeb98c2798f467b14eb30d99626837d" compoundref="hashtbl_8h" startline="578" endline="587">find</referencedby>
+        <referencedby refid="classhash__table_1a21f69cdc4028ed5ff10b4efd6f84f58f" compoundref="hashtbl_8h" startline="679" endline="687">lower_bound</referencedby>
+        <referencedby refid="classhash__table_1a08438261a278050a5f666bbc991238cc" compoundref="hashtbl_8h" startline="689" endline="697">lower_bound</referencedby>
+        <referencedby refid="classhash__table_1a09b9c86b632363999aaac01d53614996" compoundref="hashtbl_8h" startline="415" endline="427">operator=</referencedby>
+        <referencedby refid="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" compoundref="hashtbl_8h" startline="430" endline="442">swap</referencedby>
+        <referencedby refid="classhash__table_1a678b3b29c286646d0a5b300a9ea46862" compoundref="hashtbl_8h" startline="699" endline="715">upper_bound</referencedby>
+        <referencedby refid="classhash__table_1a76bb98ff6b334d838d3e3db8eaa5efe9" compoundref="hashtbl_8h" startline="717" endline="733">upper_bound</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classhash__table_1a7c7f7542d35b2acc5b18e41381e62659" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+        <definition>link_type hash_table::free_list</definition>
+        <argsstring></argsstring>
+        <name>free_list</name>
+        <qualifiedname>hash_table::free_list</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="381" column="19" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="381" bodyend="-1"/>
+        <referencedby refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</referencedby>
+        <referencedby refid="classhash__table_1a88c09b2793b5b832a4fa6e00e3d6d925" compoundref="hashtbl_8h" startline="285" endline="294">get_node</referencedby>
+        <referencedby refid="classhash__table_1aef4b08126cb185139da5ec489d420ae8" compoundref="hashtbl_8h" startline="319" endline="327">put_node</referencedby>
+        <referencedby refid="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" compoundref="hashtbl_8h" startline="430" endline="442">swap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classhash__table_1a90603dc0b299ec6d4468b0c6ea79c220" prot="protected" static="no" mutable="no">
+        <type>hash_node_allocator_type</type>
+        <definition>hash_node_allocator_type hash_table::hash_node_allocator</definition>
+        <argsstring></argsstring>
+        <name>hash_node_allocator</name>
+        <qualifiedname>hash_table::hash_node_allocator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="382" column="30" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="382" bodyend="-1"/>
+        <referencedby refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</referencedby>
+        <referencedby refid="classhash__table_1a4efb2d3a8cb529757df9271766efa788" compoundref="hashtbl_8h" startline="313" endline="317">delete_node</referencedby>
+        <referencedby refid="classhash__table_1a88c09b2793b5b832a4fa6e00e3d6d925" compoundref="hashtbl_8h" startline="285" endline="294">get_node</referencedby>
+        <referencedby refid="classhash__table_1acf7a649589f0035cda3c0010f2a3a742" compoundref="hashtbl_8h" startline="296" endline="311">new_node</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classhash__table_1a685076d213b570367c42cdb1e01ea13d" prot="protected" static="no" mutable="no">
+        <type>value_allocator_type</type>
+        <definition>value_allocator_type hash_table::value_allocator</definition>
+        <argsstring></argsstring>
+        <name>value_allocator</name>
+        <qualifiedname>hash_table::value_allocator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="383" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="383" bodyend="-1"/>
+        <referencedby refid="classhash__table_1a4efb2d3a8cb529757df9271766efa788" compoundref="hashtbl_8h" startline="313" endline="317">delete_node</referencedby>
+        <referencedby refid="classhash__table_1acf7a649589f0035cda3c0010f2a3a742" compoundref="hashtbl_8h" startline="296" endline="311">new_node</referencedby>
+        <referencedby refid="classhash__table_1aef4b08126cb185139da5ec489d420ae8" compoundref="hashtbl_8h" startline="319" endline="327">put_node</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" prot="protected" static="no" mutable="no">
+        <type>vector&lt; <ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref>, allocator_link_type &gt;</type>
+        <definition>vector&lt;link_type, allocator_link_type&gt; hash_table::buckets</definition>
+        <argsstring></argsstring>
+        <name>buckets</name>
+        <qualifiedname>hash_table::buckets</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="384" column="12" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="384" bodyend="-1"/>
+        <referencedby refid="classhash__table_1aab44a6ae3910bc4edce06f2e396f7c3d" compoundref="hashtbl_8h" startline="509" endline="516">begin</referencedby>
+        <referencedby refid="classhash__table_1a42b526f22f92c49c16fbf96e65b69daa" compoundref="hashtbl_8h" startline="524" endline="531">begin</referencedby>
+        <referencedby refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</referencedby>
+        <referencedby refid="classhash__table_1a8517548791ad727d9a1c5eda226e2872" compoundref="hashtbl_8h" startline="503" endline="506">bucket_count</referencedby>
+        <referencedby refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</referencedby>
+        <referencedby refid="classhash__table_1af1fe1d15c087057042d404527fa6cb07" compoundref="hashtbl_8h" startline="223" endline="251">copy_from</referencedby>
+        <referencedby refid="classhash__table_1aa8ad88e8c32f665a053ca1d7b710816e" compoundref="hashtbl_8h" startline="589" endline="598">count</referencedby>
+        <referencedby refid="classhash__table_1aed344c739659ca77c52e6291ae2a52b3" compoundref="hashtbl_8h" startline="544" endline="551">elems_in_bucket</referencedby>
+        <referencedby refid="classhash__table_1a36defaef2a09251419390437ef89dce0" compoundref="hashtbl_8h" startline="735" endline="753">equal_range</referencedby>
+        <referencedby refid="classhash__table_1a8ff476662a1de45b685479796dae8ae3" compoundref="hashtbl_8h" startline="755" endline="773">equal_range</referencedby>
+        <referencedby refid="classhash__table_1adc921f55d84f4559b5701a5c3ec45fa8" compoundref="hashtbl_8h" startline="253" endline="270">erase_bucket</referencedby>
+        <referencedby refid="classhash__table_1aebba8b1dcc64a3524aecec121243d600" compoundref="hashtbl_8h" startline="272" endline="283">erase_bucket</referencedby>
+        <referencedby refid="classhash__table_1adf178262ef1fd3be8c05a1187400f462" compoundref="hashtbl_8h" startline="567" endline="576">find</referencedby>
+        <referencedby refid="classhash__table_1acbeb98c2798f467b14eb30d99626837d" compoundref="hashtbl_8h" startline="578" endline="587">find</referencedby>
+        <referencedby refid="classhash__table_1a21f69cdc4028ed5ff10b4efd6f84f58f" compoundref="hashtbl_8h" startline="679" endline="687">lower_bound</referencedby>
+        <referencedby refid="classhash__table_1a08438261a278050a5f666bbc991238cc" compoundref="hashtbl_8h" startline="689" endline="697">lower_bound</referencedby>
+        <referencedby refid="classhash__table_1_1iterator_1a1ab70ff3494a8a942016bf090ba00885" compoundref="hashtbl_8h" startline="116" endline="127">hash_table::iterator::operator++</referencedby>
+        <referencedby refid="classhash__table_1_1const__iterator_1aa57f3e2786a0e0e0083f055b0adbd989" compoundref="hashtbl_8h" startline="186" endline="197">hash_table::const_iterator::operator++</referencedby>
+        <referencedby refid="classhash__table_1a09b9c86b632363999aaac01d53614996" compoundref="hashtbl_8h" startline="415" endline="427">operator=</referencedby>
+        <referencedby refid="classhash__table_1abb12dc3db5c0edef62a3be7f0f7ff7d1" compoundref="hashtbl_8h" startline="444" endline="462">operator==</referencedby>
+        <referencedby refid="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" compoundref="hashtbl_8h" startline="430" endline="442">swap</referencedby>
+        <referencedby refid="classhash__table_1a678b3b29c286646d0a5b300a9ea46862" compoundref="hashtbl_8h" startline="699" endline="715">upper_bound</referencedby>
+        <referencedby refid="classhash__table_1a76bb98ff6b334d838d3e3db8eaa5efe9" compoundref="hashtbl_8h" startline="717" endline="733">upper_bound</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhash__table_1ae125f34e4f370176908987e0f09b9a0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>typedef</type>
+        <definition>typedef hash_table::ALLOC_BIND</definition>
+        <argsstring>(hash_node) hash_node_allocator_type</argsstring>
+        <name>ALLOC_BIND</name>
+        <qualifiedname>hash_table::ALLOC_BIND</qualifiedname>
+        <param>
+          <type><ref refid="structhash__table_1_1hash__node" kindref="compound">hash_node</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="67" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a5fcc67e112520ac1267de587098078ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>typedef</type>
+        <definition>typedef hash_table::ALLOC_BIND</definition>
+        <argsstring>(value_type) value_allocator_type</argsstring>
+        <name>ALLOC_BIND</name>
+        <qualifiedname>hash_table::ALLOC_BIND</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="68" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1ac01da9dd3225ef73eb7197549f99ad06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>typedef</type>
+        <definition>typedef hash_table::ALLOC_BIND</definition>
+        <argsstring>(link_type) allocator_link_type</argsstring>
+        <name>ALLOC_BIND</name>
+        <qualifiedname>hash_table::ALLOC_BIND</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="73" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a097bcb21b87c47c00eda9dc008f42603" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hash_table::hash_table</definition>
+        <argsstring>(size_type initSize, const HashFunction &amp;hf=HashFunction(), const KeyEqual &amp;equal=KeyEqual(), const KeyOfValue &amp;ext=KeyOfValue())</argsstring>
+        <name>hash_table</name>
+        <qualifiedname>hash_table::hash_table</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+          <declname>initSize</declname>
+        </param>
+        <param>
+          <type>const HashFunction &amp;</type>
+          <declname>hf</declname>
+          <defval>HashFunction()</defval>
+        </param>
+        <param>
+          <type>const KeyEqual &amp;</type>
+          <declname>equal</declname>
+          <defval>KeyEqual()</defval>
+        </param>
+        <param>
+          <type>const KeyOfValue &amp;</type>
+          <declname>ext</declname>
+          <defval>KeyOfValue()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="390" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="390" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a3c7a4ba06c92ace47d58fd903d0d41a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hash_table::hash_table</definition>
+        <argsstring>(const value_type *first, const value_type *last, size_type initSize, const HashFunction &amp;hf=HashFunction(), const KeyEqual &amp;equal=KeyEqual(), const KeyOfValue &amp;ext=KeyOfValue())</argsstring>
+        <name>hash_table</name>
+        <qualifiedname>hash_table::hash_table</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> *</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> *</type>
+          <declname>last</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+          <declname>initSize</declname>
+        </param>
+        <param>
+          <type>const HashFunction &amp;</type>
+          <declname>hf</declname>
+          <defval>HashFunction()</defval>
+        </param>
+        <param>
+          <type>const KeyEqual &amp;</type>
+          <declname>equal</declname>
+          <defval>KeyEqual()</defval>
+        </param>
+        <param>
+          <type>const KeyOfValue &amp;</type>
+          <declname>ext</declname>
+          <defval>KeyOfValue()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="398" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="398" bodyend="406"/>
+        <references refid="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" compoundref="hashtbl_8h" startline="559" endline="563">insert_equal</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a878f16d6adaf47bb688c8e16c4bacb84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hash_table::hash_table</definition>
+        <argsstring>(const HT_TYPE &amp;ht)</argsstring>
+        <name>hash_table</name>
+        <qualifiedname>hash_table::hash_table</qualifiedname>
+        <param>
+          <type>const <ref refid="hashtbl_8h_1ad0cbcebc05b2352df7b9be6e7c245d3c" kindref="member">HT_TYPE</ref> &amp;</type>
+          <declname>ht</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="410" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="410" bodyend="413"/>
+        <references refid="classhash__table_1af1fe1d15c087057042d404527fa6cb07" compoundref="hashtbl_8h" startline="223" endline="251">copy_from</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a09b9c86b632363999aaac01d53614996" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="hashtbl_8h_1ad0cbcebc05b2352df7b9be6e7c245d3c" kindref="member">HT_TYPE</ref> &amp;</type>
+        <definition>HT_TYPE &amp; hash_table::operator=</definition>
+        <argsstring>(const HT_TYPE &amp;ht)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>hash_table::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="hashtbl_8h_1ad0cbcebc05b2352df7b9be6e7c245d3c" kindref="member">HT_TYPE</ref> &amp;</type>
+          <declname>ht</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="415" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="415" bodyend="427"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</references>
+        <references refid="classhash__table_1af1fe1d15c087057042d404527fa6cb07" compoundref="hashtbl_8h" startline="223" endline="251">copy_from</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="classhash__table_1a6f484ff50aac3cc1d027239030142999" compoundref="hashtbl_8h" startline="377">hash</references>
+        <references refid="mcompile_8h_1ab827ae98234ebc688ef784ef7cf90404" compoundref="mcompile_8h" startline="427">WRITE_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::swap</definition>
+        <argsstring>(HT_TYPE &amp;ht)</argsstring>
+        <name>swap</name>
+        <qualifiedname>hash_table::swap</qualifiedname>
+        <param>
+          <type><ref refid="hashtbl_8h_1ad0cbcebc05b2352df7b9be6e7c245d3c" kindref="member">HT_TYPE</ref> &amp;</type>
+          <declname>ht</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="430" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="430" bodyend="442"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1a7c7f7542d35b2acc5b18e41381e62659" compoundref="hashtbl_8h" startline="381">free_list</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="classhash__table_1a6f484ff50aac3cc1d027239030142999" compoundref="hashtbl_8h" startline="377">hash</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="mcompile_8h_1ab827ae98234ebc688ef784ef7cf90404" compoundref="mcompile_8h" startline="427">WRITE_LOCK</references>
+        <referencedby refid="classhash__map_1a96ff325b7edcb731744fabeee63d3ed8" compoundref="hashmap_8h" startline="111" endline="111">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::swap</referencedby>
+        <referencedby refid="classhash__multimap_1a37b833638d91939b6156211118864c14" compoundref="hashmmap_8h" startline="110" endline="111">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::swap</referencedby>
+        <referencedby refid="classhash__multiset_1a8da24d82ab0b61adf78a1c3afe88cd81" compoundref="hashmset_8h" startline="94" endline="95">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::swap</referencedby>
+        <referencedby refid="classhash__set_1a8e7676b0aa1e8169cccbeb22a0210cfd" compoundref="hashset_8h" startline="93" endline="93">hash_set&lt; Key, HashFunction, KeyEqual &gt;::swap</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1abb12dc3db5c0edef62a3be7f0f7ff7d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="stdbool_8h_1abb452686968e48b67397da5f97445f5b" kindref="member">bool</ref></type>
+        <definition>bool hash_table::operator==</definition>
+        <argsstring>(const HT_TYPE &amp;ht)</argsstring>
+        <name>operator==</name>
+        <qualifiedname>hash_table::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="hashtbl_8h_1ad0cbcebc05b2352df7b9be6e7c245d3c" kindref="member">HT_TYPE</ref> &amp;</type>
+          <declname>ht</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="444" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="444" bodyend="462"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a45c0bef85a92f768d82a7ab7412e0334" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="stdbool_8h_1abb452686968e48b67397da5f97445f5b" kindref="member">bool</ref></type>
+        <definition>bool hash_table::operator!=</definition>
+        <argsstring>(const HT_TYPE &amp;ht)</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>hash_table::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="hashtbl_8h_1ad0cbcebc05b2352df7b9be6e7c245d3c" kindref="member">HT_TYPE</ref> &amp;</type>
+          <declname>ht</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="464" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="464" bodyend="467"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1affd5abb02f106693d0b514d6c718b697" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hash_table::~hash_table</definition>
+        <argsstring>()</argsstring>
+        <name>~hash_table</name>
+        <qualifiedname>hash_table::~hash_table</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="469" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="469" bodyend="472"/>
+        <references refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a71b5ceb997b0d1675cfc99eef0bab9bd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>hash_table::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="474" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="474" bodyend="478"/>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__table_1a96fe2ea2fa9dc6900c3eef47c4ea5ce5" compoundref="hashtbl_8h" startline="485" endline="489">empty</referencedby>
+        <referencedby refid="classhash__map_1ac43d9507830d492a395c8c6a8892c02a" compoundref="hashmap_8h" startline="129" endline="129">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::size</referencedby>
+        <referencedby refid="classhash__multimap_1ad67674f491a9976f299d9cbba4b19fd7" compoundref="hashmmap_8h" startline="130" endline="130">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::size</referencedby>
+        <referencedby refid="classhash__multiset_1ab21e1ad409977df634297001b4e5d5c5" compoundref="hashmset_8h" startline="110" endline="110">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::size</referencedby>
+        <referencedby refid="classhash__set_1a27e8c8949978a7167b35f011d1c2ad02" compoundref="hashset_8h" startline="109" endline="109">hash_set&lt; Key, HashFunction, KeyEqual &gt;::size</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a7392c4dfe6e83b41abd56e18c1fa0f37" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::max_size</definition>
+        <argsstring>() const</argsstring>
+        <name>max_size</name>
+        <qualifiedname>hash_table::max_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="480" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="480" bodyend="483"/>
+        <referencedby refid="classhash__map_1ae1f9eccc9c47daddb751e777fc76caed" compoundref="hashmap_8h" startline="130" endline="130">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::max_size</referencedby>
+        <referencedby refid="classhash__multimap_1a3f22bdeb54fee838ab0e7c6ce511b558" compoundref="hashmmap_8h" startline="131" endline="131">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::max_size</referencedby>
+        <referencedby refid="classhash__multiset_1ae2d44540837f69a01c876980acaf35c6" compoundref="hashmset_8h" startline="111" endline="111">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::max_size</referencedby>
+        <referencedby refid="classhash__set_1aa48a33e21614957d202b895be8676e73" compoundref="hashset_8h" startline="110" endline="110">hash_set&lt; Key, HashFunction, KeyEqual &gt;::max_size</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a96fe2ea2fa9dc6900c3eef47c4ea5ce5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="stdbool_8h_1abb452686968e48b67397da5f97445f5b" kindref="member">bool</ref></type>
+        <definition>bool hash_table::empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <qualifiedname>hash_table::empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="485" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="485" bodyend="489"/>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <references refid="classhash__table_1a71b5ceb997b0d1675cfc99eef0bab9bd" compoundref="hashtbl_8h" startline="474" endline="478">size</references>
+        <referencedby refid="classhash__map_1aef5ac3a84968f31cc49cbfae0245bf12" compoundref="hashmap_8h" startline="128" endline="128">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::empty</referencedby>
+        <referencedby refid="classhash__multimap_1a4e9297cfa79d4f04b9bf6d02d09c9260" compoundref="hashmmap_8h" startline="129" endline="129">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::empty</referencedby>
+        <referencedby refid="classhash__multiset_1a19a1d0cc6f5b4bd39cb063cd1590b2b5" compoundref="hashmset_8h" startline="109" endline="109">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::empty</referencedby>
+        <referencedby refid="classhash__set_1ae61c642b85239de7224cc9ae8e572f01" compoundref="hashset_8h" startline="108" endline="108">hash_set&lt; Key, HashFunction, KeyEqual &gt;::empty</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1afbe08f6baea19d8c98ea753e4bd6819c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>KeyEqual</type>
+        <definition>KeyEqual hash_table::key_comp</definition>
+        <argsstring>() const</argsstring>
+        <name>key_comp</name>
+        <qualifiedname>hash_table::key_comp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="492" column="24" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="492" bodyend="496"/>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__map_1a3736a3fb5491c9d8d42801d717c8f1c5" compoundref="hashmap_8h" startline="115" endline="115">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::key_comp</referencedby>
+        <referencedby refid="classhash__multimap_1a30d1c02f52d130a8504a802af5a34cb7" compoundref="hashmmap_8h" startline="116" endline="116">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::key_comp</referencedby>
+        <referencedby refid="classhash__multiset_1a151c893facfab448a0801d05f6970b42" compoundref="hashmset_8h" startline="100" endline="100">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::key_comp</referencedby>
+        <referencedby refid="classhash__set_1a27442da8b8f7d143387fb44d9e24ef37" compoundref="hashset_8h" startline="98" endline="98">hash_set&lt; Key, HashFunction, KeyEqual &gt;::key_comp</referencedby>
+        <referencedby refid="classhash__multimap_1a92786da26bcb64b83736baa0f10b2ff9" compoundref="hashmmap_8h" startline="117" endline="120">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::value_comp</referencedby>
+        <referencedby refid="classhash__multiset_1aaf0b624cf11a3ff49bf731b8f5f587ea" compoundref="hashmset_8h" startline="101" endline="101">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::value_comp</referencedby>
+        <referencedby refid="classhash__set_1a760dbf4b12ccbb7c3f0b4d69a65392f0" compoundref="hashset_8h" startline="99" endline="99">hash_set&lt; Key, HashFunction, KeyEqual &gt;::value_comp</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1ae192bbb3dc041043f49c2f86c0ea49a1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1ab662b94f64aaf331e750813319977a3a" kindref="member">hash_function</ref></type>
+        <definition>hash_function hash_table::hash_funct</definition>
+        <argsstring>() const</argsstring>
+        <name>hash_funct</name>
+        <qualifiedname>hash_table::hash_funct</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="497" column="24" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="497" bodyend="501"/>
+        <references refid="classhash__table_1a6f484ff50aac3cc1d027239030142999" compoundref="hashtbl_8h" startline="377">hash</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__map_1a96cdd6d949b84ceda1724b5d8f7d14d7" compoundref="hashmap_8h" startline="121" endline="121">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::hash_funct</referencedby>
+        <referencedby refid="classhash__multimap_1af6cafbe95c3ac0091dfae79a2ae4c003" compoundref="hashmmap_8h" startline="122" endline="122">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::hash_funct</referencedby>
+        <referencedby refid="classhash__multiset_1a5b16d84cffa2a7e1143db57df85ddbfa" compoundref="hashmset_8h" startline="102" endline="102">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::hash_funct</referencedby>
+        <referencedby refid="classhash__set_1a382d69c6cd7178f5b4f858dde230397b" compoundref="hashset_8h" startline="101" endline="101">hash_set&lt; Key, HashFunction, KeyEqual &gt;::hash_funct</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a8517548791ad727d9a1c5eda226e2872" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>bucket_count</name>
+        <qualifiedname>hash_table::bucket_count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="503" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="503" bodyend="506"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1aab44a6ae3910bc4edce06f2e396f7c3d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator hash_table::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>hash_table::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="509" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="509" bodyend="516"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1aa03874c88e44da1d3b93545da8fddc92" compoundref="hashtbl_8h" startline="518" endline="522">end</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__map_1aa1b8a6f9b81acb0f9f8658c66f346413" compoundref="hashmap_8h" startline="123" endline="123">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__multimap_1adbe46ead1b1e0bc520204aabf0dbee8a" compoundref="hashmmap_8h" startline="124" endline="124">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__multiset_1a4b8096a686cc9c658d91547cfe701b0e" compoundref="hashmset_8h" startline="104" endline="104">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__set_1a2808786e4eaa046b5fd39a07e10f77c4" compoundref="hashset_8h" startline="103" endline="103">hash_set&lt; Key, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__map_1a949b124daf0e7e3091ddd0b021b78fae" compoundref="hashmap_8h" startline="124" endline="124">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__multimap_1a94e57967756adf20d85f49c8e6141180" compoundref="hashmmap_8h" startline="125" endline="125">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__multiset_1a12334550cba832d5164f5602015f232b" compoundref="hashmset_8h" startline="105" endline="105">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__set_1ac86c4fbbb9bf132de2003296031ca490" compoundref="hashset_8h" startline="104" endline="104">hash_set&lt; Key, HashFunction, KeyEqual &gt;::begin</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1aa03874c88e44da1d3b93545da8fddc92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator hash_table::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>hash_table::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="518" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="518" bodyend="522"/>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__table_1aab44a6ae3910bc4edce06f2e396f7c3d" compoundref="hashtbl_8h" startline="509" endline="516">begin</referencedby>
+        <referencedby refid="classhash__table_1a42b526f22f92c49c16fbf96e65b69daa" compoundref="hashtbl_8h" startline="524" endline="531">begin</referencedby>
+        <referencedby refid="classhash__map_1ad8e8f7bf9a96b6d48e8f9c7459132f30" compoundref="hashmap_8h" startline="125" endline="125">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__multimap_1a950ae9420673e1a7d82fb1c31f205a19" compoundref="hashmmap_8h" startline="126" endline="126">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__multiset_1a175c3dee720cb10fa0f1a7bd8a46dfcf" compoundref="hashmset_8h" startline="106" endline="106">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__set_1a5314c7b711d75ceb221060e3242e0ac2" compoundref="hashset_8h" startline="105" endline="105">hash_set&lt; Key, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__map_1aa1eed7c8167cbacf0fb3c5417aaa2790" compoundref="hashmap_8h" startline="126" endline="126">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__multimap_1a00015b75e9ef85e787a5cd4de23f8f7e" compoundref="hashmmap_8h" startline="127" endline="127">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__multiset_1a3f56176f790bb1c93fd3077e91d5b90d" compoundref="hashmset_8h" startline="107" endline="107">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__set_1a424ab13a2839fe41081e6717399cb60d" compoundref="hashset_8h" startline="106" endline="106">hash_set&lt; Key, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__table_1a36defaef2a09251419390437ef89dce0" compoundref="hashtbl_8h" startline="735" endline="753">equal_range</referencedby>
+        <referencedby refid="classhash__table_1a8ff476662a1de45b685479796dae8ae3" compoundref="hashtbl_8h" startline="755" endline="773">equal_range</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a42b526f22f92c49c16fbf96e65b69daa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator hash_table::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>hash_table::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="524" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="524" bodyend="531"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1aa03874c88e44da1d3b93545da8fddc92" compoundref="hashtbl_8h" startline="518" endline="522">end</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1aef117416893dcc9ddbefb5037b8fe8d0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator hash_table::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>hash_table::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="533" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="533" bodyend="537"/>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a28cbd0ab5524006e121e6eb6c014ab4a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::max_bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>max_bucket_count</name>
+        <qualifiedname>hash_table::max_bucket_count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="539" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="539" bodyend="542"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1aed344c739659ca77c52e6291ae2a52b3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::elems_in_bucket</definition>
+        <argsstring>(size_type bucket) const</argsstring>
+        <name>elems_in_bucket</name>
+        <qualifiedname>hash_table::elems_in_bucket</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+          <declname>bucket</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="544" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="544" bodyend="551"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a03727b57327cbfe6fbdb43688d3ac79e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1aa6342fcde217cf455647266485ff649f" kindref="member">pair_iterator_bool</ref></type>
+        <definition>pair_iterator_bool hash_table::insert_unique</definition>
+        <argsstring>(const value_type &amp;obj)</argsstring>
+        <name>insert_unique</name>
+        <qualifiedname>hash_table::insert_unique</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="553" column="24" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="553" bodyend="557"/>
+        <references refid="classhash__table_1a1ef50d430fff4dc415d1ed49c336bd44">insert_unique_noresize</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9">resize</references>
+        <referencedby refid="classhash__map_1ac33cd3e4c13c800ba8522953904d8396" compoundref="hashmap_8h" startline="144" endline="147">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__set_1a6369e4a39ad3601387448ad1d7fdd709" compoundref="hashset_8h" startline="118" endline="122">hash_set&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__map_1a30b2005132c4f0f049d56fa129ea455a" compoundref="hashmap_8h" startline="164" endline="167">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__set_1a9a9886268b6c44cd2d27391654f3f213" compoundref="hashset_8h" startline="137" endline="140">hash_set&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__map_1a37823ffaa4b4dbdcff4a5ad75b988cbd" compoundref="hashmap_8h" startline="159" endline="162">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__set_1a7012fc714f8c44d31745a87c7175f224" compoundref="hashset_8h" startline="133" endline="136">hash_set&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator hash_table::insert_equal</definition>
+        <argsstring>(const value_type &amp;obj)</argsstring>
+        <name>insert_equal</name>
+        <qualifiedname>hash_table::insert_equal</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="559" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="559" bodyend="563"/>
+        <references refid="classhash__table_1a7ec30b796bf65d8d72a4a6f334ddcb5d">insert_equal_noresize</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9">resize</references>
+        <referencedby refid="classhash__table_1a3c7a4ba06c92ace47d58fd903d0d41a6" compoundref="hashtbl_8h" startline="398" endline="406">hash_table</referencedby>
+        <referencedby refid="classhash__multimap_1ad7c2be080f9c6cf602d7e480cdceb97e" compoundref="hashmmap_8h" startline="141" endline="144">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__multiset_1a8d4edeb03bbb1721bb6421e4fff2f517" compoundref="hashmset_8h" startline="116" endline="116">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__multimap_1a646faf34a0fa929b66eab46e6843d5f7" compoundref="hashmmap_8h" startline="161" endline="164">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__multiset_1a3497b87662f9b96da1cc6aa722dd22d3" compoundref="hashmset_8h" startline="131" endline="134">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__multimap_1a165befeff074aef6d12d5c78379197c9" compoundref="hashmmap_8h" startline="156" endline="159">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__multiset_1a810590fd080eecb1eae6e42c99c3cdb6" compoundref="hashmset_8h" startline="127" endline="130">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1ae584f23e3f5662789ecb9dd695113a0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhash__table_1a289ef8f76d6f13e8b2e13d5aa644c2bd" kindref="member">reference</ref></type>
+        <definition>reference hash_table::find_or_insert</definition>
+        <argsstring>(const value_type &amp;obj)</argsstring>
+        <name>find_or_insert</name>
+        <qualifiedname>hash_table::find_or_insert</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="565" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1adf178262ef1fd3be8c05a1187400f462" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator hash_table::find</definition>
+        <argsstring>(const key_type &amp;key)</argsstring>
+        <name>find</name>
+        <qualifiedname>hash_table::find</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="567" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="567" bodyend="576"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__map_1a19ff90075d3f8323b8dc276be8947faf" compoundref="hashmap_8h" startline="180" endline="180">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__multimap_1a78db2f60adf4d77ae066b6cda05e6838" compoundref="hashmmap_8h" startline="177" endline="177">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__multiset_1ab9d845479ba1a8c0224a1e2702e25f69" compoundref="hashmset_8h" startline="155" endline="155">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__set_1a90e86d7edff07faef657d6079d3a6cbb" compoundref="hashset_8h" startline="159" endline="159">hash_set&lt; Key, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__map_1a56445333314e74d627b8dc1aaa2d45b0" compoundref="hashmap_8h" startline="181" endline="181">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__multimap_1a1ce82ab17c85deafd3db3841e10c358e" compoundref="hashmmap_8h" startline="178" endline="178">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__multiset_1ade765037af6c92946847dec3f83cbc8e" compoundref="hashmset_8h" startline="156" endline="156">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__set_1a8d105c5dcede97fe334c18c74170fc85" compoundref="hashset_8h" startline="160" endline="160">hash_set&lt; Key, HashFunction, KeyEqual &gt;::find</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1acbeb98c2798f467b14eb30d99626837d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator hash_table::find</definition>
+        <argsstring>(const key_type &amp;key) const</argsstring>
+        <name>find</name>
+        <qualifiedname>hash_table::find</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="578" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="578" bodyend="587"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1aa8ad88e8c32f665a053ca1d7b710816e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::count</definition>
+        <argsstring>(const key_type &amp;key) const</argsstring>
+        <name>count</name>
+        <qualifiedname>hash_table::count</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="589" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="589" bodyend="598"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__map_1aca087e70114f6cea264cb4847c65b0f0" compoundref="hashmap_8h" startline="183" endline="183">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::count</referencedby>
+        <referencedby refid="classhash__multimap_1a42e06b2c3e7abce20cc445da62016e34" compoundref="hashmmap_8h" startline="180" endline="180">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::count</referencedby>
+        <referencedby refid="classhash__multiset_1a4b41afb976de17affdea1deaeea6c0b7" compoundref="hashmset_8h" startline="157" endline="157">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::count</referencedby>
+        <referencedby refid="classhash__set_1a49361237681bd1f805cdb70df9b7074c" compoundref="hashset_8h" startline="161" endline="161">hash_set&lt; Key, HashFunction, KeyEqual &gt;::count</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a580c1acb6c733e75dd9ebf9b8c67cd68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::erase</definition>
+        <argsstring>(const key_type &amp;key)</argsstring>
+        <name>erase</name>
+        <qualifiedname>hash_table::erase</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="600" column="15"/>
+        <referencedby refid="classhash__map_1a424b92a435fa616d10c843a2b10e5990" compoundref="hashmap_8h" startline="172" endline="172">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multimap_1a7a41ab3c57731a0e07a2b53b456aaf00" compoundref="hashmmap_8h" startline="169" endline="169">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multiset_1a3ce50f92133bfa6a080867553fc87a59" compoundref="hashmset_8h" startline="142" endline="142">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__set_1a018a0fc16b1790a3d99d584083338a33" compoundref="hashset_8h" startline="146" endline="146">hash_set&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__map_1ae8bd84f39e44f47c80f54f13de8bc83f" compoundref="hashmap_8h" startline="173" endline="174">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multimap_1a110c90946404600cd7d7512821885ceb" compoundref="hashmmap_8h" startline="170" endline="171">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multiset_1afe10dc00b03689147b08df5c4160fb7d" compoundref="hashmset_8h" startline="144" endline="148">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__set_1a316ad60e29eb987dac4cf8a3a2bf0648" compoundref="hashset_8h" startline="148" endline="152">hash_set&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__map_1ac234624eaf2595e9430f0e0d27f57b49" compoundref="hashmap_8h" startline="171" endline="171">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multimap_1a8d174f3a5f55f8f647bb7062cc52b356" compoundref="hashmmap_8h" startline="168" endline="168">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multiset_1a891d1726ad10369a03de1adb6ab5cd12" compoundref="hashmset_8h" startline="137" endline="140">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__set_1abc2ce7b67bebb21f352be31af8216d05" compoundref="hashset_8h" startline="143" endline="144">hash_set&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a2bef1e4c6eacbc7a0d13867731f39bcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::erase</definition>
+        <argsstring>(const iterator &amp;it)</argsstring>
+        <name>erase</name>
+        <qualifiedname>hash_table::erase</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref> &amp;</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="601" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a84f8179a94a2ec318951a194175454b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::erase</definition>
+        <argsstring>(iterator first, iterator last)</argsstring>
+        <name>erase</name>
+        <qualifiedname>hash_table::erase</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="602" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a44fa35e4d5af69a570fd047ea735a4c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::erase</definition>
+        <argsstring>(const const_iterator &amp;it)</argsstring>
+        <name>erase</name>
+        <qualifiedname>hash_table::erase</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref> &amp;</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="603" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1af315e218e901d946841162fe91250640" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::erase</definition>
+        <argsstring>(const_iterator first, const_iterator last)</argsstring>
+        <name>erase</name>
+        <qualifiedname>hash_table::erase</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="604" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::resize</definition>
+        <argsstring>(size_type num_elements_hint)</argsstring>
+        <name>resize</name>
+        <qualifiedname>hash_table::resize</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+          <declname>num_elements_hint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="606" column="10"/>
+        <referencedby refid="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" compoundref="hashtbl_8h" startline="559" endline="563">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a596862bd9da7baceb28a3e9c46138f6b" compoundref="hashtbl_8h" startline="638" endline="644">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a0ffd036cb9c1bce9d320158b5b503893" compoundref="hashtbl_8h" startline="654" endline="660">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a4c16f2a5c21746e98da5f8881c2c0c0f" compoundref="hashtbl_8h" startline="670" endline="676">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a03727b57327cbfe6fbdb43688d3ac79e" compoundref="hashtbl_8h" startline="553" endline="557">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1a309bb4c9c99e9ecfbea24b738fb4ae98" compoundref="hashtbl_8h" startline="630" endline="636">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1a696bf1a8c7c82c40b3ab6d20bf2713dd" compoundref="hashtbl_8h" startline="646" endline="652">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1ae04400aee1633196d522ee96a2950d4f" compoundref="hashtbl_8h" startline="662" endline="668">insert_unique</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a1ef50d430fff4dc415d1ed49c336bd44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pair&lt; <ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref>, <ref refid="stdbool_8h_1abb452686968e48b67397da5f97445f5b" kindref="member">bool</ref> &gt;</type>
+        <definition>pair&lt; iterator, bool &gt; hash_table::insert_unique_noresize</definition>
+        <argsstring>(const value_type &amp;obj)</argsstring>
+        <name>insert_unique_noresize</name>
+        <qualifiedname>hash_table::insert_unique_noresize</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="608" column="10"/>
+        <referencedby refid="classhash__table_1a03727b57327cbfe6fbdb43688d3ac79e" compoundref="hashtbl_8h" startline="553" endline="557">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1a309bb4c9c99e9ecfbea24b738fb4ae98" compoundref="hashtbl_8h" startline="630" endline="636">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1a696bf1a8c7c82c40b3ab6d20bf2713dd" compoundref="hashtbl_8h" startline="646" endline="652">insert_unique</referencedby>
+        <referencedby refid="classhash__table_1ae04400aee1633196d522ee96a2950d4f" compoundref="hashtbl_8h" startline="662" endline="668">insert_unique</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a7ec30b796bf65d8d72a4a6f334ddcb5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator hash_table::insert_equal_noresize</definition>
+        <argsstring>(const value_type &amp;obj)</argsstring>
+        <name>insert_equal_noresize</name>
+        <qualifiedname>hash_table::insert_equal_noresize</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="609" column="14"/>
+        <referencedby refid="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" compoundref="hashtbl_8h" startline="559" endline="563">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a596862bd9da7baceb28a3e9c46138f6b" compoundref="hashtbl_8h" startline="638" endline="644">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a0ffd036cb9c1bce9d320158b5b503893" compoundref="hashtbl_8h" startline="654" endline="660">insert_equal</referencedby>
+        <referencedby refid="classhash__table_1a4c16f2a5c21746e98da5f8881c2c0c0f" compoundref="hashtbl_8h" startline="670" endline="676">insert_equal</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a309bb4c9c99e9ecfbea24b738fb4ae98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::insert_unique</definition>
+        <argsstring>(const value_type *f, const value_type *l)</argsstring>
+        <name>insert_unique</name>
+        <qualifiedname>hash_table::insert_unique</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> *</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="630" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="630" bodyend="636"/>
+        <references refid="classhash__table_1a1ef50d430fff4dc415d1ed49c336bd44">insert_unique_noresize</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9">resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a596862bd9da7baceb28a3e9c46138f6b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::insert_equal</definition>
+        <argsstring>(const value_type *f, const value_type *l)</argsstring>
+        <name>insert_equal</name>
+        <qualifiedname>hash_table::insert_equal</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> *</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="638" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="638" bodyend="644"/>
+        <references refid="classhash__table_1a7ec30b796bf65d8d72a4a6f334ddcb5d">insert_equal_noresize</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9">resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a696bf1a8c7c82c40b3ab6d20bf2713dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::insert_unique</definition>
+        <argsstring>(const_iterator f, const_iterator l)</argsstring>
+        <name>insert_unique</name>
+        <qualifiedname>hash_table::insert_unique</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="646" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="646" bodyend="652"/>
+        <references refid="classhash__table_1a1ef50d430fff4dc415d1ed49c336bd44">insert_unique_noresize</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9">resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a0ffd036cb9c1bce9d320158b5b503893" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::insert_equal</definition>
+        <argsstring>(const_iterator f, const_iterator l)</argsstring>
+        <name>insert_equal</name>
+        <qualifiedname>hash_table::insert_equal</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="654" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="654" bodyend="660"/>
+        <references refid="classhash__table_1a7ec30b796bf65d8d72a4a6f334ddcb5d">insert_equal_noresize</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9">resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1ae04400aee1633196d522ee96a2950d4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::insert_unique</definition>
+        <argsstring>(iterator f, iterator l)</argsstring>
+        <name>insert_unique</name>
+        <qualifiedname>hash_table::insert_unique</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="662" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="662" bodyend="668"/>
+        <references refid="classhash__table_1a1ef50d430fff4dc415d1ed49c336bd44">insert_unique_noresize</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9">resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a4c16f2a5c21746e98da5f8881c2c0c0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::insert_equal</definition>
+        <argsstring>(iterator f, iterator l)</argsstring>
+        <name>insert_equal</name>
+        <qualifiedname>hash_table::insert_equal</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="670" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="670" bodyend="676"/>
+        <references refid="classhash__table_1a7ec30b796bf65d8d72a4a6f334ddcb5d">insert_equal_noresize</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9">resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a21f69cdc4028ed5ff10b4efd6f84f58f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator hash_table::lower_bound</definition>
+        <argsstring>(const key_type &amp;key)</argsstring>
+        <name>lower_bound</name>
+        <qualifiedname>hash_table::lower_bound</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="679" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="679" bodyend="687"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__map_1a40c15f69d8d1b4c91a69c554313ddff0" compoundref="hashmap_8h" startline="196" endline="196">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__multimap_1a8826e78a6f682a23982f8c62fb015385" compoundref="hashmmap_8h" startline="196" endline="197">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__multiset_1a1b5cbe6f2c7efe0ebada54b9a6835c46" compoundref="hashmset_8h" startline="173" endline="176">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__set_1a657f29e2886dcbdc81b3dfc939fa822b" compoundref="hashset_8h" startline="173" endline="176">hash_set&lt; Key, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__map_1a0910ee8f6ba55833876c406bb07e8168" compoundref="hashmap_8h" startline="197" endline="200">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__multimap_1a17c59f9ad0eb9e53b39fc3ad4fd83aaf" compoundref="hashmmap_8h" startline="199" endline="202">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__multiset_1a82011965bd984f5a1106f59cd5b00faf" compoundref="hashmset_8h" startline="177" endline="180">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__set_1a4bb3a28f01388bc791d79d0d0d2c7eeb" compoundref="hashset_8h" startline="177" endline="180">hash_set&lt; Key, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a08438261a278050a5f666bbc991238cc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator hash_table::lower_bound</definition>
+        <argsstring>(const key_type &amp;key) const</argsstring>
+        <name>lower_bound</name>
+        <qualifiedname>hash_table::lower_bound</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="689" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="689" bodyend="697"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a678b3b29c286646d0a5b300a9ea46862" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator hash_table::upper_bound</definition>
+        <argsstring>(const key_type &amp;key)</argsstring>
+        <name>upper_bound</name>
+        <qualifiedname>hash_table::upper_bound</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="699" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="699" bodyend="715"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__map_1a373bf8ab7393869fbaa186d3c2be6473" compoundref="hashmap_8h" startline="202" endline="202">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::upper_bound</referencedby>
+        <referencedby refid="classhash__multimap_1a21c5030661678ba9577fd4d776600385" compoundref="hashmmap_8h" startline="204" endline="205">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::upper_bound</referencedby>
+        <referencedby refid="classhash__multiset_1a152150a63271e5a20daf1988bf6c4f8e" compoundref="hashmset_8h" startline="182" endline="185">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::upper_bound</referencedby>
+        <referencedby refid="classhash__set_1a82fb286df5a497b235cad1b177041110" compoundref="hashset_8h" startline="182" endline="185">hash_set&lt; Key, HashFunction, KeyEqual &gt;::upper_bound</referencedby>
+        <referencedby refid="classhash__multiset_1a5b0a9e87d95fe6ebca709f3d8f5f85fd" compoundref="hashmset_8h" startline="186" endline="189">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::upper_bound</referencedby>
+        <referencedby refid="classhash__set_1abb63219962adff21466de8d05da0a833" compoundref="hashset_8h" startline="186" endline="189">hash_set&lt; Key, HashFunction, KeyEqual &gt;::upper_bound</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a76bb98ff6b334d838d3e3db8eaa5efe9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator hash_table::upper_bound</definition>
+        <argsstring>(const key_type &amp;key) const</argsstring>
+        <name>upper_bound</name>
+        <qualifiedname>hash_table::upper_bound</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="717" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="717" bodyend="733"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a36defaef2a09251419390437ef89dce0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1acfce9094c0ed834f9010623883631718" kindref="member">pair_iterator_iterator</ref></type>
+        <definition>pair_iterator_iterator hash_table::equal_range</definition>
+        <argsstring>(const key_type &amp;key)</argsstring>
+        <name>equal_range</name>
+        <qualifiedname>hash_table::equal_range</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="735" column="28" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="735" bodyend="753"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1aa03874c88e44da1d3b93545da8fddc92" compoundref="hashtbl_8h" startline="518" endline="522">end</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+        <referencedby refid="classhash__map_1a8b7321df5ed8263ee2680a62f6d12e23" compoundref="hashmap_8h" startline="187" endline="187">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__multimap_1a63363757241bab5c5e71923eeed4dc8b" compoundref="hashmmap_8h" startline="186" endline="189">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__multiset_1ae76128bce64e8db093a4d6638d747a90" compoundref="hashmset_8h" startline="161" endline="164">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__set_1a0224e2317ea697d894460eaedbd5817b" compoundref="hashset_8h" startline="165" endline="166">hash_set&lt; Key, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__map_1ab8845aefe7097c9fd8aa2e394e060db5" compoundref="hashmap_8h" startline="190" endline="190">hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__multimap_1af81d7cccd42839d3ad02eca725b9850a" compoundref="hashmmap_8h" startline="191" endline="194">hash_multimap&lt; Key, T, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__multiset_1a7652ea8424cdec022da76cd04ec50650" compoundref="hashmset_8h" startline="168" endline="171">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__set_1a87adfc078b3be1078e41c20d31835625" compoundref="hashset_8h" startline="170" endline="171">hash_set&lt; Key, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a8ff476662a1de45b685479796dae8ae3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1abd8703589c12ac5f2f52ef259ef6631a" kindref="member">pair_citerator_citerator</ref></type>
+        <definition>pair_citerator_citerator hash_table::equal_range</definition>
+        <argsstring>(const key_type &amp;key) const</argsstring>
+        <name>equal_range</name>
+        <qualifiedname>hash_table::equal_range</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="755" column="30" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="755" bodyend="773"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1aa03874c88e44da1d3b93545da8fddc92" compoundref="hashtbl_8h" startline="518" endline="522">end</references>
+        <references refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" compoundref="hashtbl_8h" startline="378">equals</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+        <references refid="mcompile_8h_1ad41ee3ebcf20751269ac6185ab7e7602" compoundref="mcompile_8h" startline="426">READ_LOCK</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhash__table_1a5fec4ad27f62e2c8a31576eab521ec33" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long hash_table::__stl_next_prime</definition>
+        <argsstring>(unsigned long n) const</argsstring>
+        <name>__stl_next_prime</name>
+        <qualifiedname>hash_table::__stl_next_prime</qualifiedname>
+        <param>
+          <type>unsigned long</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="210" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="210" bodyend="220"/>
+        <references refid="hashtbl_8h_1aa950757617fc0a2f5112d2cdbfb64389" compoundref="hashtbl_8h" startline="209">_MN_</references>
+        <referencedby refid="classhash__table_1a14dc66ae8af86f09f159edd3cf87eacf" compoundref="hashtbl_8h" startline="354" endline="354">next_size</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1af1fe1d15c087057042d404527fa6cb07" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::copy_from</definition>
+        <argsstring>(const HT_TYPE &amp;ht)</argsstring>
+        <name>copy_from</name>
+        <qualifiedname>hash_table::copy_from</qualifiedname>
+        <param>
+          <type>const <ref refid="hashtbl_8h_1ad0cbcebc05b2352df7b9be6e7c245d3c" kindref="member">HT_TYPE</ref> &amp;</type>
+          <declname>ht</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="223" column="11" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="223" bodyend="251"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</references>
+        <references refid="mcompile_8h_1a7b0ecbe80907834f344aa394318dc67d" compoundref="mcompile_8h" startline="485">MSIPL_CATCH</references>
+        <references refid="mcompile_8h_1a8d30d8225b1a7b22fd3c3ed019a0f6de" compoundref="mcompile_8h" startline="484">MSIPL_TRY</references>
+        <references refid="classhash__table_1acf7a649589f0035cda3c0010f2a3a742" compoundref="hashtbl_8h" startline="296" endline="311">new_node</references>
+        <references refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" compoundref="rand_8c" startline="34">next</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="mcompile_8h_1ab827ae98234ebc688ef784ef7cf90404" compoundref="mcompile_8h" startline="427">WRITE_LOCK</references>
+        <referencedby refid="classhash__table_1a878f16d6adaf47bb688c8e16c4bacb84" compoundref="hashtbl_8h" startline="410" endline="413">hash_table</referencedby>
+        <referencedby refid="classhash__table_1a09b9c86b632363999aaac01d53614996" compoundref="hashtbl_8h" startline="415" endline="427">operator=</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1adc921f55d84f4559b5701a5c3ec45fa8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::erase_bucket</definition>
+        <argsstring>(const size_type n, link_type first, link_type last)</argsstring>
+        <name>erase_bucket</name>
+        <qualifiedname>hash_table::erase_bucket</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="253" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="253" bodyend="270"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1adc921f55d84f4559b5701a5c3ec45fa8" compoundref="hashtbl_8h" startline="253" endline="270">erase_bucket</references>
+        <references refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" compoundref="rand_8c" startline="34">next</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1aef4b08126cb185139da5ec489d420ae8" compoundref="hashtbl_8h" startline="319" endline="327">put_node</references>
+        <references refid="mcompile_8h_1ab827ae98234ebc688ef784ef7cf90404" compoundref="mcompile_8h" startline="427">WRITE_LOCK</references>
+        <referencedby refid="classhash__table_1adc921f55d84f4559b5701a5c3ec45fa8" compoundref="hashtbl_8h" startline="253" endline="270">erase_bucket</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1aebba8b1dcc64a3524aecec121243d600" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::erase_bucket</definition>
+        <argsstring>(const size_type n, link_type last)</argsstring>
+        <name>erase_bucket</name>
+        <qualifiedname>hash_table::erase_bucket</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="272" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="272" bodyend="283"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" compoundref="rand_8c" startline="34">next</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1aef4b08126cb185139da5ec489d420ae8" compoundref="hashtbl_8h" startline="319" endline="327">put_node</references>
+        <references refid="mcompile_8h_1ab827ae98234ebc688ef784ef7cf90404" compoundref="mcompile_8h" startline="427">WRITE_LOCK</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a88c09b2793b5b832a4fa6e00e3d6d925" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+        <definition>link_type hash_table::get_node</definition>
+        <argsstring>()</argsstring>
+        <name>get_node</name>
+        <qualifiedname>hash_table::get_node</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="285" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="285" bodyend="294"/>
+        <references refid="classhash__table_1a7c7f7542d35b2acc5b18e41381e62659" compoundref="hashtbl_8h" startline="381">free_list</references>
+        <references refid="classhash__table_1a90603dc0b299ec6d4468b0c6ea79c220" compoundref="hashtbl_8h" startline="382">hash_node_allocator</references>
+        <references refid="mcompile_8h_1ab827ae98234ebc688ef784ef7cf90404" compoundref="mcompile_8h" startline="427">WRITE_LOCK</references>
+        <referencedby refid="classhash__table_1acf7a649589f0035cda3c0010f2a3a742" compoundref="hashtbl_8h" startline="296" endline="311">new_node</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1acf7a649589f0035cda3c0010f2a3a742" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+        <definition>link_type hash_table::new_node</definition>
+        <argsstring>(const value_type &amp;obj)</argsstring>
+        <name>new_node</name>
+        <qualifiedname>hash_table::new_node</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="296" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="296" bodyend="311"/>
+        <references refid="classhash__table_1a88c09b2793b5b832a4fa6e00e3d6d925" compoundref="hashtbl_8h" startline="285" endline="294">get_node</references>
+        <references refid="classhash__table_1a90603dc0b299ec6d4468b0c6ea79c220" compoundref="hashtbl_8h" startline="382">hash_node_allocator</references>
+        <references refid="mcompile_8h_1a7b0ecbe80907834f344aa394318dc67d" compoundref="mcompile_8h" startline="485">MSIPL_CATCH</references>
+        <references refid="mcompile_8h_1a8d30d8225b1a7b22fd3c3ed019a0f6de" compoundref="mcompile_8h" startline="484">MSIPL_TRY</references>
+        <references refid="classhash__table_1a685076d213b570367c42cdb1e01ea13d" compoundref="hashtbl_8h" startline="383">value_allocator</references>
+        <referencedby refid="classhash__table_1af1fe1d15c087057042d404527fa6cb07" compoundref="hashtbl_8h" startline="223" endline="251">copy_from</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a4efb2d3a8cb529757df9271766efa788" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::delete_node</definition>
+        <argsstring>(link_type n)</argsstring>
+        <name>delete_node</name>
+        <qualifiedname>hash_table::delete_node</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="313" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="313" bodyend="317"/>
+        <references refid="classhash__table_1a90603dc0b299ec6d4468b0c6ea79c220" compoundref="hashtbl_8h" startline="382">hash_node_allocator</references>
+        <references refid="classhash__table_1a685076d213b570367c42cdb1e01ea13d" compoundref="hashtbl_8h" startline="383">value_allocator</references>
+        <referencedby refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1aef4b08126cb185139da5ec489d420ae8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::put_node</definition>
+        <argsstring>(link_type n)</argsstring>
+        <name>put_node</name>
+        <qualifiedname>hash_table::put_node</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" kindref="member">link_type</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="319" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="319" bodyend="327"/>
+        <references refid="classhash__table_1a7c7f7542d35b2acc5b18e41381e62659" compoundref="hashtbl_8h" startline="381">free_list</references>
+        <references refid="classhash__table_1a685076d213b570367c42cdb1e01ea13d" compoundref="hashtbl_8h" startline="383">value_allocator</references>
+        <referencedby refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">clear</referencedby>
+        <referencedby refid="classhash__table_1adc921f55d84f4559b5701a5c3ec45fa8" compoundref="hashtbl_8h" startline="253" endline="270">erase_bucket</referencedby>
+        <referencedby refid="classhash__table_1aebba8b1dcc64a3524aecec121243d600" compoundref="hashtbl_8h" startline="272" endline="283">erase_bucket</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_table::clear</definition>
+        <argsstring>(bool delete_it=false)</argsstring>
+        <name>clear</name>
+        <qualifiedname>hash_table::clear</qualifiedname>
+        <param>
+          <type><ref refid="stdbool_8h_1abb452686968e48b67397da5f97445f5b" kindref="member">bool</ref></type>
+          <declname>delete_it</declname>
+          <defval><ref refid="stdbool_8h_1a65e9886d74aaee76545e83dd09011727" kindref="member">false</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="329" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="329" bodyend="352"/>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <references refid="classhash__table_1a4efb2d3a8cb529757df9271766efa788" compoundref="hashtbl_8h" startline="313" endline="317">delete_node</references>
+        <references refid="classhash__table_1a7c7f7542d35b2acc5b18e41381e62659" compoundref="hashtbl_8h" startline="381">free_list</references>
+        <references refid="classhash__table_1a90603dc0b299ec6d4468b0c6ea79c220" compoundref="hashtbl_8h" startline="382">hash_node_allocator</references>
+        <references refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" compoundref="rand_8c" startline="34">next</references>
+        <references refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" compoundref="hashtbl_8h" startline="379">num_elements</references>
+        <references refid="classhash__table_1aef4b08126cb185139da5ec489d420ae8" compoundref="hashtbl_8h" startline="319" endline="327">put_node</references>
+        <referencedby refid="classhash__table_1af1fe1d15c087057042d404527fa6cb07" compoundref="hashtbl_8h" startline="223" endline="251">copy_from</referencedby>
+        <referencedby refid="classhash__table_1a09b9c86b632363999aaac01d53614996" compoundref="hashtbl_8h" startline="415" endline="427">operator=</referencedby>
+        <referencedby refid="classhash__table_1affd5abb02f106693d0b514d6c718b697" compoundref="hashtbl_8h" startline="469" endline="472">~hash_table</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1a14dc66ae8af86f09f159edd3cf87eacf" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::next_size</definition>
+        <argsstring>(size_type n) const</argsstring>
+        <name>next_size</name>
+        <qualifiedname>hash_table::next_size</qualifiedname>
+        <param>
+          <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="354" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="354" bodyend="354"/>
+        <references refid="classhash__table_1a5fec4ad27f62e2c8a31576eab521ec33" compoundref="hashtbl_8h" startline="210" endline="220">__stl_next_prime</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::bkt_num_key</definition>
+        <argsstring>(const key_type &amp;key) const</argsstring>
+        <name>bkt_num_key</name>
+        <qualifiedname>hash_table::bkt_num_key</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="356" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="356" bodyend="359"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" compoundref="hashtbl_8h" startline="384">buckets</references>
+        <referencedby refid="classhash__table_1af96393990e7a4381bbb97c117d452c38" compoundref="hashtbl_8h" startline="361" endline="364">bkt_num</referencedby>
+        <referencedby refid="classhash__table_1ad786d7a0364bc5cc2b2e06a9b21152a1" compoundref="hashtbl_8h" startline="371" endline="374">bkt_num</referencedby>
+        <referencedby refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</referencedby>
+        <referencedby refid="classhash__table_1aa8ad88e8c32f665a053ca1d7b710816e" compoundref="hashtbl_8h" startline="589" endline="598">count</referencedby>
+        <referencedby refid="classhash__table_1a36defaef2a09251419390437ef89dce0" compoundref="hashtbl_8h" startline="735" endline="753">equal_range</referencedby>
+        <referencedby refid="classhash__table_1a8ff476662a1de45b685479796dae8ae3" compoundref="hashtbl_8h" startline="755" endline="773">equal_range</referencedby>
+        <referencedby refid="classhash__table_1adf178262ef1fd3be8c05a1187400f462" compoundref="hashtbl_8h" startline="567" endline="576">find</referencedby>
+        <referencedby refid="classhash__table_1acbeb98c2798f467b14eb30d99626837d" compoundref="hashtbl_8h" startline="578" endline="587">find</referencedby>
+        <referencedby refid="classhash__table_1a21f69cdc4028ed5ff10b4efd6f84f58f" compoundref="hashtbl_8h" startline="679" endline="687">lower_bound</referencedby>
+        <referencedby refid="classhash__table_1a08438261a278050a5f666bbc991238cc" compoundref="hashtbl_8h" startline="689" endline="697">lower_bound</referencedby>
+        <referencedby refid="classhash__table_1a678b3b29c286646d0a5b300a9ea46862" compoundref="hashtbl_8h" startline="699" endline="715">upper_bound</referencedby>
+        <referencedby refid="classhash__table_1a76bb98ff6b334d838d3e3db8eaa5efe9" compoundref="hashtbl_8h" startline="717" endline="733">upper_bound</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1af96393990e7a4381bbb97c117d452c38" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::bkt_num</definition>
+        <argsstring>(const value_type &amp;obj) const</argsstring>
+        <name>bkt_num</name>
+        <qualifiedname>hash_table::bkt_num</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="361" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="361" bodyend="364"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1aebf85ec687baaaabe6793dc176925c35" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::bkt_num_key</definition>
+        <argsstring>(const key_type &amp;key, size_t n) const</argsstring>
+        <name>bkt_num_key</name>
+        <qualifiedname>hash_table::bkt_num_key</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1aa48cd3663c164203576bc549bc918257" kindref="member">key_type</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="366" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="366" bodyend="369"/>
+        <references refid="classhash__table_1a6f484ff50aac3cc1d027239030142999" compoundref="hashtbl_8h" startline="377">hash</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__table_1ad786d7a0364bc5cc2b2e06a9b21152a1" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">size_type</ref></type>
+        <definition>size_type hash_table::bkt_num</definition>
+        <argsstring>(const value_type &amp;obj, size_t n) const</argsstring>
+        <name>bkt_num</name>
+        <qualifiedname>hash_table::bkt_num</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" kindref="member">value_type</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="371" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="371" bodyend="374"/>
+        <references refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" compoundref="hashtbl_8h" startline="356" endline="359">bkt_num_key</references>
+        <references refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" compoundref="hashtbl_8h" startline="380">get_key</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hash_table</label>
+        <link refid="classhash__table"/>
+      </node>
+      <node id="3">
+        <label>hash_table&lt; key_type, value_type, identity&lt; value_type &gt;, hash_function, key_equal, allocator&lt; value_type &gt; &gt;</label>
+        <link refid="classhash__table"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; key_type, value_type, identity&lt; value_type &gt;, hash_function, key_equal, allocator&lt; value_type &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hash_table&lt; key_type, value_type, select1st&lt; value_type &gt;, hash_function, key_equal, allocator&lt; value_type &gt; &gt;</label>
+        <link refid="classhash__table"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; key_type, value_type, select1st&lt; value_type &gt;, hash_function, key_equal, allocator&lt; value_type &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" line="51" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashtbl.h" bodystart="51" bodyend="775"/>
+    <listofallmembers>
+      <member refid="classhash__table_1a5fec4ad27f62e2c8a31576eab521ec33" prot="private" virt="non-virtual"><scope>hash_table</scope><name>__stl_next_prime</name></member>
+      <member refid="classhash__table_1ae125f34e4f370176908987e0f09b9a0e" prot="public" virt="non-virtual"><scope>hash_table</scope><name>ALLOC_BIND</name></member>
+      <member refid="classhash__table_1a5fcc67e112520ac1267de587098078ae" prot="public" virt="non-virtual"><scope>hash_table</scope><name>ALLOC_BIND</name></member>
+      <member refid="classhash__table_1ac01da9dd3225ef73eb7197549f99ad06" prot="public" virt="non-virtual"><scope>hash_table</scope><name>ALLOC_BIND</name></member>
+      <member refid="classhash__table_1aab44a6ae3910bc4edce06f2e396f7c3d" prot="public" virt="non-virtual"><scope>hash_table</scope><name>begin</name></member>
+      <member refid="classhash__table_1a42b526f22f92c49c16fbf96e65b69daa" prot="public" virt="non-virtual"><scope>hash_table</scope><name>begin</name></member>
+      <member refid="classhash__table_1af96393990e7a4381bbb97c117d452c38" prot="private" virt="non-virtual"><scope>hash_table</scope><name>bkt_num</name></member>
+      <member refid="classhash__table_1ad786d7a0364bc5cc2b2e06a9b21152a1" prot="private" virt="non-virtual"><scope>hash_table</scope><name>bkt_num</name></member>
+      <member refid="classhash__table_1ac820f744ea6262645a4775c0a52e5f02" prot="private" virt="non-virtual"><scope>hash_table</scope><name>bkt_num_key</name></member>
+      <member refid="classhash__table_1aebf85ec687baaaabe6793dc176925c35" prot="private" virt="non-virtual"><scope>hash_table</scope><name>bkt_num_key</name></member>
+      <member refid="classhash__table_1a8517548791ad727d9a1c5eda226e2872" prot="public" virt="non-virtual"><scope>hash_table</scope><name>bucket_count</name></member>
+      <member refid="classhash__table_1a6941b5daf245dec6acb7f0074921d2d5" prot="protected" virt="non-virtual"><scope>hash_table</scope><name>buckets</name></member>
+      <member refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" prot="private" virt="non-virtual"><scope>hash_table</scope><name>clear</name></member>
+      <member refid="classhash__table_1ac220ce1c155db1ac44146c12d178056f" prot="public" virt="non-virtual"><scope>hash_table</scope><name>const_iterator</name></member>
+      <member refid="classhash__table_1afc9fde4baace5b4aaaff1c5cdf7af97f" prot="public" virt="non-virtual"><scope>hash_table</scope><name>const_pointer</name></member>
+      <member refid="classhash__table_1accb019a225eef385fcff4757deed909c" prot="public" virt="non-virtual"><scope>hash_table</scope><name>const_reference</name></member>
+      <member refid="classhash__table_1af1fe1d15c087057042d404527fa6cb07" prot="private" virt="non-virtual"><scope>hash_table</scope><name>copy_from</name></member>
+      <member refid="classhash__table_1aa8ad88e8c32f665a053ca1d7b710816e" prot="public" virt="non-virtual"><scope>hash_table</scope><name>count</name></member>
+      <member refid="classhash__table_1a4efb2d3a8cb529757df9271766efa788" prot="private" virt="non-virtual"><scope>hash_table</scope><name>delete_node</name></member>
+      <member refid="classhash__table_1aa445dafb26972b495b485bed3efc7d57" prot="public" virt="non-virtual"><scope>hash_table</scope><name>difference_type</name></member>
+      <member refid="classhash__table_1aed344c739659ca77c52e6291ae2a52b3" prot="public" virt="non-virtual"><scope>hash_table</scope><name>elems_in_bucket</name></member>
+      <member refid="classhash__table_1a96fe2ea2fa9dc6900c3eef47c4ea5ce5" prot="public" virt="non-virtual"><scope>hash_table</scope><name>empty</name></member>
+      <member refid="classhash__table_1aa03874c88e44da1d3b93545da8fddc92" prot="public" virt="non-virtual"><scope>hash_table</scope><name>end</name></member>
+      <member refid="classhash__table_1aef117416893dcc9ddbefb5037b8fe8d0" prot="public" virt="non-virtual"><scope>hash_table</scope><name>end</name></member>
+      <member refid="classhash__table_1a36defaef2a09251419390437ef89dce0" prot="public" virt="non-virtual"><scope>hash_table</scope><name>equal_range</name></member>
+      <member refid="classhash__table_1a8ff476662a1de45b685479796dae8ae3" prot="public" virt="non-virtual"><scope>hash_table</scope><name>equal_range</name></member>
+      <member refid="classhash__table_1a1dd8c4820bf06c905cd1f3e288a5a127" prot="protected" virt="non-virtual"><scope>hash_table</scope><name>equals</name></member>
+      <member refid="classhash__table_1a580c1acb6c733e75dd9ebf9b8c67cd68" prot="public" virt="non-virtual"><scope>hash_table</scope><name>erase</name></member>
+      <member refid="classhash__table_1a2bef1e4c6eacbc7a0d13867731f39bcf" prot="public" virt="non-virtual"><scope>hash_table</scope><name>erase</name></member>
+      <member refid="classhash__table_1a84f8179a94a2ec318951a194175454b1" prot="public" virt="non-virtual"><scope>hash_table</scope><name>erase</name></member>
+      <member refid="classhash__table_1a44fa35e4d5af69a570fd047ea735a4c1" prot="public" virt="non-virtual"><scope>hash_table</scope><name>erase</name></member>
+      <member refid="classhash__table_1af315e218e901d946841162fe91250640" prot="public" virt="non-virtual"><scope>hash_table</scope><name>erase</name></member>
+      <member refid="classhash__table_1adc921f55d84f4559b5701a5c3ec45fa8" prot="private" virt="non-virtual"><scope>hash_table</scope><name>erase_bucket</name></member>
+      <member refid="classhash__table_1aebba8b1dcc64a3524aecec121243d600" prot="private" virt="non-virtual"><scope>hash_table</scope><name>erase_bucket</name></member>
+      <member refid="classhash__table_1adf178262ef1fd3be8c05a1187400f462" prot="public" virt="non-virtual"><scope>hash_table</scope><name>find</name></member>
+      <member refid="classhash__table_1acbeb98c2798f467b14eb30d99626837d" prot="public" virt="non-virtual"><scope>hash_table</scope><name>find</name></member>
+      <member refid="classhash__table_1ae584f23e3f5662789ecb9dd695113a0b" prot="public" virt="non-virtual"><scope>hash_table</scope><name>find_or_insert</name></member>
+      <member refid="classhash__table_1a7c7f7542d35b2acc5b18e41381e62659" prot="protected" virt="non-virtual"><scope>hash_table</scope><name>free_list</name></member>
+      <member refid="classhash__table_1ad671963f507e167c31e0a4cdcb0b45a8" prot="protected" virt="non-virtual"><scope>hash_table</scope><name>get_key</name></member>
+      <member refid="classhash__table_1a88c09b2793b5b832a4fa6e00e3d6d925" prot="private" virt="non-virtual"><scope>hash_table</scope><name>get_node</name></member>
+      <member refid="classhash__table_1a6f484ff50aac3cc1d027239030142999" prot="protected" virt="non-virtual"><scope>hash_table</scope><name>hash</name></member>
+      <member refid="classhash__table_1ae192bbb3dc041043f49c2f86c0ea49a1" prot="public" virt="non-virtual"><scope>hash_table</scope><name>hash_funct</name></member>
+      <member refid="classhash__table_1ab662b94f64aaf331e750813319977a3a" prot="public" virt="non-virtual"><scope>hash_table</scope><name>hash_function</name></member>
+      <member refid="classhash__table_1a90603dc0b299ec6d4468b0c6ea79c220" prot="protected" virt="non-virtual"><scope>hash_table</scope><name>hash_node_allocator</name></member>
+      <member refid="classhash__table_1a097bcb21b87c47c00eda9dc008f42603" prot="public" virt="non-virtual"><scope>hash_table</scope><name>hash_table</name></member>
+      <member refid="classhash__table_1a3c7a4ba06c92ace47d58fd903d0d41a6" prot="public" virt="non-virtual"><scope>hash_table</scope><name>hash_table</name></member>
+      <member refid="classhash__table_1a878f16d6adaf47bb688c8e16c4bacb84" prot="public" virt="non-virtual"><scope>hash_table</scope><name>hash_table</name></member>
+      <member refid="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_equal</name></member>
+      <member refid="classhash__table_1a596862bd9da7baceb28a3e9c46138f6b" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_equal</name></member>
+      <member refid="classhash__table_1a0ffd036cb9c1bce9d320158b5b503893" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_equal</name></member>
+      <member refid="classhash__table_1a4c16f2a5c21746e98da5f8881c2c0c0f" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_equal</name></member>
+      <member refid="classhash__table_1a7ec30b796bf65d8d72a4a6f334ddcb5d" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_equal_noresize</name></member>
+      <member refid="classhash__table_1a03727b57327cbfe6fbdb43688d3ac79e" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_unique</name></member>
+      <member refid="classhash__table_1a309bb4c9c99e9ecfbea24b738fb4ae98" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_unique</name></member>
+      <member refid="classhash__table_1a696bf1a8c7c82c40b3ab6d20bf2713dd" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_unique</name></member>
+      <member refid="classhash__table_1ae04400aee1633196d522ee96a2950d4f" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_unique</name></member>
+      <member refid="classhash__table_1a1ef50d430fff4dc415d1ed49c336bd44" prot="public" virt="non-virtual"><scope>hash_table</scope><name>insert_unique_noresize</name></member>
+      <member refid="classhash__table_1a67171474c4da6cc8efe0c7fafefd2b2d" prot="public" virt="non-virtual"><scope>hash_table</scope><name>iterator</name></member>
+      <member refid="classhash__table_1afbe08f6baea19d8c98ea753e4bd6819c" prot="public" virt="non-virtual"><scope>hash_table</scope><name>key_comp</name></member>
+      <member refid="classhash__table_1aa48cd3663c164203576bc549bc918257" prot="public" virt="non-virtual"><scope>hash_table</scope><name>key_type</name></member>
+      <member refid="classhash__table_1af5668eedbaf10c65a91025681dde2c0f" prot="public" virt="non-virtual"><scope>hash_table</scope><name>link_type</name></member>
+      <member refid="classhash__table_1a21f69cdc4028ed5ff10b4efd6f84f58f" prot="public" virt="non-virtual"><scope>hash_table</scope><name>lower_bound</name></member>
+      <member refid="classhash__table_1a08438261a278050a5f666bbc991238cc" prot="public" virt="non-virtual"><scope>hash_table</scope><name>lower_bound</name></member>
+      <member refid="classhash__table_1a28cbd0ab5524006e121e6eb6c014ab4a" prot="public" virt="non-virtual"><scope>hash_table</scope><name>max_bucket_count</name></member>
+      <member refid="classhash__table_1a7392c4dfe6e83b41abd56e18c1fa0f37" prot="public" virt="non-virtual"><scope>hash_table</scope><name>max_size</name></member>
+      <member refid="classhash__table_1acf7a649589f0035cda3c0010f2a3a742" prot="private" virt="non-virtual"><scope>hash_table</scope><name>new_node</name></member>
+      <member refid="classhash__table_1a14dc66ae8af86f09f159edd3cf87eacf" prot="private" virt="non-virtual"><scope>hash_table</scope><name>next_size</name></member>
+      <member refid="classhash__table_1a4f2d0c780578a3cf158972a40263fdd0" prot="protected" virt="non-virtual"><scope>hash_table</scope><name>num_elements</name></member>
+      <member refid="classhash__table_1a45c0bef85a92f768d82a7ab7412e0334" prot="public" virt="non-virtual"><scope>hash_table</scope><name>operator!=</name></member>
+      <member refid="classhash__table_1a09b9c86b632363999aaac01d53614996" prot="public" virt="non-virtual"><scope>hash_table</scope><name>operator=</name></member>
+      <member refid="classhash__table_1abb12dc3db5c0edef62a3be7f0f7ff7d1" prot="public" virt="non-virtual"><scope>hash_table</scope><name>operator==</name></member>
+      <member refid="classhash__table_1abd8703589c12ac5f2f52ef259ef6631a" prot="public" virt="non-virtual"><scope>hash_table</scope><name>pair_citerator_citerator</name></member>
+      <member refid="classhash__table_1aa6342fcde217cf455647266485ff649f" prot="public" virt="non-virtual"><scope>hash_table</scope><name>pair_iterator_bool</name></member>
+      <member refid="classhash__table_1acfce9094c0ed834f9010623883631718" prot="public" virt="non-virtual"><scope>hash_table</scope><name>pair_iterator_iterator</name></member>
+      <member refid="classhash__table_1a8be26f3bcc8463d0d56ae168749d5688" prot="public" virt="non-virtual"><scope>hash_table</scope><name>pointer</name></member>
+      <member refid="classhash__table_1aef4b08126cb185139da5ec489d420ae8" prot="private" virt="non-virtual"><scope>hash_table</scope><name>put_node</name></member>
+      <member refid="classhash__table_1a289ef8f76d6f13e8b2e13d5aa644c2bd" prot="public" virt="non-virtual"><scope>hash_table</scope><name>reference</name></member>
+      <member refid="classhash__table_1a1ffd63e0c5c266bcbb98c9a05edbe5d9" prot="public" virt="non-virtual"><scope>hash_table</scope><name>resize</name></member>
+      <member refid="classhash__table_1a71b5ceb997b0d1675cfc99eef0bab9bd" prot="public" virt="non-virtual"><scope>hash_table</scope><name>size</name></member>
+      <member refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" prot="public" virt="non-virtual"><scope>hash_table</scope><name>size_type</name></member>
+      <member refid="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" prot="public" virt="non-virtual"><scope>hash_table</scope><name>swap</name></member>
+      <member refid="classhash__table_1a678b3b29c286646d0a5b300a9ea46862" prot="public" virt="non-virtual"><scope>hash_table</scope><name>upper_bound</name></member>
+      <member refid="classhash__table_1a76bb98ff6b334d838d3e3db8eaa5efe9" prot="public" virt="non-virtual"><scope>hash_table</scope><name>upper_bound</name></member>
+      <member refid="classhash__table_1a685076d213b570367c42cdb1e01ea13d" prot="protected" virt="non-virtual"><scope>hash_table</scope><name>value_allocator</name></member>
+      <member refid="classhash__table_1a8d9dddbaad4e5c32b3ea4d6b2b6d81c6" prot="public" virt="non-virtual"><scope>hash_table</scope><name>value_type</name></member>
+      <member refid="classhash__table_1affd5abb02f106693d0b514d6c718b697" prot="public" virt="non-virtual"><scope>hash_table</scope><name>~hash_table</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

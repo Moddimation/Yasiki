@@ -1,0 +1,793 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="fstream" kind="file" language="C++">
+    <compoundname>fstream</compoundname>
+    <includedby refid="fstream_8h" local="no">fstream.h</includedby>
+    <includedby refid="iostream_8cpp" local="no">iostream.cpp</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>fstream</label>
+        <link refid="fstream"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fstream.h</label>
+        <link refid="fstream_8h"/>
+      </node>
+      <node id="3">
+        <label>iostream.cpp</label>
+        <link refid="iostream_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:58:49<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>fstream</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_FSTREAM</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_FSTREAM</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;iosfwd&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;streambuf&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ostream&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;istream&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;cstdio&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;cstring&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_filebuf</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.filebuf.cons<sp/>Constructors/destructor:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Nonstandard,<sp/>but<sp/>serves<sp/>as<sp/>standard<sp/>default<sp/>constructor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf(FILE*<sp/>file<sp/>=<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>~basic_filebuf();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.filebuf.members<sp/>Members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>is_open()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf*<sp/>open(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf*<sp/>close();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.filebuf.virtuals<sp/>Overridden<sp/>virtual<sp/>functions:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>virtual<sp/>streamsize<sp/>showmanyc();<sp/><sp/>//<sp/>use<sp/>basic_streambuf</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/>underflow();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/>uflow();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/>pbackfail(int_type<sp/>c<sp/>=<sp/>traits::eof());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/>overflow<sp/>(int_type<sp/>c<sp/>=<sp/>traits::eof());</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>virtual<sp/>basic_streambuf&lt;charT,traits&gt;*<sp/>setbuf(char_type*<sp/>s,<sp/>streamsize<sp/>n);<sp/><sp/>//<sp/>default<sp/>behavior<sp/>which<sp/>should<sp/>be<sp/>&quot;do<sp/>nothing&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>pos_type<sp/>seekoff(off_type<sp/>off,<sp/>ios_base::seekdir<sp/>way,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>pos_type<sp/>seekpos(pos_type<sp/>sp,<sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);<sp/>//<sp/>set<sp/>overflow_called_last_</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int<sp/><sp/><sp/><sp/><sp/><sp/>sync();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>void<sp/><sp/><sp/><sp/><sp/>imbue(const<sp/>locale&amp;<sp/>loc);</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits_type::state_type<sp/>state_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>codecvt&lt;charT,<sp/>char,<sp/>typename<sp/>traits::state_type&gt;<sp/>Converter;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FILE*<sp/>file_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>state_type<sp/>state_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>Converter*<sp/>a_codecvt_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>const<sp/>size_t<sp/>input_buffer_size_s<sp/>=<sp/>14;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>charT<sp/>input_buffer_[input_buffer_size_s];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>overflow_called_last_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>always_noconv_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>unshift();</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ifstream</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>basic_istream&lt;charT,<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ifstream.cons<sp/>Constructors:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ifstream();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_ifstream(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode<sp/>=<sp/>ios_base::in);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ifstream.members<sp/>Members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf&lt;charT,<sp/>traits&gt;*<sp/>rdbuf()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>is_open();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>open(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode<sp/>=<sp/>ios_base::in);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>close();</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf&lt;charT,<sp/>traits&gt;<sp/>sb_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ofstream</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>basic_ostream&lt;charT,<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ofstream.cons<sp/>Constructors:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ofstream();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_ofstream(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode<sp/>=<sp/>ios_base::out);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ofstream.members<sp/>Members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf&lt;charT,traits&gt;*<sp/>rdbuf()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>is_open();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>open(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode<sp/>=<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>close();</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf&lt;charT,<sp/>traits&gt;<sp/>sb_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_fstream</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>basic_iostream&lt;charT,<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>constructors/destructor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_fstream();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_fstream(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>Members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf&lt;charT,traits&gt;*<sp/>rdbuf()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>is_open();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>open(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>close();</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_filebuf&lt;charT,<sp/>traits&gt;<sp/>sb_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_filebuf<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Nonstandard,<sp/>but<sp/>serves<sp/>as<sp/>standard<sp/>default<sp/>constructor</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::basic_filebuf(FILE*<sp/>file)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>file_(file),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>state_(state_type()),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>overflow_called_last_(false)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>setg(input_buffer_,<sp/>input_buffer_,<sp/>input_buffer_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>a_codecvt_<sp/>=<sp/>&amp;_USE_FACET(Converter,<sp/>getloc());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>always_noconv_<sp/>=<sp/>a_codecvt_-&gt;always_noconv();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::~basic_filebuf()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>!=<sp/>stdin<sp/>&amp;&amp;<sp/>file_<sp/>!=<sp/>stdout<sp/>&amp;&amp;<sp/>file_<sp/>!=<sp/>stderr)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>close();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::is_open()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>file_<sp/>!=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::open(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>char*<sp/>modstr;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>switch<sp/>(mode<sp/>&amp;<sp/>~ios_base::ate)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>ios_base::out:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::out<sp/>|<sp/>(int)ios_base::trunc:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;w&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::out<sp/>|<sp/>(int)ios_base::app:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;a&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>ios_base::in:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;r&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::in<sp/>|<sp/>(int)ios_base::out:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;r+&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::in<sp/>|<sp/>(int)ios_base::out<sp/>|<sp/>(int)ios_base::trunc:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;w+&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::binary<sp/>|<sp/>(int)ios_base::out:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::binary<sp/>|<sp/>(int)ios_base::out<sp/>|<sp/>(int)ios_base::trunc:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;wb&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::binary<sp/>|<sp/>(int)ios_base::out<sp/>|<sp/>(int)ios_base::app:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;ab&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::binary<sp/>|<sp/>(int)ios_base::in:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;rb&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::binary<sp/>|<sp/>(int)ios_base::in<sp/>|<sp/>(int)ios_base::out:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;r+b&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>(int)ios_base::binary<sp/>|<sp/>(int)ios_base::in<sp/>|<sp/>(int)ios_base::out<sp/>|<sp/>(int)ios_base::trunc:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modstr<sp/>=<sp/>&quot;w+b&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>default:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>file_<sp/>=<sp/>fopen(s,<sp/>modstr);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(mode<sp/>&amp;<sp/>ios_base::ate<sp/>&amp;&amp;<sp/>fseek(file_,<sp/>0,<sp/>SEEK_END))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delete<sp/>[]<sp/>eback();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>close();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::close()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>if<sp/>(pptr()<sp/>&gt;<sp/>pbase()<sp/>&amp;&amp;<sp/>traits::eq_int_type(overflow(),<sp/>traits::eof()))<sp/><sp/>//<sp/>needed<sp/>if<sp/>put<sp/>buffer<sp/>enabled</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(overflow_called_last_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(!unshift())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>overflow_called_last_<sp/>=<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(fclose(file_)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>file_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_filebuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::underflow()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>overflow_called_last_<sp/>=<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(gptr()<sp/>&lt;<sp/>egptr())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::to_int_type(*gptr());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int_type<sp/>result<sp/>=<sp/>uflow();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!traits::eq_int_type(result,<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gbump(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_filebuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::uflow()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>overflow_called_last_<sp/>=<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(gptr()<sp/>&lt;<sp/>egptr())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gbump(1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::to_int_type(*(gptr()<sp/>-<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(always_noconv_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>result<sp/>=<sp/>fgetc(file_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(result<sp/>==<sp/>EOF)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t<sp/>n<sp/>=<sp/>size_t(egptr()<sp/>-<sp/>eback());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(n<sp/>==<sp/>input_buffer_size_s)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::move(eback(),<sp/>eback()<sp/>+<sp/>input_buffer_size_s/3,<sp/>input_buffer_size_s<sp/>-<sp/>input_buffer_size_s/3);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>/=<sp/>3;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(input_buffer_,<sp/>input_buffer_<sp/>+<sp/>n<sp/>+<sp/>1,<sp/>input_buffer_<sp/>+<sp/>n<sp/>+<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type<sp/>c<sp/>=<sp/>traits::to_char_type((int_type)result);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(gptr()<sp/>-<sp/>1)<sp/>=<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::to_int_type(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>n<sp/>=<sp/>a_codecvt_-&gt;encoding();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(n<sp/>==<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>ci<sp/>=<sp/>fgetc(file_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(ci<sp/>==<sp/>EOF)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>char<sp/>extern_buf<sp/>=<sp/>char(ci);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>char*<sp/>extern_end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type<sp/>intern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type*<sp/>intern_end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>codecvt_base::result<sp/>r<sp/>=<sp/>a_codecvt_-&gt;in(state_,<sp/>&amp;extern_buf,<sp/>&amp;extern_buf<sp/>+<sp/>1,<sp/>extern_end,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;intern_buf,<sp/>&amp;intern_buf<sp/>+<sp/>1,<sp/>intern_end);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>switch<sp/>(r)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::error:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::partial:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::noconv:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>intern_buf<sp/>=<sp/>(char_type)extern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::ok:</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t<sp/>es<sp/>=<sp/>size_t(egptr()<sp/>-<sp/>eback());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(es<sp/>==<sp/>input_buffer_size_s)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::move(eback(),<sp/>eback()<sp/>+<sp/>input_buffer_size_s/3,<sp/>input_buffer_size_s<sp/>-<sp/>input_buffer_size_s/3);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>es<sp/>/=<sp/>3;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(input_buffer_,<sp/>input_buffer_<sp/>+<sp/>es<sp/>+<sp/>1,<sp/>input_buffer_<sp/>+<sp/>es<sp/>+<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(gptr()<sp/>-<sp/>1)<sp/>=<sp/>intern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::to_int_type(intern_buf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>string<sp/>extern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>n<sp/>&gt;<sp/>1;<sp/>--n)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>ci<sp/>=<sp/>fgetc(file_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(ci<sp/>==<sp/>EOF)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extern_buf<sp/>+=<sp/>char(ci);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type<sp/>intern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>intern_end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>codecvt_base::result<sp/>r<sp/>=<sp/>codecvt_base::partial;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>while<sp/>(r<sp/>==<sp/>codecvt_base::partial)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>ci<sp/>=<sp/>fgetc(file_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(ci<sp/>==<sp/>EOF)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char<sp/>c<sp/>=<sp/>char(ci);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extern_buf<sp/>+=<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>char*<sp/>ex<sp/>=<sp/>extern_buf.c_str();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>char*<sp/>extern_end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>codecvt_base::result<sp/>r<sp/>=<sp/>a_codecvt_-&gt;in(state_,<sp/>ex,<sp/>ex+extern_buf.size(),<sp/>extern_end,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;intern_buf,<sp/>&amp;intern_buf<sp/>+<sp/>1,<sp/>intern_end);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>switch<sp/>(r)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::error:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::noconv:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>intern_buf<sp/>=<sp/>(char_type)extern_buf[0];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>case<sp/>codecvt_base::ok:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>case<sp/>codecvt_base::partial:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>es<sp/>=<sp/>size_t(egptr()<sp/>-<sp/>eback());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(es<sp/>==<sp/>input_buffer_size_s)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::move(eback(),<sp/>eback()<sp/>+<sp/>input_buffer_size_s/3,<sp/>input_buffer_size_s<sp/>-<sp/>input_buffer_size_s/3);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>es<sp/>/=<sp/>3;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>setg(input_buffer_,<sp/>input_buffer_<sp/>+<sp/>es<sp/>+<sp/>1,<sp/>input_buffer_<sp/>+<sp/>es<sp/>+<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*(gptr()<sp/>-<sp/>1)<sp/>=<sp/>intern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>traits::to_int_type(intern_buf);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_filebuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::pbackfail(int_type<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>==<sp/>0<sp/>||<sp/>gptr()<sp/>&lt;=<sp/>eback())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>gbump(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!traits::eq_int_type(c,<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*gptr()<sp/>=<sp/>traits::to_char_type(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>traits::not_eof(c);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_filebuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::overflow(int_type<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>overflow_called_last_<sp/>=<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(traits::eq_int_type(c,<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::not_eof(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(always_noconv_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>err<sp/>=<sp/>fputc(c,<sp/>file_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(err<sp/>==<sp/>EOF)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>n<sp/>=<sp/>a_codecvt_-&gt;encoding();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(n<sp/>==<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char<sp/>extern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char*<sp/>extern_end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>char_type<sp/>intern_buf<sp/>=<sp/>traits::to_char_type(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>char_type*<sp/>intern_end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>codecvt_base::result<sp/>r<sp/>=<sp/>a_codecvt_-&gt;out(state_,<sp/>&amp;intern_buf,<sp/>&amp;intern_buf<sp/>+<sp/>1,<sp/>intern_end,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;extern_buf,<sp/>&amp;extern_buf<sp/>+<sp/>1,<sp/>extern_end);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>switch<sp/>(r)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::error:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::partial:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::noconv:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extern_buf<sp/>=<sp/>(char)intern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::ok:</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(fputc(extern_buf,<sp/>file_)<sp/>==<sp/>EOF)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>string<sp/>extern_buf(3,<sp/>char());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>char_type<sp/>intern_buf<sp/>=<sp/>traits::to_char_type(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>char_type*<sp/>intern_end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>codecvt_base::result<sp/>r<sp/>=<sp/>codecvt_base::partial;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>while<sp/>(r<sp/>==<sp/>codecvt_base::partial)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char*<sp/>ex<sp/>=<sp/>const_cast&lt;char*&gt;(extern_buf.c_str());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char*<sp/>extern_end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>codecvt_base::result<sp/>r<sp/>=<sp/>a_codecvt_-&gt;out(state_,<sp/>&amp;intern_buf,<sp/>&amp;intern_buf<sp/>+<sp/>1,<sp/>intern_end,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ex,<sp/>ex<sp/>+<sp/>extern_buf.size(),<sp/>extern_end);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>switch<sp/>(r)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::error:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::noconv:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extern_buf<sp/>=<sp/>char(intern_buf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::ok:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extern_buf.resize(string::size_type(extern_end<sp/>-<sp/>ex));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::partial:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extern_buf.resize(2*extern_buf.size()<sp/>+<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>string&amp;<sp/>s<sp/>=<sp/>extern_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(string::const_iterator<sp/>i<sp/>=<sp/>s.begin();<sp/>i<sp/>!=<sp/>s.end();<sp/>++i)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(fputc(*i,<sp/>file_)<sp/>==<sp/>EOF)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_filebuf&lt;charT,<sp/>traits&gt;::pos_type</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::seekoff(off_type<sp/>off,<sp/>ios_base::seekdir<sp/>way,<sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>width<sp/>=<sp/>a_codecvt_-&gt;encoding();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>==<sp/>0<sp/>||<sp/>off<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>width<sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>((way<sp/>!=<sp/>ios_base::cur<sp/>||<sp/>off<sp/>!=<sp/>0)<sp/>&amp;&amp;<sp/>overflow_called_last_<sp/>&amp;&amp;<sp/>width<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(!unshift())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>whence;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>switch<sp/>(way)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>ios_base::beg:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>whence<sp/>=<sp/>SEEK_SET;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>ios_base::cur:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>whence<sp/>=<sp/>SEEK_CUR;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>((which<sp/>&amp;<sp/>ios_base::in)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>off<sp/>-=<sp/>egptr()<sp/>-<sp/>gptr();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>ios_base::end:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>whence<sp/>=<sp/>SEEK_END;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>default:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(width<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(fseek(file_,<sp/>width<sp/>*<sp/>off,<sp/>whence)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>((which<sp/>&amp;<sp/>ios_base::in)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(input_buffer_,<sp/>input_buffer_,<sp/>input_buffer_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>overflow_called_last_<sp/>=<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ftell(file_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_filebuf&lt;charT,<sp/>traits&gt;::pos_type</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::seekpos(pos_type<sp/>sp,<sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(file_<sp/>==<sp/>0<sp/>||<sp/>(which<sp/>&amp;<sp/>(ios_base::in<sp/>|<sp/>ios_base::out))<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>width<sp/>=<sp/>a_codecvt_-&gt;encoding();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>((which<sp/>&amp;<sp/>ios_base::out)<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>overflow_called_last_<sp/>&amp;&amp;<sp/>width<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(!unshift())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(fseek(file_,<sp/>(streamoff)sp,<sp/>SEEK_SET)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>((which<sp/>&amp;<sp/>ios_base::in)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(input_buffer_,<sp/>input_buffer_,<sp/>input_buffer_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>overflow_called_last_<sp/>=<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>sp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">int</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::sync()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>(file_<sp/>==<sp/>0<sp/>||<sp/>fflush(file_))<sp/>?<sp/>-1<sp/>:<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::imbue(const<sp/>locale&amp;<sp/>loc)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_streambuf::imbue(loc);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>a_codecvt_<sp/>=<sp/>&amp;_USE_FACET(Converter,<sp/>getloc());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>always_noconv_<sp/>=<sp/>a_codecvt_-&gt;always_noconv();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>returns<sp/>true<sp/>if<sp/>successful</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;::unshift()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>codecvt_base::result<sp/>r<sp/>=<sp/>codecvt_base::partial;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>while<sp/>(r<sp/>==<sp/>codecvt_base::partial)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char<sp/>to[4];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char*<sp/>to_next<sp/>=<sp/>to;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r<sp/>=<sp/>a_codecvt_-&gt;unshift(state_,<sp/>to,<sp/>to<sp/>+<sp/>4,<sp/>to_next);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>switch<sp/>(r)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::error:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::noconv:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::ok:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>codecvt_base::partial:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char*<sp/>t<sp/>=<sp/>to;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>while<sp/>(t<sp/>&lt;<sp/>to_next)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(fputc(*t++,<sp/>file_)<sp/>==<sp/>EOF)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_ifstream<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_ifstream&lt;charT,<sp/>traits&gt;::basic_ifstream()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_istream(&amp;sb_)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_ifstream&lt;charT,<sp/>traits&gt;::basic_ifstream(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_istream(&amp;sb_)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;open(s,<sp/>openmode(mode<sp/>|<sp/>in))<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,<sp/>traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_ifstream&lt;charT,<sp/>traits&gt;::rdbuf()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_cast&lt;basic_filebuf&lt;charT,<sp/>traits&gt;*&gt;(&amp;sb_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">basic_ifstream&lt;charT,<sp/>traits&gt;::is_open()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>rdbuf()-&gt;is_open();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_ifstream&lt;charT,<sp/>traits&gt;::open(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;open(s,<sp/>openmode(mode<sp/>|<sp/>in))<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_ifstream&lt;charT,<sp/>traits&gt;::close()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;close()<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_ofstream<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_ofstream&lt;charT,<sp/>traits&gt;::basic_ofstream()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_ostream(&amp;sb_)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_ofstream&lt;charT,<sp/>traits&gt;::basic_ofstream(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_ostream(&amp;sb_)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;open(s,<sp/>openmode(mode<sp/>|<sp/>out))<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_ofstream&lt;charT,<sp/>traits&gt;::rdbuf()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_cast&lt;basic_filebuf&lt;charT,<sp/>traits&gt;*&gt;(&amp;sb_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">basic_ofstream&lt;charT,<sp/>traits&gt;::is_open()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>rdbuf()-&gt;is_open();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_ofstream&lt;charT,<sp/>traits&gt;::open(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;open(s,<sp/>openmode(mode<sp/>|<sp/>out))<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_ofstream&lt;charT,<sp/>traits&gt;::close()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;close()<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_fstream<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_fstream&lt;charT,<sp/>traits&gt;::basic_fstream()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_iostream(&amp;sb_)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_fstream&lt;charT,<sp/>traits&gt;::basic_fstream(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_iostream(&amp;sb_)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;open(s,<sp/>mode)<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_filebuf&lt;charT,traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_fstream&lt;charT,<sp/>traits&gt;::rdbuf()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_cast&lt;basic_filebuf&lt;charT,<sp/>traits&gt;*&gt;(&amp;sb_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">basic_fstream&lt;charT,<sp/>traits&gt;::is_open()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>rdbuf()-&gt;is_open();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_fstream&lt;charT,<sp/>traits&gt;::open(const<sp/>char*<sp/>s,<sp/>ios_base::openmode<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;open(s,<sp/>mode)<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_fstream&lt;charT,<sp/>traits&gt;::close()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(rdbuf()-&gt;close()<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setstate(failbit);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_FSTREAM</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971221<sp/>Changed<sp/>filename<sp/>from<sp/>fstream.h<sp/>to<sp/>fstream</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971221<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971229<sp/>deleted<sp/>unused<sp/>arguments<sp/>from<sp/>setbuf</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980108<sp/>added<sp/>explicit<sp/>bool<sp/>cast<sp/>in<sp/>case<sp/>it<sp/>is<sp/>typedefed<sp/>to<sp/>int<sp/>in<sp/>is_open</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980129<sp/>changed<sp/>to<sp/>&lt;istream&gt;<sp/>from<sp/>&lt;iostream&gt;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981220<sp/>Added<sp/>typename<sp/>to<sp/>appropriate<sp/>return<sp/>types</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990104<sp/>Rewrote</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/fstream"/>
+  </compounddef>
+</doxygen>

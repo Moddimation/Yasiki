@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="notify_8h" kind="file" language="C++">
+    <compoundname>notify.h</compoundname>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <includedby refid="notify_8c" local="yes">notify.c</includedby>
+    <includedby refid="targimpl_8c" local="yes">targimpl.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>notify.h</label>
+        <link refid="notify_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>notify.h</label>
+        <link refid="notify_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>notify.c</label>
+        <link refid="notify_8c"/>
+      </node>
+      <node id="3">
+        <label>targimpl.c</label>
+        <link refid="targimpl_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="notify_8h_1a568b242b6bffbf5d5c5e8867832c8dfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKDoNotifyStopped</definition>
+        <argsstring>(MessageCommandID cmd)</argsstring>
+        <name>TRKDoNotifyStopped</name>
+        <param>
+          <type><ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bf" kindref="member">MessageCommandID</ref></type>
+          <declname>cmd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/notify.h" line="10" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/notify.c" bodystart="7" bodyend="40" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/notify.h" declline="10" declcolumn="9"/>
+        <references refid="struct_t_r_k_buffer_1a90a2062daa68abca2ff1cbf3cbee361c" compoundref="trk_8h" startline="210">TRKBuffer::data</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba075db8392a28f8777627f709d656517c" compoundref="trk_8h" startline="27">DS_MessageBufferOverflow</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfaa1c9338b9a6928a005cf7f22c38ac08b" compoundref="trk_8h" startline="80">DSMSG_NotifyStopped</references>
+        <references refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" compoundref="trk_8h" startline="208">TRKBuffer::length</references>
+        <references refid="struct_t_r_k_buffer_1a9a9f46519a8ce5141bb4cd621a5a9267" compoundref="trk_8h" startline="209">TRKBuffer::position</references>
+        <references refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" compoundref="msgbuf_8c" startline="24" endline="48">TRKGetFreeBuffer</references>
+        <references refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</references>
+        <references refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" compoundref="support_8c" startline="105" endline="177">TRKRequestSend</references>
+        <references refid="targimpl_8h_1a08578a67c09219154d9787b6c463b6e3" compoundref="targimpl_8c" startline="848" endline="867">TRKTargetAddExceptionInfo</references>
+        <references refid="targimpl_8h_1abdb4c8fec113f38cd6cab73438d3aa6c" compoundref="targimpl_8c" startline="831" endline="846">TRKTargetAddStopInfo</references>
+        <referencedby refid="targimpl_8h_1a8ed359d07fddc63055f82f800dc5fb3e" compoundref="targimpl_8c" startline="813" endline="829">TRKTargetInterrupt</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>METROTRK_PORTABLE_NOTIFY_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>METROTRK_PORTABLE_NOTIFY_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="notify_8h_1a568b242b6bffbf5d5c5e8867832c8dfb" kindref="member">TRKDoNotifyStopped</ref>(<ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bf" kindref="member">MessageCommandID</ref><sp/>cmd);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METROTRK_PORTABLE_NOTIFY_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/notify.h"/>
+  </compounddef>
+</doxygen>

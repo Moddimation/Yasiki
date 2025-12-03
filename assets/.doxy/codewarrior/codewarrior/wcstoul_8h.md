@@ -1,0 +1,179 @@
+
+
+# File wcstoul.h
+
+
+
+[**FileList**](files.md) **>** [**CodeWarrior**](dir_5331e34b666a7435d77010d6d501c7d4.md) **>** [**PowerPC\_EABI\_Support**](dir_5715a3597842aab210f9a54cf5907db0.md) **>** [**Msl**](dir_f3cdfadcca1881c964e98cde56e67e68.md) **>** [**MSL\_C**](dir_30eb297d72d9bf6e37ae97b245365a16.md) **>** [**MSL\_Common**](dir_5ff331ae3d8ec7992933a87ab898fc05.md) **>** [**Include**](dir_27c31b18688c2d3b7fe1d239b44a1620.md) **>** [**wcstoul.h**](wcstoul_8h.md)
+
+[Go to the source code of this file](wcstoul_8h_source.md)
+
+
+
+* `#include <ansi_parms.h>`
+* `#include <cstdio>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Functions
+
+| Type | Name |
+| ---: | :--- |
+|  unsigned long | [**\_\_wcstoul**](#function-__wcstoul) (int base, int max\_width, [**\_\_std**](ansi__parms_8h.md#define-__std)(wint\_t)(\*)(void \*, [**\_\_std**](ansi__parms_8h.md#define-__std)(wint\_t), int) ReadProc, void \* ReadProcArg, int \* chars\_scanned, int \* negative, int \* overflow) <br> |
+|  int | [**watoi**](#function-watoi) (const [**wchar\_t**](wchar__t_8h.md#typedef-wchar_t) \* str) <br> |
+|  long | [**watol**](#function-watol) (const [**wchar\_t**](wchar__t_8h.md#typedef-wchar_t) \* str) <br> |
+|  long | [**wcstol**](#function-wcstol) (const [**wchar\_t**](wchar__t_8h.md#typedef-wchar_t) \* str, [**wchar\_t**](wchar__t_8h.md#typedef-wchar_t) \*\* end, int base) <br> |
+|  unsigned long | [**wcstoul**](#function-wcstoul) (const [**wchar\_t**](wchar__t_8h.md#typedef-wchar_t) \* str, [**wchar\_t**](wchar__t_8h.md#typedef-wchar_t) \*\* end, int base) <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Functions Documentation
+
+
+
+
+### function \_\_wcstoul 
+
+```C++
+unsigned long __wcstoul (
+    int base,
+    int max_width,
+    __std (wint_t)(*)(void *, __std (wint_t), int) ReadProc,
+    void * ReadProcArg,
+    int * chars_scanned,
+    int * negative,
+    int * overflow
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function watoi 
+
+```C++
+int watoi (
+    const wchar_t * str
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function watol 
+
+```C++
+long watol (
+    const wchar_t * str
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function wcstol 
+
+```C++
+long wcstol (
+    const wchar_t * str,
+    wchar_t ** end,
+    int base
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function wcstoul 
+
+```C++
+unsigned long wcstoul (
+    const wchar_t * str,
+    wchar_t ** end,
+    int base
+) 
+```
+
+
+
+
+<hr>
+
+------------------------------
+The documentation for this class was generated from the following file `decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/wcstoul.h`
+

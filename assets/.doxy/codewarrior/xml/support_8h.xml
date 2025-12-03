@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="support_8h" kind="file" language="C++">
+    <compoundname>support.h</compoundname>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <includes refid="stddef_8h" local="yes">stddef.h</includes>
+    <includedby refid="notify_8c" local="yes">notify.c</includedby>
+    <includedby refid="support_8c" local="yes">support.c</includedby>
+    <includedby refid="targimpl_8c" local="yes">targimpl.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>support.h</label>
+        <link refid="support_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>support.h</label>
+        <link refid="support_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>notify.c</label>
+        <link refid="notify_8c"/>
+      </node>
+      <node id="3">
+        <label>support.c</label>
+        <link refid="support_8c"/>
+      </node>
+      <node id="4">
+        <label>targimpl.c</label>
+        <link refid="targimpl_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="support_8h_1a854fab9a6aa5fb8a16021f32df8b68f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKSuppAccessFile</definition>
+        <argsstring>(u32 file_handle, u8 *data, size_t *count, DSIOResult *io_result, BOOL need_reply, BOOL read)</argsstring>
+        <name>TRKSuppAccessFile</name>
+        <param>
+          <type>u32</type>
+          <declname>file_handle</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref> *</type>
+          <declname>io_result</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>need_reply</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>read</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" line="11" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/support.c" bodystart="9" bodyend="103" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" declline="11" declcolumn="9"/>
+        <references refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58">count</references>
+        <references refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384acb1188feeea1a6620028be3681ea915d" compoundref="trk_8h" startline="54">DS_IONoError</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55bad70af7fcaf93bb87639a6f6a7a58e22b" compoundref="trk_8h" startline="22">DS_ParameterError</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa5d8e4eacaf01479931e9b58f72b1ea3b" compoundref="trk_8h" startline="84">DSMSG_ReadFile</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa82669fbeea5bcca2fd7d81320608c786" compoundref="trk_8h" startline="83">DSMSG_WriteFile</references>
+        <references refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3">exit</references>
+        <references refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" compoundref="trk_8h" startline="208">TRKBuffer::length</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <references refid="msgbuf_8h_1aa599fc23a6704a209587bb74f8364ec3" compoundref="msgbuf_8c" startline="158" endline="175">TRKAppendBuffer1_ui16</references>
+        <references refid="msgbuf_8h_1a3bc47ac2930bb78b6e3de38d3f726c55" compoundref="msgbuf_8c" startline="177" endline="196">TRKAppendBuffer1_ui32</references>
+        <references refid="msgbuf_8h_1a1472cd706c5851d7a9c117733365a29c" compoundref="msgbuf_8h" startline="22" endline="31">TRKAppendBuffer1_ui8</references>
+        <references refid="msgbuf_8h_1af5f5cd432b8eb29cf440090e9f141a1b" compoundref="msgbuf_8c" startline="222" endline="232">TRKAppendBuffer_ui8</references>
+        <references refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" compoundref="msgbuf_8c" startline="50" endline="58">TRKGetBuffer</references>
+        <references refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" compoundref="msgbuf_8c" startline="24" endline="48">TRKGetFreeBuffer</references>
+        <references refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" compoundref="msg_8c" startline="5" endline="9">TRKMessageSend</references>
+        <references refid="msgbuf_8h_1addef81a91119d2e5de274901b22d603c" compoundref="msgbuf_8c" startline="251" endline="275">TRKReadBuffer1_ui16</references>
+        <references refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" compoundref="msgbuf_8c" startline="246" endline="249">TRKReadBuffer1_ui8</references>
+        <references refid="msgbuf_8h_1a01bebba04b7dbea851480746fa04072a" compoundref="msgbuf_8c" startline="337" endline="347">TRKReadBuffer_ui8</references>
+        <references refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</references>
+        <references refid="support_8c_1af9c283ab3b5d7f2ff2fc875d02c9f84f" compoundref="support_8c" startline="105" endline="177">TRKRequestSend</references>
+        <references refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" compoundref="msgbuf_8c" startline="81" endline="97">TRKSetBufferPosition</references>
+        <referencedby refid="targimpl_8h_1a6ebf7e476dd31372a01e2e19b8950941" compoundref="targimpl_8c" startline="969" endline="1001">TRKTargetSupportRequest</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKRequestSend</definition>
+        <argsstring>(TRKBuffer *msgBuf, int *bufferId, u32 p1, u32 p2, int p3)</argsstring>
+        <name>TRKRequestSend</name>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>msgBuf</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>bufferId</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>p1</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>p2</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>p3</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" line="14" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/support.c" bodystart="105" bodyend="177" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" declline="14" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55badb1961643ec37f093427aee7cb5704d8" compoundref="trk_8h" startline="40">DS_Error800</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa7d848956e52c016356e74f1155417426" compoundref="trk_8h" startline="78">DSMSG_ReplyACK</references>
+        <references refid="trk_8h_1aec22e8e81f3f173090f2c04ac256d143a600345694d4558f64efcd1457129395d" compoundref="trk_8h" startline="109">DSREPLY_NoError</references>
+        <references refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" compoundref="trk_8h" startline="208">TRKBuffer::length</references>
+        <references refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" compoundref="msgbuf_8c" startline="50" endline="58">TRKGetBuffer</references>
+        <references refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" compoundref="msg_8c" startline="5" endline="9">TRKMessageSend</references>
+        <references refid="serpoll_8h_1a1fefa327b68ac9b923df22fbecadf89d" compoundref="serpoll_8c" startline="63" endline="71">TRKProcessInput</references>
+        <references refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" compoundref="msgbuf_8c" startline="246" endline="249">TRKReadBuffer1_ui8</references>
+        <references refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</references>
+        <references refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" compoundref="msgbuf_8c" startline="81" endline="97">TRKSetBufferPosition</references>
+        <references refid="serpoll_8h_1af64c66110bd037b1a16f7a5bcc80f3d6" compoundref="serpoll_8c" startline="12" endline="41">TRKTestForPacket</references>
+        <referencedby refid="notify_8h_1a568b242b6bffbf5d5c5e8867832c8dfb" compoundref="notify_8c" startline="7" endline="40">TRKDoNotifyStopped</referencedby>
+        <referencedby refid="support_8h_1a854fab9a6aa5fb8a16021f32df8b68f5" compoundref="support_8c" startline="9" endline="103">TRKSuppAccessFile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="support_8h_1aeeb643d3e97cf4902c299777a7d1e2e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError HandleOpenFileSupportRequest</definition>
+        <argsstring>(const char *path, u8 replyError, u32 *param_3, DSIOResult *ioResult)</argsstring>
+        <name>HandleOpenFileSupportRequest</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>replyError</declname>
+        </param>
+        <param>
+          <type>u32 *</type>
+          <declname>param_3</declname>
+        </param>
+        <param>
+          <type><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref> *</type>
+          <declname>ioResult</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" line="17" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" declline="17" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="support_8h_1a2939552c52645bb0735e0eebcd403a03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError HandleCloseFileSupportRequest</definition>
+        <argsstring>(int replyError, DSIOResult *ioResult)</argsstring>
+        <name>HandleCloseFileSupportRequest</name>
+        <param>
+          <type>int</type>
+          <declname>replyError</declname>
+        </param>
+        <param>
+          <type><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref> *</type>
+          <declname>ioResult</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" line="20" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" declline="20" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="support_8h_1a1901b65310493ef4f42aced4eefd0e11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError HandlePositionFileSupportRequest</definition>
+        <argsstring>(DSReplyError replyErr, u32 *param_2, u8 param_3, DSIOResult *ioResult)</argsstring>
+        <name>HandlePositionFileSupportRequest</name>
+        <param>
+          <type><ref refid="trk_8h_1aec22e8e81f3f173090f2c04ac256d143" kindref="member">DSReplyError</ref></type>
+          <declname>replyErr</declname>
+        </param>
+        <param>
+          <type>u32 *</type>
+          <declname>param_2</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>param_3</declname>
+        </param>
+        <param>
+          <type><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref> *</type>
+          <declname>ioResult</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" line="22" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h" declline="22" declcolumn="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>METROTRK_PORTABLE_SUPPORT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>METROTRK_PORTABLE_SUPPORT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stddef_8h" kindref="compound">stddef.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="support_8h_1a854fab9a6aa5fb8a16021f32df8b68f5" kindref="member">TRKSuppAccessFile</ref>(u32<sp/>file_handle,<sp/>u8*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/><ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref>,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref>*<sp/>io_result,<sp/>BOOL<sp/>need_reply,<sp/>BOOL<sp/>read);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" kindref="member">TRKRequestSend</ref>(<ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>msgBuf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>bufferId,<sp/>u32<sp/>p1,<sp/>u32<sp/>p2,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>p3);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="support_8h_1aeeb643d3e97cf4902c299777a7d1e2e6" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="support_8h_1aeeb643d3e97cf4902c299777a7d1e2e6" kindref="member">HandleOpenFileSupportRequest</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>path,<sp/>u8<sp/>replyError,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>u32*<sp/>param_3,<sp/><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref>*<sp/>ioResult);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="support_8h_1a2939552c52645bb0735e0eebcd403a03" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="support_8h_1a2939552c52645bb0735e0eebcd403a03" kindref="member">HandleCloseFileSupportRequest</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>replyError,<sp/><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref>*<sp/>ioResult);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="support_8h_1a1901b65310493ef4f42aced4eefd0e11" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="support_8h_1a1901b65310493ef4f42aced4eefd0e11" kindref="member">HandlePositionFileSupportRequest</ref>(<ref refid="trk_8h_1aec22e8e81f3f173090f2c04ac256d143" kindref="member">DSReplyError</ref><sp/>replyErr,<sp/>u32*<sp/>param_2,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>u8<sp/>param_3,<sp/><ref refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384" kindref="member">DSIOResult</ref>*<sp/>ioResult);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METROTRK_PORTABLE_SUPPORT_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/support.h"/>
+  </compounddef>
+</doxygen>

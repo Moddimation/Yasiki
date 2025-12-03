@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File delay.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-delayc">File delay.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_2bd0f0afbf5da90c596578eb9887bbaf/"><strong>axfx</strong></a> <strong>&gt;</strong> <a href="./"><strong>delay.c</strong></a></p>
+<p><a href="../delay_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/ax.h&gt;</code></li>
+<li><code>#include &lt;dolphin/axfx.h&gt;</code></li>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxdelaycallback"><strong>AXFXDelayCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e/"><strong>AXFX_BUFFERUPDATE</strong></a> * bufferUpdate, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___d_e_l_a_y/"><strong>AXFX_DELAY</strong></a> * delay) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxdelayinit"><strong>AXFXDelayInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___d_e_l_a_y/"><strong>AXFX_DELAY</strong></a> * delay) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxdelaysettings"><strong>AXFXDelaySettings</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___d_e_l_a_y/"><strong>AXFX_DELAY</strong></a> * delay) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxdelayshutdown"><strong>AXFXDelayShutdown</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___d_e_l_a_y/"><strong>AXFX_DELAY</strong></a> * delay) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-axfxdelaycallback">function AXFXDelayCallback</h3>
+<pre><code class="language-C++">void AXFXDelayCallback (
+    struct  AXFX_BUFFERUPDATE * bufferUpdate,
+    struct  AXFX_DELAY * delay
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxdelayinit">function AXFXDelayInit</h3>
+<pre><code class="language-C++">int AXFXDelayInit (
+    struct  AXFX_DELAY * delay
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxdelaysettings">function AXFXDelaySettings</h3>
+<pre><code class="language-C++">int AXFXDelaySettings (
+    struct  AXFX_DELAY * delay
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxdelayshutdown">function AXFXDelayShutdown</h3>
+<pre><code class="language-C++">int AXFXDelayShutdown (
+    struct  AXFX_DELAY * delay
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/axfx/delay.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File numeric - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-numeric">File numeric</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../numeric/"><strong>numeric</strong></a></p>
+<p><a href="../numeric/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:59:44 $ 
+ *  $Revision: 1.8.6.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  numeric
+ **/
+
+#ifndef _NUMERIC
+#define _NUMERIC
+
+#include &lt;mslconfig&gt;
+
+#include &lt;iterator&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+template &lt;class InputIterator, class T&gt;
+inline
+T
+accumulate(InputIterator first, InputIterator last, T init)
+{
+    for (; first != last; ++first)
+        init = init + *first;
+    return init;
+}
+
+template &lt;class InputIterator, class T, class BinaryOperation&gt;
+inline
+T
+accumulate(InputIterator first, InputIterator last, T init, BinaryOperation binary_op)
+{
+    for (; first != last; ++first)
+        init = binary_op(init, *first);
+    return init;
+}
+
+template &lt;class InputIterator1, class InputIterator2, class T&gt;
+inline
+T
+inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, T init)
+{
+    for (; first1 != last1; ++first1, ++first2)
+        init = init + *first1 * *first2;
+    return init;
+}
+
+template &lt;class InputIterator1, class InputIterator2, class T,
+    class BinaryOperation1, class BinaryOperation2&gt;
+inline
+T
+inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2,
+    T init, BinaryOperation1 binary_op1, BinaryOperation2 binary_op2)
+{
+    for (; first1 != last1; ++first1, ++first2)
+        init = binary_op1(init, binary_op2(*first1, *first2));
+    return init;
+}
+
+template &lt;class InputIterator, class OutputIterator&gt;
+inline
+OutputIterator
+partial_sum(InputIterator first, InputIterator last, OutputIterator result)
+{
+    if (first == last)
+        return result;
+    typename iterator_traits&lt;InputIterator&gt;::value_type tmp(*first);
+    *result = tmp;
+    for (++first, ++result; first != last; ++first, ++result)
+        *result = tmp = tmp + *first;
+    return result;
+}
+
+template &lt;class InputIterator, class OutputIterator, class BinaryOperation&gt;
+inline
+OutputIterator
+partial_sum(InputIterator first, InputIterator last, OutputIterator result,
+    BinaryOperation binary_op)
+{
+    if (first == last)
+        return result;
+    typename iterator_traits&lt;InputIterator&gt;::value_type tmp(*first);
+    *result = tmp;
+    for (++first, ++result; first != last; ++first, ++result)
+        *result = tmp = binary_op(tmp, *first);
+    return result;
+}
+
+template &lt;class InputIterator, class OutputIterator&gt;
+inline
+OutputIterator
+adjacent_difference(InputIterator first, InputIterator last, OutputIterator result)
+{
+    typedef typename iterator_traits&lt;InputIterator&gt;::value_type T;
+    if (first == last)
+        return result;
+    T tmp1(*first);
+    *result = tmp1;
+    for (++first, ++result; first != last; ++first, ++result)
+    {
+        T tmp2(*first);
+        *result = tmp2 - tmp1;
+        tmp1 = tmp2;
+    }
+    return result;
+}
+
+template &lt;class InputIterator, class OutputIterator, class BinaryOperation&gt;
+OutputIterator
+adjacent_difference(InputIterator first, InputIterator last, OutputIterator result,
+    BinaryOperation binary_op)
+{
+    typedef typename iterator_traits&lt;InputIterator&gt;::value_type T;
+    if (first == last)
+        return result;
+    T tmp1(*first);
+    *result = tmp1;
+    for (++first, ++result; first != last; ++first, ++result)
+    {
+        T tmp2(*first);
+        *result = binary_op(tmp2, tmp1);
+        tmp1 = tmp2;
+    }
+    return result;
+}
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _NUMERIC
+
+// hh 971223 Made include guards standard
+// hh 971223 added alignment wrapper
+// hh 971223 Changed filename from numeric.h to numeric
+// hh 971230 added RC_INVOKED wrapper
+// hh 990506 Rewrote
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

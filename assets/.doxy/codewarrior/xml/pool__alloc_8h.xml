@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="pool__alloc_8h" kind="file" language="C++">
+    <compoundname>pool_alloc.h</compoundname>
+    <includes refid="ansi__parms_8h" local="no">ansi_parms.h</includes>
+    <includes refid="size__t_8h" local="no">size_t.h</includes>
+    <includedby refid="abort__exit_8c" local="no">abort_exit.c</includedby>
+    <includedby refid="pool__alloc_8stub_8c" local="yes">pool_alloc.stub.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>pool_alloc.h</label>
+        <link refid="pool__alloc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>size_t.h</label>
+        <link refid="size__t_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>pool_alloc.h</label>
+        <link refid="pool__alloc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>abort_exit.c</label>
+        <link refid="abort__exit_8c"/>
+      </node>
+      <node id="3">
+        <label>pool_alloc.stub.c</label>
+        <link refid="pool__alloc_8stub_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="pool__alloc_8h_1a6cbe4f2e408381bbe838d3612feb15d6" prot="public" static="no">
+        <name>__pool_alloc__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" line="20" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pool__alloc_8h_1a2c444480b5e2dae568673b8e66273da7" prot="public" static="no">
+        <name>__heap_version</name>
+        <initializer>2	/* jg 980115 */ /* hh 990227 */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" line="30" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="pool__alloc_8h_1a8f5db9cb7b00bdb0ec72f17a016db7bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __sys_alloc</definition>
+        <argsstring>(__std(size_t) size)</argsstring>
+        <name>__sys_alloc</name>
+        <param>
+          <type><ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(<ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref>)</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" line="36" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/pool_alloc.stub.c" bodystart="29" bodyend="32" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" declline="36" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="pool__alloc_8h_1acada8c050a3fa4ba76245e10604b1b30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __sys_free</definition>
+        <argsstring>(void *ptr)</argsstring>
+        <name>__sys_free</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" line="37" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/pool_alloc.stub.c" bodystart="34" bodyend="37" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" declline="37" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="pool__alloc_8h_1aef60da33268dd65eaecd1fed441af591" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __pool_free_all</definition>
+        <argsstring>()</argsstring>
+        <name>__pool_free_all</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" line="39" column="5" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h" declline="39" declcolumn="5"/>
+        <referencedby refid="abort__exit_8h_1abf637c452b7d3a3afc3a5afe705a08a3" compoundref="abort__exit_8c" startline="327" endline="362">_CleanUpMSL</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/07/30<sp/>00:45:30<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.10.4.3<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>pool_alloc.h</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ansi__parms_8h" kindref="compound">ansi_parms.h</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>970905*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_MSL_PRO4_MALLOC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__pool_alloc__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="pool__alloc_8h_1a6cbe4f2e408381bbe838d3612feb15d6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__pool_alloc__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ansi__parms_8h" kindref="compound">ansi_parms.h</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>970905*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="size__t_8h" kindref="compound">size_t.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=native</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="pool__alloc_8h_1a2c444480b5e2dae568673b8e66273da7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__heap_version<sp/><sp/>2<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>jg<sp/>980115<sp/>*/</highlight><highlight class="preprocessor"><sp/></highlight><highlight class="comment">/*<sp/>hh<sp/>990227<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><sp/><ref refid="pool__alloc_8h_1a8f5db9cb7b00bdb0ec72f17a016db7bf" kindref="member">__sys_alloc</ref>(<ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pool__alloc_8h_1acada8c050a3fa4ba76245e10604b1b30" kindref="member">__sys_free</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ptr);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="pool__alloc_8h_1aef60da33268dd65eaecd1fed441af591" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pool__alloc_8h_1aef60da33268dd65eaecd1fed441af591" kindref="member">__pool_free_all</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_No_Alloc_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>init_alloc(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>heap_ptr,<sp/><ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>heap_size);<sp/></highlight><highlight class="comment">/*<sp/>hh<sp/>990504<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#else<sp/></highlight><highlight class="comment">/*<sp/>_MSL_PRO4_MALLOC<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__pool_alloc__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__pool_alloc__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ansi__parms_8h" kindref="compound">ansi_parms.h</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>970905*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=native</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>tag_word;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">block_header<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>tag_word<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tag;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">block_header<sp/>*<sp/><sp/><sp/>prev;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">block_header<sp/>*<sp/><sp/><sp/><ref refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}<sp/>block_header;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">list_header<sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>block_header<sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>rover;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>block_header<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>header;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}<sp/>list_header;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">heap_header<sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">heap_header*<sp/><sp/><sp/><sp/><sp/>prev;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">heap_header*<sp/><sp/><sp/><sp/><sp/><ref refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}<sp/>heap_header;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/>mem_size;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><sp/>(*sys_alloc_ptr)(mem_size<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>,<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">mem_pool_obj*);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>void<sp/><sp/><sp/><sp/>(*sys_free_ptr)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>ptr,<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">mem_pool_obj*);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">pool_options{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>sys_alloc_ptr<sp/><sp/><sp/>sys_alloc_func;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>sys_free_ptr<sp/><sp/><sp/><sp/>sys_free_func;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>mem_size<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>min_heap_size;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!__ALTIVEC__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>always_search_first;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>always_search_first;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>for<sp/>ALTIVEC<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>block_alignment;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reserved1;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reserved2;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}<sp/>pool_options;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">mem_pool_obj<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>list_header<sp/><sp/><sp/><sp/><sp/>free_list;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Alloc_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>pool_options<sp/><sp/><sp/><sp/>options;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>heap_header*<sp/><sp/><sp/><sp/>heap_list;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>userData;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}<sp/>mem_pool_obj;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__heap_version<sp/><sp/>1<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>jg<sp/>980115<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><ref refid="ansi__parms_8h_1a563bfbf174ed9a2385017ff582ae2c72" kindref="member">_MSL_DLLDATA</ref><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>mem_pool_obj<sp/>__malloc_pool;<sp/></highlight><highlight class="comment">/*<sp/><sp/>vss<sp/>980901<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__ALTIVEC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>__init_align_pool_obj(mem_pool_obj<sp/>*<sp/>pool_obj,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>align);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>__init_pool_obj(mem_pool_obj<sp/>*<sp/>pool_obj);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>__pool_preallocate(mem_pool_obj<sp/>*<sp/>pool_obj,<sp/>mem_size<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>__pool_preassign(mem_pool_obj<sp/>*<sp/>pool_obj,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>ptr,<sp/>mem_size<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><sp/>__pool_alloc(mem_pool_obj<sp/>*<sp/>pool_obj,<sp/>mem_size<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><sp/>__pool_alloc_clear(mem_pool_obj<sp/>*<sp/>pool_obj,<sp/>mem_size<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><sp/>__pool_realloc(mem_pool_obj<sp/>*<sp/>pool_obj,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>ptr,<sp/>mem_size<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>__pool_free(mem_pool_obj<sp/>*<sp/>pool_obj,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>ptr);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pool__alloc_8h_1aef60da33268dd65eaecd1fed441af591" kindref="member">__pool_free_all</ref>(mem_pool_obj<sp/>*<sp/>pool_obj);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><sp/><ref refid="pool__alloc_8h_1a8f5db9cb7b00bdb0ec72f17a016db7bf" kindref="member">__sys_alloc</ref>(mem_size<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>,<sp/>mem_pool_obj*);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pool__alloc_8h_1acada8c050a3fa4ba76245e10604b1b30" kindref="member">__sys_free</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ptr,<sp/>mem_pool_obj*);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_No_Alloc_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>init_alloc(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>heap_ptr,<sp/>mem_size<sp/>heap_size);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline lineno="154"><highlight class="comment"><sp/>*<sp/><sp/>20-Jul-97<sp/>MEA<sp/><sp/><sp/>Changed<sp/>__no_os<sp/>to<sp/>_No_Alloc_OS_Support.</highlight></codeline>
+<codeline lineno="155"><highlight class="comment"><sp/>*<sp/>mm<sp/>970905<sp/><sp/>added<sp/>include<sp/>of<sp/>ansi_parms.h<sp/>to<sp/>avoid<sp/>need<sp/>for<sp/>prefix<sp/>file</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"><sp/>*<sp/>jg<sp/>980115<sp/><sp/>added<sp/>__heap_version<sp/>definition</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/>*<sp/>vss<sp/>980901<sp/>add<sp/>extern<sp/>__malloc_pool</highlight></codeline>
+<codeline lineno="158"><highlight class="comment"><sp/>*<sp/>hh<sp/>990227<sp/><sp/>rewrote<sp/>allocation<sp/>functions</highlight></codeline>
+<codeline lineno="159"><highlight class="comment"><sp/>*<sp/>bobc<sp/>990302<sp/><sp/>support<sp/>for<sp/>AltiVec<sp/>(specify<sp/>alignment<sp/>for<sp/>the<sp/>pool).</highlight></codeline>
+<codeline lineno="160"><highlight class="comment"><sp/>*<sp/>hh<sp/>990504<sp/>Corrected<sp/>prototype<sp/>for<sp/>init_alloc()</highlight></codeline>
+<codeline lineno="161"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/pool_alloc.h"/>
+  </compounddef>
+</doxygen>

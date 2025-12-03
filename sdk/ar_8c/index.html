@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File ar.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-arc">File ar.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_1f6a6668d55aa42931fc4b14e0914ad0/"><strong>ar</strong></a> <strong>&gt;</strong> <a href="./"><strong>ar.c</strong></a></p>
+<p><a href="../ar_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include &lt;string.h&gt;</code></li>
+<li><code>#include "ar_private.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__ar_blocklength"><strong>__AR_BlockLength</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#variable-__ar_callback"><strong>__AR_Callback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__ar_freeblocks"><strong>__AR_FreeBlocks</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__ar_size"><strong>__AR_Size</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__ar_stackpointer"><strong>__AR_StackPointer</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__ar_init_flag"><strong>__AR_init_flag</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aralloc"><strong>ARAlloc</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-archeckinit"><strong>ARCheckInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-arfree"><strong>ARFree</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-argetbaseaddress"><strong>ARGetBaseAddress</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-argetdmastatus"><strong>ARGetDMAStatus</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-argetsize"><strong>ARGetSize</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-arinit"><strong>ARInit</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * stack_index_addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> num_entries) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ar_8h/#typedef-arqcallback"><strong>ARQCallback</strong></a></td>
+<td style="text-align: left;"><a href="#function-arregisterdmacallback"><strong>ARRegisterDMACallback</strong></a> (<a href="../ar_8h/#typedef-arqcallback"><strong>ARQCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arreset"><strong>ARReset</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arsetsize"><strong>ARSetSize</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arstartdma"><strong>ARStartDMA</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> type, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mainmem_addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> aram_addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__archecksize"><strong>__ARChecksize</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arhandler"><strong>__ARHandler</strong></a> (<a href="../types_8h/#typedef-s16"><strong>s16</strong></a> exception, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arreaddma"><strong>__ARReadDMA</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mmem_addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> aram_addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arwaitfordma"><strong>__ARWaitForDMA</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arwritedma"><strong>__ARWriteDMA</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mmem_addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> aram_addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-__ar_blocklength">variable __AR_BlockLength</h3>
+<pre><code class="language-C++">u32* __AR_BlockLength;
+</code></pre>
+<hr>
+
+<h3 id="variable-__ar_callback">variable __AR_Callback</h3>
+<pre><code class="language-C++">void(* __AR_Callback) ();
+</code></pre>
+<hr>
+
+<h3 id="variable-__ar_freeblocks">variable __AR_FreeBlocks</h3>
+<pre><code class="language-C++">u32 __AR_FreeBlocks;
+</code></pre>
+<hr>
+
+<h3 id="variable-__ar_size">variable __AR_Size</h3>
+<pre><code class="language-C++">u32 __AR_Size;
+</code></pre>
+<hr>
+
+<h3 id="variable-__ar_stackpointer">variable __AR_StackPointer</h3>
+<pre><code class="language-C++">u32 __AR_StackPointer;
+</code></pre>
+<hr>
+
+<h3 id="variable-__ar_init_flag">variable __AR_init_flag</h3>
+<pre><code class="language-C++">int __AR_init_flag;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-aralloc">function ARAlloc</h3>
+<pre><code class="language-C++">u32 ARAlloc (
+    u32 length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-archeckinit">function ARCheckInit</h3>
+<pre><code class="language-C++">int ARCheckInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arfree">function ARFree</h3>
+<pre><code class="language-C++">u32 ARFree (
+    u32 * length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-argetbaseaddress">function ARGetBaseAddress</h3>
+<pre><code class="language-C++">u32 ARGetBaseAddress (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-argetdmastatus">function ARGetDMAStatus</h3>
+<pre><code class="language-C++">u32 ARGetDMAStatus (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-argetsize">function ARGetSize</h3>
+<pre><code class="language-C++">u32 ARGetSize (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arinit">function ARInit</h3>
+<pre><code class="language-C++">u32 ARInit (
+    u32 * stack_index_addr,
+    u32 num_entries
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arregisterdmacallback">function ARRegisterDMACallback</h3>
+<pre><code class="language-C++">ARQCallback ARRegisterDMACallback (
+    ARQCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arreset">function ARReset</h3>
+<pre><code class="language-C++">void ARReset (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arsetsize">function ARSetSize</h3>
+<pre><code class="language-C++">void ARSetSize (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arstartdma">function ARStartDMA</h3>
+<pre><code class="language-C++">void ARStartDMA (
+    u32 type,
+    u32 mainmem_addr,
+    u32 aram_addr,
+    u32 length
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-__archecksize">function __ARChecksize</h3>
+<pre><code class="language-C++">static void __ARChecksize (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arhandler">function __ARHandler</h3>
+<pre><code class="language-C++">static void __ARHandler (
+    s16 exception,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arreaddma">function __ARReadDMA</h3>
+<pre><code class="language-C++">static void __ARReadDMA (
+    u32 mmem_addr,
+    u32 aram_addr,
+    u32 length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arwaitfordma">function __ARWaitForDMA</h3>
+<pre><code class="language-C++">static void __ARWaitForDMA (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arwritedma">function __ARWriteDMA</h3>
+<pre><code class="language-C++">static void __ARWriteDMA (
+    u32 mmem_addr,
+    u32 aram_addr,
+    u32 length
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/ar/ar.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_tree_8c" kind="file" language="C++">
+    <compoundname>Tree.c</compoundname>
+    <includes local="no">charPipeline/structures/Tree.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>Tree.c</label>
+        <link refid="_tree_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>charPipeline/structures/Tree.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_tree_8c_1ac6da759d2f3e7a50470b6f228656e9be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSExtractBranch</definition>
+        <argsstring>(DSTreePtr tree, Ptr obj)</argsstring>
+        <name>DSExtractBranch</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref></type>
+          <declname>tree</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref></type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/support/Tree.c" line="4" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/support/Tree.c" bodystart="4" bodyend="17"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_tree_8c_1acd6962a9486e16f67353110aa3896953" compoundref="_tree_8c" startline="27" endline="68">DSInsertBranchBelow</references>
+        <references refid="_tree_8c_1a1cb1aa684f02c35f5b131e51a4bd09e0" compoundref="_tree_8c" startline="102" endline="131">DSRemoveBranch</references>
+        <references refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" compoundref="dvdqueue_8c" startline="9">next</references>
+      </memberdef>
+      <memberdef kind="function" id="_tree_8c_1aabd728fc1b98df349f90fe74b52baf0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSInitTree</definition>
+        <argsstring>(DSTreePtr tree, Ptr obj, DSBranchPtr branch)</argsstring>
+        <name>DSInitTree</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref></type>
+          <declname>tree</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref></type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref></type>
+          <declname>branch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/support/Tree.c" line="20" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/support/Tree.c" bodystart="20" bodyend="24"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="_tree_8c_1acd6962a9486e16f67353110aa3896953" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSInsertBranchBelow</definition>
+        <argsstring>(DSTreePtr tree, Ptr cursor, Ptr obj)</argsstring>
+        <name>DSInsertBranchBelow</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref></type>
+          <declname>tree</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref></type>
+          <declname>cursor</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref></type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/support/Tree.c" line="27" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/support/Tree.c" bodystart="27" bodyend="68"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <referencedby refid="_tree_8c_1ac6da759d2f3e7a50470b6f228656e9be" compoundref="_tree_8c" startline="4" endline="17">DSExtractBranch</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_tree_8c_1a4ac338163ebc9249641fd0d5eca1c708" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSInsertBranchBeside</definition>
+        <argsstring>(DSTreePtr tree, Ptr cursor, Ptr obj)</argsstring>
+        <name>DSInsertBranchBeside</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref></type>
+          <declname>tree</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref></type>
+          <declname>cursor</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref></type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/support/Tree.c" line="71" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/support/Tree.c" bodystart="71" bodyend="99"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="_tree_8c_1a1cb1aa684f02c35f5b131e51a4bd09e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DSRemoveBranch</definition>
+        <argsstring>(DSTreePtr tree, Ptr obj)</argsstring>
+        <name>DSRemoveBranch</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref></type>
+          <declname>tree</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref></type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/support/Tree.c" line="102" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/support/Tree.c" bodystart="102" bodyend="131"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="dvdlow_8c_1a8650e6f1f024671e17426e6ccc96daf2" compoundref="dvdlow_8c" startline="42">Prev</references>
+        <referencedby refid="_tree_8c_1ac6da759d2f3e7a50470b6f228656e9be" compoundref="_tree_8c" startline="4" endline="17">DSExtractBranch</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;charPipeline/structures/Tree.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="_tree_8c_1ac6da759d2f3e7a50470b6f228656e9be" refkind="member"><highlight class="normal"><ref refid="_tree_8c_1ac6da759d2f3e7a50470b6f228656e9be" kindref="member">DSExtractBranch</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>,<sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>)</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref><sp/>=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Children;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref>)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref><sp/>=<sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset))-&gt;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Next</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_tree_8c_1acd6962a9486e16f67353110aa3896953" kindref="member">DSInsertBranchBelow</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Parent,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>=<sp/><ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_tree_8c_1a1cb1aa684f02c35f5b131e51a4bd09e0" kindref="member">DSRemoveBranch</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="_tree_8c_1aabd728fc1b98df349f90fe74b52baf0c" refkind="member"><highlight class="normal"><ref refid="_tree_8c_1aabd728fc1b98df349f90fe74b52baf0c" kindref="member">DSInitTree</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>,<sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset<sp/>=<sp/>(<ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref><sp/>-<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="_tree_8c_1acd6962a9486e16f67353110aa3896953" refkind="member"><highlight class="normal"><ref refid="_tree_8c_1acd6962a9486e16f67353110aa3896953" kindref="member">DSInsertBranchBelow</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>,<sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref>,<sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">objBranch</ref><sp/>=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tail<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref>)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref><sp/>=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Children)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tail<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Children;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Children<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tail<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tail)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(tail<sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset))-&gt;Next)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tail<sp/>=<sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(tail<sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset))-&gt;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Next</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(tail<sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset))-&gt;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Next</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">objBranch</ref>-&gt;Prev<sp/>=<sp/>tail;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">objBranch</ref>-&gt;Prev<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">objBranch</ref>-&gt;Next<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">objBranch</ref>-&gt;Parent<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="_tree_8c_1a4ac338163ebc9249641fd0d5eca1c708" refkind="member"><highlight class="normal"><ref refid="_tree_8c_1a4ac338163ebc9249641fd0d5eca1c708" kindref="member">DSInsertBranchBeside</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>,<sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref>,<sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref><sp/>parent;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref><sp/>=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref>)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Next<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Prev<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Children<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Parent<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset))-&gt;Next)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>=<sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset))-&gt;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Next</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>parent<sp/>=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>parent-&gt;Next<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Prev<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cursor</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Next<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Parent<sp/>=<sp/>parent-&gt;Parent;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="_tree_8c_1a1cb1aa684f02c35f5b131e51a4bd09e0" refkind="member"><highlight class="normal"><ref refid="_tree_8c_1a1cb1aa684f02c35f5b131e51a4bd09e0" kindref="member">DSRemoveBranch</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSTreePtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>,<sp/><ref refid="types_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref><sp/>parent;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref><sp/>=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref><sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Parent)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parent<sp/>=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Parent<sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(parent-&gt;Children<sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parent-&gt;Children<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Next;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root<sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">obj</ref>)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Root<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Next;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Prev)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Prev<sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset))-&gt;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Next</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Next;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Next)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">DSBranchPtr</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Next<sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">tree</ref>-&gt;Offset))-&gt;<ref refid="dvdlow_8c_1a8650e6f1f024671e17426e6ccc96daf2" kindref="member">Prev</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Prev;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Prev<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Next<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">branch</ref>-&gt;Parent<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/support/Tree.c"/>
+  </compounddef>
+</doxygen>

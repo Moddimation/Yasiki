@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File functional - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-functional">File functional</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../functional/"><strong>functional</strong></a></p>
+<p><a href="../functional/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:58:49 $ 
+ *  $Revision: 1.12.4.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  functional
+ **/
+
+#ifndef _FUNCTIONAL
+#define _FUNCTIONAL
+
+#include &lt;mslconfig&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+//  lib.base, base:
+
+template &lt;class Arg, class Result&gt;
+struct unary_function
+{
+    typedef Arg    argument_type;
+    typedef Result result_type;
+};
+
+template &lt;class Arg1, class Arg2, class Result&gt;
+struct binary_function
+{
+    typedef Arg1   first_argument_type;
+    typedef Arg2   second_argument_type;
+    typedef Result result_type;
+};
+
+//  lib.arithmetic.operations, arithmetic operations:
+
+// plus
+
+template &lt;class T&gt;
+struct plus
+    : binary_function&lt;T, T, T&gt;
+{
+    T operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+T
+plus&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return x + y;
+}
+
+// minus
+
+template &lt;class T&gt;
+struct minus
+    : binary_function&lt;T, T, T&gt;
+{
+    T operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+T
+minus&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return x - y;
+}
+
+// multiplies
+
+template &lt;class T&gt;
+struct multiplies
+    : binary_function&lt;T, T, T&gt;
+{
+    T operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+T
+multiplies&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return x * y;
+}
+
+// divides
+
+template &lt;class T&gt;
+struct divides
+    : binary_function&lt;T, T, T&gt;
+{
+    T operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+T
+divides&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return x / y;
+}
+
+// modulus
+
+template &lt;class T&gt;
+struct modulus
+    : binary_function&lt;T, T, T&gt;
+{
+    T operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+T
+modulus&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return x % y;
+}
+
+// negate
+
+template &lt;class T&gt;
+struct negate
+    : unary_function&lt;T, T&gt;
+{
+    T operator()(const T&amp; x) const;
+};
+
+template &lt;class T&gt;
+inline
+T
+negate&lt;T&gt;::operator()(const T&amp; x) const
+{
+    return -x;
+}
+
+//  lib.comparisons, comparisons:
+
+// equal_to
+
+template &lt;class T&gt;
+struct equal_to
+    : binary_function&lt;T, T, bool&gt;
+{
+    bool operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+equal_to&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return static_cast&lt;bool&gt;(x == y);
+}
+
+// not_equal_to
+
+template &lt;class T&gt;
+struct not_equal_to
+    : binary_function&lt;T, T, bool&gt;
+{
+    bool operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+not_equal_to&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return static_cast&lt;bool&gt;(x != y);
+}
+
+// greater
+
+template &lt;class T&gt;
+struct greater
+    : binary_function&lt;T, T, bool&gt;
+{
+    bool operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+greater&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return static_cast&lt;bool&gt;(x &gt; y);
+}
+
+// less
+
+template &lt;class T&gt;
+struct less
+    : binary_function&lt;T, T, bool&gt;
+{
+    bool operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+less&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return static_cast&lt;bool&gt;(x &lt; y);
+}
+
+// greater_equal
+
+template &lt;class T&gt;
+struct greater_equal
+    : binary_function&lt;T, T, bool&gt;
+{
+    bool operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+greater_equal&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return static_cast&lt;bool&gt;(x &gt;= y);
+}
+
+// less_equal
+
+template &lt;class T&gt;
+struct less_equal
+    : binary_function&lt;T, T, bool&gt;
+{
+    bool operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+less_equal&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return static_cast&lt;bool&gt;(x &lt;= y);
+}
+
+//  lib.logical.operations, logical operations:
+
+// logical_and
+
+template &lt;class T&gt;
+struct logical_and
+    : binary_function&lt;T, T, bool&gt;
+{
+    bool operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+logical_and&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return static_cast&lt;bool&gt;(x &amp;&amp; y);
+}
+
+// logical_or
+
+template &lt;class T&gt;
+struct logical_or
+    : binary_function&lt;T, T, bool&gt;
+{
+    bool operator()(const T&amp; x, const T&amp; y) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+logical_or&lt;T&gt;::operator()(const T&amp; x, const T&amp; y) const
+{
+    return static_cast&lt;bool&gt;(x || y);
+}
+
+// logical_not
+
+template &lt;class T&gt;
+struct logical_not
+    : unary_function&lt;T, bool&gt;
+{
+    bool operator()(const T&amp; x) const;
+};
+
+template &lt;class T&gt;
+inline
+bool
+logical_not&lt;T&gt;::operator()(const T&amp; x) const
+{
+    return static_cast&lt;bool&gt;(!x);
+}
+
+//  lib.negators, negators:
+
+// unary_negate
+
+template &lt;class Predicate&gt;
+class unary_negate
+    : public unary_function&lt;typename Predicate::argument_type, bool&gt;
+{
+public:
+    explicit unary_negate(const Predicate&amp; pred);
+    bool operator()(const typename Predicate::argument_type&amp; x) const;
+private:
+    Predicate pred_;
+};
+
+template &lt;class Predicate&gt;
+inline
+unary_negate&lt;Predicate&gt;::unary_negate(const Predicate&amp; pred)
+    : pred_(pred)
+{
+}
+
+template &lt;class Predicate&gt;
+inline
+bool
+unary_negate&lt;Predicate&gt;::operator()(const typename Predicate::argument_type&amp; x) const
+{
+    return static_cast&lt;bool&gt;(!pred_(x));
+}
+
+template &lt;class Predicate&gt;
+inline
+unary_negate&lt;Predicate&gt;
+not1(const Predicate&amp; pred)
+{
+    return unary_negate&lt;Predicate&gt;(pred);
+}
+
+// binary_negate
+
+template &lt;class Predicate&gt;
+class binary_negate
+    : public binary_function&lt;typename Predicate::first_argument_type,
+                             typename Predicate::second_argument_type, bool&gt;
+{
+public:
+    explicit binary_negate(const Predicate&amp; pred);
+    bool operator()(const typename Predicate::first_argument_type&amp;  x,
+                    const typename Predicate::second_argument_type&amp; y) const;
+private:
+    Predicate pred_;
+};
+
+template &lt;class Predicate&gt;
+inline
+binary_negate&lt;Predicate&gt;::binary_negate(const Predicate&amp; pred)
+    : pred_(pred)
+{
+}
+
+template &lt;class Predicate&gt;
+inline
+bool
+binary_negate&lt;Predicate&gt;::operator()(const typename Predicate::first_argument_type&amp;  x,
+                                     const typename Predicate::second_argument_type&amp; y) const
+{
+    return static_cast&lt;bool&gt;(!pred_(x, y));
+}
+
+template &lt;class Predicate&gt;
+inline
+binary_negate&lt;Predicate&gt;
+not2(const Predicate&amp; pred)
+{
+    return binary_negate&lt;Predicate&gt;(pred);
+}
+
+//  lib.binders, binders:
+
+// binder1st
+
+template &lt;class Operation&gt;
+class binder1st
+    : public unary_function&lt;typename Operation::second_argument_type,
+                            typename Operation::result_type&gt;
+{
+public:
+    binder1st(const Operation&amp; x, const typename Operation::first_argument_type&amp; y);
+    typename Operation::result_type
+        operator()(const typename Operation::second_argument_type&amp; x) const;
+protected:
+    Operation op;
+    typename Operation::first_argument_type value;
+};
+
+template &lt;class Operation&gt;
+inline
+binder1st&lt;Operation&gt;::binder1st(const Operation&amp; x,
+                                const typename Operation::first_argument_type&amp; y)
+    : op(x),
+      value(y)
+{
+}
+
+template &lt;class Operation&gt;
+inline
+typename Operation::result_type
+binder1st&lt;Operation&gt;::operator()(const typename Operation::second_argument_type&amp; x) const
+{
+    return op(value, x);
+}
+
+#if !defined(__MWERKS__) || (defined(__MWERKS__) &amp;&amp; __MWERKS__ &gt; 0x2400)
+
+    template &lt;class Operation, class T&gt;
+    inline
+    binder1st&lt;Operation&gt;
+    bind1st(const Operation&amp; op, const T&amp; x)
+    {
+        return binder1st&lt;Operation&gt;(op, typename Operation::first_argument_type(x));
+    }
+
+#else
+
+    template &lt;class Operation, class T&gt;
+    inline
+    binder1st&lt;Operation&gt;
+    bind1st(const Operation&amp; op, const T&amp; x)
+    {
+        return binder1st&lt;Operation&gt;(op, Operation::first_argument_type(x));
+    }
+
+#endif
+
+// binder2nd
+
+template &lt;class Operation&gt;
+class binder2nd
+    : public unary_function&lt;typename Operation::first_argument_type,
+                            typename Operation::result_type&gt;
+{
+public:
+    binder2nd(const Operation&amp; x, const typename Operation::second_argument_type&amp; y);
+    typename Operation::result_type
+        operator()(const typename Operation::first_argument_type&amp; x) const;
+protected:
+    Operation op;
+    typename Operation::second_argument_type value;
+};
+
+template &lt;class Operation&gt;
+inline
+binder2nd&lt;Operation&gt;::binder2nd(const Operation&amp; x,
+                                const typename Operation::second_argument_type&amp; y)
+    : op(x),
+      value(y)
+{
+}
+
+template &lt;class Operation&gt;
+inline
+typename Operation::result_type
+binder2nd&lt;Operation&gt;::operator()(const typename Operation::first_argument_type&amp; x) const
+{
+    return op(x, value);
+}
+
+#if !defined(__MWERKS__) || (defined(__MWERKS__) &amp;&amp; __MWERKS__ &gt; 0x2400)
+
+    template &lt;class Operation, class T&gt;
+    inline
+    binder2nd&lt;Operation&gt;
+    bind2nd(const Operation&amp; op, const T&amp; x)
+    {
+        return binder2nd&lt;Operation&gt;(op, typename Operation::second_argument_type(x));
+    }
+
+#else
+
+    template &lt;class Operation, class T&gt;
+    inline
+    binder2nd&lt;Operation&gt;
+    bind2nd(const Operation&amp; op, const T&amp; x)
+    {
+        return binder2nd&lt;Operation&gt;(op, Operation::second_argument_type(x));
+    }
+
+#endif
+
+//  lib.function.pointer.adaptors, adaptors:
+
+// pointer_to_unary_function
+
+template &lt;class Arg, class Result&gt;
+class pointer_to_unary_function
+    : public unary_function&lt;Arg, Result&gt;
+{
+public:
+    explicit pointer_to_unary_function(Result (*f)(Arg));
+    Result operator()(Arg x) const;
+private:
+    Result (*f_)(Arg);
+};
+
+template &lt;class Arg, class Result&gt;
+inline
+pointer_to_unary_function&lt;Arg, Result&gt;::pointer_to_unary_function(Result (*f)(Arg))
+    : f_(f)
+{
+}
+
+template &lt;class Arg, class Result&gt;
+inline
+Result
+pointer_to_unary_function&lt;Arg, Result&gt;::operator()(Arg x) const
+{
+    return f_(x);
+}
+
+template &lt;class Arg, class Result&gt;
+inline
+pointer_to_unary_function&lt;Arg, Result&gt;
+ptr_fun(Result (*f)(Arg))
+{
+    return pointer_to_unary_function&lt;Arg, Result&gt;(f);
+}
+
+// pointer_to_binary_function
+
+template &lt;class Arg1, class Arg2, class Result&gt;
+class pointer_to_binary_function
+    : public binary_function&lt;Arg1, Arg2, Result&gt;
+{
+public:
+    explicit pointer_to_binary_function(Result (*f)(Arg1, Arg2));
+    Result operator()(Arg1 x, Arg2 y) const;
+private:
+    Result (*f_)(Arg1, Arg2);
+};
+
+template &lt;class Arg1, class Arg2, class Result&gt;
+inline
+pointer_to_binary_function&lt;Arg1, Arg2, Result&gt;::pointer_to_binary_function(Result (*f)(Arg1, Arg2))
+    : f_(f)
+{
+}
+
+template &lt;class Arg1, class Arg2, class Result&gt;
+inline
+Result
+pointer_to_binary_function&lt;Arg1, Arg2, Result&gt;::operator()(Arg1 x, Arg2 y) const
+{
+    return f_(x, y);
+}
+
+template &lt;class Arg1, class Arg2, class Result&gt;
+inline
+pointer_to_binary_function&lt;Arg1, Arg2, Result&gt;
+ptr_fun(Result (*f)(Arg1, Arg2))
+{
+    return pointer_to_binary_function&lt;Arg1, Arg2, Result&gt;(f);
+}
+
+//  lib.member.pointer.adaptors, adaptors:
+
+// mem_fun_t
+
+template &lt;class S, class T&gt;
+class mem_fun_t
+    : public unary_function&lt;T*, S&gt;
+{
+public:
+    explicit mem_fun_t(S (T::*mf)());
+    S operator()(T* p) const;
+private:
+    S (T::*mf_)();
+};
+
+template &lt;class S, class T&gt;
+inline
+mem_fun_t&lt;S, T&gt;::mem_fun_t(S (T::*mf)())
+    : mf_(mf)
+{
+}
+
+template &lt;class S, class T&gt;
+inline
+S
+mem_fun_t&lt;S, T&gt;::operator()(T* p) const
+{
+    return (p-&gt;*mf_)();
+}
+
+// mem_fun1_t
+
+template &lt;class S, class T, class A&gt;
+class mem_fun1_t
+    : public binary_function&lt;T*, A, S&gt;
+{
+public:
+    explicit mem_fun1_t(S (T::*mf)(A));
+    S operator()(T* p, A x) const;
+private:
+    S (T::*mf_)(A);
+};
+
+template &lt;class S, class T, class A&gt;
+inline
+mem_fun1_t&lt;S, T, A&gt;::mem_fun1_t(S (T::*mf)(A))
+    : mf_(mf)
+{
+}
+
+template &lt;class S, class T, class A&gt;
+inline
+S
+mem_fun1_t&lt;S, T, A&gt;::operator()(T* p, A x) const
+{
+    return (p-&gt;*mf_)(x);
+}
+
+// mem_fun
+
+template&lt;class S, class T&gt;
+inline
+mem_fun_t&lt;S, T&gt;
+mem_fun(S (T::*f)())
+{
+    return mem_fun_t&lt;S, T&gt;(f);
+}
+
+template&lt;class S, class T, class A&gt;
+inline
+mem_fun1_t&lt;S, T, A&gt;
+mem_fun(S (T::*f)(A))
+{
+    return mem_fun1_t&lt;S, T, A&gt;(f);
+}
+
+// mem_fun_ref_t
+
+template &lt;class S, class T&gt;
+class mem_fun_ref_t
+    : public unary_function&lt;T, S&gt;
+{
+public:
+    explicit mem_fun_ref_t(S (T::*mf)());
+    S operator()(T&amp; p) const;
+private:
+    S (T::*mf_)();
+};
+
+template &lt;class S, class T&gt;
+inline
+mem_fun_ref_t&lt;S, T&gt;::mem_fun_ref_t(S (T::*mf)())
+    : mf_(mf)
+{
+}
+
+template &lt;class S, class T&gt;
+inline
+S
+mem_fun_ref_t&lt;S, T&gt;::operator()(T&amp; p) const
+{
+    return (p.*mf_)();
+}
+
+// mem_fun1_ref_t
+
+template &lt;class S, class T, class A&gt;
+class mem_fun1_ref_t
+    : public binary_function&lt;T, A, S&gt;
+{
+public:
+    explicit mem_fun1_ref_t(S (T::*mf)(A));
+    S operator()(T&amp; p, A x) const;
+private:
+    S (T::*mf_)(A);
+};
+
+template &lt;class S, class T, class A&gt;
+inline
+mem_fun1_ref_t&lt;S, T, A&gt;::mem_fun1_ref_t(S (T::*mf)(A))
+    : mf_(mf)
+{
+}
+
+template &lt;class S, class T, class A&gt;
+inline
+S
+mem_fun1_ref_t&lt;S, T, A&gt;::operator()(T&amp; p, A x) const
+{
+    return (p.*mf_)(x);
+}
+
+// mem_fun_ref
+
+template&lt;class S, class T&gt;
+inline
+mem_fun_ref_t&lt;S, T&gt;
+mem_fun_ref(S (T::*f)())
+{
+    return mem_fun_ref_t&lt;S, T&gt;(f);
+}
+
+template&lt;class S, class T, class A&gt;
+inline
+mem_fun1_ref_t&lt;S, T, A&gt;
+mem_fun_ref(S (T::*f)(A))
+{
+    return mem_fun1_ref_t&lt;S, T, A&gt;(f);
+}
+
+#if !defined(__MWERKS__) || (defined(__MWERKS__) &amp;&amp; __MWERKS__ &gt; 0x2400)
+
+    // const_mem_fun_t
+
+    template &lt;class S, class T&gt;
+    class const_mem_fun_t
+        : public unary_function&lt;T*, S&gt;
+    {
+    public:
+        explicit const_mem_fun_t(S (T::*mf)() const);
+        S operator()(const T* p) const;
+    private:
+        S (T::*mf_)() const;
+    };
+
+    template &lt;class S, class T&gt;
+    inline
+    const_mem_fun_t&lt;S, T&gt;::const_mem_fun_t(S (T::*mf)() const)
+        : mf_(mf)
+    {
+    }
+
+    template &lt;class S, class T&gt;
+    inline
+    S
+    const_mem_fun_t&lt;S, T&gt;::operator()(const T* p) const
+    {
+        return (p-&gt;*mf_)();
+    }
+
+    // const_mem_fun1_t
+
+    template &lt;class S, class T, class A&gt;
+    class const_mem_fun1_t
+        : public binary_function&lt;T*, A, S&gt;
+    {
+    public:
+        explicit const_mem_fun1_t(S (T::*mf)(A) const);
+        S operator()(const T* p, A x) const;
+    private:
+        S (T::*mf_)(A) const;
+    };
+
+    template &lt;class S, class T, class A&gt;
+    inline
+    const_mem_fun1_t&lt;S, T, A&gt;::const_mem_fun1_t(S (T::*mf)(A) const)
+        : mf_(mf)
+    {
+    }
+
+    template &lt;class S, class T, class A&gt;
+    inline
+    S
+    const_mem_fun1_t&lt;S, T, A&gt;::operator()(const T* p, A x) const
+    {
+        return (p-&gt;*mf_)(x);
+    }
+
+    // mem_fun
+
+    template &lt;class S, class T&gt;
+    inline
+    const_mem_fun_t&lt;S, T&gt;
+    mem_fun(S (T::*f)() const)
+    {
+        return const_mem_fun_t&lt;S, T&gt;(f);
+    }
+
+    template &lt;class S, class T, class A&gt;
+    inline
+    const_mem_fun1_t&lt;S, T, A&gt;
+    mem_fun(S (T::*f)(A) const)
+    {
+        return const_mem_fun1_t&lt;S, T, A&gt;(f);
+    }
+
+    // const_mem_fun_ref_t
+
+    template &lt;class S, class T&gt;
+    class const_mem_fun_ref_t
+        : public unary_function&lt;T, S&gt;
+    {
+    public:
+        explicit const_mem_fun_ref_t(S (T::*mf)() const);
+        S operator()(const T&amp; p) const;
+    private:
+        S (T::*mf_)() const;
+    };
+
+    template &lt;class S, class T&gt;
+    inline
+    const_mem_fun_ref_t&lt;S, T&gt;::const_mem_fun_ref_t(S (T::*mf)() const)
+        : mf_(mf)
+    {
+    }
+
+    template &lt;class S, class T&gt;
+    inline
+    S
+    const_mem_fun_ref_t&lt;S, T&gt;::operator()(const T&amp; p) const
+    {
+        return (p.*mf_)();
+    }
+
+    // const_mem_fun1_ref_t
+
+    template &lt;class S, class T, class A&gt;
+    class const_mem_fun1_ref_t
+        : public binary_function&lt;T, A, S&gt;
+    {
+    public:
+        explicit const_mem_fun1_ref_t(S (T::*mf)(A) const);
+        S operator()(const T&amp; p, A x) const;
+    };
+
+    template &lt;class S, class T, class A&gt;
+    inline
+    const_mem_fun1_ref_t&lt;S, T, A&gt;::const_mem_fun1_ref_t(S (T::*mf)(A) const)
+        : mf_(mf)
+    {
+    }
+
+    template &lt;class S, class T, class A&gt;
+    inline
+    S
+    const_mem_fun1_ref_t&lt;S, T, A&gt;::operator()(const T&amp; p, A x) const
+    {
+        return (p.*mf_)(x);
+    }
+
+    // mem_fun_ref
+
+    template &lt;class S, class T&gt;
+    inline
+    const_mem_fun_ref_t&lt;S, T&gt;
+    mem_fun_ref(S (T::*f)() const)
+    {
+        return const_mem_fun_ref_t&lt;S, T&gt;(f);
+    }
+
+    template &lt;class S, class T, class A&gt;
+    inline
+    const_mem_fun1_ref_t&lt;S, T, A&gt;
+    mem_fun_ref(S (T::*f)(A) const)
+    {
+        return const_mem_fun1_ref_t&lt;S, T, A&gt;(f);
+    }
+
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std 
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _FUNCTIONAL
+
+// hh 971221 Changed filename from functional.h to functional
+// hh 971221 Made include guards standard
+// hh 971230 added RC_INVOKED wrapper
+// hh 980401 rewrote all mem_fun stuff
+// hh 980731 added select2nd per customer request
+// hh 980923 Put in a few typename fixes
+// hh 990505 Rewrote
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

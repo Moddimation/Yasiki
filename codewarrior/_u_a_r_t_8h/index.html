@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File UART.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-uarth">File UART.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_49c25cd68abdb8bd8590f84f16217e65/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="./"><strong>UART.h</strong></a></p>
+<p><a href="../_u_a_r_t_8h_source/">Go to the source code of this file</a></p>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-uartbaudrate"><strong>UARTBaudRate</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef int</td>
+<td style="text-align: left;"><a href="#typedef-uarterror"><strong>UARTError</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635"><strong>_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-initializeintdrivenuart"><strong>InitializeIntDrivenUART</strong></a> (<a href="../trk_8h/#enum-uartbaudrate"><strong>UARTBaudRate</strong></a> baudRate, unsigned char intDrivenInput, unsigned char intDrivenOutput, volatile unsigned char ** inputPendingPtrRef) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-initializeuart"><strong>InitializeUART</strong></a> (<a href="../trk_8h/#enum-uartbaudrate"><strong>UARTBaudRate</strong></a> baudRate) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-readuart1"><strong>ReadUART1</strong></a> (char * c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-readuartn"><strong>ReadUARTN</strong></a> (void * bytes, unsigned long length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-readuartpoll"><strong>ReadUARTPoll</strong></a> (char * c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-readuartstring"><strong>ReadUARTString</strong></a> (char * string, unsigned long limit, char terminateChar) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-terminateuart"><strong>TerminateUART</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-uartinterrupthandler"><strong>UARTInterruptHandler</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-writeuart1"><strong>WriteUART1</strong></a> (char c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-writeuartn"><strong>WriteUARTN</strong></a> (const void * bytes, unsigned long length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-uarterror"><strong>UARTError</strong></a></td>
+<td style="text-align: left;"><a href="#function-writeuartstring"><strong>WriteUARTString</strong></a> (const char * string) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="enum-uartbaudrate">enum UARTBaudRate</h3>
+<pre><code class="language-C++">enum UARTBaudRate {
+    kBaudHWSet = -1,
+    kBaud300 = 300,
+    kBaud600 = 600,
+    kBaud1200 = 1200,
+    kBaud1800 = 1800,
+    kBaud2000 = 2000,
+    kBaud2400 = 2400,
+    kBaud3600 = 3600,
+    kBaud4800 = 4800,
+    kBaud7200 = 7200,
+    kBaud9600 = 9600,
+    kBaud19200 = 19200,
+    kBaud38400 = 38400,
+    kBaud57600 = 57600,
+    kBaud115200 = 115200,
+    kBaud230400 = 230400
+};
+</code></pre>
+<hr>
+
+<h3 id="typedef-uarterror">typedef UARTError</h3>
+<pre><code class="language-C++">typedef int UARTError;
+</code></pre>
+<hr>
+
+<h3 id="enum-_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635">enum _u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635</h3>
+<pre><code class="language-C++">enum _u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635 {
+    kUARTDataError = -1,
+    kUARTNoError = 0,
+    kUARTUnknownBaudRate,
+    kUARTConfigurationError,
+    kUARTBufferOverflow,
+    kUARTNoData
+};
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-initializeintdrivenuart">function InitializeIntDrivenUART</h3>
+<pre><code class="language-C++">UARTError InitializeIntDrivenUART (
+    UARTBaudRate baudRate,
+    unsigned char intDrivenInput,
+    unsigned char intDrivenOutput,
+    volatile unsigned char ** inputPendingPtrRef
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-initializeuart">function InitializeUART</h3>
+<pre><code class="language-C++">UARTError InitializeUART (
+    UARTBaudRate baudRate
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-readuart1">function ReadUART1</h3>
+<pre><code class="language-C++">UARTError ReadUART1 (
+    char * c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-readuartn">function ReadUARTN</h3>
+<pre><code class="language-C++">UARTError ReadUARTN (
+    void * bytes,
+    unsigned long length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-readuartpoll">function ReadUARTPoll</h3>
+<pre><code class="language-C++">UARTError ReadUARTPoll (
+    char * c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-readuartstring">function ReadUARTString</h3>
+<pre><code class="language-C++">UARTError ReadUARTString (
+    char * string,
+    unsigned long limit,
+    char terminateChar
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-terminateuart">function TerminateUART</h3>
+<pre><code class="language-C++">UARTError TerminateUART (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-uartinterrupthandler">function UARTInterruptHandler</h3>
+<pre><code class="language-C++">void UARTInterruptHandler (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-writeuart1">function WriteUART1</h3>
+<pre><code class="language-C++">UARTError WriteUART1 (
+    char c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-writeuartn">function WriteUARTN</h3>
+<pre><code class="language-C++">UARTError WriteUARTN (
+    const void * bytes,
+    unsigned long length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-writeuartstring">function WriteUARTString</h3>
+<pre><code class="language-C++">UARTError WriteUARTString (
+    const char * string
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

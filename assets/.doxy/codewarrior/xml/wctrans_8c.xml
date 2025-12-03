@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="wctrans_8c" kind="file" language="C++">
+    <compoundname>wctrans.c</compoundname>
+    <includes refid="wctrans_8h" local="no">wctrans.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstring</label>
+        <link refid="cstring"/>
+      </node>
+      <node id="7">
+        <label>cwchar</label>
+        <link refid="cwchar"/>
+      </node>
+      <node id="8">
+        <label>cwctype</label>
+        <link refid="cwctype"/>
+      </node>
+      <node id="4">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>wctrans.h</label>
+        <link refid="wctrans_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>wctrans.c</label>
+        <link refid="wctrans_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structwctable" prot="public">wctable</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="wctrans_8c_1ad8b6d73fa6722ec6c3d9cc454996a03c" prot="public" static="yes" mutable="no">
+        <type>const struct <ref refid="structwctable" kindref="compound">wctable</ref></type>
+        <definition>const struct wctable wtable[]</definition>
+        <argsstring>[]</argsstring>
+        <name>wtable</name>
+        <initializer>= 
+{
+	{&quot;tolower&quot;, 0},
+	{&quot;toupper&quot;, 1},
+	{(const char *)0, 0}
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wctrans.c" line="41" column="1"/>
+        <referencedby refid="wctrans_8h_1a98df6598dc60588b24067b97225070ed" compoundref="wctrans_8c" startline="48" endline="62">wctrans</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="wctrans_8c_1a0ec4a6c730a7fd6b41c628f83e6b490a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>wint_t</type>
+        <definition>wint_t towctrans</definition>
+        <argsstring>(wint_t c, wctrans_t value)</argsstring>
+        <name>towctrans</name>
+        <param>
+          <type>wint_t</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type><ref refid="wctrans_8h_1a7fd6c25ecb62c3ed68a0f70706396ca4" kindref="member">wctrans_t</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wctrans.c" line="43" column="8" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wctrans.c" bodystart="43" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="wctrans_8c_1a98df6598dc60588b24067b97225070ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="wctrans_8h_1a7fd6c25ecb62c3ed68a0f70706396ca4" kindref="member">wctrans_t</ref></type>
+        <definition>wctrans_t wctrans</definition>
+        <argsstring>(const char *name)</argsstring>
+        <name>wctrans</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wctrans.c" line="48" column="11" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wctrans.c" bodystart="48" bodyend="62"/>
+        <references refid="string_8c_1a6f3dcb20ff11ff9db5904c3cfb61a38c" compoundref="string_8c" startline="339" endline="459">strcmp</references>
+        <references refid="structwctable_1abedc969f1e670744eaa2f4138649d485" compoundref="wctrans_8c" startline="32">wctable::string</references>
+        <references refid="wctrans_8c_1ad8b6d73fa6722ec6c3d9cc454996a03c">wtable</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/07/30<sp/>01:02:54<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.7.4.1<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>wctrans.c</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>Routines</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>--------</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/>towctrans</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/>wctrans</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>ANSI_strict<sp/>off<sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>990729<sp/>vss<sp/><sp/>empty<sp/>compilation<sp/>unit<sp/>illegal<sp/>in<sp/>ANSI<sp/>C<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__NO_WIDE_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>980204<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>ANSI_strict<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="wctrans_8h" kindref="compound">wctrans.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="structwctable" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structwctable" kindref="compound">wctable</ref><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32" refid="structwctable_1abedc969f1e670744eaa2f4138649d485" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structwctable_1abedc969f1e670744eaa2f4138649d485" kindref="member">string</ref>;</highlight></codeline>
+<codeline lineno="33" refid="structwctable_1aef74f076c08fc021d5464a5eed168383" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>wctype_t<sp/><sp/><sp/><sp/><ref refid="structwctable_1aef74f076c08fc021d5464a5eed168383" kindref="member">value</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}<sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><ref refid="wctrans_8c_1ad8b6d73fa6722ec6c3d9cc454996a03c" kindref="member">wtable</ref>[]<sp/>=<sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;tolower&quot;</highlight><highlight class="normal">,<sp/>0},</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;toupper&quot;</highlight><highlight class="normal">,<sp/>1},</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>{(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)0,<sp/>0}</highlight></codeline>
+<codeline lineno="41" refid="wctrans_8c_1ad8b6d73fa6722ec6c3d9cc454996a03c" refkind="member"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="wctrans_8h_1a0ec4a6c730a7fd6b41c628f83e6b490a" refkind="member"><highlight class="normal">wint_t<sp/><ref refid="wctrans_8c_1a0ec4a6c730a7fd6b41c628f83e6b490a" kindref="member">towctrans</ref>(wint_t<sp/>c,<sp/><ref refid="wctrans_8h_1a7fd6c25ecb62c3ed68a0f70706396ca4" kindref="member">wctrans_t</ref><sp/>value)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(value<sp/>==<sp/>1<sp/>?<sp/>towupper(c)<sp/>:<sp/>towlower(c));</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="wctrans_8h_1a98df6598dc60588b24067b97225070ed" refkind="member"><highlight class="normal"><ref refid="wctrans_8h_1a7fd6c25ecb62c3ed68a0f70706396ca4" kindref="member">wctrans_t</ref><sp/><ref refid="wctrans_8c_1a98df6598dc60588b24067b97225070ed" kindref="member">wctrans</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/><ref refid="wctrans_8c_1ad8b6d73fa6722ec6c3d9cc454996a03c" kindref="member">wtable</ref>[i].<ref refid="structwctable_1abedc969f1e670744eaa2f4138649d485" kindref="member">string</ref><sp/>!=<sp/>0;<sp/>++i)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="string_8c_1a6f3dcb20ff11ff9db5904c3cfb61a38c" kindref="member">strcmp</ref>(<ref refid="wctrans_8c_1ad8b6d73fa6722ec6c3d9cc454996a03c" kindref="member">wtable</ref>[i].</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">,<sp/>name)<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="wctrans_8c_1ad8b6d73fa6722ec6c3d9cc454996a03c" kindref="member">wtable</ref>[i].value);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifndef<sp/>__NO_WIDE_CHAR<sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>981030<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Change<sp/>Record</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/><sp/>980126<sp/>JCM<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>mm<sp/>981030<sp/><sp/>Added<sp/>#ifndef<sp/>__NO_WIDE_CHAR<sp/>wrappers</highlight></codeline>
+<codeline lineno="69"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wctrans.c"/>
+  </compounddef>
+</doxygen>

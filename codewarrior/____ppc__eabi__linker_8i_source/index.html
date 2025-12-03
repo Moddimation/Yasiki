@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File __ppc_eabi_linker.i - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-__ppc_eabi_linkeri">File __ppc_eabi_linker.i</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_192ee455ef94b5a11e62d491224058e4/"><strong>Inc</strong></a> <strong>&gt;</strong> <a href="../____ppc__eabi__linker_8i/"><strong>__ppc_eabi_linker.i</strong></a></p>
+<p><a href="../____ppc__eabi__linker_8i/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">;/***************************************************************************/
+;/*
+;
+;FILE
+;   __ppc_eabi_linker.h
+;
+;DESCRIPTION
+;
+;   Linker-generated symbols for sections as defined for use in [EABI95].
+;
+;-------------------------------------------------------------------------------------------
+;ELF sect.      mem ini siz ROM addr symbol         RAM (virtual) addr  RAM (virtual) end
+;--------------- --- ---    --- ----------------------- ------------------- -------------------
+;.text          RX   Y  N/A _f_text_rom             _f_text             _e_text
+;.data          RW   Y  any _f_data_rom             _f_data             _e_data
+;.rodata        R    Y  any _f_rodata_rom           _f_rodata           _e_rodata
+;.bss           RW   0  any                         _f_bss              _e_bss
+;
+;.sdata         RW   Y  &lt;=8 _f_sdata_rom            _f_sdata            _e_sdata
+;.sbss          RW   0  &lt;=8                         _f_sbss             _e_sbss
+;
+;.sdata2        RW*  Y  &lt;=8 _f_sdata2_rom           _f_sdata2           _e_sdata2
+;.sbss2         RW   0  &lt;=8                         _f_sbss2            _e_sbss2
+;
+;.PPC.EMB.sdata0 RW  Y  &lt;=8 _f_PPC_EMB_sdata0_rom   _f_PPC_EMB_sdata0   _e_PPC_EMB_sdata0
+;.PPC.EMB.sbss0 RW   0  &lt;=8 N/A                     _f_PPC_EMB_sbss0    _e_PPC_EMB_sbss0
+;
+;(stack)        RW   N  N/A                         _stack_addr         _stack_end
+;(heap)         RW   N  N/A                         _heap_addr          _heap_end
+;
+;-------------------------------------------------------------------------------------------------
+;ELF sect.  Name of the ELF section
+;mem            Memory access: R = R/O, RW = Read/Write, RW* = intended R/O, but RW, RX = Execute
+;siz            Datum size
+;ini            Initialized? 0 = filled with zeros, Y = init'ed, N = not init'ed
+;end            Virtual address following section
+;-------------------------------------------------------------------------------------------------
+;
+;The symbols above are automatically generated by the linker based on the spelling of the
+;section name.  Symbols not above, i.e., symbols for user defined sections follow the same
+;naming convention.
+;
+;In all cases, any '.' in the name is replaced with a '_'.  Addresses begin with a '_f', address
+;after last byte in section begine with '_e' and rom addresses end in a '_rom'.  The linker command 
+;file allows you to define your own symbols and it allows you to create an alias to the 
+;automatically generated symbols.
+;
+;For example:
+;ftext = ADDR(.text);   // define ftext
+;etext = _e_text;       // create an alias
+;
+;Calculate the size of the section by subtracting the begin RAM address from the end RAM
+;address.
+;
+;REFERENCES
+;
+;   [EABI95]    PowerPC Embedded Application Binary Interface,
+;               32-bit Implementation.  Version 1.0, Initial Release,
+;               1/10/95.  Stephen Sobek, Motorola, and Kevin Burke, IBM.
+;
+;NOTES
+;
+;COPYRIGHT  
+;   (c) 1996-7 Metrowerks Corporation
+;   All rights reserved.
+;
+;HISTORY
+;   97 APR 16 LLY   Moved from __start.c, new names for 4/1/97 PPC EABI tools.
+;   97 JUN 8 MEA    New names for 6/8/97 PPC EABI tools (C++ exceptions).
+;   97 JULY 1 JFH   created asm version .i from .h
+;   97 SEP 11 MEA   _heap_size and _stack_size are now in bytes.
+;   97 DEC  7 MEA   linker generated symbols are now forced into the .init section.
+;                   Created new symbols _bss_init_info and _rom_copy_info.
+;   98 JAN 14 MEA   New spelling for symbols.
+;   98 JAN 20 MEA   Removed size symbols and added end symbols to make them
+;                   easier to access from C.
+;
+;*/
+;/***************************************************************************/
+
+
+;/*
+; * Stack and heap pointers and size
+; */
+
+.extern _stack_addr;        ;/* ( char [] ) starting address for stack pointer */
+.extern _stack_end;         ;/* ( char [] ) address after end byte of stack */
+.extern _heap_addr;         ;/* ( char [] ) starting address for heap */
+.extern _heap_end;          ;/* ( char [] ) address after end byte of heap */
+
+;/*
+; * extabindex -- read only C++ Exception Tables
+; */
+
+.extern _fextabindex_rom;   ;/* ( const char [] ) extabindex source (ROM) address at beginning */
+.extern _fextabindex;       ;/* ( char [] ) extabindex dest. (RAM) address at beginning */
+.extern _eextabindex;       ;/* ( char [] ) extabindex dest. (RAM) address after end byte */
+
+;/*
+; * Small Data pointers (PPC EABI)
+; */
+
+.extern _SDA_BASE_;         ;/* ( char [] ) Small Data Area (&lt;=8 bytes) base addr */
+                            ;           /* used for .sdata, .sbss */
+.extern _SDA2_BASE_;        ;/* ( char [] ) Small Data Area 2 (&lt;=8 bytes), base addr */
+                            ;           /* used for .sdata2, .sbss2 */
+
+;/*
+; * Special symbol for copying sections from rom to ram: _data_copy_info
+; * if size field is zero, there are no more valid sections
+; * see __init_data for example.  _rom_copy_info is a true C variable.
+; */
+
+;typedef struct __rom_copy_info {
+;   char *          rom;        // address in rom
+;   char *          addr;       // address in ram (executing address)
+;   unsigned int    size;       // size of section
+;} __rom_copy_info;
+
+.extern _rom_copy_info; /* ( __rom_copy_info [] ) An array of all initialized (data, text or mixed) sections */
+
+;/*
+; * Special symbol for initializing bss type sections: _bss_init_info
+; * if size field is zero, there are no more valid sections
+; * see __init_data for example.  _bss_init_info is a true C variable.
+; */
+
+;typedef struct __bss_init_info {
+;   char *          addr;       // address in ram (executing address)
+;   unsigned int    size;       // size of section
+;} __bss_init_info;
+
+.extern _bss_init_info; /* ( __bss_init_info [] ) An array of all uninitialized data sections */
+
+;/* 
+; * If you use the CodeWarrior start-up routines in __start.c and __ppc_eabi_init.c,
+; * the above are the only linker generated symbols you will need.  The linker, however
+; * will still automatically generate symbols for each output section in your project.
+; * The following are declarations for the standard sections.
+; */
+
+;/*
+; * .init -- executable PowerPC EABI code
+; */
+
+.extern _f_init_rom;        ;/* ( const char [] ) .init source (ROM) address at beginning */
+.extern _f_init;            ;/* ( char [] ) .init dest. (RAM) address at beginning */
+.extern _e_init;            ;/* ( char [] ) .init dest. (RAM) address after end byte */
+
+;/*
+; * .text -- executable PowerPC EABI code
+; */
+
+.extern _f_text_rom;        ;/* ( const char [] ) .text source (ROM) address at beginning */
+.extern _f_text;            ;/* ( char [] ) .text dest. (RAM) address at beginning */
+.extern _e_text;            ;/* ( char [] ) .text dest. (RAM) address after end byte */
+
+;/*
+; * .rodata -- read only data
+; */
+
+.extern _f_rodata_rom;      ;/* ( const char [] ) .rodata source (ROM) address at beginning */
+.extern _f_rodata;          ;/* ( char [] ) .rodata dest. (RAM) address at beginning */
+.extern _e_rodata;          ;/* ( char [] ) .rodata dest. (RAM) address after end byte */
+
+;/*
+; * extab -- read only C++ Exception Tables
+; */
+
+.extern _fextab_rom;        ;/* ( const char [] ) extab source (ROM) address at beginning */
+.extern _fextab;            ;/* ( char [] ) extab dest. (RAM) address at beginning */
+.extern _eextab;            ;/* ( char [] ) extab dest. (RAM) address after end byte */
+
+;/*
+; * .data -- read/write initialized data
+; */
+
+.extern _f_data_rom;        ;/* ( const char [] ) .data source (ROM) address at beginning */
+.extern _f_data;            ;/* ( char [] ) .data dest. (RAM) address at beginning */
+.extern _e_data;            ;/* ( char [] ) .data dest. (RAM) address after end byte */
+
+;/*
+; * .bss -- read/write initialized (zeroed) data
+; */
+
+.extern _f_bss;         ;/* ( char [] ) .bss dest. (RAM) address at beginning */
+.extern _e_bss;         ;/* ( char [] ) .bss dest. (RAM) address after end byte */
+
+;/*
+; * .sdata -- small data
+; */
+
+.extern _f_sdata_rom;       ;/* ( const char [] ) .sdata source (ROM) address at beginning */
+.extern _f_sdata;           ;/* ( char [] ) .sdata dest. (RAM) address at beginning */
+.extern _e_sdata;           ;/* ( char [] ) .sdata dest. (RAM) address after end byte */
+
+;/*
+; * .sbss -- small initialized (zeroed) data
+; */
+
+.extern _f_sbss;            ;/* ( char [] ) .sbss dest. (RAM) address at beginning */
+.extern _e_sbss;            ;/* ( char [] ) .sbss dest. (RAM) address after end byte */
+
+;/*
+; * .sdata2 -- PPC embedded small initlialized data
+; */
+
+.extern _f_sdata2_rom;      ;/* ( const char [] ) .sdata2 source (ROM) address at beginning */
+.extern _f_sdata2;          ;/* ( char [] ) .sdata2 dest. (RAM) address at beginning */
+.extern _e_sdata2;          ;/* ( char [] ) .sdata2 dest. (RAM) address after end byte */
+
+;/*
+; * .sbss2 -- PPC embedded small initialized (zeroed) data
+; */
+
+.extern _f_sbss2;           ;/* ( char [] ) .sbss2 dest. (RAM) address at beginning */
+.extern _e_sbss2;           ;/* ( char [] ) .sbss2 dest. (RAM) address after end byte */
+
+;/*
+; * .PPC.EMB.sdata0 -- PPC embedded small data centered around addr. zero
+; */
+
+.extern _f_PPC_EMB_sdata0_rom;      ;/* ( const char [] ) .PPC.EMB.sdata0 source (ROM) address at beginning */
+.extern _f_PPC_EMB_sdata0;          ;/* ( char [] ) .PPC.EMB.sdata0 dest. (RAM) address at beginning */
+.extern _e_PPC_EMB_sdata0;          ;/* ( char [] ) .PPC.EMB.sdata0 dest. (RAM) address after end byte */
+
+;/*
+; * .PPC.EMB.sbss0 -- PPC embedded small initlialized (zeroed) data
+; */
+
+.extern _f_PPC_EMB_sbss0;           ;/* ( char [] ) .PPC.EMB.sbss0 dest. (RAM) address at beginning */
+.extern _e_PPC_EMB_sbss0;           ;/* ( char [] ) .PPC.EMB.sbss0 dest. (RAM) address after end byte */
+
+
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

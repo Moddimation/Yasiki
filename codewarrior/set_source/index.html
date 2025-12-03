@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File set - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-set">File set</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../set/"><strong>set</strong></a></p>
+<p><a href="../set/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:59:45 $ 
+ *  $Revision: 1.10.2.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  set       // hh 971223 Changed filename from set.h to set
+ **/
+
+#ifndef _SET
+#define _SET
+
+#include &lt;mslconfig&gt;
+#include &lt;tree.h&gt;
+#include &lt;functional&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+// set
+
+template &lt;class Key, class Compare = less&lt;Key&gt;, class Allocator = allocator&lt;Key&gt; &gt;
+class set
+{
+public:
+    //  types:
+    typedef Key                                   key_type;
+    typedef Key                                   value_type;
+    typedef Compare                               key_compare;
+    typedef Compare                               value_compare;
+    typedef Allocator                             allocator_type;
+    typedef typename Allocator::reference         reference;
+    typedef typename Allocator::const_reference   const_reference;
+    class                                         iterator;
+    class                                         const_iterator;
+    typedef typename Allocator::size_type         size_type;
+    typedef typename Allocator::difference_type   difference_type;
+    typedef typename Allocator::pointer           pointer;
+    typedef typename Allocator::const_pointer     const_pointer;
+    typedef _STD::reverse_iterator&lt;iterator&gt;       reverse_iterator;
+    typedef _STD::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
+
+private:
+    typedef __tree&lt;value_type, value_compare, allocator_type&gt; tree_type;
+public:
+
+    struct debug_view
+    {
+        debug_view* left_;
+        debug_view* right_;
+        debug_view* parent_;
+        value_type data_;
+    };
+
+    friend class iterator;
+    class iterator
+        : public _STD::iterator&lt;bidirectional_iterator_tag, value_type, difference_type, const_pointer, const_reference&gt;
+    {
+    public:
+        iterator() {}
+        const_reference operator * () const {return *i_;}
+        const_pointer operator -&gt; () const {return i_.operator-&gt;();}
+        iterator&amp; operator ++ () {++i_; return *this;}
+        iterator operator ++ (int) {iterator tmp(*this); ++i_; return tmp;}
+        iterator&amp; operator -- () {--i_; return *this;}
+        iterator operator -- (int) {iterator tmp(*this); --i_; return tmp;}
+        bool operator ==(const iterator&amp; rhs) const {return i_ == rhs.i_;}
+        bool operator ==(const const_iterator&amp; rhs) const {return const_iterator(*this) == rhs;}
+        bool operator !=(const iterator&amp; rhs) const {return i_ != rhs.i_;}
+        bool operator !=(const const_iterator&amp; rhs) const {return  const_iterator(*this) != rhs;}
+    private:
+        tree_type::iterator i_;
+
+        iterator(const tree_type::iterator&amp; i) : i_(i) {}
+        operator tree_type::iterator() const {return i_;}
+
+        friend class set;
+        friend class set::const_iterator;
+    };
+
+    friend class const_iterator;
+    class const_iterator
+        : public _STD::iterator&lt;bidirectional_iterator_tag, value_type, difference_type, const_pointer, const_reference&gt;
+    {
+    public:
+        const_iterator() {}
+        const_iterator(const set::iterator&amp; i) : i_(i) {}
+        const_reference operator * () const {return *i_;}
+        const_pointer operator -&gt; () const {return i_.operator-&gt;();}
+        const_iterator&amp; operator ++ () {++i_; return *this;}
+        const_iterator operator ++ (int) {const_iterator tmp(*this); ++i_; return tmp;}
+        const_iterator&amp; operator -- () {--i_; return *this;}
+        const_iterator operator -- (int) {const_iterator tmp(*this); --i_; return tmp;}
+        bool operator ==(const const_iterator&amp; rhs) const {return i_ == rhs.i_;}
+        bool operator ==(const set::iterator&amp; rhs) const {return *this == const_iterator(rhs);}
+        bool operator !=(const const_iterator&amp; rhs) const {return i_ != rhs.i_;}
+        bool operator !=(const set::iterator&amp; rhs) const {return *this != const_iterator(rhs);}
+    private:
+        tree_type::const_iterator i_;
+
+        const_iterator(const tree_type::const_iterator&amp; i) : i_(i) {}
+        operator tree_type::const_iterator() const {return i_;}
+
+        friend class set;
+        friend class set::iterator;
+    };
+
+    //  lib.set.cons construct/copy/destroy:
+    explicit set(const Compare&amp; comp = Compare(), const Allocator&amp; a = Allocator());
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            inline
+            set(InputIterator first, InputIterator last, const Compare&amp; comp = Compare(),
+                const Allocator&amp; a = Allocator())
+                : tree_(first, last, false, comp, a)
+            {
+            }
+    #else
+        set(const_iterator first, const_iterator last, const Compare&amp; comp = Compare(),
+            const Allocator&amp; a = Allocator());
+        set(const value_type* first, const value_type* last, const Compare&amp; comp = Compare(),
+            const Allocator&amp; a = Allocator());
+    #endif
+    allocator_type get_allocator() const;
+
+    //  iterators:
+    iterator               begin();
+    const_iterator         begin() const;
+    iterator               end();
+    const_iterator         end() const;
+    reverse_iterator       rbegin();
+    const_reverse_iterator rbegin() const;
+    reverse_iterator       rend();
+    const_reverse_iterator rend() const;
+
+    //  capacity:
+    bool          empty() const;
+    size_type     size() const;
+    size_type     max_size() const;
+
+    //  modifiers:
+    pair&lt;iterator,bool&gt; insert(const value_type&amp; x);
+    iterator            insert(iterator position, const value_type&amp; x);
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            inline
+            void insert(InputIterator first, InputIterator last)
+            {
+                tree_.insert_one(first, last);
+            }
+    #else
+        void insert(const_iterator first, const_iterator last);
+        void insert(const value_type* first, const value_type* last);
+    #endif
+
+    void      erase(iterator position);
+    size_type erase(const key_type&amp; x);
+    void      erase(iterator first, iterator last);
+    void swap(set&lt;Key,Compare,Allocator&gt;&amp; x);
+    void clear();
+
+    //  observers:
+    key_compare   key_comp() const;
+    value_compare value_comp() const;
+
+    //  set operations:
+    iterator  find(const key_type&amp; x) const;
+    size_type count(const key_type&amp; x) const;
+
+    iterator  lower_bound(const key_type&amp; x) const;
+    iterator  upper_bound(const key_type&amp; x) const;
+    pair&lt;iterator,iterator&gt; equal_range(const key_type&amp; x) const;
+private:
+    tree_type tree_;
+};
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator==(const set&lt;Key,Compare,Allocator&gt;&amp; x, const set&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator&lt; (const set&lt;Key,Compare,Allocator&gt;&amp; x, const set&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator!=(const set&lt;Key,Compare,Allocator&gt;&amp; x, const set&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator&gt; (const set&lt;Key,Compare,Allocator&gt;&amp; x, const set&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator&gt;=(const set&lt;Key,Compare,Allocator&gt;&amp; x, const set&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator&lt;=(const set&lt;Key,Compare,Allocator&gt;&amp; x, const set&lt;Key,Compare,Allocator&gt;&amp; y);
+
+//  specialized algorithms:
+template &lt;class Key, class Compare, class Allocator&gt;
+void
+swap(set&lt;Key,Compare,Allocator&gt;&amp; x, set&lt;Key,Compare,Allocator&gt;&amp; y);
+
+// multiset
+
+template &lt;class Key, class Compare = less&lt;Key&gt;, class Allocator = allocator&lt;Key&gt; &gt;
+class multiset
+{
+public:
+    //  types:
+    typedef Key                                   key_type;
+    typedef Key                                   value_type;
+    typedef Compare                               key_compare;
+    typedef Compare                               value_compare;
+    typedef Allocator                             allocator_type;
+    typedef typename Allocator::reference         reference;
+    typedef typename Allocator::const_reference   const_reference;
+    class                                         iterator;
+    class                                         const_iterator;
+    typedef typename Allocator::size_type         size_type;
+    typedef typename Allocator::difference_type   difference_type;
+    typedef typename Allocator::pointer           pointer;
+    typedef typename Allocator::const_pointer     const_pointer;
+    typedef _STD::reverse_iterator&lt;iterator&gt;       reverse_iterator;
+    typedef _STD::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
+
+private:
+    typedef __tree&lt;value_type, value_compare, allocator_type&gt; tree_type;
+public:
+
+    struct debug_view
+    {
+        debug_view* left_;
+        debug_view* right_;
+        debug_view* parent_;
+        value_type data_;
+    };
+
+    friend class iterator;
+    class iterator
+        : public _STD::iterator&lt;bidirectional_iterator_tag, value_type, difference_type, const_pointer, const_reference&gt;
+    {
+    public:
+        iterator() {}
+        const_reference operator * () const {return *i_;}
+        const_pointer operator -&gt; () const {return i_.operator-&gt;();}
+        iterator&amp; operator ++ () {++i_; return *this;}
+        iterator operator ++ (int) {iterator tmp(*this); ++i_; return tmp;}
+        iterator&amp; operator -- () {--i_; return *this;}
+        iterator operator -- (int) {iterator tmp(*this); --i_; return tmp;}
+        bool operator ==(const iterator&amp; rhs) const {return i_ == rhs.i_;}
+        bool operator ==(const const_iterator&amp; rhs) const {return const_iterator(*this) == rhs;}
+        bool operator !=(const iterator&amp; rhs) const {return i_ != rhs.i_;}
+        bool operator !=(const const_iterator&amp; rhs) const {return const_iterator(*this) != rhs;}
+    private:
+        tree_type::iterator i_;
+
+        iterator(const tree_type::iterator&amp; i) : i_(i) {}
+        operator tree_type::iterator() const {return i_;}
+
+        friend class multiset;
+        friend class multiset::const_iterator;
+    };
+
+    friend class const_iterator;
+    class const_iterator
+        : public _STD::iterator&lt;bidirectional_iterator_tag, value_type, difference_type, const_pointer, const_reference&gt;
+    {
+    public:
+        const_iterator() {}
+        const_iterator(const multiset::iterator&amp; i) : i_(i) {}
+        const_reference operator * () const {return *i_;}
+        const_pointer operator -&gt; () const {return i_.operator-&gt;();}
+        const_iterator&amp; operator ++ () {++i_; return *this;}
+        const_iterator operator ++ (int) {const_iterator tmp(*this); ++i_; return tmp;}
+        const_iterator&amp; operator -- () {--i_; return *this;}
+        const_iterator operator -- (int) {const_iterator tmp(*this); --i_; return tmp;}
+        bool operator ==(const const_iterator&amp; rhs) const {return i_ == rhs.i_;}
+        bool operator ==(const multiset::iterator&amp; rhs) const {return *this == const_iterator(rhs);}
+        bool operator !=(const const_iterator&amp; rhs) const {return i_ != rhs.i_;}
+        bool operator !=(const multiset::iterator&amp; rhs) const {return *this != const_iterator(rhs);}
+    private:
+        tree_type::const_iterator i_;
+
+        const_iterator(const tree_type::const_iterator&amp; i) : i_(i) {}
+        operator tree_type::const_iterator() const {return i_;}
+
+        friend class multiset;
+    };
+
+
+    //  construct/copy/destroy:
+    explicit multiset(const Compare&amp; comp = Compare(), const Allocator&amp; a = Allocator());
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            inline
+            multiset(InputIterator first, InputIterator last, const Compare&amp; comp = Compare(),
+                const Allocator&amp; a = Allocator())
+                : tree_(first, last, true, comp, a)
+            {
+            }
+    #else
+        multiset(const_iterator first, const_iterator last, const Compare&amp; comp = Compare(),
+            const Allocator&amp; a = Allocator());
+        multiset(const value_type* first, const value_type* last, const Compare&amp; comp = Compare(),
+            const Allocator&amp; a = Allocator());
+    #endif
+    allocator_type get_allocator() const;
+
+    //  iterators:
+    iterator               begin();
+    const_iterator         begin() const;
+    iterator               end();
+    const_iterator         end() const;
+    reverse_iterator       rbegin();
+    const_reverse_iterator rbegin() const;
+    reverse_iterator       rend();
+    const_reverse_iterator rend() const;
+
+    //  capacity:
+    bool          empty() const;
+    size_type     size() const;
+    size_type     max_size() const;
+
+    //  modifiers:
+    iterator insert(const value_type&amp; x);
+    iterator insert(iterator position, const value_type&amp; x);
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            inline
+            void insert(InputIterator first, InputIterator last)
+            {
+                tree_.insert_multi(first, last);
+            }
+    #else
+        void insert(const_iterator first, const_iterator last);
+        void insert(const value_type* first, const value_type* last);
+    #endif
+
+    void      erase(iterator position);
+    size_type erase(const key_type&amp; x);
+    void      erase(iterator first, iterator last);
+    void swap(multiset&lt;Key,Compare,Allocator&gt;&amp; x);
+    void clear();
+
+    //  observers:
+    key_compare   key_comp() const;
+    value_compare value_comp() const;
+
+    //  set operations:
+    iterator  find(const key_type&amp; x) const;
+    size_type count(const key_type&amp; x) const;
+
+    iterator  lower_bound(const key_type&amp; x) const;
+    iterator  upper_bound(const key_type&amp; x) const;
+    pair&lt;iterator,iterator&gt; equal_range(const key_type&amp; x) const;
+private:
+    tree_type tree_;
+};
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator==(const multiset&lt;Key,Compare,Allocator&gt;&amp; x, const multiset&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator&lt; (const multiset&lt;Key,Compare,Allocator&gt;&amp; x, const multiset&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator!=(const multiset&lt;Key,Compare,Allocator&gt;&amp; x, const multiset&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator&gt; (const multiset&lt;Key,Compare,Allocator&gt;&amp; x, const multiset&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator&gt;=(const multiset&lt;Key,Compare,Allocator&gt;&amp; x, const multiset&lt;Key,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class Compare, class Allocator&gt;
+bool
+operator&lt;=(const multiset&lt;Key,Compare,Allocator&gt;&amp; x, const multiset&lt;Key,Compare,Allocator&gt;&amp; y);
+
+//  specialized algorithms:
+template &lt;class Key, class Compare, class Allocator&gt;
+void
+swap(multiset&lt;Key,Compare,Allocator&gt;&amp; x, multiset&lt;Key,Compare,Allocator&gt;&amp; y);
+
+// set implementation
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+set&lt;Key, Compare, Allocator&gt;::set(const Compare&amp; comp, const Allocator&amp; a)
+    : tree_(comp, a)
+{
+}
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+
+    template &lt;class Key, class Compare, class Allocator&gt;
+    inline
+    set&lt;Key, Compare, Allocator&gt;::set(const_iterator first, const_iterator last,
+        const Compare&amp; comp, const Allocator&amp; a)
+        : tree_(first, last, false, comp, a)
+    {
+    }
+
+    template &lt;class Key, class Compare, class Allocator&gt;
+    inline
+    set&lt;Key, Compare, Allocator&gt;::set(const value_type* first, const value_type* last,
+        const Compare&amp; comp, const Allocator&amp; a)
+        : tree_(first, last, false, comp, a)
+    {
+    }
+
+#endif
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::allocator_type
+set&lt;Key, Compare, Allocator&gt;::get_allocator() const
+{
+    return tree_.get_allocator();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::iterator
+set&lt;Key, Compare, Allocator&gt;::begin()
+{
+    return tree_.begin();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::const_iterator
+set&lt;Key, Compare, Allocator&gt;::begin() const
+{
+    return tree_.begin();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::iterator
+set&lt;Key, Compare, Allocator&gt;::end()
+{
+    return tree_.end();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::const_iterator
+set&lt;Key, Compare, Allocator&gt;::end() const
+{
+    return tree_.end();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::reverse_iterator
+set&lt;Key, Compare, Allocator&gt;::rbegin()
+{
+    return reverse_iterator(end());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::const_reverse_iterator
+set&lt;Key, Compare, Allocator&gt;::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::reverse_iterator
+set&lt;Key, Compare, Allocator&gt;::rend()
+{
+    return reverse_iterator(begin());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::const_reverse_iterator
+set&lt;Key, Compare, Allocator&gt;::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+set&lt;Key, Compare, Allocator&gt;::empty() const
+{
+    return tree_.empty();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::size_type
+set&lt;Key, Compare, Allocator&gt;::size() const
+{
+    return tree_.size();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::size_type
+set&lt;Key, Compare, Allocator&gt;::max_size() const
+{
+    return tree_.max_size();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+pair&lt;set&lt;Key, Compare, Allocator&gt;::iterator, bool&gt;
+set&lt;Key, Compare, Allocator&gt;::insert(const value_type&amp; x)
+{
+    pair&lt;tree_type::iterator, bool&gt; result = tree_.insert_one(x);
+    return pair&lt;iterator, bool&gt;(result.first, result.second);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::iterator
+set&lt;Key, Compare, Allocator&gt;::insert(iterator position, const value_type&amp; x)
+{
+    return tree_.insert_one(position, x);
+}
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+
+    template &lt;class Key, class Compare, class Allocator&gt;
+    inline
+    void
+    set&lt;Key, Compare, Allocator&gt;::insert(const_iterator first, const_iterator last)
+    {
+        tree_.insert_one(first, last);
+    }
+
+    template &lt;class Key, class Compare, class Allocator&gt;
+    inline
+    void
+    set&lt;Key, Compare, Allocator&gt;::insert(const value_type* first, const value_type* last)
+    {
+        tree_.insert_one(first, last);
+    }
+
+#endif
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+set&lt;Key, Compare, Allocator&gt;::erase(iterator position)
+{
+    tree_.erase(position);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::size_type
+set&lt;Key, Compare, Allocator&gt;::erase(const key_type&amp; x)
+{
+    return tree_.erase_one(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+set&lt;Key, Compare, Allocator&gt;::erase(iterator first, iterator last)
+{
+    tree_.erase(first, last);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+set&lt;Key, Compare, Allocator&gt;::swap(set&lt;Key,Compare,Allocator&gt;&amp; x)
+{
+    tree_.swap(x.tree_);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+set&lt;Key, Compare, Allocator&gt;::clear()
+{
+    tree_.clear();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::key_compare
+set&lt;Key, Compare, Allocator&gt;::key_comp() const
+{
+    return tree_.value_comp();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::value_compare
+set&lt;Key, Compare, Allocator&gt;::value_comp() const
+{
+    return tree_.value_comp();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::iterator
+set&lt;Key, Compare, Allocator&gt;::find(const key_type&amp; x) const
+{
+    return const_cast&lt;tree_type&amp;&gt;(tree_).find(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::size_type
+set&lt;Key, Compare, Allocator&gt;::count(const key_type&amp; x) const
+{
+    return tree_.count_one(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::iterator
+set&lt;Key, Compare, Allocator&gt;::lower_bound(const key_type&amp; x) const
+{
+    return const_cast&lt;tree_type&amp;&gt;(tree_).lower_bound(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename set&lt;Key, Compare, Allocator&gt;::iterator
+set&lt;Key, Compare, Allocator&gt;::upper_bound(const key_type&amp; x) const
+{
+    return const_cast&lt;tree_type&amp;&gt;(tree_).upper_bound(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+pair&lt;set&lt;Key, Compare, Allocator&gt;::iterator, set&lt;Key, Compare, Allocator&gt;::iterator&gt;
+set&lt;Key, Compare, Allocator&gt;::equal_range(const key_type&amp; x) const
+{
+    pair&lt;tree_type::iterator, tree_type::iterator&gt; result =
+        const_cast&lt;tree_type&amp;&gt;(tree_).equal_range(x);
+    return pair&lt;iterator, iterator&gt;(result.first, result.second);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator==(const set&lt;Key, Compare, Allocator&gt;&amp; x, const set&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return x.size() == y.size() &amp;&amp; equal(x.begin(), x.end(), y.begin());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator!=(const set&lt;Key, Compare, Allocator&gt;&amp; x, const set&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return !(x == y);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator&lt; (const set&lt;Key, Compare, Allocator&gt;&amp; x, const set&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator&gt; (const set&lt;Key, Compare, Allocator&gt;&amp; x, const set&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return y &lt; x;
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator&gt;=(const set&lt;Key, Compare, Allocator&gt;&amp; x, const set&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return !(x &lt; y);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator&lt;=(const set&lt;Key, Compare, Allocator&gt;&amp; x, const set&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return !(y &lt; x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+swap(set&lt;Key, Compare, Allocator&gt;&amp; x, set&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    x.swap(y);
+}
+
+// multiset implementation
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+multiset&lt;Key, Compare, Allocator&gt;::multiset(const Compare&amp; comp, const Allocator&amp; a)
+    : tree_(comp, a)
+{
+}
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+
+    template &lt;class Key, class Compare, class Allocator&gt;
+    inline
+    multiset&lt;Key, Compare, Allocator&gt;::multiset(const_iterator first, const_iterator last,
+        const Compare&amp; comp, const Allocator&amp; a)
+        : tree_(first, last, true, comp, a)
+    {
+    }
+
+    template &lt;class Key, class Compare, class Allocator&gt;
+    inline
+    multiset&lt;Key, Compare, Allocator&gt;::multiset(const value_type* first, const value_type* last,
+        const Compare&amp; comp, const Allocator&amp; a)
+        : tree_(first, last, true, comp, a)
+    {
+    }
+
+#endif
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::allocator_type
+multiset&lt;Key, Compare, Allocator&gt;::get_allocator() const
+{
+    return tree_.get_allocator();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::iterator
+multiset&lt;Key, Compare, Allocator&gt;::begin()
+{
+    return tree_.begin();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::const_iterator
+multiset&lt;Key, Compare, Allocator&gt;::begin() const
+{
+    return tree_.begin();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::iterator
+multiset&lt;Key, Compare, Allocator&gt;::end()
+{
+    return tree_.end();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::const_iterator
+multiset&lt;Key, Compare, Allocator&gt;::end() const
+{
+    return tree_.end();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::reverse_iterator
+multiset&lt;Key, Compare, Allocator&gt;::rbegin()
+{
+    return reverse_iterator(end());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::const_reverse_iterator
+multiset&lt;Key, Compare, Allocator&gt;::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::reverse_iterator
+multiset&lt;Key, Compare, Allocator&gt;::rend()
+{
+    return reverse_iterator(begin());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::const_reverse_iterator
+multiset&lt;Key, Compare, Allocator&gt;::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+multiset&lt;Key, Compare, Allocator&gt;::empty() const
+{
+    return tree_.empty();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::size_type
+multiset&lt;Key, Compare, Allocator&gt;::size() const
+{
+    return tree_.size();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::size_type
+multiset&lt;Key, Compare, Allocator&gt;::max_size() const
+{
+    return tree_.max_size();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::iterator
+multiset&lt;Key, Compare, Allocator&gt;::insert(const value_type&amp; x)
+{
+    return tree_.insert_multi(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::iterator
+multiset&lt;Key, Compare, Allocator&gt;::insert(iterator position, const value_type&amp; x)
+{
+    return tree_.insert_multi(position, x);
+}
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+
+    template &lt;class Key, class Compare, class Allocator&gt;
+    inline
+    void
+    multiset&lt;Key, Compare, Allocator&gt;::insert(const_iterator first, const_iterator last)
+    {
+        tree_.insert_multi(first, last);
+    }
+
+    template &lt;class Key, class Compare, class Allocator&gt;
+    inline
+    void
+    multiset&lt;Key, Compare, Allocator&gt;::insert(const value_type* first, const value_type* last)
+    {
+        tree_.insert_multi(first, last);
+    }
+
+#endif
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+multiset&lt;Key, Compare, Allocator&gt;::erase(iterator position)
+{
+    tree_.erase(position);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::size_type
+multiset&lt;Key, Compare, Allocator&gt;::erase(const key_type&amp; x)
+{
+    return tree_.erase_multi(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+multiset&lt;Key, Compare, Allocator&gt;::erase(iterator first, iterator last)
+{
+    tree_.erase(first, last);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+multiset&lt;Key, Compare, Allocator&gt;::swap(multiset&lt;Key,Compare,Allocator&gt;&amp; x)
+{
+    tree_.swap(x.tree_);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+multiset&lt;Key, Compare, Allocator&gt;::clear()
+{
+    tree_.clear();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::key_compare
+multiset&lt;Key, Compare, Allocator&gt;::key_comp() const
+{
+    return tree_.value_comp();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::value_compare
+multiset&lt;Key, Compare, Allocator&gt;::value_comp() const
+{
+    return tree_.value_comp();
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::iterator
+multiset&lt;Key, Compare, Allocator&gt;::find(const key_type&amp; x) const
+{
+    return const_cast&lt;tree_type&amp;&gt;(tree_).find(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::size_type
+multiset&lt;Key, Compare, Allocator&gt;::count(const key_type&amp; x) const
+{
+    return tree_.count_multi(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::iterator
+multiset&lt;Key, Compare, Allocator&gt;::lower_bound(const key_type&amp; x) const
+{
+    return const_cast&lt;tree_type&amp;&gt;(tree_).lower_bound(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+typename multiset&lt;Key, Compare, Allocator&gt;::iterator
+multiset&lt;Key, Compare, Allocator&gt;::upper_bound(const key_type&amp; x) const
+{
+    return const_cast&lt;tree_type&amp;&gt;(tree_).upper_bound(x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+pair&lt;multiset&lt;Key, Compare, Allocator&gt;::iterator, multiset&lt;Key, Compare, Allocator&gt;::iterator&gt;
+multiset&lt;Key, Compare, Allocator&gt;::equal_range(const key_type&amp; x) const
+{
+    pair&lt;tree_type::iterator, tree_type::iterator&gt; result =
+        const_cast&lt;tree_type&amp;&gt;(tree_).equal_range(x);
+    return pair&lt;iterator, iterator&gt;(result.first, result.second);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator==(const multiset&lt;Key, Compare, Allocator&gt;&amp; x, const multiset&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return x.size() == y.size() &amp;&amp; equal(x.begin(), x.end(), y.begin());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator!=(const multiset&lt;Key, Compare, Allocator&gt;&amp; x, const multiset&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return !(x == y);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator&lt; (const multiset&lt;Key, Compare, Allocator&gt;&amp; x, const multiset&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator&gt; (const multiset&lt;Key, Compare, Allocator&gt;&amp; x, const multiset&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return y &lt; x;
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator&gt;=(const multiset&lt;Key, Compare, Allocator&gt;&amp; x, const multiset&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return !(x &lt; y);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+bool
+operator&lt;=(const multiset&lt;Key, Compare, Allocator&gt;&amp; x, const multiset&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    return !(y &lt; x);
+}
+
+template &lt;class Key, class Compare, class Allocator&gt;
+inline
+void
+swap(multiset&lt;Key, Compare, Allocator&gt;&amp; x, multiset&lt;Key, Compare, Allocator&gt;&amp; y)
+{
+    x.swap(y);
+}
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _SET
+
+// hh 971220 fixed MOD_INCLUDE
+// hh 971223 Changed filename from set.h to set
+// hh 971223 Made include guards standard
+// hh 971223 added alignment wrapper
+// hh 971230 added RC_INVOKED wrapper
+// DWA 980305 changed iterator to const_iterator in multiset constructor, hh 980311 checked
+// hh 981130 Rewrote
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

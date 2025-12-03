@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSReset.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osresetc">File OSReset.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="../_o_s_reset_8c/"><strong>OSReset.c</strong></a></p>
+<p><a href="../_o_s_reset_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#include &quot;OSPrivate.h&quot;
+
+// These macros are copied from OSThread.c. Or ARE they the same
+// macros? They dont seem to be in the SDK headers.
+#define ENQUEUE_INFO(info, queue)                                                              \
+    do {                                                                                       \
+        OSResetFunctionInfo* __prev = (queue)-&gt;tail;                                           \
+        if (__prev == 0)                                                                       \
+        {                                                                                      \
+            (queue)-&gt;head = (info);                                                            \
+        }                                                                                      \
+        else                                                                                   \
+        {                                                                                      \
+            __prev-&gt;next = (info);                                                             \
+        }                                                                                      \
+        (info)-&gt;prev = __prev;                                                                 \
+        (info)-&gt;next = 0;                                                                      \
+        (queue)-&gt;tail = (info);                                                                \
+    }                                                                                          \
+    while (0)
+
+#define DEQUEUE_INFO(info, queue)                                                              \
+    do {                                                                                       \
+        OSResetFunctionInfo* __next = (info)-&gt;next;                                            \
+        OSResetFunctionInfo* __prev = (info)-&gt;prev;                                            \
+        if (__next == 0)                                                                       \
+        {                                                                                      \
+            (queue)-&gt;tail = __prev;                                                            \
+        }                                                                                      \
+        else                                                                                   \
+        {                                                                                      \
+            __next-&gt;prev = __prev;                                                             \
+        }                                                                                      \
+        if (__prev == 0)                                                                       \
+        {                                                                                      \
+            (queue)-&gt;head = __next;                                                            \
+        }                                                                                      \
+        else                                                                                   \
+        {                                                                                      \
+            __prev-&gt;next = __next;                                                             \
+        }                                                                                      \
+    }                                                                                          \
+    while (0)
+
+#define ENQUEUE_INFO_PRIO(info, queue)                                                         \
+    do {                                                                                       \
+        OSResetFunctionInfo* __prev;                                                           \
+        OSResetFunctionInfo* __next;                                                           \
+        for (__next = (queue)-&gt;head; __next &amp;&amp; (__next-&gt;priority &lt;= (info)-&gt;priority);         \
+             __next = __next-&gt;next)                                                            \
+        {}                                                                                     \
+                                                                                               \
+        if (__next == 0)                                                                       \
+        {                                                                                      \
+            ENQUEUE_INFO (info, queue);                                                        \
+        }                                                                                      \
+        else                                                                                   \
+        {                                                                                      \
+            (info)-&gt;next = __next;                                                             \
+            __prev = __next-&gt;prev;                                                             \
+            __next-&gt;prev = (info);                                                             \
+            (info)-&gt;prev = __prev;                                                             \
+            if (__prev == 0)                                                                   \
+            {                                                                                  \
+                (queue)-&gt;head = (info);                                                        \
+            }                                                                                  \
+            else                                                                               \
+            {                                                                                  \
+                __prev-&gt;next = (info);                                                         \
+            }                                                                                  \
+        }                                                                                      \
+    }                                                                                          \
+    while (0)
+
+static struct OSResetFunctionQueue ResetFunctionQueue;
+#ifdef __MWERKS__
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
+#else
+OSThreadQueue __OSActiveThreadQueue;
+#endif
+
+static int      CallResetFunctions (int final);
+static asm void Reset (u32 resetCode);
+
+void
+OSRegisterResetFunction (OSResetFunctionInfo* info)
+{
+    ASSERTLINE (0x76, info-&gt;func);
+
+    ENQUEUE_INFO_PRIO (info, &amp;ResetFunctionQueue);
+}
+
+void
+OSUnregisterResetFunction (OSResetFunctionInfo* info)
+{
+    DEQUEUE_INFO (info, &amp;ResetFunctionQueue);
+}
+
+static int
+CallResetFunctions (int final)
+{
+    OSResetFunctionInfo* info;
+    int                  err = 0;
+
+    for (info = ResetFunctionQueue.head; info; info = info-&gt;next)
+    {
+        err |= !info-&gt;func (final);
+    }
+    err |= !__OSSyncSram();
+    if (err)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+static asm void
+Reset (u32 resetCode)
+{
+#pragma unused(resetCode)
+
+#ifdef __MWERKS__
+    nofralloc;
+    b L_000001BC;
+
+L_000001A0:
+    mfspr r8, HID0;
+    ori   r8, r8, 0x8;
+    mtspr HID0, r8;
+    isync;
+    sync;
+    nop;
+    b L_000001C0;
+
+L_000001BC:
+    b L_000001DC;
+
+L_000001C0:
+    mftb r5, 268;
+
+L_000001C4:
+    mftb   r6, 268;
+    subf   r7, r5, r6;
+    cmplwi r7, 0x1124;
+    blt    L_000001C4;
+    nop;
+    b L_000001E0;
+
+L_000001DC:
+    b L_000001FC;
+
+L_000001E0:
+    lis r8, 0xcc00;
+    ori r8, r8, 0x3000;
+    li  r4, 0x3;
+    stw r4, 0x24(r8);
+    stw r3, 0x24(r8);
+    nop;
+    b L_00000200;
+
+L_000001FC:
+    b L_00000208;
+
+L_00000200:
+    nop;
+    b L_00000200;
+
+L_00000208:
+    b L_000001A0;
+#endif
+}
+
+static void
+KillThreads (void)
+{
+    OSThread* thread;
+    OSThread* next;
+
+    for (thread = __OSActiveThreadQueue.head; thread; thread = next)
+    {
+        next = thread-&gt;linkActive.next;
+        switch (thread-&gt;state)
+        {
+            case 1:
+            case 4:
+                OSCancelThread (thread);
+                break;
+        }
+    }
+}
+
+void
+__OSDoHotReset (s32 code)
+{
+    OSDisableInterrupts();
+    __VIRegs[VI_DISP_CONFIG] = 0;
+    ICFlashInvalidate();
+    Reset ((u32)(code * 8));
+}
+
+void
+OSResetSystem (int reset, u32 resetCode, BOOL forceMenu)
+{
+    BOOL rc;
+    BOOL disableRecalibration;
+    BOOL enabled;
+
+#pragma unused(disableRecalibration)
+#pragma unused(rc)
+
+    OSDisableScheduler();
+    __OSStopAudioSystem();
+
+    while (!CallResetFunctions (FALSE)) {}
+
+    if (reset &amp;&amp; forceMenu)
+    {
+        OSSram* sram;
+
+        sram = __OSLockSram();
+        sram-&gt;flags |= 0x40;
+        __OSUnlockSram (TRUE);
+
+        while (!__OSSyncSram()) {}
+    }
+
+    enabled = OSDisableInterrupts();
+    CallResetFunctions (TRUE);
+    if (reset == OS_RESET_HOTRESET)
+    {
+        __OSDoHotReset ((s32)resetCode);
+    }
+    else
+    {
+        KillThreads();
+        OSEnableScheduler();
+        __OSReboot (resetCode, forceMenu);
+    }
+
+    OSRestoreInterrupts (enabled);
+    OSEnableScheduler();
+}
+
+u32
+OSGetResetCode ()
+{
+    return (__PIRegs[PI_RESET_CODE] &amp; 0xFFFFFFF8) / 8;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

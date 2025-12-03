@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File s_erf.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-s_erfc">File s_erf.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="./"><strong>s_erf.c</strong></a></p>
+<p><a href="../s__erf_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "fdlibm.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-efx"><strong>efx</strong></a>   = <code>1.28379167095512586316e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-efx8"><strong>efx8</strong></a>   = <code>1.02703333676410069053e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-erx"><strong>erx</strong></a>   = <code>8.45062911510467529297e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-half"><strong>half</strong></a>   = <code>5.00000000000000000000e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-one"><strong>one</strong></a>   = <code>1.00000000000000000000e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pa0"><strong>pa0</strong></a>   = <code>-2.36211856075265944077e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pa1"><strong>pa1</strong></a>   = <code>4.14856118683748331666e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pa2"><strong>pa2</strong></a>   = <code>-3.72207876035701323847e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pa3"><strong>pa3</strong></a>   = <code>3.18346619901161753674e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pa4"><strong>pa4</strong></a>   = <code>-1.10894694282396677476e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pa5"><strong>pa5</strong></a>   = <code>3.54783043256182359371e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pa6"><strong>pa6</strong></a>   = <code>-2.16637559486879084300e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pp0"><strong>pp0</strong></a>   = <code>1.28379167095512558561e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pp1"><strong>pp1</strong></a>   = <code>-3.25042107247001499370e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pp2"><strong>pp2</strong></a>   = <code>-2.84817495755985104766e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pp3"><strong>pp3</strong></a>   = <code>-5.77027029648944159157e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-pp4"><strong>pp4</strong></a>   = <code>-2.37630166566501626084e-05</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qa1"><strong>qa1</strong></a>   = <code>1.06420880400844228286e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qa2"><strong>qa2</strong></a>   = <code>5.40397917702171048937e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qa3"><strong>qa3</strong></a>   = <code>7.18286544141962662868e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qa4"><strong>qa4</strong></a>   = <code>1.26171219808761642112e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qa5"><strong>qa5</strong></a>   = <code>1.36370839120290507362e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qa6"><strong>qa6</strong></a>   = <code>1.19844998467991074170e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qq1"><strong>qq1</strong></a>   = <code>3.97917223959155352819e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qq2"><strong>qq2</strong></a>   = <code>6.50222499887672944485e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qq3"><strong>qq3</strong></a>   = <code>5.08130628187576562776e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qq4"><strong>qq4</strong></a>   = <code>1.32494738004321644526e-04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-qq5"><strong>qq5</strong></a>   = <code>-3.96022827877536812320e-06</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ra0"><strong>ra0</strong></a>   = <code>-9.86494403484714822705e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ra1"><strong>ra1</strong></a>   = <code>-6.93858572707181764372e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ra2"><strong>ra2</strong></a>   = <code>-1.05586262253232909814e+01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ra3"><strong>ra3</strong></a>   = <code>-6.23753324503260060396e+01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ra4"><strong>ra4</strong></a>   = <code>-1.62396669462573470355e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ra5"><strong>ra5</strong></a>   = <code>-1.84605092906711035994e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ra6"><strong>ra6</strong></a>   = <code>-8.12874355063065934246e+01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ra7"><strong>ra7</strong></a>   = <code>-9.81432934416914548592e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-rb0"><strong>rb0</strong></a>   = <code>-9.86494292470009928597e-03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-rb1"><strong>rb1</strong></a>   = <code>-7.99283237680523006574e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-rb2"><strong>rb2</strong></a>   = <code>-1.77579549177547519889e+01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-rb3"><strong>rb3</strong></a>   = <code>-1.60636384855821916062e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-rb4"><strong>rb4</strong></a>   = <code>-6.37566443368389627722e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-rb5"><strong>rb5</strong></a>   = <code>-1.02509513161107724954e+03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-rb6"><strong>rb6</strong></a>   = <code>-4.83519191608651397019e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sa1"><strong>sa1</strong></a>   = <code>1.96512716674392571292e+01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sa2"><strong>sa2</strong></a>   = <code>1.37657754143519042600e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sa3"><strong>sa3</strong></a>   = <code>4.34565877475229228821e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sa4"><strong>sa4</strong></a>   = <code>6.45387271733267880336e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sa5"><strong>sa5</strong></a>   = <code>4.29008140027567833386e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sa6"><strong>sa6</strong></a>   = <code>1.08635005541779435134e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sa7"><strong>sa7</strong></a>   = <code>6.57024977031928170135e+00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sa8"><strong>sa8</strong></a>   = <code>-6.04244152148580987438e-02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sb1"><strong>sb1</strong></a>   = <code>3.03380607434824582924e+01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sb2"><strong>sb2</strong></a>   = <code>3.25792512996573918826e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sb3"><strong>sb3</strong></a>   = <code>1.53672958608443695994e+03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sb4"><strong>sb4</strong></a>   = <code>3.19985821950859553908e+03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sb5"><strong>sb5</strong></a>   = <code>2.55305040643316442583e+03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sb6"><strong>sb6</strong></a>   = <code>4.74528541206955367215e+02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-sb7"><strong>sb7</strong></a>   = <code>-2.24409524465858183362e+01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-tiny"><strong>tiny</strong></a>   = <code>1e-300</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-two"><strong>two</strong></a>   = <code>2.00000000000000000000e+00</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#function-erf"><strong>erf</strong></a> (double x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#function-erfc"><strong>erfc</strong></a> (double x) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-efx">variable efx</h3>
+<pre><code class="language-C++">double efx;
+</code></pre>
+<hr>
+
+<h3 id="variable-efx8">variable efx8</h3>
+<pre><code class="language-C++">double efx8;
+</code></pre>
+<hr>
+
+<h3 id="variable-erx">variable erx</h3>
+<pre><code class="language-C++">double erx;
+</code></pre>
+<hr>
+
+<h3 id="variable-half">variable half</h3>
+<pre><code class="language-C++">double half;
+</code></pre>
+<hr>
+
+<h3 id="variable-one">variable one</h3>
+<pre><code class="language-C++">double one;
+</code></pre>
+<hr>
+
+<h3 id="variable-pa0">variable pa0</h3>
+<pre><code class="language-C++">double pa0;
+</code></pre>
+<hr>
+
+<h3 id="variable-pa1">variable pa1</h3>
+<pre><code class="language-C++">double pa1;
+</code></pre>
+<hr>
+
+<h3 id="variable-pa2">variable pa2</h3>
+<pre><code class="language-C++">double pa2;
+</code></pre>
+<hr>
+
+<h3 id="variable-pa3">variable pa3</h3>
+<pre><code class="language-C++">double pa3;
+</code></pre>
+<hr>
+
+<h3 id="variable-pa4">variable pa4</h3>
+<pre><code class="language-C++">double pa4;
+</code></pre>
+<hr>
+
+<h3 id="variable-pa5">variable pa5</h3>
+<pre><code class="language-C++">double pa5;
+</code></pre>
+<hr>
+
+<h3 id="variable-pa6">variable pa6</h3>
+<pre><code class="language-C++">double pa6;
+</code></pre>
+<hr>
+
+<h3 id="variable-pp0">variable pp0</h3>
+<pre><code class="language-C++">double pp0;
+</code></pre>
+<hr>
+
+<h3 id="variable-pp1">variable pp1</h3>
+<pre><code class="language-C++">double pp1;
+</code></pre>
+<hr>
+
+<h3 id="variable-pp2">variable pp2</h3>
+<pre><code class="language-C++">double pp2;
+</code></pre>
+<hr>
+
+<h3 id="variable-pp3">variable pp3</h3>
+<pre><code class="language-C++">double pp3;
+</code></pre>
+<hr>
+
+<h3 id="variable-pp4">variable pp4</h3>
+<pre><code class="language-C++">double pp4;
+</code></pre>
+<hr>
+
+<h3 id="variable-qa1">variable qa1</h3>
+<pre><code class="language-C++">double qa1;
+</code></pre>
+<hr>
+
+<h3 id="variable-qa2">variable qa2</h3>
+<pre><code class="language-C++">double qa2;
+</code></pre>
+<hr>
+
+<h3 id="variable-qa3">variable qa3</h3>
+<pre><code class="language-C++">double qa3;
+</code></pre>
+<hr>
+
+<h3 id="variable-qa4">variable qa4</h3>
+<pre><code class="language-C++">double qa4;
+</code></pre>
+<hr>
+
+<h3 id="variable-qa5">variable qa5</h3>
+<pre><code class="language-C++">double qa5;
+</code></pre>
+<hr>
+
+<h3 id="variable-qa6">variable qa6</h3>
+<pre><code class="language-C++">double qa6;
+</code></pre>
+<hr>
+
+<h3 id="variable-qq1">variable qq1</h3>
+<pre><code class="language-C++">double qq1;
+</code></pre>
+<hr>
+
+<h3 id="variable-qq2">variable qq2</h3>
+<pre><code class="language-C++">double qq2;
+</code></pre>
+<hr>
+
+<h3 id="variable-qq3">variable qq3</h3>
+<pre><code class="language-C++">double qq3;
+</code></pre>
+<hr>
+
+<h3 id="variable-qq4">variable qq4</h3>
+<pre><code class="language-C++">double qq4;
+</code></pre>
+<hr>
+
+<h3 id="variable-qq5">variable qq5</h3>
+<pre><code class="language-C++">double qq5;
+</code></pre>
+<hr>
+
+<h3 id="variable-ra0">variable ra0</h3>
+<pre><code class="language-C++">double ra0;
+</code></pre>
+<hr>
+
+<h3 id="variable-ra1">variable ra1</h3>
+<pre><code class="language-C++">double ra1;
+</code></pre>
+<hr>
+
+<h3 id="variable-ra2">variable ra2</h3>
+<pre><code class="language-C++">double ra2;
+</code></pre>
+<hr>
+
+<h3 id="variable-ra3">variable ra3</h3>
+<pre><code class="language-C++">double ra3;
+</code></pre>
+<hr>
+
+<h3 id="variable-ra4">variable ra4</h3>
+<pre><code class="language-C++">double ra4;
+</code></pre>
+<hr>
+
+<h3 id="variable-ra5">variable ra5</h3>
+<pre><code class="language-C++">double ra5;
+</code></pre>
+<hr>
+
+<h3 id="variable-ra6">variable ra6</h3>
+<pre><code class="language-C++">double ra6;
+</code></pre>
+<hr>
+
+<h3 id="variable-ra7">variable ra7</h3>
+<pre><code class="language-C++">double ra7;
+</code></pre>
+<hr>
+
+<h3 id="variable-rb0">variable rb0</h3>
+<pre><code class="language-C++">double rb0;
+</code></pre>
+<hr>
+
+<h3 id="variable-rb1">variable rb1</h3>
+<pre><code class="language-C++">double rb1;
+</code></pre>
+<hr>
+
+<h3 id="variable-rb2">variable rb2</h3>
+<pre><code class="language-C++">double rb2;
+</code></pre>
+<hr>
+
+<h3 id="variable-rb3">variable rb3</h3>
+<pre><code class="language-C++">double rb3;
+</code></pre>
+<hr>
+
+<h3 id="variable-rb4">variable rb4</h3>
+<pre><code class="language-C++">double rb4;
+</code></pre>
+<hr>
+
+<h3 id="variable-rb5">variable rb5</h3>
+<pre><code class="language-C++">double rb5;
+</code></pre>
+<hr>
+
+<h3 id="variable-rb6">variable rb6</h3>
+<pre><code class="language-C++">double rb6;
+</code></pre>
+<hr>
+
+<h3 id="variable-sa1">variable sa1</h3>
+<pre><code class="language-C++">double sa1;
+</code></pre>
+<hr>
+
+<h3 id="variable-sa2">variable sa2</h3>
+<pre><code class="language-C++">double sa2;
+</code></pre>
+<hr>
+
+<h3 id="variable-sa3">variable sa3</h3>
+<pre><code class="language-C++">double sa3;
+</code></pre>
+<hr>
+
+<h3 id="variable-sa4">variable sa4</h3>
+<pre><code class="language-C++">double sa4;
+</code></pre>
+<hr>
+
+<h3 id="variable-sa5">variable sa5</h3>
+<pre><code class="language-C++">double sa5;
+</code></pre>
+<hr>
+
+<h3 id="variable-sa6">variable sa6</h3>
+<pre><code class="language-C++">double sa6;
+</code></pre>
+<hr>
+
+<h3 id="variable-sa7">variable sa7</h3>
+<pre><code class="language-C++">double sa7;
+</code></pre>
+<hr>
+
+<h3 id="variable-sa8">variable sa8</h3>
+<pre><code class="language-C++">double sa8;
+</code></pre>
+<hr>
+
+<h3 id="variable-sb1">variable sb1</h3>
+<pre><code class="language-C++">double sb1;
+</code></pre>
+<hr>
+
+<h3 id="variable-sb2">variable sb2</h3>
+<pre><code class="language-C++">double sb2;
+</code></pre>
+<hr>
+
+<h3 id="variable-sb3">variable sb3</h3>
+<pre><code class="language-C++">double sb3;
+</code></pre>
+<hr>
+
+<h3 id="variable-sb4">variable sb4</h3>
+<pre><code class="language-C++">double sb4;
+</code></pre>
+<hr>
+
+<h3 id="variable-sb5">variable sb5</h3>
+<pre><code class="language-C++">double sb5;
+</code></pre>
+<hr>
+
+<h3 id="variable-sb6">variable sb6</h3>
+<pre><code class="language-C++">double sb6;
+</code></pre>
+<hr>
+
+<h3 id="variable-sb7">variable sb7</h3>
+<pre><code class="language-C++">double sb7;
+</code></pre>
+<hr>
+
+<h3 id="variable-tiny">variable tiny</h3>
+<pre><code class="language-C++">double tiny;
+</code></pre>
+<hr>
+
+<h3 id="variable-two">variable two</h3>
+<pre><code class="language-C++">double two;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-erf">function erf</h3>
+<pre><code class="language-C++">double erf (
+    double x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-erfc">function erfc</h3>
+<pre><code class="language-C++">double erfc (
+    double x
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_erf.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

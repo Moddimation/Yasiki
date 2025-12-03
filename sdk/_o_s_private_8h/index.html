@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSPrivate.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osprivateh">File OSPrivate.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSPrivate.h</strong></a></p>
+<p><a href="../_o_s_private_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-boot_region_end"><strong>BOOT_REGION_END</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-boot_region_start"><strong>BOOT_REGION_START</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__oscurrheap"><strong>__OSCurrHeap</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__osexceptionnames"><strong>__OSExceptionNames</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__osinterruptnames"><strong>__OSInterruptNames</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__ospierrors"><strong>__OSPIErrors</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u64"><strong>u64</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__osspuriousinterrupts"><strong>__OSSpuriousInterrupts</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__osstarttime"><strong>__OSStartTime</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-size"><strong>size</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-src"><strong>src</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-_exitprocess"><strong>_ExitProcess</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__oscacheinit"><strong>__OSCacheInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__oscheckdeadlock"><strong>__OSCheckDeadLock</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__oscheckmutexes"><strong>__OSCheckMutexes</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__oschecksram"><strong>__OSCheckSram</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__oscontextinit"><strong>__OSContextInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdispatchinterrupt"><strong>__OSDispatchInterrupt</strong></a> (<a href="../_o_s_exception_8h/#typedef-__osexception"><strong>__OSException</strong></a> exception, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdohotreset"><strong>__OSDoHotReset</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> code) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetbootmode"><strong>__OSGetBootMode</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetdiconfig"><strong>__OSGetDIConfig</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgeteffectivepriority"><strong>__OSGetEffectivePriority</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_interrupt_8h/#typedef-__osinterrupthandler"><strong>__OSInterruptHandler</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetinterrupthandler"><strong>__OSGetInterruptHandler</strong></a> (<a href="../_o_s_interrupt_8h/#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a> BOOLerrupt) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetrtc"><strong>__OSGetRTC</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * rtc) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s64"><strong>s64</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetsystemtime"><strong>__OSGetSystemTime</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osinitaudiosystem"><strong>__OSInitAudioSystem</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osinitsram"><strong>__OSInitSram</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osinitsystemcall"><strong>__OSInitSystemCall</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osinterruptinit"><strong>__OSInterruptInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osisdebuggerpresent"><strong>__OSIsDebuggerPresent</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_sram/"><strong>OSSram</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__oslocksram"><strong>__OSLockSram</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_sram_ex/"><strong>OSSramEx</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__oslocksramex"><strong>__OSLockSramEx</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_interrupt_8h/#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osmaskinterrupts"><strong>__OSMaskInterrupts</strong></a> (<a href="../_o_s_interrupt_8h/#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a> global) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osmoduleinit"><strong>__OSModuleInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ospsinit"><strong>__OSPSInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ospromotethread"><strong>__OSPromoteThread</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> priority) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osreadrom"><strong>__OSReadROM</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * buffer, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> offset) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osreadromasync"><strong>__OSReadROMAsync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * buffer, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)() callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osreboot"><strong>__OSReboot</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> resetCode, <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> forceMenu) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osreschedule"><strong>__OSReschedule</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osresetswinterrupthandler"><strong>__OSResetSWInterruptHandler</strong></a> (<a href="../types_8h/#typedef-s16"><strong>s16</strong></a> exception, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossetbootmode"><strong>__OSSetBootMode</strong></a> (<a href="../types_8h/#typedef-u16"><strong>u16</strong></a> ntd) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_interrupt_8h/#typedef-__osinterrupthandler"><strong>__OSInterruptHandler</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossetinterrupthandler"><strong>__OSSetInterruptHandler</strong></a> (<a href="../_o_s_interrupt_8h/#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a> BOOLerrupt, <a href="../_o_s_interrupt_8h/#typedef-__osinterrupthandler"><strong>__OSInterruptHandler</strong></a> handler) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossetrtc"><strong>__OSSetRTC</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> rtc) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossettick"><strong>__OSSetTick</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newTicks) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossettime"><strong>__OSSetTime</strong></a> (<a href="../types_8h/#typedef-s64"><strong>s64</strong></a> time) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osstopaudiosystem"><strong>__OSStopAudioSystem</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossyncsram"><strong>__OSSyncSram</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossystemcallvectorend"><strong>__OSSystemCallVectorEnd</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossystemcallvectorstart"><strong>__OSSystemCallVectorStart</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osthreadinit"><strong>__OSThreadInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osunhandledexception"><strong>__OSUnhandledException</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> exception, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dsisr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dar) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osunlockallmutex"><strong>__OSUnlockAllMutex</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osunlocksram"><strong>__OSUnlockSram</strong></a> (<a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> commit) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osunlocksramex"><strong>__OSUnlockSramEx</strong></a> (<a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> commit) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_interrupt_8h/#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osunmaskinterrupts"><strong>__OSUnmaskInterrupts</strong></a> (<a href="../_o_s_interrupt_8h/#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a> global) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ras_osdisableinterrupts_begin"><strong>__RAS_OSDisableInterrupts_begin</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ras_osdisableinterrupts_end"><strong>__RAS_OSDisableInterrupts_end</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-__declspec"><strong>__declspec</strong></a> (section ".init") <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s64"><strong>s64</strong></a></td>
+<td style="text-align: left;"><a href="#function-__get_clock"><strong>__get_clock</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__get_time"><strong>__get_time</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__init_user"><strong>__init_user</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__start"><strong>__start</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-__to_gm_time"><strong>__to_gm_time</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__fini_cpp"><strong>__fini_cpp</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__init_cpp"><strong>__init_cpp</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-boot_region_end">variable BOOT_REGION_END</h3>
+<pre><code class="language-C++">void* BOOT_REGION_END;
+</code></pre>
+<hr>
+
+<h3 id="variable-boot_region_start">variable BOOT_REGION_START</h3>
+<pre><code class="language-C++">void* BOOT_REGION_START;
+</code></pre>
+<hr>
+
+<h3 id="variable-__oscurrheap">variable __OSCurrHeap</h3>
+<pre><code class="language-C++">volatile BOOL __OSCurrHeap;
+</code></pre>
+<hr>
+
+<h3 id="variable-__osexceptionnames">variable __OSExceptionNames</h3>
+<pre><code class="language-C++">char* __OSExceptionNames[15];
+</code></pre>
+<hr>
+
+<h3 id="variable-__osinterruptnames">variable __OSInterruptNames</h3>
+<pre><code class="language-C++">char* __OSInterruptNames[33];
+</code></pre>
+<hr>
+
+<h3 id="variable-__ospierrors">variable __OSPIErrors</h3>
+<pre><code class="language-C++">char* __OSPIErrors[8];
+</code></pre>
+<hr>
+
+<h3 id="variable-__osspuriousinterrupts">variable __OSSpuriousInterrupts</h3>
+<pre><code class="language-C++">u64 __OSSpuriousInterrupts;
+</code></pre>
+<hr>
+
+<h3 id="variable-__osstarttime">variable __OSStartTime</h3>
+<pre><code class="language-C++">OSTime __OSStartTime;
+</code></pre>
+<hr>
+
+<h3 id="variable-size">variable size</h3>
+<pre><code class="language-C++">u32 size;
+</code></pre>
+<hr>
+
+<h3 id="variable-src">variable src</h3>
+<pre><code class="language-C++">const void* src;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-_exitprocess">function _ExitProcess</h3>
+<pre><code class="language-C++">void _ExitProcess (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oscacheinit">function __OSCacheInit</h3>
+<pre><code class="language-C++">void __OSCacheInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oscheckdeadlock">function __OSCheckDeadLock</h3>
+<pre><code class="language-C++">BOOL __OSCheckDeadLock (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oscheckmutexes">function __OSCheckMutexes</h3>
+<pre><code class="language-C++">BOOL __OSCheckMutexes (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oschecksram">function __OSCheckSram</h3>
+<pre><code class="language-C++">BOOL __OSCheckSram (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oscontextinit">function __OSContextInit</h3>
+<pre><code class="language-C++">void __OSContextInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdispatchinterrupt">function __OSDispatchInterrupt</h3>
+<pre><code class="language-C++">void __OSDispatchInterrupt (
+    __OSException exception,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdohotreset">function __OSDoHotReset</h3>
+<pre><code class="language-C++">void __OSDoHotReset (
+    s32 code
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetbootmode">function __OSGetBootMode</h3>
+<pre><code class="language-C++">u16 __OSGetBootMode (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetdiconfig">function __OSGetDIConfig</h3>
+<pre><code class="language-C++">u8 __OSGetDIConfig (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgeteffectivepriority">function __OSGetEffectivePriority</h3>
+<pre><code class="language-C++">s32 __OSGetEffectivePriority (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetinterrupthandler">function __OSGetInterruptHandler</h3>
+<pre><code class="language-C++">__OSInterruptHandler __OSGetInterruptHandler (
+    __OSInterrupt BOOLerrupt
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetrtc">function __OSGetRTC</h3>
+<pre><code class="language-C++">BOOL __OSGetRTC (
+    u32 * rtc
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetsystemtime">function __OSGetSystemTime</h3>
+<pre><code class="language-C++">s64 __OSGetSystemTime () 
+</code></pre>
+<hr>
+
+<h3 id="function-__osinitaudiosystem">function __OSInitAudioSystem</h3>
+<pre><code class="language-C++">void __OSInitAudioSystem (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osinitsram">function __OSInitSram</h3>
+<pre><code class="language-C++">void __OSInitSram () 
+</code></pre>
+<hr>
+
+<h3 id="function-__osinitsystemcall">function __OSInitSystemCall</h3>
+<pre><code class="language-C++">void __OSInitSystemCall (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osinterruptinit">function __OSInterruptInit</h3>
+<pre><code class="language-C++">void __OSInterruptInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osisdebuggerpresent">function __OSIsDebuggerPresent</h3>
+<pre><code class="language-C++">u32 __OSIsDebuggerPresent (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oslocksram">function __OSLockSram</h3>
+<pre><code class="language-C++">OSSram * __OSLockSram (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oslocksramex">function __OSLockSramEx</h3>
+<pre><code class="language-C++">OSSramEx * __OSLockSramEx (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osmaskinterrupts">function __OSMaskInterrupts</h3>
+<pre><code class="language-C++">OSInterruptMask __OSMaskInterrupts (
+    OSInterruptMask global
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osmoduleinit">function __OSModuleInit</h3>
+<pre><code class="language-C++">void __OSModuleInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ospsinit">function __OSPSInit</h3>
+<pre><code class="language-C++">void __OSPSInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ospromotethread">function __OSPromoteThread</h3>
+<pre><code class="language-C++">void __OSPromoteThread (
+    OSThread * thread,
+    s32 priority
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osreadrom">function __OSReadROM</h3>
+<pre><code class="language-C++">BOOL __OSReadROM (
+    void * buffer,
+    s32 length,
+    long offset
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osreadromasync">function __OSReadROMAsync</h3>
+<pre><code class="language-C++">BOOL __OSReadROMAsync (
+    void * buffer,
+    s32 length,
+    long offset,
+    void (*)() callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osreboot">function __OSReboot</h3>
+<pre><code class="language-C++">void __OSReboot (
+    u32 resetCode,
+    BOOL forceMenu
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osreschedule">function __OSReschedule</h3>
+<pre><code class="language-C++">void __OSReschedule (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osresetswinterrupthandler">function __OSResetSWInterruptHandler</h3>
+<pre><code class="language-C++">void __OSResetSWInterruptHandler (
+    s16 exception,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossetbootmode">function __OSSetBootMode</h3>
+<pre><code class="language-C++">void __OSSetBootMode (
+    u16 ntd
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossetinterrupthandler">function __OSSetInterruptHandler</h3>
+<pre><code class="language-C++">__OSInterruptHandler __OSSetInterruptHandler (
+    __OSInterrupt BOOLerrupt,
+    __OSInterruptHandler handler
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossetrtc">function __OSSetRTC</h3>
+<pre><code class="language-C++">BOOL __OSSetRTC (
+    u32 rtc
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossettick">function __OSSetTick</h3>
+<pre><code class="language-C++">void __OSSetTick (
+    register  u32 newTicks
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossettime">function __OSSetTime</h3>
+<pre><code class="language-C++">void __OSSetTime (
+    s64 time
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osstopaudiosystem">function __OSStopAudioSystem</h3>
+<pre><code class="language-C++">void __OSStopAudioSystem (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossyncsram">function __OSSyncSram</h3>
+<pre><code class="language-C++">BOOL __OSSyncSram (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossystemcallvectorend">function __OSSystemCallVectorEnd</h3>
+<pre><code class="language-C++">void __OSSystemCallVectorEnd () 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossystemcallvectorstart">function __OSSystemCallVectorStart</h3>
+<pre><code class="language-C++">void __OSSystemCallVectorStart () 
+</code></pre>
+<hr>
+
+<h3 id="function-__osthreadinit">function __OSThreadInit</h3>
+<pre><code class="language-C++">void __OSThreadInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osunhandledexception">function __OSUnhandledException</h3>
+<pre><code class="language-C++">void __OSUnhandledException (
+    u8 exception,
+    OSContext * context,
+    u32 dsisr,
+    u32 dar
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osunlockallmutex">function __OSUnlockAllMutex</h3>
+<pre><code class="language-C++">void __OSUnlockAllMutex (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osunlocksram">function __OSUnlockSram</h3>
+<pre><code class="language-C++">BOOL __OSUnlockSram (
+    BOOL commit
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osunlocksramex">function __OSUnlockSramEx</h3>
+<pre><code class="language-C++">BOOL __OSUnlockSramEx (
+    BOOL commit
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osunmaskinterrupts">function __OSUnmaskInterrupts</h3>
+<pre><code class="language-C++">OSInterruptMask __OSUnmaskInterrupts (
+    OSInterruptMask global
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ras_osdisableinterrupts_begin">function __RAS_OSDisableInterrupts_begin</h3>
+<pre><code class="language-C++">void __RAS_OSDisableInterrupts_begin (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ras_osdisableinterrupts_end">function __RAS_OSDisableInterrupts_end</h3>
+<pre><code class="language-C++">void __RAS_OSDisableInterrupts_end (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__declspec">function __declspec</h3>
+<pre><code class="language-C++">__declspec (
+    section &quot;.init&quot;
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__get_clock">function __get_clock</h3>
+<pre><code class="language-C++">s64 __get_clock (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__get_time">function __get_time</h3>
+<pre><code class="language-C++">u32 __get_time (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__init_user">function __init_user</h3>
+<pre><code class="language-C++">void __init_user (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__start">function __start</h3>
+<pre><code class="language-C++">void __start (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__to_gm_time">function __to_gm_time</h3>
+<pre><code class="language-C++">int __to_gm_time (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-__fini_cpp">function __fini_cpp</h3>
+<pre><code class="language-C++">static void __fini_cpp (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__init_cpp">function __init_cpp</h3>
+<pre><code class="language-C++">static void __init_cpp (
+    void
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/os/OSPrivate.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

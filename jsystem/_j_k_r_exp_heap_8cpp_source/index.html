@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File JKRExpHeap.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-jkrexpheapcpp">File JKRExpHeap.cpp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_2add8750dabb2c81b6f2c3c5af4cfeba/"><strong>JSystem</strong></a> <strong>&gt;</strong> <a href="../dir_e5be38218225624e70ebb9ea7ff5d81f/"><strong>System</strong></a> <strong>&gt;</strong> <a href="../dir_cddf90ee7c92ffd4474a8c27c5ea5882/"><strong>JKernel</strong></a> <strong>&gt;</strong> <a href="../dir_2af99252d1c483de143a7a3f414b45a2/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_j_k_r_exp_heap_8cpp/"><strong>JKRExpHeap.cpp</strong></a></p>
+<p><a href="../_j_k_r_exp_heap_8cpp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#include &lt;JKRExpHeap.h&gt;
+
+static int whatdo;  // some sort of state, possibly for dump()?
+static int whatdo2; // possibly something for dump()
+
+static size_t DBfoundSize;
+static u32    DBfoundOffset;
+static void*  DBfoundBlock;
+static void*  DBnewFreeBlock;
+static void*  DBnewUsedBlock;
+
+JKRExpHeap*
+JKRExpHeap::createRoot (int max, bool err)
+{
+    JKRExpHeap* heap = Nil;
+
+    // create root heap if missing
+    if (sRootHeap == Nil)
+    {
+        void*  mem;
+        size_t memSize;
+
+        initArena ((char**)&amp;mem, &amp;memSize, max);
+
+        size_t thisSize  = ALIGN_NEXT (sizeof (JKRExpHeap), 16);
+        void*  start     = (void*)((int)mem + thisSize);
+        size_t alignSize = memSize - thisSize;
+
+        heap             = new (mem) JKRExpHeap (start, alignSize, Nil, err);
+
+        sRootHeap        = (JKRHeap*)heap;
+    }
+
+    // mark heap as root
+    heap-&gt;mIsRoot = TRUE;
+
+    return heap;
+}
+
+JKRExpHeap*
+JKRExpHeap::create (size_t size, JKRHeap* parent, bool err)
+{
+    JKRExpHeap* heap = Nil;
+
+    if (parent == Nil)
+    {
+        parent = sRootHeap;
+    }
+
+    size_t alignSize = ALIGN_PREV (size, 16);
+    size_t thisSize  = ALIGN_NEXT (sizeof (JKRExpHeap), 16);
+
+    void* mem        = (void*)JKRAllocFromHeap (parent, alignSize, 16);
+    void* data       = (void*)((int)mem + thisSize);
+
+    // if allocated, create heap
+    if (mem != Nil)
+    {
+        heap = new (mem) JKRExpHeap (data, alignSize - thisSize, parent, err);
+    }
+
+    // mark heap as not root
+    heap-&gt;mIsRoot = FALSE;
+
+    return heap;
+}
+
+void
+JKRExpHeap::destroy ()
+{
+    unk64 _;
+#pragma unused(_)
+
+    if (mIsRoot == false)
+    {
+        JKRHeap* parent = mHeapTree.getParent()-&gt;getObject();
+        if (parent != Nil)
+        {
+            this-&gt;~JKRExpHeap();
+            JKRFreeToHeap (parent, this);
+        }
+    }
+    else
+    {
+        this-&gt;~JKRExpHeap();
+    }
+}
+
+JKRExpHeap::JKRExpHeap (void* data, size_t size, JKRHeap* parent, bool err)
+  : JKRHeap (data, size, parent, err)
+{
+    mAllocMode    = ALLOC_HEAD;
+    mGroupID      = (u8)-1;
+
+    mFreeHeadList = (CMemBlock*)data;
+    mFreeTailList = mFreeHeadList;
+
+    mFreeHeadList-&gt;initiate (Nil, Nil, size - 16, 0, 0);
+
+    mUsedHeadList = Nil;
+    mUsedTailList = Nil;
+}
+
+JKRExpHeap::~JKRExpHeap ()
+{
+    dispose();
+}
+
+u8
+JKRExpHeap::changeGroupID (u8 id)
+{
+    lock();
+
+    u8 old   = mGroupID;
+    mGroupID = id;
+
+    unlock();
+
+    return old;
+}
+
+void*
+JKRExpHeap::alloc (size_t size, int align)
+{
+    void* ptr;
+
+    lock();
+
+    whatdo2 = 0;
+    if (align &gt;= 0)
+    {
+        if (align &lt;= 4)
+        {
+            whatdo = 1;
+            ptr    = allocFromHead (size);
+        }
+        else
+        {
+            whatdo = 2;
+            ptr    = allocFromHead (size, align);
+        }
+    }
+    else
+    {
+        if (-align &lt;= 4)
+        {
+            whatdo = 3;
+            ptr    = allocFromTail (size);
+        }
+        else
+        {
+            whatdo = 4;
+            ptr    = allocFromTail (size, -align);
+        }
+    }
+
+    if (ptr == Nil)
+    {
+        if (getErrorFlag())
+        {
+            callErrorHandler (this, size, align);
+        }
+        dump();
+        JKRExpHeap::dump_sort();
+    }
+
+    unlock();
+
+    return ptr;
+}
+
+void*
+JKRExpHeap::allocFromHead (size_t size, int align)
+{
+    size                 = ALIGN_NEXT (size, align);
+    size_t     foundSize = (size_t)-1;
+    u32        foundOff  = 0;
+    CMemBlock* foundBlk  = (CMemBlock*)Nil;
+
+    for (CMemBlock* blk = mFreeHeadList; blk != Nil; blk = blk-&gt;mNext)
+    {
+        u32 data = (u32)blk-&gt;getContent();
+        u32 off  = ALIGN_PREV (align - 1 + data, align) - data;
+
+        if (blk-&gt;mSize &lt; (size + off) || foundSize &lt;= blk-&gt;mSize)
+        {
+            continue;
+        }
+
+        foundSize = blk-&gt;mSize;
+        foundBlk  = blk;
+        foundOff  = off;
+
+        if (mAllocMode != ALLOC_HEAD || blk-&gt;mSize == size)
+        {
+            break;
+        }
+    }
+
+    DBfoundSize   = foundSize;
+    DBfoundOffset = foundOff;
+    DBfoundBlock  = foundBlk;
+
+    if (foundBlk != Nil)
+    {
+        CMemBlock* newFreeBlock;
+        CMemBlock* newUsedBlock;
+
+        if (foundOff &gt;= sizeof (CMemBlock))
+        {
+            whatdo2         += 0x1;
+
+            CMemBlock* prev  = foundBlk-&gt;mPrev;
+            CMemBlock* next  = foundBlk-&gt;mNext;
+            newUsedBlock     = foundBlk-&gt;allocFore (foundOff - sizeof (CMemBlock), 0, 0, 0, 0);
+
+            if (newUsedBlock != Nil)
+            {
+                whatdo2      += 0x2;
+
+                newFreeBlock  = newUsedBlock-&gt;allocFore (size, mGroupID, 0, 0, 0);
+            }
+            else
+            {
+                newUsedBlock = Nil;
+            }
+
+            if (newFreeBlock != Nil)
+            {
+                setFreeBlock (foundBlk, prev, newFreeBlock);
+            }
+            else
+            {
+                setFreeBlock (foundBlk, prev, next);
+            }
+            if (newFreeBlock != Nil)
+            {
+                whatdo2 += 0x4;
+
+                setFreeBlock (newFreeBlock, foundBlk, next);
+            }
+
+            appendUsedList (newUsedBlock);
+
+            whatdo2        += 0x8;
+
+            DBnewFreeBlock  = newFreeBlock;
+            DBnewUsedBlock  = newUsedBlock;
+
+            return newUsedBlock-&gt;getContent();
+        }
+
+        if (foundOff != 0)
+        {
+            whatdo2         += 0x10;
+
+            CMemBlock* prev  = foundBlk-&gt;mPrev;
+            CMemBlock* next  = foundBlk-&gt;mNext;
+
+            removeFreeBlock (foundBlk);
+            newUsedBlock        = (CMemBlock*)((u32)foundBlk + foundOff);
+            newUsedBlock-&gt;mSize = foundBlk-&gt;mSize - foundOff;
+            newFreeBlock        = newUsedBlock-&gt;allocFore (size, mGroupID, (u8)foundOff, 0, 0);
+
+            if (newFreeBlock != Nil)
+            {
+                whatdo2 += 0x20;
+
+                setFreeBlock (newFreeBlock, prev, next);
+            }
+
+            appendUsedList (newUsedBlock);
+
+            whatdo2 += 0x40;
+
+            return newUsedBlock-&gt;getContent();
+        }
+        else
+        {
+            whatdo2         += 0x80;
+
+            CMemBlock* prev  = foundBlk-&gt;mPrev;
+            CMemBlock* next  = foundBlk-&gt;mNext;
+
+            newFreeBlock     = foundBlk-&gt;allocFore (size, mGroupID, 0, 0, 0);
+            removeFreeBlock (foundBlk);
+
+            if (newFreeBlock != Nil)
+            {
+                whatdo2 += 0x100;
+
+                setFreeBlock (newFreeBlock, prev, next);
+            }
+
+            appendUsedList (newUsedBlock);
+
+            whatdo2 += 0x200;
+
+            return foundBlk-&gt;getContent();
+        }
+    }
+
+    whatdo2 += 0x400;
+
+    return Nil;
+}
+
+void*
+JKRExpHeap::allocFromHead (size_t size)
+{
+    size                 = ALIGN_NEXT (size, 4);
+    size_t     foundSize = (size_t)-1;
+    CMemBlock* foundBlk  = (CMemBlock*)Nil;
+
+    for (CMemBlock* blk = mFreeHeadList; blk != Nil; blk = blk-&gt;mNext)
+    {
+        if (blk-&gt;mSize &lt; size || foundSize &lt;= blk-&gt;mSize)
+        {
+            continue;
+        }
+
+        foundSize = blk-&gt;mSize;
+        foundBlk  = blk;
+
+        if (mAllocMode != ALLOC_HEAD || foundSize == size)
+        {
+            break;
+        }
+    }
+
+    whatdo2 += 0x1;
+
+    if (foundBlk != Nil)
+    {
+        CMemBlock* newFreeBlock  = foundBlk-&gt;allocFore (size, mGroupID, 0, 0, 0);
+
+        whatdo2                 += 0x2;
+
+        if (newFreeBlock != Nil)
+        {
+            whatdo2 += 0x4;
+            setFreeBlock (newFreeBlock, foundBlk-&gt;mPrev, foundBlk-&gt;mNext);
+        }
+        else
+        {
+            whatdo2 += 0x8;
+            removeFreeBlock (foundBlk);
+        }
+
+        appendUsedList (foundBlk);
+
+        whatdo2 += 0x10;
+
+        return foundBlk-&gt;getContent();
+    }
+
+    whatdo2 += 0x20;
+
+    return Nil;
+}
+
+void*
+JKRExpHeap::allocFromTail (u32 size, int align)
+{
+    u32        offset     = 0;
+    CMemBlock* foundBlock = Nil;
+    CMemBlock* newBlock   = Nil;
+    u32        usedSize;
+    u32        start;
+
+    for (CMemBlock* block = mFreeTailList; block; block = block-&gt;mPrev)
+    {
+        start    = ALIGN_PREV ((u32)block-&gt;getContent() + block-&gt;mSize - size, align);
+        usedSize = (u32)block-&gt;getContent() + block-&gt;mSize - start;
+        if (block-&gt;mSize &gt;= usedSize)
+        {
+            foundBlock = block;
+            offset     = block-&gt;mSize - usedSize;
+            newBlock   = (CMemBlock*)start - 1;
+            break;
+        }
+    }
+    if (foundBlock != Nil)
+    {
+        if (offset &gt;= sizeof (CMemBlock))
+        {
+            newBlock-&gt;initiate (Nil, Nil, usedSize, mGroupID, (u8)(-0x80));
+            foundBlock-&gt;mSize = foundBlock-&gt;mSize - usedSize - sizeof (CMemBlock);
+            appendUsedList (newBlock);
+            return newBlock-&gt;getContent();
+        }
+        else
+        {
+            if (offset != 0)
+            {
+                removeFreeBlock (foundBlock);
+                newBlock-&gt;initiate (Nil, Nil, usedSize, mGroupID, (u8)(offset | 0x80));
+                appendUsedList (newBlock);
+                return newBlock-&gt;getContent();
+            }
+            else
+            {
+                removeFreeBlock (foundBlock);
+                newBlock-&gt;initiate (Nil, Nil, usedSize, mGroupID, (u8)(-0x80));
+                appendUsedList (newBlock);
+                return newBlock-&gt;getContent();
+            }
+        }
+    }
+    return Nil;
+}
+
+void*
+JKRExpHeap::allocFromTail (u32 size)
+{
+    u32        size2      = ALIGN_NEXT (size, 4);
+    CMemBlock* foundBlock = Nil;
+
+    for (CMemBlock* block = mFreeTailList; block; block = block-&gt;mPrev)
+    {
+        if (block-&gt;mSize &gt;= size2)
+        {
+            foundBlock = block;
+            break;
+        }
+    }
+
+    if (foundBlock != Nil)
+    {
+        CMemBlock* usedBlock = foundBlock-&gt;allocBack (size2, 0, 0, mGroupID, 0);
+        CMemBlock* freeBlock;
+
+        if (usedBlock)
+        {
+            freeBlock = foundBlock;
+        }
+        else
+        {
+            removeFreeBlock (foundBlock);
+            usedBlock = foundBlock;
+            freeBlock = Nil;
+        }
+        if (freeBlock)
+        {
+            setFreeBlock (freeBlock, foundBlock-&gt;mPrev, foundBlock-&gt;mNext);
+        }
+
+        appendUsedList (usedBlock);
+
+        return usedBlock-&gt;getContent();
+    }
+
+    return Nil;
+}
+
+void
+JKRExpHeap::free (void* ptr)
+{
+    lock();
+
+    if (mStart &lt;= ptr &amp;&amp; ptr &lt;= mEnd)
+    {
+        CMemBlock* block = CMemBlock::getHeapBlock (ptr);
+        if (block != Nil)
+        {
+            block-&gt;free (this);
+        }
+    }
+    else
+    {
+        // JUT_WARNING_F (&quot;free: memblock %x not in heap %x&quot;, memblock, this);
+    }
+
+    unlock();
+}
+
+s32
+JKRExpHeap::freeGroup (u8 groupID)
+{
+    lock();
+
+    CMemBlock* block = mUsedHeadList;
+    s32        count = 0;
+
+    while (block != Nil)
+    {
+        if (block-&gt;mGroupID == groupID)
+        {
+            CMemBlock* nextBlk = (CMemBlock*)(block + 1);
+            dispose (nextBlk, block-&gt;mSize);
+
+            CMemBlock* temp = block-&gt;mNext;
+
+            block-&gt;free (this);
+            count++;
+
+            block = temp;
+        }
+        else
+        {
+            block = block-&gt;mNext;
+        }
+    }
+    unlock();
+
+    return count;
+}
+
+void
+JKRExpHeap::freeAll ()
+{
+    lock();
+
+    JKRHeap::freeAll();
+
+    mFreeHeadList = (CMemBlock*)mStart;
+    mFreeTailList = mFreeHeadList;
+    mFreeHeadList-&gt;initiate (Nil, Nil, mSize - sizeof (CMemBlock), 0, 0);
+    mUsedHeadList = Nil;
+    mUsedTailList = Nil;
+
+    unlock();
+}
+
+void
+JKRExpHeap::freeTail ()
+{
+    lock();
+
+    for (CMemBlock* block = mUsedHeadList; block != Nil;)
+    {
+        if ((block-&gt;mFlags &amp; 0x80) != 0)
+        {
+            dispose (block-&gt;getContent(), block-&gt;mSize);
+            CMemBlock* temp = block-&gt;mNext;
+            block-&gt;free (this);
+            block = temp;
+        }
+        else
+        {
+            block = block-&gt;mNext;
+        }
+    }
+
+    unlock();
+}
+
+size_t
+JKRExpHeap::resize (void* ptr, size_t size)
+{
+    lock();
+
+    CMemBlock* block = CMemBlock::getHeapBlock (ptr);
+    if (block == Nil || ptr &lt; mStart || mEnd &lt; ptr)
+    {
+        unlock();
+        return (size_t)-1;
+    }
+
+    size = ALIGN_NEXT (size, 4);
+    if (size == block-&gt;mSize)
+    {
+        unlock();
+        return size;
+    }
+
+    if (size &gt; block-&gt;mSize)
+    {
+        CMemBlock* foundBlock = Nil;
+        CMemBlock* nextBlock  = block + 1;
+        for (CMemBlock* freeBlock = mFreeHeadList; freeBlock; freeBlock = freeBlock-&gt;mNext)
+        {
+            if (freeBlock == (CMemBlock*)((u8*)nextBlock + block-&gt;mSize))
+            {
+                foundBlock = freeBlock;
+                break;
+            }
+        }
+
+        if (foundBlock == Nil)
+        {
+            unlock();
+            return (size_t)-1;
+        }
+
+        if (size &gt; block-&gt;mSize + sizeof (CMemBlock) + foundBlock-&gt;mSize)
+        {
+            unlock();
+            return (size_t)-1;
+        }
+
+        removeFreeBlock (foundBlock);
+        block-&gt;mSize += foundBlock-&gt;mSize + sizeof (CMemBlock);
+
+        if (block-&gt;mSize - size &gt; sizeof (CMemBlock))
+        {
+            CMemBlock* newBlock = block-&gt;allocFore (size, block-&gt;mGroupID, block-&gt;mFlags, 0, 0);
+            if (newBlock)
+            {
+                recycleFreeBlock (newBlock);
+            }
+        }
+    }
+    else
+    {
+        if (block-&gt;mSize - size &gt; sizeof (CMemBlock))
+        {
+            CMemBlock* freeBlock =
+                block-&gt;allocFore (size, block-&gt;mGroupID, block-&gt;mFlags, 0, 0);
+            if (freeBlock)
+            {
+                recycleFreeBlock (freeBlock);
+            }
+        }
+    }
+    unlock();
+
+    return block-&gt;mSize;
+}
+
+size_t
+JKRExpHeap::getSize (void* ptr)
+{
+    lock();
+
+    CMemBlock* block = CMemBlock::getHeapBlock (ptr);
+
+    if (block == Nil || ptr &lt; mStart || mEnd &lt; ptr)
+    {
+        unlock();
+        return (size_t)-1;
+    }
+    unlock();
+
+    return block-&gt;mSize;
+}
+
+size_t
+JKRExpHeap::getFreeSize ()
+{
+    lock();
+
+    size_t maxFreeSize = 0;
+
+    for (CMemBlock* block = mFreeHeadList; block != Nil; block = block-&gt;mNext)
+    {
+        if (maxFreeSize &lt; (s32)block-&gt;mSize)
+            maxFreeSize = block-&gt;mSize;
+    }
+    unlock();
+
+    return maxFreeSize;
+}
+
+size_t
+JKRExpHeap::getTotalFreeSize ()
+{
+    size_t freeSize = 0;
+
+    lock();
+
+    for (CMemBlock* block = mFreeHeadList; block != Nil; block = block-&gt;mNext)
+    {
+        freeSize += block-&gt;mSize;
+    }
+    unlock();
+
+    return freeSize;
+}
+
+size_t
+JKRExpHeap::getUsedSize (u8 groupId) const
+{
+    JKRExpHeap* this2 = const_cast&lt;JKRExpHeap*&gt; (this);
+
+    this2-&gt;lock();
+
+    u32 size = 0;
+
+    for (CMemBlock* block = mUsedHeadList; block; block = block-&gt;mNext)
+    {
+        u8 blockGroupId = block-&gt;mGroupID;
+        if (blockGroupId == groupId)
+        {
+            size += block-&gt;mSize + sizeof (CMemBlock);
+        }
+    }
+    this2-&gt;unlock();
+
+    return size;
+}
+
+/*bool
+JKRExpHeap::isEmpty ()
+{
+    u32 newSize;
+    // JUT_ASSERT (newSize &gt; 0);
+
+    return true;
+}*/
+bool
+JKRExpHeap::check ()
+{
+    lock();
+
+    int  totalBytes = 0;
+    bool ok         = true;
+
+    for (CMemBlock* block = mUsedHeadList; block; block = block-&gt;mNext)
+    {
+        totalBytes += sizeof (CMemBlock) + block-&gt;mSize + block-&gt;getAlignment();
+        if (!block-&gt;isValid())
+        {
+            ok = false;
+        }
+        if (block-&gt;mNext)
+        {
+            if (!block-&gt;mNext-&gt;isValid())
+            {
+                ok = false;
+                break;
+            }
+            if (block-&gt;mNext-&gt;mPrev != block)
+            {
+                ok = false;
+            }
+        }
+        else
+        {
+            if (mUsedTailList != block)
+            {
+                ok = false;
+            }
+        }
+    }
+    for (CMemBlock* block = mFreeHeadList; block; block = block-&gt;mNext)
+    {
+        totalBytes += block-&gt;mSize + sizeof (CMemBlock);
+        if (block-&gt;mNext)
+        {
+            if (block-&gt;mNext-&gt;mPrev != block)
+            {
+                ok = false;
+            }
+            if ((u32)block + block-&gt;mSize + sizeof (CMemBlock) &gt; (u32)block-&gt;mNext)
+            {
+                ok = false;
+            }
+        }
+        else
+        {
+            if (mFreeTailList != block)
+            {
+                ok = false;
+            }
+        }
+    }
+    if (totalBytes != mSize)
+    {
+        ok = false;
+    }
+
+    // if (!ok) {}
+
+    unlock();
+    return ok;
+}
+
+void
+JKRExpHeap::appendUsedList (JKRExpHeap::CMemBlock* blockToAppend)
+{
+    if (!blockToAppend)
+    {
+        OSPanic (__FILE__, 1553, &quot;:::ERROR! appendUsedList\n&quot;);
+    }
+    CMemBlock* tail       = mUsedTailList;
+    blockToAppend-&gt;mMagic = 'HM';
+    if (tail)
+    {
+        tail-&gt;mNext          = blockToAppend;
+        blockToAppend-&gt;mPrev = tail;
+    }
+    else
+    {
+        blockToAppend-&gt;mPrev = Nil;
+    }
+    mUsedTailList = blockToAppend;
+    if (!mUsedHeadList)
+    {
+        mUsedHeadList = blockToAppend;
+    }
+    blockToAppend-&gt;mNext = Nil;
+}
+
+void
+JKRExpHeap::setFreeBlock (JKRExpHeap::CMemBlock* p1,
+                          JKRExpHeap::CMemBlock* p2,
+                          JKRExpHeap::CMemBlock* p3)
+{
+    if (p2 == Nil)
+    {
+        mFreeHeadList = p1;
+        p1-&gt;mPrev     = Nil;
+    }
+    else
+    {
+        p2-&gt;mNext = p1;
+        p1-&gt;mPrev = p2;
+    }
+    if (p3 == Nil)
+    {
+        mFreeTailList = p1;
+        p1-&gt;mNext     = Nil;
+    }
+    else
+    {
+        p3-&gt;mPrev = p1;
+        p1-&gt;mNext = p3;
+    }
+    p1-&gt;mMagic = 0;
+}
+
+void
+JKRExpHeap::removeFreeBlock (JKRExpHeap::CMemBlock* blockToRemove)
+{
+    CMemBlock* prev = blockToRemove-&gt;mPrev;
+    CMemBlock* next = blockToRemove-&gt;mNext;
+    if (prev == Nil)
+    {
+        mFreeHeadList = next;
+    }
+    else
+    {
+        prev-&gt;mNext = next;
+    }
+    if (next == Nil)
+    {
+        mFreeTailList = prev;
+    }
+    else
+    {
+        next-&gt;mPrev = prev;
+    }
+}
+
+void
+JKRExpHeap::removeUsedBlock (JKRExpHeap::CMemBlock* blockToRemove)
+{
+    CMemBlock* prev = blockToRemove-&gt;mPrev;
+    CMemBlock* next = blockToRemove-&gt;mNext;
+    if (prev == Nil)
+    {
+        mUsedHeadList = next;
+    }
+    else
+    {
+        prev-&gt;mNext = next;
+    }
+    if (next == Nil)
+    {
+        mUsedTailList = prev;
+    }
+    else
+    {
+        next-&gt;mPrev = prev;
+    }
+}
+
+void
+JKRExpHeap::recycleFreeBlock (JKRExpHeap::CMemBlock* block)
+{
+    JKRExpHeap::CMemBlock* newBlock = block;
+    size_t                 size     = block-&gt;mSize;
+    void*                  blockEnd = (u8*)block + size;
+    block-&gt;mMagic                   = 0;
+    // int offset = block-&gt;mFlags &amp; 0x7f;
+
+    if ((u32)(block-&gt;mFlags &amp; 0x7f) != 0)
+    {
+        newBlock            = (CMemBlock*)((u8*)block - (block-&gt;mFlags &amp; 0x7f));
+        size               += (block-&gt;mFlags &amp; 0x7f);
+        blockEnd            = (u8*)newBlock + size;
+        newBlock-&gt;mGroupID  = 0;
+        newBlock-&gt;mFlags    = 0;
+        newBlock-&gt;mSize     = size;
+    }
+
+    if (!mFreeHeadList)
+    {
+        newBlock-&gt;initiate (Nil, Nil, size, 0, 0);
+        mFreeHeadList = newBlock;
+        mFreeTailList = newBlock;
+        setFreeBlock (newBlock, Nil, Nil);
+        return;
+    }
+
+    if (mFreeHeadList &gt;= blockEnd)
+    {
+        newBlock-&gt;initiate (Nil, Nil, size, 0, 0);
+        setFreeBlock (newBlock, Nil, mFreeHeadList);
+        joinTwoBlocks (newBlock);
+        return;
+    }
+
+    if (mFreeTailList &lt;= newBlock)
+    {
+        newBlock-&gt;initiate (Nil, Nil, size, 0, 0);
+        setFreeBlock (newBlock, mFreeTailList, Nil);
+        joinTwoBlocks (newBlock-&gt;mPrev);
+        return;
+    }
+
+    for (CMemBlock* freeBlock = mFreeHeadList; freeBlock; freeBlock = freeBlock-&gt;mNext)
+    {
+        if (freeBlock &gt;= newBlock || newBlock &gt;= freeBlock-&gt;mNext)
+        {
+            continue;
+        }
+
+        newBlock-&gt;mNext        = freeBlock-&gt;mNext;
+        newBlock-&gt;mPrev        = freeBlock;
+        freeBlock-&gt;mNext       = newBlock;
+        newBlock-&gt;mNext-&gt;mPrev = newBlock;
+        newBlock-&gt;mGroupID     = 0;
+        joinTwoBlocks (newBlock);
+        joinTwoBlocks (freeBlock);
+
+        return;
+    }
+}
+
+void
+JKRExpHeap::joinTwoBlocks (CMemBlock* block)
+{
+    // for some reason this gets rid of regswaps for the debug version, however
+    // is most likely incorrect u32 endAddr; u32 nextAddr; CMemBlock *next;
+
+    u32        endAddr  = (u32)(block + 1) + block-&gt;mSize;
+    CMemBlock* next     = block-&gt;mNext;
+    u32        nextAddr = (u32)next - (next-&gt;mFlags &amp; 0x7f);
+    u32        _;
+#pragma unused(_)
+    if (endAddr &gt; nextAddr)
+    {
+        JKRGetCurrentHeap()-&gt;dump();
+        OSPanic (__FILE__, 1836, &quot;:::: Bad Block\n&quot;);
+    }
+    if (endAddr == nextAddr)
+    {
+        block-&gt;mSize = next-&gt;mSize + sizeof (CMemBlock) + (next-&gt;mFlags &amp; 0x7f) + block-&gt;mSize;
+        setFreeBlock (block, block-&gt;mPrev, next-&gt;mNext);
+    }
+}
+
+bool
+JKRExpHeap::dump ()
+{
+    lock();
+    bool result    = check();
+    u32  usedBytes = 0;
+    u32  usedCount = 0;
+    u32  freeCount = 0;
+    JUTReportConsole (&quot; attr  address:   size    gid aln   prev_ptr next_ptr\n&quot;);
+    JUTReportConsole (&quot;(Used Blocks)\n&quot;);
+    if (!mUsedHeadList)
+    {
+        JUTReportConsole (&quot; NONE\n&quot;);
+    }
+    for (CMemBlock* block = mUsedHeadList; block; block = block-&gt;mNext)
+    {
+        if (!block-&gt;isValid())
+        {
+            JUTReportConsole_f (&quot;xxxxx %08x: --------  --- ---  (-------- --------)\nabort\n&quot;,
+                                block);
+            break;
+        }
+
+        JUTReportConsole_f (&quot;%s %08x: %08x  %3d %3d  (%08x %08x)\n&quot;,
+                            block-&gt;_isTempMemBlock() ? &quot; temp&quot; : &quot;alloc&quot;,
+                            block-&gt;getContent(),
+                            block-&gt;mSize,
+                            block-&gt;mGroupID,
+                            block-&gt;getAlignment(),
+                            block-&gt;mPrev,
+                            block-&gt;mNext);
+        usedBytes += sizeof (CMemBlock) + block-&gt;mSize + block-&gt;getAlignment();
+        usedCount++;
+    }
+    JUTReportConsole (&quot;(Free Blocks)\n&quot;);
+    if (!mFreeHeadList)
+    {
+        JUTReportConsole (&quot; NONE\n&quot;);
+    }
+    for (CMemBlock* block = mFreeHeadList; block; block = block-&gt;mNext)
+    {
+        JUTReportConsole_f (&quot;%s %08x: %08x  %3d %3d  (%08x %08x)\n&quot;,
+                            &quot; free&quot;,
+                            block-&gt;getContent(),
+                            block-&gt;mSize,
+                            block-&gt;mGroupID,
+                            block-&gt;getAlignment(),
+                            block-&gt;mPrev,
+                            block-&gt;mNext);
+        freeCount++;
+    }
+    float percent = ((float)usedBytes / (float)mSize) * 100.0f;
+    JUTReportConsole_f (&quot;%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n&quot;,
+                        usedBytes,
+                        mSize,
+                        percent,
+                        usedCount,
+                        freeCount);
+    unlock();
+    return result;
+}
+
+#ifndef _DEBUG
+BOOL
+JKRExpHeap::dump_sort ()
+{
+    lock();
+    JKRExpHeap::CMemBlock* block;
+
+    for (block = mFreeHeadList; block != NULL; block = block-&gt;mNext) {}
+    for (block = mFreeTailList; block != NULL; block = (JKRExpHeap::CMemBlock*)block-&gt;mPrev) {}
+    for (block = mUsedHeadList; block != NULL; block = block-&gt;mNext) {}
+    for (block = mUsedTailList; block != NULL; block = (JKRExpHeap::CMemBlock*)block-&gt;mPrev) {}
+    unlock();
+}
+#else
+BOOL
+JKRExpHeap::dump_sort ()
+{
+    lock();
+    bool result    = check();
+    u32  usedBytes = 0;
+    u32  usedCount = 0;
+    u32  freeCount = 0;
+    JUTReportConsole (&quot; attr  address:   size    gid aln   prev_ptr next_ptr\n&quot;);
+    JUTReportConsole (&quot;(Used Blocks)\n&quot;);
+    if (mUsedHeadList == Nil)
+    {
+        JUTReportConsole (&quot; NONE\n&quot;);
+    }
+    else
+    {
+        CMemBlock* var1 = Nil;
+        while (true)
+        {
+            CMemBlock* block = (CMemBlock*)0xffffffff;
+            for (CMemBlock* iterBlock = mUsedHeadList; iterBlock; iterBlock = iterBlock-&gt;mNext)
+            {
+                if (var1 &lt; iterBlock &amp;&amp; iterBlock &lt; block)
+                {
+                    block = iterBlock;
+                }
+            }
+            if (block == (CMemBlock*)0xffffffff)
+            {
+                break;
+            }
+            if (!block-&gt;isValid())
+            {
+                JUTReportConsole_f (
+                    &quot;xxxxx %08x: --------  --- ---  (-------- --------)\nabort\n&quot;,
+                    block);
+                break;
+            }
+            int         offset  = block-&gt;getAlignment();
+            void*       content = block-&gt;getContent();
+            const char* type    = block-&gt;_isTempMemBlock() ? &quot; temp&quot; : &quot;alloc&quot;;
+            JUTReportConsole_f (&quot;%s %08x: %08x  %3d %3d  (%08x %08x)\n&quot;,
+                                type,
+                                content,
+                                block-&gt;mSize,
+                                block-&gt;mGroupID,
+                                offset,
+                                block-&gt;mPrev,
+                                block-&gt;mNext);
+            usedBytes += sizeof (CMemBlock) + block-&gt;mSize + block-&gt;getAlignment();
+            usedCount++;
+            var1 = block;
+        }
+    }
+    JUTReportConsole (&quot;(Free Blocks)\n&quot;);
+    if (mFreeHeadList == Nil)
+    {
+        JUTReportConsole (&quot; NONE\n&quot;);
+    }
+    for (CMemBlock* block = mFreeHeadList; block; block = block-&gt;mNext)
+    {
+        JUTReportConsole_f (&quot;%s %08x: %08x  %3d %3d  (%08x %08x)\n&quot;,
+                            &quot; free&quot;,
+                            block-&gt;getContent(),
+                            block-&gt;mSize,
+                            block-&gt;mGroupID,
+                            block-&gt;getAlignment(),
+                            block-&gt;mPrev,
+                            block-&gt;mNext);
+        freeCount++;
+    }
+    float percent = ((float)usedBytes / (float)mSize) * 100.0f;
+    JUTReportConsole_f (&quot;%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n&quot;,
+                        usedBytes,
+                        mSize,
+                        percent,
+                        usedCount,
+                        freeCount);
+    unlock();
+    return result;
+}
+#endif
+void
+JKRExpHeap::CMemBlock::initiate (JKRExpHeap::CMemBlock* prev,
+                                 JKRExpHeap::CMemBlock* next,
+                                 u32                    size,
+                                 u8                     groupID,
+                                 u8                     alignment)
+{
+    mMagic   = 'HM';
+    mFlags   = alignment;
+    mGroupID = groupID;
+    mSize    = size;
+    mPrev    = prev;
+    mNext    = next;
+}
+
+JKRExpHeap::CMemBlock*
+JKRExpHeap::CMemBlock::allocFore (u32 size,
+                                  u8  groupId1,
+                                  u8  alignment1,
+                                  u8  groupId2,
+                                  u8  alignment2)
+{
+    CMemBlock* block = Nil;
+    mGroupID         = groupId1;
+    mFlags           = alignment1;
+    if (mSize &gt;= size + sizeof (CMemBlock))
+    {
+        block           = (CMemBlock*)(size + (u32)this);
+        block           = block + 1;
+        block-&gt;mGroupID = groupId2;
+        block-&gt;mFlags   = alignment2;
+        block-&gt;mSize    = mSize - (size + sizeof (CMemBlock));
+        mSize           = size;
+    }
+    return block;
+}
+
+JKRExpHeap::CMemBlock*
+JKRExpHeap::CMemBlock::allocBack (unsigned long size,
+                                  unsigned char groupID,
+                                  unsigned char p3,
+                                  unsigned char allocGroupID,
+                                  unsigned char p5)
+{
+    CMemBlock* newBlock = Nil;
+    if (mSize &gt;= size + sizeof (CMemBlock))
+    {
+        newBlock = reinterpret_cast&lt;CMemBlock*&gt; (mSize + reinterpret_cast&lt;u8*&gt; (this) - size);
+        newBlock-&gt;mGroupID  = allocGroupID;
+        newBlock-&gt;mFlags    = p5 | 0x80;
+        newBlock-&gt;mSize     = size;
+        mGroupID            = groupID;
+        mFlags              = p3;
+        mSize              -= (size + sizeof (CMemBlock));
+    }
+    else
+    {
+        mGroupID = allocGroupID;
+        mFlags   = 0x80;
+    }
+    return newBlock;
+}
+
+void*
+JKRExpHeap::CMemBlock::free (JKRExpHeap* heap)
+{
+    heap-&gt;removeUsedBlock (this);
+    heap-&gt;recycleFreeBlock (this);
+    return Nil;
+}
+
+JKRExpHeap::CMemBlock*
+JKRExpHeap::CMemBlock::getHeapBlock (void* mem)
+{
+    if (mem != Nil &amp;&amp; (static_cast&lt;CMemBlock*&gt; (mem) - 1)-&gt;mMagic == 0x484D)
+    {
+        return static_cast&lt;CMemBlock*&gt; (mem) - 1;
+    }
+    return Nil;
+}
+
+u32
+JKRExpHeap::getHeapType (void)
+{
+    return 'EXPH';
+}
+
+u32
+JKRExpHeap::getUNK (void)
+{
+    return 10;
+}
+
+u32
+JKRExpHeap::getCurrentGroupId (void)
+{
+    return mGroupID;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

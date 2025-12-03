@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="iostream" kind="file" language="C++">
+    <compoundname>iostream</compoundname>
+    <includedby refid="iostream_8h" local="no">iostream.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>iostream</label>
+        <link refid="iostream"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>iostream.h</label>
+        <link refid="iostream_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:58:50<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.8.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>iostream</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_IOSTREAM</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_IOSTREAM</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;istream&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ostream&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">extern<sp/>istream<sp/>cin;</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>ostream<sp/>cout;</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>ostream<sp/>clog;</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>ostream<sp/>cerr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990109<sp/>Added<sp/>support<sp/>for<sp/>wide<sp/>standard<sp/>streams</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>extern<sp/>wistream<sp/>wcin;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>extern<sp/>wostream<sp/>wcout;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>extern<sp/>wostream<sp/>wclog;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>extern<sp/>wostream<sp/>wcerr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>ios_base::Init<sp/><sp/>__msl_ios_base_init;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std<sp/></highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/><sp/>_IOSTREAM</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>added<sp/>alignment<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Changed<sp/>filename<sp/>from<sp/>iostream.h<sp/>to<sp/>iostream</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990109<sp/>Added<sp/>support<sp/>for<sp/>wide<sp/>standard<sp/>streams</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990120<sp/>Rewritten</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/iostream"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_exception_p_p_c_8h" kind="file" language="C++">
+    <compoundname>ExceptionPPC.h</compoundname>
+    <innerclass refid="structex__branch" prot="public">ex_branch</innerclass>
+    <innerclass refid="structex__destroylocal" prot="public">ex_destroylocal</innerclass>
+    <innerclass refid="structex__destroylocalcond" prot="public">ex_destroylocalcond</innerclass>
+    <innerclass refid="structex__destroylocalpointer" prot="public">ex_destroylocalpointer</innerclass>
+    <innerclass refid="structex__destroylocalarray" prot="public">ex_destroylocalarray</innerclass>
+    <innerclass refid="structex__destroymember" prot="public">ex_destroymember</innerclass>
+    <innerclass refid="structex__destroymembercond" prot="public">ex_destroymembercond</innerclass>
+    <innerclass refid="structex__destroymemberarray" prot="public">ex_destroymemberarray</innerclass>
+    <innerclass refid="structex__deletepointer" prot="public">ex_deletepointer</innerclass>
+    <innerclass refid="structex__deletepointercond" prot="public">ex_deletepointercond</innerclass>
+    <innerclass refid="structex__catchblock" prot="public">ex_catchblock</innerclass>
+    <innerclass refid="structex__activecatchblock" prot="public">ex_activecatchblock</innerclass>
+    <innerclass refid="structex__terminate" prot="public">ex_terminate</innerclass>
+    <innerclass refid="structex__specification" prot="public">ex_specification</innerclass>
+    <innerclass refid="struct_exception_range_small" prot="public">ExceptionRangeSmall</innerclass>
+    <innerclass refid="struct_exception_table_small" prot="public">ExceptionTableSmall</innerclass>
+    <innerclass refid="struct_exception_table_small_vector" prot="public">ExceptionTableSmallVector</innerclass>
+    <innerclass refid="struct_exception_range_large" prot="public">ExceptionRangeLarge</innerclass>
+    <innerclass refid="struct_exception_table_large" prot="public">ExceptionTableLarge</innerclass>
+    <innerclass refid="struct_exception_table_index" prot="public">ExceptionTableIndex</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a182a95f2398c00a075900bc0c8ffe1b2" prot="public" static="no">
+        <name>EXACTION_ENDBIT</name>
+        <initializer>0x80</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="26" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1aa4c6b1855123b71a7001724d4435a43f" prot="public" static="no">
+        <name>EXACTION_MASK</name>
+        <initializer>0x7F</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="27" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1aac43c96ec5902ca2a5bbee01e85e85a7" prot="public" static="no">
+        <name>EXACTION_ENDOFLIST</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="29" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1afc57b3b6c50a229af60ae98438a817af" prot="public" static="no">
+        <name>EXACTION_BRANCH</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="31" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a54d3ce0890765863421f251766d914f2" prot="public" static="no">
+        <name>EXACTION_DESTROYLOCAL</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="38" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a13281bc1948d30064482f20dfbedb765" prot="public" static="no">
+        <name>EXACTION_DESTROYLOCALCOND</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="46" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a97f96c7867f1490fce6b5211844a6f86" prot="public" static="no">
+        <name>ex_destroylocalcond_MakeField</name>
+        <param><defname>regcond</defname></param>
+        <initializer>(((regcond)&lt;&lt;7))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="60" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a290c9e197e9c5c3be39f82f1eccb1269" prot="public" static="no">
+        <name>ex_destroylocalcond_GetRegCond</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="61" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a42dfb41ddd23b89e8a61c7919d533269" prot="public" static="no">
+        <name>EXACTION_DESTROYLOCALPOINTER</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="63" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a5e91291af1063e9d096a44144dc25b4f" prot="public" static="no">
+        <name>ex_destroylocalpointer_MakeField</name>
+        <param><defname>regpointer</defname></param>
+        <initializer>(((regpointer)&lt;&lt;7))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="76" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a908268753b4429348569259db0984c69" prot="public" static="no">
+        <name>ex_destroylocalpointer_GetRegPointer</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="77" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1af64c1c3ef0036c1156373f24da358b4b" prot="public" static="no">
+        <name>EXACTION_DESTROYLOCALARRAY</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="79" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1acf0ae2481347ba6c1b9ecdd82fbaf24d" prot="public" static="no">
+        <name>EXACTION_DESTROYBASE</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="89" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a9ffbc63fc6abf3871207452bd67d2227" prot="public" static="no">
+        <name>EXACTION_DESTROYMEMBER</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="90" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1aa9e4c1971b8b13d3be46f6a5aded1f93" prot="public" static="no">
+        <name>ex_destroymember_MakeField</name>
+        <param><defname>regpointer</defname></param>
+        <initializer>(((regpointer)&lt;&lt;7))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="104" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1ade1c610775c06b51df6572f03730df92" prot="public" static="no">
+        <name>ex_destroymember_GetRegPointer</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="105" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1af1ba256c5f9be85cbd12a780c6719121" prot="public" static="no">
+        <name>EXACTION_DESTROYMEMBERCOND</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="108" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a8241ac8d0e8e8901d672dc28feeffdc5" prot="public" static="no">
+        <name>ex_destroymembercond_MakeField</name>
+        <param><defname>regcond</defname></param>
+        <param><defname>regpointer</defname></param>
+        <initializer>			(((regcond)&lt;&lt;7)|(((regpointer)&amp;0x0001)&lt;&lt;6))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="124" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="124" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a9c162fe3f77dca7468efc2003c496727" prot="public" static="no">
+        <name>ex_destroymembercond_GetRegCond</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="126" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1aaaf63c0ae7aa27b88e2eb69cfd82f2fe" prot="public" static="no">
+        <name>ex_destroymembercond_GetRegPointer</name>
+        <param><defname>field</defname></param>
+        <initializer>(((field)&gt;&gt;6)&amp;0x0001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="127" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1ae4682a2fb3fd130bcecf509a428b6f6d" prot="public" static="no">
+        <name>EXACTION_DESTROYMEMBERARRAY</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="129" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a23a6db3cef1d4dc9a52c18da744fefa2" prot="public" static="no">
+        <name>ex_destroymemberarray_MakeField</name>
+        <param><defname>regpointer</defname></param>
+        <initializer>(((regpointer)&lt;&lt;7))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="145" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a020b4503475cf5bbecb3774de2a876c5" prot="public" static="no">
+        <name>ex_destroymemberarray_GetRegPointer</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="146" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1ae8a1e90d4e0684256f2f5ba44ed30c11" prot="public" static="no">
+        <name>EXACTION_DELETEPOINTER</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="148" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a83453366269383566ac626c8115ede25" prot="public" static="no">
+        <name>ex_deletepointer_MakeField</name>
+        <param><defname>regpointer</defname></param>
+        <initializer>(((regpointer)&lt;&lt;7))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="161" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1afca700fefd7f387633bfcd5b36a855c6" prot="public" static="no">
+        <name>ex_deletepointer_GetRegPointer</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="162" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1aaf6cf1471ceea603f03523e5bac1a530" prot="public" static="no">
+        <name>EXACTION_DELETEPOINTERCOND</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="164" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a951726a46b5cbb902ce52848a0afd469" prot="public" static="no">
+        <name>ex_deletepointercond_MakeField</name>
+        <param><defname>regcond</defname></param>
+        <param><defname>regpointer</defname></param>
+        <initializer>			(((regcond)&lt;&lt;7)|(((regpointer)&amp;0x0001)&lt;&lt;6))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="179" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="179" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a8157c7df51accd8754593c6ca188c5a2" prot="public" static="no">
+        <name>ex_deletepointercond_GetRegCond</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="181" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a9d538acfa94f6459290b08b16057b4ad" prot="public" static="no">
+        <name>ex_deletepointercond_GetRegPointer</name>
+        <param><defname>field</defname></param>
+        <initializer>(((field)&gt;&gt;6)&amp;0x0001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="182" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a2c855c95e19cb6f868b1e2b9cb54c880" prot="public" static="no">
+        <name>EXACTION_CATCHBLOCK</name>
+        <initializer>12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="184" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a45272f3f6cf8974da825d239d163b45f" prot="public" static="no">
+        <name>EXACTION_ACTIVECATCHBLOCK</name>
+        <initializer>13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="193" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a38a19b08cec9e1e61c78fa4ecdb02d81" prot="public" static="no">
+        <name>EXACTION_TERMINATE</name>
+        <initializer>14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="200" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1ad7af596e0a7a7182406edc12529e11f5" prot="public" static="no">
+        <name>EXACTION_SPECIFICATION</name>
+        <initializer>15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="206" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a7613a6db6a487bb22c5e5a871c070836" prot="public" static="no">
+        <name>ET_MakeField</name>
+        <param><defname>savedGPRs</defname></param>
+        <param><defname>savedFPRs</defname></param>
+        <param><defname>savedCR</defname></param>
+        <param><defname>hasframeptr</defname></param>
+        <param><defname>isLarge</defname></param>
+        <initializer>			(((savedGPRs)&lt;&lt;11)|((savedFPRs&amp;0x001f)&lt;&lt;6)|((savedCR&amp;0x0001)&lt;&lt;5)|((hasframeptr&amp;0x0001)&lt;&lt;4)|((isLarge&amp;1)&lt;&lt;3))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="305" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="305" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1ad6dd91488bc8b4e8a1ffa442a4efcbda" prot="public" static="no">
+        <name>ET_GetSavedGPRs</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;11)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="316" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="316" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a3fde34ecf93b4950987950d8058f9cc8" prot="public" static="no">
+        <name>ET_GetSavedFPRs</name>
+        <param><defname>field</defname></param>
+        <initializer>(((field)&gt;&gt;6)&amp;0x001f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="317" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="317" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a92cca512b0b80c1b8b52149ae75b2934" prot="public" static="no">
+        <name>ET_GetSavedCR</name>
+        <param><defname>field</defname></param>
+        <initializer>(((field)&gt;&gt;5)&amp;0x0001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="318" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="318" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a90de8e592ad9ba944a60c48dbb0d6377" prot="public" static="no">
+        <name>ET_GetHasFramePtr</name>
+        <param><defname>field</defname></param>
+        <initializer>(((field)&gt;&gt;4)&amp;0x0001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="319" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="319" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a2586c5e66a5162b3558fe52f846f059c" prot="public" static="no">
+        <name>ET_IsLargeTable</name>
+        <param><defname>field</defname></param>
+        <initializer>(((field)&gt;&gt;3)&amp;0x0001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="320" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="320" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1ad4d3797e2ca5611f042061ded189dacb" prot="public" static="no">
+        <name>ET_ClearLargeBit</name>
+        <param><defname>field</defname></param>
+        <initializer>((field) &amp; ~(1&lt;&lt;3))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="321" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="321" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1ab48ad4d1a44cecb774245c7bd4302796" prot="public" static="no">
+        <name>ET_SetLargeBit</name>
+        <param><defname>field</defname></param>
+        <initializer>((field) |  (1&lt;&lt;3))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="322" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="322" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a6d3eed9a24e450d220ea4c8a916b30e3" prot="public" static="no">
+        <name>ETI_MakeField</name>
+        <param><defname>direct</defname></param>
+        <param><defname>fsize</defname></param>
+        <initializer>((((long)(direct))&lt;&lt;31)|((fsize)&amp;0x7fffffff))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="346" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="346" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1a49713b588fd0919425010ea07bd1efea" prot="public" static="no">
+        <name>ETI_GetDirectStore</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&gt;&gt;31)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="347" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="347" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_exception_p_p_c_8h_1ad95387cf73a9fe7471052bdcc20d842b" prot="public" static="no">
+        <name>ETI_GetFunctionSize</name>
+        <param><defname>field</defname></param>
+        <initializer>((field)&amp;0x7fffffff)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="348" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="348" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" prot="public" static="no">
+        <type>unsigned char</type>
+        <definition>typedef unsigned char exaction_type</definition>
+        <argsstring></argsstring>
+        <name>exaction_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="24" column="23" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1ace96607d6ffdcd13fbfff03c62eed7d5" prot="public" static="no">
+        <type>struct <ref refid="structex__branch" kindref="compound">ex_branch</ref></type>
+        <definition>typedef struct ex_branch ex_branch</definition>
+        <argsstring></argsstring>
+        <name>ex_branch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="36" column="11"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a22bc4239c7525e61eef9364c7a3739bc" prot="public" static="no">
+        <type>struct <ref refid="structex__destroylocal" kindref="compound">ex_destroylocal</ref></type>
+        <definition>typedef struct ex_destroylocal ex_destroylocal</definition>
+        <argsstring></argsstring>
+        <name>ex_destroylocal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="44" column="17"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a7cc964c0825035557151b00fc9c39a10" prot="public" static="no">
+        <type>struct <ref refid="structex__destroylocalcond" kindref="compound">ex_destroylocalcond</ref></type>
+        <definition>typedef struct ex_destroylocalcond ex_destroylocalcond</definition>
+        <argsstring></argsstring>
+        <name>ex_destroylocalcond</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="58" column="21"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a3767758ce8d7651b7bb31d7fffa3c5d1" prot="public" static="no">
+        <type>struct <ref refid="structex__destroylocalpointer" kindref="compound">ex_destroylocalpointer</ref></type>
+        <definition>typedef struct ex_destroylocalpointer ex_destroylocalpointer</definition>
+        <argsstring></argsstring>
+        <name>ex_destroylocalpointer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="74" column="24"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a4caee166c567844a94a6264c8ea0f736" prot="public" static="no">
+        <type>struct <ref refid="structex__destroylocalarray" kindref="compound">ex_destroylocalarray</ref></type>
+        <definition>typedef struct ex_destroylocalarray ex_destroylocalarray</definition>
+        <argsstring></argsstring>
+        <name>ex_destroylocalarray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="87" column="22"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a0d07c0429bed9ac5c219837934cea7c5" prot="public" static="no">
+        <type>struct <ref refid="structex__destroymember" kindref="compound">ex_destroymember</ref></type>
+        <definition>typedef struct ex_destroymember ex_destroymember</definition>
+        <argsstring></argsstring>
+        <name>ex_destroymember</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="102" column="18"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a1a83e3813ec294041544440de4b597aa" prot="public" static="no">
+        <type>struct <ref refid="structex__destroymembercond" kindref="compound">ex_destroymembercond</ref></type>
+        <definition>typedef struct ex_destroymembercond ex_destroymembercond</definition>
+        <argsstring></argsstring>
+        <name>ex_destroymembercond</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="122" column="22"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a2e6521cccbada5f550b2cc0f4066713f" prot="public" static="no">
+        <type>struct <ref refid="structex__destroymemberarray" kindref="compound">ex_destroymemberarray</ref></type>
+        <definition>typedef struct ex_destroymemberarray ex_destroymemberarray</definition>
+        <argsstring></argsstring>
+        <name>ex_destroymemberarray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="143" column="23"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1af01d2d56b03af53974a7952ba9432e61" prot="public" static="no">
+        <type>struct <ref refid="structex__deletepointer" kindref="compound">ex_deletepointer</ref></type>
+        <definition>typedef struct ex_deletepointer ex_deletepointer</definition>
+        <argsstring></argsstring>
+        <name>ex_deletepointer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="159" column="18"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a39d1f0dc5019c618799e41fa4cfa0e23" prot="public" static="no">
+        <type>struct <ref refid="structex__deletepointercond" kindref="compound">ex_deletepointercond</ref></type>
+        <definition>typedef struct ex_deletepointercond ex_deletepointercond</definition>
+        <argsstring></argsstring>
+        <name>ex_deletepointercond</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="177" column="22"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1aa58eee0a653901f5b1f3f3cc773f3d6e" prot="public" static="no">
+        <type>struct <ref refid="structex__catchblock" kindref="compound">ex_catchblock</ref></type>
+        <definition>typedef struct ex_catchblock ex_catchblock</definition>
+        <argsstring></argsstring>
+        <name>ex_catchblock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="191" column="15"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a34b3074b223078485cbf5b7f1ed43c0f" prot="public" static="no">
+        <type>struct <ref refid="structex__activecatchblock" kindref="compound">ex_activecatchblock</ref></type>
+        <definition>typedef struct ex_activecatchblock ex_activecatchblock</definition>
+        <argsstring></argsstring>
+        <name>ex_activecatchblock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="198" column="21"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a2b293e7ac7b01bb8025632b30c66ab21" prot="public" static="no">
+        <type>struct <ref refid="structex__terminate" kindref="compound">ex_terminate</ref></type>
+        <definition>typedef struct ex_terminate ex_terminate</definition>
+        <argsstring></argsstring>
+        <name>ex_terminate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="204" column="14"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a6aa7997321c523ca4616379add462cbf" prot="public" static="no">
+        <type>struct <ref refid="structex__specification" kindref="compound">ex_specification</ref></type>
+        <definition>typedef struct ex_specification ex_specification</definition>
+        <argsstring></argsstring>
+        <name>ex_specification</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="214" column="17"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a1c246d95e839c640536f9395a8b3637e" prot="public" static="no">
+        <type>struct <ref refid="struct_exception_range_small" kindref="compound">ExceptionRangeSmall</ref></type>
+        <definition>typedef struct ExceptionRangeSmall ExceptionRangeSmall</definition>
+        <argsstring></argsstring>
+        <name>ExceptionRangeSmall</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="233" column="21"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1a2af8c8a197eca0feeea50fa7c99a6c00" prot="public" static="no">
+        <type>struct <ref refid="struct_exception_table_small" kindref="compound">ExceptionTableSmall</ref></type>
+        <definition>typedef struct ExceptionTableSmall ExceptionTableSmall</definition>
+        <argsstring></argsstring>
+        <name>ExceptionTableSmall</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="252" column="21"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1aa87e5bf36c4a98060998c37719c6aa4e" prot="public" static="no">
+        <type>struct <ref refid="struct_exception_table_small_vector" kindref="compound">ExceptionTableSmallVector</ref></type>
+        <definition>typedef struct ExceptionTableSmallVector ExceptionTableSmallVector</definition>
+        <argsstring></argsstring>
+        <name>ExceptionTableSmallVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="274" column="27"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1aee166f4877032324ac7656b6077dc24a" prot="public" static="no">
+        <type>struct <ref refid="struct_exception_range_large" kindref="compound">ExceptionRangeLarge</ref></type>
+        <definition>typedef struct ExceptionRangeLarge ExceptionRangeLarge</definition>
+        <argsstring></argsstring>
+        <name>ExceptionRangeLarge</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="280" column="21"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1affa95ad39780712f6a4695d26d9406a1" prot="public" static="no">
+        <type>struct <ref refid="struct_exception_table_large" kindref="compound">ExceptionTableLarge</ref></type>
+        <definition>typedef struct ExceptionTableLarge ExceptionTableLarge</definition>
+        <argsstring></argsstring>
+        <name>ExceptionTableLarge</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="303" column="21"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_exception_p_p_c_8h_1aec2756a5036f1e7e6a1c2479d3732c27" prot="public" static="no">
+        <type>struct <ref refid="struct_exception_table_index" kindref="compound">ExceptionTableIndex</ref></type>
+        <definition>typedef struct ExceptionTableIndex ExceptionTableIndex</definition>
+        <argsstring></argsstring>
+        <name>ExceptionTableIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h" line="344" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/><sp/>ExceptionPPC.h<sp/><sp/>-<sp/><sp/><sp/>C++<sp/>Exception<sp/>Table<sp/>Format<sp/>for<sp/>CodeWarrior(PowerPC)</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>Copyright<sp/>ゥ<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.<sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__EXCEPTIONPPC_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__EXCEPTIONPPC_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>ANSI_strict<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__PPC_EABI__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=native</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_32BIT_EXCEPTION_TABLES<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=mac68k</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Exception<sp/>Table<sp/>Actions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="_exception_p_p_c_8h_1a182a95f2398c00a075900bc0c8ffe1b2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_ENDBIT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x80<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>action<sp/>table<sp/>end<sp/>bit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="_exception_p_p_c_8h_1aa4c6b1855123b71a7001724d4435a43f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x7F<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>action<sp/>mask</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="_exception_p_p_c_8h_1aac43c96ec5902ca2a5bbee01e85e85a7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_ENDOFLIST<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="_exception_p_p_c_8h_1afc57b3b6c50a229af60ae98438a817af" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_BRANCH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structex__branch" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__branch" kindref="compound">ex_branch</ref><sp/>{</highlight></codeline>
+<codeline lineno="33" refid="structex__branch_1a556982487b1d39bf27028b464e828bd9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__branch_1a556982487b1d39bf27028b464e828bd9" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_BRANCH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="structex__branch_1a628cd3885a8faaba31554b20b7af3585" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__branch_1a628cd3885a8faaba31554b20b7af3585" kindref="member">unused</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="structex__branch_1a9f2b9f2772a9270e780c28a50e7d066d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structex__branch_1a9f2b9f2772a9270e780c28a50e7d066d" kindref="member">target</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>exception-table-relative<sp/>offset<sp/>of<sp/>branch<sp/>target</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="_exception_p_p_c_8h_1ace96607d6ffdcd13fbfff03c62eed7d5" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__branch" kindref="compound">ex_branch</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="_exception_p_p_c_8h_1a54d3ce0890765863421f251766d914f2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DESTROYLOCAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="structex__destroylocal" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__destroylocal" kindref="compound">ex_destroylocal</ref><sp/>{</highlight></codeline>
+<codeline lineno="40" refid="structex__destroylocal_1a1130586fe97ff505620e1a297dad6068" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__destroylocal_1a1130586fe97ff505620e1a297dad6068" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DESTROYLOCAL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structex__destroylocal_1a65d90ee6543a134ef61aba7e99ccf609" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__destroylocal_1a65d90ee6543a134ef61aba7e99ccf609" kindref="member">unused</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="structex__destroylocal_1ac41cc55dc04bc463181f915769e49dbd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocal_1ac41cc55dc04bc463181f915769e49dbd" kindref="member">local</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>to<sp/>local<sp/>variable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structex__destroylocal_1adc935b695476f7239a1e3bbfad01aae5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocal_1adc935b695476f7239a1e3bbfad01aae5" kindref="member">dtor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="_exception_p_p_c_8h_1a22bc4239c7525e61eef9364c7a3739bc" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__destroylocal" kindref="compound">ex_destroylocal</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="_exception_p_p_c_8h_1a13281bc1948d30064482f20dfbedb765" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DESTROYLOCALCOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="structex__destroylocalcond" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__destroylocalcond" kindref="compound">ex_destroylocalcond</ref><sp/>{</highlight></codeline>
+<codeline lineno="48" refid="structex__destroylocalcond_1a289dd24362d1b2228c6a5580960eae65" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__destroylocalcond_1a289dd24362d1b2228c6a5580960eae65" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DESTROYLOCALCOND</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+----------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>regcond<sp/>|<sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+----------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="structex__destroylocalcond_1ac1669a8c642cc9f0222ce89b49c2299b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__destroylocalcond_1ac1669a8c642cc9f0222ce89b49c2299b" kindref="member">dlc_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>regcond<sp/>0<sp/>bit<sp/>(1<sp/>-&gt;<sp/>condition<sp/>flag<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/>1:7<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="structex__destroylocalcond_1a56a141ca046acf231852428287db6f34" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocalcond_1a56a141ca046acf231852428287db6f34" kindref="member">cond</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>condition<sp/>flag</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="structex__destroylocalcond_1ae2ca1d1422e3e7377dd3a77ee63afbe7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocalcond_1ae2ca1d1422e3e7377dd3a77ee63afbe7" kindref="member">local</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>to<sp/>local<sp/>variable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="structex__destroylocalcond_1aeadd2bf40b31eb9a81aa27a84d89f8f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocalcond_1aeadd2bf40b31eb9a81aa27a84d89f8f1" kindref="member">dtor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="_exception_p_p_c_8h_1a7cc964c0825035557151b00fc9c39a10" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__destroylocalcond" kindref="compound">ex_destroylocalcond</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="_exception_p_p_c_8h_1a97f96c7867f1490fce6b5211844a6f86" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroylocalcond_MakeField(regcond)<sp/><sp/><sp/><sp/><sp/><sp/>(((regcond)&lt;&lt;7))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="_exception_p_p_c_8h_1a290c9e197e9c5c3be39f82f1eccb1269" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroylocalcond_GetRegCond(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="_exception_p_p_c_8h_1a42dfb41ddd23b89e8a61c7919d533269" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DESTROYLOCALPOINTER<sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="structex__destroylocalpointer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__destroylocalpointer" kindref="compound">ex_destroylocalpointer</ref><sp/>{</highlight></codeline>
+<codeline lineno="65" refid="structex__destroylocalpointer_1ad296de6a7962607c154844f0d09c64c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__destroylocalpointer_1ad296de6a7962607c154844f0d09c64c6" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DESTROYLOCALPOINTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>regpointer<sp/>|<sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="structex__destroylocalpointer_1a0c5e36e221ff1a8b5088b7836599fc4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__destroylocalpointer_1a0c5e36e221ff1a8b5088b7836599fc4e" kindref="member">dlp_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>regpointer<sp/><sp/>0<sp/>bit<sp/>(1<sp/>-&gt;<sp/>object<sp/>pointer<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/>1:7<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="structex__destroylocalpointer_1a7706b7d74a7e5484bf3ec7789649a5b0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocalpointer_1a7706b7d74a7e5484bf3ec7789649a5b0" kindref="member">pointer</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>local<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="structex__destroylocalpointer_1a8007c33033e700956c7fda6f9fd39ef1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocalpointer_1a8007c33033e700956c7fda6f9fd39ef1" kindref="member">dtor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="_exception_p_p_c_8h_1a3767758ce8d7651b7bb31d7fffa3c5d1" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__destroylocalpointer" kindref="compound">ex_destroylocalpointer</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="_exception_p_p_c_8h_1a5e91291af1063e9d096a44144dc25b4f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroylocalpointer_MakeField(regpointer)<sp/><sp/><sp/><sp/>(((regpointer)&lt;&lt;7))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="_exception_p_p_c_8h_1a908268753b4429348569259db0984c69" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroylocalpointer_GetRegPointer(field)<sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="_exception_p_p_c_8h_1af64c1c3ef0036c1156373f24da358b4b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DESTROYLOCALARRAY<sp/><sp/><sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structex__destroylocalarray" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__destroylocalarray" kindref="compound">ex_destroylocalarray</ref><sp/>{</highlight></codeline>
+<codeline lineno="81" refid="structex__destroylocalarray_1a4b43b0b139fe556b45e6f2090d503632" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__destroylocalarray_1a4b43b0b139fe556b45e6f2090d503632" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DESTROYLOCALARRAY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="structex__destroylocalarray_1a8f0b760da6b1f51d662ee27aa7dd12d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__destroylocalarray_1a8f0b760da6b1f51d662ee27aa7dd12d6" kindref="member">unused</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="structex__destroylocalarray_1aa21b7aab55e26901df4689ae378c4c09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocalarray_1aa21b7aab55e26901df4689ae378c4c09" kindref="member">localarray</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>to<sp/>local<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="structex__destroylocalarray_1a70ad0f7700f95e8ca06f0a0a4dcbde5c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structex__destroylocalarray_1a70ad0f7700f95e8ca06f0a0a4dcbde5c" kindref="member">elements</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>number<sp/>of<sp/>array<sp/>elements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="structex__destroylocalarray_1a5568cb22ada4a2e76a75f7ef1813b530" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structex__destroylocalarray_1a5568cb22ada4a2e76a75f7ef1813b530" kindref="member">element_size</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>size<sp/>of<sp/>one<sp/>array<sp/>element</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="structex__destroylocalarray_1ab550882988eb420ba5cba13b2cbe61f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroylocalarray_1ab550882988eb420ba5cba13b2cbe61f2" kindref="member">dtor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="_exception_p_p_c_8h_1a4caee166c567844a94a6264c8ea0f736" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__destroylocalarray" kindref="compound">ex_destroylocalarray</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="_exception_p_p_c_8h_1acf0ae2481347ba6c1b9ecdd82fbaf24d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DESTROYBASE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="_exception_p_p_c_8h_1a9ffbc63fc6abf3871207452bd67d2227" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DESTROYMEMBER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="structex__destroymember" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__destroymember" kindref="compound">ex_destroymember</ref><sp/>{</highlight></codeline>
+<codeline lineno="92" refid="structex__destroymember_1ac5cd28f038b58facd486c226823eb09d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__destroymember_1ac5cd28f038b58facd486c226823eb09d" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DESTROYMEMBER<sp/>or<sp/>EXACTION_DESTROYBASE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>regpointer<sp/>|<sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="structex__destroymember_1a4ca66f18f958815662886a87cbe93504" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__destroymember_1a4ca66f18f958815662886a87cbe93504" kindref="member">dm_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>regpointer<sp/><sp/>0<sp/>bit<sp/>(1<sp/>-&gt;<sp/>object<sp/>pointer<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/>1:7<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="structex__destroymember_1a94e71dec0bc790fffedde757bb734f0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymember_1a94e71dec0bc790fffedde757bb734f0a" kindref="member">objectptr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>object<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="structex__destroymember_1a6b1a284c3c84ef1b294a2981c7c9d522" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymember_1a6b1a284c3c84ef1b294a2981c7c9d522" kindref="member">offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>offset<sp/>of<sp/>member<sp/>in<sp/>complete<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="structex__destroymember_1a2207c585875fdbd7ee87ba238c6e4380" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymember_1a2207c585875fdbd7ee87ba238c6e4380" kindref="member">dtor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="_exception_p_p_c_8h_1a0d07c0429bed9ac5c219837934cea7c5" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__destroymember" kindref="compound">ex_destroymember</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="_exception_p_p_c_8h_1aa9e4c1971b8b13d3be46f6a5aded1f93" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroymember_MakeField(regpointer)<sp/><sp/><sp/><sp/><sp/><sp/>(((regpointer)&lt;&lt;7))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="_exception_p_p_c_8h_1ade1c610775c06b51df6572f03730df92" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroymember_GetRegPointer(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="_exception_p_p_c_8h_1af1ba256c5f9be85cbd12a780c6719121" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DESTROYMEMBERCOND<sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="structex__destroymembercond" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__destroymembercond" kindref="compound">ex_destroymembercond</ref><sp/>{</highlight></codeline>
+<codeline lineno="110" refid="structex__destroymembercond_1a11ebb75cb1703f6454d25cc720ec32f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__destroymembercond_1a11ebb75cb1703f6454d25cc720ec32f1" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DESTROYMEMBERCOND</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>regcond<sp/>|<sp/>regpointer<sp/>|<sp/>unused<sp/><sp/>|<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="structex__destroymembercond_1a6d129714bdb4ff4fd36a53815c5ed6ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__destroymembercond_1a6d129714bdb4ff4fd36a53815c5ed6ff" kindref="member">dmc_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>regcond<sp/><sp/><sp/><sp/><sp/>0<sp/>(1<sp/>-&gt;<sp/>condition<sp/>flag<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>regpointer<sp/><sp/>1<sp/>(1<sp/>-&gt;<sp/>object<sp/>pointer<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/>2:7<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="structex__destroymembercond_1a18b24b55d0fceed8b237ac9ee6b39243" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymembercond_1a18b24b55d0fceed8b237ac9ee6b39243" kindref="member">cond</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>condition<sp/>flag</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="structex__destroymembercond_1ad05b30e09c90df3fef3effcdace77740" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymembercond_1ad05b30e09c90df3fef3effcdace77740" kindref="member">objectptr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>object<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="structex__destroymembercond_1a20a111ad3c93a220e797873c74a2d7ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymembercond_1a20a111ad3c93a220e797873c74a2d7ee" kindref="member">offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>offset<sp/>of<sp/>member<sp/>in<sp/>complete<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="structex__destroymembercond_1ac84107322a0ae33b19eb88196c622e5e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymembercond_1ac84107322a0ae33b19eb88196c622e5e" kindref="member">dtor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="_exception_p_p_c_8h_1a1a83e3813ec294041544440de4b597aa" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__destroymembercond" kindref="compound">ex_destroymembercond</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="_exception_p_p_c_8h_1a8241ac8d0e8e8901d672dc28feeffdc5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroymembercond_MakeField(regcond,regpointer)<sp/><sp/>\</highlight></codeline>
+<codeline lineno="125"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((regcond)&lt;&lt;7)|(((regpointer)&amp;0x0001)&lt;&lt;6))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="_exception_p_p_c_8h_1a9c162fe3f77dca7468efc2003c496727" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroymembercond_GetRegCond(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="_exception_p_p_c_8h_1aaaf63c0ae7aa27b88e2eb69cfd82f2fe" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroymembercond_GetRegPointer(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((field)&gt;&gt;6)&amp;0x0001)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="_exception_p_p_c_8h_1ae4682a2fb3fd130bcecf509a428b6f6d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DESTROYMEMBERARRAY<sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130" refid="structex__destroymemberarray" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__destroymemberarray" kindref="compound">ex_destroymemberarray</ref><sp/>{</highlight></codeline>
+<codeline lineno="131" refid="structex__destroymemberarray_1ae21ea9d84e1dc6f65da6554fdbe6d2cf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__destroymemberarray_1ae21ea9d84e1dc6f65da6554fdbe6d2cf" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DESTROYMEMBERARRAY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>regpointer<sp/>|<sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="structex__destroymemberarray_1acf080b485943144aee71250cd578131c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__destroymemberarray_1acf080b485943144aee71250cd578131c" kindref="member">dma_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>regpointer<sp/><sp/>0<sp/>bit<sp/>(1<sp/>-&gt;<sp/>object<sp/>pointer<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/>1:7<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138" refid="structex__destroymemberarray_1a718d4661544c739cdedae11fe4465b8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymemberarray_1a718d4661544c739cdedae11fe4465b8a" kindref="member">objectptr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>object<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="structex__destroymemberarray_1ab95981559ed9abad2a89053a43e1549f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymemberarray_1ab95981559ed9abad2a89053a43e1549f" kindref="member">offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>offset<sp/>of<sp/>member<sp/>in<sp/>complete<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="structex__destroymemberarray_1a61d07cbc830faa5952682b9737e5ebdf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymemberarray_1a61d07cbc830faa5952682b9737e5ebdf" kindref="member">elements</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>number<sp/>of<sp/>array<sp/>elements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="structex__destroymemberarray_1a9a1b73ddc7eefcad663aa1a848f20fbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymemberarray_1a9a1b73ddc7eefcad663aa1a848f20fbf" kindref="member">element_size</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>size<sp/>of<sp/>one<sp/>array<sp/>element</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="structex__destroymemberarray_1a8740e02a431653def385577a92da86bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__destroymemberarray_1a8740e02a431653def385577a92da86bc" kindref="member">dtor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="_exception_p_p_c_8h_1a2e6521cccbada5f550b2cc0f4066713f" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__destroymemberarray" kindref="compound">ex_destroymemberarray</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="_exception_p_p_c_8h_1a23a6db3cef1d4dc9a52c18da744fefa2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroymemberarray_MakeField(regpointer)<sp/><sp/><sp/><sp/><sp/>(((regpointer)&lt;&lt;7))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="_exception_p_p_c_8h_1a020b4503475cf5bbecb3774de2a876c5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_destroymemberarray_GetRegPointer(field)<sp/><sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="_exception_p_p_c_8h_1ae8a1e90d4e0684256f2f5ba44ed30c11" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DELETEPOINTER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="structex__deletepointer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__deletepointer" kindref="compound">ex_deletepointer</ref><sp/>{</highlight></codeline>
+<codeline lineno="150" refid="structex__deletepointer_1a558a0b6e553687e34af32d7e7063eebd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__deletepointer_1a558a0b6e553687e34af32d7e7063eebd" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DELETEPOINTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>regpointer<sp/>|<sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="structex__deletepointer_1aeeb9cd07bb355666c6fe15d5eb35a7a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__deletepointer_1aeeb9cd07bb355666c6fe15d5eb35a7a5" kindref="member">dp_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>regpointer<sp/><sp/><sp/>0<sp/>bit<sp/>(1<sp/>-&gt;<sp/>object<sp/>pointer<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1:7<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="structex__deletepointer_1a1a636a5b3c81e834384ba94d31b86f9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__deletepointer_1a1a636a5b3c81e834384ba94d31b86f9e" kindref="member">objectptr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>object<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158" refid="structex__deletepointer_1a8cd1b9006079405a2bb7a704a03b7c8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__deletepointer_1a8cd1b9006079405a2bb7a704a03b7c8a" kindref="member">deletefunc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>deletefunc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="_exception_p_p_c_8h_1af01d2d56b03af53974a7952ba9432e61" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__deletepointer" kindref="compound">ex_deletepointer</ref>;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="_exception_p_p_c_8h_1a83453366269383566ac626c8115ede25" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_deletepointer_MakeField(regpointer)<sp/><sp/><sp/><sp/><sp/><sp/>(((regpointer)&lt;&lt;7))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="_exception_p_p_c_8h_1afca700fefd7f387633bfcd5b36a855c6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_deletepointer_GetRegPointer(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="_exception_p_p_c_8h_1aaf6cf1471ceea603f03523e5bac1a530" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_DELETEPOINTERCOND<sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="structex__deletepointercond" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__deletepointercond" kindref="compound">ex_deletepointercond</ref><sp/>{</highlight></codeline>
+<codeline lineno="166" refid="structex__deletepointercond_1a55143232d6ade24dd38786fa8f61eea4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__deletepointercond_1a55143232d6ade24dd38786fa8f61eea4" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_DELETEPOINTERCOND</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>regcond<sp/>|<sp/>regpointer<sp/>|<sp/>unused<sp/><sp/>|<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="structex__deletepointercond_1a4952315a8985e906bbaa81817f6ba57c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__deletepointercond_1a4952315a8985e906bbaa81817f6ba57c" kindref="member">dpc_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>regcond<sp/><sp/><sp/><sp/><sp/>0<sp/>(1<sp/>-&gt;<sp/>condition<sp/>flag<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>regpointer<sp/><sp/>1<sp/>(1<sp/>-&gt;<sp/>object<sp/>pointer<sp/>is<sp/>in<sp/>a<sp/>GPR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>unused<sp/><sp/><sp/><sp/><sp/><sp/>2:7<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="structex__deletepointercond_1ac3eb7d1831c0f6c40132c0a808cf91b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__deletepointercond_1ac3eb7d1831c0f6c40132c0a808cf91b1" kindref="member">cond</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>condition<sp/>flag</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175" refid="structex__deletepointercond_1a9742cab7a29806c10458b59ef240035c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__deletepointercond_1a9742cab7a29806c10458b59ef240035c" kindref="member">objectptr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>or<sp/>GPR#<sp/>of<sp/>object<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176" refid="structex__deletepointercond_1afdcd2fc2302646e9cb51fa54956ed6a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__deletepointercond_1afdcd2fc2302646e9cb51fa54956ed6a8" kindref="member">deletefunc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>TVector<sp/>of<sp/>deletefunc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="_exception_p_p_c_8h_1a39d1f0dc5019c618799e41fa4cfa0e23" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__deletepointercond" kindref="compound">ex_deletepointercond</ref>;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179" refid="_exception_p_p_c_8h_1a951726a46b5cbb902ce52848a0afd469" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_deletepointercond_MakeField(regcond,regpointer)<sp/><sp/>\</highlight></codeline>
+<codeline lineno="180"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((regcond)&lt;&lt;7)|(((regpointer)&amp;0x0001)&lt;&lt;6))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181" refid="_exception_p_p_c_8h_1a8157c7df51accd8754593c6ca188c5a2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_deletepointercond_GetRegCond(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182" refid="_exception_p_p_c_8h_1a9d538acfa94f6459290b08b16057b4ad" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ex_deletepointercond_GetRegPointer(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((field)&gt;&gt;6)&amp;0x0001)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="_exception_p_p_c_8h_1a2c855c95e19cb6f868b1e2b9cb54c880" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_CATCHBLOCK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185" refid="structex__catchblock" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__catchblock" kindref="compound">ex_catchblock</ref><sp/>{</highlight></codeline>
+<codeline lineno="186" refid="structex__catchblock_1ae3eaebc228bea81f467adc1f98983b84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__catchblock_1ae3eaebc228bea81f467adc1f98983b84" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_CATCHBLOCK</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187" refid="structex__catchblock_1aaeaae9e854e3aaef27ffafbd229a7b97" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__catchblock_1aaeaae9e854e3aaef27ffafbd229a7b97" kindref="member">unused</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188" refid="structex__catchblock_1aba4df0b599a2ab8c037b14317f5b0821" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__catchblock_1aba4df0b599a2ab8c037b14317f5b0821" kindref="member">catch_type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>catch<sp/>type<sp/>info;<sp/>0<sp/>=&gt;<sp/>catch(...)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189" refid="structex__catchblock_1a4ba312be150bee3b3d17ee4357b974eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structex__catchblock_1a4ba312be150bee3b3d17ee4357b974eb" kindref="member">catch_pcoffset</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>function-relative<sp/>offset<sp/>to<sp/>catch<sp/>label</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190" refid="structex__catchblock_1aa7f63769057251bea78f5aecf0c432a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__catchblock_1aa7f63769057251bea78f5aecf0c432a5" kindref="member">cinfo_ref</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>to<sp/>local<sp/>CatchInfo<sp/>struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="_exception_p_p_c_8h_1aa58eee0a653901f5b1f3f3cc773f3d6e" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__catchblock" kindref="compound">ex_catchblock</ref>;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193" refid="_exception_p_p_c_8h_1a45272f3f6cf8974da825d239d163b45f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_ACTIVECATCHBLOCK<sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194" refid="structex__activecatchblock" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__activecatchblock" kindref="compound">ex_activecatchblock</ref><sp/>{</highlight></codeline>
+<codeline lineno="195" refid="structex__activecatchblock_1a360d6f9dc91ee139960f3139331f464a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__activecatchblock_1a360d6f9dc91ee139960f3139331f464a" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_ACTIVECATCHBLOCK</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196" refid="structex__activecatchblock_1ae7bcd663b836e1693d9b59a3aa2a8f9c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__activecatchblock_1ae7bcd663b836e1693d9b59a3aa2a8f9c" kindref="member">unused</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197" refid="structex__activecatchblock_1a4fa7e080e7c24680fc61f16014fe0ef4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__activecatchblock_1a4fa7e080e7c24680fc61f16014fe0ef4" kindref="member">cinfo_ref</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>16-bit<sp/>frame-relative<sp/>offset<sp/>to<sp/>local<sp/>CatchInfo<sp/>struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198" refid="_exception_p_p_c_8h_1a34b3074b223078485cbf5b7f1ed43c0f" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__activecatchblock" kindref="compound">ex_activecatchblock</ref>;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200" refid="_exception_p_p_c_8h_1a38a19b08cec9e1e61c78fa4ecdb02d81" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_TERMINATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201" refid="structex__terminate" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__terminate" kindref="compound">ex_terminate</ref><sp/>{</highlight></codeline>
+<codeline lineno="202" refid="structex__terminate_1a427a11357e27cf8b573ac4431385677c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__terminate_1a427a11357e27cf8b573ac4431385677c" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_TERMINATE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="structex__terminate_1a1cf5db4d9def0852a318266cd3b4abe0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__terminate_1a1cf5db4d9def0852a318266cd3b4abe0" kindref="member">unused</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204" refid="_exception_p_p_c_8h_1a2b293e7ac7b01bb8025632b30c66ab21" refkind="member"><highlight class="normal">}<sp/><ref refid="structex__terminate" kindref="compound">ex_terminate</ref>;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206" refid="_exception_p_p_c_8h_1ad7af596e0a7a7182406edc12529e11f5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_SPECIFICATION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207" refid="structex__specification" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structex__specification" kindref="compound">ex_specification</ref><sp/>{</highlight></codeline>
+<codeline lineno="208" refid="structex__specification_1a7d868cd96a6af758e3b35a9dbbf81750" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/><ref refid="structex__specification_1a7d868cd96a6af758e3b35a9dbbf81750" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_SPECIFICATION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209" refid="structex__specification_1a2ea0ac838af92cda372dc66fda8c622d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structex__specification_1a2ea0ac838af92cda372dc66fda8c622d" kindref="member">unused</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210" refid="structex__specification_1a1ab45383f96ad748a47b5ff3198b0434" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structex__specification_1a1ab45383f96ad748a47b5ff3198b0434" kindref="member">specs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>number<sp/>of<sp/>specializations<sp/>(0-n)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211" refid="structex__specification_1a94e3179009962a60cefcb616baef5064" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__specification_1a94e3179009962a60cefcb616baef5064" kindref="member">pcoffset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>32-bit<sp/>function-relative<sp/>offset<sp/>to<sp/>catch<sp/>label</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212" refid="structex__specification_1a09d57e10168562e55a293ccba4947651" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structex__specification_1a09d57e10168562e55a293ccba4947651" kindref="member">cinfo_ref</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>32-bit<sp/>frame-relative<sp/>offset<sp/>to<sp/>local<sp/>CatchInfo<sp/>struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213" refid="structex__specification_1a23b69c59141a222de80e38ba9ad561a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="structex__specification_1a23b69c59141a222de80e38ba9ad561a9" kindref="member">spec</ref>[0];</highlight></codeline>
+<codeline lineno="214" refid="_exception_p_p_c_8h_1a6aa7997321c523ca4616379add462cbf" refkind="member"><highlight class="normal">}<sp/><sp/><sp/><ref refid="structex__specification" kindref="compound">ex_specification</ref>;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>_32BIT_EXCEPTION_TABLES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXACTION_CATCHBLOCK_32<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">ex_catchblock_32<sp/>{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_exception_p_p_c_8h_1ac4bc928a8799a481c1d4869d3ac1fa3e" kindref="member">exaction_type</ref><sp/><sp/><sp/>action;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>EXACTION_CATCHBLOCK_32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="float_8c_1a9fcf57e95273daa928f2ac0b378d63a2" kindref="member">unused</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>catch_type;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>absolute<sp/>pointer<sp/>to<sp/>catch<sp/>type<sp/>info;<sp/>0<sp/>=&gt;<sp/>catch(...)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>catch_pcoffset;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>32-bit<sp/>function-relative<sp/>offset<sp/>to<sp/>catch<sp/>label</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cinfo_ref;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>32-bit<sp/>frame-relative<sp/>offset<sp/>to<sp/>local<sp/>CatchInfo<sp/>struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal">}<sp/>ex_catchblock_32;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Exception<sp/>Table<sp/>Ranges</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229" refid="struct_exception_range_small" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_exception_range_small" kindref="compound">ExceptionRangeSmall</ref><sp/>{</highlight></codeline>
+<codeline lineno="230" refid="struct_exception_range_small_1a89d634c6888b1a0836273bd773cda751" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_range_small_1a89d634c6888b1a0836273bd773cda751" kindref="member">start</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>start<sp/>of<sp/>PC<sp/>range<sp/>where<sp/>actions<sp/>apply</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231" refid="struct_exception_range_small_1ac23ae21111f19da4a8c9e6eaf1edb78f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_range_small_1ac23ae21111f19da4a8c9e6eaf1edb78f" kindref="member">end</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>end<sp/>of<sp/>PC<sp/>range<sp/>where<sp/>actions<sp/>apply</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232" refid="struct_exception_range_small_1a9162724bd9b7a7ce05e093accb29670b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_range_small_1a9162724bd9b7a7ce05e093accb29670b" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>table-relative<sp/>offset<sp/>to<sp/>actions<sp/>for<sp/>an</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233" refid="_exception_p_p_c_8h_1a1c246d95e839c640536f9395a8b3637e" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_exception_range_small" kindref="compound">ExceptionRangeSmall</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>exception<sp/>thrown<sp/>in<sp/>range<sp/>start..end</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Exception<sp/>Tables<sp/>(per-function)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238" refid="struct_exception_table_small" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_exception_table_small" kindref="compound">ExceptionTableSmall</ref><sp/>{</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12<sp/><sp/><sp/>13<sp/><sp/><sp/><sp/>15<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+-----------------------------------------------------------+<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>savedGPRs<sp/>|<sp/>savedFPRs<sp/>|<sp/>savedCR<sp/>|<sp/>hasframeptr<sp/>|<sp/>0<sp/>|<sp/>rsvd<sp/><sp/>|<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+-----------------------------------------------------------+<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243" refid="struct_exception_table_small_1afba0a606083d13df7dc8c70e569ade30" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_table_small_1afba0a606083d13df7dc8c70e569ade30" kindref="member">et_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedGPRs<sp/><sp/><sp/>0:4<sp/>(#<sp/>of<sp/>saved<sp/>GPRs<sp/>(rN-r31))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedFPRs<sp/><sp/><sp/>5:9<sp/>(#<sp/>of<sp/>saved<sp/>FPRs<sp/>(rN-r31))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedCR<sp/><sp/><sp/><sp/><sp/>10<sp/>(1<sp/>-&gt;<sp/>saved<sp/>CR<sp/>in<sp/>frame)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>hasframeptr<sp/>11<sp/>(1<sp/>-&gt;<sp/>frame<sp/>uses<sp/>R31<sp/>as<sp/>frame<sp/>pointer)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>large<sp/>table<sp/>12<sp/>(always<sp/>zero)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>reserved<sp/><sp/><sp/><sp/>13:15<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249" refid="struct_exception_table_small_1a5b560dd8c40c8612517eb28a88614d3e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_exception_range_small" kindref="compound">ExceptionRangeSmall</ref><sp/><ref refid="struct_exception_table_small_1a5b560dd8c40c8612517eb28a88614d3e" kindref="member">ranges</ref>[0];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>table<sp/>of<sp/>PC<sp/>ranges<sp/>and<sp/>their<sp/>actions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>unsigned<sp/>short<sp/><sp/>end<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>(marks<sp/>end<sp/>of<sp/>range<sp/>list)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>actions[];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>arbitrary<sp/>action<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252" refid="_exception_p_p_c_8h_1a2af8c8a197eca0feeea50fa7c99a6c00" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_exception_table_small" kindref="compound">ExceptionTableSmall</ref>;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Exception<sp/>Tables<sp/>(per-function)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256" refid="struct_exception_table_small_vector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_exception_table_small_vector" kindref="compound">ExceptionTableSmallVector</ref><sp/>{</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12<sp/><sp/><sp/>13<sp/><sp/>14<sp/><sp/>15<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+---------------------------------------------------------------+<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>savedGPRs<sp/>|<sp/>savedFPRs<sp/>|<sp/>savedCR<sp/>|<sp/>hasframeptr<sp/>|<sp/>0<sp/>|<sp/>V<sp/>|<sp/>rsvd<sp/><sp/>|<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+---------------------------------------------------------------+<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="261" refid="struct_exception_table_small_vector_1ab7ab07e8b57e26065d9c004f13a6234e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_table_small_vector_1ab7ab07e8b57e26065d9c004f13a6234e" kindref="member">et_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedGPRs<sp/><sp/><sp/>0:4<sp/>(#<sp/>of<sp/>saved<sp/>GPRs<sp/>(rN-r31))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedFPRs<sp/><sp/><sp/>5:9<sp/>(#<sp/>of<sp/>saved<sp/>FPRs<sp/>(rN-r31))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedCR<sp/><sp/><sp/><sp/><sp/>10<sp/>(1<sp/>-&gt;<sp/>saved<sp/>CR<sp/>in<sp/>frame)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>hasframeptr<sp/>11<sp/>(1<sp/>-&gt;<sp/>frame<sp/>uses<sp/>R31<sp/>as<sp/>frame<sp/>pointer)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>large<sp/>table<sp/>12<sp/>(always<sp/>zero)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>hasvector<sp/><sp/><sp/>13<sp/>(vector<sp/>info<sp/>in<sp/>next<sp/>2<sp/>bytes)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>reserved<sp/><sp/><sp/><sp/>14:15<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269" refid="struct_exception_table_small_vector_1af440399a578362b3e1c817ad067e9288" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_table_small_vector_1af440399a578362b3e1c817ad067e9288" kindref="member">et_field2</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedVRs<sp/><sp/><sp/><sp/>0:4<sp/>(#<sp/>of<sp/>saved<sp/>VRs<sp/>(vrN-vr31))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>hasvrsave<sp/><sp/><sp/>5<sp/>(frame<sp/>used<sp/>vrsave)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="271" refid="struct_exception_table_small_vector_1a800a2cf89ea4463f53391b349f2149ac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_exception_range_small" kindref="compound">ExceptionRangeSmall</ref><sp/><ref refid="struct_exception_table_small_vector_1a800a2cf89ea4463f53391b349f2149ac" kindref="member">ranges</ref>[0];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>table<sp/>of<sp/>PC<sp/>ranges<sp/>and<sp/>their<sp/>actions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>unsigned<sp/>short<sp/><sp/>end<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>(marks<sp/>end<sp/>of<sp/>range<sp/>list)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>actions[];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>arbitrary<sp/>action<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274" refid="_exception_p_p_c_8h_1aa87e5bf36c4a98060998c37719c6aa4e" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_exception_table_small_vector" kindref="compound">ExceptionTableSmallVector</ref>;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276" refid="struct_exception_range_large" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_exception_range_large" kindref="compound">ExceptionRangeLarge</ref><sp/>{</highlight></codeline>
+<codeline lineno="277" refid="struct_exception_range_large_1afd247bd75813755674af2bcd4dc3c885" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="struct_exception_range_large_1afd247bd75813755674af2bcd4dc3c885" kindref="member">start</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>start<sp/>of<sp/>PC<sp/>range<sp/>where<sp/>actions<sp/>apply</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278" refid="struct_exception_range_large_1aab5578e932169d94d172da440a325730" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_range_large_1aab5578e932169d94d172da440a325730" kindref="member">size</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>size<sp/>of<sp/>PC<sp/>range<sp/>(div<sp/>4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279" refid="struct_exception_range_large_1a885092acf5c292e4af43e7cd1344fd6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_range_large_1a885092acf5c292e4af43e7cd1344fd6b" kindref="member">action</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>table-relative<sp/>offset<sp/>to<sp/>actions<sp/>for<sp/>an</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280" refid="_exception_p_p_c_8h_1aee166f4877032324ac7656b6077dc24a" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_exception_range_large" kindref="compound">ExceptionRangeLarge</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>exception<sp/>thrown<sp/>in<sp/>range<sp/>start..start+(size*4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Exception<sp/>Tables<sp/>(per-function)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285" refid="struct_exception_table_large" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_exception_table_large" kindref="compound">ExceptionTableLarge</ref><sp/>{</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12<sp/><sp/><sp/>13<sp/><sp/><sp/><sp/>15<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+-----------------------------------------------------------+<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>savedGPRs<sp/>|<sp/>savedFPRs<sp/>|<sp/>savedCR<sp/>|<sp/>hasframeptr<sp/>|<sp/>L<sp/>|<sp/>rsvd<sp/><sp/>|<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+-----------------------------------------------------------+<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290" refid="struct_exception_table_large_1a221c21acb5ef02c26304fc7fb1be0759" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_table_large_1a221c21acb5ef02c26304fc7fb1be0759" kindref="member">et_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedGPRs<sp/><sp/><sp/>0:4<sp/>(#<sp/>of<sp/>saved<sp/>GPRs<sp/>(rN-r31))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedFPRs<sp/><sp/><sp/>5:9<sp/>(#<sp/>of<sp/>saved<sp/>FPRs<sp/>(rN-r31))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedCR<sp/><sp/><sp/><sp/><sp/>10<sp/>(1<sp/>-&gt;<sp/>saved<sp/>CR<sp/>in<sp/>frame)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>hasframeptr<sp/>11<sp/>(1<sp/>-&gt;<sp/>frame<sp/>uses<sp/>R31<sp/>as<sp/>frame<sp/>pointer)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>large<sp/>table<sp/>12<sp/>(always<sp/>1<sp/>for<sp/>backawards<sp/>compatablity)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>hasvector<sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>reserved<sp/><sp/><sp/><sp/>14:15<sp/>(reserved<sp/>for<sp/>future<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="297" refid="struct_exception_table_large_1a2ef6f8e9330ec81879afacaddbd3351a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_exception_table_large_1a2ef6f8e9330ec81879afacaddbd3351a" kindref="member">et_field2</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>savedVRs<sp/><sp/><sp/><sp/>0:4<sp/>(#<sp/>of<sp/>saved<sp/>VRs<sp/>(vrN-vr31))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>hasvrsave<sp/><sp/><sp/>5<sp/>(frame<sp/>used<sp/>vrsave)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="299" refid="struct_exception_table_large_1a2522717222785eb189c43c479b5b91f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_exception_range_large" kindref="compound">ExceptionRangeLarge</ref><sp/><ref refid="struct_exception_table_large_1a2522717222785eb189c43c479b5b91f3" kindref="member">ranges</ref>[0];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>table<sp/>of<sp/>PC<sp/>ranges<sp/>and<sp/>their<sp/>actions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>start<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>(marks<sp/>end<sp/>of<sp/>range<sp/>list)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>unsigned<sp/>short<sp/><sp/>size<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>(marks<sp/>end<sp/>of<sp/>range<sp/>list)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>actions[];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>arbitrary<sp/>action<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="303" refid="_exception_p_p_c_8h_1affa95ad39780712f6a4695d26d9406a1" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_exception_table_large" kindref="compound">ExceptionTableLarge</ref>;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305" refid="_exception_p_p_c_8h_1a7613a6db6a487bb22c5e5a871c070836" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_MakeField(savedGPRs,savedFPRs,<sp/>savedCR,<sp/>hasframeptr,<sp/>isLarge)<sp/>\</highlight></codeline>
+<codeline lineno="306"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((savedGPRs)&lt;&lt;11)|((savedFPRs&amp;0x001f)&lt;&lt;6)|((savedCR&amp;0x0001)&lt;&lt;5)|((hasframeptr&amp;0x0001)&lt;&lt;4)|((isLarge&amp;1)&lt;&lt;3))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__ALTIVEC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_AddHasVector(field,<sp/>hasVector)<sp/>\</highlight></codeline>
+<codeline lineno="310"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((field)|((hasVector&amp;1)&lt;&lt;2))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_MakeVectorField(savedVRs,hasVRSAVE)<sp/>\</highlight></codeline>
+<codeline lineno="312"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((savedVRs)&lt;&lt;11)|((hasVRSAVE&amp;0x0001)&lt;&lt;10))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316" refid="_exception_p_p_c_8h_1ad6dd91488bc8b4e8a1ffa442a4efcbda" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_GetSavedGPRs(field)<sp/><sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;11)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317" refid="_exception_p_p_c_8h_1a3fde34ecf93b4950987950d8058f9cc8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_GetSavedFPRs(field)<sp/><sp/><sp/><sp/><sp/><sp/>(((field)&gt;&gt;6)&amp;0x001f)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318" refid="_exception_p_p_c_8h_1a92cca512b0b80c1b8b52149ae75b2934" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_GetSavedCR(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((field)&gt;&gt;5)&amp;0x0001)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319" refid="_exception_p_p_c_8h_1a90de8e592ad9ba944a60c48dbb0d6377" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_GetHasFramePtr(field)<sp/><sp/><sp/><sp/>(((field)&gt;&gt;4)&amp;0x0001)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320" refid="_exception_p_p_c_8h_1a2586c5e66a5162b3558fe52f846f059c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_IsLargeTable(field)<sp/><sp/><sp/><sp/><sp/><sp/>(((field)&gt;&gt;3)&amp;0x0001)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321" refid="_exception_p_p_c_8h_1ad4d3797e2ca5611f042061ded189dacb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_ClearLargeBit(field)<sp/><sp/><sp/><sp/><sp/>((field)<sp/>&amp;<sp/>~(1&lt;&lt;3))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322" refid="_exception_p_p_c_8h_1ab48ad4d1a44cecb774245c7bd4302796" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_SetLargeBit(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>((field)<sp/>|<sp/><sp/>(1&lt;&lt;3))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__ALTIVEC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_GetSavedVRs(field)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>((field)&gt;&gt;11)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_GetSavedVRSAVE(field)<sp/><sp/><sp/><sp/>(((field)&gt;&gt;6)&amp;0x0001)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_HasVectorInfo(field)<sp/><sp/><sp/><sp/><sp/>(((field)&gt;&gt;2)&amp;0x0001)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_ClearVectorBit(field)<sp/><sp/><sp/><sp/>((field)<sp/>&amp;<sp/>~(1&lt;&lt;2))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ET_SetVectorBit(field)<sp/><sp/><sp/><sp/><sp/><sp/>((field)<sp/>|<sp/><sp/>(1&lt;&lt;2))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Exception<sp/>Table<sp/>Indices<sp/>(per-function)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335" refid="struct_exception_table_index" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_exception_table_index" kindref="compound">ExceptionTableIndex</ref><sp/>{</highlight></codeline>
+<codeline lineno="336" refid="struct_exception_table_index_1ae56d7f7070bfe6ec644deba472935c46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="struct_exception_table_index_1ae56d7f7070bfe6ec644deba472935c46" kindref="member">functionoffset</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>code-relative<sp/>address<sp/>of<sp/>function</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>31<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>|<sp/>directstore<sp/>|<sp/>functionsize<sp/><sp/><sp/><sp/><sp/>|<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>+--------------------------------+<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="341" refid="struct_exception_table_index_1a2a104a14d780f744219f1963c2334b26" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="struct_exception_table_index_1a2a104a14d780f744219f1963c2334b26" kindref="member">eti_field</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>directstore<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/>(1<sp/>-&gt;<sp/>4<sp/>byte<sp/>exception<sp/>table<sp/>is<sp/>in<sp/>&apos;exceptionoffset&apos;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>functionsize<sp/><sp/><sp/><sp/>1:31<sp/>(length<sp/>of<sp/>function)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="343" refid="struct_exception_table_index_1a696778e681fc3f4d6b3472f279702416" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="struct_exception_table_index_1a696778e681fc3f4d6b3472f279702416" kindref="member">exceptionoffset</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>data-relative<sp/>address<sp/>of<sp/>exception<sp/>table</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344" refid="_exception_p_p_c_8h_1aec2756a5036f1e7e6a1c2479d3732c27" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_exception_table_index" kindref="compound">ExceptionTableIndex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>(or<sp/>table<sp/>itself<sp/>if<sp/>&apos;directstore&apos;<sp/>==<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"></highlight></codeline>
+<codeline lineno="346" refid="_exception_p_p_c_8h_1a6d3eed9a24e450d220ea4c8a916b30e3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ETI_MakeField(direct,fsize)<sp/>((((long)(direct))&lt;&lt;31)|((fsize)&amp;0x7fffffff))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347" refid="_exception_p_p_c_8h_1a49713b588fd0919425010ea07bd1efea" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ETI_GetDirectStore(field)<sp/><sp/><sp/>((field)&gt;&gt;31)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="348" refid="_exception_p_p_c_8h_1ad95387cf73a9fe7471052bdcc20d842b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ETI_GetFunctionSize(field)<sp/><sp/>((field)&amp;0x7fffffff)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h"/>
+  </compounddef>
+</doxygen>

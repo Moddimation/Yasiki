@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File MWRTTI.cp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-mwrtticp">File MWRTTI.cp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_1789e36d750963f536ec280b459db2bf/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../_m_w_r_t_t_i_8cp/"><strong>MWRTTI.cp</strong></a></p>
+<p><a href="../_m_w_r_t_t_i_8cp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/************************************************************************/
+/*  Project...: Standard C++ Library                                    */
+/*  Name......: MWRTTI.cp                                               */
+/*  Purpose...: RTTI                                                    */
+/*  Copyright.: Copyright 1993-1997 Metrowerks, Inc.                    */
+/************************************************************************/
+
+#if __MWERKS__
+#pragma exceptions on
+#endif
+
+#if __PPC_EABI__
+#include &lt;MWCPlusLib.h&gt;
+#elif __dest_os == __mac_os
+#include &lt;CPlusLib.h&gt;
+#endif
+#define __NOSTRING__    //  do not include &lt;string&gt;
+#include &lt;typeinfo&gt;
+#include &lt;string.h&gt;
+
+/************************************************************************/
+/*  Purpose..:  Compare two strings                                     */
+/*  Input....:  pointer to first string                                 */
+/*  Input....:  pointer to second string                                */
+/*  Return...:  0: equal; &gt;0: s1 &gt; s2; &lt;0: s1 &lt; s2                      */
+/************************************************************************/
+static int strequal(register const char *s1,register const char *s2)
+{
+    for (; *s1 == *s2; ++s1, ++s2)
+        if (*s1 == '\0')
+            return (0);
+    return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
+
+#ifdef _MSL_USING_NAMESPACE      // hh 980106
+    namespace std {
+#endif
+
+// hh 980124 type_info implementation moved to &lt;typeinfo&gt;
+
+/************************************************************************/
+/* Purpose..: type_info destructor function                             */
+/* Input....: ---                                                       */
+/* Return...: ---                                                       */
+/************************************************************************/
+//type_info::~type_info() { }
+
+/************************************************************************/
+/* Purpose..: type_info == comparision function                         */
+/* Input....: type_info reference                                       */
+/* Return...: true: same types                                          */
+/************************************************************************/
+/*
+bool type_info::operator==(const type_info&amp; ti) const
+{
+    return (strequal(tname,ti.tname) == 0);
+}
+*/
+/************************************************************************/
+/* Purpose..: type_info != comparision function                         */
+/* Input....: type_info reference                                       */
+/* Return...: true: same types                                          */
+/************************************************************************/
+/*
+bool type_info::operator!=(const type_info&amp; ti) const
+{
+    return (strequal(tname,ti.tname) != 0);
+}
+*/
+/************************************************************************/
+/* Purpose..: type_info collation order function                        */
+/* Input....: type_info reference                                       */
+/* Return...: true: *this precedes type_info                            */
+/************************************************************************/
+/*
+bool type_info::before(const type_info&amp; ti) const
+{
+    return (strequal(tname,ti.tname) &lt; 0);
+}
+*/
+/************************************************************************/
+/* Purpose..: return type name                                          */
+/* Input....: ---                                                       */
+/* Return...: pointer to type name                                      */
+/************************************************************************/
+/*
+const char* type_info::name() const
+{
+    return tname;
+}
+*/
+/************************************************************************/
+/* Purpose..: type_info copy constructor                                */
+/* Input....: type_info reference                                       */
+/* Return...: ---                                                       */
+/************************************************************************/
+/*
+type_info::type_info(const type_info&amp; ti)
+{
+    tname=ti.tname;
+}
+*/
+/************************************************************************/
+/* Purpose..: type_info assigment operator                              */
+/* Input....: type_info reference                                       */
+/* Return...: type_info reference                                       */
+/************************************************************************/
+/*
+type_info&amp; type_info::operator=(const type_info&amp; ti)
+{
+    tname=ti.tname;
+    return *this;
+}
+*/
+#ifdef _MSL_USING_NAMESPACE      // hh 980106
+    }
+#endif
+
+/************************************************************************/
+/* Purpose..: RTTI runtime function prototypes                          */
+/* Input....: ---                                                       */
+/* Return...: ---                                                       */
+/************************************************************************/
+
+typedef struct type_info_struct type_info_struct;   //  forward
+
+typedef struct type_info_base_list {    //  type info base list
+    type_info_struct    *baseti;        //  pointer to bases type_info struct (0: end of list)
+    long                offset;         //  offset of base in main class (0x80000000 : ambiguous/no access list follows
+}   type_info_base_list;
+
+typedef struct type_info_ambighead {    //  type ambiguous/no access base list header
+    void                *baseti;        //  pointer to bases type_info struct (0: end of list)
+    long                offset;         //  offset of base in main class (|=0x80000000)
+    long                bases;          //  number of type_info_base_list elements (public bases)
+}   type_info_ambighead;
+
+struct type_info_struct {               //  type info data structure
+    char                *tname;         //  pointer to type name
+    type_info_base_list *baselist;      //  pointer to base list
+};
+
+typedef struct RTTIVTableHeader {       //  RTTI header in a vtable
+    type_info_struct    *type_info_ptr; //  pointer to complete class type_info struct
+    long                complete_offset;//  offset of complete class
+}   RTTIVTableHeader;
+
+extern &quot;C&quot; {
+    void    *__get_typeid(void *,long);
+    void    *__dynamic_cast(void *,long,type_info_struct *,type_info_struct *,short);
+}
+
+static type_info_struct unknown_type = { &quot;???&quot; };
+
+/************************************************************************/
+/* Purpose..: Get polymorphic typeid                                    */
+/* Input....: pointer to object (or 0)                                  */
+/* Input....: offset of vtable pointer in object                        */
+/* Return...: pointer to typeid object                                  */
+/************************************************************************/
+void *__get_typeid(void *obj,long offset)
+{
+//
+//  Note:   the first entry of an object's vtable is a pointer to the typeid object
+//
+    if(obj==0) throw _STD::bad_typeid();
+#if CABI_ZEROOFFSETVTABLE
+
+    if((obj=*(void **)(*(char **)((char *)obj+offset)-sizeof(RTTIVTableHeader)))==0)
+    {   //  class was compiled withou the RTTI option
+        return &amp;unknown_type;
+    }
+
+#else
+
+    if((obj=**(void ***)((char *)obj+offset))==0)
+    {   //  class was compiled withou the RTTI option
+        return &amp;unknown_type;
+    }
+
+#endif
+    return obj;
+}
+
+/************************************************************************/
+/* Purpose..: dynamnic_cast runtime function                            */
+/* Input....: pointer to object (or 0)                                  */
+/* Input....: offset of vtable pointer in object                        */
+/* Input....: pointer to type_info of to type (or 0 for void* cast)     */
+/* Input....: pointer to sub type_info of static type                   */
+/* Input....: true: reference cast                                      */
+/* Return...: pointer to casted expression                              */
+/************************************************************************/
+extern void __priv_throwbadcast(void);   // hh 980205 prototype for runtime use
+
+void *__dynamic_cast(void *obj,long offset,type_info_struct *typeinfo,type_info_struct *subtypeinfo,short isref)
+{
+    RTTIVTableHeader    *vthead;
+    type_info_base_list *list;
+    long                loffset;
+    void                *completeclass;
+    int                 i,n;
+
+    if(obj==0) return 0;
+
+#if CABI_ZEROOFFSETVTABLE
+    vthead=*(RTTIVTableHeader **)((char *)obj+offset)-1;
+#else
+    vthead=*(RTTIVTableHeader **)((char *)obj+offset);
+#endif
+
+    if(vthead-&gt;type_info_ptr)
+    {   //  class was compiled with the RTTI option
+        completeclass=(char *)obj+vthead-&gt;complete_offset;
+        if(typeinfo==0 || (strequal(vthead-&gt;type_info_ptr-&gt;tname,typeinfo-&gt;tname) == 0))
+        {   //  success: cast to void* or to complete class
+            return completeclass;
+        }
+
+        if((list=vthead-&gt;type_info_ptr-&gt;baselist)!=0) for(; list-&gt;baseti; list++)
+        {   //  check base classes
+            if(list-&gt;offset&amp;0x80000000)
+            {   //  ambiguous/access match
+                loffset=(list-&gt;offset&amp;0x7fffffff);  
+                n=((type_info_ambighead *)list)-&gt;bases;
+                if(vthead-&gt;complete_offset+loffset==0 &amp;&amp; (strequal(list-&gt;baseti-&gt;tname,typeinfo-&gt;tname) == 0))
+                {   //  check bases
+                    list=(type_info_base_list *)((type_info_ambighead *)list+1);
+                    for(i=0; i&lt;n; i++,list++)
+                    {
+                        if(vthead-&gt;complete_offset+list-&gt;offset==0 &amp;&amp; (strequal(list-&gt;baseti-&gt;tname,subtypeinfo-&gt;tname) == 0))
+                        {
+                            return (char *)completeclass+list-&gt;offset;
+                        }
+                    }
+                    break;  //  cast cannot be successful
+                }
+                else
+                {   //  skip ambiguous/no access class
+                    list=(type_info_base_list *)((type_info_ambighead *)list+1);
+                    list+=(n-1);
+                }       
+            }
+            else
+            {
+                if(strequal(list-&gt;baseti-&gt;tname,typeinfo-&gt;tname) == 0)
+                {   //  success: cast to public unambiguous base class
+                    return (char *)completeclass+list-&gt;offset;
+                }
+            }
+        }
+    }
+    if(isref) throw _STD::bad_cast();
+//  if(isref) __priv_throwbadcast();
+    return 0;
+}
+
+// hh 980124 type_info implementation moved to &lt;typeinfo&gt;
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

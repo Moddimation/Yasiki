@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="exception" kind="file" language="C++">
+    <compoundname>exception</compoundname>
+    <includedby refid="exception_8h" local="no">exception.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>exception</label>
+        <link refid="exception"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>exception.h</label>
+        <link refid="exception_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:58:49<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.8.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Project...:<sp/>Standard<sp/>C++<sp/>Library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Name......:<sp/>exception<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose...:<sp/>exception<sp/>handling<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_EXCEPTION</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_EXCEPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED<sp/>//<sp/>hh<sp/>971230</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971206<sp/>moved<sp/>this<sp/>up<sp/>in<sp/>the<sp/>file</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971226</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Removed<sp/>string<sp/>and<sp/>bool<sp/>from<sp/>this<sp/>class.<sp/><sp/>This<sp/>data<sp/>is<sp/>moved<sp/>into</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>derived<sp/>classes<sp/>if<sp/>and<sp/>when<sp/>needed.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>exception<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971226<sp/>moved<sp/>from<sp/>mexcept.h</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exception<sp/>()<sp/>_MSL_THROW<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exception<sp/>(const<sp/>exception&amp;)<sp/>_MSL_THROW<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exception&amp;<sp/>operator=<sp/>(const<sp/>exception&amp;)<sp/>_MSL_THROW<sp/>{return<sp/>*this;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>virtual<sp/>~exception<sp/>()<sp/>_MSL_THROW<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>virtual<sp/>const<sp/>char*<sp/>what<sp/>()<sp/>const<sp/>_MSL_THROW<sp/>{return<sp/>&quot;exception&quot;;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>bad_exception<sp/>:<sp/>public<sp/>exception<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bad_exception()<sp/>_MSL_THROW<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bad_exception(const<sp/>bad_exception&amp;)<sp/>_MSL_THROW<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bad_exception&amp;<sp/>operator=(const<sp/>bad_exception&amp;)<sp/>_MSL_THROW<sp/>{<sp/>return<sp/>*this;<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>virtual<sp/>~bad_exception()<sp/>_MSL_THROW<sp/>{};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>virtual<sp/>const<sp/>char*<sp/>what()<sp/>const<sp/>_MSL_THROW<sp/>{<sp/>return<sp/>&quot;bad_exception&quot;;<sp/>};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>void<sp/>(*unexpected_handler)();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unexpected_handler<sp/>set_unexpected(unexpected_handler<sp/>f)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>unexpected();</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>bool<sp/>uncaught_exception();<sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971226<sp/>not<sp/>implemented<sp/>yet.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>void<sp/>(*terminate_handler)();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>terminate_handler<sp/>set_terminate(terminate_handler<sp/>f)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>terminate();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline><highlight class="normal">960828<sp/>bkoz<sp/>try<sp/>a<sp/>forward<sp/>declaration<sp/>to<sp/>cut<sp/>the<sp/>exception-&gt;string<sp/>dependencies</highlight></codeline>
+<codeline><highlight class="normal">960828<sp/>bkoz<sp/>add<sp/>exception::exception(const<sp/>char*)<sp/>ctor<sp/>for<sp/>string<sp/>literals</highlight></codeline>
+<codeline><highlight class="normal">961210<sp/>bkoz<sp/>added<sp/>wrapper<sp/>for<sp/>alignment</highlight></codeline>
+<codeline><highlight class="normal">961217<sp/>KO<sp/><sp/><sp/>Changed<sp/>char_traits<sp/>from<sp/>a<sp/>struct<sp/>to<sp/>a<sp/>class.<sp/>Needed<sp/>for<sp/>the<sp/>new<sp/>x86</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>compiler.</highlight></codeline>
+<codeline><highlight class="normal">970211<sp/>bkoz<sp/>line<sp/>73<sp/>added<sp/>bad_exception::what<sp/>from<sp/>stdexcept.cp</highlight></codeline>
+<codeline><highlight class="normal">970408<sp/>bkoz<sp/>line<sp/>22,<sp/>include<sp/>bstring,<sp/>inlined<sp/>exception<sp/>class</highlight></codeline>
+<codeline><highlight class="normal">hh<sp/>971206<sp/><sp/><sp/>Moved<sp/>#ifdef<sp/>MSIPL_USING_NAMESPACE<sp/>around</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971226<sp/>moved<sp/>exception<sp/>from<sp/>mexcept.h</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971226<sp/>cleaned<sp/>up<sp/>&amp;<sp/>checked<sp/>against<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971226<sp/>Removed<sp/>string<sp/>and<sp/>bool<sp/>from<sp/>this<sp/>class.<sp/><sp/>This<sp/>data<sp/>is<sp/>moved<sp/>into</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>derived<sp/>classes<sp/>if<sp/>and<sp/>when<sp/>needed.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>970102<sp/>__priv_throwbadcast<sp/>no<sp/>longer<sp/>needed</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990120<sp/>changed<sp/>name<sp/>of<sp/>MSIPL<sp/>flags</highlight></codeline>
+<codeline><highlight class="normal">*/</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/exception"/>
+  </compounddef>
+</doxygen>

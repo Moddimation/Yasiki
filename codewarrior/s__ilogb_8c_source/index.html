@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File s_ilogb.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-s_ilogbc">File s_ilogb.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="../s__ilogb_8c/"><strong>s_ilogb.c</strong></a></p>
+<p><a href="../s__ilogb_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+#ifndef _No_Floating_Point  
+/* @(#)s_ilogb.c 1.2 95/01/04 */
+/* $Id: s_ilogb.c,v 1.2.4.1 1999/12/06 19:47:31 fassiott Exp $ */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
+ */
+
+/* ilogb(double x)
+ * return the binary exponent of non-zero x
+ * ilogb(0) = 0x80000001
+ * ilogb(inf/NaN) = 0x7fffffff (no signal is raised)
+ */
+
+#include &quot;fdlibm.h&quot;
+
+#ifdef __STDC__
+    int ilogb(double x)
+#else
+    int ilogb(x)
+    double x;
+#endif
+{
+    int hx,lx,ix;
+
+    hx  = (__HI(x))&amp;0x7fffffff; /* high word of x */
+    if(hx&lt;0x00100000) {
+        lx = __LO(x);
+        if((hx|lx)==0) 
+        return 0x80000001;  /* ilogb(0) = 0x80000001 */
+        else            /* subnormal x */
+        if(hx==0) {
+            for (ix = -1043; lx&gt;0; lx&lt;&lt;=1) ix -=1;
+        } else {
+            for (ix = -1022,hx&lt;&lt;=11; hx&gt;0; hx&lt;&lt;=1) ix -=1;
+        }
+        return ix;
+    }
+    else if (hx&lt;0x7ff00000) return (hx&gt;&gt;20)-1023;
+    else return 0x7fffffff;
+}
+#endif /* _No_Floating_Point  */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

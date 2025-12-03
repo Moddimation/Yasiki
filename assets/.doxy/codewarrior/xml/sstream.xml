@@ -1,0 +1,535 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="sstream" kind="file" language="C++">
+    <compoundname>sstream</compoundname>
+    <includedby refid="sstream_8h" local="no">sstream.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>sstream</label>
+        <link refid="sstream"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sstream.h</label>
+        <link refid="sstream_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>Version<sp/>4.0<sp/><sp/>1998<sp/>August<sp/>10<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:59:45<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>sstream</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_SSTREAM</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_SSTREAM</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;istream&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;streambuf&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;vector&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_stringbuf</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.stringbuf.cons<sp/>Constructors:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_stringbuf(ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_stringbuf(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.stringbuf.members<sp/>Get<sp/>and<sp/>set:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;<sp/>str()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>str(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>s);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.stringbuf.virtuals<sp/>Overridden<sp/>virtual<sp/>functions:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/>underflow();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/>pbackfail(int_type<sp/>c<sp/>=<sp/>traits::eof());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/>overflow<sp/>(int_type<sp/>c<sp/>=<sp/>traits::eof());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>virtual<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>setbuf(charT*,<sp/>streamsize);<sp/>use<sp/>base<sp/>class</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>pos_type<sp/>seekoff(off_type<sp/>off,<sp/>ios_base::seekdir<sp/>way,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>pos_type<sp/>seekpos(pos_type<sp/>sp,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>vector&lt;charT,<sp/>Allocator&gt;<sp/>buf_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>mode_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>buf_type<sp/>str_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_istringstream</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>basic_istream&lt;charT,<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.istringstream.cons<sp/>Constructors:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_istringstream(ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_istringstream(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.istringstream.members<sp/>Members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*<sp/>rdbuf()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;<sp/>str()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>str(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>s);</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;<sp/>sb_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ostringstream</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>basic_ostream&lt;charT,traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ostringstream.cons<sp/>Constructors/destructor:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_ostringstream(ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_ostringstream(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::out);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.ostringstream.members<sp/>Members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*<sp/>rdbuf()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;<sp/>str()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>str(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>s);</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;<sp/>sb_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_stringstream</highlight></codeline>
+<codeline><highlight class="normal">:<sp/>public<sp/>basic_iostream&lt;charT,<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>constructors/destructors</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_stringstream(ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::out|ios_base::in);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>basic_stringstream(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::out|ios_base::in);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>Members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*<sp/>rdbuf()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;<sp/>str()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>str(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_stringbuf&lt;charT,<sp/>traits&gt;<sp/>sb_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_stringbuf<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::basic_stringbuf(ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mode_(which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::basic_stringbuf(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str,<sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>str_(str.begin(),<sp/>str.end(),<sp/>str.get_allocator()),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>mode_(which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>buf_type::size_type<sp/>sz<sp/>=<sp/>str_.size();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(sz<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>charT*<sp/>p<sp/>=<sp/>&amp;str_[0];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::out)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setp(p,<sp/>p<sp/>+<sp/>sz);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>(ios_base::app<sp/>|<sp/>ios_base::ate))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pbump((int)sz);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::in)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(p,<sp/>p,<sp/>p<sp/>+<sp/>sz);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::str()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::out)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;(pbase(),<sp/>epptr(),<sp/>str_.get_allocator());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;(eback(),<sp/>egptr(),<sp/>str_.get_allocator());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::str(const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>s)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>buf_type::size_type<sp/>sz<sp/>=<sp/>s.size();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>str_.assign(s.begin(),<sp/>s.end());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>charT*<sp/>p<sp/>=<sp/>str_.capacity()<sp/>!=<sp/>0<sp/>?<sp/>&amp;str_[0]<sp/>:<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::out)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setp(p,<sp/>p<sp/>+<sp/>sz);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>(ios_base::app<sp/>|<sp/>ios_base::ate))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pbump((int)sz);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::in)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(p,<sp/>p,<sp/>p<sp/>+<sp/>sz);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::underflow()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gptr()<sp/>&lt;<sp/>egptr()<sp/>?<sp/>traits::to_int_type(*gptr())<sp/>:<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::pbackfail(int_type<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(eback()<sp/>&gt;=<sp/>gptr())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(traits::eq_int_type(c,<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gbump(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::not_eof(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>charT<sp/>ch<sp/>=<sp/>traits::to_char_type(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!(mode_<sp/>&amp;<sp/>ios_base::out)<sp/>&amp;&amp;<sp/>!traits::eq(ch,<sp/>gptr()[-1]))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>gbump(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*gptr()<sp/>=<sp/>ch;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::overflow(int_type<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(traits::eq_int_type(c,<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::not_eof(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!(mode_<sp/>&amp;<sp/>ios_base::out))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(pptr()<sp/>&lt;<sp/>epptr())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*pptr()<sp/>=<sp/>traits::to_char_type(c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pbump(1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(str_.size()<sp/>&lt;<sp/>str_.capacity())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>str_.resize(str_.size()<sp/>+<sp/>1,<sp/>traits::to_char_type(c));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::in)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(eback(),<sp/>gptr(),<sp/>egptr()+1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setp(pbase(),<sp/>epptr()+1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pbump(epptr()<sp/>-<sp/>pbase());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>try</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>long<sp/>inpos<sp/>=<sp/>gptr()<sp/>-<sp/>eback();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>long<sp/>outpos<sp/>=<sp/>pptr()<sp/>-<sp/>pbase();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>str_.resize(str_.size()<sp/>+<sp/>1,<sp/>traits::to_char_type(c));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buf_type::size_type<sp/>sz<sp/>=<sp/>str_.size();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>charT*<sp/>p<sp/>=<sp/>&amp;str_[0];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::in)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(p,<sp/>p<sp/>+<sp/>inpos,<sp/>p<sp/>+<sp/>sz);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setp(p,<sp/>p<sp/>+<sp/>sz);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pbump(outpos<sp/>+<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>c;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>catch<sp/>(...)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::pos_type</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::seekoff(off_type<sp/>off,<sp/>ios_base::seekdir<sp/>way,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>inout<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>((which<sp/>&amp;<sp/>inout)<sp/>==<sp/>inout<sp/>&amp;&amp;<sp/>way<sp/>==<sp/>ios_base::cur<sp/>||<sp/>(which<sp/>&amp;<sp/>inout)<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(which<sp/>&amp;<sp/>ios_base::in<sp/><sp/>&amp;&amp;<sp/>!(mode_<sp/>&amp;<sp/>ios_base::in)<sp/>||</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>which<sp/>&amp;<sp/>ios_base::out<sp/>&amp;&amp;<sp/>!(mode_<sp/>&amp;<sp/>ios_base::out))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>off_type<sp/>newoff;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>switch<sp/>(way)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>ios_base::beg:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newoff<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>ios_base::cur:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(which<sp/>&amp;<sp/>ios_base::out)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newoff<sp/>=<sp/>pptr()<sp/>-<sp/>pbase();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newoff<sp/>=<sp/>gptr()<sp/>-<sp/>eback();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>ios_base::end:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::out)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newoff<sp/>=<sp/>epptr()<sp/>-<sp/>pbase();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newoff<sp/>=<sp/>egptr()<sp/>-<sp/>eback();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>default:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>newoff<sp/>+=<sp/>off;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(newoff<sp/>&lt;<sp/>0<sp/>||<sp/>newoff<sp/>&gt;<sp/>str_.size())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::app<sp/>&amp;&amp;<sp/>which<sp/>&amp;<sp/>ios_base::out<sp/>&amp;&amp;<sp/>newoff<sp/>!=<sp/>str_.size())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(which<sp/>&amp;<sp/>ios_base::in)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(eback(),<sp/>eback()<sp/>+<sp/>newoff,<sp/>egptr());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(which<sp/>&amp;<sp/>ios_base::out)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setp(pbase(),<sp/>epptr());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pbump(newoff);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>pos_type(newoff);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::pos_type</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;::seekpos(pos_type<sp/>sp,<sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(which<sp/>&amp;<sp/>(ios_base::in<sp/>|<sp/>ios_base::out)<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(which<sp/>&amp;<sp/>ios_base::in<sp/><sp/>&amp;&amp;<sp/>!(mode_<sp/>&amp;<sp/>ios_base::in)<sp/>||</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>which<sp/>&amp;<sp/>ios_base::out<sp/>&amp;&amp;<sp/>!(mode_<sp/>&amp;<sp/>ios_base::out))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>off_type<sp/>off<sp/>=<sp/>sp;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(off<sp/>&lt;<sp/>0<sp/>||<sp/>off<sp/>&gt;<sp/>str_.size())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(mode_<sp/>&amp;<sp/>ios_base::app<sp/>&amp;&amp;<sp/>which<sp/>&amp;<sp/>ios_base::out<sp/>&amp;&amp;<sp/>off<sp/>!=<sp/>str_.size())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(which<sp/>&amp;<sp/>ios_base::in)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(eback(),<sp/>eback()<sp/>+<sp/>off,<sp/>egptr());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(which<sp/>&amp;<sp/>ios_base::out)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setp(pbase(),<sp/>epptr());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pbump(off);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>sp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_istringstream<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_istringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::basic_istringstream(ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_istream(&amp;sb_),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sb_(ios_base::openmode(which<sp/>|<sp/>ios_base::in))</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_istringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::basic_istringstream(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str,<sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_istream(&amp;sb_),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sb_(str,<sp/>ios_base::openmode(which<sp/>|<sp/>ios_base::in))</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_istringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::rdbuf()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_cast&lt;basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*&gt;(&amp;sb_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_istringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::str()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>rdbuf()-&gt;str();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_istringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::str(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>s)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rdbuf()-&gt;str(s);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_ostringstream<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_ostringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::basic_ostringstream(ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_ostream(&amp;sb_),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sb_(ios_base::openmode(which<sp/>|<sp/>ios_base::out))</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_ostringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::basic_ostringstream(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str,<sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_ostream(&amp;sb_),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sb_(str,<sp/>ios_base::openmode(which<sp/>|<sp/>ios_base::out))</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_ostringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::rdbuf()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_cast&lt;basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*&gt;(&amp;sb_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_ostringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::str()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>rdbuf()-&gt;str();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_ostringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::str(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>s)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rdbuf()-&gt;str(s);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_stringstream<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_stringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::basic_stringstream(ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_iostream(&amp;sb_),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sb_(which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_stringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::basic_stringstream(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>str,<sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>basic_iostream(&amp;sb_),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sb_(str,<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_stringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::rdbuf()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_cast&lt;basic_stringbuf&lt;charT,<sp/>traits,<sp/>Allocator&gt;*&gt;(&amp;sb_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">basic_stringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::str()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>rdbuf()-&gt;str();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_stringstream&lt;charT,<sp/>traits,<sp/>Allocator&gt;::str(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>basic_string&lt;charT,<sp/>traits,<sp/>Allocator&gt;&amp;<sp/>s)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rdbuf()-&gt;str(s);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std<sp/></highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/>//<sp/>_SSTREAM</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971223<sp/>Changed<sp/>filename<sp/>from<sp/>sstream.h<sp/>to<sp/>sstream</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971223<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971223<sp/>added<sp/>alignment<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980129<sp/>changed<sp/>&lt;istream&gt;<sp/>from<sp/>&lt;iostream&gt;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980810<sp/>plugged<sp/>memory<sp/>leak<sp/>by<sp/>commenting<sp/>out<sp/>init<sp/>in<sp/>constructors.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>init<sp/>is<sp/>called<sp/>by<sp/>the<sp/>base<sp/>classes.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980904<sp/>fixed<sp/>string_type</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981220<sp/>Added<sp/>typename<sp/>to<sp/>appropriate<sp/>return<sp/>types</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990119<sp/>Rewrote.</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/sstream"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,516 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_o_s_arena_8c" kind="file" language="C++">
+    <compoundname>OSArena.c</compoundname>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>OSArena.c</label>
+        <link refid="_o_s_arena_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_o_s_arena_8c_1a7e76e74ec6703d0410b634d73ebc5f33" prot="public" static="no">
+        <name>ROUND</name>
+        <param><defname>n</defname></param>
+        <param><defname>a</defname></param>
+        <initializer>(((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">n</ref>) + (a) - 1) &amp; ~((a) - 1))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="3" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_o_s_arena_8c_1a83e259a5fda83049d03471292d5e4177" prot="public" static="no">
+        <name>TRUNC</name>
+        <param><defname>n</defname></param>
+        <param><defname>a</defname></param>
+        <initializer>(((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">n</ref>)) &amp; ~((a) - 1))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="4" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="4" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" prot="public" static="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void* __OSArenaHi</definition>
+        <argsstring></argsstring>
+        <name>__OSArenaHi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="6" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="6" bodyend="-1"/>
+        <referencedby refid="os_8h_1ad24eb9d172aadff451ca195aae1795b9" compoundref="_o_s_arena_8c" startline="10" endline="20">OSGetArenaHi</referencedby>
+        <referencedby refid="os_8h_1aac2254944295af465a60f635f9c1ad0a" compoundref="_o_s_arena_8c" startline="23" endline="32">OSGetArenaLo</referencedby>
+        <referencedby refid="os_8h_1ab73bd23107e283f3a61ca0db32021dd5" compoundref="_o_s_arena_8c" startline="35" endline="38">OSSetArenaHi</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" prot="public" static="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void* __OSArenaLo</definition>
+        <argsstring></argsstring>
+        <name>__OSArenaLo</name>
+        <initializer>= (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>*)-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="7" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="7" bodyend="-1"/>
+        <referencedby refid="os_8h_1ad24eb9d172aadff451ca195aae1795b9" compoundref="_o_s_arena_8c" startline="10" endline="20">OSGetArenaHi</referencedby>
+        <referencedby refid="os_8h_1aac2254944295af465a60f635f9c1ad0a" compoundref="_o_s_arena_8c" startline="23" endline="32">OSGetArenaLo</referencedby>
+        <referencedby refid="os_8h_1a269710de04e149df9649d571b9fd383b" compoundref="_o_s_arena_8c" startline="41" endline="44">OSSetArenaLo</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_o_s_arena_8c_1aa92f2f4fc8b11c89ffb33513df4e5e32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void * OSGetArenaHi</definition>
+        <argsstring>()</argsstring>
+        <name>OSGetArenaHi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="10" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="10" bodyend="20"/>
+        <references refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" compoundref="_o_s_arena_8c" startline="6">__OSArenaHi</references>
+        <references refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" compoundref="_o_s_arena_8c" startline="7">__OSArenaLo</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="_d_e_m_o_init_8c_1a81c25353f42eb9029e46ea91ad7d392d" compoundref="_d_e_m_o_init_8c" startline="83" endline="109">__DEMOInitMem</referencedby>
+        <referencedby refid="dvd__private_8h_1a139f733b5d112a3181b78ccb98989739" compoundref="fstload_8c" startline="60" endline="127">__fstLoad</referencedby>
+        <referencedby refid="_d_e_m_o_init_8c_1ad8dbd7507300eb4f07ec813903925625" compoundref="_d_e_m_o_init_8c" startline="392" endline="467">LoadMemInfo</referencedby>
+        <referencedby refid="os_8h_1a656e7b5b2cce5c26568d85a42905421e" compoundref="_o_s_arena_8c" startline="62" endline="74">OSAllocFromArenaHi</referencedby>
+        <referencedby refid="os_8h_1afefd47bb79544cf1414a3c6954d71258" compoundref="_o_s_8c" startline="117" endline="214">OSInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_arena_8c_1afb284e3e399c21122190c352897c9b71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void * OSGetArenaLo</definition>
+        <argsstring>()</argsstring>
+        <name>OSGetArenaLo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="23" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="23" bodyend="32"/>
+        <references refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" compoundref="_o_s_arena_8c" startline="6">__OSArenaHi</references>
+        <references refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" compoundref="_o_s_arena_8c" startline="7">__OSArenaLo</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="_d_e_m_o_init_8c_1a81c25353f42eb9029e46ea91ad7d392d" compoundref="_d_e_m_o_init_8c" startline="83" endline="109">__DEMOInitMem</referencedby>
+        <referencedby refid="_d_e_m_o_init_8c_1ad8dbd7507300eb4f07ec813903925625" compoundref="_d_e_m_o_init_8c" startline="392" endline="467">LoadMemInfo</referencedby>
+        <referencedby refid="os_8h_1ad1594189a6b853b1b27fe0fe4bed3dec" compoundref="_o_s_arena_8c" startline="47" endline="59">OSAllocFromArenaLo</referencedby>
+        <referencedby refid="os_8h_1afefd47bb79544cf1414a3c6954d71258" compoundref="_o_s_8c" startline="117" endline="214">OSInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_arena_8c_1ad139952d374b1eac28766a85c19c90a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSSetArenaHi</definition>
+        <argsstring>(void *newHi)</argsstring>
+        <name>OSSetArenaHi</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>newHi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="35" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="35" bodyend="38"/>
+        <references refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" compoundref="_o_s_arena_8c" startline="6">__OSArenaHi</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="dvd__private_8h_1a139f733b5d112a3181b78ccb98989739" compoundref="fstload_8c" startline="60" endline="127">__fstLoad</referencedby>
+        <referencedby refid="_d_e_m_o_init_8c_1ad8dbd7507300eb4f07ec813903925625" compoundref="_d_e_m_o_init_8c" startline="392" endline="467">LoadMemInfo</referencedby>
+        <referencedby refid="os_8h_1a656e7b5b2cce5c26568d85a42905421e" compoundref="_o_s_arena_8c" startline="62" endline="74">OSAllocFromArenaHi</referencedby>
+        <referencedby refid="os_8h_1afefd47bb79544cf1414a3c6954d71258" compoundref="_o_s_8c" startline="117" endline="214">OSInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_arena_8c_1ad944bf02c75beb482a0f06a62cadbc2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSSetArenaLo</definition>
+        <argsstring>(void *newLo)</argsstring>
+        <name>OSSetArenaLo</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>newLo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="41" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="41" bodyend="44"/>
+        <references refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" compoundref="_o_s_arena_8c" startline="7">__OSArenaLo</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="_d_e_m_o_init_8c_1a81c25353f42eb9029e46ea91ad7d392d" compoundref="_d_e_m_o_init_8c" startline="83" endline="109">__DEMOInitMem</referencedby>
+        <referencedby refid="_d_e_m_o_init_8c_1ad8dbd7507300eb4f07ec813903925625" compoundref="_d_e_m_o_init_8c" startline="392" endline="467">LoadMemInfo</referencedby>
+        <referencedby refid="os_8h_1ad1594189a6b853b1b27fe0fe4bed3dec" compoundref="_o_s_arena_8c" startline="47" endline="59">OSAllocFromArenaLo</referencedby>
+        <referencedby refid="os_8h_1afefd47bb79544cf1414a3c6954d71258" compoundref="_o_s_8c" startline="117" endline="214">OSInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_arena_8c_1ad1594189a6b853b1b27fe0fe4bed3dec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void * OSAllocFromArenaLo</definition>
+        <argsstring>(u32 size, u32 align)</argsstring>
+        <name>OSAllocFromArenaLo</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>align</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="47" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="47" bodyend="59"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_arena_8c_1afb284e3e399c21122190c352897c9b71" compoundref="_o_s_arena_8c" startline="23" endline="32">OSGetArenaLo</references>
+        <references refid="_o_s_arena_8c_1ad944bf02c75beb482a0f06a62cadbc2f" compoundref="_o_s_arena_8c" startline="41" endline="44">OSSetArenaLo</references>
+        <references refid="_o_s_arena_8c_1a7e76e74ec6703d0410b634d73ebc5f33" compoundref="_o_s_arena_8c" startline="3">ROUND</references>
+        <references refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" compoundref="____ppc__eabi__init_8cpp" startline="39">size</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_arena_8c_1a656e7b5b2cce5c26568d85a42905421e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void * OSAllocFromArenaHi</definition>
+        <argsstring>(u32 size, u32 align)</argsstring>
+        <name>OSAllocFromArenaHi</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>align</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c" line="62" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSArena.c" bodystart="62" bodyend="74"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_arena_8c_1aa92f2f4fc8b11c89ffb33513df4e5e32" compoundref="_o_s_arena_8c" startline="10" endline="20">OSGetArenaHi</references>
+        <references refid="_o_s_arena_8c_1ad139952d374b1eac28766a85c19c90a6" compoundref="_o_s_arena_8c" startline="35" endline="38">OSSetArenaHi</references>
+        <references refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" compoundref="____ppc__eabi__init_8cpp" startline="39">size</references>
+        <references refid="_o_s_arena_8c_1a83e259a5fda83049d03471292d5e4177" compoundref="_o_s_arena_8c" startline="4">TRUNC</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="_o_s_arena_8c_1a7e76e74ec6703d0410b634d73ebc5f33" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ROUND(n,<sp/>a)<sp/>(((u32)(n)<sp/>+<sp/>(a)<sp/>-<sp/>1)<sp/>&amp;<sp/>~((a)<sp/>-<sp/>1))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="_o_s_arena_8c_1a83e259a5fda83049d03471292d5e4177" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUNC(n,<sp/>a)<sp/>(((u32)(n))<sp/>&amp;<sp/>~((a)<sp/>-<sp/>1))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" kindref="member">__OSArenaHi</ref>;</highlight></codeline>
+<codeline lineno="7" refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" kindref="member">__OSArenaLo</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)-1;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight></codeline>
+<codeline lineno="10" refid="os_8h_1ad24eb9d172aadff451ca195aae1795b9" refkind="member"><highlight class="normal"><ref refid="_o_s_arena_8c_1aa92f2f4fc8b11c89ffb33513df4e5e32" kindref="member">OSGetArenaHi</ref><sp/>()</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x37,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" kindref="member">__OSArenaLo</ref><sp/>!=<sp/>-1,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSGetArenaHi():<sp/>OSInit()<sp/>must<sp/>be<sp/>called<sp/>in<sp/>advance.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x39,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" kindref="member">__OSArenaLo</ref><sp/>&lt;=<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" kindref="member">__OSArenaHi</ref>,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSGetArenaHi():<sp/>invalid<sp/>arena<sp/>(hi<sp/>&lt;<sp/>lo).&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" kindref="member">__OSArenaHi</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight></codeline>
+<codeline lineno="23" refid="os_8h_1aac2254944295af465a60f635f9c1ad0a" refkind="member"><highlight class="normal"><ref refid="_o_s_arena_8c_1afb284e3e399c21122190c352897c9b71" kindref="member">OSGetArenaLo</ref><sp/>()</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x49,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" kindref="member">__OSArenaLo</ref><sp/>!=<sp/>-1,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSGetArenaLo():<sp/>OSInit()<sp/>must<sp/>be<sp/>called<sp/>in<sp/>advance.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x4B,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" kindref="member">__OSArenaLo</ref><sp/>&lt;=<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" kindref="member">__OSArenaHi</ref>,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSGetArenaLo():<sp/>invalid<sp/>arena<sp/>(hi<sp/>&lt;<sp/>lo).&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" kindref="member">__OSArenaLo</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="os_8h_1ab73bd23107e283f3a61ca0db32021dd5" refkind="member"><highlight class="normal"><ref refid="_o_s_arena_8c_1ad139952d374b1eac28766a85c19c90a6" kindref="member">OSSetArenaHi</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">newHi</ref>)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_arena_8c_1adb08d63409678071a3443c8e44b88f85" kindref="member">__OSArenaHi</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">newHi</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="os_8h_1a269710de04e149df9649d571b9fd383b" refkind="member"><highlight class="normal"><ref refid="_o_s_arena_8c_1ad944bf02c75beb482a0f06a62cadbc2f" kindref="member">OSSetArenaLo</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">newLo</ref>)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_arena_8c_1a7b4b014a4ee1c96ad631953ff4753053" kindref="member">__OSArenaLo</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">newLo</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight></codeline>
+<codeline lineno="47" refid="os_8h_1ad1594189a6b853b1b27fe0fe4bed3dec" refkind="member"><highlight class="normal"><ref refid="_o_s_arena_8c_1ad1594189a6b853b1b27fe0fe4bed3dec" kindref="member">OSAllocFromArenaLo</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">align</ref>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ptr</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/><sp/><sp/>arenaLo;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ptr</ref><sp/>=<sp/><ref refid="_o_s_arena_8c_1afb284e3e399c21122190c352897c9b71" kindref="member">OSGetArenaLo</ref>();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>arenaLo<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ptr</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_o_s_arena_8c_1a7e76e74ec6703d0410b634d73ebc5f33" kindref="member">ROUND</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ptr</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">align</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>arenaLo<sp/>+=<sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>arenaLo<sp/>=<sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*)<ref refid="_o_s_arena_8c_1a7e76e74ec6703d0410b634d73ebc5f33" kindref="member">ROUND</ref><sp/>(arenaLo,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">align</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_arena_8c_1ad944bf02c75beb482a0f06a62cadbc2f" kindref="member">OSSetArenaLo</ref><sp/>(arenaLo);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ptr</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight></codeline>
+<codeline lineno="62" refid="os_8h_1a656e7b5b2cce5c26568d85a42905421e" refkind="member"><highlight class="normal"><ref refid="_o_s_arena_8c_1a656e7b5b2cce5c26568d85a42905421e" kindref="member">OSAllocFromArenaHi</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">align</ref>)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ptr</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/><sp/><sp/>arenaHi;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>arenaHi<sp/>=<sp/><ref refid="_o_s_arena_8c_1aa92f2f4fc8b11c89ffb33513df4e5e32" kindref="member">OSGetArenaHi</ref>();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>arenaHi<sp/>=<sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*)<ref refid="_o_s_arena_8c_1a83e259a5fda83049d03471292d5e4177" kindref="member">TRUNC</ref><sp/>(arenaHi,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">align</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>arenaHi<sp/>-=<sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>arenaHi<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ptr</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_o_s_arena_8c_1a83e259a5fda83049d03471292d5e4177" kindref="member">TRUNC</ref><sp/>(arenaHi,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">align</ref>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_arena_8c_1ad139952d374b1eac28766a85c19c90a6" kindref="member">OSSetArenaHi</ref><sp/>(arenaHi);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ptr</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/os/OSArena.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_init8xx_8asm" kind="file" language="C++">
+    <compoundname>Init8xx.asm</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>MBX860<sp/>Initialization<sp/>Routine<sp/></highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Function:<sp/>adsinit</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>MBX<sp/>board<sp/>will<sp/>be<sp/>initialized<sp/>as<sp/>below</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Input<sp/>Registers:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>None</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Output<sp/>Registers:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>R8<sp/>contains<sp/>the<sp/>content<sp/>of<sp/>DC_CST<sp/>before<sp/>entering</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usr_init()</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>R3,<sp/>R4,<sp/>R5<sp/>and<sp/>R6<sp/>will<sp/>be<sp/>destroyed</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>R2<sp/>must<sp/>be<sp/>preserved</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Core<sp/>registers:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>MSR<sp/>and<sp/>SRR1<sp/>=<sp/>0x00001002</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>ICTRL<sp/>=<sp/>6</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>DER<sp/>=<sp/>0x0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-&gt;<sp/>Allow<sp/>all<sp/>exceptions<sp/>to<sp/>go<sp/>to<sp/>target</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>ICR<sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>IMMR<sp/>=<sp/>0xFF000000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>SIU<sp/>registers:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>SIUMCR<sp/>|=<sp/>0x00032640<sp/><sp/>-&gt;<sp/>FRC=1|DLK=1|DPC=1|MLRC=1|GB5E=1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>SYPCR<sp/>=<sp/>0xffffff88<sp/><sp/><sp/><sp/>-&gt;<sp/>SWTC=ffff|BMT=08|BME=1|SWF=0|SWE=0|SWRI=0|SWP=0</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>TBSCR<sp/>=<sp/>0x00c2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-&gt;<sp/>REFA=1|REFB=1|TBF=1|TBE=0</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>RTCSC<sp/>=<sp/>0x01c2</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>PISCR<sp/>=<sp/>0x0082</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>UPM<sp/>and<sp/>Memory<sp/>Controllers<sp/>are<sp/>set<sp/>only<sp/>after<sp/>a<sp/>hard<sp/>reset.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Memory<sp/>Controller:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>OR0<sp/>=<sp/>0xffe00954<sp/><sp/>-&gt;<sp/>AM=FFE0|ARM=0|CSNT=0|ACS=0|BI=0|SCY=5|SETA=0|</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TRLX=1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>OR1<sp/>=<sp/>0xffff8110</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>OR2<sp/>=<sp/>0xfe000800<sp/><sp/>-&gt;<sp/>allows<sp/>32MB<sp/>DRAM<sp/>space</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>BR0<sp/>=<sp/>0xffe00001<sp/><sp/>-&gt;<sp/>map<sp/>the<sp/>Flash<sp/>at<sp/>0xffe00000-0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>BR1<sp/>=<sp/>0xF0000001</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>BR2<sp/>=<sp/>0x00000081</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>MPTPR<sp/>=<sp/>0x0800</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>MAMR<sp/>=<sp/>0xc0a21114</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>The<sp/>initial<sp/>ADS<sp/>memory<sp/>map<sp/>is<sp/>as<sp/>following:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>Chip<sp/>Select<sp/>2<sp/>-<sp/>DRAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>0x00000000<sp/>-<sp/>0x003fffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>Chip<sp/>Select<sp/>0<sp/>-<sp/>Flash<sp/>Memory<sp/>-<sp/>0xffe00000<sp/>-<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>Chip<sp/>Select<sp/>1<sp/>-<sp/>Board<sp/>Control<sp/>and<sp/>Status<sp/>register</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>0xf0000000<sp/>-<sp/>0xf0003fff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>Internal<sp/>I/O<sp/>space<sp/>(programmed<sp/>in<sp/>IMMR<sp/>register)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>0xff000000</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>History:</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>7/17/95<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Initial<sp/>write-up</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>9/15/95<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Set<sp/>up<sp/>PLL<sp/>multiplier<sp/>to<sp/>get<sp/>25MHZ<sp/>CPU</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clock<sp/>from<sp/>32.768KHZ</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Enable<sp/>RS232<sp/>buffer<sp/>on<sp/>ADS<sp/>board<sp/>to<sp/>allow</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Tx<sp/>and<sp/>Rx<sp/>signals<sp/>to<sp/>appear<sp/>on<sp/>RS232<sp/>port.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>10/4/95<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Changed<sp/>default<sp/>to<sp/>16MHZ<sp/>due<sp/>to<sp/>the<sp/>UPM</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value<sp/>calculation<sp/>was<sp/>based<sp/>on<sp/>16MHZ<sp/>clock.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>10/5/95<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Changed<sp/>default<sp/>clock<sp/>to<sp/>20MHZ.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Mapped<sp/>the<sp/>Flash<sp/>at<sp/>0xfff00000</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>10/7/95<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Adding<sp/>both<sp/>I<sp/>and<sp/>D<sp/>cache<sp/>support</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>10/10/95<sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Updated<sp/>MAMR<sp/>and<sp/>UPM<sp/>parameters<sp/>to<sp/>match<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>values<sp/>in<sp/>mpc8bug<sp/>0.1<sp/>for<sp/>70ns<sp/>DRAM</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>10/11/95<sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Reordered<sp/>code<sp/>to<sp/>initialize<sp/>UPM<sp/>before<sp/>base</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>register.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>10/16/95<sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Changed<sp/>map<sp/>register<sp/>to<sp/>match<sp/>with<sp/>mpc8bug<sp/>so<sp/>we</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>can<sp/>run<sp/>the<sp/>code<sp/>in<sp/>Flash<sp/>under<sp/>MPC8bug.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>10/19/95<sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Set<sp/>system<sp/>clock<sp/>to<sp/>40MHZ,<sp/>tested<sp/>OK,<sp/>set<sp/>to<sp/>48MHZ</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tested<sp/>fine,<sp/>drop<sp/>down<sp/>to<sp/>24MHZ<sp/>since<sp/>we<sp/>want<sp/>it</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>to<sp/>work<sp/>with<sp/>2<sp/>shipped<sp/>parts,<sp/>25MHZ<sp/>and<sp/>40MHZ.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>10/25/95<sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Expanded<sp/>the<sp/>range<sp/>of<sp/>DRAM<sp/>to<sp/>32MB<sp/>to<sp/>allow<sp/>bigger</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SIMM<sp/>in<sp/>the<sp/>future.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Corrected<sp/>the<sp/>refresh<sp/>problem<sp/>when<sp/>loading<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a<sp/>wrong<sp/>value<sp/>into<sp/>MPTPR<sp/>register.<sp/>Refresh<sp/>is<sp/>now</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>64us<sp/>per<sp/>burst<sp/>refresh<sp/>(4<sp/>beats)<sp/>or<sp/>16us<sp/>per<sp/>row.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>11/8/95<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Corrected<sp/>problem<sp/>with<sp/>Tx<sp/>and<sp/>Rx<sp/>buffer<sp/>descritors</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>that<sp/>were<sp/>overlaped<sp/>since<sp/>the<sp/>last<sp/>change.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>1/4/96<sp/><sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Removed<sp/>unneccessary<sp/>register<sp/>initialization<sp/>for</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SMC1<sp/>per<sp/>Satoshi<sp/>IIda&apos;s<sp/>suggestion.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>1/15/96<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Reordered<sp/>the<sp/>initialization<sp/>sequence<sp/>to<sp/>fix<sp/>a<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hang<sp/>problem<sp/>that<sp/>occured<sp/>on<sp/>numbers<sp/>of<sp/>Rev<sp/>1<sp/>chips<sp/>and</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Rev<sp/>.2<sp/>chips<sp/>as<sp/>well.<sp/>The<sp/>UPM<sp/>initialization<sp/>must<sp/>be</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>done<sp/>before<sp/>Bank<sp/>Registers<sp/>initialization.<sp/>The<sp/>fix<sp/>is</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in<sp/>monitor<sp/>version<sp/>0.5.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>1/22/95<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Supporting<sp/>32.768KHZ<sp/>crystal<sp/>by<sp/>configuring<sp/>PLL<sp/>divider</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>automatically<sp/>to<sp/>obtain<sp/>24MHZ<sp/>system<sp/>clock<sp/>based<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>RTSEL<sp/>bit<sp/>in<sp/>SCCR<sp/>register.<sp/>If<sp/>RTSEL<sp/>clear,<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>crystal<sp/>is<sp/>used.<sp/>Otherwise,<sp/>it&apos;s<sp/>External<sp/>Oscillator.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>4/18/96<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Changed<sp/>SMC1<sp/>baudrate<sp/>to<sp/>115.2KBaud<sp/>to<sp/>work<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>high<sp/>data<sp/>rate<sp/>supported<sp/>in<sp/>SingleStep<sp/>7.0</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>4/28/96<sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Added<sp/>soft-reset<sp/>to<sp/>support<sp/>real<sp/>target<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/>8/21/97<sp/><sp/><sp/>Ferry<sp/><sp/><sp/><sp/>Added<sp/>support<sp/>MBX860-003<sp/>initialization.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Register<sp/>Offset<sp/>Definitions</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>All<sp/>these<sp/>registers<sp/>are<sp/>offset<sp/>from<sp/>the<sp/>pointer<sp/>pointed<sp/>to</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>by<sp/>the<sp/>IMMR<sp/>in<sp/>MPC821.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#TARGET_SYSTEM_FREQUENCY<sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>50<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Target<sp/>System<sp/>Frequency</highlight></codeline>
+<codeline><highlight class="normal">#__MOT_MBX_A__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>1</highlight></codeline>
+<codeline><highlight class="normal">#__MOT_MBX__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline><highlight class="normal">#__MOT_ADS__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline><highlight class="normal">SDCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0030<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SDMA<sp/>Configuration<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">CPCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x09c0<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>CPM<sp/>Command<sp/>Reg.</highlight></codeline>
+<codeline><highlight class="normal">CICR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0940<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>CP<sp/>Interrupt<sp/>Configuration<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">CIPR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0944<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>CP<sp/>Interrupt<sp/>Pending<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">CIMR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0948<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>CP<sp/>Interrupt<sp/>Mask<sp/>Register</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">BRGC1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x09f0<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>BRG1<sp/>Configuration<sp/>Reg.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">PBPAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0abc<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Port<sp/>B<sp/>Pin<sp/>Assignment<sp/>Reg.</highlight></codeline>
+<codeline><highlight class="normal">PBDIR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0ab8<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Port<sp/>B<sp/>Data<sp/>Direction<sp/>Reg.</highlight></codeline>
+<codeline><highlight class="normal">PBODR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0ac2<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Port<sp/>B<sp/>Open<sp/>Drain<sp/>Reg.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">PCPAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0962<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Port<sp/>C<sp/>Pin<sp/>Assignment<sp/>Reg.</highlight></codeline>
+<codeline><highlight class="normal">PCDIR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0960<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Port<sp/>C<sp/>Data<sp/>Direction<sp/>Reg.</highlight></codeline>
+<codeline><highlight class="normal">PCSO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0964<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Port<sp/>C<sp/>Special<sp/>Option</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">SIMODE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0ae0<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SI<sp/>Mode<sp/>Reg.</highlight></codeline>
+<codeline><highlight class="normal">SMC1RBAS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x00<sp/>#<sp/>Rx<sp/>BD<sp/>Base<sp/>Address</highlight></codeline>
+<codeline><highlight class="normal">SMC1TBAS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x02<sp/>#<sp/>Tx<sp/>BD<sp/>Base<sp/>Address</highlight></codeline>
+<codeline><highlight class="normal">SMC1RFCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x04<sp/>#<sp/>Rx<sp/>Function<sp/>Code</highlight></codeline>
+<codeline><highlight class="normal">SMC1TFCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x05<sp/>#<sp/>Tx<sp/>Function<sp/>Code</highlight></codeline>
+<codeline><highlight class="normal">SMC1MRBL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x06<sp/>#<sp/>Max.<sp/>Receive<sp/>Buffer<sp/>Length</highlight></codeline>
+<codeline><highlight class="normal">SMC1RBPTR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x10<sp/>#<sp/>Rx<sp/>Buffer<sp/>Descriptor<sp/>Pointer</highlight></codeline>
+<codeline><highlight class="normal">SMC1TBPTR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x20<sp/>#<sp/>Tx<sp/>Buffer<sp/>Descriptor<sp/>Pointer</highlight></codeline>
+<codeline><highlight class="normal">SMC1MAXI<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x28<sp/>#<sp/>Max.<sp/>Idle<sp/>Character</highlight></codeline>
+<codeline><highlight class="normal">SMC1BRKL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x2c<sp/>#<sp/>Last<sp/>Received<sp/>Break<sp/>Length</highlight></codeline>
+<codeline><highlight class="normal">SMC1BRKE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x2e<sp/>#<sp/>Receive<sp/>Break<sp/>Condition<sp/>Counter</highlight></codeline>
+<codeline><highlight class="normal">SMC1BRKC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x3e80+0x30<sp/>#<sp/>Break<sp/>Count<sp/>Register<sp/></highlight></codeline>
+<codeline><highlight class="normal">SMCMR1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0a82<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SMC1<sp/>Mode<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">SMCE1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0a86<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SMC1<sp/>Event<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">SMCM1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0a8a<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SMC1<sp/>Mask<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">SICR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x0aec<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SI<sp/>Clock<sp/>Route</highlight></codeline>
+<codeline><highlight class="normal">Rxbd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x2800<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Rx<sp/>Buffer<sp/>Descriptor<sp/>Offset</highlight></codeline>
+<codeline><highlight class="normal">Txbd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x2808<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Tx<sp/>Buffer<sp/>Descriptor<sp/>Offset</highlight></codeline>
+<codeline><highlight class="normal">Rxbuf<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x2810<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>offset<sp/>810<sp/>from<sp/>Dual<sp/>Port<sp/>Ram</highlight></codeline>
+<codeline><highlight class="normal">Txbuf<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x2820<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>offset<sp/>820<sp/>from<sp/>Dual<sp/>Port<sp/>Ram</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>On-Chip<sp/>Core<sp/>Registers</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>LR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/>8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Link<sp/>register<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>CTR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/>9<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Counter<sp/>register<sp/></highlight></codeline>
+<codeline><highlight class="normal">ICR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>148<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Interrupt<sp/>Cause<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">ICTRL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>158<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Instruction<sp/>Control<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">DER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>149<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Debug<sp/>Enable<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">TB_WRITE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>284<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Write<sp/>Lower<sp/>Timebase</highlight></codeline>
+<codeline><highlight class="normal">TBU_WRITE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>285<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Write<sp/>Upper<sp/>Timebase</highlight></codeline>
+<codeline><highlight class="normal">DPDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>630<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Development<sp/>Port<sp/>Data<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">IMMR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>638<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Internal<sp/>I/O<sp/>base<sp/>register</highlight></codeline>
+<codeline><highlight class="normal">IC_CST<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>560<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>ICache<sp/>Control<sp/>Status<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">IC_ADR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>561<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>ICache<sp/>Address<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">IC_DAT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>562<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>ICache<sp/>Data<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">DC_CST<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>568<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>DCache<sp/>Control<sp/>Status<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">DC_ADR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>569<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>DCache<sp/>Address<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">DC_DAT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>570<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>DCache<sp/>Data<sp/>Register</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>On-Chip<sp/>Registers</highlight></codeline>
+<codeline><highlight class="normal">SIUMCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x000<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SIU<sp/>Module<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">SYPCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x004<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SIU<sp/>System<sp/>Protection<sp/>Control</highlight></codeline>
+<codeline><highlight class="normal">SIEL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x018<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SIU<sp/>Interrupt<sp/>Edge<sp/>Level<sp/>Mask<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">TESR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x020<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Transfer<sp/>Error<sp/>Status<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">BR0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x100<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Base<sp/>Register<sp/><sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline><highlight class="normal">OR0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x104<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Option<sp/>Register<sp/><sp/><sp/>0</highlight></codeline>
+<codeline><highlight class="normal">BR1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x108<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Base<sp/>Register<sp/><sp/><sp/><sp/><sp/>1</highlight></codeline>
+<codeline><highlight class="normal">OR1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x10C<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Option<sp/>Register<sp/><sp/><sp/>1</highlight></codeline>
+<codeline><highlight class="normal">BR2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x110<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Base<sp/>Register<sp/><sp/><sp/><sp/><sp/>2</highlight></codeline>
+<codeline><highlight class="normal">OR2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x114<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Option<sp/>Register<sp/><sp/><sp/>2</highlight></codeline>
+<codeline><highlight class="normal">BR3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x118<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Base<sp/>Register<sp/><sp/><sp/><sp/><sp/>3</highlight></codeline>
+<codeline><highlight class="normal">OR3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x11C<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Option<sp/>Register<sp/><sp/><sp/>3</highlight></codeline>
+<codeline><highlight class="normal">BR4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x120<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Base<sp/>Register<sp/><sp/><sp/><sp/><sp/>4</highlight></codeline>
+<codeline><highlight class="normal">OR4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x124<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Option<sp/>Register<sp/><sp/><sp/>4</highlight></codeline>
+<codeline><highlight class="normal">BR5<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x128<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Base<sp/>Register<sp/><sp/><sp/><sp/><sp/>5</highlight></codeline>
+<codeline><highlight class="normal">OR5<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x12C<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Option<sp/>Register<sp/><sp/><sp/>5</highlight></codeline>
+<codeline><highlight class="normal">BR6<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x130<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Base<sp/>Register<sp/><sp/><sp/><sp/><sp/>6</highlight></codeline>
+<codeline><highlight class="normal">OR6<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x134<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Option<sp/>Register<sp/><sp/><sp/>6</highlight></codeline>
+<codeline><highlight class="normal">BR7<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x138<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Base<sp/>Register<sp/><sp/><sp/><sp/><sp/>7</highlight></codeline>
+<codeline><highlight class="normal">OR7<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x13C<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Option<sp/>Register<sp/><sp/><sp/>7</highlight></codeline>
+<codeline><highlight class="normal">MAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x164</highlight></codeline>
+<codeline><highlight class="normal">MCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x168<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Memory<sp/>Command</highlight></codeline>
+<codeline><highlight class="normal">MAMR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x170<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Machine<sp/>A<sp/>Mode<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">MBMR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x174<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Machine<sp/>B<sp/>Mode<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">MPTPR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x17A<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Memory<sp/>Periodic<sp/>Timer<sp/>Prescaler</highlight></codeline>
+<codeline><highlight class="normal">MDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x17C<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Memory<sp/>Data</highlight></codeline>
+<codeline><highlight class="normal">TBSCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x200<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Time<sp/>Base<sp/>Status<sp/>and<sp/>Control<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">RTCSC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x220<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Real<sp/>Timer<sp/>Clock<sp/>Status<sp/>and<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/>Control</highlight></codeline>
+<codeline><highlight class="normal">PISCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x240<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>PIT<sp/>Status<sp/>and<sp/>Control</highlight></codeline>
+<codeline><highlight class="normal">SCCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x280<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>System<sp/>Clock<sp/>Control<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">PLPRCR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x284<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>PLL,<sp/>Low<sp/>power<sp/>&amp;<sp/>Reset<sp/>Control<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">RTCSCK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x320<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Real-Time<sp/>Clock<sp/>Status<sp/>and<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/>Control<sp/>Register<sp/>Key</highlight></codeline>
+<codeline><highlight class="normal">RTCK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x324<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Real-Time<sp/>Clock<sp/>Register<sp/>Key</highlight></codeline>
+<codeline><highlight class="normal">RTCECK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x328<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Real-Time<sp/>Alarm<sp/>Seconds<sp/>Key</highlight></codeline>
+<codeline><highlight class="normal">RTCALK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/>0x32C<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Real-Time<sp/>Alarm<sp/>Register<sp/>Key</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Instruction<sp/>and<sp/>Data<sp/>Cache<sp/>definition</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Note:<sp/>must<sp/>use<sp/>with<sp/>lis<sp/>instruction<sp/>to<sp/>load<sp/>into<sp/>bit<sp/>0-15</highlight></codeline>
+<codeline><highlight class="normal">CacheUnlockAllCmd<sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/>0x0A00<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Cache<sp/>Unlock_All<sp/>command</highlight></codeline>
+<codeline><highlight class="normal">CacheDisableCmd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/>0x0400<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Cache<sp/>Disable<sp/>command</highlight></codeline>
+<codeline><highlight class="normal">CacheInvAllCmd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/>0x0C00<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Cache<sp/>Invalidate_All<sp/>command</highlight></codeline>
+<codeline><highlight class="normal">CacheEnableCmd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/>0x0200<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>DCache_Enable<sp/>Command</highlight></codeline>
+<codeline><highlight class="normal">CacheEnableBit<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/>0x8000<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Cache<sp/>Enable<sp/>bit<sp/>in<sp/>I/DC_CST</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/></highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.section<sp/><sp/><sp/>.init,4,1,6</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.align<sp/><sp/><sp/><sp/><sp/>2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>align<sp/>on<sp/>word<sp/>boundary</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.globl<sp/><sp/><sp/><sp/><sp/>ADSInit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.globl<sp/><sp/><sp/><sp/><sp/>usr_init<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>for<sp/>SDS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.globl<sp/><sp/><sp/><sp/><sp/>UPMInit</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ADSInit:</highlight></codeline>
+<codeline><highlight class="normal">usr_init:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>li<sp/><sp/>r0,0x0000<sp/><sp/><sp/><sp/>#<sp/>all<sp/>0&apos;s<sp/>in<sp/>R0</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>PowerPC<sp/>Configuration<sp/>/<sp/>Initialization<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>--------------------------------------</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Internal<sp/>Memory<sp/>Map<sp/>Register<sp/>(<sp/>IMMR<sp/>)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r4,0xFF00<sp/><sp/><sp/><sp/>#<sp/><sp/>IMMR<sp/>=<sp/>0xFF000000<sp/>:<sp/>For<sp/>MPC<sp/>821<sp/>ADS,<sp/>25MHz</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r4,r4,0x0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>IMMR,r4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r4,0xFFA0<sp/><sp/><sp/><sp/>#<sp/><sp/>IMMR<sp/>=<sp/>0xFFA00000<sp/>:<sp/>For<sp/>MBX860-003,<sp/>40MHz</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r4,r4,0x0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>IMMR,r4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Disable<sp/>Data<sp/>Cache<sp/>before<sp/>accessing<sp/>any<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Save<sp/>the<sp/>status<sp/>of<sp/>DC_CST<sp/>in<sp/>R8<sp/>for<sp/>the<sp/>flush<sp/>routine</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mfspr<sp/><sp/><sp/><sp/><sp/><sp/>r3,DC_CST</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r8,r3,0<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>save<sp/>DC_CST<sp/>in<sp/>r8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,CacheDisableCmd<sp/><sp/><sp/><sp/>#<sp/>DCache<sp/>Disable<sp/>command</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>DC_CST,<sp/>r3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>UPM<sp/>RAM<sp/>Array<sp/>Initialization</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>----------------------------</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>UPM<sp/>programming<sp/>by<sp/>writing<sp/>to<sp/>its<sp/>64<sp/>RAM<sp/>locations</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Note<sp/>that<sp/>initialization<sp/>of<sp/>UPM<sp/>must<sp/>be<sp/>done<sp/>before<sp/>the<sp/>Bank<sp/>Register</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>initialization.<sp/>Otherwise,<sp/>system<sp/>may<sp/>hang<sp/>when<sp/>writing<sp/>to<sp/>Bank</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Registers<sp/>in<sp/>certain<sp/>cases.</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">UPMAInit:<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,UpmATable@h<sp/><sp/><sp/>#<sp/>point<sp/>R5<sp/>to<sp/>paramenter<sp/>table</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,UpmATable@l</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r7,UpmATableEnd@h<sp/><sp/><sp/><sp/>#<sp/>point<sp/>R6<sp/>to<sp/>end<sp/>paramenter<sp/>table</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r7,r7,UpmATableEnd@l</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r6,0x0000<sp/><sp/><sp/><sp/><sp/>#<sp/>Command:<sp/>OP=Write,<sp/>UPMA,<sp/>MAD=0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">UpmWriteLoop:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0(r5)<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>get<sp/>data<sp/>from<sp/>table</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,MDR(r4)<sp/><sp/><sp/><sp/>#<sp/>store<sp/>the<sp/>data<sp/>to<sp/>MD<sp/>register</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r6,MCR(r4)<sp/><sp/><sp/><sp/>#<sp/>issue<sp/>command<sp/>to<sp/>MCR<sp/>register</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addi<sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,4<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>next<sp/>entry<sp/>in<sp/>the<sp/>table</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addi<sp/><sp/><sp/><sp/><sp/><sp/><sp/>r6,r6,1<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>next<sp/>MAD<sp/>address</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cmp<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r7<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>done<sp/>yet<sp/>?</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>blt<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UpmWriteLoop</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal">UPMBInit:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>andis.<sp/><sp/><sp/><sp/><sp/>r6,r6,0x0080<sp/><sp/>#<sp/>have<sp/>we<sp/>already<sp/>done<sp/>UPMB?</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bne<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UMPInitEnd<sp/><sp/><sp/><sp/>#<sp/>If<sp/>so,<sp/>UPM<sp/>initializion<sp/>is<sp/>complete</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,UpmBTable@h<sp/><sp/><sp/>#<sp/>point<sp/>R5<sp/>to<sp/>paramenter<sp/>table</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,UpmBTable@l</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r7,UpmBTableEnd@h<sp/><sp/><sp/><sp/>#<sp/>point<sp/>R6<sp/>to<sp/>end<sp/>paramenter<sp/>table</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r7,r7,UpmBTableEnd@l</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r6,0x0080<sp/><sp/><sp/><sp/><sp/>#<sp/>Command:<sp/>OP=Write,<sp/>UPMB,<sp/>MAD=0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UpmWriteLoop</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">UMPInitEnd:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__<sp/>&amp;&amp;<sp/>TARGET_SYSTEM_FREQUENCY<sp/>&lt;=<sp/><sp/>25</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0800<sp/><sp/><sp/><sp/><sp/>#<sp/>MPTPR<sp/>=<sp/>0x0800<sp/>(16bit<sp/>register)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sth<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,MPTPR(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xc0a2<sp/><sp/><sp/><sp/><sp/>#<sp/>MAMR<sp/>=<sp/>0xc0a21114</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x1114</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,MAMR(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;<sp/>Note:<sp/>the<sp/>MBMR<sp/>is<sp/>only<sp/>used<sp/>on<sp/>the<sp/>FADS<sp/>board,<sp/>but<sp/>initializing</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;<sp/>it<sp/>for<sp/>the<sp/>ADS<sp/>board<sp/>as<sp/>well<sp/>shouldn&apos;t<sp/>hurt<sp/>anything.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x6080<sp/><sp/><sp/><sp/><sp/>#<sp/>MBMR<sp/>=<sp/>0x60802114<sp/>(for<sp/>24MHz)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x2114</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,MBMR(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>(__MOT_MBX__<sp/>&amp;&amp;<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>40)<sp/>||<sp/>(__MOT_MBX_A__<sp/>&amp;&amp;<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/>50)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0200<sp/><sp/><sp/><sp/><sp/>#<sp/>MPTPR<sp/>=<sp/>0x0200<sp/>(16bit<sp/>register)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sth<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,MPTPR(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x1382<sp/><sp/><sp/><sp/><sp/>#<sp/>MAMR<sp/>=<sp/>0x13821000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x1000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,MAMR(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>System<sp/>Protection<sp/>Control<sp/>Register<sp/>(SYPCR)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xFFFF<sp/><sp/><sp/><sp/>#<sp/><sp/>SYPCR<sp/>=<sp/>0xFFFFFF88<sp/>:<sp/>Disable<sp/>time-out</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0xFF88</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SYPCR(r4)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Memory<sp/>Controller<sp/>Initialization</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>--------------------------------</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">BaseInit:</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>(Table<sp/>15-14,<sp/>MPC821):</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>BR0<sp/>=<sp/>0xFFE00001:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Base<sp/>addr<sp/>[0-16]<sp/><sp/><sp/><sp/>11111111111000000<sp/>=<sp/>0xFFE00000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Address<sp/>type<sp/>[17-19]<sp/><sp/><sp/><sp/>00</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Port<sp/>size<sp/>[20-21]<sp/><sp/><sp/>00<sp/>=<sp/>32<sp/>bits<sp/>port<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Parity<sp/>enable<sp/>[22]<sp/><sp/>0<sp/>=<sp/>parity<sp/>checking<sp/>disabled</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Write<sp/>Protect<sp/>[23]<sp/><sp/>0<sp/>=<sp/>r/w</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Machine<sp/>select<sp/>[24-25]<sp/><sp/>00<sp/>=<sp/>G.P.C.M.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Reserved<sp/>[26-30]</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Valid<sp/>Bit<sp/>[31]<sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>=<sp/>This<sp/>bank<sp/>is<sp/>valid.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>OR0<sp/>=<sp/>0xFFE00954:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Address<sp/>Mask<sp/>[0-16]<sp/>11111111111000000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Addr.<sp/>Type<sp/>Mask<sp/>[17-19]<sp/>000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>CS<sp/>neg.<sp/>time<sp/>[20]<sp/><sp/><sp/>1<sp/>=<sp/>CS~/WE~<sp/>negated<sp/>1/4<sp/>clk<sp/>early;<sp/>see<sp/>docs.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Addr<sp/>to<sp/>CS<sp/>Setup<sp/>[21-22]<sp/>00<sp/>=<sp/>CS~<sp/>is<sp/>output<sp/>at<sp/>same<sp/>time<sp/>as<sp/>addr<sp/>lines</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Burst<sp/>Inhibit<sp/>[23]<sp/><sp/>1<sp/>=<sp/>Banks<sp/>does<sp/>not<sp/>support<sp/>burst<sp/>accesses.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Cycle<sp/>length<sp/>[24-27]<sp/><sp/><sp/><sp/>0101<sp/>=<sp/>5<sp/>clock<sp/>cycle<sp/>wait<sp/>states</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Ext.<sp/>Trans<sp/>ACK<sp/>[28]<sp/>0<sp/>=<sp/>TA~<sp/>is<sp/>generated<sp/>internally<sp/>by<sp/>M.C.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Timing<sp/>Relaxed<sp/>[29]<sp/>1<sp/>=<sp/>relaxed<sp/>timing<sp/>generated<sp/>by<sp/>M.C.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Extended<sp/>Hold<sp/>Time<sp/>[30]<sp/>0<sp/>=<sp/>normal<sp/>timing<sp/>generated<sp/>by<sp/>M.C.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Reservd<sp/>[31]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xffe0<sp/><sp/><sp/><sp/><sp/>#<sp/>BR0<sp/>=<sp/>0xffe00001<sp/>:<sp/>flash<sp/>at<sp/>0xffe00000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xffe0<sp/><sp/><sp/><sp/><sp/>#<sp/>OR0<sp/>=<sp/>0xffe00954</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0954</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR0(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xFE00<sp/><sp/><sp/><sp/><sp/>#<sp/>BR0<sp/>=<sp/>0xFE000001<sp/>:<sp/>flash<sp/>at<sp/>0xfe000000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xFF80<sp/><sp/><sp/><sp/><sp/>#<sp/>OR0<sp/>=<sp/>0xFF800930</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0930</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR0(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Initialize<sp/>BR1<sp/>and<sp/>OR1</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xf000<sp/><sp/><sp/><sp/><sp/>#<sp/>BR1<sp/>=<sp/>0xf0000001<sp/>:<sp/>BCSR<sp/>at<sp/>0xf0000000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xffff<sp/><sp/><sp/><sp/><sp/>#<sp/>OR1<sp/>=<sp/>0xffff8110</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x8110</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR1(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR1(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/><sp/>#<sp/>BR1<sp/>=<sp/>0x00000081</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0081</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xffc0<sp/><sp/><sp/><sp/><sp/>#<sp/>OR1<sp/>=<sp/>0xFFC00400</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0400</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR1(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR1(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>(Table<sp/>15-14,<sp/>MPC821):</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>BR2<sp/>=<sp/>0x00000081:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Base<sp/>addr<sp/>[0-16]<sp/><sp/><sp/><sp/>00000000000000000<sp/>=<sp/>0x00000000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Address<sp/>type<sp/>[17-19]<sp/><sp/><sp/><sp/>00</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Port<sp/>size<sp/>[20-21]<sp/><sp/><sp/>00<sp/>=<sp/>32<sp/>bits<sp/>port<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Parity<sp/>enable<sp/>[22]<sp/><sp/>0<sp/>=<sp/>parity<sp/>checking<sp/>disabled</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Write<sp/>Protect<sp/>[23]<sp/><sp/>0<sp/>=<sp/>r/w</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Machine<sp/>select<sp/>[24-25]<sp/><sp/>10<sp/>=<sp/>U.P.M.A.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Reserved<sp/>[26-30]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>00000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Valid<sp/>Bit<sp/>[31]<sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>=<sp/>This<sp/>bank<sp/>is<sp/>valid.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>OR2<sp/>=<sp/>0xFE000800:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Address<sp/>Mask<sp/>[0-16]<sp/>11111110000000000<sp/>(0-32MB)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Addr.<sp/>Type<sp/>Mask<sp/>[17-19]<sp/>000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>CS<sp/>neg.<sp/>time<sp/>[20]<sp/><sp/><sp/>1<sp/>=<sp/>CS~/WE~<sp/>negated<sp/>1/4<sp/>clk<sp/>early;<sp/>see<sp/>docs.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Addr<sp/>to<sp/>CS<sp/>Setup<sp/>[21-22]<sp/>00<sp/>=<sp/>CS~<sp/>is<sp/>output<sp/>at<sp/>same<sp/>time<sp/>as<sp/>addr<sp/>lines</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Burst<sp/>Inhibit<sp/>[23]<sp/><sp/>0<sp/>=<sp/>Banks<sp/>support<sp/>burst<sp/>accesses.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Cycle<sp/>length<sp/>[24-27]<sp/><sp/><sp/><sp/>0000<sp/>=<sp/>0<sp/>clock<sp/>cycle<sp/>wait<sp/>states</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Ext.<sp/>Trans<sp/>ACK<sp/>[28]<sp/>0<sp/>=<sp/>TA~<sp/>is<sp/>generated<sp/>internally<sp/>by<sp/>M.C.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Timing<sp/>Relaxed<sp/>[29]<sp/>0<sp/>=<sp/>Normal<sp/>timing<sp/>generated<sp/>by<sp/>M.C.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Extended<sp/>Hold<sp/>Time<sp/>[30]<sp/>0<sp/>=<sp/>Normal<sp/>timing<sp/>generated<sp/>by<sp/>M.C.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Reservd<sp/>[31]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/><sp/>#<sp/>BR2<sp/>=<sp/>0x00000081<sp/>:<sp/>DRAM<sp/>at<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0081</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xfe00<sp/><sp/><sp/><sp/><sp/>#<sp/>OR2<sp/>=<sp/>0xfe000800</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0800</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR2(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR2(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/><sp/>#<sp/>BR2<sp/>=<sp/>0x00000080<sp/>:<sp/>DRAM<sp/>at<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0080</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0x0000<sp/><sp/><sp/><sp/><sp/>#<sp/>OR2<sp/>=<sp/>0x00000400</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0400</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR2(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR2(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Initialize<sp/>BR3<sp/>and<sp/>OR3</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/><sp/>#<sp/>BR3<sp/>=<sp/>0x00000080<sp/>:<sp/>DRAM<sp/>at<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0080</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0x0000<sp/><sp/><sp/><sp/><sp/>#<sp/>OR3<sp/>=<sp/>0x00000400</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0400</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR3(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR3(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Initialize<sp/>BR4<sp/>and<sp/>OR4</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;<sp/>SDRAM<sp/>is<sp/>only<sp/>present<sp/>on<sp/>the<sp/>FADS<sp/>board,<sp/>but<sp/>this<sp/>shouldn&apos;t<sp/>hurt</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;<sp/>anything<sp/>on<sp/>the<sp/>ADS<sp/>board.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0300<sp/><sp/><sp/><sp/><sp/>#<sp/>BR4<sp/>=<sp/>0x030000c1<sp/>:<sp/>SDRAM<sp/>at<sp/>0x03000000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x00c1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xffc0<sp/><sp/><sp/><sp/><sp/>#<sp/>OR4<sp/>=<sp/>0xffc00a00</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0a00</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR4(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR4(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xFA00<sp/><sp/><sp/><sp/><sp/>#<sp/>BR4<sp/>=<sp/>0xFA000401</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0401</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xFFE0<sp/><sp/><sp/><sp/><sp/>#<sp/>OR4<sp/>=<sp/>0xFFE00920</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0920</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR4(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR4(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Initialize<sp/>BR5<sp/>and<sp/>OR5</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x8000<sp/><sp/><sp/><sp/><sp/>#<sp/>BR5<sp/>=<sp/>0x80000001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xA000<sp/><sp/><sp/><sp/><sp/>#<sp/>OR5<sp/>=<sp/>0xA0000108</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0108</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR5(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR5(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Initialize<sp/>BR6<sp/>and<sp/>OR6</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xFA21<sp/><sp/><sp/><sp/><sp/>#<sp/>BR6<sp/>=<sp/>0xFA210001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xFFFF<sp/><sp/><sp/><sp/><sp/>#<sp/>OR6<sp/>=<sp/>0xFFFF0108</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0108</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR6(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR6(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>Initialize<sp/>BR7<sp/>and<sp/>OR7</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xFC00<sp/><sp/><sp/><sp/><sp/>#<sp/>BR7<sp/>=<sp/>0xFC000401</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0401</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,0xFF80<sp/><sp/><sp/><sp/><sp/>#<sp/>OR7<sp/>=<sp/>0xFF800930</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x0930</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,BR7(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,OR7(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Additional<sp/>initialization<sp/>required<sp/>for<sp/>the<sp/>SDRAM<sp/>on<sp/>the<sp/>FADS<sp/>board.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>FADS<sp/>manual<sp/>section<sp/>4.8.1.1</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,r0,0x48<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>MAR<sp/>=<sp/>0x48</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,MAR(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,0x8080<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>MCR<sp/>=<sp/>0x80808105</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,r3,0x8105</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,MCR(r4)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>run<sp/>MRS<sp/>commands<sp/>in<sp/>5..8<sp/>of<sp/>UPMB</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/>r5,MBMR(r4)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>get<sp/>current<sp/>MBMR<sp/>value</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,r0,0xf</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>andc<sp/><sp/><sp/><sp/>r3,r5,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>clear<sp/>TFLB<sp/>field<sp/>(bits<sp/>28..31)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,r3,8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>set<sp/>TFLB<sp/>field<sp/>to<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,MBMR(r4)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>write<sp/>back<sp/>modified<sp/>MBMR</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,0x8080<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>MCR<sp/>=<sp/>0x80808130</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,r3,0x8130</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,MCR(r4)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>run<sp/>the<sp/>refresh<sp/>sequence<sp/>8<sp/>times</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r5,MBMR(r4)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>restore<sp/>original<sp/>MBMR<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Debug<sp/>Enable<sp/>Registers<sp/>(DER)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/>#<sp/><sp/>DER<sp/>=<sp/>0x00000000<sp/>:<sp/>exceptions<sp/>to<sp/>target</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>DER,r3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Decrement<sp/>Registers<sp/>(DEC)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xFFFF<sp/><sp/><sp/><sp/>#<sp/><sp/>DEC<sp/>=<sp/>0xFFFFFFFF</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0xFFFF</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>DEC,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Interupt<sp/>Cause<sp/>Register<sp/>(ICR)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/>#<sp/><sp/>ICR<sp/>=<sp/>0x00000000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>ICR,r3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Instruction<sp/>Control<sp/>Register<sp/>(ICTRL)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/>#<sp/><sp/>ICTRL<sp/>=<sp/>0x00000006</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0006</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>ICTRL,r3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Write<sp/>Lower<sp/>Timebase<sp/>Register<sp/>(TB<sp/>Write)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/>#<sp/><sp/>TB_WRITE<sp/>=<sp/>0x00000000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>TB_WRITE,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Write<sp/>Upper<sp/>Timebase<sp/>Register<sp/>(TBU<sp/>Write)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/>#<sp/><sp/>TB_WRITE<sp/>=<sp/>0x00000000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0000</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>TBU_WRITE,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Machine<sp/>State<sp/>Register<sp/>(MSR)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/>#<sp/><sp/>MSR<sp/>=<sp/>0x00001002</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x1002</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtmsr<sp/><sp/><sp/><sp/><sp/><sp/>r3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Save/Restore<sp/>Register<sp/>1<sp/>(SRR1)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/>#<sp/><sp/>SRR1<sp/>=<sp/>0x00001002</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x1002</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/><sp/><sp/><sp/>SRR1,r3</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Clock<sp/>and<sp/>Reset<sp/>Registers<sp/>Programming</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>-------------------------------------</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>clock<sp/>speed<sp/>to<sp/>40MHz<sp/>and<sp/>set<sp/>power<sp/>mode</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>40</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x4C40<sp/><sp/><sp/><sp/>#<sp/><sp/>PLPRCR<sp/>=<sp/>0x4C400000<sp/>:<sp/>For<sp/>MBX860-003,<sp/>40MHz</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,PLPRCR(r4)<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>clock<sp/>sources<sp/>and<sp/>division<sp/>factors</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>40</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0200<sp/><sp/><sp/><sp/>#<sp/><sp/>SCCR<sp/>=<sp/>0x02000000<sp/>:<sp/>For<sp/>MBX860-003,<sp/>40MHz</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SCCR(r4)<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline><highlight class="normal">.endif<sp/>#<sp/>__MOT_MBX__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>clock<sp/>speed<sp/>to<sp/>50MHz<sp/>and<sp/>set<sp/>power<sp/>mode</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>50</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/>#<sp/><sp/>PLPRCR<sp/>=<sp/>0x00005000<sp/>:<sp/>For<sp/>MBX8xxA,<sp/>50MHz</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x5000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,PLPRCR(r4)<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>clock<sp/>sources<sp/>and<sp/>division<sp/>factors</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>50</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x6200<sp/><sp/><sp/><sp/>#<sp/><sp/>SCCR<sp/>=<sp/>0x62000000<sp/>:<sp/>For<sp/>MBX8xxA,<sp/>50MHz</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SCCR(r4)<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline><highlight class="normal">.endif<sp/>#<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>25MHz</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x2fb0<sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>32.768KHZ</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>24MHz</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x2dc0<sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>32.768KHZ</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>16MHz</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x2000<sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>32.768KHZ</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>48MHZ<sp/>from<sp/>4MHZ<sp/>clock<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x00B0<sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>4MHZ<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>40MHZ<sp/>from<sp/>4MHZ<sp/>clock<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0090<sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>4MHZ<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>24MHZ<sp/>from<sp/>4MHZ<sp/>clock<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0060<sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>4MHZ<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>20MHZ<sp/>from<sp/>4MHZ<sp/>clock<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0040<sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>4MHZ<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>16MHz<sp/>from<sp/>4MHZ<sp/>clock<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0030<sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>4MHZ<sp/>at<sp/>CLK4</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal">ClockSource:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/>r3,SCCR(r4)<sp/><sp/><sp/><sp/><sp/>#<sp/>reading<sp/>system<sp/>clock<sp/>register</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>andis.<sp/><sp/>r3,r3,0x0080<sp/><sp/><sp/><sp/>#<sp/>check<sp/>for<sp/>bit<sp/>8,<sp/>RTSEL</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>beq<sp/>Crystal</highlight></codeline>
+<codeline><highlight class="normal">.if<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>24</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,0x0050<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>4MHz<sp/>at<sp/>CLK4<sp/>((5+1)*4=24)</highlight></codeline>
+<codeline><highlight class="normal">.endif<sp/>#<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>24</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/><sp/><sp/>SetPLL</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Crystal:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Set<sp/>the<sp/>ADS<sp/>board<sp/>to<sp/>24MHz<sp/>from<sp/>32.768<sp/>KHZ</highlight></codeline>
+<codeline><highlight class="normal">.if<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>24</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/>r3,0x2dc0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>multiply<sp/>factor<sp/>from<sp/>32.768KHZ</highlight></codeline>
+<codeline><highlight class="normal">.endif<sp/>#<sp/>TARGET_SYSTEM_FREQUENCY<sp/>==<sp/><sp/>24</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">SetPLL:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,PLPRCR(r4)<sp/><sp/>#<sp/>set<sp/>the<sp/>PLL<sp/>register<sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif<sp/>#<sp/>__MOT_ADS__</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>System<sp/>Interface<sp/>Unit<sp/>(SIU)<sp/>Registers<sp/>Programming</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>-------------------------------------------------</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>SIU<sp/>Configuration<sp/>Register<sp/>(SIUMCR)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SIUMCR(r4)<sp/><sp/><sp/><sp/>#<sp/><sp/>SIUMCR<sp/>=<sp/>The<sp/>old<sp/>value<sp/>bitwize</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ored<sp/>with<sp/>0x00032640</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/>For<sp/>MPC<sp/>821<sp/>ADS,<sp/>25MHz</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/><sp/><sp/><sp/>r5,r0,0x0003</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r5,r5,0x2640</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>or<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,r5</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SIUMCR(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0060<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/>SIUMCR<sp/>=<sp/>0x00602900<sp/>:<sp/>For<sp/>MBX860-003,<sp/>40MHz</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x2900</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SIUMCR(r4)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>SIU<sp/>Interrupt<sp/>Edge<sp/>Level<sp/>Mask<sp/>Register<sp/>(SIEL)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xAAAA<sp/><sp/><sp/>#<sp/><sp/>SEIL<sp/>=<sp/>0xAAAA0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/>For<sp/>MBX860-003,<sp/>40MHz<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SIEL(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Transfer<sp/>Error<sp/>Status<sp/>Register<sp/>(TESR)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0xFFFF<sp/><sp/><sp/>#<sp/><sp/>TESR<sp/>=<sp/>0xFFFFFFFF<sp/>:<sp/>For<sp/>MBX860-003,<sp/>40MHz<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0xFFFF</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,TESR(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>SDMA<sp/>Configuration<sp/>Register<sp/>(SDCR)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/>#<sp/><sp/>SDCR<sp/>=<sp/>0x00000001<sp/>:<sp/>For<sp/>MBX860-003,<sp/>40MHz<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SDCR(r4)</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Timebase<sp/>Status<sp/>and<sp/>Control<sp/>Register<sp/>(TBSCR)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x00c2<sp/><sp/><sp/><sp/>#<sp/><sp/>TBSCR<sp/>=<sp/>0x00c2<sp/>(16bit<sp/>register)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>sth<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,TBSCR(r4)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Real-Time<sp/>Clock<sp/>Status<sp/>and<sp/>Control<sp/>Register<sp/>(RTCSC)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x01c2<sp/><sp/><sp/><sp/>#<sp/><sp/>RTCSC<sp/>=<sp/>0x01c2<sp/>(16bit<sp/>register)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>sth<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,RTCSC(r4)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Initialize<sp/>the<sp/>Periodic<sp/>Interrupt<sp/>and<sp/>Control<sp/>Register<sp/>(PISCR)</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0082<sp/><sp/><sp/><sp/>#<sp/><sp/>PISCR<sp/>=<sp/>0x0082<sp/>(16bit<sp/>register)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sth<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,PISCR(r4)</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Cache<sp/>Initialization</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Function:<sp/>CacheInit</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>If<sp/>the<sp/>Data<sp/>cache<sp/>is<sp/>enabled,<sp/>flush<sp/>then</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>disable<sp/>it<sp/>so<sp/>we<sp/>can<sp/>finish<sp/>the<sp/>rest<sp/>of<sp/>initialization</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Input<sp/>Registers:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>R8<sp/>contains<sp/>the<sp/>content<sp/>of<sp/>DC_CST<sp/>before<sp/>entering</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usr_init()</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Output<sp/>Registers:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/>R3,<sp/>R4,<sp/>R5<sp/>and<sp/>R6<sp/>will<sp/>be<sp/>destroyed</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>History:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>10/7/95<sp/><sp/><sp/><sp/><sp/><sp/>lvn<sp/><sp/><sp/><sp/><sp/><sp/>Initial<sp/>porting<sp/>from<sp/>Arnewsh<sp/>monitor</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.section<sp/><sp/><sp/><sp/>.init,4,1,6</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.align<sp/><sp/><sp/><sp/><sp/><sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.global<sp/><sp/><sp/><sp/><sp/>CacheInit</highlight></codeline>
+<codeline><highlight class="normal">CacheInit:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>If<sp/>Instruction<sp/>cache<sp/>was<sp/>enabled,<sp/>disable<sp/>and<sp/>invalidate<sp/>all</highlight></codeline>
+<codeline><highlight class="normal">ICacheInit:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mfspr<sp/><sp/><sp/>r3,IC_CST<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>read<sp/>I-cache<sp/>CSR<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>andis.<sp/><sp/>r3,r3,CacheEnableBit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>beq<sp/><sp/><sp/><sp/><sp/>ICacheUnlock<sp/><sp/><sp/><sp/>#<sp/>no,<sp/>Icache<sp/>was<sp/>disabled</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,CacheDisableCmd<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>IC_CST,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>disable<sp/>Icache</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>isync</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ICacheUnlock:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,CacheUnlockAllCmd</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>IC_CST,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Unlock<sp/>Icache</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>isync</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ICacheInv:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,CacheInvAllCmd</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>IC_CST,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Invalidate<sp/>Icache</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>isync</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ICacheEnable:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,CacheEnableCmd</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>mtspr<sp/><sp/><sp/>r3,IC_CST<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Enable<sp/>Icache</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>isync</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">DCacheInit:</highlight></codeline>
+<codeline><highlight class="normal">DCacheUnlock:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,CacheUnlockAllCmd</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>DC_CST,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Unlock<sp/>Dcache</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>andis.<sp/><sp/>r8,r8,CacheEnableBit<sp/><sp/>#<sp/>Was<sp/>DCache<sp/>enabled<sp/>?</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>beq<sp/><sp/><sp/><sp/><sp/>DCacheInv<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>no,<sp/>Dcache<sp/>was<sp/>disabled</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">DCacheFlushAll:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/>r3,0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Read<sp/>1<sp/>word<sp/>per<sp/>cache<sp/>line</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>for<sp/>800<sp/>lines</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/>r4,256<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>2<sp/>ways,<sp/>128<sp/>sets<sp/>per<sp/>way</highlight></codeline>
+<codeline><highlight class="normal">DCacheFlushLoop:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addic.<sp/><sp/>r4,r4,-1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>decrementer,<sp/>set<sp/>cc<sp/>bit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/>r5,0(r3)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>access<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>dcbf<sp/><sp/><sp/><sp/>0,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>flush<sp/>the<sp/>line</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addi<sp/><sp/><sp/><sp/>r3,r3,16<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>next<sp/>line</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bgt<sp/><sp/><sp/><sp/><sp/>DCacheFlushLoop</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">DCacheDisable:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,CacheDisableCmd</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>DC_CST,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>disable<sp/>Dcache</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">DCacheInv:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,CacheInvAllCmd</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>DC_CST,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Invalidate<sp/>Dcache</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#DCacheEnable:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,CacheEnableCmd</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/>mtspr<sp/><sp/><sp/>DC_CST,r3<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Enable<sp/>Icache</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>blr</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>UPM<sp/>Table</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.section<sp/><sp/>.init,4,1,6</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.global<sp/><sp/><sp/>UpmTable</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>UPM<sp/>contents<sp/>for<sp/>the<sp/>default<sp/>ADS<sp/>memory<sp/>configuration:</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_ADS__</highlight></codeline>
+<codeline><highlight class="normal">UpmATable:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>DRAM<sp/>70ns<sp/>-<sp/>single<sp/>read.<sp/>(offset<sp/>0<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0fffcc24,<sp/>0x0fffcc04,<sp/>0x0cffcc04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00ffcc04,<sp/>0x00ffcc00,<sp/>0x37ffcc47</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>6-7<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>DRAM<sp/>70ns<sp/>-<sp/>burst<sp/>read.<sp/>(offset<sp/>8<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0fffcc24,<sp/>0x0fffcc04,<sp/>0x08ffcc04,<sp/>0x00ffcc04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00ffcc08,<sp/>0x0cffcc44,<sp/>0x00ffec0c,<sp/>0x03ffec00</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00ffec44,<sp/>0x00ffcc08,<sp/>0x0cffcc44,<sp/>0x00ffec04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00ffec00,<sp/>0x3fffec47</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>16-17<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>DRAM<sp/>70ns<sp/>-<sp/>single<sp/>write.<sp/>(offset<sp/>18<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0fafcc24,<sp/>0x0fafcc04,<sp/>0x08afcc04,<sp/>0x00afcc00,<sp/>0x37ffcc47</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>1d-1f<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>DRAM<sp/>70ns<sp/>-<sp/>burst<sp/>write.<sp/>(offset<sp/>20<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0fafcc24,<sp/>0x0fafcc04,<sp/>0x08afcc00,<sp/>0x07afcc4c</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x08afcc00,<sp/>0x07afcc4c,<sp/>0x08afcc00,<sp/>0x07afcc4c</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x08afcc00,<sp/>0x37afcc47</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>2a-2f<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>refresh<sp/>70ns.<sp/>(offset<sp/>30<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xe0ffcc84,<sp/>0x00ffcc04,<sp/>0x00ffcc04,<sp/>0x0fffcc04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x7fffcc04,<sp/>0xffffcc86,<sp/>0xffffcc05</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>37-3b<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>exception.<sp/>(offset<sp/>3c<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x33ffcc07</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offset<sp/>3d-3f<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0x40004650</highlight></codeline>
+<codeline><highlight class="normal">UpmATableEnd:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">UpmBTable:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>SDRAM<sp/>-<sp/>single<sp/>read.<sp/>(offsets<sp/>0x00-0x07<sp/>in<sp/>upm<sp/>RAM<sp/>(3-4<sp/>not<sp/>used))<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0126cc04,<sp/>0x0fb98c00,<sp/>0x1ff74c45,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0x1fe77c34,<sp/>0xefaabc34,<sp/>0x1fa57c35</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>SDRAM<sp/>-<sp/>burst<sp/>read.<sp/>(offsets<sp/>0x08-0x17<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0026fc04,<sp/>0x10adfc00,<sp/>0xf0affc00,<sp/>0xf1affc00</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xefbbbc00,<sp/>0x1ff77c45</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>0x0e-0x17<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>SDRAM<sp/>-<sp/>single<sp/>write.<sp/>(offsets<sp/>0x18-0x1f<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0e26bc04,<sp/>0x01b93c00,<sp/>0x1ff77c45</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>0x1b-0x1f<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>SDRAM<sp/>-<sp/>burst<sp/>write.<sp/>(offsets<sp/>0x20-0x2f<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0e26bc00,<sp/>0x10ad7c00,<sp/>0xf0affc00,<sp/>0xf0affc00</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xe1bbbc04,<sp/>0x1ff77c45</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>0x26-0x2f<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>refresh<sp/>(offsets<sp/>0x30-0x3b<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x1ff5fc84,<sp/>0xfffffc04,<sp/>0xfffffc84,<sp/>0xfffffc05</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offsets<sp/>0x34-0x3b<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>exception.<sp/>(offsets<sp/>0x3c-0x3f<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x7ffffc07</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>offset<sp/>3d-3f<sp/>not<sp/>used<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xffffffff,<sp/>0xffffffff,<sp/>0xffffffff</highlight></codeline>
+<codeline><highlight class="normal">UpmBTableEnd:</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.if<sp/>__MOT_MBX__<sp/>||<sp/>__MOT_MBX_A__</highlight></codeline>
+<codeline><highlight class="normal">UpmATable:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>DRAM<sp/>60ns<sp/>-<sp/>single<sp/>read.<sp/>(offset<sp/>0<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xEFFFE004,<sp/>0x0FFFE004,<sp/>0x0EEFAC04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00AF2C04,<sp/>0x03AF2C08,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>DRAM<sp/>60ns<sp/>-<sp/>burst<sp/>read.<sp/>(offset<sp/>8<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xEFFFE004,<sp/>0x0FFFE004,<sp/>0x0EEFAC04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00AF2C04,<sp/>0x03AF2C08,<sp/>0x0CAF2C04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00AF2C04,<sp/>0x03AF2C08,<sp/>0x0CAF2C04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00AF2C04,<sp/>0x03AF2C08,<sp/>0x0CAF2C04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00AF2C04,<sp/>0x03AF2C08,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>DRAM<sp/>60ns<sp/>-<sp/>single<sp/>write.<sp/>(offset<sp/>18<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xEFFFE004,<sp/>0x0FFFA004,<sp/>0x0EFF2C04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00FF2C00,<sp/>0xFFFFEC07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>DRAM<sp/>60ns<sp/>-<sp/>burst<sp/>write.<sp/>(offset<sp/>20<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xEFFFE004,<sp/>0x0FFFA004,<sp/>0x0EFF2C04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x00FF2C00,<sp/>0x0FFF2C0C,<sp/>0x0CFF2C00</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x03FF2C0C,<sp/>0x0CFF2C00,<sp/>0x03FF2C0C</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0CFF2C00,<sp/>0x33FF6C07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07,<sp/>0xFFFFEC07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>refresh<sp/>60ns.<sp/>(offset<sp/>30<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xF0FFEC04,<sp/>0x00FFEC04,<sp/>0x0FFFEC04</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0x0FFFEC04,<sp/>0xFFFFEC07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07,<sp/>0xFFFFEC07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07,<sp/>0xFFFFEC07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>/*<sp/>exception.<sp/>(offset<sp/>3c<sp/>in<sp/>upm<sp/>RAM)<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07,<sp/>0xFFFFEC07,<sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.long<sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFEC07</highlight></codeline>
+<codeline><highlight class="normal">UpmATableEnd:</highlight></codeline>
+<codeline><highlight class="normal">.endif</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>soft_reset</highlight></codeline>
+<codeline><highlight class="normal">#</highlight></codeline>
+<codeline><highlight class="normal">##############################################################################</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.section<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.init,4,1,6</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.align<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.globl<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>soft_reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">soft_reset:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,0x0000<sp/><sp/><sp/><sp/><sp/>#<sp/><sp/>SYPCR<sp/>=<sp/>0x00000080<sp/>:<sp/>generate<sp/>bus<sp/>timeout</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,r3,0x0080</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r3,SYPCR(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>blr</highlight></codeline>
+<codeline><highlight class="normal">endfile:</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/Init8xx.asm"/>
+  </compounddef>
+</doxygen>

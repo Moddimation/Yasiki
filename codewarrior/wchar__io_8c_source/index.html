@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File wchar_io.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-wchar_ioc">File wchar_io.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../wchar__io_8c/"><strong>wchar_io.c</strong></a></p>
+<p><a href="../wchar__io_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/07/30 01:02:54 $ 
+ *  $Revision: 1.7.4.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  wchar_io.c
+ *  
+ *  Routines
+ *  --------
+ *      fgetwc              
+ *      getwc               
+ *      getwchar
+ *
+ *      fgetws              
+ *      getws
+ *
+ *      ungetwc
+ *
+ *      fputwc              
+ *      putwc               
+ *      putwchar
+ *
+ *      fputws              
+ *      putws
+ *
+ *      __get_wchar
+ *      put_wchar
+ *
+ *      __ungotten
+ *
+ *      fwide
+ */
+
+#pragma ANSI_strict off  /*  990729 vss  empty compilation unit illegal in ANSI C */
+
+#ifndef __NO_WIDE_CHAR              /* mm 980204 */
+
+#pragma ANSI_strict reset
+
+#include &lt;cstdio&gt;
+#include &quot;ansi_files.h&quot;
+#include &quot;wstdio.h&quot;
+#include &quot;wchar.h&quot;
+
+/*
+    This function writes the wide character c 
+    to the output stream file,
+    and returns (wchar_t) c.
+*/
+
+wchar_t putwc(wchar_t c, FILE * file)       
+{
+
+    if (fwide(file, 1) &lt;= 0)            /* mm 980206 */
+        return(WEOF);                   /* mm 980206 */
+    if( fwrite( (char*) &amp;c, sizeof(c), 1, file) == 0)          /* mm 980130 */
+        return WEOF;
+
+    return(c);
+}
+
+/*
+    putwchar is identical to putwc with the
+    second argument stdout
+*/
+
+wchar_t putwchar(wchar_t c)             
+{
+
+    if (fwide(stdout, 1) &lt;= 0)          /* mm 980206 */
+        return(WEOF);                   /* mm 980206 */
+    if( fwrite( (char*) &amp;c, sizeof(c), 1, stdout) == WEOF)  /* mm 980130 */
+        return WEOF;
+
+    return(c);
+}
+
+
+
+/*
+    This function is the same at putwc.
+*/
+
+wchar_t fputwc(wchar_t c, FILE * file)      
+{
+    return(putwc(c, file));
+}
+
+
+/*
+    This function gets the wide character c 
+    from the input stream file,
+    and returns (wint_t) c.
+*/
+
+/*
+    getwc
+
+    Description
+
+    If the next wide character is present from the input
+    stream pointed to by file, then fgetwc function obtains
+    that wide character and advances the associated file
+    position indicator for the stream (if defined).
+
+
+    Returns
+
+    The fgetwc function returns the next wide character
+    from the input stream pointed to by file. If the stream
+    as at end-of-file, then ind-of-file indicator for the stream
+    is set and fgetwc returns WEOF.
+*/
+
+
+wchar_t getwc(FILE * file)                  /* jcm 971208 */
+{
+    wchar_t     c;                          /* wide char to hold the final result */
+
+    if (fwide(file, 1) &lt;= 0)            /* mm 980206 */
+        return(WEOF);                   /* mm 980206 */
+    if(fread( (char*) &amp;c, sizeof(c), 1, file) == 0)             /* mm 980130 */
+        return WEOF;
+    return(c);
+}
+
+
+
+wchar_t getwchar(void)                  /* jcm 971208 */
+{
+    wchar_t     c;                          /* wide char to hold the final result */
+
+    if (fwide(stdin, 1) &lt;= 0)           /* mm 980206 */
+        return(WEOF);                   /* mm 980206 */
+    if(fread( (char*) &amp;c, sizeof(c), 1, stdin) == 0)        /* mm 980102 */
+        return WEOF;
+
+    return(c);
+}
+
+
+
+/*
+    This function is the same at getwc.
+*/
+
+wchar_t fgetwc(FILE * file)                 /* jcm 971208 */
+{
+    wchar_t c;
+
+    c = getwc(file);
+
+    return(c);
+}
+
+
+
+wchar_t ungetwc(wchar_t c, FILE * file)
+{
+
+    int state = file-&gt;state.io_state;
+    if (fwide(file, 1) &lt;= 0)            /* mm 980206 */
+        return(WEOF);                   /* mm 980206 */
+
+    if (state == __writing || state == __rereading + __ungetc_buffer_size - 1 || c == WEOF)
+        return(WEOF);
+
+    if (state &lt; __rereading)
+    {   
+        file-&gt;saved_buffer_len = file-&gt;buffer_len;
+        file-&gt;buffer_len       = 0;
+
+        state = file-&gt;state.io_state = __rereading;
+    }
+    else
+        state = ++file-&gt;state.io_state;
+
+    file-&gt;ungetwc_buffer[state - __rereading] = c;
+
+    file-&gt;state.eof = 0;
+    return((wchar_t) c);
+}
+
+/*
+    fputws
+
+    Description
+
+    The fputws writes the wide string pointed to
+    by s to the stream pointed to by file. The terminating
+    mull wide character is not written.
+
+    Returns
+
+    The fputws function returns EOF if a write or encoding error
+    occurs: otherwise, it returns a nonnegative value.
+
+Note by mm 980619
+It looks to me as though the C9x specification has a typo here and really means that
+WEOF is returned if a write or encoding error occurs.  We return WEOF.
+*/
+
+int fputws(const wchar_t * s, FILE * file)
+{
+    int     i; 
+    int     errno;
+    wchar_t c;
+
+    if (fwide(file, 1) &lt;= 0)            /* mm 980206 */
+        return(WEOF);                   /* mm 980206 */
+
+    for (i = 0; s[i] != L'\0'; i++)                 /* go through the string until reaching NULL */
+    { 
+       errno = 0;                                   /* initialize errno to zero */
+       c = s[i];                                    /* get the current character */
+
+       if (WEOF == putwc(c, file) )                 /* check for end of file */
+       { 
+          return (WEOF);                            /* return wide EOF if it is the end of file */
+       } 
+    } 
+
+    return 1;
+}
+
+
+/*
+    fgetws
+
+    Description
+
+    The fgetws function reads at most one less than the
+    number of wide characters specified by n from the stream
+    pointed to by file into the array pointed to by s. No
+    additionaly wide characters are read after a new-line wide
+    character (which is retained) or after end-of-file. A null
+    wide character is written immediately after the last wide
+    character read into the array.
+
+    Returns
+
+    The fgetws function returns s if successful. If end-
+    of-file is encountered and no characters have been read into 
+    the array, the contents of the array remain unchanged and a 
+    null pointer is returned. If a read or encoding error occurs
+    during the operatioin, the array contents are indeterminate
+    and a null pointer is returned.
+*/
+
+wchar_t *fgetws(wchar_t * s, int n, FILE * file)
+{
+    wchar_t *   p = s;
+    wchar_t         c;
+
+    if (fwide(file, 1) &lt;= 0)            /* mm 980206 */
+        return(NULL);                   /* mm 980206 */
+
+    if (--n &lt; 0)
+        return(NULL);
+
+    if (n)
+        do
+        {
+            c = getwc(file);
+
+            if (c == WEOF)
+                if (file-&gt;state.eof &amp;&amp; p != s)
+                    break;
+                else
+                    return(NULL);
+
+            *p++ = c;
+        }
+        while (c != L'\n' &amp;&amp; --n);
+
+    *p = L'\0';
+
+    return(s);
+
+}
+
+int fwide(FILE* stream, int mode)
+{
+    int orientation;
+    int result;
+
+    if (stream-&gt;mode.file_kind == __closed_file)
+        return 0;   /* there is no associated stream therefore no orientation */
+    orientation = stream-&gt;mode.file_orientation;
+    switch (orientation)
+    {
+        case __unoriented:
+            if (mode &gt; 0)
+                stream-&gt;mode.file_orientation = __wide_oriented;
+            else if (mode &lt; 0)
+                stream-&gt;mode.file_orientation = __char_oriented;
+            result = mode;
+            break;
+
+        case __wide_oriented:
+            result = 1;
+            break;
+
+        case __char_oriented:
+            result = -1;
+            break;
+    }
+    return result;
+}
+
+#endif /* ifndef __NO_WIDE_CHAR */              /* mm 981020 */
+
+
+/*  Change Record
+ *  980121  JCM  First code release.
+ *  mm 980206  Added cide to handle wide char unget properly and implementation of fwide.
+ *  mm 981020  Added __NO_WIDE_CHAR wrappers.
+ */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

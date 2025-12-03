@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mainloop_8h" kind="file" language="C++">
+    <compoundname>mainloop.h</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKNubMainLoop</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKNubMainLoop</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mainloop.h" line="8" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mainloop.c" bodystart="22" bodyend="70" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mainloop.h" declline="8" declcolumn="6"/>
+        <references refid="struct_t_r_k_event_1aca28443d10ca7e86a6c768bc3161e10d" compoundref="nubevent_8h" startline="13">TRKEvent::eventType</references>
+        <references refid="serpoll_8h_1ae109e4378b14752efd522823436116ae" compoundref="serpoll_8c" startline="10">gTRKInputPendingPtr</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127aa660875c25379e47ce86e38c79aad27c" compoundref="trk_8h" startline="155">NUBEVENT_Breakpoint</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a93368cd4e38607bee1e07f4a7b7d1948" compoundref="trk_8h" startline="156">NUBEVENT_Exception</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a1ab6b10689a550d00658b00568335a74" compoundref="trk_8h" startline="152">NUBEVENT_Null</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127acd386a53a984fdc0d65e02f71f31743e" compoundref="trk_8h" startline="154">NUBEVENT_Request</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a753dd1ca19d45f5013180a2b5312f5e8" compoundref="trk_8h" startline="153">NUBEVENT_Shutdown</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a635c32cdba4c6f699587ce9753006232" compoundref="trk_8h" startline="157">NUBEVENT_Support</references>
+        <references refid="nubevent_8h_1a497ec2095f59c64fe63495e6673c4e4e" compoundref="nubevent_8c" startline="72" endline="72">TRKDestructEvent</references>
+        <references refid="serpoll_8h_1aab6da4f57ef633a2abe4cb390fb0a892" compoundref="serpoll_8c" startline="43" endline="61">TRKGetInput</references>
+        <references refid="nubevent_8h_1a5d975b17017b89a5908d96313dca92f8" compoundref="nubevent_8c" startline="24" endline="39">TRKGetNextEvent</references>
+        <references refid="mainloop_8c_1a25ff502ac1480292ba829b813ba5ad65" compoundref="mainloop_8c" startline="7" endline="11">TRKHandleRequestEvent</references>
+        <references refid="mainloop_8c_1a7299c3bf7baa9c95141d32ed1faea556" compoundref="mainloop_8c" startline="13" endline="13">TRKHandleSupportEvent</references>
+        <references refid="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" compoundref="mainloop_8c" startline="15" endline="20">TRKIdle</references>
+        <references refid="targimpl_8h_1a8ed359d07fddc63055f82f800dc5fb3e" compoundref="targimpl_8c" startline="813" endline="829">TRKTargetInterrupt</references>
+        <referencedby refid="main___t_r_k_8h_1a591e3b76e11affee132799e9f2b0a99c" compoundref="main___t_r_k_8c" startline="6" endline="17">TRK_main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>METROTRK_PORTABLE_MAINLOOP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>METROTRK_PORTABLE_MAINLOOP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" kindref="member">TRKNubMainLoop</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METROTRK_PORTABLE_MAINLOOP_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mainloop.h"/>
+  </compounddef>
+</doxygen>

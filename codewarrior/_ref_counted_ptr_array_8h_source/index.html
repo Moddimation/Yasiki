@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File RefCountedPtrArray.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-refcountedptrarrayh">File RefCountedPtrArray.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../_ref_counted_ptr_array_8h/"><strong>RefCountedPtrArray.h</strong></a></p>
+<p><a href="../_ref_counted_ptr_array_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  Version 4.0  1998 August 10  */
+
+/*  $Date: 1999/12/09 17:59:45 $ 
+ *  $Revision: 1.10.6.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+// RefCountedPtr.h
+
+#ifndef _REFCOUNTEDPTR_H
+#define _REFCOUNTEDPTR_H
+
+/*
+    WARNING:  This is a non-standard header and class.
+
+    A reference counting handle class.
+
+    This is to be used as a pointer to class T.  
+    This will feel and smell just like a built-in pointer except:
+    1.  There is no need to call delete on the pointer.
+    2.  The default copy constructor and assignment implement ref-counting.
+    3.  The user may call isNonUnique to determine if this pointer is
+        the only pointer to the data.  This can be used to hide the
+        ref-counting behavior of a class.
+    4.  There are two &quot;traits&quot; classes which specify whether the single object
+        form of delete should be used, or the array form.  The default is single.
+*/
+
+#include &lt;mslconfig&gt;
+#include &lt;new&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+template &lt;class T&gt;
+struct _Single
+{
+    static void destroy(T* ptr) {delete ptr;}
+};
+
+template &lt;class T&gt;
+struct _Array
+{
+    static void destroy(T* ptr) {delete [] ptr;}
+};
+
+template &lt;class T, class traits = _Single&lt;T&gt; &gt;
+class _RefCountedPtr
+{
+public:
+    _RefCountedPtr(T* ptr = 0);  // Accepts responsibility for ptr
+    _RefCountedPtr(const _RefCountedPtr&lt;T, traits&gt;&amp; other);
+    ~_RefCountedPtr();
+    _RefCountedPtr&lt;T, traits&gt;&amp; operator=(const _RefCountedPtr&lt;T, traits&gt;&amp; rhs);
+    T* operator-&gt;();
+    const T* operator-&gt;() const;
+    T&amp; operator*();
+    const T&amp; operator*() const;
+    operator const T* () const;
+    bool isNonUnique() const;
+protected:
+    T* ptr_;
+    int* refCount_;
+private:
+};
+
+template &lt;class T, class traits&gt;
+_RefCountedPtr&lt;T, traits&gt;::_RefCountedPtr(T* ptr)
+    : ptr_(ptr),
+    refCount_(0)
+{
+    #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+    #endif
+        if (ptr_ != 0)
+            refCount_ = new int(1);
+    #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            traits::destroy(ptr_);
+            throw;
+        }
+    #else
+        if (refCount_ == 0)
+        {
+            traits::destroy(ptr_);
+            __msl_error(&quot;_RefCountedPtr out of memory&quot;);
+        }
+    #endif
+}
+
+template &lt;class T, class traits&gt;
+_RefCountedPtr&lt;T, traits&gt;::_RefCountedPtr(const _RefCountedPtr&lt;T, traits&gt;&amp; other)
+    : ptr_(other.ptr_),
+    refCount_(other.refCount_)
+{
+    if (refCount_ != 0)
+        ++(*refCount_);
+}
+
+template &lt;class T, class traits&gt;
+_RefCountedPtr&lt;T, traits&gt;::~_RefCountedPtr()
+{
+    if (refCount_ != 0 &amp;&amp; --(*refCount_) == 0)
+    {
+        traits::destroy(ptr_);
+        delete refCount_;
+    }
+}
+
+template &lt;class T, class traits&gt;
+_RefCountedPtr&lt;T, traits&gt;&amp;
+_RefCountedPtr&lt;T, traits&gt;::operator=(const _RefCountedPtr&lt;T, traits&gt;&amp; rhs)
+{
+    if (ptr_ != rhs.ptr_)
+    {
+        if (refCount_ != 0 &amp;&amp; --(*refCount_) == 0)
+        {
+            traits::destroy(ptr_);
+            delete refCount_;
+        }
+        ptr_ = rhs.ptr_;
+        refCount_ = rhs.refCount_;
+        if (refCount_ != 0)
+            ++(*refCount_);
+    }
+    return *this;
+}
+
+template &lt;class T, class traits&gt;
+inline
+T*
+_RefCountedPtr&lt;T, traits&gt;::operator-&gt;()
+{
+    return ptr_;
+}
+
+template &lt;class T, class traits&gt;
+inline
+const T*
+_RefCountedPtr&lt;T, traits&gt;::operator-&gt;() const
+{
+    return ptr_;
+}
+
+template &lt;class T, class traits&gt;
+inline
+T&amp;
+_RefCountedPtr&lt;T, traits&gt;::operator*()
+{
+    return *ptr_;
+}
+
+template &lt;class T, class traits&gt;
+inline
+const T&amp;
+_RefCountedPtr&lt;T, traits&gt;::operator*() const
+{
+    return *ptr_;
+}
+
+template &lt;class T, class traits&gt;
+inline
+_RefCountedPtr&lt;T, traits&gt;::operator const T* () const
+{
+    return ptr_;
+}
+
+template &lt;class T, class traits&gt;
+inline
+bool
+_RefCountedPtr&lt;T, traits&gt;::isNonUnique() const
+{
+    if (refCount_ == 0)
+        return false;
+    return *refCount_ != 1;
+}
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _REFCOUNTEDPTR_H
+
+// hh 980804 changed __std() to _STD::
+// hh 990120 changed name of MSIPL flags
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mem___t_r_k_8h" kind="file" language="C++">
+    <compoundname>mem_TRK.h</compoundname>
+    <includes refid="stddef_8h" local="yes">stddef.h</includes>
+    <includedby refid="dolphin__trk_8c" local="yes">dolphin_trk.c</includedby>
+    <includedby refid="mem___t_r_k_8c" local="yes">mem_TRK.c</includedby>
+    <includedby refid="msgbuf_8c" local="yes">msgbuf.c</includedby>
+    <includedby refid="nubevent_8c" local="yes">nubevent.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>mem_TRK.h</label>
+        <link refid="mem___t_r_k_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>mem_TRK.h</label>
+        <link refid="mem___t_r_k_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin_trk.c</label>
+        <link refid="dolphin__trk_8c"/>
+      </node>
+      <node id="3">
+        <label>mem_TRK.c</label>
+        <link refid="mem___t_r_k_8c"/>
+      </node>
+      <node id="4">
+        <label>msgbuf.c</label>
+        <link refid="msgbuf_8c"/>
+      </node>
+      <node id="5">
+        <label>nubevent.c</label>
+        <link refid="nubevent_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="mem___t_r_k_8h_1ae1829cf990f5880320f963cbc8551cd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * TRK_memset</definition>
+        <argsstring>(void *dst, int val, size_t n)</argsstring>
+        <name>TRK_memset</name>
+        <param>
+          <type>void *</type>
+          <declname>dst</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mem_TRK.h" line="10" column="6" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mem_TRK.h" declline="10" declcolumn="6"/>
+        <referencedby refid="msgbuf_8h_1a4b43fb9c685a3cc4737d372c3f03d5e2" compoundref="msgbuf_8c" startline="71" endline="79">TRKResetBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mem___t_r_k_8h_1a28146942b9a1ecd9c0be8dfa28ed635a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * TRK_memcpy</definition>
+        <argsstring>(void *dst, const void *src, size_t n)</argsstring>
+        <name>TRK_memcpy</name>
+        <param>
+          <type>void *</type>
+          <declname>dst</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mem_TRK.h" line="11" column="6" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mem_TRK.h" declline="11" declcolumn="6"/>
+        <referencedby refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" compoundref="dolphin__trk_8c" startline="110" endline="115">TRK_copy_vector</referencedby>
+        <referencedby refid="msgbuf_8h_1aedec72cf517c6ab389da4702e6aee60c" compoundref="msgbuf_8c" startline="99" endline="131">TRKAppendBuffer</referencedby>
+        <referencedby refid="nubevent_8c_1aa47ec2c457686cb06e72f25a27e5cbf6" compoundref="nubevent_8c" startline="19" endline="22">TRKCopyEvent</referencedby>
+        <referencedby refid="msgbuf_8h_1a75e6c9a6e4a8daad502c42e8422c7087" compoundref="msgbuf_8c" startline="133" endline="156">TRKReadBuffer</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>METROTRK_PORTABLE_MEM_TRK_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>METROTRK_PORTABLE_MEM_TRK_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stddef_8h" kindref="compound">stddef.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="mem___t_r_k_8h_1ae1829cf990f5880320f963cbc8551cd7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="mem___t_r_k_8h_1ae1829cf990f5880320f963cbc8551cd7" kindref="member">TRK_memset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>dst,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>val,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="11" refid="mem___t_r_k_8h_1a28146942b9a1ecd9c0be8dfa28ed635a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="mem___t_r_k_8h_1a28146942b9a1ecd9c0be8dfa28ed635a" kindref="member">TRK_memcpy</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>dst,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>src,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METROTRK_PORTABLE_MEM_TRK_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mem_TRK.h"/>
+  </compounddef>
+</doxygen>

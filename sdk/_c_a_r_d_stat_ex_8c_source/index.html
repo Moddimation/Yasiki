@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CARDStatEx.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardstatexc">File CARDStatEx.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_2dfa3b55db09c289c0394a464581d568/"><strong>card</strong></a> <strong>&gt;</strong> <a href="../_c_a_r_d_stat_ex_8c/"><strong>CARDStatEx.c</strong></a></p>
+<p><a href="../_c_a_r_d_stat_ex_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/card.h&gt;
+
+#include &lt;string.h&gt;
+
+#include &quot;CARDPrivate.h&quot;
+
+s32
+__CARDGetStatusEx (s32 chan, long fileNo, struct CARDDir* dirent)
+{
+    ASSERTLINE (0x45, 0 &lt;= chan &amp;&amp; chan &lt; 2);
+    ASSERTLINE (0x46, 0 &lt;= fileNo &amp;&amp; fileNo &lt; CARD_MAX_FILE);
+
+    if ((fileNo &lt; 0) || (fileNo &gt;= CARD_MAX_FILE))
+    {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+
+    {
+        struct CARDControl* card;
+        struct CARDDir*     dir;
+        struct CARDDir*     ent;
+        s32                 result = __CARDGetControlBlock (chan, &amp;card);
+
+        if (result &lt; 0)
+        {
+            return result;
+        }
+
+        dir = __CARDGetDirBlock (card);
+        ent = &amp;dir[fileNo];
+        result = __CARDAccess (ent);
+        if (result == CARD_RESULT_NOPERM)
+        {
+            result = __CARDIsPublic (ent);
+        }
+        if (result &gt;= 0)
+        {
+            memcpy (dirent, ent, 0x40);
+        }
+        return __CARDPutControlBlock (card, result);
+    }
+}
+
+s32
+__CARDSetStatusExAsync (s32             chan,
+                        long            fileNo,
+                        struct CARDDir* dirent,
+                        void            (*callback) (long, long))
+{
+    struct CARDControl* card;
+    struct CARDDir*     dir;
+    struct CARDDir*     ent;
+    s32                 result;
+    u16*                p;
+    s32                 i;
+
+    ASSERTLINE (0x81, 0 &lt;= fileNo &amp;&amp; fileNo &lt; CARD_MAX_FILE);
+    ASSERTLINE (0x82, 0 &lt;= chan &amp;&amp; chan &lt; 2);
+    ASSERTLINE (0x83, *dirent-&gt;fileName != 0xff &amp;&amp; *dirent-&gt;fileName != 0x00);
+
+    if ((fileNo &lt; 0) || (fileNo &gt;= CARD_MAX_FILE) || ((u8)dirent-&gt;fileName[0] == 0xFF) ||
+        ((u8)dirent-&gt;fileName[0] == 0))
+    {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+
+    result = __CARDGetControlBlock (chan, &amp;card);
+    if (result &lt; 0)
+    {
+        return result;
+    }
+    dir = __CARDGetDirBlock (card);
+    ent = &amp;dir[fileNo];
+    result = __CARDAccess (ent);
+    if (result &lt; 0)
+    {
+        return __CARDPutControlBlock (card, result);
+    }
+    for (p = dirent-&gt;fileName; p &lt; (u8*)&amp;dirent-&gt;time; p++)
+    {
+        if (*p != 0)
+        {
+            continue;
+        }
+        while ((++p) &lt; (u8*)&amp;dirent-&gt;time) { *p = 0; }
+        break;
+    }
+    if ((memcmp (&amp;ent-&gt;fileName, &amp;dirent-&gt;fileName, 32) != 0) ||
+        (memcmp (ent-&gt;gameName, dirent-&gt;gameName, 4) != 0) ||
+        (memcmp (ent-&gt;company, dirent-&gt;company, 2) != 0))
+    {
+        for (i = 0; i &lt; CARD_MAX_FILE; i++)
+        {
+            if (i != fileNo)
+            {
+                struct CARDDir* ent = &amp;dir[i]; // sure, just redeclare ent again...
+                if (((u8)ent-&gt;gameName[0] != 0xFF) &amp;&amp;
+                    (memcmp (&amp;ent-&gt;gameName, &amp;dirent-&gt;gameName, 4) == 0) &amp;&amp;
+                    (memcmp (&amp;ent-&gt;company, &amp;dirent-&gt;company, 2) == 0) &amp;&amp;
+                    (memcmp (&amp;ent-&gt;fileName, &amp;dirent-&gt;fileName, 0x20) == 0))
+                {
+                    return __CARDPutControlBlock (card, -7);
+                }
+            }
+        }
+        memcpy (&amp;ent-&gt;fileName, &amp;dirent-&gt;fileName, 0x20);
+        memcpy (&amp;ent-&gt;gameName, &amp;dirent-&gt;gameName, 4);
+        memcpy (&amp;ent-&gt;company, &amp;dirent-&gt;company, 2);
+    }
+    ent-&gt;time = dirent-&gt;time;
+    ent-&gt;bannerFormat = dirent-&gt;bannerFormat;
+    ent-&gt;iconAddr = dirent-&gt;iconAddr;
+    ent-&gt;iconFormat = dirent-&gt;iconFormat;
+    ent-&gt;iconSpeed = dirent-&gt;iconSpeed;
+    ent-&gt;commentAddr = dirent-&gt;commentAddr;
+    ent-&gt;permission = dirent-&gt;permission;
+    ent-&gt;copyTimes = dirent-&gt;copyTimes;
+    result = __CARDUpdateDir (chan, callback);
+    if (result &lt; 0)
+    {
+        __CARDPutControlBlock (card, result);
+    }
+    return result;
+}
+
+s32
+__CARDSetStatusEx (s32 chan, long fileNo, struct CARDDir* dirent)
+{
+    s32 result = __CARDSetStatusExAsync (chan, fileNo, dirent, &amp;__CARDSyncCallback);
+
+    if (result &lt; 0)
+    {
+        return result;
+    }
+    return __CARDSync (chan);
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

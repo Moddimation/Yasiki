@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="flush__cache_8c" kind="file" language="C++">
+    <compoundname>flush_cache.c</compoundname>
+    <includes refid="flush__cache_8h" local="yes">Processor/ppc/Generic/flush_cache.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>Processor/ppc/Generic/flush_cache.h</label>
+        <link refid="flush__cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>flush_cache.c</label>
+        <link refid="flush__cache_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="flush__cache_8c_1a3deddc95053640c2dec7caeb0e6c2342" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>asm void</type>
+        <definition>asm void TRK_flush_cache</definition>
+        <argsstring>(register void *param_1, register int param_2)</argsstring>
+        <name>TRK_flush_cache</name>
+        <param>
+          <type>register void *</type>
+          <declname>param_1</declname>
+        </param>
+        <param>
+          <type>register int</type>
+          <declname>param_2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/flush_cache.c" line="3" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/flush_cache.c" bodystart="3" bodyend="26"/>
+        <references refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" compoundref="e__lgamma__r_8c" startline="146">r3</references>
+        <references refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" compoundref="e__lgamma__r_8c" startline="147">r4</references>
+        <references refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" compoundref="e__lgamma__r_8c" startline="148">r5</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="flush__cache_8h" kindref="compound">Processor/ppc/Generic/flush_cache.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="flush__cache_8c_1a3deddc95053640c2dec7caeb0e6c2342" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="flush__cache_8c_1a3deddc95053640c2dec7caeb0e6c2342" kindref="member">TRK_flush_cache</ref>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>param_1,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>param_2)</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__<sp/></highlight><highlight class="comment">//<sp/>clang-format<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>nofralloc</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>0xFFFF</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>0xFFF1</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>and<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>param_1</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>subf<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>param_1</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>add<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>param_2,<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">loop:</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>dcbst<sp/>0,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>dcbf<sp/>0,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>icbi<sp/>0,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>addic<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>8</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>addic.<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>-8</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>bge<sp/>loop</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>isync</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>blr</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>clang-format<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/flush_cache.c"/>
+  </compounddef>
+</doxygen>

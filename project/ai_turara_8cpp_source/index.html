@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File aiTurara.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-aituraracpp">File aiTurara.cpp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_b9837e7912a2e62dbadd80ce5876b790/"><strong>Project</strong></a> <strong>&gt;</strong> <a href="../dir_e9f5f664b7d8a26223d14dd7fedffb79/"><strong>sources</strong></a> <strong>&gt;</strong> <a href="../dir_588f12229f86c3f2fa7350d59c3aa35e/"><strong>sotoike</strong></a> <strong>&gt;</strong> <a href="../dir_140902fe932dc0528f07b51ac7694816/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../ai_turara_8cpp/"><strong>aiTurara.cpp</strong></a></p>
+<p><a href="../ai_turara_8cpp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &quot;Sotoike/AITurara.h&quot;
+
+extern void freeCharacterByIndex (int i_idx);
+
+// Required for .data to match.
+static float dummy[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
+static float dummy2[] = { 1.0f, 0.95f, 0.9f, 0.85f, 1.0f, 0.9f, 0.75f, 0.3f };
+
+typedef bool (AITurara::*behaviorFunc) (void);
+
+struct AITurara_State
+{
+    u16          StateId;
+    behaviorFunc InitFunc;
+    behaviorFunc ExecFunc;
+};
+
+static AITurara_State AITurara_Behaviors[] = {
+    { 0, &amp;AITurara::procInit_init, &amp;AITurara::procInit },
+    { 1, &amp;AITurara::procWait_init, &amp;AITurara::procWait }
+};
+
+AITurara::AITurara () : mRespawnTimer (0), mScale (1.0f) {}
+
+AITurara::~AITurara ()
+{
+    for (int i = 0; i &lt; mIcicleCount; i++)
+    {
+        freeCharacterByIndex (mIcicleCharacterIdxs[i]);
+    }
+}
+
+void
+AITurara::doBehaviorInit ()
+{
+    AITurara_State* state = AITurara_Behaviors;
+    AITurara_State* end = AITurara_Behaviors + 2;
+
+    AITurara_State* t;
+
+    while (true)
+    {
+        if (state-&gt;StateId == mCurState)
+        {
+            t = state;
+            break;
+        }
+
+        state++;
+
+        if (state == end)
+        {
+            t = NULL;
+            break;
+        }
+    }
+
+    if (t != NULL)
+    {
+        (this-&gt;*t-&gt;InitFunc)();
+    }
+}
+
+void
+AITurara::doBehavior ()
+{
+}
+
+bool
+AITurara::FUN_800ea44c (Koga::CharacterEvent* msg)
+{
+    msg-&gt;mUnknownEntityBools[0xD8] = true;
+    return true;
+}
+
+s32
+AITurara::unkEnemyStrategyFunc01 ()
+{
+    return FALSE;
+}
+
+bool
+AITurara::onPlayerLeftRoom (Koga::CharacterEvent* msg)
+{
+    return true;
+}
+
+void
+AITurara::spawnIcicles ()
+{
+}
+
+bool
+AITurara::procInit_init ()
+{
+    spawnIcicles();
+    setNextState (1);
+
+    return true;
+}
+
+bool
+AITurara::procInit ()
+{
+    return true;
+}
+
+bool
+AITurara::procWait_init ()
+{
+}
+
+bool
+AITurara::procWait ()
+{
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

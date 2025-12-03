@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File ctype.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-ctypec">File ctype.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>ctype.c</strong></a></p>
+<p><a href="../ctype_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;ctype.h&gt;</code></li>
+<li><code>#include &lt;stdio.h&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">const unsigned char</td>
+<td style="text-align: left;"><a href="#variable-__ctype_map"><strong>__ctype_map</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const unsigned char</td>
+<td style="text-align: left;"><a href="#variable-__lower_map"><strong>__lower_map</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const unsigned char</td>
+<td style="text-align: left;"><a href="#variable-__upper_map"><strong>__upper_map</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-isalnum"><strong>isalnum</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-isalpha"><strong>isalpha</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-iscntrl"><strong>iscntrl</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-isdigit"><strong>isdigit</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-isgraph"><strong>isgraph</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-islower"><strong>islower</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-isprint"><strong>isprint</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-ispunct"><strong>ispunct</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-isspace"><strong>isspace</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-isupper"><strong>isupper</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int()</td>
+<td style="text-align: left;"><a href="#function-isxdigit"><strong>isxdigit</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-tolower"><strong>tolower</strong></a> (int c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-toupper"><strong>toupper</strong></a> (int c) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ctrl"><strong>ctrl</strong></a>  <code>\_\_control\_char</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dhex"><strong>dhex</strong></a>  <code>([**hexd**](ctype_8c.md#define-hexd) \| [**digi**](ctype_8c.md#define-digi))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-digi"><strong>digi</strong></a>  <code>\_\_digit</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-hexd"><strong>hexd</strong></a>  <code>\_\_hex\_digit</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-lhex"><strong>lhex</strong></a>  <code>([**hexd**](ctype_8c.md#define-hexd) \| [**lowc**](ctype_8c.md#define-lowc))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-lowc"><strong>lowc</strong></a>  <code>\_\_lower\_case</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-motn"><strong>motn</strong></a>  <code>\_\_motion\_char</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-punc"><strong>punc</strong></a>  <code>\_\_punctuation</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spac"><strong>spac</strong></a>  <code>\_\_space\_char</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-uhex"><strong>uhex</strong></a>  <code>([**hexd**](ctype_8c.md#define-hexd) \| [**uppc**](ctype_8c.md#define-uppc))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-uppc"><strong>uppc</strong></a>  <code>\_\_upper\_case</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__ctype_map">variable __ctype_map</h3>
+<pre><code class="language-C++">const unsigned char __ctype_map[256];
+</code></pre>
+<hr>
+
+<h3 id="variable-__lower_map">variable __lower_map</h3>
+<pre><code class="language-C++">const unsigned char __lower_map[256];
+</code></pre>
+<hr>
+
+<h3 id="variable-__upper_map">variable __upper_map</h3>
+<pre><code class="language-C++">const unsigned char __upper_map[256];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-isalnum">function isalnum</h3>
+<pre><code class="language-C++">int() isalnum (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isalpha">function isalpha</h3>
+<pre><code class="language-C++">int() isalpha (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-iscntrl">function iscntrl</h3>
+<pre><code class="language-C++">int() iscntrl (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isdigit">function isdigit</h3>
+<pre><code class="language-C++">int() isdigit (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isgraph">function isgraph</h3>
+<pre><code class="language-C++">int() isgraph (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-islower">function islower</h3>
+<pre><code class="language-C++">int() islower (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isprint">function isprint</h3>
+<pre><code class="language-C++">int() isprint (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ispunct">function ispunct</h3>
+<pre><code class="language-C++">int() ispunct (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isspace">function isspace</h3>
+<pre><code class="language-C++">int() isspace (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isupper">function isupper</h3>
+<pre><code class="language-C++">int() isupper (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isxdigit">function isxdigit</h3>
+<pre><code class="language-C++">int() isxdigit (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-tolower">function tolower</h3>
+<pre><code class="language-C++">int tolower (
+    int c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-toupper">function toupper</h3>
+<pre><code class="language-C++">int toupper (
+    int c
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-ctrl">define ctrl</h3>
+<pre><code class="language-C++">#define ctrl `__control_char`
+</code></pre>
+<hr>
+
+<h3 id="define-dhex">define dhex</h3>
+<pre><code class="language-C++">#define dhex `( hexd | digi )`
+</code></pre>
+<hr>
+
+<h3 id="define-digi">define digi</h3>
+<pre><code class="language-C++">#define digi `__digit`
+</code></pre>
+<hr>
+
+<h3 id="define-hexd">define hexd</h3>
+<pre><code class="language-C++">#define hexd `__hex_digit`
+</code></pre>
+<hr>
+
+<h3 id="define-lhex">define lhex</h3>
+<pre><code class="language-C++">#define lhex `( hexd | lowc )`
+</code></pre>
+<hr>
+
+<h3 id="define-lowc">define lowc</h3>
+<pre><code class="language-C++">#define lowc `__lower_case`
+</code></pre>
+<hr>
+
+<h3 id="define-motn">define motn</h3>
+<pre><code class="language-C++">#define motn `__motion_char`
+</code></pre>
+<hr>
+
+<h3 id="define-punc">define punc</h3>
+<pre><code class="language-C++">#define punc `__punctuation`
+</code></pre>
+<hr>
+
+<h3 id="define-spac">define spac</h3>
+<pre><code class="language-C++">#define spac `__space_char`
+</code></pre>
+<hr>
+
+<h3 id="define-uhex">define uhex</h3>
+<pre><code class="language-C++">#define uhex `( hexd | uppc )`
+</code></pre>
+<hr>
+
+<h3 id="define-uppc">define uppc</h3>
+<pre><code class="language-C++">#define uppc `__upper_case`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

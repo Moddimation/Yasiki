@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="s__matherr_8c" kind="file" language="C++">
+    <compoundname>s_matherr.c</compoundname>
+    <includes refid="fdlibm_8h" local="yes">fdlibm.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>s_matherr.c</label>
+        <link refid="s__matherr_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fdlibm.h</label>
+        <link refid="fdlibm_8h"/>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="s__matherr_8c_1ae79ea974e2ce3b701e2c122c394c260f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int matherr</definition>
+        <argsstring>(struct exception *x)</argsstring>
+        <name>matherr</name>
+        <param>
+          <type>struct <ref refid="structexception" kindref="compound">exception</ref> *</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_matherr.c" line="21" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_matherr.c" bodystart="21" bodyend="28"/>
+        <references refid="structexception_1a96cbf8c497d14d54a4ac98533b24b6b6" compoundref="fdlibm_8h" startline="65">exception::arg1</references>
+        <referencedby refid="k__standard_8c_1aaa2b2c25f94d1826d2b501dd16794bf4" compoundref="k__standard_8c" startline="82" endline="738">__kernel_standard</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Floating_Point<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>@(#)s_matherr.c<sp/>1.2<sp/>95/01/04<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>$Id:<sp/>s_matherr.c,v<sp/>1.2.4.1<sp/>1999/12/06<sp/>19:47:31<sp/>fassiott<sp/>Exp<sp/>$<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>====================================================</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>1993<sp/>by<sp/>Sun<sp/>Microsystems,<sp/>Inc.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Developed<sp/>at<sp/>SunPro,<sp/>a<sp/>Sun<sp/>Microsystems,<sp/>Inc.<sp/>business.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and<sp/>distribute<sp/>this</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>software<sp/>is<sp/>freely<sp/>granted,<sp/>provided<sp/>that<sp/>this<sp/>notice<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>is<sp/>preserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>====================================================</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fdlibm_8h" kindref="compound">fdlibm.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__STDC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="s__matherr_8c_1ae79ea974e2ce3b701e2c122c394c260f" kindref="member">matherr</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structexception" kindref="compound">exception</ref><sp/>*x)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="s__matherr_8c_1ae79ea974e2ce3b701e2c122c394c260f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="s__matherr_8c_1ae79ea974e2ce3b701e2c122c394c260f" kindref="member">matherr</ref>(x)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structexception" kindref="compound">exception</ref><sp/>*x;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n=0;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(x-&gt;<ref refid="structexception_1a96cbf8c497d14d54a4ac98533b24b6b6" kindref="member">arg1</ref>!=x-&gt;<ref refid="structexception_1a96cbf8c497d14d54a4ac98533b24b6b6" kindref="member">arg1</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>n;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>_No_Floating_Point<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/s_matherr.c"/>
+  </compounddef>
+</doxygen>

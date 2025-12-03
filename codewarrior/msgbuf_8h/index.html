@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File msgbuf.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-msgbufh">File msgbuf.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_25028620cc1a8a9857c414f885e69890/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_ecf524e1d45118e058413ae4d34b2285/"><strong>Priv</strong></a> <strong>&gt;</strong> <a href="../dir_ce9d0fbd51586ee7cfe465fa88acc648/"><strong>Portable</strong></a> <strong>&gt;</strong> <a href="./"><strong>msgbuf.h</strong></a></p>
+<p><a href="../msgbuf_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "trk.h"</code></li>
+<li><code>#include "stddef.h"</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkappendbuffer"><strong>TRKAppendBuffer</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * msg, const void * data, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkappendbuffer1_ui16"><strong>TRKAppendBuffer1_ui16</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, const u16 data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkappendbuffer1_ui32"><strong>TRKAppendBuffer1_ui32</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, const u32 data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkappendbuffer1_ui64"><strong>TRKAppendBuffer1_ui64</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, const u64 data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkappendbuffer1_ui8"><strong>TRKAppendBuffer1_ui8</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, const u8 data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkappendbuffer_ui32"><strong>TRKAppendBuffer_ui32</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, const u32 * data, int count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkappendbuffer_ui8"><strong>TRKAppendBuffer_ui8</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, const u8 * data, int count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-trkgetbuffer"><strong>TRKGetBuffer</strong></a> (int idx) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkgetfreebuffer"><strong>TRKGetFreeBuffer</strong></a> (int * msgID, <a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> ** outMsg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkinitializemessagebuffers"><strong>TRKInitializeMessageBuffers</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkreadbuffer"><strong>TRKReadBuffer</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * msg, void * data, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkreadbuffer1_ui16"><strong>TRKReadBuffer1_ui16</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, u16 * data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkreadbuffer1_ui32"><strong>TRKReadBuffer1_ui32</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, u32 * data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkreadbuffer1_ui64"><strong>TRKReadBuffer1_ui64</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, u64 * data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkreadbuffer1_ui8"><strong>TRKReadBuffer1_ui8</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, u8 * data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkreadbuffer_ui32"><strong>TRKReadBuffer_ui32</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, u32 * data, int count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkreadbuffer_ui8"><strong>TRKReadBuffer_ui8</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, u8 * data, int count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trkreleasebuffer"><strong>TRKReleaseBuffer</strong></a> (int idx) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trkresetbuffer"><strong>TRKResetBuffer</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * msg, BOOL keepData) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trksetbufferposition"><strong>TRKSetBufferPosition</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * msg, u32 pos) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-trkappendbuffer">function TRKAppendBuffer</h3>
+<pre><code class="language-C++">DSError TRKAppendBuffer (
+    TRKBuffer * msg,
+    const void * data,
+    size_t length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkappendbuffer1_ui16">function TRKAppendBuffer1_ui16</h3>
+<pre><code class="language-C++">DSError TRKAppendBuffer1_ui16 (
+    TRKBuffer * buffer,
+    const u16 data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkappendbuffer1_ui32">function TRKAppendBuffer1_ui32</h3>
+<pre><code class="language-C++">DSError TRKAppendBuffer1_ui32 (
+    TRKBuffer * buffer,
+    const u32 data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkappendbuffer1_ui64">function TRKAppendBuffer1_ui64</h3>
+<pre><code class="language-C++">DSError TRKAppendBuffer1_ui64 (
+    TRKBuffer * buffer,
+    const u64 data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkappendbuffer1_ui8">function TRKAppendBuffer1_ui8</h3>
+<pre><code class="language-C++">inline DSError TRKAppendBuffer1_ui8 (
+    TRKBuffer * buffer,
+    const u8 data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkappendbuffer_ui32">function TRKAppendBuffer_ui32</h3>
+<pre><code class="language-C++">DSError TRKAppendBuffer_ui32 (
+    TRKBuffer * buffer,
+    const u32 * data,
+    int count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkappendbuffer_ui8">function TRKAppendBuffer_ui8</h3>
+<pre><code class="language-C++">DSError TRKAppendBuffer_ui8 (
+    TRKBuffer * buffer,
+    const u8 * data,
+    int count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkgetbuffer">function TRKGetBuffer</h3>
+<pre><code class="language-C++">void * TRKGetBuffer (
+    int idx
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkgetfreebuffer">function TRKGetFreeBuffer</h3>
+<pre><code class="language-C++">DSError TRKGetFreeBuffer (
+    int * msgID,
+    TRKBuffer ** outMsg
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkinitializemessagebuffers">function TRKInitializeMessageBuffers</h3>
+<pre><code class="language-C++">DSError TRKInitializeMessageBuffers (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreadbuffer">function TRKReadBuffer</h3>
+<pre><code class="language-C++">DSError TRKReadBuffer (
+    TRKBuffer * msg,
+    void * data,
+    size_t length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreadbuffer1_ui16">function TRKReadBuffer1_ui16</h3>
+<pre><code class="language-C++">DSError TRKReadBuffer1_ui16 (
+    TRKBuffer * buffer,
+    u16 * data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreadbuffer1_ui32">function TRKReadBuffer1_ui32</h3>
+<pre><code class="language-C++">DSError TRKReadBuffer1_ui32 (
+    TRKBuffer * buffer,
+    u32 * data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreadbuffer1_ui64">function TRKReadBuffer1_ui64</h3>
+<pre><code class="language-C++">DSError TRKReadBuffer1_ui64 (
+    TRKBuffer * buffer,
+    u64 * data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreadbuffer1_ui8">function TRKReadBuffer1_ui8</h3>
+<pre><code class="language-C++">DSError TRKReadBuffer1_ui8 (
+    TRKBuffer * buffer,
+    u8 * data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreadbuffer_ui32">function TRKReadBuffer_ui32</h3>
+<pre><code class="language-C++">DSError TRKReadBuffer_ui32 (
+    TRKBuffer * buffer,
+    u32 * data,
+    int count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreadbuffer_ui8">function TRKReadBuffer_ui8</h3>
+<pre><code class="language-C++">DSError TRKReadBuffer_ui8 (
+    TRKBuffer * buffer,
+    u8 * data,
+    int count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkreleasebuffer">function TRKReleaseBuffer</h3>
+<pre><code class="language-C++">void TRKReleaseBuffer (
+    int idx
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkresetbuffer">function TRKResetBuffer</h3>
+<pre><code class="language-C++">void TRKResetBuffer (
+    TRKBuffer * msg,
+    BOOL keepData
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trksetbufferposition">function TRKSetBufferPosition</h3>
+<pre><code class="language-C++">DSError TRKSetBufferPosition (
+    TRKBuffer * msg,
+    u32 pos
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/msgbuf.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

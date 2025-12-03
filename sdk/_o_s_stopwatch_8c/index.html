@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSStopwatch.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osstopwatchc">File OSStopwatch.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSStopwatch.c</strong></a></p>
+<p><a href="../_o_s_stopwatch_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s64"><strong>s64</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscheckstopwatch"><strong>OSCheckStopwatch</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_stopwatch/"><strong>OSStopwatch</strong></a> * sw) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdumpstopwatch"><strong>OSDumpStopwatch</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_stopwatch/"><strong>OSStopwatch</strong></a> * sw) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osinitstopwatch"><strong>OSInitStopwatch</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_stopwatch/"><strong>OSStopwatch</strong></a> * sw, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * name) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osresetstopwatch"><strong>OSResetStopwatch</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_stopwatch/"><strong>OSStopwatch</strong></a> * sw) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osstartstopwatch"><strong>OSStartStopwatch</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_stopwatch/"><strong>OSStopwatch</strong></a> * sw) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osstopstopwatch"><strong>OSStopStopwatch</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_stopwatch/"><strong>OSStopwatch</strong></a> * sw) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-oscheckstopwatch">function OSCheckStopwatch</h3>
+<pre><code class="language-C++">s64 OSCheckStopwatch (
+    struct  OSStopwatch * sw
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osdumpstopwatch">function OSDumpStopwatch</h3>
+<pre><code class="language-C++">void OSDumpStopwatch (
+    struct  OSStopwatch * sw
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osinitstopwatch">function OSInitStopwatch</h3>
+<pre><code class="language-C++">void OSInitStopwatch (
+    struct  OSStopwatch * sw,
+    char * name
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osresetstopwatch">function OSResetStopwatch</h3>
+<pre><code class="language-C++">void OSResetStopwatch (
+    struct  OSStopwatch * sw
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osstartstopwatch">function OSStartStopwatch</h3>
+<pre><code class="language-C++">void OSStartStopwatch (
+    struct  OSStopwatch * sw
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osstopstopwatch">function OSStopStopwatch</h3>
+<pre><code class="language-C++">void OSStopStopwatch (
+    struct  OSStopwatch * sw
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/os/OSStopwatch.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

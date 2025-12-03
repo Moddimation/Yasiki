@@ -1,0 +1,422 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dvderror_8c" kind="file" language="C++">
+    <compoundname>dvderror.c</compoundname>
+    <includes refid="dvd_8h" local="no">dolphin/dvd.h</includes>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <includes refid="_o_s_private_8h" local="yes">../os/OSPrivate.h</includes>
+    <includes refid="dvd__private_8h" local="yes">dvd_private.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="31">
+        <label>dvd_private.h</label>
+        <link refid="dvd__private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>dvderror.c</label>
+        <link refid="dvderror_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>../os/OSPrivate.h</label>
+        <link refid="_o_s_private_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dvderror_8c_1ad1150ebc2ec902854e6601aa901b7b65" prot="public" static="yes" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 ErrorTable[]</definition>
+        <argsstring>[]</argsstring>
+        <name>ErrorTable</name>
+        <initializer>= { 0,          0x00023A00, 0x00062800, 0x00030200,
+                            0x00031100, 0x00052000, 0x00052001, 0x00052100,
+                            0x00052400, 0x00052401, 0x00052402, 0x000B5A01,
+                            0x00056300, 0x00020401, 0x00020400, 0x00040800 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" line="7" column="12" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" bodystart="7" bodyend="10"/>
+        <referencedby refid="dvderror_8c_1af97783b80adc0ceb96cd2dcabc062f0a" compoundref="dvderror_8c" startline="13" endline="26">ErrorCode2Num</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dvderror_8c_1af97783b80adc0ceb96cd2dcabc062f0a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+        <definition>u8 ErrorCode2Num</definition>
+        <argsstring>(u32 errorCode)</argsstring>
+        <name>ErrorCode2Num</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>errorCode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" line="13" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" bodystart="13" bodyend="26"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="dvderror_8c_1ad1150ebc2ec902854e6601aa901b7b65" compoundref="dvderror_8c" startline="7" endline="10">ErrorTable</references>
+        <referencedby refid="dvderror_8c_1a0db86aaf5931b96b07c7675dc82c9d36" compoundref="dvderror_8c" startline="29" endline="53">Convert</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvderror_8c_1a0db86aaf5931b96b07c7675dc82c9d36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+        <definition>u8 Convert</definition>
+        <argsstring>(u32 error)</argsstring>
+        <name>Convert</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" line="29" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" bodystart="29" bodyend="53"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="dvderror_8c_1af97783b80adc0ceb96cd2dcabc062f0a" compoundref="dvderror_8c" startline="13" endline="26">ErrorCode2Num</references>
+        <referencedby refid="dvd__private_8h_1aad2337080b462c7670507b258df70242" compoundref="dvderror_8c" startline="56" endline="65">__DVDStoreErrorCode</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvderror_8c_1adf7df5e261c2ed60440e22e3e7a79b99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DVDStoreErrorCode</definition>
+        <argsstring>(u32 error)</argsstring>
+        <name>__DVDStoreErrorCode</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" line="56" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" bodystart="56" bodyend="65"/>
+        <references refid="_o_s_private_8h_1aea31a8b428328669d73acb55c9f31607" compoundref="_o_s_rtc_8c" startline="209" endline="212">__OSLockSramEx</references>
+        <references refid="_o_s_private_8h_1a5ec2f512c3229898f35215c3430a2fd0" compoundref="_o_s_rtc_8c" startline="258" endline="261">__OSUnlockSramEx</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="dvderror_8c_1a0db86aaf5931b96b07c7675dc82c9d36" compoundref="dvderror_8c" startline="29" endline="53">Convert</references>
+        <references refid="struct_o_s_sram_ex_1a22d5756921f813b13bdb47d6c26e4acc" compoundref="_o_s_rtc_8h" startline="37">OSSramEx::dvdErrorCode</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="dvd_8c_1a343ccced30206ffdf6dfcbf485b1f6ec" compoundref="dvd_8c" startline="850" endline="1033">cbForStateBusy</referencedby>
+        <referencedby refid="dvd_8c_1a18f405befdb60a67ba89c0c2366ec4bc" compoundref="dvd_8c" startline="517" endline="546">cbForStateCheckID1</referencedby>
+        <referencedby refid="dvd_8c_1a68cbbc980f61bc6dd2a28b3f32bbaad0" compoundref="dvd_8c" startline="549" endline="572">cbForStateCheckID2</referencedby>
+        <referencedby refid="dvd_8c_1a612a535857930916f4415f6f33f29efe" compoundref="dvd_8c" startline="575" endline="602">cbForStateCheckID3</referencedby>
+        <referencedby refid="dvd_8c_1afe5bd6d17a918038855e9dd391384f99" compoundref="dvd_8c" startline="649" endline="674">cbForStateCoverClosed</referencedby>
+        <referencedby refid="dvd_8c_1a0d4c4474433cb3dfc3b4c2cd33940434" compoundref="dvd_8c" startline="287" endline="381">cbForStateGettingError</referencedby>
+        <referencedby refid="dvd_8c_1a332022861ea62e781af413a314452b15" compoundref="dvd_8c" startline="431" endline="468">cbForStateGoToRetry</referencedby>
+        <referencedby refid="dvd_8c_1a11403b75e23bf6f145a48ea2134a251f" compoundref="dvd_8c" startline="384" endline="402">cbForUnrecoveredError</referencedby>
+        <referencedby refid="dvd_8c_1a1652a65c9c98215b78034dc1ff6795fd" compoundref="dvd_8c" startline="405" endline="422">cbForUnrecoveredErrorRetry</referencedby>
+        <referencedby refid="dvd_8c_1a395869bf12c37246e1c897b7f7477a17" compoundref="dvd_8c" startline="188" endline="192">stateError</referencedby>
+        <referencedby refid="dvd_8c_1a6d36b6c785b14d8f907b6c0cf0d18a55" compoundref="dvd_8c" startline="195" endline="219">stateTimeout</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="dvd_8h" kindref="compound">dolphin/dvd.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../os/OSPrivate.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dvd__private_8h" kindref="compound">dvd_private.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="dvderror_8c_1ad1150ebc2ec902854e6601aa901b7b65" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="dvderror_8c_1ad1150ebc2ec902854e6601aa901b7b65" kindref="member">ErrorTable</ref>[]<sp/>=<sp/>{<sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00023A00,<sp/>0x00062800,<sp/>0x00030200,</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00031100,<sp/>0x00052000,<sp/>0x00052001,<sp/>0x00052100,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00052400,<sp/>0x00052401,<sp/>0x00052402,<sp/>0x000B5A01,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00056300,<sp/>0x00020401,<sp/>0x00020400,<sp/>0x00040800<sp/>};</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></highlight></codeline>
+<codeline lineno="13" refid="dvderror_8c_1af97783b80adc0ceb96cd2dcabc062f0a" refkind="member"><highlight class="normal"><ref refid="dvderror_8c_1af97783b80adc0ceb96cd2dcabc062f0a" kindref="member">ErrorCode2Num</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errorCode</ref>)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref><sp/>=<sp/>0;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref><sp/>&lt;<sp/>16;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref>++)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errorCode</ref><sp/>==<sp/><ref refid="dvderror_8c_1ad1150ebc2ec902854e6601aa901b7b65" kindref="member">ErrorTable</ref>[<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref>])</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>29;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></highlight></codeline>
+<codeline lineno="29" refid="dvderror_8c_1a0db86aaf5931b96b07c7675dc82c9d36" refkind="member"><highlight class="normal"><ref refid="dvderror_8c_1a0db86aaf5931b96b07c7675dc82c9d36" kindref="member">Convert</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">error</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">statusCode</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errorCode</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errorNum</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">error</ref><sp/>==<sp/>0x01234567)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>)-1;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">error</ref><sp/>==<sp/>0x01234568)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>)-2;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">statusCode</ref><sp/>=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">error</ref><sp/>&gt;&gt;<sp/>24)<sp/>&amp;<sp/>0xFF;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errorCode</ref><sp/><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">error</ref><sp/>&amp;<sp/>0x00FFFFFF;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errorNum</ref><sp/><sp/><sp/>=<sp/><ref refid="dvderror_8c_1af97783b80adc0ceb96cd2dcabc062f0a" kindref="member">ErrorCode2Num</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errorCode</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">statusCode</ref><sp/>&gt;=<sp/>6)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">statusCode</ref><sp/>=<sp/>6;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">statusCode</ref><sp/>*<sp/>30<sp/>+<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">errorNum</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="dvd__private_8h_1aad2337080b462c7670507b258df70242" refkind="member"><highlight class="normal"><ref refid="dvderror_8c_1adf7df5e261c2ed60440e22e3e7a79b99" kindref="member">__DVDStoreErrorCode</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">error</ref>)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_sram_ex" kindref="compound">OSSramEx</ref>*<sp/>sram;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">num</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">num</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="dvderror_8c_1a0db86aaf5931b96b07c7675dc82c9d36" kindref="member">Convert</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">error</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>sram<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_o_s_private_8h_1aea31a8b428328669d73acb55c9f31607" kindref="member">__OSLockSramEx</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>sram-&gt;<ref refid="struct_o_s_sram_ex_1a22d5756921f813b13bdb47d6c26e4acc" kindref="member">dvdErrorCode</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">num</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_private_8h_1a5ec2f512c3229898f35215c3430a2fd0" kindref="member">__OSUnlockSramEx</ref><sp/>(<ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c"/>
+  </compounddef>
+</doxygen>

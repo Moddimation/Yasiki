@@ -1,0 +1,532 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="streambuf" kind="file" language="C++">
+    <compoundname>streambuf</compoundname>
+    <includedby refid="locale_8cpp" local="no">locale.cpp</includedby>
+    <includedby refid="streambuf_8h" local="no">streambuf.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>streambuf</label>
+        <link refid="streambuf"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>streambuf.h</label>
+        <link refid="streambuf_8h"/>
+      </node>
+      <node id="2">
+        <label>locale.cpp</label>
+        <link refid="locale_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:59:46<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.8.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>streambuf</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_STREAMBUF</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_STREAMBUF</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;iosfwd&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;algorithm&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;string&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ios&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_streambuf</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>Types:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::pos_type<sp/>pos_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::off_type<sp/>off_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>~basic_streambuf();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.locales<sp/>locales:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale<sp/>pubimbue(const<sp/>locale<sp/>&amp;loc);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale<sp/>getloc()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.buffer<sp/>buffer<sp/>and<sp/>positioning:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_streambuf*<sp/>pubsetbuf(char_type*<sp/>s,<sp/>streamsize<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pos_type<sp/>pubseekoff(off_type<sp/>off,<sp/>ios_base::seekdir<sp/>way,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pos_type<sp/>pubseekpos(pos_type<sp/>sp,<sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/><sp/>pubsync();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>Get<sp/>and<sp/>put<sp/>areas:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.pub.get<sp/>Get<sp/>area:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>in_avail();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int_type<sp/>snextc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int_type<sp/>sbumpc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int_type<sp/>sgetc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>sgetn(char_type*<sp/>s,<sp/>streamsize<sp/><sp/>n);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.pub.pback<sp/>Putback:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int_type<sp/>sputbackc(char_type<sp/>c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int_type<sp/>sungetc();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.pub.put<sp/>Put<sp/>area:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int_type<sp/><sp/><sp/>sputc(char_type<sp/>c);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>sputn(const<sp/>char_type*<sp/>s,<sp/>streamsize<sp/><sp/>n);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_streambuf();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.get.area<sp/>Get<sp/>area:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>eback()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>gptr()<sp/><sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>egptr()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/><sp/><sp/><sp/>gbump(int<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/><sp/><sp/><sp/>setg(char_type*<sp/>gbeg,<sp/>char_type*<sp/>gnext,<sp/>char_type*<sp/>gend);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.put.area<sp/>Put<sp/>area:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>pbase()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>pptr()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>epptr()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/><sp/><sp/><sp/>pbump(int<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/><sp/><sp/><sp/>setp(char_type*<sp/>pbeg,<sp/>char_type*<sp/>pend);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.virtuals<sp/>virtual<sp/>functions:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.virt.locales<sp/>Locales:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>void<sp/>imbue(const<sp/>locale<sp/>&amp;loc);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.virt.buffer<sp/>Buffer<sp/>management<sp/>and<sp/>positioning:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>basic_streambuf*<sp/>setbuf(char_type*<sp/>s,<sp/>streamsize<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>pos_type<sp/>seekoff(off_type<sp/>off,<sp/>ios_base::seekdir<sp/>way,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>pos_type<sp/>seekpos(pos_type<sp/>sp,<sp/>ios_base::openmode<sp/>which<sp/>=<sp/>ios_base::in<sp/>|<sp/>ios_base::out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int<sp/><sp/><sp/><sp/><sp/><sp/>sync();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.virt.get<sp/>Get<sp/>area:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>streamsize<sp/>showmanyc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>streamsize<sp/>xsgetn(char_type*<sp/>s,<sp/>streamsize<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/><sp/><sp/>underflow();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/><sp/><sp/>uflow();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.virt.pback<sp/>Putback:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/><sp/><sp/>pbackfail(int_type<sp/>c<sp/>=<sp/>traits::eof());</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.streambuf.virt.put<sp/>Put<sp/>area:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>streamsize<sp/>xsputn(const<sp/>char_type*<sp/>s,<sp/>streamsize<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>int_type<sp/><sp/><sp/>overflow<sp/>(int_type<sp/>c<sp/>=<sp/>traits::eof());</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>gbeg_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>gnext_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>gend_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>pbeg_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>pnext_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char_type*<sp/>pend_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale<sp/>loc_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>basic_streambuf<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::~basic_streambuf()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">locale</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pubimbue(const<sp/>locale<sp/>&amp;loc)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>locale<sp/>result<sp/>=<sp/>loc_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>imbue(loc);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">locale</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::getloc()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>loc_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pubsetbuf(char_type*<sp/>s,<sp/>streamsize<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>setbuf(s,<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::pos_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pubseekoff(off_type<sp/>off,<sp/>ios_base::seekdir<sp/>way,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>seekoff(off,<sp/>way,<sp/>which);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::pos_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pubseekpos(pos_type<sp/>sp,<sp/>ios_base::openmode<sp/>which)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>seekpos(sp,<sp/>which);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">int</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pubsync()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>sync();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::in_avail()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gnext_<sp/>&lt;<sp/>gend_<sp/>?<sp/>static_cast&lt;streamsize&gt;(gend_<sp/>-<sp/>gnext_)<sp/>:<sp/>showmanyc();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::sbumpc()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gnext_<sp/>&lt;<sp/>gend_<sp/>?<sp/>traits::to_int_type(*gnext_++)<sp/>:<sp/>uflow();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::sgetc()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gnext_<sp/>&lt;<sp/>gend_<sp/>?<sp/>traits::to_int_type(*gnext_)<sp/>:<sp/>underflow();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::snextc()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>traits::eq_int_type(sbumpc(),<sp/>traits::eof())<sp/>?<sp/>traits::eof()<sp/>:<sp/>sgetc();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::sgetn(char_type*<sp/>s,<sp/>streamsize<sp/><sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>xsgetn(s,<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::sputbackc(char_type<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gbeg_<sp/>&lt;<sp/>gnext_<sp/>&amp;&amp;<sp/>traits::eq(c,<sp/>gnext_[-1])<sp/>?<sp/>traits::to_int_type(*--gnext_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>pbackfail(traits::to_int_type(c));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::sungetc()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gbeg_<sp/>&lt;<sp/>gnext_<sp/>?<sp/>traits::to_int_type(*--gnext_)<sp/>:<sp/>pbackfail();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::sputc(char_type<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>pnext_<sp/>&lt;<sp/>pend_<sp/>?<sp/>traits::to_int_type(*pnext_++<sp/>=<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>overflow(traits::to_int_type(c));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::sputn(const<sp/>char_type*<sp/>s,<sp/>streamsize<sp/><sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>xsputn(s,<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::basic_streambuf()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>gbeg_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>gnext_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>gend_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pbeg_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pnext_(0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pend_(0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::char_type*</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::eback()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gbeg_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::char_type*</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::gptr()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gnext_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::char_type*</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::egptr()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>gend_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::gbump(int<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>gnext_<sp/>+=<sp/>n;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::setg(char_type*<sp/>gbeg,<sp/>char_type*<sp/>gnext,<sp/>char_type*<sp/>gend)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>gbeg_<sp/>=<sp/>gbeg;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>gnext_<sp/>=<sp/>gnext;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>gend_<sp/>=<sp/>gend;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::char_type*</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pbase()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>pbeg_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::char_type*</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pptr()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>pnext_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::char_type*</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::epptr()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>pend_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pbump(int<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pnext_<sp/>+=<sp/>n;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::setp(char_type*<sp/>pbeg,<sp/>char_type*<sp/>pend)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pbeg_<sp/>=<sp/>pnext_<sp/>=<sp/>pbeg;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pend_<sp/>=<sp/>pend;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::imbue(const<sp/>locale<sp/>&amp;loc)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>loc_<sp/>=<sp/>loc;<sp/><sp/>//<sp/>non-standard,<sp/>but<sp/>appears<sp/>to<sp/>make<sp/>the<sp/>most<sp/>sense</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;*</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::setbuf(char_type*,<sp/>streamsize)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::pos_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::seekoff(off_type,<sp/>ios_base::seekdir,<sp/>ios_base::openmode)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::pos_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::seekpos(pos_type,<sp/>ios_base::openmode)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>pos_type(-1);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">int</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::sync()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::showmanyc()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::xsgetn(char_type*<sp/>s,<sp/>streamsize<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>i<sp/>=<sp/>min(n,<sp/>static_cast&lt;streamsize&gt;(gend_<sp/>-<sp/>gnext_));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(i<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::copy(s,<sp/>gnext_,<sp/>static_cast&lt;size_t&gt;(i));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>+=<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gnext_<sp/>+=<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>-=<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>n<sp/>&gt;<sp/>0;<sp/>--n,<sp/>++i)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int_type<sp/>c<sp/>=<sp/>sbumpc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(traits::eq_int_type(c,<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::assign(*s++,<sp/>traits::to_char_type(c));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::underflow()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::uflow()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>traits::eq_int_type(underflow(),<sp/>traits::eof())<sp/>?<sp/>traits::eof()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>traits::to_int_type(*gnext_++);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::pbackfail(int_type)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">streamsize</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::xsputn(const<sp/>char_type*<sp/>s,<sp/>streamsize<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streamsize<sp/>i<sp/>=<sp/>min(n,<sp/>static_cast&lt;streamsize&gt;(pend_<sp/>-<sp/>pnext_));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(i<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::copy(pnext_,<sp/>s,<sp/>static_cast&lt;size_t&gt;(i));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pnext_<sp/>+=<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>+=<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>-=<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>n<sp/>&gt;<sp/>0;<sp/>--n,<sp/>++i)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(traits::eq_int_type(sputc(*s++),<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;::int_type</highlight></codeline>
+<codeline><highlight class="normal">basic_streambuf&lt;charT,<sp/>traits&gt;::overflow(int_type)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>traits::eof();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std<sp/></highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_STREAMBUF</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971226<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971226<sp/>bkoz<sp/>added<sp/>alignment<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971226<sp/>Changed<sp/>filename<sp/>from<sp/>streambuf.h<sp/>to<sp/>streambuf</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980129<sp/>comment<sp/>out<sp/>sleep<sp/>cycle<sp/>from<sp/>basic_streambuf<sp/>constructor</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981220<sp/>Added<sp/>typename<sp/>to<sp/>appropriate<sp/>return<sp/>types</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990618<sp/>Rewrote</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/streambuf"/>
+  </compounddef>
+</doxygen>

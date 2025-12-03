@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File iomanip - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-iomanip">File iomanip</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../iomanip/"><strong>iomanip</strong></a></p>
+<p><a href="../iomanip/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:58:49 $ 
+ *  $Revision: 1.8.6.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  iomanip
+ **/
+
+#ifndef _IOMANIP
+#define _IOMANIP
+
+#include &lt;mslconfig&gt;
+
+#ifndef _MSL_NO_IO
+
+#include &lt;istream&gt;
+#include &lt;ostream&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+class __smanip1;
+class __smanip2;
+class __smanip3;
+template &lt;class charT&gt; class __smanip4;
+class __smanip5;
+class __smanip6;
+
+__smanip1 resetiosflags(ios_base::fmtflags mask);
+__smanip2 setiosflags  (ios_base::fmtflags mask);
+__smanip3 setbase(int base);
+template&lt;class charT&gt; __smanip4&lt;charT&gt; setfill(charT c);
+__smanip5 setprecision(int n);
+__smanip6 setw(int n);
+
+// resetiosflags Implementation
+
+class __smanip1
+{
+public:
+    __smanip1(ios_base::fmtflags mask);
+    ios_base&amp; resetiosflags(ios_base&amp; str) const;
+private:
+    ios_base::fmtflags mask_;
+};
+
+inline
+__smanip1::__smanip1(ios_base::fmtflags mask)
+    : mask_(mask)
+{
+}
+
+inline
+ios_base&amp;
+__smanip1::resetiosflags(ios_base&amp; str) const
+{
+    str.setf(ios_base::fmtflags(0), mask_);
+    return str;
+}
+
+template&lt;class charT, class traits&gt;
+basic_ostream&lt;charT, traits&gt;&amp;
+operator&lt;&lt; (basic_ostream&lt;charT, traits&gt;&amp; out, const __smanip1&amp; s)
+{
+    s.resetiosflags(out);
+    return out;
+}
+
+template&lt;class charT, class traits&gt;
+basic_istream&lt;charT, traits&gt;&amp;
+operator&gt;&gt; (basic_istream&lt;charT, traits&gt;&amp; in, const __smanip1&amp; s)
+{
+    s.resetiosflags(in);
+    return in;
+}
+
+inline
+__smanip1
+resetiosflags(ios_base::fmtflags mask)
+{
+    return __smanip1(mask);
+}
+
+// setiosflags Implementation
+
+class __smanip2
+{
+public:
+    __smanip2(ios_base::fmtflags mask);
+    ios_base&amp; setiosflags(ios_base&amp; str) const;
+private:
+    ios_base::fmtflags mask_;
+};
+
+inline
+__smanip2::__smanip2(ios_base::fmtflags mask)
+    : mask_(mask)
+{
+}
+
+inline
+ios_base&amp;
+__smanip2::setiosflags(ios_base&amp; str) const
+{
+    str.setf(mask_);
+    return str;
+}
+
+template&lt;class charT, class traits&gt;
+basic_ostream&lt;charT, traits&gt;&amp;
+operator&lt;&lt; (basic_ostream&lt;charT, traits&gt;&amp; out, const __smanip2&amp; s)
+{
+    s.setiosflags(out);
+    return out;
+}
+
+template&lt;class charT, class traits&gt;
+basic_istream&lt;charT, traits&gt;&amp;
+operator&gt;&gt; (basic_istream&lt;charT, traits&gt;&amp; in, const __smanip2&amp; s)
+{
+    s.setiosflags(in);
+    return in;
+}
+
+inline
+__smanip2
+setiosflags(ios_base::fmtflags mask)
+{
+    return __smanip2(mask);
+}
+
+// setiosflags Implementation
+
+class __smanip3
+{
+public:
+    __smanip3(int base);
+    ios_base&amp; setbase(ios_base&amp; str) const;
+private:
+    int base_;
+};
+
+inline
+__smanip3::__smanip3(int base)
+    : base_(base)
+{
+}
+
+inline
+ios_base&amp;
+__smanip3::setbase(ios_base&amp; str) const
+{
+    str.setf(base_ ==  8 ? ios_base::oct :
+             base_ == 10 ? ios_base::dec :
+             base_ == 16 ? ios_base::hex :
+                           ios_base::fmtflags(0), ios_base::basefield);
+    return str;
+}
+
+template&lt;class charT, class traits&gt;
+basic_ostream&lt;charT, traits&gt;&amp;
+operator&lt;&lt; (basic_ostream&lt;charT, traits&gt;&amp; out, const __smanip3&amp; s)
+{
+    s.setbase(out);
+    return out;
+}
+
+template&lt;class charT, class traits&gt;
+basic_istream&lt;charT, traits&gt;&amp;
+operator&gt;&gt; (basic_istream&lt;charT, traits&gt;&amp; in, const __smanip3&amp; s)
+{
+    s.setbase(in);
+    return in;
+}
+
+inline
+__smanip3
+setbase(int base)
+{
+    return __smanip3(base);
+}
+
+// setfill Implementation
+
+template &lt;class charT&gt;
+class __smanip4
+{
+public:
+    __smanip4(charT c);
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class traits&gt;
+            inline
+            basic_ios&lt;charT, traits&gt;&amp;
+            setfill(basic_ios&lt;charT, traits&gt;&amp; str) const
+            {
+                str.fill(c_);
+                return str;
+            }
+    #else
+        basic_ios&lt;charT&gt;&amp;
+        setfill(basic_ios&lt;charT&gt;&amp; str) const
+        {
+            str.fill(c_);
+            return str;
+        }
+    #endif
+private:
+    charT c_;
+};
+
+template &lt;class charT&gt;
+inline
+__smanip4&lt;charT&gt;::__smanip4(charT c)
+    : c_(c)
+{
+}
+
+template&lt;class charT, class traits&gt;
+basic_ostream&lt;charT, traits&gt;&amp;
+operator&lt;&lt; (basic_ostream&lt;charT, traits&gt;&amp; out, const __smanip4&lt;charT&gt;&amp; s)
+{
+    s.setfill(out);
+    return out;
+}
+
+template&lt;class charT&gt;
+inline
+__smanip4&lt;charT&gt;
+setfill(charT c)
+{
+    return __smanip4&lt;charT&gt;(c);
+}
+
+// setprecision Implementation
+
+class __smanip5
+{
+public:
+    __smanip5(int n);
+    ios_base&amp; setprecision(ios_base&amp; str) const;
+private:
+    int n_;
+};
+
+inline
+__smanip5::__smanip5(int n)
+    : n_(n)
+{
+}
+
+inline
+ios_base&amp;
+__smanip5::setprecision(ios_base&amp; str) const
+{
+    str.precision(n_);
+    return str;
+}
+
+template&lt;class charT, class traits&gt;
+basic_ostream&lt;charT, traits&gt;&amp;
+operator&lt;&lt; (basic_ostream&lt;charT, traits&gt;&amp; out, const __smanip5&amp; s)
+{
+    s.setprecision(out);
+    return out;
+}
+
+template&lt;class charT, class traits&gt;
+basic_istream&lt;charT, traits&gt;&amp;
+operator&gt;&gt; (basic_istream&lt;charT, traits&gt;&amp; in, const __smanip5&amp; s)
+{
+    s.setprecision(in);
+    return in;
+}
+
+inline
+__smanip5
+setprecision(int n)
+{
+    return __smanip5(n);
+}
+
+// setw Implementation
+
+class __smanip6
+{
+public:
+    __smanip6(int n);
+    ios_base&amp; setw(ios_base&amp; str) const;
+private:
+    int n_;
+};
+
+inline
+__smanip6::__smanip6(int n)
+    : n_(n)
+{
+}
+
+inline
+ios_base&amp;
+__smanip6::setw(ios_base&amp; str) const
+{
+    str.width(n_);
+    return str;
+}
+
+template&lt;class charT, class traits&gt;
+basic_ostream&lt;charT, traits&gt;&amp;
+operator&lt;&lt; (basic_ostream&lt;charT, traits&gt;&amp; out, const __smanip6&amp; s)
+{
+    s.setw(out);
+    return out;
+}
+
+template&lt;class charT, class traits&gt;
+basic_istream&lt;charT, traits&gt;&amp;
+operator&gt;&gt; (basic_istream&lt;charT, traits&gt;&amp; in, const __smanip6&amp; s)
+{
+    s.setw(in);
+    return in;
+}
+
+inline
+__smanip6
+setw(int n)
+{
+    return __smanip6(n);
+}
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _MSL_NO_IO
+
+#endif // _IOMANIP
+
+// hh 971220 fixed MOD_INCLUDE
+// hh 971222 added alignment wrapper
+// hh 971222 Changed filename from iomanip.h to iomanip
+// hh 971222 Made include guards standard
+// hh 971229 redid friend to not need member templates in several places
+// hh 971230 added RC_INVOKED wrapper
+// hh 990111 Rewrote
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

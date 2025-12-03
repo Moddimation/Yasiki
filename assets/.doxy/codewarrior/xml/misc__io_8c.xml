@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="misc__io_8c" kind="file" language="C++">
+    <compoundname>misc_io.c</compoundname>
+    <includes refid="ansi__files_8h" local="yes">ansi_files.h</includes>
+    <includes refid="critical__regions_8h" local="yes">critical_regions.h</includes>
+    <includes refid="errno_8h" local="no">errno.h</includes>
+    <includes refid="file__io_8h" local="yes">file_io.h</includes>
+    <includes refid="misc__io_8h" local="yes">misc_io.h</includes>
+    <includes refid="stdlib_8h" local="no">stdlib.h</includes>
+    <includes refid="string_8h" local="no">string.h</includes>
+    <includes refid="abort__exit_8h" local="yes">abort_exit.h</includes>
+    <incdepgraph>
+      <node id="16">
+        <label>abort_exit.h</label>
+        <link refid="abort__exit_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ansi_files.h</label>
+        <link refid="ansi__files_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>cerrno</label>
+        <link refid="cerrno"/>
+      </node>
+      <node id="7">
+        <label>critical_regions.h</label>
+        <link refid="critical__regions_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstdio</label>
+        <link refid="cstdio"/>
+      </node>
+      <node id="13">
+        <label>cstdlib</label>
+        <link refid="cstdlib"/>
+      </node>
+      <node id="15">
+        <label>cstring</label>
+        <link refid="cstring"/>
+      </node>
+      <node id="8">
+        <label>errno.h</label>
+        <link refid="errno_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>file_io.h</label>
+        <link refid="file__io_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>misc_io.h</label>
+        <link refid="misc__io_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>stdlib.h</label>
+        <link refid="stdlib_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>string.h</label>
+        <link refid="string_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>misc_io.c</label>
+        <link refid="misc__io_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="misc__io_8c_1afadf6615530e3705bf25e2c7704e235f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clearerr</definition>
+        <argsstring>(FILE *file)</argsstring>
+        <name>clearerr</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" line="37" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" bodystart="37" bodyend="41"/>
+        <referencedby refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" compoundref="file__io_8c" startline="246" endline="266">__handle_reopen</referencedby>
+        <referencedby refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" compoundref="file__io_8c" startline="203" endline="231">freopen</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="misc__io_8c_1af8fc2046cf61e5bde5ad38522435ee32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() feof</definition>
+        <argsstring>(FILE *file)</argsstring>
+        <name>feof</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" line="43" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" bodystart="43" bodyend="46"/>
+        <references refid="misc__io_8c_1af8fc2046cf61e5bde5ad38522435ee32" compoundref="misc__io_8c" startline="43" endline="46">feof</references>
+        <referencedby refid="scanf_8c_1a71caf968f668f7f40b35245486b1e003" compoundref="scanf_8c" startline="1020" endline="1032">__FileRead</referencedby>
+        <referencedby refid="wscanf_8c_1ae0027d123f3bf9054ffaf4cf84022558" compoundref="wscanf_8c" startline="664" endline="676">__wFileRead</referencedby>
+        <referencedby refid="misc__io_8c_1af8fc2046cf61e5bde5ad38522435ee32" compoundref="misc__io_8c" startline="43" endline="46">feof</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="misc__io_8c_1a5d295829f911ee87c6ec07bf55b7ab72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() ferror</definition>
+        <argsstring>(FILE *file)</argsstring>
+        <name>ferror</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" line="48" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" bodystart="48" bodyend="51"/>
+        <references refid="misc__io_8c_1a5d295829f911ee87c6ec07bf55b7ab72" compoundref="misc__io_8c" startline="48" endline="51">ferror</references>
+        <referencedby refid="scanf_8c_1a71caf968f668f7f40b35245486b1e003" compoundref="scanf_8c" startline="1020" endline="1032">__FileRead</referencedby>
+        <referencedby refid="wscanf_8c_1ae0027d123f3bf9054ffaf4cf84022558" compoundref="wscanf_8c" startline="664" endline="676">__wFileRead</referencedby>
+        <referencedby refid="misc__io_8c_1a5d295829f911ee87c6ec07bf55b7ab72" compoundref="misc__io_8c" startline="48" endline="51">ferror</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="misc__io_8c_1ab39f9634fa53ffd52b87431f3afab11b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void perror</definition>
+        <argsstring>(const char *s)</argsstring>
+        <name>perror</name>
+        <param>
+          <type>const char *</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" line="53" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" bodystart="53" bodyend="61"/>
+        <references refid="string_8c_1a6694008e5e513c7c49d4efe6eba8db71" compoundref="string_8c" startline="894" endline="944">__strerror</references>
+        <references refid="errno_8c_1a1a73eedabc7bba1fcfed488f5ea2bfb6" compoundref="errno_8c" startline="18">errno</references>
+        <references refid="printf_8c_1ae41ff60ab072068a0f730c6da6cf1ce9" compoundref="printf_8c" startline="1511" endline="1528">fprintf</references>
+      </memberdef>
+      <memberdef kind="function" id="misc__io_8c_1a2d5ac5ed17a0437c1b9305d4c0088e69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __stdio_atexit</definition>
+        <argsstring>(void)</argsstring>
+        <name>__stdio_atexit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" line="63" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c" bodystart="63" bodyend="74"/>
+        <references refid="ansi__files_8h_1aa72a267c9e92460d88f8d7f5f35e777d" compoundref="ansi__files_8c" startline="328" endline="362">__close_all</references>
+        <references refid="abort__exit_8h_1a2928d5c77c24d23af71ecc0c2eab33ad" compoundref="abort__exit_8c" startline="107" endline="116">__setup_exit</references>
+        <references refid="abort__exit_8h_1a99117c2c18e6d7ddd3e230907208129b" compoundref="abort__exit_8c" startline="81">__stdio_exit</references>
+        <referencedby refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" compoundref="file__io_8c" startline="246" endline="266">__handle_reopen</referencedby>
+        <referencedby refid="char__io_8c_1af6f522924871a0277c870d522ae868f3" compoundref="char__io_8c" startline="206" endline="261">__put_char</referencedby>
+        <referencedby refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" compoundref="file__io_8c" startline="203" endline="231">freopen</referencedby>
+        <referencedby refid="direct__io_8c_1ae00d0cb316e37e22bd675085e909b0ff" compoundref="direct__io_8c" startline="170" endline="299">fwrite</referencedby>
+        <referencedby refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" compoundref="file__io_8c" startline="88" endline="110">tmpfile</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/12/03<sp/>23:58:59<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.7.14.1<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>misc_io.c</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>Routines</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>--------</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>clearerr</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>feof</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>ferror</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>perror</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__stdio_atexit</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ansi__files_8h" kindref="compound">ansi_files.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="critical__regions_8h" kindref="compound">critical_regions.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="errno_8h" kindref="compound">errno.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="file__io_8h" kindref="compound">file_io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="misc__io_8h" kindref="compound">misc_io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stdlib_8h" kindref="compound">stdlib.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="string_8h" kindref="compound">string.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="abort__exit_8h" kindref="compound">abort_exit.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="misc__io_8c_1afadf6615530e3705bf25e2c7704e235f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="misc__io_8c_1afadf6615530e3705bf25e2c7704e235f" kindref="member">clearerr</ref>(FILE<sp/>*<sp/>file)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;state.eof<sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;state.error<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="misc__io_8c_1af8fc2046cf61e5bde5ad38522435ee32" refkind="member"><highlight class="normal">int<sp/>(<ref refid="misc__io_8c_1af8fc2046cf61e5bde5ad38522435ee32" kindref="member">feof</ref>)(FILE<sp/>*<sp/>file)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="misc__io_8c_1af8fc2046cf61e5bde5ad38522435ee32" kindref="member">feof</ref>(file));</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="misc__io_8c_1a5d295829f911ee87c6ec07bf55b7ab72" refkind="member"><highlight class="normal">int<sp/>(<ref refid="misc__io_8c_1a5d295829f911ee87c6ec07bf55b7ab72" kindref="member">ferror</ref>)(FILE<sp/>*<sp/>file)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="misc__io_8c_1a5d295829f911ee87c6ec07bf55b7ab72" kindref="member">ferror</ref>(file));</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="misc__io_8c_1ab39f9634fa53ffd52b87431f3afab11b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="misc__io_8c_1ab39f9634fa53ffd52b87431f3afab11b" kindref="member">perror</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>s)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>errstr[__max_errstr];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(s)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="printf_8c_1ae41ff60ab072068a0f730c6da6cf1ce9" kindref="member">fprintf</ref>(stderr,<sp/></highlight><highlight class="stringliteral">&quot;%s:<sp/>&quot;</highlight><highlight class="normal">,<sp/>s);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="printf_8c_1ae41ff60ab072068a0f730c6da6cf1ce9" kindref="member">fprintf</ref>(stderr,<sp/></highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="string_8c_1a6694008e5e513c7c49d4efe6eba8db71" kindref="member">__strerror</ref>(<ref refid="errno_8c_1a1a73eedabc7bba1fcfed488f5ea2bfb6" kindref="member">errno</ref>,<sp/>errstr));</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="misc__io_8c_1a2d5ac5ed17a0437c1b9305d4c0088e69" kindref="member">__stdio_atexit</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Disk_File_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8h_1a99117c2c18e6d7ddd3e230907208129b" kindref="member">__stdio_exit</ref><sp/>=<sp/><ref refid="ansi__files_8h_1aa72a267c9e92460d88f8d7f5f35e777d" kindref="member">__close_all</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__be_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8h_1a2928d5c77c24d23af71ecc0c2eab33ad" kindref="member">__setup_exit</ref>();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Change<sp/>Record</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/><sp/>04-Sep-95<sp/>JFH<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/><sp/>15-Dec-85<sp/>JFH<sp/><sp/>Changed<sp/>stdio_atexit<sp/>to<sp/>new<sp/>abort/exit<sp/>handling<sp/>architecture.</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/><sp/>22-Jan-96<sp/>JFH<sp/><sp/>Bracketed<sp/>feof()<sp/>and<sp/>ferror()<sp/>by<sp/>#ifndef<sp/>__cplusplus</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(they<sp/>are<sp/>inlined<sp/>in<sp/>&lt;stdio.h&gt;).</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/><sp/>12-Feb-96<sp/>JFH<sp/><sp/>Tossed<sp/>call<sp/>to<sp/>__setup_exit<sp/>in<sp/>__stdio_atexit.</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1-Mar-96<sp/>JFH<sp/><sp/>For<sp/>Be<sp/>only,<sp/>__setup_exit<sp/>was<sp/>restored<sp/>for<sp/>the<sp/>time<sp/>being.</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Their<sp/>__stdio_atexit<sp/>was<sp/>cleaned<sp/>up<sp/>up<sp/>a<sp/>bit<sp/>also.</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/><sp/>10-Jul-97<sp/>SCM<sp/><sp/>Disabled<sp/>__stdio_atexit<sp/>when<sp/>__no_os<sp/>is<sp/>defined.</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/><sp/>20-Jul-97<sp/>MEA<sp/><sp/>Changed<sp/>__no_os<sp/>to<sp/>_No_Disk_File_OS_Support.</highlight></codeline>
+<codeline lineno="85"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c"/>
+  </compounddef>
+</doxygen>

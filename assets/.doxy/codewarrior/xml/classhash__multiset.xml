@@ -1,0 +1,989 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhash__multiset" kind="class" language="C++" prot="public">
+    <compoundname>hash_multiset</compoundname>
+    <includes refid="hashmset_8h" local="no">hashmset.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class Key</type>
+      </param>
+      <param>
+        <type>class HashFunction</type>
+      </param>
+      <param>
+        <type>class KeyEqual</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" prot="public" static="no">
+        <type>Key</type>
+        <definition>typedef Key hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::key_type</definition>
+        <argsstring></argsstring>
+        <name>key_type</name>
+        <qualifiedname>hash_multiset::key_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="43" column="28" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" prot="public" static="no">
+        <type>Key</type>
+        <definition>typedef Key hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <qualifiedname>hash_multiset::value_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="44" column="28" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a2c3ec47cd2f2109dc542841e4093205c" prot="public" static="no">
+        <type>HashFunction</type>
+        <definition>typedef HashFunction hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::hash_function</definition>
+        <argsstring></argsstring>
+        <name>hash_function</name>
+        <qualifiedname>hash_multiset::hash_function</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="45" column="28" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1ab301e5a7e013156e7136bbb7aaf966e5" prot="public" static="no">
+        <type>KeyEqual</type>
+        <definition>typedef KeyEqual hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::key_equal</definition>
+        <argsstring></argsstring>
+        <name>key_equal</name>
+        <qualifiedname>hash_multiset::key_equal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="46" column="28" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a68511c365c5f28137af0a7ea74493a2d" prot="public" static="no">
+        <type>KeyEqual</type>
+        <definition>typedef KeyEqual hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::value_compare</definition>
+        <argsstring></argsstring>
+        <name>value_compare</name>
+        <qualifiedname>hash_multiset::value_compare</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="47" column="28" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a77b9c9e23f43a8bee324c16856115201" prot="public" static="no">
+        <type><ref refid="classhash__table" kindref="compound">hash_table</ref>&lt; <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref>, <ref refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" kindref="member">value_type</ref>, identity&lt; <ref refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" kindref="member">value_type</ref> &gt;, <ref refid="classhash__multiset_1a2c3ec47cd2f2109dc542841e4093205c" kindref="member">hash_function</ref>, <ref refid="classhash__multiset_1ab301e5a7e013156e7136bbb7aaf966e5" kindref="member">key_equal</ref>, allocator&lt; <ref refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" kindref="member">value_type</ref> &gt; &gt;</type>
+        <definition>typedef hash_table&lt;key_type, value_type, identity&lt;value_type&gt;, hash_function, key_equal, allocator&lt;value_type&gt; &gt; hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::rep_type</definition>
+        <argsstring></argsstring>
+        <name>rep_type</name>
+        <qualifiedname>hash_multiset::rep_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="49" column="2" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1ac8c2b40033aa2ec8227c53263f7a0cc4" prot="public" static="no">
+        <type><ref refid="classhash__table_1a289ef8f76d6f13e8b2e13d5aa644c2bd" kindref="member">rep_type::reference</ref></type>
+        <definition>typedef rep_type::reference hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::reference</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <qualifiedname>hash_multiset::reference</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="56" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1adc78361ba633c095fa29ce0f2f9c5903" prot="public" static="no">
+        <type><ref refid="classhash__table_1accb019a225eef385fcff4757deed909c" kindref="member">rep_type::const_reference</ref></type>
+        <definition>typedef rep_type::const_reference hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::const_reference</definition>
+        <argsstring></argsstring>
+        <name>const_reference</name>
+        <qualifiedname>hash_multiset::const_reference</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="57" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" prot="public" static="no">
+        <type>rep_type::iterator</type>
+        <definition>typedef rep_type::iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>hash_multiset::iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="58" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" prot="public" static="no">
+        <type>rep_type::const_iterator</type>
+        <definition>typedef rep_type::const_iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>hash_multiset::const_iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="59" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1ad0db02de1b4f4e96715dba1fc86dae17" prot="public" static="no">
+        <type><ref refid="classhash__table_1a07d693ea8325729a8d574133e4925fa0" kindref="member">rep_type::size_type</ref></type>
+        <definition>typedef rep_type::size_type hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::size_type</definition>
+        <argsstring></argsstring>
+        <name>size_type</name>
+        <qualifiedname>hash_multiset::size_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="60" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a1990528900b4c36775d793efbc575b85" prot="public" static="no">
+        <type><ref refid="classhash__table_1aa445dafb26972b495b485bed3efc7d57" kindref="member">rep_type::difference_type</ref></type>
+        <definition>typedef rep_type::difference_type hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::difference_type</definition>
+        <argsstring></argsstring>
+        <name>difference_type</name>
+        <qualifiedname>hash_multiset::difference_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="61" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1aff7b0ceff27f90d9c3354e040e9571a1" prot="public" static="no">
+        <type><ref refid="classhash__table_1a8be26f3bcc8463d0d56ae168749d5688" kindref="member">rep_type::pointer</ref></type>
+        <definition>typedef rep_type::pointer hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::pointer</definition>
+        <argsstring></argsstring>
+        <name>pointer</name>
+        <qualifiedname>hash_multiset::pointer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="62" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1ae6f64191b04ca4d01a8af215e14eeab9" prot="public" static="no">
+        <type><ref refid="classhash__table_1afc9fde4baace5b4aaaff1c5cdf7af97f" kindref="member">rep_type::const_pointer</ref></type>
+        <definition>typedef rep_type::const_pointer hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::const_pointer</definition>
+        <argsstring></argsstring>
+        <name>const_pointer</name>
+        <qualifiedname>hash_multiset::const_pointer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="63" column="49" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a864a171604ec86b1bebb8e6bfb747adb" prot="public" static="no">
+        <type>pair&lt; <ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref>, <ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref> &gt;</type>
+        <definition>typedef pair&lt;iterator, iterator&gt; hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::pair_iterator_iterator</definition>
+        <argsstring></argsstring>
+        <name>pair_iterator_iterator</name>
+        <qualifiedname>hash_multiset::pair_iterator_iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="159" column="19" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhash__multiset_1a377730cdec09209ae240bd2475e0ebe7" prot="public" static="no">
+        <type>pair&lt; <ref refid="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" kindref="member">const_iterator</ref>, <ref refid="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" kindref="member">const_iterator</ref> &gt;</type>
+        <definition>typedef pair&lt;const_iterator, const_iterator&gt; hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::pair_citerator_citerator</definition>
+        <argsstring></argsstring>
+        <name>pair_citerator_citerator</name>
+        <qualifiedname>hash_multiset::pair_citerator_citerator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="166" column="19" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" prot="private" static="no" mutable="no">
+        <type><ref refid="classhash__multiset_1a77b9c9e23f43a8bee324c16856115201" kindref="member">rep_type</ref></type>
+        <definition>rep_type hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</definition>
+        <argsstring></argsstring>
+        <name>ht</name>
+        <qualifiedname>hash_multiset::ht</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="52" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classhash__multiset_1a4b8096a686cc9c658d91547cfe701b0e" compoundref="hashmset_8h" startline="104" endline="104">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__multiset_1a12334550cba832d5164f5602015f232b" compoundref="hashmset_8h" startline="105" endline="105">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::begin</referencedby>
+        <referencedby refid="classhash__multiset_1a4b41afb976de17affdea1deaeea6c0b7" compoundref="hashmset_8h" startline="157" endline="157">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::count</referencedby>
+        <referencedby refid="classhash__multiset_1a19a1d0cc6f5b4bd39cb063cd1590b2b5" compoundref="hashmset_8h" startline="109" endline="109">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::empty</referencedby>
+        <referencedby refid="classhash__multiset_1a175c3dee720cb10fa0f1a7bd8a46dfcf" compoundref="hashmset_8h" startline="106" endline="106">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__multiset_1a3f56176f790bb1c93fd3077e91d5b90d" compoundref="hashmset_8h" startline="107" endline="107">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::end</referencedby>
+        <referencedby refid="classhash__multiset_1ae76128bce64e8db093a4d6638d747a90" compoundref="hashmset_8h" startline="161" endline="164">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__multiset_1a7652ea8424cdec022da76cd04ec50650" compoundref="hashmset_8h" startline="168" endline="171">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::equal_range</referencedby>
+        <referencedby refid="classhash__multiset_1a3ce50f92133bfa6a080867553fc87a59" compoundref="hashmset_8h" startline="142" endline="142">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multiset_1afe10dc00b03689147b08df5c4160fb7d" compoundref="hashmset_8h" startline="144" endline="148">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multiset_1a891d1726ad10369a03de1adb6ab5cd12" compoundref="hashmset_8h" startline="137" endline="140">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</referencedby>
+        <referencedby refid="classhash__multiset_1ab9d845479ba1a8c0224a1e2702e25f69" compoundref="hashmset_8h" startline="155" endline="155">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__multiset_1ade765037af6c92946847dec3f83cbc8e" compoundref="hashmset_8h" startline="156" endline="156">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::find</referencedby>
+        <referencedby refid="classhash__multiset_1a5b16d84cffa2a7e1143db57df85ddbfa" compoundref="hashmset_8h" startline="102" endline="102">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::hash_funct</referencedby>
+        <referencedby refid="classhash__multiset_1a8d4edeb03bbb1721bb6421e4fff2f517" compoundref="hashmset_8h" startline="116" endline="116">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__multiset_1a3497b87662f9b96da1cc6aa722dd22d3" compoundref="hashmset_8h" startline="131" endline="134">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__multiset_1a810590fd080eecb1eae6e42c99c3cdb6" compoundref="hashmset_8h" startline="127" endline="130">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</referencedby>
+        <referencedby refid="classhash__multiset_1a151c893facfab448a0801d05f6970b42" compoundref="hashmset_8h" startline="100" endline="100">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::key_comp</referencedby>
+        <referencedby refid="classhash__multiset_1a1b5cbe6f2c7efe0ebada54b9a6835c46" compoundref="hashmset_8h" startline="173" endline="176">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__multiset_1a82011965bd984f5a1106f59cd5b00faf" compoundref="hashmset_8h" startline="177" endline="180">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::lower_bound</referencedby>
+        <referencedby refid="classhash__multiset_1ae2d44540837f69a01c876980acaf35c6" compoundref="hashmset_8h" startline="111" endline="111">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::max_size</referencedby>
+        <referencedby refid="classhash__multiset_1a416c9094a0bd3b1b3a50ab6f3f4e830f" compoundref="hashmset_8h" startline="87" endline="91">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::operator=</referencedby>
+        <referencedby refid="classhash__multiset_1ab21e1ad409977df634297001b4e5d5c5" compoundref="hashmset_8h" startline="110" endline="110">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::size</referencedby>
+        <referencedby refid="classhash__multiset_1a8da24d82ab0b61adf78a1c3afe88cd81" compoundref="hashmset_8h" startline="94" endline="95">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::swap</referencedby>
+        <referencedby refid="classhash__multiset_1a152150a63271e5a20daf1988bf6c4f8e" compoundref="hashmset_8h" startline="182" endline="185">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::upper_bound</referencedby>
+        <referencedby refid="classhash__multiset_1a5b0a9e87d95fe6ebca709f3d8f5f85fd" compoundref="hashmset_8h" startline="186" endline="189">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::upper_bound</referencedby>
+        <referencedby refid="classhash__multiset_1aaf0b624cf11a3ff49bf731b8f5f587ea" compoundref="hashmset_8h" startline="101" endline="101">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::value_comp</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhash__multiset_1a7cfc67030d296cda23b8fd5de7455414" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::hash_multiset</definition>
+        <argsstring>(size_type initSize=10007, const HashFunction &amp;hf=HashFunction(), const KeyEqual &amp;equal=KeyEqual())</argsstring>
+        <name>hash_multiset</name>
+        <qualifiedname>hash_multiset::hash_multiset</qualifiedname>
+        <param>
+          <type><ref refid="classhash__multiset_1ad0db02de1b4f4e96715dba1fc86dae17" kindref="member">size_type</ref></type>
+          <declname>initSize</declname>
+          <defval>10007</defval>
+        </param>
+        <param>
+          <type>const HashFunction &amp;</type>
+          <declname>hf</declname>
+          <defval>HashFunction()</defval>
+        </param>
+        <param>
+          <type>const KeyEqual &amp;</type>
+          <declname>equal</declname>
+          <defval>KeyEqual()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="68" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1adfff4c5c4a1da1d9a22ae82e7c9814da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::hash_multiset</definition>
+        <argsstring>(const value_type *first, const value_type *last, size_type initSize=10007, const HashFunction &amp;hf=HashFunction(), const KeyEqual &amp;equal=KeyEqual())</argsstring>
+        <name>hash_multiset</name>
+        <qualifiedname>hash_multiset::hash_multiset</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" kindref="member">value_type</ref> *</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" kindref="member">value_type</ref> *</type>
+          <declname>last</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__multiset_1ad0db02de1b4f4e96715dba1fc86dae17" kindref="member">size_type</ref></type>
+          <declname>initSize</declname>
+          <defval>10007</defval>
+        </param>
+        <param>
+          <type>const HashFunction &amp;</type>
+          <declname>hf</declname>
+          <defval>HashFunction()</defval>
+        </param>
+        <param>
+          <type>const KeyEqual &amp;</type>
+          <declname>equal</declname>
+          <defval>KeyEqual()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="73" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="73" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a5facf9e136115974e2f4e8b0547c9fad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::hash_multiset</definition>
+        <argsstring>(const hash_multiset&lt; Key, HashFunction, KeyEqual &gt; &amp;x)</argsstring>
+        <name>hash_multiset</name>
+        <qualifiedname>hash_multiset::hash_multiset</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset" kindref="compound">hash_multiset</ref>&lt; Key, HashFunction, KeyEqual &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="83" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="83" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a416c9094a0bd3b1b3a50ab6f3f4e830f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset" kindref="compound">hash_multiset</ref>&lt; Key, HashFunction, KeyEqual &gt; &amp;</type>
+        <definition>hash_multiset&lt; Key, HashFunction, KeyEqual &gt; &amp; hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::operator=</definition>
+        <argsstring>(const hash_multiset&lt; Key, HashFunction, KeyEqual &gt; &amp;x)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>hash_multiset::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset" kindref="compound">hash_multiset</ref>&lt; Key, HashFunction, KeyEqual &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="87" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="87" bodyend="91"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a8da24d82ab0b61adf78a1c3afe88cd81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::swap</definition>
+        <argsstring>(hash_multiset&lt; Key, HashFunction, KeyEqual &gt; &amp;x)</argsstring>
+        <name>swap</name>
+        <qualifiedname>hash_multiset::swap</qualifiedname>
+        <param>
+          <type><ref refid="classhash__multiset" kindref="compound">hash_multiset</ref>&lt; Key, HashFunction, KeyEqual &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="94" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="94" bodyend="95"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a2a6e17fa2c1da0feafcefddfac2ad96d" compoundref="hashtbl_8h" startline="430" endline="442">hash_table::swap</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a151c893facfab448a0801d05f6970b42" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1ab301e5a7e013156e7136bbb7aaf966e5" kindref="member">key_equal</ref></type>
+        <definition>key_equal hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::key_comp</definition>
+        <argsstring>() const</argsstring>
+        <name>key_comp</name>
+        <qualifiedname>hash_multiset::key_comp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="100" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="100" bodyend="100"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1afbe08f6baea19d8c98ea753e4bd6819c" compoundref="hashtbl_8h" startline="492" endline="496">hash_table::key_comp</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1aaf0b624cf11a3ff49bf731b8f5f587ea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a68511c365c5f28137af0a7ea74493a2d" kindref="member">value_compare</ref></type>
+        <definition>value_compare hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::value_comp</definition>
+        <argsstring>() const</argsstring>
+        <name>value_comp</name>
+        <qualifiedname>hash_multiset::value_comp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="101" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="101" bodyend="101"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1afbe08f6baea19d8c98ea753e4bd6819c" compoundref="hashtbl_8h" startline="492" endline="496">hash_table::key_comp</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a5b16d84cffa2a7e1143db57df85ddbfa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a2c3ec47cd2f2109dc542841e4093205c" kindref="member">hash_function</ref></type>
+        <definition>hash_function hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::hash_funct</definition>
+        <argsstring>() const</argsstring>
+        <name>hash_funct</name>
+        <qualifiedname>hash_multiset::hash_funct</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="102" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="102" bodyend="102"/>
+        <references refid="classhash__table_1ae192bbb3dc041043f49c2f86c0ea49a1" compoundref="hashtbl_8h" startline="497" endline="501">hash_table::hash_funct</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a4b8096a686cc9c658d91547cfe701b0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+        <definition>iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>hash_multiset::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="104" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="104" bodyend="104"/>
+        <references refid="classhash__table_1aab44a6ae3910bc4edce06f2e396f7c3d" compoundref="hashtbl_8h" startline="509" endline="516">hash_table::begin</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <referencedby refid="classhash__multiset_1ac6c0b37ee3bdc76ab471e5f19d99c876" compoundref="hashmset_8h" startline="150" endline="150">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::clear</referencedby>
+        <referencedby refid="hashmset_8h_1a6373f87a7a3557d5efaf73255f5a0e73" compoundref="hashmset_8h" startline="201" endline="204">operator&lt;</referencedby>
+        <referencedby refid="hashmset_8h_1af7c3b870466eb246c4a0bfeffd5107b2" compoundref="hashmset_8h" startline="194" endline="197">operator==</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a12334550cba832d5164f5602015f232b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>hash_multiset::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="105" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="105" bodyend="105"/>
+        <references refid="classhash__table_1aab44a6ae3910bc4edce06f2e396f7c3d" compoundref="hashtbl_8h" startline="509" endline="516">hash_table::begin</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a175c3dee720cb10fa0f1a7bd8a46dfcf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+        <definition>iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>hash_multiset::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="106" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="106" bodyend="106"/>
+        <references refid="classhash__table_1aa03874c88e44da1d3b93545da8fddc92" compoundref="hashtbl_8h" startline="518" endline="522">hash_table::end</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <referencedby refid="classhash__multiset_1ac6c0b37ee3bdc76ab471e5f19d99c876" compoundref="hashmset_8h" startline="150" endline="150">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::clear</referencedby>
+        <referencedby refid="hashmset_8h_1a6373f87a7a3557d5efaf73255f5a0e73" compoundref="hashmset_8h" startline="201" endline="204">operator&lt;</referencedby>
+        <referencedby refid="hashmset_8h_1af7c3b870466eb246c4a0bfeffd5107b2" compoundref="hashmset_8h" startline="194" endline="197">operator==</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a3f56176f790bb1c93fd3077e91d5b90d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>hash_multiset::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="107" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="107" bodyend="107"/>
+        <references refid="classhash__table_1aa03874c88e44da1d3b93545da8fddc92" compoundref="hashtbl_8h" startline="518" endline="522">hash_table::end</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a19a1d0cc6f5b4bd39cb063cd1590b2b5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="stdbool_8h_1abb452686968e48b67397da5f97445f5b" kindref="member">bool</ref></type>
+        <definition>bool hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <qualifiedname>hash_multiset::empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="109" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="109" bodyend="109"/>
+        <references refid="classhash__table_1a96fe2ea2fa9dc6900c3eef47c4ea5ce5" compoundref="hashtbl_8h" startline="485" endline="489">hash_table::empty</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1ab21e1ad409977df634297001b4e5d5c5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1ad0db02de1b4f4e96715dba1fc86dae17" kindref="member">size_type</ref></type>
+        <definition>size_type hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>hash_multiset::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="110" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="110" bodyend="110"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a71b5ceb997b0d1675cfc99eef0bab9bd" compoundref="hashtbl_8h" startline="474" endline="478">hash_table::size</references>
+        <referencedby refid="hashmset_8h_1af7c3b870466eb246c4a0bfeffd5107b2" compoundref="hashmset_8h" startline="194" endline="197">operator==</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1ae2d44540837f69a01c876980acaf35c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1ad0db02de1b4f4e96715dba1fc86dae17" kindref="member">size_type</ref></type>
+        <definition>size_type hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::max_size</definition>
+        <argsstring>() const</argsstring>
+        <name>max_size</name>
+        <qualifiedname>hash_multiset::max_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="111" column="26" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="111" bodyend="111"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a7392c4dfe6e83b41abd56e18c1fa0f37" compoundref="hashtbl_8h" startline="480" endline="483">hash_table::max_size</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a8d4edeb03bbb1721bb6421e4fff2f517" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+        <definition>iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</definition>
+        <argsstring>(const value_type &amp;x)</argsstring>
+        <name>insert</name>
+        <qualifiedname>hash_multiset::insert</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" kindref="member">value_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="116" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="116" bodyend="116"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" compoundref="hashtbl_8h" startline="559" endline="563">hash_table::insert_equal</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a810590fd080eecb1eae6e42c99c3cdb6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</definition>
+        <argsstring>(iterator first, iterator last)</argsstring>
+        <name>insert</name>
+        <qualifiedname>hash_multiset::insert</qualifiedname>
+        <param>
+          <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="127" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="127" bodyend="130"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" compoundref="hashtbl_8h" startline="559" endline="563">hash_table::insert_equal</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a3497b87662f9b96da1cc6aa722dd22d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::insert</definition>
+        <argsstring>(const value_type *first, const value_type *last)</argsstring>
+        <name>insert</name>
+        <qualifiedname>hash_multiset::insert</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" kindref="member">value_type</ref> *</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" kindref="member">value_type</ref> *</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="131" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="131" bodyend="134"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a08ca63b92da2dff66d3f445cba342e13" compoundref="hashtbl_8h" startline="559" endline="563">hash_table::insert_equal</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a891d1726ad10369a03de1adb6ab5cd12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</definition>
+        <argsstring>(iterator position)</argsstring>
+        <name>erase</name>
+        <qualifiedname>hash_multiset::erase</qualifiedname>
+        <param>
+          <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="137" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="137" bodyend="140"/>
+        <references refid="classhash__table_1a580c1acb6c733e75dd9ebf9b8c67cd68">hash_table::erase</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a67171474c4da6cc8efe0c7fafefd2b2d" compoundref="hashtbl_8h" startline="55">hash_table&lt; key_type, value_type, identity&lt; value_type &gt;, hash_function, key_equal, allocator&lt; value_type &gt; &gt;::iterator</references>
+        <referencedby refid="classhash__multiset_1ac6c0b37ee3bdc76ab471e5f19d99c876" compoundref="hashmset_8h" startline="150" endline="150">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::clear</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a3ce50f92133bfa6a080867553fc87a59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1ad0db02de1b4f4e96715dba1fc86dae17" kindref="member">size_type</ref></type>
+        <definition>size_type hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</definition>
+        <argsstring>(const key_type &amp;x)</argsstring>
+        <name>erase</name>
+        <qualifiedname>hash_multiset::erase</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="142" column="15" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="142" bodyend="142"/>
+        <references refid="classhash__table_1a580c1acb6c733e75dd9ebf9b8c67cd68">hash_table::erase</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1afe10dc00b03689147b08df5c4160fb7d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</definition>
+        <argsstring>(iterator first, iterator last)</argsstring>
+        <name>erase</name>
+        <qualifiedname>hash_multiset::erase</qualifiedname>
+        <param>
+          <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="144" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="144" bodyend="148"/>
+        <references refid="classhash__table_1a580c1acb6c733e75dd9ebf9b8c67cd68">hash_table::erase</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a67171474c4da6cc8efe0c7fafefd2b2d" compoundref="hashtbl_8h" startline="55">hash_table&lt; key_type, value_type, identity&lt; value_type &gt;, hash_function, key_equal, allocator&lt; value_type &gt; &gt;::iterator</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1ac6c0b37ee3bdc76ab471e5f19d99c876" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>hash_multiset::clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="150" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="150" bodyend="150"/>
+        <references refid="classhash__multiset_1a4b8096a686cc9c658d91547cfe701b0e" compoundref="hashmset_8h" startline="104" endline="104">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::begin</references>
+        <references refid="classhash__multiset_1a175c3dee720cb10fa0f1a7bd8a46dfcf" compoundref="hashmset_8h" startline="106" endline="106">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::end</references>
+        <references refid="classhash__multiset_1a891d1726ad10369a03de1adb6ab5cd12" compoundref="hashmset_8h" startline="137" endline="140">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::erase</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1ab9d845479ba1a8c0224a1e2702e25f69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+        <definition>iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::find</definition>
+        <argsstring>(const key_type &amp;x)</argsstring>
+        <name>find</name>
+        <qualifiedname>hash_multiset::find</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="155" column="21" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="155" bodyend="155"/>
+        <references refid="classhash__table_1adf178262ef1fd3be8c05a1187400f462" compoundref="hashtbl_8h" startline="567" endline="576">hash_table::find</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1ade765037af6c92946847dec3f83cbc8e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::find</definition>
+        <argsstring>(const key_type &amp;x) const</argsstring>
+        <name>find</name>
+        <qualifiedname>hash_multiset::find</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="156" column="21" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="156" bodyend="156"/>
+        <references refid="classhash__table_1adf178262ef1fd3be8c05a1187400f462" compoundref="hashtbl_8h" startline="567" endline="576">hash_table::find</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a4b41afb976de17affdea1deaeea6c0b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1ad0db02de1b4f4e96715dba1fc86dae17" kindref="member">size_type</ref></type>
+        <definition>size_type hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::count</definition>
+        <argsstring>(const key_type &amp;x) const</argsstring>
+        <name>count</name>
+        <qualifiedname>hash_multiset::count</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="157" column="21" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="157" bodyend="157"/>
+        <references refid="classhash__table_1aa8ad88e8c32f665a053ca1d7b710816e" compoundref="hashtbl_8h" startline="589" endline="598">hash_table::count</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1ae76128bce64e8db093a4d6638d747a90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a864a171604ec86b1bebb8e6bfb747adb" kindref="member">pair_iterator_iterator</ref></type>
+        <definition>pair_iterator_iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::equal_range</definition>
+        <argsstring>(const key_type &amp;x)</argsstring>
+        <name>equal_range</name>
+        <qualifiedname>hash_multiset::equal_range</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="161" column="28" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="161" bodyend="164"/>
+        <references refid="classhash__table_1a36defaef2a09251419390437ef89dce0" compoundref="hashtbl_8h" startline="735" endline="753">hash_table::equal_range</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a7652ea8424cdec022da76cd04ec50650" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a377730cdec09209ae240bd2475e0ebe7" kindref="member">pair_citerator_citerator</ref></type>
+        <definition>pair_citerator_citerator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::equal_range</definition>
+        <argsstring>(const key_type &amp;x) const</argsstring>
+        <name>equal_range</name>
+        <qualifiedname>hash_multiset::equal_range</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="168" column="30" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="168" bodyend="171"/>
+        <references refid="classhash__table_1a36defaef2a09251419390437ef89dce0" compoundref="hashtbl_8h" startline="735" endline="753">hash_table::equal_range</references>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a1b5cbe6f2c7efe0ebada54b9a6835c46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+        <definition>iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::lower_bound</definition>
+        <argsstring>(const key_type &amp;x)</argsstring>
+        <name>lower_bound</name>
+        <qualifiedname>hash_multiset::lower_bound</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="173" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="173" bodyend="176"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a21f69cdc4028ed5ff10b4efd6f84f58f" compoundref="hashtbl_8h" startline="679" endline="687">hash_table::lower_bound</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a82011965bd984f5a1106f59cd5b00faf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::lower_bound</definition>
+        <argsstring>(const key_type &amp;x) const</argsstring>
+        <name>lower_bound</name>
+        <qualifiedname>hash_multiset::lower_bound</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="177" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="177" bodyend="180"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a21f69cdc4028ed5ff10b4efd6f84f58f" compoundref="hashtbl_8h" startline="679" endline="687">hash_table::lower_bound</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a152150a63271e5a20daf1988bf6c4f8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" kindref="member">iterator</ref></type>
+        <definition>iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::upper_bound</definition>
+        <argsstring>(const key_type &amp;x)</argsstring>
+        <name>upper_bound</name>
+        <qualifiedname>hash_multiset::upper_bound</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="182" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="182" bodyend="185"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a678b3b29c286646d0a5b300a9ea46862" compoundref="hashtbl_8h" startline="699" endline="715">hash_table::upper_bound</references>
+      </memberdef>
+      <memberdef kind="function" id="classhash__multiset_1a5b0a9e87d95fe6ebca709f3d8f5f85fd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::upper_bound</definition>
+        <argsstring>(const key_type &amp;x) const</argsstring>
+        <name>upper_bound</name>
+        <qualifiedname>hash_multiset::upper_bound</qualifiedname>
+        <param>
+          <type>const <ref refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" kindref="member">key_type</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="186" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="186" bodyend="189"/>
+        <references refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" compoundref="hashmset_8h" startline="52">hash_multiset&lt; Key, HashFunction, KeyEqual &gt;::ht</references>
+        <references refid="classhash__table_1a678b3b29c286646d0a5b300a9ea46862" compoundref="hashtbl_8h" startline="699" endline="715">hash_table::upper_bound</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="hashmset_8h" kindref="compound">hashmset.h</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Lib++ : The Modena C++ Standard Library, Version 2.4, October 1997</para>
+<para>Copyright (c) 1995-1997 Modena Software Inc. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hash_multiset&lt; Key, HashFunction, KeyEqual &gt;</label>
+        <link refid="classhash__multiset"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ht</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hash_table</label>
+        <link refid="classhash__table"/>
+      </node>
+      <node id="2">
+        <label>hash_table&lt; key_type, value_type, identity&lt; value_type &gt;, hash_function, key_equal, allocator&lt; value_type &gt; &gt;</label>
+        <link refid="classhash__table"/>
+        <childnode refid="3" relation="template-instance">
+          <edgelabel>&lt; key_type, value_type, identity&lt; value_type &gt;, hash_function, key_equal, allocator&lt; value_type &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" line="37" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmset.h" bodystart="37" bodyend="190"/>
+    <listofallmembers>
+      <member refid="classhash__multiset_1a4b8096a686cc9c658d91547cfe701b0e" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>begin</name></member>
+      <member refid="classhash__multiset_1a12334550cba832d5164f5602015f232b" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>begin</name></member>
+      <member refid="classhash__multiset_1ac6c0b37ee3bdc76ab471e5f19d99c876" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>clear</name></member>
+      <member refid="classhash__multiset_1a19e99ec7e5874eacd35908935015f363" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>const_iterator</name></member>
+      <member refid="classhash__multiset_1ae6f64191b04ca4d01a8af215e14eeab9" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>const_pointer</name></member>
+      <member refid="classhash__multiset_1adc78361ba633c095fa29ce0f2f9c5903" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>const_reference</name></member>
+      <member refid="classhash__multiset_1a4b41afb976de17affdea1deaeea6c0b7" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>count</name></member>
+      <member refid="classhash__multiset_1a1990528900b4c36775d793efbc575b85" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>difference_type</name></member>
+      <member refid="classhash__multiset_1a19a1d0cc6f5b4bd39cb063cd1590b2b5" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>empty</name></member>
+      <member refid="classhash__multiset_1a175c3dee720cb10fa0f1a7bd8a46dfcf" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>end</name></member>
+      <member refid="classhash__multiset_1a3f56176f790bb1c93fd3077e91d5b90d" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>end</name></member>
+      <member refid="classhash__multiset_1ae76128bce64e8db093a4d6638d747a90" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>equal_range</name></member>
+      <member refid="classhash__multiset_1a7652ea8424cdec022da76cd04ec50650" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>equal_range</name></member>
+      <member refid="classhash__multiset_1a891d1726ad10369a03de1adb6ab5cd12" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>erase</name></member>
+      <member refid="classhash__multiset_1a3ce50f92133bfa6a080867553fc87a59" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>erase</name></member>
+      <member refid="classhash__multiset_1afe10dc00b03689147b08df5c4160fb7d" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>erase</name></member>
+      <member refid="classhash__multiset_1ab9d845479ba1a8c0224a1e2702e25f69" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>find</name></member>
+      <member refid="classhash__multiset_1ade765037af6c92946847dec3f83cbc8e" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>find</name></member>
+      <member refid="classhash__multiset_1a5b16d84cffa2a7e1143db57df85ddbfa" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>hash_funct</name></member>
+      <member refid="classhash__multiset_1a2c3ec47cd2f2109dc542841e4093205c" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>hash_function</name></member>
+      <member refid="classhash__multiset_1a7cfc67030d296cda23b8fd5de7455414" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>hash_multiset</name></member>
+      <member refid="classhash__multiset_1adfff4c5c4a1da1d9a22ae82e7c9814da" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>hash_multiset</name></member>
+      <member refid="classhash__multiset_1a5facf9e136115974e2f4e8b0547c9fad" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>hash_multiset</name></member>
+      <member refid="classhash__multiset_1a0fa272f134534089fd239017c2fb831a" prot="private" virt="non-virtual"><scope>hash_multiset</scope><name>ht</name></member>
+      <member refid="classhash__multiset_1a8d4edeb03bbb1721bb6421e4fff2f517" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>insert</name></member>
+      <member refid="classhash__multiset_1a810590fd080eecb1eae6e42c99c3cdb6" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>insert</name></member>
+      <member refid="classhash__multiset_1a3497b87662f9b96da1cc6aa722dd22d3" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>insert</name></member>
+      <member refid="classhash__multiset_1a757910703114b4907772c99d4c6ebe72" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>iterator</name></member>
+      <member refid="classhash__multiset_1a151c893facfab448a0801d05f6970b42" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>key_comp</name></member>
+      <member refid="classhash__multiset_1ab301e5a7e013156e7136bbb7aaf966e5" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>key_equal</name></member>
+      <member refid="classhash__multiset_1a329498971da0c8be98ccbdb3d0bd8d8e" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>key_type</name></member>
+      <member refid="classhash__multiset_1a1b5cbe6f2c7efe0ebada54b9a6835c46" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>lower_bound</name></member>
+      <member refid="classhash__multiset_1a82011965bd984f5a1106f59cd5b00faf" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>lower_bound</name></member>
+      <member refid="classhash__multiset_1ae2d44540837f69a01c876980acaf35c6" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>max_size</name></member>
+      <member refid="classhash__multiset_1a416c9094a0bd3b1b3a50ab6f3f4e830f" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>operator=</name></member>
+      <member refid="classhash__multiset_1a377730cdec09209ae240bd2475e0ebe7" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>pair_citerator_citerator</name></member>
+      <member refid="classhash__multiset_1a864a171604ec86b1bebb8e6bfb747adb" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>pair_iterator_iterator</name></member>
+      <member refid="classhash__multiset_1aff7b0ceff27f90d9c3354e040e9571a1" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>pointer</name></member>
+      <member refid="classhash__multiset_1ac8c2b40033aa2ec8227c53263f7a0cc4" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>reference</name></member>
+      <member refid="classhash__multiset_1a77b9c9e23f43a8bee324c16856115201" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>rep_type</name></member>
+      <member refid="classhash__multiset_1ab21e1ad409977df634297001b4e5d5c5" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>size</name></member>
+      <member refid="classhash__multiset_1ad0db02de1b4f4e96715dba1fc86dae17" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>size_type</name></member>
+      <member refid="classhash__multiset_1a8da24d82ab0b61adf78a1c3afe88cd81" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>swap</name></member>
+      <member refid="classhash__multiset_1a152150a63271e5a20daf1988bf6c4f8e" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>upper_bound</name></member>
+      <member refid="classhash__multiset_1a5b0a9e87d95fe6ebca709f3d8f5f85fd" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>upper_bound</name></member>
+      <member refid="classhash__multiset_1aaf0b624cf11a3ff49bf731b8f5f587ea" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>value_comp</name></member>
+      <member refid="classhash__multiset_1a68511c365c5f28137af0a7ea74493a2d" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>value_compare</name></member>
+      <member refid="classhash__multiset_1a03f26da2fbd7a1c135d6bf2b88554d41" prot="public" virt="non-virtual"><scope>hash_multiset</scope><name>value_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File e_log.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-e_logc">File e_log.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="./"><strong>e_log.c</strong></a></p>
+<p><a href="../e__log_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "fdlibm.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-lg1"><strong>Lg1</strong></a>   = <code>6.666666666666735130e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-lg2"><strong>Lg2</strong></a>   = <code>3.999999999940941908e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-lg3"><strong>Lg3</strong></a>   = <code>2.857142874366239149e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-lg4"><strong>Lg4</strong></a>   = <code>2.222219843214978396e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-lg5"><strong>Lg5</strong></a>   = <code>1.818357216161805012e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-lg6"><strong>Lg6</strong></a>   = <code>1.531383769920937332e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-lg7"><strong>Lg7</strong></a>   = <code>1.479819860511658591e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ln2_hi"><strong>ln2_hi</strong></a>   = <code>6.93147180369123816490e-01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-ln2_lo"><strong>ln2_lo</strong></a>   = <code>1.90821492927058770002e-10</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-two54"><strong>two54</strong></a>   = <code>1.80143985094819840000e+16</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#variable-zero"><strong>zero</strong></a>   = <code>0.0</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#function-__ieee754_log"><strong>__ieee754_log</strong></a> (double x) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-lg1">variable Lg1</h3>
+<pre><code class="language-C++">double Lg1;
+</code></pre>
+<hr>
+
+<h3 id="variable-lg2">variable Lg2</h3>
+<pre><code class="language-C++">double Lg2;
+</code></pre>
+<hr>
+
+<h3 id="variable-lg3">variable Lg3</h3>
+<pre><code class="language-C++">double Lg3;
+</code></pre>
+<hr>
+
+<h3 id="variable-lg4">variable Lg4</h3>
+<pre><code class="language-C++">double Lg4;
+</code></pre>
+<hr>
+
+<h3 id="variable-lg5">variable Lg5</h3>
+<pre><code class="language-C++">double Lg5;
+</code></pre>
+<hr>
+
+<h3 id="variable-lg6">variable Lg6</h3>
+<pre><code class="language-C++">double Lg6;
+</code></pre>
+<hr>
+
+<h3 id="variable-lg7">variable Lg7</h3>
+<pre><code class="language-C++">double Lg7;
+</code></pre>
+<hr>
+
+<h3 id="variable-ln2_hi">variable ln2_hi</h3>
+<pre><code class="language-C++">double ln2_hi;
+</code></pre>
+<hr>
+
+<h3 id="variable-ln2_lo">variable ln2_lo</h3>
+<pre><code class="language-C++">double ln2_lo;
+</code></pre>
+<hr>
+
+<h3 id="variable-two54">variable two54</h3>
+<pre><code class="language-C++">double two54;
+</code></pre>
+<hr>
+
+<h3 id="variable-zero">variable zero</h3>
+<pre><code class="language-C++">double zero;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-__ieee754_log">function __ieee754_log</h3>
+<pre><code class="language-C++">double __ieee754_log (
+    double x
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

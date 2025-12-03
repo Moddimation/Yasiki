@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_koga_1_1_observer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Koga::Observer</compoundname>
+    <includes refid="_observer_8h" local="no">Observer.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Msg</type>
+      </param>
+      <param>
+        <type>typename Ret</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_koga_1_1_observer_1a95fea37ae66d353bbf8c0bef5901a05a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>Ret</type>
+        <definition>virtual Ret Koga::Observer&lt; Msg, Ret &gt;::receiveMessage</definition>
+        <argsstring>(Msg *msg)=0</argsstring>
+        <name>receiveMessage</name>
+        <qualifiedname>Koga::Observer::receiveMessage</qualifiedname>
+        <reimplementedby refid="class_koga_1_1_character_event_observer_1a1f881ec0a318cf6159781302e5d0112f">receiveMessage</reimplementedby>
+        <param>
+          <type>Msg *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/Observer.h" line="10" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>AITurara</label>
+        <link refid="class_a_i_turara"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>EnemyTypicalStrategy</label>
+        <link refid="class_enemy_typical_strategy"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Koga::CharacterEventObserver</label>
+        <link refid="class_koga_1_1_character_event_observer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Koga::Observer&lt; Msg, Ret &gt;</label>
+        <link refid="class_koga_1_1_observer"/>
+      </node>
+      <node id="2">
+        <label>Koga::Observer&lt; CharacterEvent, bool &gt;</label>
+        <link refid="class_koga_1_1_observer"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; CharacterEvent, bool &gt;</edgelabel>
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="decomp/Project/sources/Koga/include/Observer.h" line="7" column="1" bodyfile="decomp/Project/sources/Koga/include/Observer.h" bodystart="8" bodyend="11"/>
+    <listofallmembers>
+      <member refid="class_koga_1_1_observer_1a95fea37ae66d353bbf8c0bef5901a05a" prot="public" virt="pure-virtual"><scope>Koga::Observer</scope><name>receiveMessage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

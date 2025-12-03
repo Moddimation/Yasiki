@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File msghndlr.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-msghndlrh">File msghndlr.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_25028620cc1a8a9857c414f885e69890/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_ecf524e1d45118e058413ae4d34b2285/"><strong>Priv</strong></a> <strong>&gt;</strong> <a href="../dir_ce9d0fbd51586ee7cfe465fa88acc648/"><strong>Portable</strong></a> <strong>&gt;</strong> <a href="./"><strong>msghndlr.h</strong></a></p>
+<p><a href="../msghndlr_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "trk.h"</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">BOOL</td>
+<td style="text-align: left;"><a href="#function-gettrkconnected"><strong>GetTRKConnected</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-outputdata"><strong>OutputData</strong></a> (void * data, int length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-settrkconnected"><strong>SetTRKConnected</strong></a> (BOOL) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdocputype"><strong>TRKDoCPUType</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdoconnect"><strong>TRKDoConnect</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdocontinue"><strong>TRKDoContinue</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdodisconnect"><strong>TRKDoDisconnect</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdoflushcache"><strong>TRKDoFlushCache</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdooverride"><strong>TRKDoOverride</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> *) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdoreadmemory"><strong>TRKDoReadMemory</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdoreadregisters"><strong>TRKDoReadRegisters</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdoreset"><strong>TRKDoReset</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdosetoption"><strong>TRKDoSetOption</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> *) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdostep"><strong>TRKDoStep</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdostop"><strong>TRKDoStop</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * b) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdosupportmask"><strong>TRKDoSupportMask</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdounsupported"><strong>TRKDoUnsupported</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdoversions"><strong>TRKDoVersions</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdowritememory"><strong>TRKDoWriteMemory</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkdowriteregisters"><strong>TRKDoWriteRegisters</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkstandardack"><strong>TRKStandardACK</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer, <a href="../trk_8h/#enum-messagecommandid"><strong>MessageCommandID</strong></a> commandID, <a href="../trk_8h/#enum-dsreplyerror"><strong>DSReplyError</strong></a> replyError) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-gettrkconnected">function GetTRKConnected</h3>
+<pre><code class="language-C++">BOOL GetTRKConnected (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-outputdata">function OutputData</h3>
+<pre><code class="language-C++">void OutputData (
+    void * data,
+    int length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-settrkconnected">function SetTRKConnected</h3>
+<pre><code class="language-C++">void SetTRKConnected (
+    BOOL
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdocputype">function TRKDoCPUType</h3>
+<pre><code class="language-C++">DSError TRKDoCPUType (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdoconnect">function TRKDoConnect</h3>
+<pre><code class="language-C++">DSError TRKDoConnect (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdocontinue">function TRKDoContinue</h3>
+<pre><code class="language-C++">DSError TRKDoContinue (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdodisconnect">function TRKDoDisconnect</h3>
+<pre><code class="language-C++">DSError TRKDoDisconnect (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdoflushcache">function TRKDoFlushCache</h3>
+<pre><code class="language-C++">DSError TRKDoFlushCache (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdooverride">function TRKDoOverride</h3>
+<pre><code class="language-C++">DSError TRKDoOverride (
+    TRKBuffer *
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdoreadmemory">function TRKDoReadMemory</h3>
+<pre><code class="language-C++">DSError TRKDoReadMemory (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdoreadregisters">function TRKDoReadRegisters</h3>
+<pre><code class="language-C++">DSError TRKDoReadRegisters (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdoreset">function TRKDoReset</h3>
+<pre><code class="language-C++">DSError TRKDoReset (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdosetoption">function TRKDoSetOption</h3>
+<pre><code class="language-C++">DSError TRKDoSetOption (
+    TRKBuffer *
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdostep">function TRKDoStep</h3>
+<pre><code class="language-C++">DSError TRKDoStep (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdostop">function TRKDoStop</h3>
+<pre><code class="language-C++">DSError TRKDoStop (
+    TRKBuffer * b
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdosupportmask">function TRKDoSupportMask</h3>
+<pre><code class="language-C++">DSError TRKDoSupportMask (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdounsupported">function TRKDoUnsupported</h3>
+<pre><code class="language-C++">DSError TRKDoUnsupported (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdoversions">function TRKDoVersions</h3>
+<pre><code class="language-C++">DSError TRKDoVersions (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdowritememory">function TRKDoWriteMemory</h3>
+<pre><code class="language-C++">DSError TRKDoWriteMemory (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkdowriteregisters">function TRKDoWriteRegisters</h3>
+<pre><code class="language-C++">DSError TRKDoWriteRegisters (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkstandardack">function TRKStandardACK</h3>
+<pre><code class="language-C++">DSError TRKStandardACK (
+    TRKBuffer * buffer,
+    MessageCommandID commandID,
+    DSReplyError replyError
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/msghndlr.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

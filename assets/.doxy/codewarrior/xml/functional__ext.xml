@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="functional__ext" kind="file" language="C++">
+    <compoundname>functional_ext</compoundname>
+    <includedby refid="hashtbl_8h" local="no">hashtbl.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>functional_ext</label>
+        <link refid="functional__ext"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hashmap.h</label>
+        <link refid="hashmap_8h"/>
+      </node>
+      <node id="4">
+        <label>hashmmap.h</label>
+        <link refid="hashmmap_8h"/>
+      </node>
+      <node id="5">
+        <label>hashmset.h</label>
+        <link refid="hashmset_8h"/>
+      </node>
+      <node id="6">
+        <label>hashset.h</label>
+        <link refid="hashset_8h"/>
+      </node>
+      <node id="2">
+        <label>hashtbl.h</label>
+        <link refid="hashtbl_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:58:49<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.1.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Copyright<sp/>(c)<sp/>1994</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Hewlett-Packard<sp/>Company</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>distribute<sp/>and<sp/>sell<sp/>this<sp/>software</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>and<sp/>its<sp/>documentation<sp/>for<sp/>any<sp/>purpose<sp/>is<sp/>hereby<sp/>granted<sp/>without<sp/>fee,</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>provided<sp/>that<sp/>the<sp/>above<sp/>copyright<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>that<sp/>both<sp/>that<sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>in<sp/>supporting<sp/>documentation.<sp/><sp/>Hewlett-Packard<sp/>Company<sp/>makes<sp/>no</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>representations<sp/>about<sp/>the<sp/>suitability<sp/>of<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>purpose.<sp/><sp/>It<sp/>is<sp/>provided<sp/>&quot;as<sp/>is&quot;<sp/>without<sp/>express<sp/>or<sp/>implied<sp/>warranty.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Copyright<sp/>(c)<sp/>1996,1997</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Silicon<sp/>Graphics<sp/>Computer<sp/>Systems,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>distribute<sp/>and<sp/>sell<sp/>this<sp/>software</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>and<sp/>its<sp/>documentation<sp/>for<sp/>any<sp/>purpose<sp/>is<sp/>hereby<sp/>granted<sp/>without<sp/>fee,</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>provided<sp/>that<sp/>the<sp/>above<sp/>copyright<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>that<sp/>both<sp/>that<sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>in<sp/>supporting<sp/>documentation.<sp/><sp/>Silicon<sp/>Graphics<sp/>makes<sp/>no</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>representations<sp/>about<sp/>the<sp/>suitability<sp/>of<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>purpose.<sp/><sp/>It<sp/>is<sp/>provided<sp/>&quot;as<sp/>is&quot;<sp/>without<sp/>express<sp/>or<sp/>implied<sp/>warranty.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>functional_ext</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_FUNCTIONAL_EXT</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_FUNCTIONAL_EXT</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;functional&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>identity<sp/>is<sp/>an<sp/>extensions:<sp/>it<sp/>is<sp/>not<sp/>part<sp/>of<sp/>the<sp/>standard.</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Tp&gt;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>_Identity<sp/>:<sp/>public<sp/>unary_function&lt;_Tp,_Tp&gt;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>const<sp/>_Tp&amp;<sp/>operator()(const<sp/>_Tp&amp;<sp/>__x)<sp/>const<sp/>{<sp/>return<sp/>__x;<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Tp&gt;<sp/>struct<sp/>identity<sp/>:<sp/>public<sp/>_Identity&lt;_Tp&gt;<sp/>{};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>select1st<sp/>and<sp/>select2nd<sp/>are<sp/>extensions:<sp/>they<sp/>are<sp/>not<sp/>part<sp/>of<sp/>the<sp/>standard.</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Pair&gt;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>_Select1st<sp/>:<sp/>public<sp/>unary_function&lt;_Pair,<sp/>typename<sp/>_Pair::first_type&gt;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>const<sp/>typename<sp/>_Pair::first_type&amp;<sp/>operator()(const<sp/>_Pair&amp;<sp/>__x)<sp/>const<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>__x.first;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Pair&gt;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>_Select2nd<sp/>:<sp/>public<sp/>unary_function&lt;_Pair,<sp/>typename<sp/>_Pair::second_type&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>const<sp/>typename<sp/>_Pair::second_type&amp;<sp/>operator()(const<sp/>_Pair&amp;<sp/>__x)<sp/>const<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>__x.second;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Pair&gt;<sp/>struct<sp/>select1st<sp/>:<sp/>public<sp/>_Select1st&lt;_Pair&gt;<sp/>{};</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Pair&gt;<sp/>struct<sp/>select2nd<sp/>:<sp/>public<sp/>_Select2nd&lt;_Pair&gt;<sp/>{};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>unary_compose<sp/>and<sp/>binary_compose<sp/>(extensions,<sp/>not<sp/>part<sp/>of<sp/>the<sp/>standard).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Operation1,<sp/>class<sp/>_Operation2&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>unary_compose</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>:<sp/>public<sp/>unary_function&lt;typename<sp/>_Operation2::argument_type,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typename<sp/>_Operation1::result_type&gt;<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_Operation1<sp/>_M_fn1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_Operation2<sp/>_M_fn2;</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>unary_compose(const<sp/>_Operation1&amp;<sp/>__x,<sp/>const<sp/>_Operation2&amp;<sp/>__y)<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>_M_fn1(__x),<sp/>_M_fn2(__y)<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>typename<sp/>_Operation1::result_type</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>operator()(const<sp/>typename<sp/>_Operation2::argument_type&amp;<sp/>__x)<sp/>const<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>_M_fn1(_M_fn2(__x));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Operation1,<sp/>class<sp/>_Operation2&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>unary_compose&lt;_Operation1,_Operation2&gt;<sp/></highlight></codeline>
+<codeline><highlight class="normal">compose1(const<sp/>_Operation1&amp;<sp/>__fn1,<sp/>const<sp/>_Operation2&amp;<sp/>__fn2)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>return<sp/>unary_compose&lt;_Operation1,_Operation2&gt;(__fn1,<sp/>__fn2);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Operation1,<sp/>class<sp/>_Operation2,<sp/>class<sp/>_Operation3&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>binary_compose</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>:<sp/>public<sp/>unary_function&lt;typename<sp/>_Operation2::argument_type,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typename<sp/>_Operation1::result_type&gt;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_Operation1<sp/>_M_fn1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_Operation2<sp/>_M_fn2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_Operation3<sp/>_M_fn3;</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>binary_compose(const<sp/>_Operation1&amp;<sp/>__x,<sp/>const<sp/>_Operation2&amp;<sp/>__y,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>_Operation3&amp;<sp/>__z)<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>_M_fn1(__x),<sp/>_M_fn2(__y),<sp/>_M_fn3(__z)<sp/>{<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>typename<sp/>_Operation1::result_type</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>operator()(const<sp/>typename<sp/>_Operation2::argument_type&amp;<sp/>__x)<sp/>const<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>_M_fn1(_M_fn2(__x),<sp/>_M_fn3(__x));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Operation1,<sp/>class<sp/>_Operation2,<sp/>class<sp/>_Operation3&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>binary_compose&lt;_Operation1,<sp/>_Operation2,<sp/>_Operation3&gt;<sp/></highlight></codeline>
+<codeline><highlight class="normal">compose2(const<sp/>_Operation1&amp;<sp/>__fn1,<sp/>const<sp/>_Operation2&amp;<sp/>__fn2,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>_Operation3&amp;<sp/>__fn3)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>return<sp/>binary_compose&lt;_Operation1,_Operation2,_Operation3&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>(__fn1,<sp/>__fn2,<sp/>__fn3);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std<sp/></highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_FUNCTIONAL_EXT</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990723<sp/>Created</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/functional_ext"/>
+  </compounddef>
+</doxygen>

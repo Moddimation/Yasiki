@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File direct_io.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-direct_ioc">File direct_io.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../direct__io_8c/"><strong>direct_io.c</strong></a></p>
+<p><a href="../direct__io_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/01/22 23:40:32 $ 
+ *  $Revision: 1.7 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  direct_io.c
+ *  
+ *  Routines
+ *  --------
+ *      fread
+ *      fwrite
+ *
+ *
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &quot;ansi_files.h&quot;
+#include &quot;file_io.h&quot;              /* mm 970708 */
+#include &quot;buffer_io.h&quot;
+#include &quot;misc_io.h&quot;
+
+size_t fread(void * ptr, size_t memb_size, size_t num_memb, FILE * file)
+{
+    unsigned char * read_ptr;
+    size_t                  num_bytes, bytes_to_go, bytes_read;
+    int                         ioresult, always_buffer;
+
+#ifndef __NO_WIDE_CHAR                                      /* mm 980205 */
+    if (fwide(file, 0) == 0)
+        fwide(file, -1);
+#endif /* __NO_WIDE_CHAR */                                 /* mm 980205 */
+
+    bytes_to_go = memb_size * num_memb;
+
+    if (!bytes_to_go || file-&gt;state.error || file-&gt;mode.file_kind == __closed_file)
+        return(0);
+
+    always_buffer = !file-&gt;mode.binary_io || file-&gt;mode.file_kind == __string_file ||
+                        file-&gt;mode.buffer_mode == _IOFBF;  /*MW-mm 961107*/
+
+    if (file-&gt;state.io_state == __neutral)
+        if (file-&gt;mode.io_mode &amp; __read)
+        {
+            file-&gt;state.io_state = __reading;
+            file-&gt;buffer_len     = 0;
+        }
+
+    if (file-&gt;state.io_state &lt; __reading)
+    {
+        set_error(file);
+        return(0);
+    }
+
+     /* mm 970708 begin */
+    if (file-&gt;mode.buffer_mode &amp; (_IOLBF | _IONBF)) {
+        if (__flush_line_buffered_output_files()) {
+            set_error(file);
+            return 0;
+        }
+    }
+     /* mm 970708 end */
+
+    read_ptr    = (unsigned char *) ptr;
+    bytes_read  = 0;
+
+    if (bytes_to_go &amp;&amp; file-&gt;state.io_state &gt;= __rereading)
+    {
+        do
+        {
+
+#ifndef __NO_WIDE_CHAR                                      /* mm 980205 */
+            if (fwide(file, 0) == 1)
+            {
+                *(wchar_t*)read_ptr = file-&gt;ungetwc_buffer[file-&gt;state.io_state - __rereading];
+                read_ptr   += sizeof(wchar_t);
+                bytes_read += sizeof(wchar_t);
+                bytes_to_go-= sizeof(wchar_t);
+            }
+            else
+            {
+                *read_ptr++ = file-&gt;ungetc_buffer[file-&gt;state.io_state - __rereading];
+                bytes_read++;
+                bytes_to_go--;
+            }
+#else
+            *read_ptr++ = file-&gt;ungetc_buffer[file-&gt;state.io_state - __rereading];
+            bytes_read++;
+            bytes_to_go--;
+#endif /* __NO_WIDE_CHAR */                                 /* mm 980205 */
+
+
+            file-&gt;state.io_state--;
+        }
+        while (bytes_to_go &amp;&amp; file-&gt;state.io_state &gt;= __rereading);
+
+        if (file-&gt;state.io_state == __reading)
+            file-&gt;buffer_len = file-&gt;saved_buffer_len;
+    }
+
+    if (bytes_to_go &amp;&amp; (file-&gt;buffer_len || always_buffer))
+        do
+        {
+            if (!file-&gt;buffer_len)
+            {
+                ioresult = __load_buffer(file, NULL, __align_buffer);
+
+                if (ioresult)
+                {
+                    if (ioresult == __io_error)
+                        set_error(file);
+                    else
+                        set_eof(file);
+                    bytes_to_go = 0;
+                    break;
+                }
+            }
+
+            num_bytes = file-&gt;buffer_len;
+
+            if (num_bytes &gt; bytes_to_go)
+                num_bytes = bytes_to_go;
+
+            memcpy(read_ptr, file-&gt;buffer_ptr, num_bytes);
+
+            read_ptr    += num_bytes;
+            bytes_read  += num_bytes;
+            bytes_to_go -= num_bytes;
+
+            file-&gt;buffer_ptr += num_bytes;
+            file-&gt;buffer_len -= num_bytes;
+        }
+        while (bytes_to_go &amp;&amp; always_buffer);
+
+    if (bytes_to_go &amp;&amp; !always_buffer)
+    {
+        unsigned char * save_buffer = file-&gt;buffer;
+        size_t                  save_size   = file-&gt;buffer_size;
+
+        file-&gt;buffer      = read_ptr;
+        file-&gt;buffer_size = bytes_to_go;
+
+        ioresult = __load_buffer(file, &amp;num_bytes, __dont_align_buffer);
+
+        if (ioresult)
+            if (ioresult == __io_error)
+                set_error(file);
+            else
+                set_eof(file);
+
+        bytes_read += num_bytes;
+
+        file-&gt;buffer        = save_buffer;
+        file-&gt;buffer_size   = save_size;
+
+        __prep_buffer(file);
+
+        file-&gt;buffer_len = 0;
+    }
+
+    return(bytes_read / memb_size);                         /* mm 980203 */
+}
+
+size_t fwrite(const void * ptr, size_t memb_size, size_t num_memb, FILE * file)
+{
+    unsigned char * write_ptr;
+    size_t                  num_bytes, bytes_to_go, bytes_written;
+    int                         ioresult, always_buffer;
+
+
+#ifndef __NO_WIDE_CHAR                                      /* mm 980205 */
+    if (fwide(file, 0) == 0)
+        fwide(file, -1);
+#endif /* __NO_WIDE_CHAR */                                 /* mm 980205 */
+
+    bytes_to_go = memb_size * num_memb;
+
+    if (!bytes_to_go || file-&gt;state.error || file-&gt;mode.file_kind == __closed_file)
+        return(0);
+
+    if (file-&gt;mode.file_kind == __console_file)
+        __stdio_atexit();
+
+    always_buffer = !file-&gt;mode.binary_io ||
+                     file-&gt;mode.file_kind   == __string_file    ||
+                     file-&gt;mode.buffer_mode == _IOFBF           ||  /*MW-mm 961107*/
+                     file-&gt;mode.buffer_mode == _IOLBF;
+
+    if (file-&gt;state.io_state == __neutral)
+        if (file-&gt;mode.io_mode &amp; __write)
+        {
+#if !defined( __BEOS__) &amp;&amp; !defined(_No_Disk_File_OS_Support)   /* we do O_APPEND on open */ /* mm 970708 */
+            if (file-&gt;mode.io_mode &amp; __append)
+                if (fseek(file, 0, SEEK_END))
+                    return(0);
+#endif                                          /* mm 970708 */
+
+            file-&gt;state.io_state = __writing;
+
+            __prep_buffer(file);
+        }
+
+    if (file-&gt;state.io_state != __writing)
+    {
+        set_error(file);
+        return(0);
+    }
+
+    write_ptr     = (unsigned char *) ptr;
+    bytes_written = 0;
+
+    if (bytes_to_go &amp;&amp; (file-&gt;buffer_ptr != file-&gt;buffer || always_buffer))
+    {
+        file-&gt;buffer_len = file-&gt;buffer_size - (file-&gt;buffer_ptr - file-&gt;buffer);
+
+        do
+        {
+            unsigned char * newline = NULL;
+
+            num_bytes = file-&gt;buffer_len;
+
+            if (num_bytes &gt; bytes_to_go)
+                num_bytes = bytes_to_go;
+
+#ifndef _Unbuffered_IO
+
+            if (file-&gt;mode.buffer_mode == _IOLBF &amp;&amp; num_bytes)
+                if((newline = (unsigned char *) __memrchr(write_ptr, '\n', num_bytes)) != NULL)
+                    num_bytes = newline + 1 - write_ptr;
+
+#endif
+
+            if (num_bytes)
+            {
+                memcpy(file-&gt;buffer_ptr, write_ptr, num_bytes);
+
+                write_ptr     += num_bytes;
+                bytes_written += num_bytes;
+                bytes_to_go   -= num_bytes;
+
+                file-&gt;buffer_ptr += num_bytes;
+                file-&gt;buffer_len -= num_bytes;
+            }
+
+            if (!file-&gt;buffer_len &amp;&amp; (file-&gt;mode.file_kind == __string_file))   /* mm 980715 */
+            {                                                                   /* mm 980715 */
+                bytes_written += bytes_to_go;                                   /* mm 980715 */
+                break;                                                          /* mm 980715 */
+            }                                                                   /* mm 980715 */
+
+            if (!file-&gt;buffer_len || newline != NULL || (file-&gt;mode.buffer_mode == _IONBF))  /* mm 970716 */
+            {
+                ioresult = __flush_buffer(file, NULL);
+
+                if (ioresult)
+                {
+                    set_error(file);
+                    bytes_to_go = 0;
+                    break;
+                }
+            }
+        }
+        while (bytes_to_go &amp;&amp; always_buffer);
+    }
+
+    if (bytes_to_go &amp;&amp; !always_buffer)
+    {
+        unsigned char * save_buffer = file-&gt;buffer;
+        size_t                  save_size   = file-&gt;buffer_size;
+
+        file-&gt;buffer      = write_ptr;
+        file-&gt;buffer_size = bytes_to_go;
+        file-&gt;buffer_ptr  = write_ptr + bytes_to_go;
+
+        if (__flush_buffer(file, &amp;num_bytes) != __no_io_error)
+            set_error(file);
+
+        bytes_written += num_bytes;
+
+        file-&gt;buffer      = save_buffer;
+        file-&gt;buffer_size = save_size;
+
+        __prep_buffer(file);
+
+        file-&gt;buffer_len = 0;
+    }
+
+    if (file-&gt;mode.buffer_mode != _IOFBF)
+        file-&gt;buffer_len = 0;
+
+
+    return((bytes_written + memb_size - 1) / memb_size);
+}
+
+/*  Change Record
+ *  25-Aug-95 JFH  First code release.
+ *  09-Jan-96 JFH  At the behest of Be, I put in real output line buffering.
+ *  22-Jan-96 JFH  Added casts from (void *) for C++ compatibility.
+ *  12-Feb-96 JFH  Added call to __stdio_atexit in fwrite for console files (so they will
+ *                               get flushed and closed properly).
+ *  19-Feb-96 JFH  Added check for closed files to fread and fwrite.
+ *  25-Apr-96 JFH  Modified fread to account for multi-level 'ungetc'.
+ *  mm 961107      Make sure buffering occurs when _IOFBF is set.
+ *  01-Jan-97 Mani@be   Make unbuffered stdio really work.
+ *  09-Jul-97 SCM  Disabled output line buffering support when _Unbuffered_IO is set.
+ *                 Modified to support unbuffered, non-binary files.
+ *  20-Jul-97 MEA  Changed __no_os to _No_Disk_File_OS_Support.
+ *  mm 970708  Inserted Be changes
+ *  mm 970716  Flush unbuffered files after writing.
+ *  mm 980203  Corrected return value to fread to round down to the number of complete elements
+              successfully read.  MW03272
+ *  mm 980205  Support for wide-characters
+ *  mm 980715  Made exit from fwrite with string file when buffer (i.e. string) full MW07942    
+ */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

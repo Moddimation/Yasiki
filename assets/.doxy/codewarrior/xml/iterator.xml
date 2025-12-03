@@ -1,0 +1,1475 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="iterator" kind="file" language="C++">
+    <compoundname>iterator</compoundname>
+    <includedby refid="hashtbl_8h" local="no">hashtbl.h</includedby>
+    <includedby refid="iterator_8h" local="no">iterator.h</includedby>
+    <includedby refid="tree_8h" local="no">tree.h</includedby>
+    <invincdepgraph>
+      <node id="3">
+        <label>hashmap.h</label>
+        <link refid="hashmap_8h"/>
+      </node>
+      <node id="4">
+        <label>hashmmap.h</label>
+        <link refid="hashmmap_8h"/>
+      </node>
+      <node id="5">
+        <label>hashmset.h</label>
+        <link refid="hashmset_8h"/>
+      </node>
+      <node id="6">
+        <label>hashset.h</label>
+        <link refid="hashset_8h"/>
+      </node>
+      <node id="2">
+        <label>hashtbl.h</label>
+        <link refid="hashtbl_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>iterator</label>
+        <link refid="iterator"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>iterator.h</label>
+        <link refid="iterator_8h"/>
+      </node>
+      <node id="8">
+        <label>tree.h</label>
+        <link refid="tree_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:58:50<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.13.4.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_ITERATOR</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_ITERATOR</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;cstddef&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;iosfwd&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.iterator.primitives,<sp/>primitives:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">struct<sp/>input_iterator_tag<sp/>{};</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>output_iterator_tag<sp/>{};</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>forward_iterator_tag:<sp/>public<sp/>input_iterator_tag<sp/>{};</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>bidirectional_iterator_tag:<sp/>public<sp/>forward_iterator_tag<sp/>{};</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>random_access_iterator_tag:<sp/>public<sp/>bidirectional_iterator_tag<sp/>{};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>Iterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>iterator_traits</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Iterator::difference_type<sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Iterator::value_type<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Iterator::pointer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Iterator::reference<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Iterator::iterator_category<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_PARTIAL_SPECIALIZATION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;T*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>T<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>T*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>T&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>T*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>T<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>T*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>T&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>__MSL_FIX_ITERATORS__(myType)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else<sp/><sp/>//<sp/>_MSL_NO_PARTIAL_SPECIALIZATION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_BOOL</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;bool*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>bool<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>bool*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>bool&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>bool*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>bool<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>bool*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>bool&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;char*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>char*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>char&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>char*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>char*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>char&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;signed<sp/>char*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>signed<sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>signed<sp/>char*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>signed<sp/>char&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>signed<sp/>char*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>signed<sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>signed<sp/>char*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>signed<sp/>char&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;unsigned<sp/>char*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>char*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>char&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>unsigned<sp/>char*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>char*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>char&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;wchar_t*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>wchar_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>wchar_t*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>wchar_t&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>wchar_t*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>wchar_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>wchar_t*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>wchar_t&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;short*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>short<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>short*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>short&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>short*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>short<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>short*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>short&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;unsigned<sp/>short*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>short<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>short*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>short&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>unsigned<sp/>short*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>short<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>short*<sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>short&amp;<sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;int*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>int*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>int&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>int*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>int*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>int&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;unsigned<sp/>int*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>int*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>int&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>unsigned<sp/>int*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>int*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>int&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;long*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>long*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>long*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>long&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;unsigned<sp/>long*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>long*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>long&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>unsigned<sp/>long*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>long*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>long&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>__MSL_LONGLONG_SUPPORT__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;long<sp/>long*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>long*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>long&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>long<sp/>long*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>long<sp/>long*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>long<sp/>long&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;unsigned<sp/>long<sp/>long*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>long<sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>long<sp/>long*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>long<sp/>long&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>unsigned<sp/>long<sp/>long*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>unsigned<sp/>long<sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>long<sp/>long*<sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>unsigned<sp/>long<sp/>long&amp;<sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif<sp/><sp/>//<sp/>__MSL_LONGLONG_SUPPORT__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_No_Floating_Point</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;float*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>float<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>float*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>float&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>float*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>float<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>float*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>float&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;double*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>double*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>double&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>double*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>double*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>double&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;long<sp/>double*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>double*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>double&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>struct<sp/>iterator_traits&lt;const<sp/>long<sp/>double*&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>long<sp/>double*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>long<sp/>double&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif<sp/><sp/>//<sp/>_No_Floating_Point</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//970415<sp/>bkoz<sp/>via<sp/>Dennis<sp/>C.<sp/>De<sp/>Mars</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>__MSL_FIX_ITERATORS__(myType)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>_STD::iterator_traits<sp/>&lt;myType*&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;<sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>myType<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>myType*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>myType&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>random_access_iterator_tag<sp/>iterator_category;<sp/>\</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/>//<sp/>_MSL_NO_PARTIAL_SPECIALIZATION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>Category,<sp/>class<sp/>T,<sp/>class<sp/>Distance<sp/>=<sp/>ptrdiff_t,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>Pointer<sp/>=<sp/>T*,<sp/>class<sp/>Reference<sp/>=<sp/>T&amp;&gt;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>iterator</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Distance<sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Pointer<sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Reference<sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Category<sp/><sp/>iterator_category;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.iterator.operations,<sp/>iterator<sp/>operations:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>advance</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>InputIterator,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">__advance(InputIterator&amp;<sp/>i,<sp/>Distance<sp/>n,<sp/>input_iterator_tag)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>n<sp/>&gt;<sp/>0;<sp/>--n)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++i;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">__advance(BidirectionalIterator&amp;<sp/>i,<sp/>Distance<sp/>n,<sp/>bidirectional_iterator_tag)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(n<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>n<sp/>&gt;<sp/>0;<sp/>--n)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>n<sp/>&lt;<sp/>0;<sp/>++n)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>--i;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">__advance(RandomAccessIterator&amp;<sp/>i,<sp/>Distance<sp/>n,<sp/>random_access_iterator_tag)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>i<sp/>+=<sp/>n;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>InputIterator,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">advance(InputIterator&amp;<sp/>i,<sp/>Distance<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__advance(i,<sp/>n,<sp/>iterator_traits&lt;InputIterator&gt;::iterator_category());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>distance</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>InputIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>iterator_traits&lt;InputIterator&gt;::difference_type</highlight></codeline>
+<codeline><highlight class="normal">__distance(InputIterator<sp/>first,<sp/>InputIterator<sp/>last,<sp/>input_iterator_tag)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typename<sp/>iterator_traits&lt;InputIterator&gt;::difference_type<sp/>result<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>first<sp/>!=<sp/>last;<sp/>++first)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++result;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>iterator_traits&lt;RandomAccessIterator&gt;::difference_type</highlight></codeline>
+<codeline><highlight class="normal">__distance(RandomAccessIterator<sp/>first,<sp/>RandomAccessIterator<sp/>last,<sp/>random_access_iterator_tag)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>last<sp/>-<sp/>first;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>InputIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>iterator_traits&lt;InputIterator&gt;::difference_type</highlight></codeline>
+<codeline><highlight class="normal">distance(InputIterator<sp/>first,<sp/>InputIterator<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>__distance(first,<sp/>last,<sp/>iterator_traits&lt;InputIterator&gt;::iterator_category());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.predef.iterators,<sp/>predefined<sp/>iterators:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>reverse_iterator</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Iterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;typename<sp/>iterator_traits&lt;Iterator&gt;::iterator_category,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typename<sp/>iterator_traits&lt;Iterator&gt;::value_type,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typename<sp/>iterator_traits&lt;Iterator&gt;::difference_type,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typename<sp/>iterator_traits&lt;Iterator&gt;::pointer,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typename<sp/>iterator_traits&lt;Iterator&gt;::reference&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Iterator<sp/>current;</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>iterator_traits&lt;Iterator&gt;::difference_type<sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>iterator_traits&lt;Iterator&gt;::reference<sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>iterator_traits&lt;Iterator&gt;::pointer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>reverse_iterator(Iterator<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_MUST_INLINE_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>U&gt;<sp/>reverse_iterator(const<sp/>reverse_iterator&lt;U&gt;&amp;<sp/>u);</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>U&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator(const<sp/>reverse_iterator&lt;U&gt;&amp;<sp/>u)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>current(u.base())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Iterator<sp/>base()<sp/>const;<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>explicit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reference<sp/>operator*()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pointer<sp/><sp/><sp/>operator-&gt;()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator&amp;<sp/>operator--();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><sp/>operator--(int);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><sp/>operator+<sp/>(difference_type<sp/>n)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator&amp;<sp/>operator+=(difference_type<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><sp/>operator-<sp/>(difference_type<sp/>n)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator&amp;<sp/>operator-=(difference_type<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reference<sp/>operator[](difference_type<sp/>n)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::reverse_iterator()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::reverse_iterator(BidirectionalIterator<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>current(x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_MUST_INLINE_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>U&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator&lt;BidirectionalIterator&gt;::reverse_iterator(const<sp/>reverse_iterator&lt;U&gt;&amp;<sp/>u)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>current(u.base())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">BidirectionalIterator</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::base()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>current;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>reverse_iterator&lt;BidirectionalIterator&gt;::reference</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::operator*()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>BidirectionalIterator<sp/>tmp<sp/>=<sp/>current;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*--tmp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>reverse_iterator&lt;BidirectionalIterator&gt;::pointer</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::operator-&gt;()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>&amp;(operator*());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--current;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/>tmp<sp/>=<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--current;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tmp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::operator--()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>++current;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;BidirectionalIterator&gt;::operator--(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/>tmp<sp/>=<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>++current;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tmp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;::operator+<sp/>(difference_type<sp/>n)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>reverse_iterator(current<sp/>-<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;::operator-<sp/>(difference_type<sp/>n)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>reverse_iterator(current<sp/>+<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;::operator+=(difference_type<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>current<sp/>-=<sp/>n;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;::operator-=(difference_type<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>current<sp/>+=<sp/>n;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>reverse_iterator&lt;RandomAccessIterator&gt;::reference</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;::operator[](difference_type<sp/>n)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>current[-n-1];</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>reverse_iterator&lt;BidirectionalIterator&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>reverse_iterator&lt;BidirectionalIterator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(x.base()<sp/>==<sp/>y.base());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;<sp/>(const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(x.base()<sp/>&gt;<sp/>y.base());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>BidirectionalIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>reverse_iterator&lt;BidirectionalIterator&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>reverse_iterator&lt;BidirectionalIterator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(x.base()<sp/>!=<sp/>y.base());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;<sp/>(const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(x.base()<sp/>&lt;<sp/>y.base());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;=(const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(x.base()<sp/>&lt;=<sp/>y.base());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;=(const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(x.base()<sp/>&gt;=<sp/>y.base());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>reverse_iterator&lt;RandomAccessIterator&gt;::difference_type</highlight></codeline>
+<codeline><highlight class="normal">operator-(const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>y.base()<sp/>-<sp/>x.base();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">reverse_iterator&lt;RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">operator+(typename<sp/>reverse_iterator&lt;RandomAccessIterator&gt;::difference_type<sp/>n,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>reverse_iterator&lt;RandomAccessIterator&gt;&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>reverse_iterator&lt;RandomAccessIterator&gt;(x.base()<sp/>-<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>back_insert_iterator</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>back_insert_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;output_iterator_tag,<sp/>void,<sp/>void,<sp/>void,<sp/>void&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Container*<sp/>container;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Container<sp/>container_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>back_insert_iterator(Container&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>back_insert_iterator&amp;<sp/>operator=(typename<sp/>Container::const_reference<sp/>value);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>back_insert_iterator&amp;<sp/>operator*();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>back_insert_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>back_insert_iterator&amp;<sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;::back_insert_iterator(Container&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>container(&amp;x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;::operator=(typename<sp/>Container::const_reference<sp/>value)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>container-&gt;push_back(value);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;::operator*()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">back_insert_iterator&lt;Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">back_inserter(Container&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>back_insert_iterator&lt;Container&gt;(x);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>front_insert_iterator</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>front_insert_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;output_iterator_tag,<sp/>void,<sp/>void,<sp/>void,<sp/>void&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Container*<sp/>container;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Container<sp/>container_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>front_insert_iterator(Container&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>front_insert_iterator&amp;<sp/>operator=(typename<sp/>Container::const_reference<sp/>value);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>front_insert_iterator&amp;<sp/>operator*();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>front_insert_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>front_insert_iterator&amp;<sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;::front_insert_iterator(Container&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>container(&amp;x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;::operator=(typename<sp/>Container::const_reference<sp/>value)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>container-&gt;push_front(value);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;::operator*()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">front_insert_iterator&lt;Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">front_inserter(Container&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>front_insert_iterator&lt;Container&gt;(x);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>insert_iterator</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>insert_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;output_iterator_tag,<sp/>void,<sp/>void,<sp/>void,<sp/>void&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Container*<sp/>container;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typename<sp/>Container::iterator<sp/>iter;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Container<sp/>container_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>insert_iterator(Container&amp;<sp/>x,<sp/>typename<sp/>Container::iterator<sp/>i);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>insert_iterator&amp;<sp/>operator=(typename<sp/>Container::const_reference<sp/>value);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>insert_iterator&amp;<sp/>operator*();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>insert_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>insert_iterator&amp;<sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;::insert_iterator(Container&amp;<sp/>x,<sp/>typename<sp/>Container::iterator<sp/>i)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>container(&amp;x),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iter(i)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;::operator=(typename<sp/>Container::const_reference<sp/>value)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iter<sp/>=<sp/>container-&gt;insert(iter,<sp/>value);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>++iter;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;::operator*()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">insert_iterator&lt;Container&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>!defined(__MWERKS__)<sp/>||<sp/>(defined(__MWERKS__)<sp/>&amp;&amp;<sp/>__MWERKS__<sp/>&gt;<sp/>0x2400)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Container,<sp/>class<sp/>Iterator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>insert_iterator&lt;Container&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inserter(Container&amp;<sp/>x,<sp/>Iterator<sp/>i)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>insert_iterator&lt;Container&gt;(x,<sp/>typename<sp/>Container::iterator(i));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Container,<sp/>class<sp/>Iterator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>insert_iterator&lt;Container&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inserter(Container&amp;<sp/>x,<sp/>Iterator<sp/>i)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>insert_iterator&lt;Container&gt;(x,<sp/>Container::iterator(i));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.stream.iterators,<sp/>stream<sp/>iterators:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>istream_iterator</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT<sp/>=<sp/>char,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;,<sp/>class<sp/>Distance<sp/>=<sp/>ptrdiff_t&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>istream_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;input_iterator_tag,<sp/>T,<sp/>Distance,<sp/>const<sp/>T*,<sp/>const<sp/>T&amp;&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/>traits_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_istream&lt;charT,<sp/>traits&gt;<sp/>istream_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istream_iterator();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istream_iterator(istream_type&amp;<sp/>s);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>T&amp;<sp/>operator*()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>T*<sp/>operator-&gt;()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istream_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istream_iterator<sp/><sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_istream&lt;charT,<sp/>traits&gt;*<sp/>in_stream_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/>value_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator==<sp/>&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;(const<sp/>istream_iterator&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>istream_iterator&amp;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator!=<sp/>&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;(const<sp/>istream_iterator&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>istream_iterator&amp;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istream_iterator&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;::istream_iterator()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>in_stream_(0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istream_iterator&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;::istream_iterator(istream_type&amp;<sp/>s)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>in_stream_(&amp;s)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!(*in_stream_<sp/>&gt;&gt;<sp/>value_))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in_stream_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>T&amp;</highlight></codeline>
+<codeline><highlight class="normal">istream_iterator&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;::operator*()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>value_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>T*</highlight></codeline>
+<codeline><highlight class="normal">istream_iterator&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;::operator-&gt;()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>&amp;value_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istream_iterator&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">istream_iterator&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!(*in_stream_<sp/>&gt;&gt;<sp/>value_))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in_stream_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istream_iterator&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">istream_iterator&lt;T,<sp/>charT,<sp/>traits,<sp/>Distance&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istream_iterator<sp/>tmp(*this);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tmp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>istream_iterator&lt;T,charT,traits,Distance&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>istream_iterator&lt;T,charT,traits,Distance&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(x.in_stream_<sp/>==<sp/>y.in_stream_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits,<sp/>class<sp/>Distance&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>istream_iterator&lt;T,charT,traits,Distance&gt;&amp;<sp/>x,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>istream_iterator&lt;T,charT,traits,Distance&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(x.in_stream_<sp/>!=<sp/>y.in_stream_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>ostream_iterator</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT<sp/>=<sp/>char,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>ostream_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;output_iterator_tag,<sp/>void,<sp/>void,<sp/>void,<sp/>void&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/>traits_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_ostream&lt;charT,traits&gt;<sp/>ostream_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostream_iterator(ostream_type&amp;<sp/>s);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostream_iterator(ostream_type&amp;<sp/>s,<sp/>const<sp/>charT*<sp/>delimiter);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostream_iterator&amp;<sp/>operator=(const<sp/>T&amp;<sp/>value);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostream_iterator&amp;<sp/>operator*();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostream_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostream_iterator&amp;<sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>basic_ostream&lt;charT,traits&gt;*<sp/>out_stream_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>charT*<sp/>delim_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,<sp/>charT,<sp/>traits&gt;::ostream_iterator(ostream_type&amp;<sp/>s)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>out_stream_(&amp;s),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>delim_(0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,<sp/>charT,<sp/>traits&gt;::ostream_iterator(ostream_type&amp;<sp/>s,<sp/>const<sp/>charT*<sp/>delimiter)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>out_stream_(&amp;s),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>delim_(delimiter)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,charT,traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,<sp/>charT,<sp/>traits&gt;::operator=(const<sp/>T&amp;<sp/>value)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*out_stream_<sp/>&lt;&lt;<sp/>value;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(delim_<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out_stream_<sp/>&lt;&lt;<sp/>delim_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,charT,traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,<sp/>charT,<sp/>traits&gt;::operator*()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,charT,traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,<sp/>charT,<sp/>traits&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,charT,traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">ostream_iterator&lt;T,<sp/>charT,<sp/>traits&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>istreambuf_iterator</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>istreambuf_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;input_iterator_tag,<sp/>charT,<sp/>typename<sp/>traits::off_type,<sp/>charT*,<sp/>charT&amp;&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>traits::int_type<sp/><sp/><sp/><sp/><sp/>int_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_streambuf&lt;charT,traits&gt;<sp/>streambuf_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_istream&lt;charT,traits&gt;<sp/><sp/><sp/>istream_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>proxy</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>charT<sp/>operator*()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>keep_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>charT<sp/>keep_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>basic_streambuf&lt;charT,traits&gt;*<sp/>sbuf_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proxy(charT<sp/>c,<sp/>basic_streambuf&lt;charT,<sp/>traits&gt;*<sp/>sbuf)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>keep_(c),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbuf_(sbuf)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>class<sp/>istreambuf_iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istreambuf_iterator()<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istreambuf_iterator(istream_type&amp;<sp/>s)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istreambuf_iterator(streambuf_type*<sp/>s)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istreambuf_iterator(const<sp/>proxy&amp;<sp/>p)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>charT<sp/>operator*()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>istreambuf_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>proxy<sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>equal(const<sp/>istreambuf_iterator&amp;<sp/>b)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streambuf_type*<sp/>sbuf_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;::istreambuf_iterator()<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>sbuf_(0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;::istreambuf_iterator(istream_type&amp;<sp/>s)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>sbuf_(s.rdbuf())</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(sbuf_<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>traits::eq_int_type(sbuf_-&gt;sgetc(),<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbuf_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;::istreambuf_iterator(streambuf_type*<sp/>s)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>sbuf_(s)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(sbuf_<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>traits::eq_int_type(sbuf_-&gt;sgetc(),<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbuf_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;::istreambuf_iterator(const<sp/>proxy&amp;<sp/>p)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>sbuf_(p.sbuf_)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(sbuf_<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>traits::eq_int_type(sbuf_-&gt;sgetc(),<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbuf_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">charT</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;::operator*()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>traits::to_char_type(sbuf_-&gt;sgetc());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sbuf_-&gt;sbumpc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(traits::eq_int_type(sbuf_-&gt;sgetc(),<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbuf_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>istreambuf_iterator&lt;charT,<sp/>traits&gt;::proxy</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>proxy<sp/>result(traits::to_char_type(sbuf_-&gt;sbumpc()),<sp/>sbuf_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(traits::eq_int_type(sbuf_-&gt;sgetc(),<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbuf_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">istreambuf_iterator&lt;charT,<sp/>traits&gt;::equal(const<sp/>istreambuf_iterator&amp;<sp/>b)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(!(static_cast&lt;bool&gt;(sbuf_)<sp/>^<sp/>static_cast&lt;bool&gt;(b.sbuf_)));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>istreambuf_iterator&lt;charT,traits&gt;&amp;<sp/>a,<sp/>const<sp/>istreambuf_iterator&lt;charT,traits&gt;&amp;<sp/>b)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>a.equal(b);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>istreambuf_iterator&lt;charT,traits&gt;&amp;<sp/>a,<sp/>const<sp/>istreambuf_iterator&lt;charT,traits&gt;&amp;<sp/>b)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(!a.equal(b));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>ostreambuf_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;output_iterator_tag,<sp/>void,<sp/>void,<sp/>void,<sp/>void&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>charT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>traits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_streambuf&lt;charT,traits&gt;<sp/>streambuf_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_ostream&lt;charT,traits&gt;<sp/><sp/><sp/>ostream_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostreambuf_iterator(ostream_type&amp;<sp/>s)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostreambuf_iterator(streambuf_type*<sp/>s)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostreambuf_iterator&amp;<sp/>operator=(charT<sp/>c);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostreambuf_iterator&amp;<sp/>operator*();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostreambuf_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ostreambuf_iterator&amp;<sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>failed()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>streambuf_type*<sp/>sbuf_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;::ostreambuf_iterator(ostream_type&amp;<sp/>s)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>sbuf_(s.rdbuf())</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;::ostreambuf_iterator(streambuf_type*<sp/>s)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>sbuf_(s)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;::operator=(charT<sp/>c)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(sbuf_<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>traits::eq_int_type(sbuf_-&gt;sputc(c),<sp/>traits::eof()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbuf_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;::operator*()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">ostreambuf_iterator&lt;charT,<sp/>traits&gt;::failed()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;bool&gt;(sbuf_<sp/>==<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_ITERATOR</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE<sp/>and<sp/>MOD_C_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>added<sp/>wrapper<sp/>for<sp/>alignment</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Changed<sp/>filename<sp/>from<sp/>iterator.h<sp/>to<sp/>iterator</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>updated<sp/>__MSL_FIX_ITERATORS__</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Added<sp/>default<sp/>argument<sp/>to<sp/>istream_iterator<sp/>template<sp/>argument<sp/>charT<sp/>per<sp/>24.5.1.3</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Added<sp/>default<sp/>argument<sp/>to<sp/>ostream_iterator<sp/>template<sp/>argument<sp/>charT<sp/>per<sp/>24.5.2.2</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971227<sp/>Changed<sp/>friend<sp/>declarations<sp/>in<sp/>reverse_iterator.<sp/><sp/>This<sp/>was<sp/>overly</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friendly,<sp/>and<sp/>besides,<sp/>requires<sp/>more<sp/>compiler<sp/>than<sp/>we<sp/>have<sp/>right<sp/>now.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971227<sp/>non-standard<sp/>stuff<sp/>commented<sp/>out</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971227<sp/>Pointer<sp/>renamed<sp/>to<sp/>pointer<sp/>in<sp/>several<sp/>places<sp/>per<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971227<sp/>Reference<sp/>renamed<sp/>to<sp/>reference<sp/>in<sp/>several<sp/>places<sp/>per<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980106<sp/>if<sp/>inlined<sp/>compiler<sp/>instantiates<sp/>reverse_iterator::op[]<sp/>whether<sp/>it<sp/>is<sp/>need<sp/>or<sp/>not.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this<sp/>causes<sp/>problems<sp/>with<sp/>bidirectional<sp/>iterators.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980107<sp/>Completed<sp/>and<sp/>organized<sp/>list<sp/>of<sp/>built-in<sp/>types<sp/>for<sp/>iterator_traits<sp/>specialization</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980114<sp/>Moved<sp/>istream_iterator<sp/>comparison<sp/>methods<sp/>out<sp/>of<sp/>template<sp/>definition.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980408<sp/>wrapped<sp/>with<sp/>#ifndef<sp/>_No_Floating_Point<sp/></highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980518<sp/>added<sp/>specialization<sp/>for<sp/>const<sp/>T*</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980518<sp/>removed<sp/>__advance<sp/>&amp;<sp/>__distance<sp/>specializations<sp/>for<sp/>Bidirectional<sp/>and<sp/>Forward<sp/>iterators</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980519<sp/>rewrote<sp/>reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980514<sp/>rewrote<sp/>istream_iterator</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980702<sp/>modified<sp/>inheritance<sp/>structure<sp/>of<sp/>iterator<sp/>tags<sp/>to<sp/>match<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980702<sp/>modified<sp/>istreambuf_iterator&lt;charT,<sp/>traits&gt;::increment()<sp/>so<sp/>that<sp/>it<sp/>worked<sp/>correctly</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980713<sp/>Temporarily<sp/>moved<sp/>member<sp/>templates<sp/>into<sp/>class<sp/>definition<sp/>to<sp/>support<sp/>compiler</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980803<sp/>removed<sp/>traits::<sp/>from<sp/>int_type<sp/>in<sp/>istreambuf_iterator::increment()</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980924<sp/>Fixed<sp/>bug<sp/>in<sp/>istream_iterator</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980924<sp/>Added<sp/>typename</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981001<sp/>Fixed<sp/>copy<sp/>constructor<sp/>of<sp/>reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981220<sp/>Added<sp/>typename<sp/>to<sp/>appropriate<sp/>return<sp/>types</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981220<sp/>Added<sp/>class<sp/>modifier<sp/>to<sp/>several<sp/>friend<sp/>declarations</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990401<sp/>Put<sp/>long<sp/>long<sp/>inside<sp/>of<sp/>#ifdef</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990427<sp/>Rewrote.</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/iterator"/>
+  </compounddef>
+</doxygen>

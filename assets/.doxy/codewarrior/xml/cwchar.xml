@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="cwchar" kind="file" language="C++">
+    <compoundname>cwchar</compoundname>
+    <includedby refid="wchar_8h" local="no">wchar.h</includedby>
+    <includedby refid="wctrans_8h" local="no">wctrans.h</includedby>
+    <includedby refid="wtime_8h" local="no">wtime.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>cwchar</label>
+        <link refid="cwchar"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>wchar.h</label>
+        <link refid="wchar_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>wctrans.h</label>
+        <link refid="wctrans_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>wtime.h</label>
+        <link refid="wtime_8h"/>
+      </node>
+      <node id="3">
+        <label>wchar_io.c</label>
+        <link refid="wchar__io_8c"/>
+      </node>
+      <node id="4">
+        <label>wcstold.c</label>
+        <link refid="wcstold_8c"/>
+      </node>
+      <node id="5">
+        <label>wcstoul.c</label>
+        <link refid="wcstoul_8c"/>
+      </node>
+      <node id="12">
+        <label>wctrans.c</label>
+        <link refid="wctrans_8c"/>
+      </node>
+      <node id="6">
+        <label>wmem.c</label>
+        <link refid="wmem_8c"/>
+      </node>
+      <node id="7">
+        <label>wprintf.c</label>
+        <link refid="wprintf_8c"/>
+      </node>
+      <node id="8">
+        <label>wscanf.c</label>
+        <link refid="wscanf_8c"/>
+      </node>
+      <node id="9">
+        <label>wstring.c</label>
+        <link refid="wstring_8c"/>
+      </node>
+      <node id="10">
+        <label>wtime.c</label>
+        <link refid="wtime_8c"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/03/12<sp/>20:04:56<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>cwchar</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__wchar</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__wchar</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__NO_WIDE_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>981020<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ansi_parms.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wchar_io.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>_MSL_USING_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>extern<sp/>&quot;C&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_WCTYPE_T_DEFINED</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_WCTYPE_T_DEFINED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>wchar_t<sp/>wint_t;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>wchar_t<sp/>wctype_t;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>int<sp/><sp/><sp/><sp/><sp/>mbstate_t;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>wchar_t<sp/>Wint_t;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>ifndef<sp/>_WCTYPE_T_DEFINED<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>WEOF</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>WEOF<sp/>(wint_t)(0xFFFF)</highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>ifndef<sp/>WEOF<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>EILSEQ</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/><sp/>EILSEQ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>88</highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>ifndef<sp/>EILSEQ<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/>extern<sp/>prototypes<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>(__dest_os<sp/><sp/>==<sp/>__win32_os<sp/><sp/>||<sp/>__dest_os<sp/>==<sp/>__wince_os)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>/*<sp/>This<sp/>#ifdef<sp/>block<sp/>contains<sp/>declarations<sp/>found<sp/>in<sp/>the<sp/>corresponding<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>/*<sp/>Visual<sp/>C++<sp/>ANSI<sp/>header.<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>/*<sp/>These<sp/>functions<sp/>are<sp/>defined<sp/>in<sp/>extras.c<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>_wtoi<sp/>(const<sp/>wchar_t<sp/>*str);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>_wcsicmp(const<sp/>wchar_t<sp/>*s1,<sp/>const<sp/>wchar_t<sp/>*s2);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>_wcsnicmp(const<sp/>wchar_t<sp/>*s1,<sp/>const<sp/>wchar_t<sp/>*s2,<sp/>size_t<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_itow(int<sp/>val,<sp/>wchar_t<sp/>*str,<sp/>int<sp/>radix);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_wstrrev(wchar_t<sp/>*<sp/>str);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_wcsrev(wchar_t<sp/>*str);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_wcsdup(const<sp/>wchar_t<sp/>*str);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_wcsupr(wchar_t<sp/>*str);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_wcslwr(wchar_t<sp/>*str);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_wcsset(wchar_t<sp/>*str,<sp/>wchar_t<sp/>wc);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_wcsnset(wchar_t<sp/>*str,<sp/>wchar_t<sp/>wc,<sp/>size_t<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t<sp/>*_wcsspnp(const<sp/>wchar_t<sp/>*s1,<sp/>const<sp/>wchar_t<sp/>*s2);</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>_MSL_USING_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>RC_INVOKED<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wstdio.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wscanf.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wcstold.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wcstoul.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wstring.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wprintf.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wmem.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wtime.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wctrans.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>fwide(FILE<sp/>*<sp/>file,<sp/>int<sp/>mode);<sp/><sp/>The<sp/>prototype<sp/>for<sp/>this<sp/>function<sp/>is<sp/>in<sp/>cstdio</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>These<sp/>functions<sp/>are<sp/>not<sp/>yet<sp/>implemented<sp/>the<sp/>prototypes<sp/>are<sp/>listed<sp/>here<sp/>as<sp/>a<sp/>comment</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>the<sp/>benefit<sp/>of<sp/>those<sp/>who<sp/>are<sp/>interested</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">wint_t<sp/><sp/>btowc(int<sp/>c);</highlight></codeline>
+<codeline><highlight class="normal">size_t<sp/><sp/>mbrlen(const<sp/>char<sp/>*s,<sp/>size_t<sp/>n,<sp/>mbstate_t<sp/>*ps);</highlight></codeline>
+<codeline><highlight class="normal">size_t<sp/><sp/>mbrtowc(wchar_t<sp/>*pwc,<sp/>const<sp/>char<sp/>*s,<sp/>size_t<sp/>n,<sp/>mbstate_t<sp/>*ps);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/><sp/><sp/><sp/>mbsinit(const<sp/>mbstate_t<sp/>*ps);</highlight></codeline>
+<codeline><highlight class="normal">size_t<sp/><sp/>mbsrtowcs(wchar_t<sp/>*dst,<sp/>const<sp/>char<sp/>**src,<sp/>size_t<sp/>len,<sp/>mbstate_t<sp/>*ps);</highlight></codeline>
+<codeline><highlight class="normal">size_t<sp/><sp/>wcrtomb(char<sp/>*s,<sp/>wchar_t<sp/>wc,<sp/>mbstate_t<sp/>*ps);</highlight></codeline>
+<codeline><highlight class="normal">size_t<sp/><sp/>wcsrtombs(char<sp/>*dst,<sp/>const<sp/>wchar_t<sp/>**src,<sp/>size_t<sp/>len,<sp/>mbstate_t<sp/>*ps);</highlight></codeline>
+<codeline><highlight class="normal">float<sp/><sp/><sp/>wcstof(const<sp/>wchar_t<sp/>*<sp/>restrict<sp/>nptr,<sp/>wchar_t<sp/>**<sp/>restrict<sp/>endptr);</highlight></codeline>
+<codeline><highlight class="normal">*/</highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>#ifndef<sp/>__NO_WIDE_CHAR<sp/><sp/><sp/><sp/>*/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>981020<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>ifndef<sp/>__wchar_h__<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Change<sp/>Record</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>980121<sp/><sp/>JCM<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>980324<sp/><sp/>BLC<sp/><sp/>Added<sp/>prototypes<sp/>for<sp/>addition<sp/>Win32<sp/>wchar_t<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>980325<sp/><sp/>BLC<sp/><sp/>Moved<sp/>prototypes<sp/>into<sp/>extern<sp/>&quot;C&quot;<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>980518<sp/><sp/>mf<sp/><sp/><sp/>added<sp/>a<sp/>couple<sp/>of<sp/>non-standard<sp/>wchar<sp/>prototypes<sp/>need<sp/>for<sp/>ce</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>981020<sp/><sp/>mm<sp/><sp/><sp/>added<sp/>#ifndef<sp/>__NO_WIDE_CHAR<sp/>wrappers</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>mm<sp/>990217<sp/><sp/><sp/><sp/>removed<sp/>#include<sp/>cstddef<sp/>as<sp/>not<sp/>needed<sp/>and<sp/>moved<sp/>definitions<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WCHAR_MIN<sp/>and<sp/>WCHAR_MAX<sp/>to<sp/>wchar_t.h</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>990312<sp/><sp/>BLC<sp/><sp/>fixed<sp/>up<sp/>extras.c<sp/>prototypes<sp/>for<sp/>new<sp/>function,<sp/>eliminated</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wcsdup<sp/>prototype,<sp/>since<sp/>its<sp/>really<sp/>called<sp/>_wcsdup</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/cwchar"/>
+  </compounddef>
+</doxygen>

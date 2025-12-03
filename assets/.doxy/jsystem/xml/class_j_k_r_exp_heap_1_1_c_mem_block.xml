@@ -1,0 +1,553 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_j_k_r_exp_heap_1_1_c_mem_block" kind="class" language="C++" prot="public">
+    <compoundname>JKRExpHeap::CMemBlock</compoundname>
+    <includes refid="_j_k_r_exp_heap_8h" local="no">JKRExpHeap.h</includes>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a0867ff1dd1b1fb0c0920ad87a6f31443" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class JKRExpHeap</definition>
+        <argsstring></argsstring>
+        <name>JKRExpHeap</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::JKRExpHeap</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_exp_heap" kindref="compound">JKRExpHeap</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="22" column="22" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_j_k_r_exp_heap_1_1_c_mem_block_1af11a921de20f26a5b3858530bb243f9e" prot="private" static="no" mutable="no">
+        <type>u16</type>
+        <definition>u16 JKRExpHeap::CMemBlock::mMagic</definition>
+        <argsstring></argsstring>
+        <name>mMagic</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::mMagic</qualifiedname>
+        <briefdescription>
+<para>0x0 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="108" column="20" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="108" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_exp_heap_1a58d89949486ecea20561b80c31b2fe8e" compoundref="_j_k_r_exp_heap_8cpp" startline="772" endline="795">JKRExpHeap::appendUsedList</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aabb9665132a435a4394e40e073e48de1" compoundref="_j_k_r_exp_heap_8cpp" startline="1116" endline="1128">initiate</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a0175f1effd1c87651da66d775e6804e4" compoundref="_j_k_r_exp_heap_8h" startline="54" endline="57">isValid</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a5a1fe8984d9d662017b71af22a281ebd" compoundref="_j_k_r_exp_heap_8cpp" startline="872" endline="932">JKRExpHeap::recycleFreeBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1ac1f3f7bc2caf3b6975f9c08512af750f" compoundref="_j_k_r_exp_heap_8cpp" startline="798" endline="823">JKRExpHeap::setFreeBlock</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a1b469edead415dd77f49ba550d6b35ac" prot="private" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 JKRExpHeap::CMemBlock::mFlags</definition>
+        <argsstring></argsstring>
+        <name>mFlags</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::mFlags</qualifiedname>
+        <briefdescription>
+<para>0x2 // a|bbbbbbb a=temporary b=align </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="109" column="20" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="109" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a34f9f9bcf847bca9c8cece3aed7a7f85" compoundref="_j_k_r_exp_heap_8h" startline="60" endline="63">_isTempMemBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7eff51ec4c55a3185e64b40d82719f78" compoundref="_j_k_r_exp_heap_8cpp" startline="1153" endline="1176">allocBack</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7ac1fbfe9b5eb1acebf82d54ecc29890" compoundref="_j_k_r_exp_heap_8cpp" startline="1131" endline="1150">allocFore</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a483be12cbe2a867a725071972302115a" compoundref="_j_k_r_exp_heap_8h" startline="66" endline="69">getAlignment</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aabb9665132a435a4394e40e073e48de1" compoundref="_j_k_r_exp_heap_8cpp" startline="1116" endline="1128">initiate</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a9cef3933249ec734c785c093a2053e53" compoundref="_j_k_r_exp_heap_8cpp" startline="935" endline="955">JKRExpHeap::joinTwoBlocks</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a5a1fe8984d9d662017b71af22a281ebd" compoundref="_j_k_r_exp_heap_8cpp" startline="872" endline="932">JKRExpHeap::recycleFreeBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1aff2971801ed149e4a7b8ece722fab9ac" compoundref="_j_k_r_exp_heap_8cpp" startline="551" endline="621">JKRExpHeap::resize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a5c38609ffbf099aec26bd1f240faead3" prot="private" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 JKRExpHeap::CMemBlock::mGroupID</definition>
+        <argsstring></argsstring>
+        <name>mGroupID</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::mGroupID</qualifiedname>
+        <briefdescription>
+<para>0x3 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="110" column="20" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="110" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7eff51ec4c55a3185e64b40d82719f78" compoundref="_j_k_r_exp_heap_8cpp" startline="1153" endline="1176">allocBack</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7ac1fbfe9b5eb1acebf82d54ecc29890" compoundref="_j_k_r_exp_heap_8cpp" startline="1131" endline="1150">allocFore</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a6b6b4826793d3af3ba8cca7eb970a282" compoundref="_j_k_r_exp_heap_8cpp" startline="480" endline="509">JKRExpHeap::freeGroup</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7d1c1e10e23bc8a4425b4563de9c466c" compoundref="_j_k_r_exp_heap_8h" startline="96" endline="99">getGroupId</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aabb9665132a435a4394e40e073e48de1" compoundref="_j_k_r_exp_heap_8cpp" startline="1116" endline="1128">initiate</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aa28a935c6dbe1a3b7dae3cc937824b90" compoundref="_j_k_r_exp_heap_8h" startline="48" endline="51">newGroupId</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a5a1fe8984d9d662017b71af22a281ebd" compoundref="_j_k_r_exp_heap_8cpp" startline="872" endline="932">JKRExpHeap::recycleFreeBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1aff2971801ed149e4a7b8ece722fab9ac" compoundref="_j_k_r_exp_heap_8cpp" startline="551" endline="621">JKRExpHeap::resize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a226f19a578cfdd850015ca212518a41d" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t JKRExpHeap::CMemBlock::mSize</definition>
+        <argsstring></argsstring>
+        <name>mSize</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::mSize</qualifiedname>
+        <briefdescription>
+<para>0x4 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="111" column="20" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="111" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7eff51ec4c55a3185e64b40d82719f78" compoundref="_j_k_r_exp_heap_8cpp" startline="1153" endline="1176">allocBack</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7ac1fbfe9b5eb1acebf82d54ecc29890" compoundref="_j_k_r_exp_heap_8cpp" startline="1131" endline="1150">allocFore</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a18d03cbb87fc69158c10a4fd496d839e" compoundref="_j_k_r_exp_heap_8cpp" startline="311" endline="362">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a918561d165aa5efb292fa6852af0067d" compoundref="_j_k_r_exp_heap_8cpp" startline="175" endline="308">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a6b6b4826793d3af3ba8cca7eb970a282" compoundref="_j_k_r_exp_heap_8cpp" startline="480" endline="509">JKRExpHeap::freeGroup</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1ad21bad9e5facbe0fc157ab6e41f3c62d" compoundref="_j_k_r_exp_heap_8h" startline="90" endline="93">getSize</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1ae149c7d42a0413e1a093514fb59dcbcf" compoundref="_j_k_r_exp_heap_8cpp" startline="624" endline="638">JKRExpHeap::getSize</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aabb9665132a435a4394e40e073e48de1" compoundref="_j_k_r_exp_heap_8cpp" startline="1116" endline="1128">initiate</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a9cef3933249ec734c785c093a2053e53" compoundref="_j_k_r_exp_heap_8cpp" startline="935" endline="955">JKRExpHeap::joinTwoBlocks</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a5a1fe8984d9d662017b71af22a281ebd" compoundref="_j_k_r_exp_heap_8cpp" startline="872" endline="932">JKRExpHeap::recycleFreeBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1aff2971801ed149e4a7b8ece722fab9ac" compoundref="_j_k_r_exp_heap_8cpp" startline="551" endline="621">JKRExpHeap::resize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a4f461ca2b438b9a34b2de816eafc4e3c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">CMemBlock</ref> *</type>
+        <definition>CMemBlock* JKRExpHeap::CMemBlock::mPrev</definition>
+        <argsstring></argsstring>
+        <name>mPrev</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::mPrev</qualifiedname>
+        <briefdescription>
+<para>0x8 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="112" column="19" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="112" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_exp_heap_1a18d03cbb87fc69158c10a4fd496d839e" compoundref="_j_k_r_exp_heap_8cpp" startline="311" endline="362">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a918561d165aa5efb292fa6852af0067d" compoundref="_j_k_r_exp_heap_8cpp" startline="175" endline="308">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a58d89949486ecea20561b80c31b2fe8e" compoundref="_j_k_r_exp_heap_8cpp" startline="772" endline="795">JKRExpHeap::appendUsedList</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a515da03b334cda5c157d8da751bf74bb" compoundref="_j_k_r_exp_heap_8cpp" startline="1021" endline="1031">JKRExpHeap::dump_sort</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a5081bc9a229df32d4900db807d5d9cb0" compoundref="_j_k_r_exp_heap_8h" startline="78" endline="81">getPrevBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aabb9665132a435a4394e40e073e48de1" compoundref="_j_k_r_exp_heap_8cpp" startline="1116" endline="1128">initiate</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a9cef3933249ec734c785c093a2053e53" compoundref="_j_k_r_exp_heap_8cpp" startline="935" endline="955">JKRExpHeap::joinTwoBlocks</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a5a1fe8984d9d662017b71af22a281ebd" compoundref="_j_k_r_exp_heap_8cpp" startline="872" endline="932">JKRExpHeap::recycleFreeBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1add7f2eeb64b217dda8a9bf27500e4d22" compoundref="_j_k_r_exp_heap_8cpp" startline="826" endline="846">JKRExpHeap::removeFreeBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a1a28de064c9ae4c9473a61ebd507b88b" compoundref="_j_k_r_exp_heap_8cpp" startline="849" endline="869">JKRExpHeap::removeUsedBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1ac1f3f7bc2caf3b6975f9c08512af750f" compoundref="_j_k_r_exp_heap_8cpp" startline="798" endline="823">JKRExpHeap::setFreeBlock</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_exp_heap_1_1_c_mem_block_1aacbbed408f6564b7fe4900309fdf6466" prot="private" static="no" mutable="no">
+        <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">CMemBlock</ref> *</type>
+        <definition>CMemBlock* JKRExpHeap::CMemBlock::mNext</definition>
+        <argsstring></argsstring>
+        <name>mNext</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::mNext</qualifiedname>
+        <briefdescription>
+<para>0xC </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="113" column="19" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="113" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_exp_heap_1a18d03cbb87fc69158c10a4fd496d839e" compoundref="_j_k_r_exp_heap_8cpp" startline="311" endline="362">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a918561d165aa5efb292fa6852af0067d" compoundref="_j_k_r_exp_heap_8cpp" startline="175" endline="308">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a58d89949486ecea20561b80c31b2fe8e" compoundref="_j_k_r_exp_heap_8cpp" startline="772" endline="795">JKRExpHeap::appendUsedList</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a3da182b689c8317423bca57bf90de919" compoundref="_j_k_r_exp_heap_8cpp" startline="704" endline="769">JKRExpHeap::check</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a116b94bf2021b87c1b2ccdbc9fd48484" compoundref="_j_k_r_exp_heap_8cpp" startline="958" endline="1017">JKRExpHeap::dump</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a515da03b334cda5c157d8da751bf74bb" compoundref="_j_k_r_exp_heap_8cpp" startline="1021" endline="1031">JKRExpHeap::dump_sort</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a6b6b4826793d3af3ba8cca7eb970a282" compoundref="_j_k_r_exp_heap_8cpp" startline="480" endline="509">JKRExpHeap::freeGroup</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a0f79a3aac429f2993f2563bfa47edbf0" compoundref="_j_k_r_exp_heap_8cpp" startline="528" endline="548">JKRExpHeap::freeTail</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1af07c9830df551c2bf80ed1d2ea33b6d3" compoundref="_j_k_r_exp_heap_8cpp" startline="641" endline="655">JKRExpHeap::getFreeSize</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1af56a0e5885ef8143905a9d1d1b627f65" compoundref="_j_k_r_exp_heap_8h" startline="84" endline="87">getNextBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a77b57b696e11fc8223fb53e61bd62035" compoundref="_j_k_r_exp_heap_8cpp" startline="658" endline="671">JKRExpHeap::getTotalFreeSize</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a0b6bfd0f9a54bbc0b291a2e3b23e8da4" compoundref="_j_k_r_exp_heap_8cpp" startline="674" endline="693">JKRExpHeap::getUsedSize</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aabb9665132a435a4394e40e073e48de1" compoundref="_j_k_r_exp_heap_8cpp" startline="1116" endline="1128">initiate</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a9cef3933249ec734c785c093a2053e53" compoundref="_j_k_r_exp_heap_8cpp" startline="935" endline="955">JKRExpHeap::joinTwoBlocks</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a5a1fe8984d9d662017b71af22a281ebd" compoundref="_j_k_r_exp_heap_8cpp" startline="872" endline="932">JKRExpHeap::recycleFreeBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1add7f2eeb64b217dda8a9bf27500e4d22" compoundref="_j_k_r_exp_heap_8cpp" startline="826" endline="846">JKRExpHeap::removeFreeBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a1a28de064c9ae4c9473a61ebd507b88b" compoundref="_j_k_r_exp_heap_8cpp" startline="849" endline="869">JKRExpHeap::removeUsedBlock</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1aff2971801ed149e4a7b8ece722fab9ac" compoundref="_j_k_r_exp_heap_8cpp" startline="551" endline="621">JKRExpHeap::resize</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1ac1f3f7bc2caf3b6975f9c08512af750f" compoundref="_j_k_r_exp_heap_8cpp" startline="798" endline="823">JKRExpHeap::setFreeBlock</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a41a0f4ff71e68239baf23af478880c59" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">CMemBlock</ref> *</type>
+        <definition>JKRExpHeap::CMemBlock * JKRExpHeap::CMemBlock::getHeapBlock</definition>
+        <argsstring>(void *obj)</argsstring>
+        <name>getHeapBlock</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::getHeapBlock</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="25" column="26" bodyfile="decomp/JSystem/System/JKernel/src/JKRExpHeap.cpp" bodystart="1187" bodyend="1194"/>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="13">Nil</references>
+        <referencedby refid="class_j_k_r_exp_heap_1a9798d457f256e625e0e096ca6aae0051" compoundref="_j_k_r_exp_heap_8cpp" startline="459" endline="477">JKRExpHeap::free</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1ae149c7d42a0413e1a093514fb59dcbcf" compoundref="_j_k_r_exp_heap_8cpp" startline="624" endline="638">JKRExpHeap::getSize</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1aff2971801ed149e4a7b8ece722fab9ac" compoundref="_j_k_r_exp_heap_8cpp" startline="551" endline="621">JKRExpHeap::resize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1ac4ac485cccb49d2ec338d37515157f63" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">CMemBlock</ref> *</type>
+        <definition>static CMemBlock * JKRExpHeap::CMemBlock::getBlock</definition>
+        <argsstring>(void *data)</argsstring>
+        <name>getBlock</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::getBlock</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="102" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="102" bodyend="105"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1aabb9665132a435a4394e40e073e48de1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRExpHeap::CMemBlock::initiate</definition>
+        <argsstring>(CMemBlock *prev, CMemBlock *next, size_t size, u8 groupId, u8 align)</argsstring>
+        <name>initiate</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::initiate</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">CMemBlock</ref> *</type>
+          <declname>prev</declname>
+        </param>
+        <param>
+          <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">CMemBlock</ref> *</type>
+          <declname>next</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>groupId</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>align</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="27" column="14" bodyfile="decomp/JSystem/System/JKernel/src/JKRExpHeap.cpp" bodystart="1116" bodyend="1128"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a1b469edead415dd77f49ba550d6b35ac" compoundref="_j_k_r_exp_heap_8h" startline="109">mFlags</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a5c38609ffbf099aec26bd1f240faead3" compoundref="_j_k_r_exp_heap_8h" startline="110">mGroupID</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1af11a921de20f26a5b3858530bb243f9e" compoundref="_j_k_r_exp_heap_8h" startline="108">mMagic</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aacbbed408f6564b7fe4900309fdf6466" compoundref="_j_k_r_exp_heap_8h" startline="113">mNext</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a4f461ca2b438b9a34b2de816eafc4e3c" compoundref="_j_k_r_exp_heap_8h" startline="112">mPrev</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a226f19a578cfdd850015ca212518a41d" compoundref="_j_k_r_exp_heap_8h" startline="111">mSize</references>
+        <referencedby refid="class_j_k_r_exp_heap_1ac1cca21f90dd5394f7b21f0370ca5426" compoundref="_j_k_r_exp_heap_8cpp" startline="512" endline="525">JKRExpHeap::freeAll</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a537836e2093b1581b977e65c1766ba1a" compoundref="_j_k_r_exp_heap_8cpp" startline="91" endline="104">JKRExpHeap::JKRExpHeap</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a5a1fe8984d9d662017b71af22a281ebd" compoundref="_j_k_r_exp_heap_8cpp" startline="872" endline="932">JKRExpHeap::recycleFreeBlock</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a7ac1fbfe9b5eb1acebf82d54ecc29890" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">JKRExpHeap::CMemBlock</ref> *</type>
+        <definition>JKRExpHeap::CMemBlock * JKRExpHeap::CMemBlock::allocFore</definition>
+        <argsstring>(size_t size, u8 group_id, u8 align_1, u8 group_id_2, u8 align_2)</argsstring>
+        <name>allocFore</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::allocFore</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>group_id</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>align_1</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>group_id_2</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>align_2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="33" column="31" bodyfile="decomp/JSystem/System/JKernel/src/JKRExpHeap.cpp" bodystart="1131" bodyend="1150"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a1b469edead415dd77f49ba550d6b35ac" compoundref="_j_k_r_exp_heap_8h" startline="109">mFlags</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a5c38609ffbf099aec26bd1f240faead3" compoundref="_j_k_r_exp_heap_8h" startline="110">mGroupID</references>
+        <references refid="class_j_k_r_exp_heap_1ab2e1e894a3a5de5a392de3d4011bfe59" compoundref="_j_k_r_exp_heap_8h" startline="173">JKRExpHeap::mGroupID</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a226f19a578cfdd850015ca212518a41d" compoundref="_j_k_r_exp_heap_8h" startline="111">mSize</references>
+        <references refid="class_j_k_r_heap_1a39d1093d3fcfd2d5b57844a64c9ecbf8" compoundref="_j_k_r_heap_8h" startline="84">JKRHeap::mSize</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="13">Nil</references>
+        <referencedby refid="class_j_k_r_exp_heap_1a18d03cbb87fc69158c10a4fd496d839e" compoundref="_j_k_r_exp_heap_8cpp" startline="311" endline="362">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a918561d165aa5efb292fa6852af0067d" compoundref="_j_k_r_exp_heap_8cpp" startline="175" endline="308">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1aff2971801ed149e4a7b8ece722fab9ac" compoundref="_j_k_r_exp_heap_8cpp" startline="551" endline="621">JKRExpHeap::resize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a7eff51ec4c55a3185e64b40d82719f78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">JKRExpHeap::CMemBlock</ref> *</type>
+        <definition>JKRExpHeap::CMemBlock * JKRExpHeap::CMemBlock::allocBack</definition>
+        <argsstring>(size_t size, u8 group_id_1, u8 align_1, u8 group_id_2, u8 align_2)</argsstring>
+        <name>allocBack</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::allocBack</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>group_id_1</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>align_1</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>group_id_2</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>align_2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="39" column="31" bodyfile="decomp/JSystem/System/JKernel/src/JKRExpHeap.cpp" bodystart="1153" bodyend="1176"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a1b469edead415dd77f49ba550d6b35ac" compoundref="_j_k_r_exp_heap_8h" startline="109">mFlags</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a5c38609ffbf099aec26bd1f240faead3" compoundref="_j_k_r_exp_heap_8h" startline="110">mGroupID</references>
+        <references refid="class_j_k_r_exp_heap_1ab2e1e894a3a5de5a392de3d4011bfe59" compoundref="_j_k_r_exp_heap_8h" startline="173">JKRExpHeap::mGroupID</references>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a226f19a578cfdd850015ca212518a41d" compoundref="_j_k_r_exp_heap_8h" startline="111">mSize</references>
+        <references refid="class_j_k_r_heap_1a39d1093d3fcfd2d5b57844a64c9ecbf8" compoundref="_j_k_r_heap_8h" startline="84">JKRHeap::mSize</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="13">Nil</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a8e35aaba81ca52f88ab974bcd2bc7c44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * JKRExpHeap::CMemBlock::free</definition>
+        <argsstring>(JKRExpHeap *heap)</argsstring>
+        <name>free</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::free</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_exp_heap" kindref="compound">JKRExpHeap</ref> *</type>
+          <declname>heap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="45" column="14" bodyfile="decomp/JSystem/System/JKernel/src/JKRExpHeap.cpp" bodystart="1179" bodyend="1184"/>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="13">Nil</references>
+        <references refid="class_j_k_r_exp_heap_1a5a1fe8984d9d662017b71af22a281ebd" compoundref="_j_k_r_exp_heap_8cpp" startline="872" endline="932">JKRExpHeap::recycleFreeBlock</references>
+        <references refid="class_j_k_r_exp_heap_1a1a28de064c9ae4c9473a61ebd507b88b" compoundref="_j_k_r_exp_heap_8cpp" startline="849" endline="869">JKRExpHeap::removeUsedBlock</references>
+        <referencedby refid="class_j_k_r_exp_heap_1a9798d457f256e625e0e096ca6aae0051" compoundref="_j_k_r_exp_heap_8cpp" startline="459" endline="477">JKRExpHeap::free</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a6b6b4826793d3af3ba8cca7eb970a282" compoundref="_j_k_r_exp_heap_8cpp" startline="480" endline="509">JKRExpHeap::freeGroup</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a0f79a3aac429f2993f2563bfa47edbf0" compoundref="_j_k_r_exp_heap_8cpp" startline="528" endline="548">JKRExpHeap::freeTail</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1aa28a935c6dbe1a3b7dae3cc937824b90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRExpHeap::CMemBlock::newGroupId</definition>
+        <argsstring>(u8 group_id)</argsstring>
+        <name>newGroupId</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::newGroupId</qualifiedname>
+        <param>
+          <type>u8</type>
+          <declname>group_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="48" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="48" bodyend="51"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a5c38609ffbf099aec26bd1f240faead3" compoundref="_j_k_r_exp_heap_8h" startline="110">mGroupID</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a0175f1effd1c87651da66d775e6804e4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool JKRExpHeap::CMemBlock::isValid</definition>
+        <argsstring>() const</argsstring>
+        <name>isValid</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::isValid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="54" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="54" bodyend="57"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1af11a921de20f26a5b3858530bb243f9e" compoundref="_j_k_r_exp_heap_8h" startline="108">mMagic</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a34f9f9bcf847bca9c8cece3aed7a7f85" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool JKRExpHeap::CMemBlock::_isTempMemBlock</definition>
+        <argsstring>() const</argsstring>
+        <name>_isTempMemBlock</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::_isTempMemBlock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="60" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="60" bodyend="63"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a1b469edead415dd77f49ba550d6b35ac" compoundref="_j_k_r_exp_heap_8h" startline="109">mFlags</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a483be12cbe2a867a725071972302115a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int JKRExpHeap::CMemBlock::getAlignment</definition>
+        <argsstring>() const</argsstring>
+        <name>getAlignment</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::getAlignment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="66" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="66" bodyend="69"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a1b469edead415dd77f49ba550d6b35ac" compoundref="_j_k_r_exp_heap_8h" startline="109">mFlags</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a80dc19b3a08cb88bbda95b6ddd23d8ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * JKRExpHeap::CMemBlock::getContent</definition>
+        <argsstring>() const</argsstring>
+        <name>getContent</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::getContent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="72" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="72" bodyend="75"/>
+        <referencedby refid="class_j_k_r_exp_heap_1a18d03cbb87fc69158c10a4fd496d839e" compoundref="_j_k_r_exp_heap_8cpp" startline="311" endline="362">JKRExpHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_exp_heap_1a918561d165aa5efb292fa6852af0067d" compoundref="_j_k_r_exp_heap_8cpp" startline="175" endline="308">JKRExpHeap::allocFromHead</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a5081bc9a229df32d4900db807d5d9cb0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">CMemBlock</ref> *</type>
+        <definition>CMemBlock * JKRExpHeap::CMemBlock::getPrevBlock</definition>
+        <argsstring>() const</argsstring>
+        <name>getPrevBlock</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::getPrevBlock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="78" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="78" bodyend="81"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a4f461ca2b438b9a34b2de816eafc4e3c" compoundref="_j_k_r_exp_heap_8h" startline="112">mPrev</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1af56a0e5885ef8143905a9d1d1b627f65" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_k_r_exp_heap_1_1_c_mem_block" kindref="compound">CMemBlock</ref> *</type>
+        <definition>CMemBlock * JKRExpHeap::CMemBlock::getNextBlock</definition>
+        <argsstring>() const</argsstring>
+        <name>getNextBlock</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::getNextBlock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="84" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="84" bodyend="87"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aacbbed408f6564b7fe4900309fdf6466" compoundref="_j_k_r_exp_heap_8h" startline="113">mNext</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1ad21bad9e5facbe0fc157ab6e41f3c62d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>u32</type>
+        <definition>u32 JKRExpHeap::CMemBlock::getSize</definition>
+        <argsstring>() const</argsstring>
+        <name>getSize</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::getSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="90" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="90" bodyend="93"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a226f19a578cfdd850015ca212518a41d" compoundref="_j_k_r_exp_heap_8h" startline="111">mSize</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_exp_heap_1_1_c_mem_block_1a7d1c1e10e23bc8a4425b4563de9c466c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>u8</type>
+        <definition>u8 JKRExpHeap::CMemBlock::getGroupId</definition>
+        <argsstring>() const</argsstring>
+        <name>getGroupId</name>
+        <qualifiedname>JKRExpHeap::CMemBlock::getGroupId</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="96" column="9" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="96" bodyend="99"/>
+        <references refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a5c38609ffbf099aec26bd1f240faead3" compoundref="_j_k_r_exp_heap_8h" startline="110">mGroupID</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>JKRExpHeap::CMemBlock</label>
+        <link refid="class_j_k_r_exp_heap_1_1_c_mem_block"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>mNext</edgelabel>
+          <edgelabel>mPrev</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" line="20" column="5" bodyfile="decomp/JSystem/System/JKernel/include/JKRExpHeap.h" bodystart="21" bodyend="114"/>
+    <listofallmembers>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a34f9f9bcf847bca9c8cece3aed7a7f85" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>_isTempMemBlock</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7eff51ec4c55a3185e64b40d82719f78" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>allocBack</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7ac1fbfe9b5eb1acebf82d54ecc29890" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>allocFore</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a8e35aaba81ca52f88ab974bcd2bc7c44" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>free</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a483be12cbe2a867a725071972302115a" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>getAlignment</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1ac4ac485cccb49d2ec338d37515157f63" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>getBlock</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a80dc19b3a08cb88bbda95b6ddd23d8ff" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>getContent</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a7d1c1e10e23bc8a4425b4563de9c466c" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>getGroupId</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a41a0f4ff71e68239baf23af478880c59" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>getHeapBlock</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1af56a0e5885ef8143905a9d1d1b627f65" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>getNextBlock</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a5081bc9a229df32d4900db807d5d9cb0" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>getPrevBlock</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1ad21bad9e5facbe0fc157ab6e41f3c62d" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>getSize</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aabb9665132a435a4394e40e073e48de1" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>initiate</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a0175f1effd1c87651da66d775e6804e4" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>isValid</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a0867ff1dd1b1fb0c0920ad87a6f31443" prot="private" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>JKRExpHeap</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a1b469edead415dd77f49ba550d6b35ac" prot="private" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>mFlags</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a5c38609ffbf099aec26bd1f240faead3" prot="private" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>mGroupID</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1af11a921de20f26a5b3858530bb243f9e" prot="private" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>mMagic</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aacbbed408f6564b7fe4900309fdf6466" prot="private" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>mNext</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a4f461ca2b438b9a34b2de816eafc4e3c" prot="private" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>mPrev</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1a226f19a578cfdd850015ca212518a41d" prot="private" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>mSize</name></member>
+      <member refid="class_j_k_r_exp_heap_1_1_c_mem_block_1aa28a935c6dbe1a3b7dae3cc937824b90" prot="public" virt="non-virtual"><scope>JKRExpHeap::CMemBlock</scope><name>newGroupId</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

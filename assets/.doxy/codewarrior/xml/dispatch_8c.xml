@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dispatch_8c" kind="file" language="C++">
+    <compoundname>dispatch.c</compoundname>
+    <includes refid="dispatch_8h" local="yes">Portable/dispatch.h</includes>
+    <includes refid="msgbuf_8h" local="yes">Portable/msgbuf.h</includes>
+    <includes refid="msghndlr_8h" local="yes">Portable/msghndlr.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>Portable/dispatch.h</label>
+        <link refid="dispatch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Portable/msgbuf.h</label>
+        <link refid="msgbuf_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Portable/msghndlr.h</label>
+        <link refid="msghndlr_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>dispatch.c</label>
+        <link refid="dispatch_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_dispatch_entry" prot="public">DispatchEntry</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dispatch_8c_1ac0e4f781662a055510ed1e97f152b0cd" prot="public" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 gTRKDispatchTableSize</definition>
+        <argsstring></argsstring>
+        <name>gTRKDispatchTableSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c" line="5" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c" bodystart="5" bodyend="-1"/>
+        <referencedby refid="dispatch_8h_1a45a937113594c8d5a9d69cdda1eeb0ea" compoundref="dispatch_8c" startline="31" endline="43">TRKDispatchMessage</referencedby>
+        <referencedby refid="dispatch_8h_1a0a82815d9b26ed359c0631cfeb292ee4" compoundref="dispatch_8c" startline="25" endline="29">TRKInitializeDispatcher</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dispatch_8c_1a5ca9d32bb8950d217925b4708fffdc80" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_dispatch_entry" kindref="compound">DispatchEntry</ref></type>
+        <definition>struct DispatchEntry gTRKDispatchTable[33]</definition>
+        <argsstring>[33]</argsstring>
+        <name>gTRKDispatchTable</name>
+        <initializer>= {
+	{ &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },   { &amp;<ref refid="msghndlr_8h_1a56a008a08ba3f1bc9baabfba2e08494c" kindref="member">TRKDoConnect</ref> },        { &amp;<ref refid="msghndlr_8h_1a7010ea6f452339d1d0006f651e5e1a0a" kindref="member">TRKDoDisconnect</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1ac4905cce4f19c68296cda14c7b3caa04" kindref="member">TRKDoReset</ref> },         { &amp;<ref refid="msghndlr_8h_1aee3f68ae5c3a8f7f47b9252fcc2fe384" kindref="member">TRKDoVersions</ref> },       { &amp;<ref refid="msghndlr_8h_1ad2e317de732287998b803441fa89837c" kindref="member">TRKDoSupportMask</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1a139b2d998e8c87885ec295374f5df78a" kindref="member">TRKDoCPUType</ref> },       { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },    { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },   { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },    { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },   { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },    { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },   { &amp;<ref refid="msghndlr_8h_1abfd0a00aa14140d0a6fd5c9e9bd5cf13" kindref="member">TRKDoReadMemory</ref> },     { &amp;<ref refid="msghndlr_8h_1a611492329b0054e347ba124f01aed83a" kindref="member">TRKDoWriteMemory</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1a7a5d90f98a042709d55a35446659a0de" kindref="member">TRKDoReadRegisters</ref> }, { &amp;<ref refid="msghndlr_8h_1a3f98dc5d2374cbcbb2cbe5a2cc112d6e" kindref="member">TRKDoWriteRegisters</ref> }, { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },   { &amp;<ref refid="msghndlr_8h_1af942ca4e251667e5a5c75729b57a6fcc" kindref="member">TRKDoFlushCache</ref> },     { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1ad1159136e96ee776a183c0236adfced2" kindref="member">TRKDoContinue</ref> },      { &amp;<ref refid="msghndlr_8h_1a4e701ab24dd6073f7cc5afba7a1d216b" kindref="member">TRKDoStep</ref> },           { &amp;<ref refid="msghndlr_8h_1ab092eea736acba450e0e82c0e3057fc4" kindref="member">TRKDoStop</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },   { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },    { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },
+	{ &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },   { &amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref> },
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c" line="11" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c" bodystart="11" bodyend="23"/>
+        <referencedby refid="dispatch_8h_1a45a937113594c8d5a9d69cdda1eeb0ea" compoundref="dispatch_8c" startline="31" endline="43">TRKDispatchMessage</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dispatch_8c_1a0a82815d9b26ed359c0631cfeb292ee4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKInitializeDispatcher</definition>
+        <argsstring>()</argsstring>
+        <name>TRKInitializeDispatcher</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c" line="25" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c" bodystart="25" bodyend="29"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="dispatch_8c_1ac0e4f781662a055510ed1e97f152b0cd" compoundref="dispatch_8c" startline="5">gTRKDispatchTableSize</references>
+        <referencedby refid="nubinit_8h_1af78b850dea3b4c5446dc83345be3e5b0" compoundref="nubinit_8c" startline="16" endline="47">TRKInitializeNub</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dispatch_8c_1aea0596d6f24c5f9c2f38a95a04082c2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKDispatchMessage</definition>
+        <argsstring>(TRKBuffer *buffer)</argsstring>
+        <name>TRKDispatchMessage</name>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c" line="31" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c" bodystart="31" bodyend="43"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55bab1268c16a407ef863fa2ca5df9011482" compoundref="trk_8h" startline="30">DS_DispatchError</references>
+        <references refid="struct_dispatch_entry_1a04c6786c43a06ea88bd8d278bd581709" compoundref="dispatch_8c" startline="8">DispatchEntry::fn</references>
+        <references refid="dispatch_8c_1a5ca9d32bb8950d217925b4708fffdc80" compoundref="dispatch_8c" startline="11" endline="23">gTRKDispatchTable</references>
+        <references refid="dispatch_8c_1ac0e4f781662a055510ed1e97f152b0cd" compoundref="dispatch_8c" startline="5">gTRKDispatchTableSize</references>
+        <references refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" compoundref="msgbuf_8c" startline="246" endline="249">TRKReadBuffer1_ui8</references>
+        <references refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" compoundref="msgbuf_8c" startline="81" endline="97">TRKSetBufferPosition</references>
+        <referencedby refid="mainloop_8c_1a25ff502ac1480292ba829b813ba5ad65" compoundref="mainloop_8c" startline="7" endline="11">TRKHandleRequestEvent</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dispatch_8h" kindref="compound">Portable/dispatch.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msgbuf_8h" kindref="compound">Portable/msgbuf.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msghndlr_8h" kindref="compound">Portable/msghndlr.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="dispatch_8c_1ac0e4f781662a055510ed1e97f152b0cd" refkind="member"><highlight class="normal">u32<sp/><ref refid="dispatch_8c_1ac0e4f781662a055510ed1e97f152b0cd" kindref="member">gTRKDispatchTableSize</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="struct_dispatch_entry" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_dispatch_entry" kindref="compound">DispatchEntry</ref><sp/>{</highlight></codeline>
+<codeline lineno="8" refid="struct_dispatch_entry_1a04c6786c43a06ea88bd8d278bd581709" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>(*<ref refid="struct_dispatch_entry_1a04c6786c43a06ea88bd8d278bd581709" kindref="member">fn</ref>)(<ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="dispatch_8c_1a5ca9d32bb8950d217925b4708fffdc80" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_dispatch_entry" kindref="compound">DispatchEntry</ref><sp/><ref refid="dispatch_8c_1a5ca9d32bb8950d217925b4708fffdc80" kindref="member">gTRKDispatchTable</ref>[33]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a56a008a08ba3f1bc9baabfba2e08494c" kindref="member">TRKDoConnect</ref><sp/>},<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a7010ea6f452339d1d0006f651e5e1a0a" kindref="member">TRKDoDisconnect</ref><sp/>},</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1ac4905cce4f19c68296cda14c7b3caa04" kindref="member">TRKDoReset</ref><sp/>},<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1aee3f68ae5c3a8f7f47b9252fcc2fe384" kindref="member">TRKDoVersions</ref><sp/>},<sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1ad2e317de732287998b803441fa89837c" kindref="member">TRKDoSupportMask</ref><sp/>},</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a139b2d998e8c87885ec295374f5df78a" kindref="member">TRKDoCPUType</ref><sp/>},<sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1abfd0a00aa14140d0a6fd5c9e9bd5cf13" kindref="member">TRKDoReadMemory</ref><sp/>},<sp/><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a611492329b0054e347ba124f01aed83a" kindref="member">TRKDoWriteMemory</ref><sp/>},</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a7a5d90f98a042709d55a35446659a0de" kindref="member">TRKDoReadRegisters</ref><sp/>},<sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a3f98dc5d2374cbcbb2cbe5a2cc112d6e" kindref="member">TRKDoWriteRegisters</ref><sp/>},<sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1af942ca4e251667e5a5c75729b57a6fcc" kindref="member">TRKDoFlushCache</ref><sp/>},<sp/><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1ad1159136e96ee776a183c0236adfced2" kindref="member">TRKDoContinue</ref><sp/>},<sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a4e701ab24dd6073f7cc5afba7a1d216b" kindref="member">TRKDoStep</ref><sp/>},<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1ab092eea736acba450e0e82c0e3057fc4" kindref="member">TRKDoStop</ref><sp/>},</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},<sp/><sp/><sp/>{<sp/>&amp;<ref refid="msghndlr_8h_1a8e20db0a8fbdce3d6d85ccd351dd4b18" kindref="member">TRKDoUnsupported</ref><sp/>},</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="dispatch_8h_1a0a82815d9b26ed359c0631cfeb292ee4" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="dispatch_8c_1a0a82815d9b26ed359c0631cfeb292ee4" kindref="member">TRKInitializeDispatcher</ref>()</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dispatch_8c_1ac0e4f781662a055510ed1e97f152b0cd" kindref="member">gTRKDispatchTableSize</ref><sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="dispatch_8h_1a45a937113594c8d5a9d69cdda1eeb0ea" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="dispatch_8c_1aea0596d6f24c5f9c2f38a95a04082c2d" kindref="member">TRKDispatchMessage</ref>(<ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>buffer)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/>error;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/>command;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55bab1268c16a407ef863fa2ca5df9011482" kindref="member">DS_DispatchError</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" kindref="member">TRKSetBufferPosition</ref>(buffer,<sp/>0);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" kindref="member">TRKReadBuffer1_ui8</ref>(buffer,<sp/>&amp;command);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(command<sp/>&lt;<sp/><ref refid="dispatch_8c_1ac0e4f781662a055510ed1e97f152b0cd" kindref="member">gTRKDispatchTableSize</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>error<sp/>=<sp/><ref refid="dispatch_8c_1a5ca9d32bb8950d217925b4708fffdc80" kindref="member">gTRKDispatchTable</ref>[command].<ref refid="struct_dispatch_entry_1a04c6786c43a06ea88bd8d278bd581709" kindref="member">fn</ref>(buffer);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>error;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/dispatch.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1094 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="memory" kind="file" language="C++">
+    <compoundname>memory</compoundname>
+    <includedby refid="hashmmap_8h" local="no">hashmmap.h</includedby>
+    <includedby refid="tree_8h" local="no">tree.h</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>hashmmap.h</label>
+        <link refid="hashmmap_8h"/>
+      </node>
+      <node id="1">
+        <label>memory</label>
+        <link refid="memory"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tree.h</label>
+        <link refid="tree_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:59:44<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.14.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>memory</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MEMORY</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_MEMORY</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;cstddef&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;cstring&gt;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#include<sp/>&lt;cwchar&gt;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;new&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;limits&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;utility&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;iterator&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Warning,<sp/>__destroy<sp/>is<sp/>non-standard</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">__destroy(T*<sp/>pointer)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pointer-&gt;~T<sp/>();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>ForwardIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">__destroy(ForwardIterator<sp/>first,<sp/>ForwardIterator<sp/>last,<sp/>forward_iterator_tag)</highlight></codeline>
+<codeline><highlight class="normal">{<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;<sp/>first<sp/>!=<sp/>last;<sp/>++first)<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__destroy(&amp;*first);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>RandomAccessIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">__destroy(RandomAccessIterator<sp/>first,<sp/>RandomAccessIterator<sp/>last,<sp/>random_access_iterator_tag)</highlight></codeline>
+<codeline><highlight class="normal">{<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;<sp/>first<sp/>&lt;<sp/>last;<sp/>++first)<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__destroy(&amp;*first);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>ForwardIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">__destroy(ForwardIterator<sp/>first,<sp/>ForwardIterator<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__destroy(first,<sp/>last,<sp/>iterator_traits&lt;ForwardIterator&gt;::iterator_category());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.default.allocator,<sp/>the<sp/>default<sp/>allocator:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;<sp/>class<sp/>allocator;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>specialize<sp/>for<sp/><sp/>void:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>allocator&lt;void&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>size_t<sp/><sp/><sp/><sp/><sp/><sp/>size_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>void*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>void*<sp/>const_pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>void<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>U&gt;<sp/>struct<sp/>rebind<sp/>{<sp/>typedef<sp/>allocator&lt;U&gt;<sp/>other;<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>allocator</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>size_t<sp/><sp/><sp/><sp/>size_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>T*<sp/><sp/>const_pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>const<sp/>T&amp;<sp/><sp/>const_reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>U&gt;<sp/>struct<sp/>rebind<sp/>{<sp/>typedef<sp/>allocator&lt;U&gt;<sp/>other;<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>allocator()<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_MUST_INLINE_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>U&gt;<sp/>allocator(const<sp/>allocator&lt;U&gt;&amp;)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>U&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>allocator(const<sp/>allocator&lt;U&gt;&amp;)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pointer<sp/>address(reference<sp/>x)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_pointer<sp/>address(const_reference<sp/>x)<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pointer<sp/>allocate(size_type<sp/>n,<sp/>allocator&lt;void&gt;::const_pointer<sp/>hint<sp/>=<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>deallocate(pointer<sp/>p,<sp/>size_type<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/>max_size()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>construct(pointer<sp/>p,<sp/>const<sp/>T&amp;<sp/>val);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>destroy(pointer<sp/>p);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">allocator&lt;T&gt;::allocator()<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_MUST_INLINE_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>U&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>allocator&lt;T&gt;::allocator(const<sp/>allocator&lt;U&gt;&amp;)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>allocator&lt;T&gt;::pointer</highlight></codeline>
+<codeline><highlight class="normal">allocator&lt;T&gt;::address(reference<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>&amp;x;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>allocator&lt;T&gt;::const_pointer</highlight></codeline>
+<codeline><highlight class="normal">allocator&lt;T&gt;::address(const_reference<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>&amp;x;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>allocator&lt;T&gt;::pointer</highlight></codeline>
+<codeline><highlight class="normal">allocator&lt;T&gt;::allocate(size_type<sp/>n,<sp/>allocator&lt;void&gt;::const_pointer)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>static_cast&lt;pointer&gt;(operator<sp/>new(n<sp/>*<sp/>sizeof(T)));</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pointer<sp/>p<sp/>=<sp/>static_cast&lt;pointer&gt;(operator<sp/>new(n<sp/>*<sp/>sizeof(T)));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(p<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__msl_error(&quot;Memory<sp/>allocation<sp/>failure&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>p;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">allocator&lt;T&gt;::deallocate(pointer<sp/>p,<sp/>size_type)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>operator<sp/>delete(p);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>allocator&lt;T&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">allocator&lt;T&gt;::max_size()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>numeric_limits&lt;size_type&gt;::max()<sp/>/<sp/>sizeof(T);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">allocator&lt;T&gt;::construct(pointer<sp/>p,<sp/>const<sp/>T&amp;<sp/>val)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>new(p)<sp/>T(val);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">allocator&lt;T&gt;::destroy(pointer<sp/>p)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>p-&gt;~T();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>U&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>allocator&lt;T&gt;&amp;,<sp/>const<sp/>allocator&lt;U&gt;&amp;)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>U&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>allocator&lt;T&gt;&amp;,<sp/>const<sp/>allocator&lt;U&gt;&amp;)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.storage.iterator,<sp/>raw<sp/>storage<sp/>iterator:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>OutputIterator,<sp/>class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>raw_storage_iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>iterator&lt;output_iterator_tag,<sp/>void,<sp/>void,<sp/>void,<sp/>void&gt;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>raw_storage_iterator(OutputIterator<sp/>x);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>raw_storage_iterator&amp;<sp/>operator*();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>raw_storage_iterator&amp;<sp/>operator=(const<sp/>T&amp;<sp/>element);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>raw_storage_iterator&amp;<sp/>operator++();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>raw_storage_iterator<sp/><sp/>operator++(int);</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OutputIterator<sp/>x_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>OutputIterator,<sp/>class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;::raw_storage_iterator(OutputIterator<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>x_(x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>OutputIterator,<sp/>class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;::operator*()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>OutputIterator,<sp/>class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;::operator=(const<sp/>T&amp;<sp/>element)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>new(&amp;*x_)<sp/>T(element);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>OutputIterator,<sp/>class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;::operator++()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>++x_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>OutputIterator,<sp/>class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">raw_storage_iterator&lt;OutputIterator,<sp/>T&gt;::operator++(int)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>raw_storage_iterator<sp/>tmp(*this);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>++x_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>return<sp/>tmp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.temporary.buffer,<sp/>temporary<sp/>buffers:</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">pair&lt;T*,<sp/>ptrdiff_t&gt;</highlight></codeline>
+<codeline><highlight class="normal">get_temporary_buffer(ptrdiff_t<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pair&lt;T*,<sp/>ptrdiff_t&gt;<sp/>result(0,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>while<sp/>(n<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.first<sp/>=<sp/>reinterpret_cast&lt;T*&gt;(new(nothrow)<sp/>char<sp/>[sizeof(T)*n]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(result.first<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.second<sp/>=<sp/>n;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>/=<sp/>2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">return_temporary_buffer(T*<sp/>p)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>delete<sp/>[]<sp/>reinterpret_cast&lt;char*&gt;(p);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980601<sp/><sp/>Added<sp/>non-standard<sp/>class.<sp/><sp/>This<sp/>facilitates<sp/>use<sp/>of</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>get_temporary_buffer<sp/>in<sp/>a<sp/>exception-safe<sp/>manner.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Used<sp/>in<sp/>&lt;algorithm&gt;</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>_TempVec</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>types:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>typedef<sp/>const<sp/>T&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const_reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>class<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const_iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>size_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>typedef<sp/>const<sp/>T*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const_pointer;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>typedef<sp/>_STD::reverse_iterator&lt;iterator&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>reverse_iterator;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>typedef<sp/>_STD::reverse_iterator&lt;const_iterator&gt;<sp/>const_reverse_iterator;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>proxy</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference<sp/>operator<sp/>=<sp/>(const<sp/>T&amp;<sp/>rhs)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(cur_<sp/>-<sp/>vec_-&gt;data_<sp/>&lt;<sp/>vec_-&gt;size_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*cur_<sp/>=<sp/>rhs;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>new<sp/>(cur_)<sp/>T(rhs);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++vec_-&gt;size_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>*cur_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>operator<sp/>const<sp/>T&amp;<sp/>()<sp/>const<sp/>{return<sp/>*cur_;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>==<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>==<sp/>*y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>==<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>T&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>==<sp/>y;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>==<sp/>(const<sp/>T&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>x<sp/>==<sp/>*y.cur_;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>!=<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>!=<sp/>*y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>!=<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>T&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>!=<sp/>y;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>!=<sp/>(const<sp/>T&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>x<sp/>!=<sp/>*y.cur_;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&lt;<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>&lt;<sp/>*y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&lt;<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>T&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>&lt;<sp/>y;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&lt;<sp/>(const<sp/>T&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>x<sp/>&lt;<sp/>*y.cur_;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&lt;=<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>&lt;=<sp/>*y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&lt;=<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>T&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>&lt;=<sp/>y;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&lt;=<sp/>(const<sp/>T&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>x<sp/>&lt;=<sp/>*y.cur_;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&gt;<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>&gt;<sp/>*y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&gt;<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>T&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>&gt;<sp/>y;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&gt;<sp/>(const<sp/>T&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>x<sp/>&gt;<sp/>*y.cur_;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&gt;=<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>&gt;=<sp/>*y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&gt;=<sp/>(const<sp/>proxy&amp;<sp/>x,<sp/>const<sp/>T&amp;<sp/>y)<sp/>{return<sp/>*x.cur_<sp/>&gt;=<sp/>y;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&gt;=<sp/>(const<sp/>T&amp;<sp/>x,<sp/>const<sp/>proxy&amp;<sp/>y)<sp/>{return<sp/>x<sp/>&gt;=<sp/>*y.cur_;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T*<sp/>cur_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TempVec&lt;T&gt;*<sp/>vec_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proxy(T*<sp/>cur,<sp/>_TempVec&lt;T&gt;*<sp/>vec)<sp/>:<sp/>cur_(cur),<sp/>vec_(vec)<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>class<sp/>iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>class<sp/>proxy;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>iterator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>public<sp/>_STD::iterator&lt;random_access_iterator_tag,<sp/>T,<sp/>ptrdiff_t,<sp/>T*,<sp/>T&amp;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator()<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proxy<sp/>operator<sp/>*<sp/>()<sp/>const<sp/>{return<sp/>proxy(cur_,<sp/>vec_);}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer<sp/>operator<sp/>-&gt;<sp/>()<sp/>const<sp/>{return<sp/>cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator&amp;<sp/>operator<sp/>++<sp/>()<sp/>{++cur_;<sp/>return<sp/>*this;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator<sp/>operator<sp/>++<sp/>(int)<sp/>{iterator<sp/>tmp(*this);<sp/>++(*this);<sp/>return<sp/>tmp;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator&amp;<sp/>operator<sp/>--<sp/>()<sp/>{--cur_;<sp/>return<sp/>*this;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator<sp/>operator<sp/>--<sp/>(int)<sp/>{iterator<sp/>tmp(*this);<sp/>--(*this);<sp/>return<sp/>tmp;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator&amp;<sp/>operator<sp/>+=<sp/>(difference_type<sp/>n)<sp/>{cur_<sp/>+=<sp/>n;<sp/>return<sp/>*this;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator<sp/>operator<sp/>+<sp/>(difference_type<sp/>n)<sp/>const<sp/>{return<sp/>iterator(*this)<sp/>+=<sp/>n;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator&amp;<sp/>operator<sp/>-=<sp/>(difference_type<sp/>n)<sp/>{cur_<sp/>-=<sp/>n;<sp/>return<sp/>*this;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator<sp/>operator<sp/>-<sp/>(difference_type<sp/>n)<sp/>const<sp/>{return<sp/>iterator(*this)<sp/>-=<sp/>n;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>difference_type<sp/>operator<sp/>-<sp/>(const<sp/>iterator&amp;<sp/>rhs)<sp/>const<sp/>{return<sp/>difference_type(cur_<sp/>-<sp/>rhs.cur_);}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>proxy<sp/>operator<sp/>[]<sp/>(size_type<sp/>i)<sp/>const<sp/>{iterator<sp/>tmp(*this);<sp/>tmp<sp/>+=<sp/>difference_type(i);<sp/>return<sp/>*tmp;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>==(const<sp/>iterator&amp;<sp/>x,<sp/>const<sp/>iterator&amp;<sp/>y)<sp/>{return<sp/>x.cur_<sp/>==<sp/>y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>!=(const<sp/>iterator&amp;<sp/>x,<sp/>const<sp/>iterator&amp;<sp/>y)<sp/>{return<sp/>x.cur_<sp/>!=<sp/>y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&lt;<sp/>(const<sp/>iterator&amp;<sp/>x,<sp/>const<sp/>iterator&amp;<sp/>y)<sp/>{return<sp/>x.cur_<sp/>&lt;<sp/>y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&lt;=(const<sp/>iterator&amp;<sp/>x,<sp/>const<sp/>iterator&amp;<sp/>y)<sp/>{return<sp/>x.cur_<sp/>&lt;=<sp/>y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&gt;<sp/>(const<sp/>iterator&amp;<sp/>x,<sp/>const<sp/>iterator&amp;<sp/>y)<sp/>{return<sp/>x.cur_<sp/>&gt;<sp/><sp/>y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator<sp/>&gt;=(const<sp/>iterator&amp;<sp/>x,<sp/>const<sp/>iterator&amp;<sp/>y)<sp/>{return<sp/>x.cur_<sp/>&gt;=<sp/>y.cur_;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>iterator<sp/>operator<sp/>+<sp/>(difference_type<sp/>n,<sp/>const<sp/>iterator&amp;<sp/>rhs)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{return<sp/>iterator(rhs)<sp/>+=<sp/>n;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer<sp/>cur_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TempVec&lt;T&gt;*<sp/>vec_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator(T*<sp/>cur,<sp/>_TempVec&lt;T&gt;*<sp/>vec)<sp/>:<sp/>cur_(cur),<sp/>vec_(vec)<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>class<sp/>_TempVec&lt;T&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_TempVec(ptrdiff_t<sp/>cap);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>~_TempVec();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>begin();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>end();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ptrdiff_t<sp/>size()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ptrdiff_t<sp/>capacity()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ptrdiff_t<sp/>cap_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ptrdiff_t<sp/>size_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>T*<sp/>data_;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_TempVec(const<sp/>_TempVec&amp;);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Not<sp/>defined</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_TempVec&amp;<sp/>operator=(const<sp/>_TempVec&amp;);<sp/><sp/>//<sp/>Not<sp/>defined</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">_TempVec&lt;T&gt;::_TempVec(ptrdiff_t<sp/>cap)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pair&lt;T*,<sp/>ptrdiff_t&gt;<sp/>buf<sp/>=<sp/>get_temporary_buffer&lt;T&gt;(cap);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>data_<sp/>=<sp/>buf.first;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cap_<sp/>=<sp/>buf.second;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">_TempVec&lt;T&gt;::~_TempVec()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__destroy(data_,<sp/>data_<sp/>+<sp/>size_);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return_temporary_buffer(data_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>_TempVec&lt;T&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">_TempVec&lt;T&gt;::begin()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>iterator(data_,<sp/>this);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>_TempVec&lt;T&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">_TempVec&lt;T&gt;::end()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>iterator(data_<sp/>+<sp/>cap_,<sp/>this);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ptrdiff_t</highlight></codeline>
+<codeline><highlight class="normal">_TempVec&lt;T&gt;::size()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>size_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ptrdiff_t</highlight></codeline>
+<codeline><highlight class="normal">_TempVec&lt;T&gt;::capacity()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>cap_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.specialized.algorithms,<sp/>specialized<sp/>algorithms:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>uninitialized_copy</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>InputIterator,<sp/>class<sp/>ForwardIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">ForwardIterator</highlight></codeline>
+<codeline><highlight class="normal">uninitialized_copy(InputIterator<sp/>first,<sp/>InputIterator<sp/>last,<sp/>ForwardIterator<sp/>result)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ForwardIterator<sp/>save<sp/>=<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>try</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>first<sp/>!=<sp/>last;<sp/>++result,<sp/>++first)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>new<sp/>(&amp;*result)<sp/>typename<sp/>iterator_traits&lt;ForwardIterator&gt;::value_type(*first);</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>catch<sp/>(...)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__destroy(save,<sp/>result);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">char*</highlight></codeline>
+<codeline><highlight class="normal">uninitialized_copy(char*<sp/>first,<sp/>char*<sp/>last,<sp/>char*<sp/>result)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>len<sp/>=<sp/>static_cast&lt;size_t&gt;(last<sp/>-<sp/>first);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(result,<sp/>first,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>result<sp/>+<sp/>len;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wchar_t*</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uninitialized_copy(wchar_t*<sp/>first,<sp/>wchar_t*<sp/>last,<sp/>wchar_t*<sp/>result)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t<sp/>len<sp/>=<sp/>static_cast&lt;size_t&gt;(last<sp/>-<sp/>first);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wmemcpy(result,<sp/>first,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>result<sp/>+<sp/>len;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>uninitialized_fill</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>ForwardIterator,<sp/>class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">uninitialized_fill(ForwardIterator<sp/>first,<sp/>ForwardIterator<sp/>last,<sp/>const<sp/>T&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ForwardIterator<sp/>save<sp/>=<sp/>first;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>try</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>first<sp/>!=<sp/>last;<sp/>++first)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>new<sp/>(&amp;*first)<sp/>typename<sp/>iterator_traits&lt;ForwardIterator&gt;::value_type(x);</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>catch<sp/>(...)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__destroy(save,<sp/>first);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">uninitialized_fill(char*<sp/>first,<sp/>char*<sp/>last,<sp/>const<sp/>char&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>memset(first,<sp/>x,<sp/>static_cast&lt;size_t&gt;(last<sp/>-<sp/>first));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uninitialized_fill(wchar_t*<sp/>first,<sp/>wchar_t*<sp/>last,<sp/>const<sp/>wchar_t&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wmemset(first,<sp/>x,<sp/>static_cast&lt;size_t&gt;(last<sp/>-<sp/>first));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>uninitialized_fill_n</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>ForwardIterator,<sp/>class<sp/>Size,<sp/>class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">uninitialized_fill_n(ForwardIterator<sp/>first,<sp/>Size<sp/>n,<sp/>const<sp/>T&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ForwardIterator<sp/>save<sp/>=<sp/>first;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>try</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>n--;<sp/>++first)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>new<sp/>(&amp;*first)<sp/>typename<sp/>iterator_traits&lt;ForwardIterator&gt;::value_type(x);</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>catch<sp/>(...)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__destroy(save,<sp/>first);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">uninitialized_fill_n(char*<sp/>first,<sp/>size_t<sp/>n,<sp/>const<sp/>char&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>memset(first,<sp/>x,<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uninitialized_fill_n(wchar_t*<sp/>first,<sp/>size_t<sp/>n,<sp/>const<sp/>wchar_t&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wmemset(first,<sp/>x,<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>lib.auto.ptr,<sp/>pointers:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_USE_AUTO_PTR_96</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980103<sp/>Nov.<sp/>&apos;97<sp/>version<sp/>of<sp/>auto_ptr<sp/>added</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980805<sp/>member<sp/>template<sp/>operators<sp/>not<sp/>supported<sp/>yet.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;<sp/>class<sp/>auto_ptr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>auto_ptr_ref</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;Y&gt;&amp;<sp/>p_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr_ref(const<sp/>auto_ptr&lt;Y&gt;&amp;<sp/>a);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr_ref&lt;Y&gt;::auto_ptr_ref(const<sp/>auto_ptr&lt;Y&gt;&amp;<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>p_(const_cast&lt;auto_ptr&lt;Y&gt;&amp;&gt;(a))</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>auto_ptr</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>X<sp/>element_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.auto.ptr.cons<sp/>construct/copy/destroy:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>auto_ptr(X*<sp/>p<sp/>=<sp/>0)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr(auto_ptr&amp;<sp/>a)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_MUST_INLINE_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;<sp/>auto_ptr(auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr(auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>ptr_(a.release())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&amp;<sp/>operator=(auto_ptr&amp;<sp/>a)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_MUST_INLINE_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;<sp/>auto_ptr&amp;<sp/>operator=(auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&amp;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>operator=(auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reset(a.release());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>~auto_ptr()<sp/>_MSL_THROW;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.auto.ptr.members<sp/>members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X&amp;<sp/>operator*()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>operator-&gt;()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>get()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>release()<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>reset(X*<sp/>p<sp/>=<sp/>0)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.auto.ptr.conv<sp/>conversions:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr(auto_ptr_ref&lt;X&gt;<sp/>r)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&amp;<sp/>operator=(auto_ptr_ref&lt;X&gt;<sp/>r)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>!defined<sp/>(_MSL_NO_MEMBER_TEMPLATE)<sp/>&amp;&amp;<sp/>__MWERKS__<sp/>&gt;<sp/>0x2400</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;<sp/>operator<sp/>auto_ptr_ref&lt;Y&gt;()<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;<sp/>operator<sp/>auto_ptr&lt;Y&gt;()<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">X*</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::release()<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>tmp<sp/>=<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ptr_<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tmp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::reset(X*<sp/>p)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ptr_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delete<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ptr_<sp/>=<sp/>p;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::auto_ptr(X*<sp/>p)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>ptr_(p)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::auto_ptr(auto_ptr&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>ptr_(a.release())</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_MUST_INLINE_MEMBER_TEMPLATE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;X&gt;::auto_ptr(auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>ptr_(a.release())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::operator=(auto_ptr&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reset(a.release());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_MUST_INLINE_MEMBER_TEMPLATE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;X&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;X&gt;::operator=(auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reset(a.release());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::~auto_ptr()<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>delete<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">X&amp;</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::operator*()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*ptr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">X*</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::operator-&gt;()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">X*</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::get()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::auto_ptr(auto_ptr_ref&lt;X&gt;<sp/>r)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>ptr_(r.p_.release())</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::operator=(auto_ptr_ref&lt;X&gt;<sp/>r)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reset(r.p_.release());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>!defined<sp/>(_MSL_NO_MEMBER_TEMPLATE)<sp/>&amp;&amp;<sp/>__MWERKS__<sp/>&gt;<sp/>0x2400</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;X&gt;::operator<sp/>auto_ptr_ref&lt;Y&gt;()<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;X&gt;::operator<sp/>auto_ptr&lt;Y&gt;()<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>auto_ptr&lt;Y&gt;(release());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else<sp/>//<sp/>_MSL_USE_AUTO_PTR_96</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980103<sp/>Dec.<sp/>&apos;96<sp/>version<sp/>of<sp/>auto_ptr<sp/>fixed</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>auto_ptr</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>X<sp/><sp/><sp/>element_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>auto_ptr(X*<sp/>p<sp/>=<sp/>0)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Y&gt;<sp/>auto_ptr<sp/>(const<sp/>auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Y&gt;<sp/>auto_ptr&amp;<sp/>operator=(const<sp/>auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr<sp/>(const<sp/>auto_ptr&amp;<sp/>a)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&amp;<sp/>operator=(const<sp/>auto_ptr&amp;<sp/>a)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>~auto_ptr();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X&amp;<sp/>operator*()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>operator-&gt;()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>get()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>release()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>owns()<sp/>const<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>X*<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mutable<sp/>bool<sp/>owns_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::owns()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>owns_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">X*</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::release()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>owns_<sp/>=<sp/>false;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr_;<sp/></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::auto_ptr(X*<sp/>p)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>ptr_(p),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>owns_(p<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;X&gt;::auto_ptr(const<sp/>auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>owns_<sp/>=<sp/>a.owns();<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr_<sp/>=<sp/>a.release();<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Y&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;X&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_ptr&lt;X&gt;::operator=(const<sp/>auto_ptr&lt;Y&gt;&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(owns_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delete<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>owns_<sp/>=<sp/>a.owns();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr_<sp/>=<sp/>a.release();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::auto_ptr(const<sp/>auto_ptr&amp;<sp/>a)<sp/>_MSL_THROW<sp/></highlight></codeline>
+<codeline><highlight class="normal">{<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>owns_<sp/>=<sp/>a.owns_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ptr_<sp/>=<sp/>a.release();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980923<sp/>rewrote<sp/>op=</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;&amp;</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::operator=(const<sp/>auto_ptr&amp;<sp/>a)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(this<sp/>==<sp/>&amp;a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ptr_<sp/>==<sp/>a.ptr_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>owns_<sp/>=<sp/>owns_<sp/>||<sp/>a.owns_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr_<sp/>=<sp/>a.release();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(owns_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delete<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>owns_<sp/>=<sp/>a.owns_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr_<sp/>=<sp/>a.release();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*this;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::~auto_ptr()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(owns_)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delete<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">X&amp;</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::operator*<sp/>()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>*ptr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">X*</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::operator-&gt;<sp/>()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>X&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">X*</highlight></codeline>
+<codeline><highlight class="normal">auto_ptr&lt;X&gt;::get()<sp/>const<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr_;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_USE_AUTO_PTR_96</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Warning,<sp/>non-standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Credit:<sp/><sp/>Nathan<sp/>C.<sp/>Myers</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Base,<sp/>class<sp/>_Member&gt;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>_EmptyMemberOpt</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>public<sp/>_Base</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_EmptyMemberOpt();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_EmptyMemberOpt(_Base<sp/>const&amp;<sp/>__b);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_EmptyMemberOpt(_Base<sp/>const&amp;<sp/>__b,<sp/>_Member<sp/>const&amp;<sp/>__mem);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_Member<sp/>m_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Base,<sp/>class<sp/>_Member&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">_EmptyMemberOpt&lt;_Base,<sp/>_Member&gt;::_EmptyMemberOpt()<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>_Base(_Base()),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>m_(_Member())</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Base,<sp/>class<sp/>_Member&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">_EmptyMemberOpt&lt;_Base,<sp/>_Member&gt;::_EmptyMemberOpt(_Base<sp/>const&amp;<sp/>__b)<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>_Base(__b),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>m_(_Member())</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>_Base,<sp/>class<sp/>_Member&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">_EmptyMemberOpt&lt;_Base,<sp/>_Member&gt;::_EmptyMemberOpt(_Base<sp/>const&amp;<sp/>__b,<sp/>_Member<sp/>const&amp;<sp/>__mem)<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>_Base(__b),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>m_(__mem)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MEMORY</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE<sp/>and<sp/>MOD_C_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>added<sp/>alignment<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971227<sp/>silence<sp/>unused<sp/>warning</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971227<sp/>removed<sp/>unused<sp/>argument<sp/>from<sp/>deallocate</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980103<sp/>fixed<sp/>Dec.<sp/>&apos;96<sp/>version<sp/>of<sp/>auto_ptr</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980103<sp/>added<sp/>Nov.<sp/>&apos;97<sp/>version<sp/>of<sp/>auto_ptr</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980106<sp/>removed<sp/>#include<sp/>&lt;stdexcept&gt;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;memory&gt;<sp/>can<sp/>not<sp/>throw<sp/>a<sp/>stdexecpt<sp/>because<sp/>it<sp/>can<sp/>not<sp/>process<sp/>strings.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980106<sp/>removed<sp/>null<sp/>pointer<sp/>checks<sp/>from<sp/>allocate::construct<sp/>and<sp/>destroy</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980522<sp/><sp/>Rewrote<sp/>get/return_temporary_buffer<sp/>because<sp/>of<sp/>concerns<sp/>about</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>multi-threading.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980730<sp/>added<sp/>(char*)<sp/>cast<sp/>to<sp/>return_temporary_buffer</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980805<sp/>member<sp/>template<sp/>operators<sp/>not<sp/>supported<sp/>yet.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modified<sp/>auto_ptr<sp/>&apos;97<sp/>to<sp/>pre-member<sp/>template<sp/>functionality</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980902<sp/>#ifdef&apos;d<sp/>out<sp/>exception<sp/>code<sp/>when<sp/>ndef<sp/>MSIPL_EXCEPT</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980923<sp/>fixed<sp/>bug<sp/>in<sp/>the<sp/>&apos;96<sp/>auto_ptr::op=</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981220<sp/>Added<sp/>typename<sp/>to<sp/>appropriate<sp/>return<sp/>types</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990315<sp/>Split<sp/>destroy(first,<sp/>last)<sp/>into<sp/>two<sp/>methods<sp/>to<sp/>help<sp/>compiler<sp/>optimize</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>away<sp/>empty<sp/>loops.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990503<sp/>Rewrote.</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/memory"/>
+  </compounddef>
+</doxygen>

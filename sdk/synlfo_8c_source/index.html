@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File synlfo.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-synlfoc">File synlfo.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_69283c2dbc63a8d4f909cdea61511c2a/"><strong>syn</strong></a> <strong>&gt;</strong> <a href="../synlfo_8c/"><strong>synlfo.c</strong></a></p>
+<p><a href="../synlfo_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+#include &lt;dolphin/syn.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;fake_tgmath.h&quot;
+#include &quot;SYNPrivate.h&quot;
+
+static f32 __SYNLfo[64] = {
+    0.000000f,  0.098020f,  0.195090f,  0.290280f,  0.382680f,  0.471400f,  0.555570f,  0.634390f,
+    0.707110f,  0.773010f,  0.831470f,  0.881920f,  0.923880f,  0.956940f,  0.980790f,  0.995180f,
+    1.000000f,  0.995180f,  0.980790f,  0.956940f,  0.923880f,  0.881920f,  0.831470f,  0.773010f,
+    0.707110f,  0.634390f,  0.555570f,  0.471400f,  0.382680f,  0.290280f,  0.195090f,  0.098020f,
+    0.000000f,  -0.098020f, -0.195090f, -0.290280f, -0.382680f, -0.471400f, -0.555570f, -0.634390f,
+    -0.707110f, -0.773010f, -0.831470f, -0.881920f, -0.923880f, -0.956940f, -0.980790f, -0.995180f,
+    -1.000000f, -0.995180f, -0.980790f, -0.956940f, -0.923880f, -0.881920f, -0.831470f, -0.773010f,
+    -0.707110f, -0.634390f, -0.555570f, -0.471400f, -0.382680f, -0.290280f, -0.195090f, -0.098020f,
+};
+
+void
+__SYNSetupLfo (struct SYNVOICE* voice)
+{
+    ASSERTLINE (0x2F, voice);
+    voice-&gt;lfoState = voice-&gt;lfoAttn = voice-&gt;lfoCents = 0;
+    voice-&gt;lfoFreq = voice-&gt;art-&gt;lfoFreq;
+    voice-&gt;lfoDelay = voice-&gt;art-&gt;lfoDelay;
+    voice-&gt;lfoAttn_ = voice-&gt;art-&gt;lfoAtten;
+    voice-&gt;lfoCents = voice-&gt;art-&gt;lfoPitch;
+    voice-&gt;lfoModAttn = voice-&gt;art-&gt;lfoMod2Atten;
+    voice-&gt;lfoModCents = voice-&gt;art-&gt;lfoMod2Pitch;
+}
+
+void
+__SYNRunLfo (struct SYNVOICE* voice)
+{
+    f32 lfoAmplitude;
+    f32 lfoModWheel;
+
+    ASSERTLINE (0x42, voice);
+    if (voice-&gt;lfoDelay != 0)
+    {
+        voice-&gt;lfoDelay--;
+    }
+    else
+    {
+        voice-&gt;lfoState += voice-&gt;lfoFreq;
+        lfoAmplitude = __SYNLfo[(voice-&gt;lfoState &gt;&gt; 0x10) % 64];
+        lfoModWheel = __SYNn128[voice-&gt;synth-&gt;controller[voice-&gt;midiChannel][1]];
+        voice-&gt;lfoAttn = (lfoAmplitude * (voice-&gt;lfoAttn_ + (voice-&gt;lfoModAttn * lfoModWheel)));
+        voice-&gt;lfoCents = (lfoAmplitude * (voice-&gt;lfoCents_ + (voice-&gt;lfoModCents * lfoModWheel)));
+    }
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

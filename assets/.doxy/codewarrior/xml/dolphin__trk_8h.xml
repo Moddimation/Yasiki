@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dolphin__trk_8h" kind="file" language="C++">
+    <compoundname>dolphin_trk.h</compoundname>
+    <includes local="yes">dolphin/types.h</includes>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <includedby refid="dolphin__trk_8c" local="yes">dolphin_trk.c</includedby>
+    <includedby refid="nubinit_8c" local="yes">nubinit.c</includedby>
+    <includedby refid="targimpl_8c" local="yes">targimpl.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>dolphin_trk.h</label>
+        <link refid="dolphin__trk_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>dolphin_trk.h</label>
+        <link refid="dolphin__trk_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin_trk.c</label>
+        <link refid="dolphin__trk_8c"/>
+      </node>
+      <node id="3">
+        <label>nubinit.c</label>
+        <link refid="nubinit_8c"/>
+      </node>
+      <node id="4">
+        <label>targimpl.c</label>
+        <link refid="targimpl_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dolphin__trk_8h_1af6cda24a52d37e510e398c2b0187ffb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKInitializeTarget</definition>
+        <argsstring>()</argsstring>
+        <name>TRKInitializeTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" line="11" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="131" bodyend="137" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" declline="11" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="targimpl_8h_1a08f8e1919152b12ff57fb130a57e9be1" compoundref="targimpl_8c" startline="48">gTRKState</references>
+        <references refid="struct_t_r_k_state_1aec4785eaa9ea746de151bd0cc1128b93" compoundref="targimpl_8h" startline="180">TRKState::isStopped</references>
+        <references refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" compoundref="dolphin__trk_8c" startline="12">lc_base</references>
+        <references refid="struct_t_r_k_state_1a6055a72df3d0a88dbcc082d00b800828" compoundref="targimpl_8h" startline="177">TRKState::msr</references>
+        <referencedby refid="nubinit_8h_1af78b850dea3b4c5446dc83345be3e5b0" compoundref="nubinit_8c" startline="16" endline="47">TRKInitializeNub</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8h_1ab6141898582e43d9d9ab5b104edade0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnableMetroTRKInterrupts</definition>
+        <argsstring>()</argsstring>
+        <name>EnableMetroTRKInterrupts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" line="13" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="94" bodyend="94" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" declline="13" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8h_1a676e3041d9fd3f9e12fc2c9214558f35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>u32</type>
+        <definition>u32 TRKTargetTranslate</definition>
+        <argsstring>(u32 param_0)</argsstring>
+        <name>TRKTargetTranslate</name>
+        <param>
+          <type>u32</type>
+          <declname>param_0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" line="14" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="96" bodyend="106" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" declline="14" declcolumn="5"/>
+        <references refid="struct_extended1___p_p_c__6xx__7xx_1a45412863c96576b5b7233422635fd7e8" compoundref="targimpl_8h" startline="101">Extended1_PPC_6xx_7xx::DBAT3U</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1ab93554b55c63a0a75d8442ea52db723d" compoundref="targimpl_8h" startline="164">ProcessorState_PPC_6xx_7xx::Extended1</references>
+        <references refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" compoundref="dolphin__trk_8c" startline="12">lc_base</references>
+        <referencedby refid="dolphin__trk_8h_1a4b2cf677f84afff232858e0e68957938" compoundref="dolphin__trk_8c" startline="117" endline="129">__TRK_copy_vectors</referencedby>
+        <referencedby refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" compoundref="dolphin__trk_8c" startline="110" endline="115">TRK_copy_vector</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8h_1a698b7c923347a735373953a4cd033c62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRK__read_aram</definition>
+        <argsstring>(register int c, register u32 p2, void *p3)</argsstring>
+        <name>TRK__read_aram</name>
+        <param>
+          <type>register int</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>register u32</type>
+          <declname>p2</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>p3</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" line="15" column="6" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" declline="15" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8h_1a067890f5b5b59ed214cc364c255a2f63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRK__write_aram</definition>
+        <argsstring>(register int c, register u32 p2, void *p3)</argsstring>
+        <name>TRK__write_aram</name>
+        <param>
+          <type>register int</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>register u32</type>
+          <declname>p2</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>p3</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" line="16" column="6" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8h_1a4b2cf677f84afff232858e0e68957938" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __TRK_copy_vectors</definition>
+        <argsstring>(void)</argsstring>
+        <name>__TRK_copy_vectors</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" line="18" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="117" bodyend="129" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h" declline="18" declcolumn="6"/>
+        <references refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" compoundref="dolphin__trk_8c" startline="110" endline="115">TRK_copy_vector</references>
+        <references refid="dolphin__trk_8c_1af26f6ae6d217cc73526b8c60f7d65683" compoundref="dolphin__trk_8c" startline="14" endline="28">TRK_ISR_OFFSETS</references>
+        <references refid="dolphin__trk_8c_1a676e3041d9fd3f9e12fc2c9214558f35" compoundref="dolphin__trk_8c" startline="96" endline="106">TRKTargetTranslate</references>
+        <referencedby refid="dolphin__trk_8c_1abc93178f7083946e434dde3acc6ed52d" compoundref="dolphin__trk_8c" startline="30" endline="30">__declspec</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>OS_DOLPHIN_DOLPHIN_TRK_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OS_DOLPHIN_DOLPHIN_TRK_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dolphin/types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="dolphin__trk_8h_1af6cda24a52d37e510e398c2b0187ffb1" kindref="member">TRKInitializeTarget</ref>();</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk_8h_1ab6141898582e43d9d9ab5b104edade0b" kindref="member">EnableMetroTRKInterrupts</ref>();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">u32<sp/><ref refid="dolphin__trk_8h_1a676e3041d9fd3f9e12fc2c9214558f35" kindref="member">TRKTargetTranslate</ref>(u32<sp/>param_0);</highlight></codeline>
+<codeline lineno="15" refid="dolphin__trk_8h_1a698b7c923347a735373953a4cd033c62" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk_8h_1a698b7c923347a735373953a4cd033c62" kindref="member">TRK__read_aram</ref>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/>u32<sp/>p2,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>p3);</highlight></codeline>
+<codeline lineno="16" refid="dolphin__trk_8h_1a067890f5b5b59ed214cc364c255a2f63" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk_8h_1a067890f5b5b59ed214cc364c255a2f63" kindref="member">TRK__write_aram</ref>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/>u32<sp/>p2,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>p3);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk_8h_1a4b2cf677f84afff232858e0e68957938" kindref="member">__TRK_copy_vectors</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>OS_DOLPHIN_DOLPHIN_TRK_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/dolphin_trk.h"/>
+  </compounddef>
+</doxygen>

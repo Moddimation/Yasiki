@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="e__hypot_8c" kind="file" language="C++">
+    <compoundname>e_hypot.c</compoundname>
+    <includes refid="fdlibm_8h" local="yes">fdlibm.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>e_hypot.c</label>
+        <link refid="e__hypot_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fdlibm.h</label>
+        <link refid="fdlibm_8h"/>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="e__hypot_8c_1a20d3bbad4499937e2d651401599909e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double __ieee754_hypot</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>__ieee754_hypot</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_hypot.c" line="53" column="8" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_hypot.c" bodystart="53" bodyend="117"/>
+        <references refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" compoundref="math__config_8h" startline="15">__HI</references>
+        <references refid="math__config_8h_1a3e811eb5592161550c18c0e102d39d45" compoundref="math__config_8h" startline="14">__LO</references>
+        <references refid="tgmath_8h_1a592e5b536e9e1b69f4520e9566521a17" compoundref="tgmath_8h" startline="95" endline="98">sqrt</references>
+        <references refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" compoundref="e__lgamma__r_8c" startline="112">t1</references>
+        <references refid="e__lgamma__r_8c_1a8df5e28b4b4a92003ae9040490efec1f" compoundref="e__lgamma__r_8c" startline="113">t2</references>
+        <referencedby refid="w__hypot_8c_1a6d6a905f61d535f8454190433b8c0ea5" compoundref="w__hypot_8c" startline="26" endline="41">hypot</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Floating_Point<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>@(#)e_hypot.c<sp/>1.2<sp/>95/01/04<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>$Id:<sp/>e_hypot.c,v<sp/>1.2.4.1<sp/>1999/12/06<sp/>19:47:52<sp/>fassiott<sp/>Exp<sp/>$<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>====================================================</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>1993<sp/>by<sp/>Sun<sp/>Microsystems,<sp/>Inc.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Developed<sp/>at<sp/>SunPro,<sp/>a<sp/>Sun<sp/>Microsystems,<sp/>Inc.<sp/>business.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and<sp/>distribute<sp/>this</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>software<sp/>is<sp/>freely<sp/>granted,<sp/>provided<sp/>that<sp/>this<sp/>notice<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>is<sp/>preserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>====================================================</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>__ieee754_hypot(x,y)</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>Method<sp/>:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/>If<sp/>(assume<sp/>round-to-nearest)<sp/>z=x*x+y*y<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/>has<sp/>error<sp/>less<sp/>than<sp/>sqrt(2)/2<sp/>ulp,<sp/>than<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/>sqrt(z)<sp/>has<sp/>error<sp/>less<sp/>than<sp/>1<sp/>ulp<sp/>(exercise).</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/>So,<sp/>compute<sp/>sqrt(x*x+y*y)<sp/>with<sp/>some<sp/>care<sp/>as<sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/><sp/>follows<sp/>to<sp/>get<sp/>the<sp/>error<sp/>below<sp/>1<sp/>ulp:</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/><sp/>Assume<sp/>x&gt;y&gt;0;</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/><sp/>(if<sp/>possible,<sp/>set<sp/>rounding<sp/>to<sp/>round-to-nearest)</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/>1.<sp/>if<sp/>x<sp/>&gt;<sp/>2y<sp/><sp/>use</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>x1*x1+(y*y+(x2*(x+x1)))<sp/>for<sp/>x*x+y*y</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/><sp/>where<sp/>x1<sp/>=<sp/>x<sp/>with<sp/>lower<sp/>32<sp/>bits<sp/>cleared,<sp/>x2<sp/>=<sp/>x-x1;<sp/>else</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/><sp/>2.<sp/>if<sp/>x<sp/>&lt;=<sp/>2y<sp/>use</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>t1*y1+((x-y)*(x-y)+(t1*y2+t2*y))</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/><sp/>where<sp/>t1<sp/>=<sp/>2x<sp/>with<sp/>lower<sp/>32<sp/>bits<sp/>cleared,<sp/>t2<sp/>=<sp/>2x-t1,<sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/><sp/>y1=<sp/>y<sp/>with<sp/>lower<sp/>32<sp/>bits<sp/>chopped,<sp/>y2<sp/>=<sp/>y-y1.</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/><sp/>NOTE:<sp/>scaling<sp/>may<sp/>be<sp/>necessary<sp/>if<sp/>some<sp/>argument<sp/>is<sp/>too<sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>large<sp/>or<sp/>too<sp/>tiny</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>Special<sp/>cases:</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/><sp/>hypot(x,y)<sp/>is<sp/>INF<sp/>if<sp/>x<sp/>or<sp/>y<sp/>is<sp/>+INF<sp/>or<sp/>-INF;<sp/>else</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/><sp/>hypot(x,y)<sp/>is<sp/>NAN<sp/>if<sp/>x<sp/>or<sp/>y<sp/>is<sp/>NAN.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>Accuracy:</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/><sp/>hypot(x,y)<sp/>returns<sp/>sqrt(x^2+y^2)<sp/>with<sp/>error<sp/>less<sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/><sp/>than<sp/>1<sp/>ulps<sp/>(units<sp/>in<sp/>the<sp/>last<sp/>place)<sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fdlibm_8h" kindref="compound">fdlibm.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__STDC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="e__hypot_8c_1a20d3bbad4499937e2d651401599909e4" kindref="member">__ieee754_hypot</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="e__hypot_8c_1a20d3bbad4499937e2d651401599909e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="e__hypot_8c_1a20d3bbad4499937e2d651401599909e4" kindref="member">__ieee754_hypot</ref>(x,y)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/>y;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a=x,b=y,<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>,<ref refid="e__lgamma__r_8c_1a8df5e28b4b4a92003ae9040490efec1f" kindref="member">t2</ref>,y1,y2,w;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j,k,ha,hb;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>ha<sp/>=<sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(x)&amp;0x7fffffff;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>high<sp/>word<sp/>of<sp/><sp/>x<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>hb<sp/>=<sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(y)&amp;0x7fffffff;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>high<sp/>word<sp/>of<sp/><sp/>y<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(hb<sp/>&gt;<sp/>ha)<sp/>{a=y;b=x;j=ha;<sp/>ha=hb;hb=j;}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{a=x;b=y;}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(a)<sp/>=<sp/>ha;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>a<sp/>&lt;-<sp/>|a|<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(b)<sp/>=<sp/>hb;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>b<sp/>&lt;-<sp/>|b|<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((ha-hb)&gt;0x3c00000)<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a+b;}<sp/></highlight><highlight class="comment">/*<sp/>x/y<sp/>&gt;<sp/>2**60<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>k=0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ha<sp/>&gt;<sp/>0x5f300000)<sp/>{<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>a&gt;2**500<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ha<sp/>&gt;=<sp/>0x7ff00000)<sp/>{<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Inf<sp/>or<sp/>NaN<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>a+b;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>for<sp/>sNaN<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(((ha&amp;0xfffff)|<ref refid="math__config_8h_1a3e811eb5592161550c18c0e102d39d45" kindref="member">__LO</ref>(a))==0)<sp/>w<sp/>=<sp/>a;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(((hb^0x7ff00000)|<ref refid="math__config_8h_1a3e811eb5592161550c18c0e102d39d45" kindref="member">__LO</ref>(b))==0)<sp/>w<sp/>=<sp/>b;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>w;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>scale<sp/>a<sp/>and<sp/>b<sp/>by<sp/>2**-600<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ha<sp/>-=<sp/>0x25800000;<sp/>hb<sp/>-=<sp/>0x25800000;<sp/><sp/>k<sp/>+=<sp/>600;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(a)<sp/>=<sp/>ha;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(b)<sp/>=<sp/>hb;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(hb<sp/>&lt;<sp/>0x20b00000)<sp/>{<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>b<sp/>&lt;<sp/>2**-500<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(hb<sp/>&lt;=<sp/>0x000fffff)<sp/>{<sp/><sp/></highlight><highlight class="comment">/*<sp/>subnormal<sp/>b<sp/>or<sp/>0<sp/>*/</highlight><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((hb|(<ref refid="math__config_8h_1a3e811eb5592161550c18c0e102d39d45" kindref="member">__LO</ref>(b)))==0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>=0;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>)<sp/>=<sp/>0x7fd00000;<sp/><sp/></highlight><highlight class="comment">/*<sp/>t1=2^1022<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b<sp/>*=<sp/><ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a<sp/>*=<sp/><ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k<sp/>-=<sp/>1022;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>scale<sp/>a<sp/>and<sp/>b<sp/>by<sp/>2^600<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ha<sp/>+=<sp/>0x25800000;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>a<sp/>*=<sp/>2^600<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hb<sp/>+=<sp/>0x25800000;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>b<sp/>*=<sp/>2^600<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k<sp/>-=<sp/>600;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(a)<sp/>=<sp/>ha;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(b)<sp/>=<sp/>hb;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>medium<sp/>size<sp/>a<sp/>and<sp/>b<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>w<sp/>=<sp/>a-b;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(w&gt;b)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>)<sp/>=<sp/>ha;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a8df5e28b4b4a92003ae9040490efec1f" kindref="member">t2</ref><sp/>=<sp/>a-<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/><sp/>=<sp/><ref refid="tgmath_8h_1a592e5b536e9e1b69f4520e9566521a17" kindref="member">sqrt</ref>(<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>*<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>-(b*(-b)-<ref refid="e__lgamma__r_8c_1a8df5e28b4b4a92003ae9040490efec1f" kindref="member">t2</ref>*(a+<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>)));</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a<sp/><sp/>=<sp/>a+a;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y1<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(y1)<sp/>=<sp/>hb;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y2<sp/>=<sp/>b<sp/>-<sp/>y1;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>)<sp/>=<sp/>ha+0x00100000;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a8df5e28b4b4a92003ae9040490efec1f" kindref="member">t2</ref><sp/>=<sp/>a<sp/>-<sp/><ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/><sp/>=<sp/><ref refid="tgmath_8h_1a592e5b536e9e1b69f4520e9566521a17" kindref="member">sqrt</ref>(<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>*y1-(w*(-w)-(<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>*y2+<ref refid="e__lgamma__r_8c_1a8df5e28b4b4a92003ae9040490efec1f" kindref="member">t2</ref>*b)));</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(k!=0)<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="math__config_8h_1a5934764962e1cdd0b50bec228537a127" kindref="member">__HI</ref>(<ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>)<sp/>+=<sp/>(k&lt;&lt;20);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="e__lgamma__r_8c_1a59692051ca9586d10f35f14d574229da" kindref="member">t1</ref>*w;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>w;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>_No_Floating_Point<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_hypot.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_m_w_memory_8h" kind="file" language="C++">
+    <compoundname>MWMemory.h</compoundname>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_m_w_memory_8h_1ab485797a678c11106cace41c34f6c225" prot="public" static="no">
+        <type>char *</type>
+        <definition>typedef char* Ptr</definition>
+        <argsstring></argsstring>
+        <name>Ptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" line="11" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_m_w_memory_8h_1a491e079a9d96b0834ecccc6ebd53458f" prot="public" static="no">
+        <type><ref refid="_m_w_memory_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref> *</type>
+        <definition>typedef Ptr* Handle</definition>
+        <argsstring></argsstring>
+        <name>Handle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" line="12" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_m_w_memory_8h_1a21d79537fbebfb0fef79f7c433ce4dca" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int OSErr</definition>
+        <argsstring></argsstring>
+        <name>OSErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" line="13" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_m_w_memory_8h_1af47dc5872272b4337a0c69b79a1673c7" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pascal <ref refid="_m_w_memory_8h_1a491e079a9d96b0834ecccc6ebd53458f" kindref="member">Handle</ref></type>
+        <definition>pascal Handle NewHandle</definition>
+        <argsstring>(long dataSize)</argsstring>
+        <name>NewHandle</name>
+        <param>
+          <type>long</type>
+          <declname>dataSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" line="15" column="22" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" declline="15" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_memory_8h_1a1f223ffe40955e64ddb3d7677e6e2632" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pascal void</type>
+        <definition>pascal void DisposeHandle</definition>
+        <argsstring>(Handle h)</argsstring>
+        <name>DisposeHandle</name>
+        <param>
+          <type><ref refid="_m_w_memory_8h_1a491e079a9d96b0834ecccc6ebd53458f" kindref="member">Handle</ref></type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" line="16" column="20" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h" declline="16" declcolumn="20"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/><sp/>MWMemory.h<sp/><sp/>-<sp/><sp/><sp/>MW<sp/>runtime<sp/>suport<sp/>definitions</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.<sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__MWMEMORY_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__MWMEMORY_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="_m_w_memory_8h_1ab485797a678c11106cace41c34f6c225" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="_m_w_memory_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref>;</highlight></codeline>
+<codeline lineno="12" refid="_m_w_memory_8h_1a491e079a9d96b0834ecccc6ebd53458f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="_m_w_memory_8h_1ab485797a678c11106cace41c34f6c225" kindref="member">Ptr</ref><sp/>*<ref refid="_m_w_memory_8h_1a491e079a9d96b0834ecccc6ebd53458f" kindref="member">Handle</ref>;</highlight></codeline>
+<codeline lineno="13" refid="_m_w_memory_8h_1a21d79537fbebfb0fef79f7c433ce4dca" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_m_w_memory_8h_1a21d79537fbebfb0fef79f7c433ce4dca" kindref="member">OSErr</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="_m_w_memory_8h_1af47dc5872272b4337a0c69b79a1673c7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>pascal<sp/><ref refid="_m_w_memory_8h_1a491e079a9d96b0834ecccc6ebd53458f" kindref="member">Handle</ref><sp/><ref refid="_m_w_memory_8h_1af47dc5872272b4337a0c69b79a1673c7" kindref="member">NewHandle</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>dataSize);</highlight></codeline>
+<codeline lineno="16" refid="_m_w_memory_8h_1a1f223ffe40955e64ddb3d7677e6e2632" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>pascal<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_m_w_memory_8h_1a1f223ffe40955e64ddb3d7677e6e2632" kindref="member">DisposeHandle</ref>(<ref refid="_m_w_memory_8h_1a491e079a9d96b0834ecccc6ebd53458f" kindref="member">Handle</ref><sp/>h);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>__MWMEMORY_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWMemory.h"/>
+  </compounddef>
+</doxygen>

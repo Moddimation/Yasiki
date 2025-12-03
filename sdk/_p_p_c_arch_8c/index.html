@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File PPCArch.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-ppcarchc">File PPCArch.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0f317a44af729fe0eedb252fe661eec4/"><strong>base</strong></a> <strong>&gt;</strong> <a href="./"><strong>PPCArch.c</strong></a></p>
+<p><a href="../_p_p_c_arch_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/base/PPCArch.h&gt;</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcandcmsr"><strong>PPCAndCMsr</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> value) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcandmsr"><strong>PPCAndMsr</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> value) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppceieio"><strong>PPCEieio</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppchalt"><strong>PPCHalt</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfdec"><strong>PPCMfdec</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfdmal"><strong>PPCMfdmaL</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfdmau"><strong>PPCMfdmaU</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfhid0"><strong>PPCMfhid0</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfhid1"><strong>PPCMfhid1</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfhid2"><strong>PPCMfhid2</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfl2cr"><strong>PPCMfl2cr</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfmmcr0"><strong>PPCMfmmcr0</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfmmcr1"><strong>PPCMfmmcr1</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfmsr"><strong>PPCMfmsr</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfpmc1"><strong>PPCMfpmc1</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfpmc2"><strong>PPCMfpmc2</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfpmc3"><strong>PPCMfpmc3</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfpmc4"><strong>PPCMfpmc4</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfpvr"><strong>PPCMfpvr</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfsia"><strong>PPCMfsia</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmfwpar"><strong>PPCMfwpar</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtdec"><strong>PPCMtdec</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newDec) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtdmal"><strong>PPCMtdmaL</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newdmal) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtdmau"><strong>PPCMtdmaU</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newdmau) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmthid0"><strong>PPCMthid0</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newHID0) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmthid2"><strong>PPCMthid2</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newhid2) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtl2cr"><strong>PPCMtl2cr</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newL2cr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtmmcr0"><strong>PPCMtmmcr0</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newMmcr0) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtmmcr1"><strong>PPCMtmmcr1</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newMmcr1) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtmsr"><strong>PPCMtmsr</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newMSR) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtpmc1"><strong>PPCMtpmc1</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newPmc1) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtpmc2"><strong>PPCMtpmc2</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newPmc2) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtpmc3"><strong>PPCMtpmc3</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newPmc3) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtpmc4"><strong>PPCMtpmc4</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newPmc4) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtsia"><strong>PPCMtsia</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newSia) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcmtwpar"><strong>PPCMtwpar</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newwpar) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcormsr"><strong>PPCOrMsr</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> value) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ppcsync"><strong>PPCSync</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-ppcandcmsr">function PPCAndCMsr</h3>
+<pre><code class="language-C++">asm  u32 PPCAndCMsr (
+    register  u32 value
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcandmsr">function PPCAndMsr</h3>
+<pre><code class="language-C++">asm  u32 PPCAndMsr (
+    register  u32 value
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppceieio">function PPCEieio</h3>
+<pre><code class="language-C++">asm  void PPCEieio () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppchalt">function PPCHalt</h3>
+<pre><code class="language-C++">asm  void PPCHalt () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfdec">function PPCMfdec</h3>
+<pre><code class="language-C++">asm  u32 PPCMfdec () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfdmal">function PPCMfdmaL</h3>
+<pre><code class="language-C++">asm  u32 PPCMfdmaL () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfdmau">function PPCMfdmaU</h3>
+<pre><code class="language-C++">asm  u32 PPCMfdmaU () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfhid0">function PPCMfhid0</h3>
+<pre><code class="language-C++">asm  u32 PPCMfhid0 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfhid1">function PPCMfhid1</h3>
+<pre><code class="language-C++">asm  u32 PPCMfhid1 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfhid2">function PPCMfhid2</h3>
+<pre><code class="language-C++">asm  u32 PPCMfhid2 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfl2cr">function PPCMfl2cr</h3>
+<pre><code class="language-C++">asm  u32 PPCMfl2cr () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfmmcr0">function PPCMfmmcr0</h3>
+<pre><code class="language-C++">asm  u32 PPCMfmmcr0 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfmmcr1">function PPCMfmmcr1</h3>
+<pre><code class="language-C++">asm  u32 PPCMfmmcr1 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfmsr">function PPCMfmsr</h3>
+<pre><code class="language-C++">asm  u32 PPCMfmsr () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfpmc1">function PPCMfpmc1</h3>
+<pre><code class="language-C++">asm  u32 PPCMfpmc1 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfpmc2">function PPCMfpmc2</h3>
+<pre><code class="language-C++">asm  u32 PPCMfpmc2 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfpmc3">function PPCMfpmc3</h3>
+<pre><code class="language-C++">asm  u32 PPCMfpmc3 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfpmc4">function PPCMfpmc4</h3>
+<pre><code class="language-C++">asm  u32 PPCMfpmc4 () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfpvr">function PPCMfpvr</h3>
+<pre><code class="language-C++">asm  u32 PPCMfpvr () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfsia">function PPCMfsia</h3>
+<pre><code class="language-C++">asm  u32 PPCMfsia () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmfwpar">function PPCMfwpar</h3>
+<pre><code class="language-C++">asm  u32 PPCMfwpar () 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtdec">function PPCMtdec</h3>
+<pre><code class="language-C++">asm  void PPCMtdec (
+    register  u32 newDec
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtdmal">function PPCMtdmaL</h3>
+<pre><code class="language-C++">asm  void PPCMtdmaL (
+    register  u32 newdmal
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtdmau">function PPCMtdmaU</h3>
+<pre><code class="language-C++">asm  void PPCMtdmaU (
+    register  u32 newdmau
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmthid0">function PPCMthid0</h3>
+<pre><code class="language-C++">asm  void PPCMthid0 (
+    register  u32 newHID0
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmthid2">function PPCMthid2</h3>
+<pre><code class="language-C++">asm  void PPCMthid2 (
+    register  u32 newhid2
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtl2cr">function PPCMtl2cr</h3>
+<pre><code class="language-C++">asm  void PPCMtl2cr (
+    register  u32 newL2cr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtmmcr0">function PPCMtmmcr0</h3>
+<pre><code class="language-C++">asm  void PPCMtmmcr0 (
+    register  u32 newMmcr0
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtmmcr1">function PPCMtmmcr1</h3>
+<pre><code class="language-C++">asm  void PPCMtmmcr1 (
+    register  u32 newMmcr1
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtmsr">function PPCMtmsr</h3>
+<pre><code class="language-C++">asm  void PPCMtmsr (
+    register  u32 newMSR
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtpmc1">function PPCMtpmc1</h3>
+<pre><code class="language-C++">asm  void PPCMtpmc1 (
+    register  u32 newPmc1
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtpmc2">function PPCMtpmc2</h3>
+<pre><code class="language-C++">asm  void PPCMtpmc2 (
+    register  u32 newPmc2
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtpmc3">function PPCMtpmc3</h3>
+<pre><code class="language-C++">asm  void PPCMtpmc3 (
+    register  u32 newPmc3
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtpmc4">function PPCMtpmc4</h3>
+<pre><code class="language-C++">asm  void PPCMtpmc4 (
+    register  u32 newPmc4
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtsia">function PPCMtsia</h3>
+<pre><code class="language-C++">asm  void PPCMtsia (
+    register  u32 newSia
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcmtwpar">function PPCMtwpar</h3>
+<pre><code class="language-C++">asm  void PPCMtwpar (
+    register  u32 newwpar
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcormsr">function PPCOrMsr</h3>
+<pre><code class="language-C++">asm  u32 PPCOrMsr (
+    register  u32 value
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ppcsync">function PPCSync</h3>
+<pre><code class="language-C++">asm  void PPCSync () 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/base/PPCArch.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

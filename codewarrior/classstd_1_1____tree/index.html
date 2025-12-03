@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Class std::__tree - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="class-std__tree">Class std::__tree</h1>
+<p><strong>template &lt;<a href="../classstd_1_1allocator/"><strong>class</strong></a> <a href="../k__tan_8c/#variable-t"><strong>T</strong></a>, <a href="../classstd_1_1allocator/"><strong>class</strong></a> <a href="../classstd_1_1allocator/"><strong>Compare</strong></a>, <a href="../classstd_1_1allocator/"><strong>class</strong></a> <a href="../classstd_1_1allocator/"><strong>Allocator</strong></a>&gt;</strong></p>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespacestd/"><strong>std</strong></a> <strong>&gt;</strong> <a href="./"><strong>__tree</strong></a></p>
+<ul>
+<li><code>#include &lt;tree.h&gt;</code></li>
+</ul>
+<p>Inherits the following classes: <a href="../classstd_1_1____red__black__tree/">std::__red_black_tree</a></p>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structstd_1_1____tree_1_1debug__view/"><strong>debug_view</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../classstd_1_1allocator/"><strong>Allocator</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-allocator_type"><strong>allocator_type</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef Allocator::const_pointer</td>
+<td style="text-align: left;"><a href="#typedef-const_pointer"><strong>const_pointer</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef Allocator::const_reference</td>
+<td style="text-align: left;"><a href="#typedef-const_reference"><strong>const_reference</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef _STD::reverse_iterator&lt; <a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#typedef-const_reverse_iterator"><strong>const_reverse_iterator</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef Allocator::difference_type</td>
+<td style="text-align: left;"><a href="#typedef-difference_type"><strong>difference_type</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef Allocator::pointer</td>
+<td style="text-align: left;"><a href="#typedef-pointer"><strong>pointer</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef Allocator::reference</td>
+<td style="text-align: left;"><a href="#typedef-reference"><strong>reference</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef _STD::reverse_iterator&lt; <a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#typedef-reverse_iterator"><strong>reverse_iterator</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef Allocator::size_type</td>
+<td style="text-align: left;"><a href="#typedef-size_type"><strong>size_type</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../classstd_1_1allocator/"><strong>Compare</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-value_compare"><strong>value_compare</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../k__tan_8c/#variable-t"><strong>T</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-value_type"><strong>value_type</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-__tree-13"><strong>__tree</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="../classstd_1_1allocator/"><strong>Compare</strong></a> &amp; comp, <a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="../classstd_1_1allocator/"><strong>Allocator</strong></a> &amp; a) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-__tree-23"><strong>__tree</strong></a> (<a href="../classstd_1_1allocator/"><strong>InputIterator</strong></a> first, <a href="../classstd_1_1allocator/"><strong>InputIterator</strong></a> last, <a href="../stdbool_8h/#define-bool"><strong>bool</strong></a> multi, <a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="../classstd_1_1allocator/"><strong>Compare</strong></a> &amp; comp, <a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="../classstd_1_1allocator/"><strong>Allocator</strong></a> &amp; a) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-__tree-33"><strong>__tree</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./"><strong>__tree</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-begin-12"><strong>begin</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-begin-22"><strong>begin</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-clear"><strong>clear</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-count_multi"><strong>count_multi</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-count_one"><strong>count_one</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../stdbool_8h/#define-bool"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="#function-empty"><strong>empty</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-end-12"><strong>end</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-end-22"><strong>end</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>pair</strong></a>&lt; <a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a>, <a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-equal_range-12"><strong>equal_range</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>pair</strong></a>&lt; <a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a>, <a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-equal_range-22"><strong>equal_range</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-erase-12"><strong>erase</strong></a> (<a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a> position) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-erase-22"><strong>erase</strong></a> (<a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a> first, <a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a> last) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-erase_multi"><strong>erase_multi</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-erase_one"><strong>erase_one</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-find-12"><strong>find</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-find-22"><strong>find</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-allocator_type"><strong>allocator_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-get_allocator"><strong>get_allocator</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-insert_multi-13"><strong>insert_multi</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-insert_multi-23"><strong>insert_multi</strong></a> (<a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a> position, <a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-insert_multi-33"><strong>insert_multi</strong></a> (<a href="../classstd_1_1allocator/"><strong>InputIterator</strong></a> first, <a href="../classstd_1_1allocator/"><strong>InputIterator</strong></a> last) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>pair</strong></a>&lt; <a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a>, <a href="../stdbool_8h/#define-bool"><strong>bool</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-insert_one-13"><strong>insert_one</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-insert_one-23"><strong>insert_one</strong></a> (<a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a> position, <a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-insert_one-33"><strong>insert_one</strong></a> (<a href="../classstd_1_1allocator/"><strong>InputIterator</strong></a> first, <a href="../classstd_1_1allocator/"><strong>InputIterator</strong></a> last) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-lower_bound-12"><strong>lower_bound</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-lower_bound-22"><strong>lower_bound</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-max_size"><strong>max_size</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>__tree</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./"><strong>__tree</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-reverse_iterator"><strong>reverse_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-rbegin-12"><strong>rbegin</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-const_reverse_iterator"><strong>const_reverse_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-rbegin-22"><strong>rbegin</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-reverse_iterator"><strong>reverse_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-rend-12"><strong>rend</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-const_reverse_iterator"><strong>const_reverse_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-rend-22"><strong>rend</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-size"><strong>size</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-swap"><strong>swap</strong></a> (<a href="./"><strong>__tree</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1iterator/"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-upper_bound-12"><strong>upper_bound</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1____tree_1_1const__iterator/"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-upper_bound-22"><strong>upper_bound</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-value_compare"><strong>value_compare</strong></a></td>
+<td style="text-align: left;"><a href="#function-value_comp"><strong>value_comp</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-__tree"><strong>~__tree</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-types-inherited-from-std__red_black_tree">Protected Types inherited from std::__red_black_tree</h2>
+<p>See <a href="../classstd_1_1____red__black__tree/">std::__red_black_tree</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="../classstd_1_1____red__black__tree/#enum-color"><strong>Color</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-static-functions-inherited-from-std__red_black_tree">Protected Static Functions inherited from std::__red_black_tree</h2>
+<p>See <a href="../classstd_1_1____red__black__tree/">std::__red_black_tree</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="../classstd_1_1____red__black__tree/#function-balance_erase"><strong>balance_erase</strong></a> (<a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> * z, <a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> * root) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="../classstd_1_1____red__black__tree/#function-balance_insert"><strong>balance_insert</strong></a> (<a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> * x, <a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> * root) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="../classstd_1_1____red__black__tree/#function-decrement"><strong>decrement</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> *&amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classstd_1_1allocator/"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="../classstd_1_1____red__black__tree/#function-increment"><strong>increment</strong></a> (<a href="../classstd_1_1allocator/"><strong>const</strong></a> <a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> *&amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> *</td>
+<td style="text-align: left;"><a href="../classstd_1_1____red__black__tree/#function-leftmost"><strong>leftmost</strong></a> (<a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> * x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> *</td>
+<td style="text-align: left;"><a href="../classstd_1_1____red__black__tree/#function-rightmost"><strong>rightmost</strong></a> (<a href="../structstd_1_1____red__black__tree_1_1node__base/"><strong>node_base</strong></a> * x) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-allocator_type">typedef allocator_type</h3>
+<pre><code class="language-C++">typedef Allocator std::__tree&lt; T, Compare, Allocator &gt;::allocator_type;
+</code></pre>
+<hr>
+
+<h3 id="typedef-const_pointer">typedef const_pointer</h3>
+<pre><code class="language-C++">typedef Allocator::const_pointer std::__tree&lt; T, Compare, Allocator &gt;::const_pointer;
+</code></pre>
+<hr>
+
+<h3 id="typedef-const_reference">typedef const_reference</h3>
+<pre><code class="language-C++">typedef Allocator::const_reference std::__tree&lt; T, Compare, Allocator &gt;::const_reference;
+</code></pre>
+<hr>
+
+<h3 id="typedef-const_reverse_iterator">typedef const_reverse_iterator</h3>
+<pre><code class="language-C++">typedef _STD::reverse_iterator&lt;const_iterator&gt; std::__tree&lt; T, Compare, Allocator &gt;::const_reverse_iterator;
+</code></pre>
+<hr>
+
+<h3 id="typedef-difference_type">typedef difference_type</h3>
+<pre><code class="language-C++">typedef Allocator::difference_type std::__tree&lt; T, Compare, Allocator &gt;::difference_type;
+</code></pre>
+<hr>
+
+<h3 id="typedef-pointer">typedef pointer</h3>
+<pre><code class="language-C++">typedef Allocator::pointer std::__tree&lt; T, Compare, Allocator &gt;::pointer;
+</code></pre>
+<hr>
+
+<h3 id="typedef-reference">typedef reference</h3>
+<pre><code class="language-C++">typedef Allocator::reference std::__tree&lt; T, Compare, Allocator &gt;::reference;
+</code></pre>
+<hr>
+
+<h3 id="typedef-reverse_iterator">typedef reverse_iterator</h3>
+<pre><code class="language-C++">typedef _STD::reverse_iterator&lt;iterator&gt; std::__tree&lt; T, Compare, Allocator &gt;::reverse_iterator;
+</code></pre>
+<hr>
+
+<h3 id="typedef-size_type">typedef size_type</h3>
+<pre><code class="language-C++">typedef Allocator::size_type std::__tree&lt; T, Compare, Allocator &gt;::size_type;
+</code></pre>
+<hr>
+
+<h3 id="typedef-value_compare">typedef value_compare</h3>
+<pre><code class="language-C++">typedef Compare std::__tree&lt; T, Compare, Allocator &gt;::value_compare;
+</code></pre>
+<hr>
+
+<h3 id="typedef-value_type">typedef value_type</h3>
+<pre><code class="language-C++">typedef T std::__tree&lt; T, Compare, Allocator &gt;::value_type;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-__tree-13">function __tree [1/3]</h3>
+<pre><code class="language-C++">explicit std::__tree::__tree (
+    const  Compare &amp; comp,
+    const  Allocator &amp; a
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__tree-23">function __tree [2/3]</h3>
+<pre><code class="language-C++">template&lt;class  InputIterator&gt;
+std::__tree::__tree (
+    InputIterator first,
+    InputIterator last,
+    bool multi,
+    const  Compare &amp; comp,
+    const  Allocator &amp; a
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__tree-33">function __tree [3/3]</h3>
+<pre><code class="language-C++">std::__tree::__tree (
+    const  __tree &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-begin-12">function begin [1/2]</h3>
+<pre><code class="language-C++">inline iterator std::__tree::begin () 
+</code></pre>
+<hr>
+
+<h3 id="function-begin-22">function begin [2/2]</h3>
+<pre><code class="language-C++">inline const_iterator std::__tree::begin () const
+</code></pre>
+<hr>
+
+<h3 id="function-clear">function clear</h3>
+<pre><code class="language-C++">void std::__tree::clear () 
+</code></pre>
+<hr>
+
+<h3 id="function-count_multi">function count_multi</h3>
+<pre><code class="language-C++">inline size_type std::__tree::count_multi (
+    const  value_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-count_one">function count_one</h3>
+<pre><code class="language-C++">inline size_type std::__tree::count_one (
+    const  value_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-empty">function empty</h3>
+<pre><code class="language-C++">inline bool std::__tree::empty () const
+</code></pre>
+<hr>
+
+<h3 id="function-end-12">function end [1/2]</h3>
+<pre><code class="language-C++">inline iterator std::__tree::end () 
+</code></pre>
+<hr>
+
+<h3 id="function-end-22">function end [2/2]</h3>
+<pre><code class="language-C++">inline const_iterator std::__tree::end () const
+</code></pre>
+<hr>
+
+<h3 id="function-equal_range-12">function equal_range [1/2]</h3>
+<pre><code class="language-C++">inline pair &lt; iterator , iterator &gt; std::__tree::equal_range (
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-equal_range-22">function equal_range [2/2]</h3>
+<pre><code class="language-C++">inline pair &lt; const_iterator , const_iterator &gt; std::__tree::equal_range (
+    const  value_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-erase-12">function erase [1/2]</h3>
+<pre><code class="language-C++">void std::__tree::erase (
+    iterator position
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-erase-22">function erase [2/2]</h3>
+<pre><code class="language-C++">inline void std::__tree::erase (
+    iterator first,
+    iterator last
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-erase_multi">function erase_multi</h3>
+<pre><code class="language-C++">size_type std::__tree::erase_multi (
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-erase_one">function erase_one</h3>
+<pre><code class="language-C++">size_type std::__tree::erase_one (
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-find-12">function find [1/2]</h3>
+<pre><code class="language-C++">iterator std::__tree::find (
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-find-22">function find [2/2]</h3>
+<pre><code class="language-C++">const_iterator std::__tree::find (
+    const  value_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-get_allocator">function get_allocator</h3>
+<pre><code class="language-C++">inline allocator_type std::__tree::get_allocator () const
+</code></pre>
+<hr>
+
+<h3 id="function-insert_multi-13">function insert_multi [1/3]</h3>
+<pre><code class="language-C++">iterator std::__tree::insert_multi (
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-insert_multi-23">function insert_multi [2/3]</h3>
+<pre><code class="language-C++">iterator std::__tree::insert_multi (
+    iterator position,
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-insert_multi-33">function insert_multi [3/3]</h3>
+<pre><code class="language-C++">template&lt;class  InputIterator&gt;
+void std::__tree::insert_multi (
+    InputIterator first,
+    InputIterator last
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-insert_one-13">function insert_one [1/3]</h3>
+<pre><code class="language-C++">pair &lt; iterator , bool &gt; std::__tree::insert_one (
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-insert_one-23">function insert_one [2/3]</h3>
+<pre><code class="language-C++">iterator std::__tree::insert_one (
+    iterator position,
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-insert_one-33">function insert_one [3/3]</h3>
+<pre><code class="language-C++">template&lt;class  InputIterator&gt;
+void std::__tree::insert_one (
+    InputIterator first,
+    InputIterator last
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lower_bound-12">function lower_bound [1/2]</h3>
+<pre><code class="language-C++">iterator std::__tree::lower_bound (
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lower_bound-22">function lower_bound [2/2]</h3>
+<pre><code class="language-C++">const_iterator std::__tree::lower_bound (
+    const  value_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-max_size">function max_size</h3>
+<pre><code class="language-C++">inline size_type std::__tree::max_size () const
+</code></pre>
+<hr>
+
+<h3 id="function-operator">function operator=</h3>
+<pre><code class="language-C++">__tree &amp; std::__tree::operator= (
+    const  __tree &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-rbegin-12">function rbegin [1/2]</h3>
+<pre><code class="language-C++">inline reverse_iterator std::__tree::rbegin () 
+</code></pre>
+<hr>
+
+<h3 id="function-rbegin-22">function rbegin [2/2]</h3>
+<pre><code class="language-C++">inline const_reverse_iterator std::__tree::rbegin () const
+</code></pre>
+<hr>
+
+<h3 id="function-rend-12">function rend [1/2]</h3>
+<pre><code class="language-C++">inline reverse_iterator std::__tree::rend () 
+</code></pre>
+<hr>
+
+<h3 id="function-rend-22">function rend [2/2]</h3>
+<pre><code class="language-C++">inline const_reverse_iterator std::__tree::rend () const
+</code></pre>
+<hr>
+
+<h3 id="function-size">function size</h3>
+<pre><code class="language-C++">inline size_type std::__tree::size () const
+</code></pre>
+<hr>
+
+<h3 id="function-swap">function swap</h3>
+<pre><code class="language-C++">void std::__tree::swap (
+    __tree &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-upper_bound-12">function upper_bound [1/2]</h3>
+<pre><code class="language-C++">iterator std::__tree::upper_bound (
+    const  value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-upper_bound-22">function upper_bound [2/2]</h3>
+<pre><code class="language-C++">const_iterator std::__tree::upper_bound (
+    const  value_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-value_comp">function value_comp</h3>
+<pre><code class="language-C++">inline value_compare std::__tree::value_comp () const
+</code></pre>
+<hr>
+
+<h3 id="function-__tree">function ~__tree</h3>
+<pre><code class="language-C++">inline std::__tree::~__tree () 
+</code></pre>
+<hr>
+<h2 id="friends-documentation">Friends Documentation</h2>
+<h3 id="friend-const_iterator">friend const_iterator</h3>
+<pre><code class="language-C++">class std::__tree::const_iterator (
+    const_iterator
+) 
+</code></pre>
+<hr>
+
+<h3 id="friend-iterator">friend iterator</h3>
+<pre><code class="language-C++">class std::__tree::iterator (
+    iterator
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/tree.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

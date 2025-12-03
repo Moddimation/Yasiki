@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File AXVPB.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-axvpbc">File AXVPB.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_284807f63fc993a939ff676a07eb86c2/"><strong>ax</strong></a> <strong>&gt;</strong> <a href="./"><strong>AXVPB.c</strong></a></p>
+<p><a href="../_a_x_v_p_b_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/ax.h&gt;</code></li>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+<li><code>#include "AXPrivate.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axmaxdspcycles"><strong>__AXMaxDspCycles</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axmixcycles"><strong>__AXMixCycles</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axnumvoices"><strong>__AXNumVoices</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axrecdspcycles"><strong>__AXRecDspCycles</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axsrccycles"><strong>__AXSrcCycles</strong></a>   = <code>{ 0x00000DF8, 0x00000F78, 0x000014B8, 0x000019F8, 0x000019F8 }</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axvpb"><strong>__AXVPB</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-axgetdspcycles"><strong>AXGetDspCycles</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-axgetmaxdspcycles"><strong>AXGetMaxDspCycles</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetmaxdspcycles"><strong>AXSetMaxDspCycles</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> cycles) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceaddr"><strong>AXSetVoiceAddr</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../ax_8h/#typedef-axpbaddr"><strong>AXPBADDR</strong></a> * addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceadpcm"><strong>AXSetVoiceAdpcm</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../ax_8h/#typedef-axpbadpcm"><strong>AXPBADPCM</strong></a> * adpcm) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceadpcmloop"><strong>AXSetVoiceAdpcmLoop</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../ax_8h/#typedef-axpbadpcmloop"><strong>AXPBADPCMLOOP</strong></a> * adpcmloop) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicecurrentaddr"><strong>AXSetVoiceCurrentAddr</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicedpop"><strong>AXSetVoiceDpop</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../ax_8h/#typedef-axpbdpop"><strong>AXPBDPOP</strong></a> * dpop) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceendaddr"><strong>AXSetVoiceEndAddr</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicefir"><strong>AXSetVoiceFir</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../ax_8h/#typedef-axpbfir"><strong>AXPBFIR</strong></a> * fir) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceitdon"><strong>AXSetVoiceItdOn</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceitdtarget"><strong>AXSetVoiceItdTarget</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> lShift, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> rShift) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceloop"><strong>AXSetVoiceLoop</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> loop) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceloopaddr"><strong>AXSetVoiceLoopAddr</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicemix"><strong>AXSetVoiceMix</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../ax_8h/#typedef-axpbmix"><strong>AXPBMIX</strong></a> * mix) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicesrc"><strong>AXSetVoiceSrc</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../ax_8h/#typedef-axpbsrc"><strong>AXPBSRC</strong></a> * src_) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicesrcratio"><strong>AXSetVoiceSrcRatio</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> ratio) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicesrctype"><strong>AXSetVoiceSrcType</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> type) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicestate"><strong>AXSetVoiceState</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> state) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicetype"><strong>AXSetVoiceType</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> type) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceupdateincrement"><strong>AXSetVoiceUpdateIncrement</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceupdatewrite"><strong>AXSetVoiceUpdateWrite</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> param, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoiceve"><strong>AXSetVoiceVe</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../ax_8h/#typedef-axpbve"><strong>AXPBVE</strong></a> * ve) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicevedelta"><strong>AXSetVoiceVeDelta</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-s16"><strong>s16</strong></a> delta) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axdumpvpb"><strong>__AXDumpVPB</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * pvpb) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axgetnumvoices"><strong>__AXGetNumVoices</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axpb"><strong>AXPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__axgetpbs"><strong>__AXGetPBs</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axservicevpb"><strong>__AXServiceVPB</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * pvpb) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axsetpbdefault"><strong>__AXSetPBDefault</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axsyncpbs"><strong>__AXSyncPBs</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> lessDspCycles) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axvpbinit"><strong>__AXVPBInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axvpbquit"><strong>__AXVPBQuit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axpb"><strong>AXPB</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__AXPB</strong></a>[<a href="../ax_8h/#define-ax_max_voices"><strong>AX_MAX_VOICES</strong></a>]</td>
+<td style="text-align: left;"><a href="#function-align"><strong>ALIGN</strong></a> (32) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-__axmaxdspcycles">variable __AXMaxDspCycles</h3>
+<pre><code class="language-C++">u32 __AXMaxDspCycles;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axmixcycles">variable __AXMixCycles</h3>
+<pre><code class="language-C++">u32 __AXMixCycles[32];
+</code></pre>
+<hr>
+
+<h3 id="variable-__axnumvoices">variable __AXNumVoices</h3>
+<pre><code class="language-C++">u32 __AXNumVoices;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axrecdspcycles">variable __AXRecDspCycles</h3>
+<pre><code class="language-C++">u32 __AXRecDspCycles;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axsrccycles">variable __AXSrcCycles</h3>
+<pre><code class="language-C++">u32 __AXSrcCycles[5];
+</code></pre>
+<hr>
+
+<h3 id="variable-__axvpb">variable __AXVPB</h3>
+<pre><code class="language-C++">AXVPB __AXVPB[AX_MAX_VOICES];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-axgetdspcycles">function AXGetDspCycles</h3>
+<pre><code class="language-C++">u32 AXGetDspCycles (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axgetmaxdspcycles">function AXGetMaxDspCycles</h3>
+<pre><code class="language-C++">u32 AXGetMaxDspCycles (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetmaxdspcycles">function AXSetMaxDspCycles</h3>
+<pre><code class="language-C++">void AXSetMaxDspCycles (
+    u32 cycles
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceaddr">function AXSetVoiceAddr</h3>
+<pre><code class="language-C++">void AXSetVoiceAddr (
+    AXVPB * p,
+    AXPBADDR * addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceadpcm">function AXSetVoiceAdpcm</h3>
+<pre><code class="language-C++">void AXSetVoiceAdpcm (
+    AXVPB * p,
+    AXPBADPCM * adpcm
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceadpcmloop">function AXSetVoiceAdpcmLoop</h3>
+<pre><code class="language-C++">void AXSetVoiceAdpcmLoop (
+    AXVPB * p,
+    AXPBADPCMLOOP * adpcmloop
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicecurrentaddr">function AXSetVoiceCurrentAddr</h3>
+<pre><code class="language-C++">void AXSetVoiceCurrentAddr (
+    AXVPB * p,
+    u32 addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicedpop">function AXSetVoiceDpop</h3>
+<pre><code class="language-C++">void AXSetVoiceDpop (
+    AXVPB * p,
+    AXPBDPOP * dpop
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceendaddr">function AXSetVoiceEndAddr</h3>
+<pre><code class="language-C++">void AXSetVoiceEndAddr (
+    AXVPB * p,
+    u32 addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicefir">function AXSetVoiceFir</h3>
+<pre><code class="language-C++">void AXSetVoiceFir (
+    AXVPB * p,
+    AXPBFIR * fir
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceitdon">function AXSetVoiceItdOn</h3>
+<pre><code class="language-C++">void AXSetVoiceItdOn (
+    AXVPB * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceitdtarget">function AXSetVoiceItdTarget</h3>
+<pre><code class="language-C++">void AXSetVoiceItdTarget (
+    AXVPB * p,
+    u16 lShift,
+    u16 rShift
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceloop">function AXSetVoiceLoop</h3>
+<pre><code class="language-C++">void AXSetVoiceLoop (
+    AXVPB * p,
+    u16 loop
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceloopaddr">function AXSetVoiceLoopAddr</h3>
+<pre><code class="language-C++">void AXSetVoiceLoopAddr (
+    AXVPB * p,
+    u32 addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicemix">function AXSetVoiceMix</h3>
+<pre><code class="language-C++">void AXSetVoiceMix (
+    AXVPB * p,
+    AXPBMIX * mix
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicesrc">function AXSetVoiceSrc</h3>
+<pre><code class="language-C++">void AXSetVoiceSrc (
+    AXVPB * p,
+    AXPBSRC * src_
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicesrcratio">function AXSetVoiceSrcRatio</h3>
+<pre><code class="language-C++">void AXSetVoiceSrcRatio (
+    AXVPB * p,
+    float ratio
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicesrctype">function AXSetVoiceSrcType</h3>
+<pre><code class="language-C++">void AXSetVoiceSrcType (
+    AXVPB * p,
+    u32 type
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicestate">function AXSetVoiceState</h3>
+<pre><code class="language-C++">void AXSetVoiceState (
+    AXVPB * p,
+    u16 state
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicetype">function AXSetVoiceType</h3>
+<pre><code class="language-C++">void AXSetVoiceType (
+    AXVPB * p,
+    u16 type
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceupdateincrement">function AXSetVoiceUpdateIncrement</h3>
+<pre><code class="language-C++">void AXSetVoiceUpdateIncrement (
+    AXVPB * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceupdatewrite">function AXSetVoiceUpdateWrite</h3>
+<pre><code class="language-C++">void AXSetVoiceUpdateWrite (
+    AXVPB * p,
+    u16 param,
+    u16 data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoiceve">function AXSetVoiceVe</h3>
+<pre><code class="language-C++">void AXSetVoiceVe (
+    AXVPB * p,
+    AXPBVE * ve
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicevedelta">function AXSetVoiceVeDelta</h3>
+<pre><code class="language-C++">void AXSetVoiceVeDelta (
+    AXVPB * p,
+    s16 delta
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axdumpvpb">function __AXDumpVPB</h3>
+<pre><code class="language-C++">void __AXDumpVPB (
+    AXVPB * pvpb
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axgetnumvoices">function __AXGetNumVoices</h3>
+<pre><code class="language-C++">u32 __AXGetNumVoices (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axgetpbs">function __AXGetPBs</h3>
+<pre><code class="language-C++">AXPB * __AXGetPBs (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axservicevpb">function __AXServiceVPB</h3>
+<pre><code class="language-C++">void __AXServiceVPB (
+    AXVPB * pvpb
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axsetpbdefault">function __AXSetPBDefault</h3>
+<pre><code class="language-C++">void __AXSetPBDefault (
+    AXVPB * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axsyncpbs">function __AXSyncPBs</h3>
+<pre><code class="language-C++">void __AXSyncPBs (
+    u32 lessDspCycles
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axvpbinit">function __AXVPBInit</h3>
+<pre><code class="language-C++">void __AXVPBInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axvpbquit">function __AXVPBQuit</h3>
+<pre><code class="language-C++">void __AXVPBQuit (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-align">function ALIGN</h3>
+<pre><code class="language-C++">static AXPB  __AXPB [ AX_MAX_VOICES ] ALIGN (
+    32
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/ax/AXVPB.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

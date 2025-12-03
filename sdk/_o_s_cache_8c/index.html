@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSCache.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-oscachec">File OSCache.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSCache.c</strong></a></p>
+<p><a href="../_o_s_cache_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/db.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcblockflush"><strong>DCBlockFlush</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcblockinvalidate"><strong>DCBlockInvalidate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcblockstore"><strong>DCBlockStore</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcblockzero"><strong>DCBlockZero</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcdisable"><strong>DCDisable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcenable"><strong>DCEnable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcflashinvalidate"><strong>DCFlashInvalidate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcflushrange"><strong>DCFlushRange</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcflushrangenosync"><strong>DCFlushRangeNoSync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcfreeze"><strong>DCFreeze</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcinvalidaterange"><strong>DCInvalidateRange</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcstorerange"><strong>DCStoreRange</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcstorerangenosync"><strong>DCStoreRangeNoSync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dctouchload"><strong>DCTouchLoad</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dctouchrange"><strong>DCTouchRange</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dcunfreeze"><strong>DCUnfreeze</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dczerorange"><strong>DCZeroRange</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dmaerrorhandler"><strong>DMAErrorHandler</strong></a> (<a href="../_o_s_error_8h/#typedef-oserror"><strong>OSError</strong></a> error, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context, ...) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-icblockinvalidate"><strong>ICBlockInvalidate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-icdisable"><strong>ICDisable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-icenable"><strong>ICEnable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-icflashinvalidate"><strong>ICFlashInvalidate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-icfreeze"><strong>ICFreeze</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-icinvalidaterange"><strong>ICInvalidateRange</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-icsync"><strong>ICSync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-icunfreeze"><strong>ICUnfreeze</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-l2disable"><strong>L2Disable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-l2enable"><strong>L2Enable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-l2globalinvalidate"><strong>L2GlobalInvalidate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-l2setdataonly"><strong>L2SetDataOnly</strong></a> (<a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> dataOnly) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-l2setwritethrough"><strong>L2SetWriteThrough</strong></a> (<a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> writeThrough) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcalloc"><strong>LCAlloc</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcallocnoinvalidate"><strong>LCAllocNoInvalidate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcalloconetag"><strong>LCAllocOneTag</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> invalidate, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * tag) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcalloctags"><strong>LCAllocTags</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> invalidate, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * startTag, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> numBlocks) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcdisable"><strong>LCDisable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcenable"><strong>LCEnable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcflushqueue"><strong>LCFlushQueue</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcloadblocks"><strong>LCLoadBlocks</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * destTag, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * srcAddr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> numBlocks) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcloaddata"><strong>LCLoadData</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * destAddr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * srcAddr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcqueuelength"><strong>LCQueueLength</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcqueuewait"><strong>LCQueueWait</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> len) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcstoreblocks"><strong>LCStoreBlocks</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * destAddr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * srcTag, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> numBlocks) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-lcstoredata"><strong>LCStoreData</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * destAddr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * srcAddr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> nBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__oscacheinit"><strong>__OSCacheInit</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-l2init"><strong>L2Init</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__lcenable"><strong>__LCEnable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cache_lines"><strong>CACHE_LINES</strong></a>  <code>1024</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-hid2"><strong>HID2</strong></a>  <code>920</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-lc_lines"><strong>LC_LINES</strong></a>  <code>512</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-dcblockflush">function DCBlockFlush</h3>
+<pre><code class="language-C++">asm  void DCBlockFlush (
+    register  void * addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcblockinvalidate">function DCBlockInvalidate</h3>
+<pre><code class="language-C++">asm  void DCBlockInvalidate (
+    register  void * addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcblockstore">function DCBlockStore</h3>
+<pre><code class="language-C++">asm  void DCBlockStore (
+    register  void * addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcblockzero">function DCBlockZero</h3>
+<pre><code class="language-C++">asm  void DCBlockZero (
+    register  void * addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcdisable">function DCDisable</h3>
+<pre><code class="language-C++">asm  void DCDisable (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcenable">function DCEnable</h3>
+<pre><code class="language-C++">asm  void DCEnable (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcflashinvalidate">function DCFlashInvalidate</h3>
+<pre><code class="language-C++">asm  void DCFlashInvalidate (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcflushrange">function DCFlushRange</h3>
+<pre><code class="language-C++">asm  void DCFlushRange (
+    register  void * addr,
+    register  u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcflushrangenosync">function DCFlushRangeNoSync</h3>
+<pre><code class="language-C++">asm  void DCFlushRangeNoSync (
+    register  void * addr,
+    register  u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcfreeze">function DCFreeze</h3>
+<pre><code class="language-C++">asm  void DCFreeze (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcinvalidaterange">function DCInvalidateRange</h3>
+<pre><code class="language-C++">asm  void DCInvalidateRange (
+    register  void * addr,
+    register  u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcstorerange">function DCStoreRange</h3>
+<pre><code class="language-C++">asm  void DCStoreRange (
+    register  void * addr,
+    register  u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcstorerangenosync">function DCStoreRangeNoSync</h3>
+<pre><code class="language-C++">asm  void DCStoreRangeNoSync (
+    register  void * addr,
+    register  u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dctouchload">function DCTouchLoad</h3>
+<pre><code class="language-C++">asm  void DCTouchLoad (
+    register  void * addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dctouchrange">function DCTouchRange</h3>
+<pre><code class="language-C++">asm  void DCTouchRange (
+    register  void * addr,
+    register  u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dcunfreeze">function DCUnfreeze</h3>
+<pre><code class="language-C++">asm  void DCUnfreeze (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dczerorange">function DCZeroRange</h3>
+<pre><code class="language-C++">asm  void DCZeroRange (
+    register  void * addr,
+    register  u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dmaerrorhandler">function DMAErrorHandler</h3>
+<pre><code class="language-C++">void DMAErrorHandler (
+    OSError error,
+    OSContext * context,
+    ...
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-icblockinvalidate">function ICBlockInvalidate</h3>
+<pre><code class="language-C++">asm  void ICBlockInvalidate (
+    register  void * addr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-icdisable">function ICDisable</h3>
+<pre><code class="language-C++">asm  void ICDisable (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-icenable">function ICEnable</h3>
+<pre><code class="language-C++">asm  void ICEnable (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-icflashinvalidate">function ICFlashInvalidate</h3>
+<pre><code class="language-C++">asm  void ICFlashInvalidate (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-icfreeze">function ICFreeze</h3>
+<pre><code class="language-C++">asm  void ICFreeze (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-icinvalidaterange">function ICInvalidateRange</h3>
+<pre><code class="language-C++">asm  void ICInvalidateRange (
+    register  void * addr,
+    register  u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-icsync">function ICSync</h3>
+<pre><code class="language-C++">asm  void ICSync (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-icunfreeze">function ICUnfreeze</h3>
+<pre><code class="language-C++">asm  void ICUnfreeze (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-l2disable">function L2Disable</h3>
+<pre><code class="language-C++">void L2Disable (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-l2enable">function L2Enable</h3>
+<pre><code class="language-C++">void L2Enable (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-l2globalinvalidate">function L2GlobalInvalidate</h3>
+<pre><code class="language-C++">void L2GlobalInvalidate (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-l2setdataonly">function L2SetDataOnly</h3>
+<pre><code class="language-C++">void L2SetDataOnly (
+    BOOL dataOnly
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-l2setwritethrough">function L2SetWriteThrough</h3>
+<pre><code class="language-C++">void L2SetWriteThrough (
+    BOOL writeThrough
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcalloc">function LCAlloc</h3>
+<pre><code class="language-C++">void LCAlloc (
+    void * addr,
+    u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcallocnoinvalidate">function LCAllocNoInvalidate</h3>
+<pre><code class="language-C++">void LCAllocNoInvalidate (
+    void * addr,
+    u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcalloconetag">function LCAllocOneTag</h3>
+<pre><code class="language-C++">asm  void LCAllocOneTag (
+    register  BOOL invalidate,
+    register  void * tag
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcalloctags">function LCAllocTags</h3>
+<pre><code class="language-C++">asm  void LCAllocTags (
+    register  BOOL invalidate,
+    register  void * startTag,
+    register  u32 numBlocks
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcdisable">function LCDisable</h3>
+<pre><code class="language-C++">asm  void LCDisable (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcenable">function LCEnable</h3>
+<pre><code class="language-C++">void LCEnable (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcflushqueue">function LCFlushQueue</h3>
+<pre><code class="language-C++">void LCFlushQueue () 
+</code></pre>
+<hr>
+
+<h3 id="function-lcloadblocks">function LCLoadBlocks</h3>
+<pre><code class="language-C++">asm  void LCLoadBlocks (
+    register  void * destTag,
+    register  void * srcAddr,
+    register  u32 numBlocks
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcloaddata">function LCLoadData</h3>
+<pre><code class="language-C++">u32 LCLoadData (
+    void * destAddr,
+    void * srcAddr,
+    u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcqueuelength">function LCQueueLength</h3>
+<pre><code class="language-C++">asm  u32 LCQueueLength (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcqueuewait">function LCQueueWait</h3>
+<pre><code class="language-C++">asm  void LCQueueWait (
+    register  u32 len
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcstoreblocks">function LCStoreBlocks</h3>
+<pre><code class="language-C++">asm  void LCStoreBlocks (
+    register  void * destAddr,
+    register  void * srcTag,
+    register  u32 numBlocks
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lcstoredata">function LCStoreData</h3>
+<pre><code class="language-C++">u32 LCStoreData (
+    void * destAddr,
+    void * srcAddr,
+    u32 nBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oscacheinit">function __OSCacheInit</h3>
+<pre><code class="language-C++">void __OSCacheInit () 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-l2init">function L2Init</h3>
+<pre><code class="language-C++">static void L2Init (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__lcenable">function __LCEnable</h3>
+<pre><code class="language-C++">static asm  void __LCEnable (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-cache_lines">define CACHE_LINES</h3>
+<pre><code class="language-C++">#define CACHE_LINES `1024`
+</code></pre>
+<hr>
+
+<h3 id="define-hid2">define HID2</h3>
+<pre><code class="language-C++">#define HID2 `920`
+</code></pre>
+<hr>
+
+<h3 id="define-lc_lines">define LC_LINES</h3>
+<pre><code class="language-C++">#define LC_LINES `512`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/os/OSCache.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

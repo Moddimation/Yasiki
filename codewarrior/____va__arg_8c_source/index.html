@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File __va_arg.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-__va_argc">File __va_arg.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_1789e36d750963f536ec280b459db2bf/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../____va__arg_8c/"><strong>__va_arg.c</strong></a></p>
+<p><a href="../____va__arg_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/****************************************************************************/
+/*  Project...: Metrowerks Standard C Library                               */
+/*  Name......: __va_arg.c                                                  */
+/*  Purpose...: support function for va_arg macro with PPC EABI             */
+/*              Design from 'Workplace Application Binary Interface for     */
+/*              the PowerPC'.                                               */
+/*  Copyright.: 竭クopyright 1993-1997 by metrowerks inc. All rights reserved.*/
+/****************************************************************************/
+
+typedef struct {
+    char gpr;
+    char fpr;
+    char reserved[2];
+    char *input_arg_area;
+    char *reg_save_area;
+} va_list[1];
+
+typedef enum {
+    arg_ARGPOINTER,                 /* a pointer to the real 'parameter                     */
+    arg_WORD,                       /* a 4 byte fixed point number or pointer               */
+    arg_DOUBLEWORD,                 /* long long and SW doubles                             */
+    arg_REAL,                       /* 8 byte floating point                                */
+    arg_VECTOR                      /* AltiVec vector                                       */
+#if __option(incompatible_sfpe_double_params)
+    ,arg_SFPEDOUBLE = 10            /* not treated like a arg_DOUBLEWORD                    */
+#endif
+} _va_arg_type;
+
+#define MAX_SAVED_REGS  8
+#define SIZEOF_GPR      4
+#define SIZEOF_FPR      8
+#define SIZEOF_DWRD     8
+#define SIZEOF_VECTOR   16
+#define ALIGN(addr,amount)  (((unsigned int)(addr)+((amount)-1))&amp;~((amount)-1))
+
+void *__va_arg(va_list ap, _va_arg_type type);
+void *__va_arg(va_list ap, _va_arg_type type)
+{
+    char    *addr;                  /* return value - the address of the next 'parameter'   */
+    char    *r = &amp;(ap-&gt;gpr);        /* address of current register number                   */
+    int     rr = ap-&gt;gpr;           /* current register                                     */
+    int     max = MAX_SAVED_REGS;   /* maximum number of registers saved                    */
+    int     size = SIZEOF_GPR;      /* size of 'type'                                       */
+    int     inc = 1;                /* num of registers to increment per type               */
+    int     even = 0;               /* do we have a type that takes 2 registers?            */
+    int     fpr_offset = 0;         /* where do the floating point registers live           */
+    int     size_reg = SIZEOF_GPR;  /* what is the size of this type's register             */
+
+#if __ALTIVEC__
+    if (type==arg_VECTOR) {
+        size = SIZEOF_VECTOR;
+        addr = ap-&gt;input_arg_area;
+        addr = (char*)ALIGN(addr,size);
+        ap-&gt;input_arg_area = addr + size;
+        return addr;
+    }
+#endif  
+    if (type==arg_REAL) {
+        r = &amp;(ap-&gt;fpr);
+        rr = ap-&gt;fpr;
+        size = SIZEOF_FPR;
+        fpr_offset = MAX_SAVED_REGS*SIZEOF_GPR;
+        size_reg = SIZEOF_FPR;
+    }
+    if (type==arg_DOUBLEWORD) {
+        size = SIZEOF_DWRD;
+        max = max-1;
+        if (rr &amp; 1)
+            even = 1; 
+        inc = 2;
+    }
+#if __option(incompatible_sfpe_double_params)
+    if (type==arg_SFPEDOUBLE) {
+        size = SIZEOF_DWRD;
+        max = max-1;
+        inc = 2;
+    }
+#endif
+    if (rr &lt; max) {
+        rr += even;
+        addr = ap-&gt;reg_save_area + fpr_offset + (rr*size_reg);
+        *r = rr + inc;
+    } else {
+        *r = MAX_SAVED_REGS; /* if arg_DOUBLEWORD, make sure that gprs won't be used again */
+        addr = ap-&gt;input_arg_area;
+        addr = (char*)ALIGN(addr,size);
+        ap-&gt;input_arg_area = addr + size;
+    }
+    if (type==arg_ARGPOINTER)
+        addr = *((char**)addr);
+
+    return addr;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

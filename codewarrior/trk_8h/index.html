@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File trk.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-trkh">File trk.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_25028620cc1a8a9857c414f885e69890/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_ecf524e1d45118e058413ae4d34b2285/"><strong>Priv</strong></a> <strong>&gt;</strong> <a href="./"><strong>trk.h</strong></a></p>
+<p><a href="../trk_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "dolphin/types.h"</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_command_reply/"><strong>CommandReply</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_processor_restore_flags___p_p_c/"><strong>ProcessorRestoreFlags_PPC</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_t_r_k_framing_state/"><strong>TRKFramingState</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_t_r_k_state___p_p_c/"><strong>TRKState_PPC</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_command_reply/"><strong>CommandReply</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-commandreply"><strong>CommandReply</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef int</td>
+<td style="text-align: left;"><a href="#typedef-dserror"><strong>DSError</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-dsfilehandle"><strong>DSFileHandle</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-dsioresult"><strong>DSIOResult</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-dsmessageregisteroptions"><strong>DSMessageRegisterOptions</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-dsmessagestepoptions"><strong>DSMessageStepOptions</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-dsreplyerror"><strong>DSReplyError</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-hardwaretype"><strong>HardwareType</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-memoryaccessoptions"><strong>MemoryAccessOptions</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef int</td>
+<td style="text-align: left;"><a href="#typedef-messagebufferid"><strong>MessageBufferID</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-messagecommandid"><strong>MessageCommandID</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-nubeventtype"><strong>NubEventType</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_processor_restore_flags___p_p_c/"><strong>ProcessorRestoreFlags_PPC</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-processorrestoreflags_ppc"><strong>ProcessorRestoreFlags_PPC</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-receiverstate"><strong>ReceiverState</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-trkbuffer"><strong>TRKBuffer</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_t_r_k_framing_state/"><strong>TRKFramingState</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-trkframingstate"><strong>TRKFramingState</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_t_r_k_state___p_p_c/"><strong>TRKState_PPC</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-trkstate_ppc"><strong>TRKState_PPC</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-uartbaudrate"><strong>UARTBaudRate</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef int</td>
+<td style="text-align: left;"><a href="#typedef-uarterror"><strong>UARTError</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-uarterroroptions"><strong>UARTErrorOptions</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-validmemoryoptions"><strong>ValidMemoryOptions</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-trk_8h_1a06fc87d81c62e9abb8790b6e5713c55b"><strong>trk_8h_1a06fc87d81c62e9abb8790b6e5713c55b</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-trk_8h_1adf764cbdea00d65edcd07bb9953ad2b7"><strong>trk_8h_1adf764cbdea00d65edcd07bb9953ad2b7</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-trksaveextended1block"><strong>TRKSaveExtended1Block</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_1800exception"><strong>PPC_1800Exception</strong></a>  <code>0x1800</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_1900exception"><strong>PPC_1900Exception</strong></a>  <code>0x1900</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_1a00exception"><strong>PPC_1A00Exception</strong></a>  <code>0x1A00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_1b00exception"><strong>PPC_1B00Exception</strong></a>  <code>0x1B00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_1c00exception"><strong>PPC_1C00Exception</strong></a>  <code>0x1C00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_1d00exception"><strong>PPC_1D00Exception</strong></a>  <code>0x1D00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_1e00exception"><strong>PPC_1E00Exception</strong></a>  <code>0x1E00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_1f00exception"><strong>PPC_1F00Exception</strong></a>  <code>0x1F00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_2000exception"><strong>PPC_2000Exception</strong></a>  <code>0x2000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_alignment"><strong>PPC_Alignment</strong></a>  <code>0x600</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_datastorage"><strong>PPC_DataStorage</strong></a>  <code>0x300</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_decrementer"><strong>PPC_Decrementer</strong></a>  <code>0x900</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_externalinterrupt"><strong>PPC_ExternalInterrupt</strong></a>  <code>0x500</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_floatingpointassist"><strong>PPC_FloatingPointAssist</strong></a>  <code>0xE00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_floatingpointunavaiable"><strong>PPC_FloatingPointUnavaiable</strong></a>  <code>0x800</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_instructionaddressbreakpoint"><strong>PPC_InstructionAddressBreakpoint</strong></a>  <code>0x1300</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_instructionstorage"><strong>PPC_InstructionStorage</strong></a>  <code>0x400</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_machinecheck"><strong>PPC_MachineCheck</strong></a>  <code>0x200</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_performancemonitor"><strong>PPC_PerformanceMonitor</strong></a>  <code>0xF00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_program"><strong>PPC_Program</strong></a>  <code>0x700</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_systemcall"><strong>PPC_SystemCall</strong></a>  <code>0xC00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_systemmanagementinterrupt"><strong>PPC_SystemManagementInterrupt</strong></a>  <code>0x1400</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_systemreset"><strong>PPC_SystemReset</strong></a>  <code>0x100</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_thermalmanagementinterrupt"><strong>PPC_ThermalManagementInterrupt</strong></a>  <code>0x1700</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_trace"><strong>PPC_Trace</strong></a>  <code>0xD00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ctr"><strong>SPR_CTR</strong></a>  <code>9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dabr"><strong>SPR_DABR</strong></a>  <code>1013</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dar"><strong>SPR_DAR</strong></a>  <code>19</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat0l"><strong>SPR_DBAT0L</strong></a>  <code>537</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat0u"><strong>SPR_DBAT0U</strong></a>  <code>536</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat1l"><strong>SPR_DBAT1L</strong></a>  <code>539</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat1u"><strong>SPR_DBAT1U</strong></a>  <code>538</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat2l"><strong>SPR_DBAT2L</strong></a>  <code>541</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat2u"><strong>SPR_DBAT2U</strong></a>  <code>540</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat3l"><strong>SPR_DBAT3L</strong></a>  <code>543</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat3u"><strong>SPR_DBAT3U</strong></a>  <code>542</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat4l"><strong>SPR_DBAT4L</strong></a>  <code>569</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat4u"><strong>SPR_DBAT4U</strong></a>  <code>568</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat5l"><strong>SPR_DBAT5L</strong></a>  <code>571</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat5u"><strong>SPR_DBAT5U</strong></a>  <code>570</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat6l"><strong>SPR_DBAT6L</strong></a>  <code>573</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat6u"><strong>SPR_DBAT6U</strong></a>  <code>572</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat7l"><strong>SPR_DBAT7L</strong></a>  <code>575</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dbat7u"><strong>SPR_DBAT7U</strong></a>  <code>574</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dec"><strong>SPR_DEC</strong></a>  <code>22</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dma_l"><strong>SPR_DMA_L</strong></a>  <code>923</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dma_u"><strong>SPR_DMA_U</strong></a>  <code>922</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_dsisr"><strong>SPR_DSISR</strong></a>  <code>18</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ear"><strong>SPR_EAR</strong></a>  <code>282</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_fpecr"><strong>SPR_FPECR</strong></a>  <code>1022</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_gqr0"><strong>SPR_GQR0</strong></a>  <code>912</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_gqr1"><strong>SPR_GQR1</strong></a>  <code>913</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_gqr2"><strong>SPR_GQR2</strong></a>  <code>914</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_gqr3"><strong>SPR_GQR3</strong></a>  <code>915</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_gqr4"><strong>SPR_GQR4</strong></a>  <code>916</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_gqr5"><strong>SPR_GQR5</strong></a>  <code>917</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_gqr6"><strong>SPR_GQR6</strong></a>  <code>918</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_gqr7"><strong>SPR_GQR7</strong></a>  <code>919</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_hid0"><strong>SPR_HID0</strong></a>  <code>1008</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_hid1"><strong>SPR_HID1</strong></a>  <code>1009</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_hid2"><strong>SPR_HID2</strong></a>  <code>920</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_hid4"><strong>SPR_HID4</strong></a>  <code>1011</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_iabr"><strong>SPR_IABR</strong></a>  <code>1010</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat0l"><strong>SPR_IBAT0L</strong></a>  <code>529</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat0u"><strong>SPR_IBAT0U</strong></a>  <code>528</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat1l"><strong>SPR_IBAT1L</strong></a>  <code>531</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat1u"><strong>SPR_IBAT1U</strong></a>  <code>530</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat2l"><strong>SPR_IBAT2L</strong></a>  <code>533</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat2u"><strong>SPR_IBAT2U</strong></a>  <code>532</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat3l"><strong>SPR_IBAT3L</strong></a>  <code>535</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat3u"><strong>SPR_IBAT3U</strong></a>  <code>534</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat4l"><strong>SPR_IBAT4L</strong></a>  <code>561</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat4u"><strong>SPR_IBAT4U</strong></a>  <code>560</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat5l"><strong>SPR_IBAT5L</strong></a>  <code>563</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat5u"><strong>SPR_IBAT5U</strong></a>  <code>562</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat6l"><strong>SPR_IBAT6L</strong></a>  <code>565</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat6u"><strong>SPR_IBAT6U</strong></a>  <code>564</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat7l"><strong>SPR_IBAT7L</strong></a>  <code>567</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ibat7u"><strong>SPR_IBAT7U</strong></a>  <code>566</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ictc"><strong>SPR_ICTC</strong></a>  <code>1019</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_l2cr"><strong>SPR_L2CR</strong></a>  <code>1017</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_lr"><strong>SPR_LR</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_mmcr0"><strong>SPR_MMCR0</strong></a>  <code>952</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_mmcr1"><strong>SPR_MMCR1</strong></a>  <code>956</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_pmc1"><strong>SPR_PMC1</strong></a>  <code>953</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_pmc2"><strong>SPR_PMC2</strong></a>  <code>954</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_pmc3"><strong>SPR_PMC3</strong></a>  <code>957</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_pmc4"><strong>SPR_PMC4</strong></a>  <code>958</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_pvr"><strong>SPR_PVR</strong></a>  <code>287</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_sda"><strong>SPR_SDA</strong></a>  <code>959</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_sdr1"><strong>SPR_SDR1</strong></a>  <code>25</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_sia"><strong>SPR_SIA</strong></a>  <code>955</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_sprg0"><strong>SPR_SPRG0</strong></a>  <code>272</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_sprg1"><strong>SPR_SPRG1</strong></a>  <code>273</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_sprg2"><strong>SPR_SPRG2</strong></a>  <code>274</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_sprg3"><strong>SPR_SPRG3</strong></a>  <code>275</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_srr0"><strong>SPR_SRR0</strong></a>  <code>26</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_srr1"><strong>SPR_SRR1</strong></a>  <code>27</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_tbl"><strong>SPR_TBL</strong></a>  <code>284</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_tbu"><strong>SPR_TBU</strong></a>  <code>285</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_thrm1"><strong>SPR_THRM1</strong></a>  <code>1020</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_thrm2"><strong>SPR_THRM2</strong></a>  <code>1021</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ummcr0"><strong>SPR_UMMCR0</strong></a>  <code>936</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_ummcr1"><strong>SPR_UMMCR1</strong></a>  <code>940</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_upmc1"><strong>SPR_UPMC1</strong></a>  <code>937</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_upmc2"><strong>SPR_UPMC2</strong></a>  <code>938</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_upmc3"><strong>SPR_UPMC3</strong></a>  <code>941</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_upmc4"><strong>SPR_UPMC4</strong></a>  <code>942</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_usda"><strong>SPR_USDA</strong></a>  <code>943</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_usia"><strong>SPR_USIA</strong></a>  <code>939</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_wpar"><strong>SPR_WPAR</strong></a>  <code>921</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-spr_xer"><strong>SPR_XER</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trkmsgbuf_size"><strong>TRKMSGBUF_SIZE</strong></a>  <code>(0x800 + 0x80)</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-commandreply">typedef CommandReply</h3>
+<pre><code class="language-C++">typedef struct CommandReply CommandReply;
+</code></pre>
+<hr>
+
+<h3 id="typedef-dserror">typedef DSError</h3>
+<pre><code class="language-C++">typedef int DSError;
+</code></pre>
+<hr>
+
+<h3 id="enum-dsfilehandle">enum DSFileHandle</h3>
+<pre><code class="language-C++">enum DSFileHandle {
+    DS_Stdin = 0,
+    DS_Stdout = 1,
+    DS_Stderr = 2
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-dsioresult">enum DSIOResult</h3>
+<pre><code class="language-C++">enum DSIOResult {
+    DS_IONoError = 0,
+    DS_IOError = 1,
+    DS_IOEOF = 2
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-dsmessageregisteroptions">enum DSMessageRegisterOptions</h3>
+<pre><code class="language-C++">enum DSMessageRegisterOptions {
+    DSREG_Default = 0,
+    DSREG_FP = 1,
+    DSREG_Extended1 = 2,
+    DSREG_Extended2 = 3
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-dsmessagestepoptions">enum DSMessageStepOptions</h3>
+<pre><code class="language-C++">enum DSMessageStepOptions {
+    DSSTEP_IntoCount = 0x0,
+    DSSTEP_IntoRange = 0x1,
+    DSSTEP_OverCount = 0x10,
+    DSSTEP_OverRange = 0x11
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-dsreplyerror">enum DSReplyError</h3>
+<pre><code class="language-C++">enum DSReplyError {
+    DSREPLY_NoError = 0x0,
+    DSREPLY_Error = 0x1,
+    DSREPLY_PacketSizeError = 0x2,
+    DSREPLY_CWDSError = 0x3,
+    DSREPLY_EscapeError = 0x4,
+    DSREPLY_BadFCS = 0x5,
+    DSREPLY_Overflow = 0x6,
+    DSREPLY_SequenceMissing = 0x7,
+    DSREPLY_UnsupportedCommandError = 0x10,
+    DSREPLY_ParameterError = 0x11,
+    DSREPLY_UnsupportedOptionError = 0x12,
+    DSREPLY_InvalidMemoryRange = 0x13,
+    DSREPLY_InvalidRegisterRange = 0x14,
+    DSREPLY_CWDSException = 0x15,
+    DSREPLY_NotStopped = 0x16,
+    DSREPLY_BreakpointsFull = 0x17,
+    DSREPLY_BreakpointConflict = 0x18,
+    DSREPLY_OSError = 0x20,
+    DSREPLY_InvalidProcessID = 0x21,
+    DSREPLY_InvalidThreadID = 0x22,
+    DSREPLY_DebugSecurityError = 0x23
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-hardwaretype">enum HardwareType</h3>
+<pre><code class="language-C++">enum HardwareType {
+    HARDWARE_AMC_DDH = 0,
+    HARDWARE_GDEV = 1,
+    HARDWARE_BBA = 2
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-memoryaccessoptions">enum MemoryAccessOptions</h3>
+<pre><code class="language-C++">enum MemoryAccessOptions {
+    MEMACCESS_UserMemory = 0,
+    MEMACCESS_DebuggerMemory = 1
+};
+</code></pre>
+<hr>
+
+<h3 id="typedef-messagebufferid">typedef MessageBufferID</h3>
+<pre><code class="language-C++">typedef int MessageBufferID;
+</code></pre>
+<hr>
+
+<h3 id="enum-messagecommandid">enum MessageCommandID</h3>
+<pre><code class="language-C++">enum MessageCommandID {
+    DSMSG_Ping = 0x0,
+    DSMSG_Connect = 0x1,
+    DSMSG_Disconnect = 0x2,
+    DSMSG_Reset = 0x3,
+    DSMSG_Versions = 0x4,
+    DSMSG_SupportMask = 0x5,
+    DSMSG_Override = 0x7,
+    DSMSG_ReadMemory = 0x10,
+    DSMSG_WriteMemory = 0x11,
+    DSMSG_ReadRegisters = 0x12,
+    DSMSG_WriteRegisters = 0x13,
+    DSMSG_SetOption = 0x17,
+    DSMSG_Continue = 0x18,
+    DSMSG_Step = 0x19,
+    DSMSG_Stop = 0x1A,
+    DSMSG_ReplyACK = 0x80,
+    DSMSG_NotifyStopped = 0x90,
+    DSMSG_NotifyException = 0x91,
+    DSMSG_WriteFile = 0xD0,
+    DSMSG_ReadFile = 0xD1,
+    DSMSG_OpenFile = 0xD2,
+    DSMSG_CloseFile = 0xD3,
+    DSMSG_PositionFile = 0xD4,
+    DSMSG_ReplyNAK = 0xFF
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-nubeventtype">enum NubEventType</h3>
+<pre><code class="language-C++">enum NubEventType {
+    NUBEVENT_Null = 0,
+    NUBEVENT_Shutdown = 1,
+    NUBEVENT_Request = 2,
+    NUBEVENT_Breakpoint = 3,
+    NUBEVENT_Exception = 4,
+    NUBEVENT_Support = 5
+};
+</code></pre>
+<hr>
+
+<h3 id="typedef-processorrestoreflags_ppc">typedef ProcessorRestoreFlags_PPC</h3>
+<pre><code class="language-C++">typedef struct ProcessorRestoreFlags_PPC ProcessorRestoreFlags_PPC;
+</code></pre>
+<hr>
+
+<h3 id="enum-receiverstate">enum ReceiverState</h3>
+<pre><code class="language-C++">enum ReceiverState {
+    DSRECV_Wait = 0,
+    DSRECV_Found = 1,
+    DSRECV_InFrame = 2,
+    DSRECV_FrameOverflow = 3
+};
+</code></pre>
+<hr>
+
+<h3 id="typedef-trkbuffer">typedef TRKBuffer</h3>
+<pre><code class="language-C++">typedef struct TRKBuffer TRKBuffer;
+</code></pre>
+<hr>
+
+<h3 id="typedef-trkframingstate">typedef TRKFramingState</h3>
+<pre><code class="language-C++">typedef struct TRKFramingState TRKFramingState;
+</code></pre>
+<hr>
+
+<h3 id="typedef-trkstate_ppc">typedef TRKState_PPC</h3>
+<pre><code class="language-C++">typedef struct TRKState_PPC TRKState_PPC;
+</code></pre>
+<hr>
+
+<h3 id="enum-uartbaudrate">enum UARTBaudRate</h3>
+<pre><code class="language-C++">enum UARTBaudRate {
+    kBaudHWSet = -1,
+    kBaud300 = 300,
+    kBaud600 = 600,
+    kBaud1200 = 1200,
+    kBaud1800 = 1800,
+    kBaud2000 = 2000,
+    kBaud2400 = 2400,
+    kBaud3600 = 3600,
+    kBaud4800 = 4800,
+    kBaud7200 = 7200,
+    kBaud9600 = 9600,
+    kBaud19200 = 19200,
+    kBaud38400 = 38400,
+    kBaud57600 = 57600,
+    kBaud115200 = 115200,
+    kBaud230400 = 230400
+};
+</code></pre>
+<hr>
+
+<h3 id="typedef-uarterror">typedef UARTError</h3>
+<pre><code class="language-C++">typedef int UARTError;
+</code></pre>
+<hr>
+
+<h3 id="enum-uarterroroptions">enum UARTErrorOptions</h3>
+<pre><code class="language-C++">enum UARTErrorOptions {
+    UART_NoError = 0,
+    UART_UnknownBaudRate = 1,
+    UART_ConfigurationError = 2,
+    UART_BufferOverflow = 3,
+    UART_NoData = 4
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-validmemoryoptions">enum ValidMemoryOptions</h3>
+<pre><code class="language-C++">enum ValidMemoryOptions {
+    VALIDMEM_Readable = 0,
+    VALIDMEM_Writeable = 1
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-trk_8h_1a06fc87d81c62e9abb8790b6e5713c55b">enum trk_8h_1a06fc87d81c62e9abb8790b6e5713c55b</h3>
+<pre><code class="language-C++">enum trk_8h_1a06fc87d81c62e9abb8790b6e5713c55b {
+    DS_NoError = 0x0,
+    DS_StepError = 0x1,
+    DS_ParameterError = 0x2,
+    DS_EventQueueFull = 0x100,
+    DS_NoMessageBufferAvailable = 0x300,
+    DS_MessageBufferOverflow = 0x301,
+    DS_MessageBufferReadError = 0x302,
+    DS_DispatchError = 0x500,
+    DS_InvalidMemory = 0x700,
+    DS_InvalidRegister = 0x701,
+    DS_CWDSException = 0x702,
+    DS_UnsupportedError = 0x703,
+    DS_InvalidProcessID = 0x704,
+    DS_InvalidThreadID = 0x705,
+    DS_OSError = 0x706,
+    DS_Error800 = 0x800
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-trk_8h_1adf764cbdea00d65edcd07bb9953ad2b7">enum trk_8h_1adf764cbdea00d65edcd07bb9953ad2b7</h3>
+<pre><code class="language-C++">enum trk_8h_1adf764cbdea00d65edcd07bb9953ad2b7 {
+    DSMSGMEMORY_Segmented = 0x01,
+    DSMSGMEMORY_Extended = 0x02,
+    DSMSGMEMORY_Protected = 0x04,
+    DSMSGMEMORY_Userview = 0x08,
+    DSMSGMEMORY_Space_program = 0x00,
+    DSMSGMEMORY_Space_data = 0x40,
+    DSMSGMEMORY_Space_io = 0x80
+};
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-trksaveextended1block">function TRKSaveExtended1Block</h3>
+<pre><code class="language-C++">void TRKSaveExtended1Block () 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-ppc_1800exception">define PPC_1800Exception</h3>
+<pre><code class="language-C++">#define PPC_1800Exception `0x1800`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_1900exception">define PPC_1900Exception</h3>
+<pre><code class="language-C++">#define PPC_1900Exception `0x1900`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_1a00exception">define PPC_1A00Exception</h3>
+<pre><code class="language-C++">#define PPC_1A00Exception `0x1A00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_1b00exception">define PPC_1B00Exception</h3>
+<pre><code class="language-C++">#define PPC_1B00Exception `0x1B00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_1c00exception">define PPC_1C00Exception</h3>
+<pre><code class="language-C++">#define PPC_1C00Exception `0x1C00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_1d00exception">define PPC_1D00Exception</h3>
+<pre><code class="language-C++">#define PPC_1D00Exception `0x1D00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_1e00exception">define PPC_1E00Exception</h3>
+<pre><code class="language-C++">#define PPC_1E00Exception `0x1E00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_1f00exception">define PPC_1F00Exception</h3>
+<pre><code class="language-C++">#define PPC_1F00Exception `0x1F00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_2000exception">define PPC_2000Exception</h3>
+<pre><code class="language-C++">#define PPC_2000Exception `0x2000`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_alignment">define PPC_Alignment</h3>
+<pre><code class="language-C++">#define PPC_Alignment `0x600`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_datastorage">define PPC_DataStorage</h3>
+<pre><code class="language-C++">#define PPC_DataStorage `0x300`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_decrementer">define PPC_Decrementer</h3>
+<pre><code class="language-C++">#define PPC_Decrementer `0x900`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_externalinterrupt">define PPC_ExternalInterrupt</h3>
+<pre><code class="language-C++">#define PPC_ExternalInterrupt `0x500`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_floatingpointassist">define PPC_FloatingPointAssist</h3>
+<pre><code class="language-C++">#define PPC_FloatingPointAssist `0xE00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_floatingpointunavaiable">define PPC_FloatingPointUnavaiable</h3>
+<pre><code class="language-C++">#define PPC_FloatingPointUnavaiable `0x800`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_instructionaddressbreakpoint">define PPC_InstructionAddressBreakpoint</h3>
+<pre><code class="language-C++">#define PPC_InstructionAddressBreakpoint `0x1300`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_instructionstorage">define PPC_InstructionStorage</h3>
+<pre><code class="language-C++">#define PPC_InstructionStorage `0x400`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_machinecheck">define PPC_MachineCheck</h3>
+<pre><code class="language-C++">#define PPC_MachineCheck `0x200`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_performancemonitor">define PPC_PerformanceMonitor</h3>
+<pre><code class="language-C++">#define PPC_PerformanceMonitor `0xF00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_program">define PPC_Program</h3>
+<pre><code class="language-C++">#define PPC_Program `0x700`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_systemcall">define PPC_SystemCall</h3>
+<pre><code class="language-C++">#define PPC_SystemCall `0xC00`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_systemmanagementinterrupt">define PPC_SystemManagementInterrupt</h3>
+<pre><code class="language-C++">#define PPC_SystemManagementInterrupt `0x1400`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_systemreset">define PPC_SystemReset</h3>
+<pre><code class="language-C++">#define PPC_SystemReset `0x100`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_thermalmanagementinterrupt">define PPC_ThermalManagementInterrupt</h3>
+<pre><code class="language-C++">#define PPC_ThermalManagementInterrupt `0x1700`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_trace">define PPC_Trace</h3>
+<pre><code class="language-C++">#define PPC_Trace `0xD00`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ctr">define SPR_CTR</h3>
+<pre><code class="language-C++">#define SPR_CTR `9`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dabr">define SPR_DABR</h3>
+<pre><code class="language-C++">#define SPR_DABR `1013`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dar">define SPR_DAR</h3>
+<pre><code class="language-C++">#define SPR_DAR `19`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat0l">define SPR_DBAT0L</h3>
+<pre><code class="language-C++">#define SPR_DBAT0L `537`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat0u">define SPR_DBAT0U</h3>
+<pre><code class="language-C++">#define SPR_DBAT0U `536`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat1l">define SPR_DBAT1L</h3>
+<pre><code class="language-C++">#define SPR_DBAT1L `539`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat1u">define SPR_DBAT1U</h3>
+<pre><code class="language-C++">#define SPR_DBAT1U `538`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat2l">define SPR_DBAT2L</h3>
+<pre><code class="language-C++">#define SPR_DBAT2L `541`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat2u">define SPR_DBAT2U</h3>
+<pre><code class="language-C++">#define SPR_DBAT2U `540`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat3l">define SPR_DBAT3L</h3>
+<pre><code class="language-C++">#define SPR_DBAT3L `543`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat3u">define SPR_DBAT3U</h3>
+<pre><code class="language-C++">#define SPR_DBAT3U `542`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat4l">define SPR_DBAT4L</h3>
+<pre><code class="language-C++">#define SPR_DBAT4L `569`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat4u">define SPR_DBAT4U</h3>
+<pre><code class="language-C++">#define SPR_DBAT4U `568`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat5l">define SPR_DBAT5L</h3>
+<pre><code class="language-C++">#define SPR_DBAT5L `571`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat5u">define SPR_DBAT5U</h3>
+<pre><code class="language-C++">#define SPR_DBAT5U `570`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat6l">define SPR_DBAT6L</h3>
+<pre><code class="language-C++">#define SPR_DBAT6L `573`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat6u">define SPR_DBAT6U</h3>
+<pre><code class="language-C++">#define SPR_DBAT6U `572`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat7l">define SPR_DBAT7L</h3>
+<pre><code class="language-C++">#define SPR_DBAT7L `575`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dbat7u">define SPR_DBAT7U</h3>
+<pre><code class="language-C++">#define SPR_DBAT7U `574`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dec">define SPR_DEC</h3>
+<pre><code class="language-C++">#define SPR_DEC `22`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dma_l">define SPR_DMA_L</h3>
+<pre><code class="language-C++">#define SPR_DMA_L `923`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dma_u">define SPR_DMA_U</h3>
+<pre><code class="language-C++">#define SPR_DMA_U `922`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_dsisr">define SPR_DSISR</h3>
+<pre><code class="language-C++">#define SPR_DSISR `18`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ear">define SPR_EAR</h3>
+<pre><code class="language-C++">#define SPR_EAR `282`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_fpecr">define SPR_FPECR</h3>
+<pre><code class="language-C++">#define SPR_FPECR `1022`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_gqr0">define SPR_GQR0</h3>
+<pre><code class="language-C++">#define SPR_GQR0 `912`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_gqr1">define SPR_GQR1</h3>
+<pre><code class="language-C++">#define SPR_GQR1 `913`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_gqr2">define SPR_GQR2</h3>
+<pre><code class="language-C++">#define SPR_GQR2 `914`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_gqr3">define SPR_GQR3</h3>
+<pre><code class="language-C++">#define SPR_GQR3 `915`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_gqr4">define SPR_GQR4</h3>
+<pre><code class="language-C++">#define SPR_GQR4 `916`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_gqr5">define SPR_GQR5</h3>
+<pre><code class="language-C++">#define SPR_GQR5 `917`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_gqr6">define SPR_GQR6</h3>
+<pre><code class="language-C++">#define SPR_GQR6 `918`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_gqr7">define SPR_GQR7</h3>
+<pre><code class="language-C++">#define SPR_GQR7 `919`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_hid0">define SPR_HID0</h3>
+<pre><code class="language-C++">#define SPR_HID0 `1008`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_hid1">define SPR_HID1</h3>
+<pre><code class="language-C++">#define SPR_HID1 `1009`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_hid2">define SPR_HID2</h3>
+<pre><code class="language-C++">#define SPR_HID2 `920`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_hid4">define SPR_HID4</h3>
+<pre><code class="language-C++">#define SPR_HID4 `1011`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_iabr">define SPR_IABR</h3>
+<pre><code class="language-C++">#define SPR_IABR `1010`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat0l">define SPR_IBAT0L</h3>
+<pre><code class="language-C++">#define SPR_IBAT0L `529`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat0u">define SPR_IBAT0U</h3>
+<pre><code class="language-C++">#define SPR_IBAT0U `528`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat1l">define SPR_IBAT1L</h3>
+<pre><code class="language-C++">#define SPR_IBAT1L `531`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat1u">define SPR_IBAT1U</h3>
+<pre><code class="language-C++">#define SPR_IBAT1U `530`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat2l">define SPR_IBAT2L</h3>
+<pre><code class="language-C++">#define SPR_IBAT2L `533`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat2u">define SPR_IBAT2U</h3>
+<pre><code class="language-C++">#define SPR_IBAT2U `532`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat3l">define SPR_IBAT3L</h3>
+<pre><code class="language-C++">#define SPR_IBAT3L `535`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat3u">define SPR_IBAT3U</h3>
+<pre><code class="language-C++">#define SPR_IBAT3U `534`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat4l">define SPR_IBAT4L</h3>
+<pre><code class="language-C++">#define SPR_IBAT4L `561`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat4u">define SPR_IBAT4U</h3>
+<pre><code class="language-C++">#define SPR_IBAT4U `560`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat5l">define SPR_IBAT5L</h3>
+<pre><code class="language-C++">#define SPR_IBAT5L `563`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat5u">define SPR_IBAT5U</h3>
+<pre><code class="language-C++">#define SPR_IBAT5U `562`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat6l">define SPR_IBAT6L</h3>
+<pre><code class="language-C++">#define SPR_IBAT6L `565`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat6u">define SPR_IBAT6U</h3>
+<pre><code class="language-C++">#define SPR_IBAT6U `564`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat7l">define SPR_IBAT7L</h3>
+<pre><code class="language-C++">#define SPR_IBAT7L `567`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ibat7u">define SPR_IBAT7U</h3>
+<pre><code class="language-C++">#define SPR_IBAT7U `566`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ictc">define SPR_ICTC</h3>
+<pre><code class="language-C++">#define SPR_ICTC `1019`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_l2cr">define SPR_L2CR</h3>
+<pre><code class="language-C++">#define SPR_L2CR `1017`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_lr">define SPR_LR</h3>
+<pre><code class="language-C++">#define SPR_LR `8`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_mmcr0">define SPR_MMCR0</h3>
+<pre><code class="language-C++">#define SPR_MMCR0 `952`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_mmcr1">define SPR_MMCR1</h3>
+<pre><code class="language-C++">#define SPR_MMCR1 `956`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_pmc1">define SPR_PMC1</h3>
+<pre><code class="language-C++">#define SPR_PMC1 `953`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_pmc2">define SPR_PMC2</h3>
+<pre><code class="language-C++">#define SPR_PMC2 `954`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_pmc3">define SPR_PMC3</h3>
+<pre><code class="language-C++">#define SPR_PMC3 `957`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_pmc4">define SPR_PMC4</h3>
+<pre><code class="language-C++">#define SPR_PMC4 `958`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_pvr">define SPR_PVR</h3>
+<pre><code class="language-C++">#define SPR_PVR `287`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_sda">define SPR_SDA</h3>
+<pre><code class="language-C++">#define SPR_SDA `959`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_sdr1">define SPR_SDR1</h3>
+<pre><code class="language-C++">#define SPR_SDR1 `25`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_sia">define SPR_SIA</h3>
+<pre><code class="language-C++">#define SPR_SIA `955`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_sprg0">define SPR_SPRG0</h3>
+<pre><code class="language-C++">#define SPR_SPRG0 `272`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_sprg1">define SPR_SPRG1</h3>
+<pre><code class="language-C++">#define SPR_SPRG1 `273`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_sprg2">define SPR_SPRG2</h3>
+<pre><code class="language-C++">#define SPR_SPRG2 `274`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_sprg3">define SPR_SPRG3</h3>
+<pre><code class="language-C++">#define SPR_SPRG3 `275`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_srr0">define SPR_SRR0</h3>
+<pre><code class="language-C++">#define SPR_SRR0 `26`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_srr1">define SPR_SRR1</h3>
+<pre><code class="language-C++">#define SPR_SRR1 `27`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_tbl">define SPR_TBL</h3>
+<pre><code class="language-C++">#define SPR_TBL `284`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_tbu">define SPR_TBU</h3>
+<pre><code class="language-C++">#define SPR_TBU `285`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_thrm1">define SPR_THRM1</h3>
+<pre><code class="language-C++">#define SPR_THRM1 `1020`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_thrm2">define SPR_THRM2</h3>
+<pre><code class="language-C++">#define SPR_THRM2 `1021`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ummcr0">define SPR_UMMCR0</h3>
+<pre><code class="language-C++">#define SPR_UMMCR0 `936`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_ummcr1">define SPR_UMMCR1</h3>
+<pre><code class="language-C++">#define SPR_UMMCR1 `940`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_upmc1">define SPR_UPMC1</h3>
+<pre><code class="language-C++">#define SPR_UPMC1 `937`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_upmc2">define SPR_UPMC2</h3>
+<pre><code class="language-C++">#define SPR_UPMC2 `938`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_upmc3">define SPR_UPMC3</h3>
+<pre><code class="language-C++">#define SPR_UPMC3 `941`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_upmc4">define SPR_UPMC4</h3>
+<pre><code class="language-C++">#define SPR_UPMC4 `942`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_usda">define SPR_USDA</h3>
+<pre><code class="language-C++">#define SPR_USDA `943`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_usia">define SPR_USIA</h3>
+<pre><code class="language-C++">#define SPR_USIA `939`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_wpar">define SPR_WPAR</h3>
+<pre><code class="language-C++">#define SPR_WPAR `921`
+</code></pre>
+<hr>
+
+<h3 id="define-spr_xer">define SPR_XER</h3>
+<pre><code class="language-C++">#define SPR_XER `1`
+</code></pre>
+<hr>
+
+<h3 id="define-trkmsgbuf_size">define TRKMSGBUF_SIZE</h3>
+<pre><code class="language-C++">#define TRKMSGBUF_SIZE `(0x800 + 0x80)`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/trk.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

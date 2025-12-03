@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File e_fmod.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-e_fmodc">File e_fmod.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="../e__fmod_8c/"><strong>e_fmod.c</strong></a></p>
+<p><a href="../e__fmod_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+#ifndef _No_Floating_Point  
+/* @(#)e_fmod.c 1.2 95/01/04 */
+/* $Id: e_fmod.c,v 1.2.4.1 1999/12/06 19:47:52 fassiott Exp $ */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
+ */
+
+/* 
+ * __ieee754_fmod(x,y)
+ * Return x mod y in exact arithmetic
+ * Method: shift and subtract
+ */
+
+#include &quot;fdlibm.h&quot;
+
+#ifdef __STDC__
+static const double one = 1.0, Zero[] = {0.0, -0.0,};
+#else
+static double one = 1.0, Zero[] = {0.0, -0.0,};
+#endif
+
+#ifdef __STDC__
+    double __ieee754_fmod(double x, double y)
+#else
+    double __ieee754_fmod(x,y)
+    double x,y ;
+#endif
+{
+    int n,hx,hy,hz,ix,iy,sx,i;
+    unsigned lx,ly,lz;
+
+    hx = __HI(x);       /* high word of x */
+    lx = __LO(x);       /* low  word of x */
+    hy = __HI(y);       /* high word of y */
+    ly = __LO(y);       /* low  word of y */
+    sx = hx&amp;0x80000000;     /* sign of x */
+    hx ^=sx;        /* |x| */
+    hy &amp;= 0x7fffffff;   /* |y| */
+
+    /* purge off exception values */
+    if((hy|ly)==0||(hx&gt;=0x7ff00000)||   /* y=0,or x not finite */
+      ((hy|((ly|-ly)&gt;&gt;31))&gt;0x7ff00000)) /* or y is NaN */
+        return (x*y)/(x*y);
+    if(hx&lt;=hy) {
+        if((hx&lt;hy)||(lx&lt;ly)) return x;  /* |x|&lt;|y| return x */
+        if(lx==ly) 
+        return Zero[(unsigned)sx&gt;&gt;31];  /* |x|=|y| return x*0*/
+    }
+
+    /* determine ix = ilogb(x) */
+    if(hx&lt;0x00100000) { /* subnormal x */
+        if(hx==0) {
+        for (ix = -1043, i=lx; i&gt;0; i&lt;&lt;=1) ix -=1;
+        } else {
+        for (ix = -1022,i=(hx&lt;&lt;11); i&gt;0; i&lt;&lt;=1) ix -=1;
+        }
+    } else ix = (hx&gt;&gt;20)-1023;
+
+    /* determine iy = ilogb(y) */
+    if(hy&lt;0x00100000) { /* subnormal y */
+        if(hy==0) {
+        for (iy = -1043, i=ly; i&gt;0; i&lt;&lt;=1) iy -=1;
+        } else {
+        for (iy = -1022,i=(hy&lt;&lt;11); i&gt;0; i&lt;&lt;=1) iy -=1;
+        }
+    } else iy = (hy&gt;&gt;20)-1023;
+
+    /* set up {hx,lx}, {hy,ly} and align y to x */
+    if(ix &gt;= -1022) 
+        hx = 0x00100000|(0x000fffff&amp;hx);
+    else {      /* subnormal x, shift x to normal */
+        n = -1022-ix;
+        if(n&lt;=31) {
+            hx = (hx&lt;&lt;n)|(lx&gt;&gt;(32-n));
+            lx &lt;&lt;= n;
+        } else {
+        hx = lx&lt;&lt;(n-32);
+        lx = 0;
+        }
+    }
+    if(iy &gt;= -1022) 
+        hy = 0x00100000|(0x000fffff&amp;hy);
+    else {      /* subnormal y, shift y to normal */
+        n = -1022-iy;
+        if(n&lt;=31) {
+            hy = (hy&lt;&lt;n)|(ly&gt;&gt;(32-n));
+            ly &lt;&lt;= n;
+        } else {
+        hy = ly&lt;&lt;(n-32);
+        ly = 0;
+        }
+    }
+
+    /* fix point fmod */
+    n = ix - iy;
+    while(n--) {
+        hz=hx-hy;lz=lx-ly; if(lx&lt;ly) hz -= 1;
+        if(hz&lt;0){hx = hx+hx+(lx&gt;&gt;31); lx = lx+lx;}
+        else {
+            if((hz|lz)==0)      /* return sign(x)*0 */
+            return Zero[(unsigned)sx&gt;&gt;31];
+            hx = hz+hz+(lz&gt;&gt;31); lx = lz+lz;
+        }
+    }
+    hz=hx-hy;lz=lx-ly; if(lx&lt;ly) hz -= 1;
+    if(hz&gt;=0) {hx=hz;lx=lz;}
+
+    /* convert back to floating value and restore the sign */
+    if((hx|lx)==0)          /* return sign(x)*0 */
+        return Zero[(unsigned)sx&gt;&gt;31];  
+    while(hx&lt;0x00100000) {      /* normalize x */
+        hx = hx+hx+(lx&gt;&gt;31); lx = lx+lx;
+        iy -= 1;
+    }
+    if(iy&gt;= -1022) {    /* normalize output */
+        hx = ((hx-0x00100000)|((iy+1023)&lt;&lt;20));
+        __HI(x) = hx|sx;
+        __LO(x) = lx;
+    } else {        /* subnormal output */
+        n = -1022 - iy;
+        if(n&lt;=20) {
+        lx = (lx&gt;&gt;n)|((unsigned)hx&lt;&lt;(32-n));
+        hx &gt;&gt;= n;
+        } else if (n&lt;=31) {
+        lx = (hx&lt;&lt;(32-n))|(lx&gt;&gt;n); hx = sx;
+        } else {
+        lx = hx&gt;&gt;(n-32); hx = sx;
+        }
+        __HI(x) = hx|sx;
+        __LO(x) = lx;
+        x *= one;       /* create necessary signal */
+    }
+    return x;       /* exact output */
+}
+#endif /* _No_Floating_Point  */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

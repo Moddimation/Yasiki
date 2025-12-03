@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_heap_desc" kind="struct" language="C++" prot="public">
+    <compoundname>HeapDesc</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_heap_desc_1a37c132a652b2b089d892f33a9d352557" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 HeapDesc::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>HeapDesc::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAlloc.c" line="31" column="11" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAlloc.c" bodystart="31" bodyend="-1"/>
+        <referencedby refid="_o_s_alloc_8h_1afcba43cec42f85e31828a2e1492a039f" compoundref="_o_s_alloc_8c" startline="479" endline="537">OSCreateHeap</referencedby>
+        <referencedby refid="_o_s_alloc_8h_1a9c72fc7e95671f14c31b50ee4923953c" compoundref="_o_s_alloc_8c" startline="443" endline="476">OSInitAlloc</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_heap_desc_1af599d515fca93d6c9c459fcc0c6d1d09" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_cell" kindref="compound">Cell</ref> *</type>
+        <definition>Cell* HeapDesc::free</definition>
+        <argsstring></argsstring>
+        <name>free</name>
+        <qualifiedname>HeapDesc::free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAlloc.c" line="32" column="10" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAlloc.c" bodystart="32" bodyend="-1"/>
+        <referencedby refid="_o_s_alloc_8h_1a53b1992a56ef86b2e556006112238a69" compoundref="_o_s_alloc_8c" startline="260" endline="397">OSAllocFixed</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_heap_desc_1a985a84d8ba451377f7f320ba4104f7e0" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_cell" kindref="compound">Cell</ref> *</type>
+        <definition>Cell* HeapDesc::allocated</definition>
+        <argsstring></argsstring>
+        <name>allocated</name>
+        <qualifiedname>HeapDesc::allocated</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAlloc.c" line="33" column="10" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAlloc.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>Cell</label>
+        <link refid="struct_cell"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>HeapDesc</label>
+        <link refid="struct_heap_desc"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>allocated</edgelabel>
+          <edgelabel>free</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/DolphinSDK/src/dolphin/os/OSAlloc.c" line="29" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAlloc.c" bodystart="30" bodyend="39"/>
+    <listofallmembers>
+      <member refid="struct_heap_desc_1a985a84d8ba451377f7f320ba4104f7e0" prot="public" virt="non-virtual"><scope>HeapDesc</scope><name>allocated</name></member>
+      <member refid="struct_heap_desc_1af599d515fca93d6c9c459fcc0c6d1d09" prot="public" virt="non-virtual"><scope>HeapDesc</scope><name>free</name></member>
+      <member refid="struct_heap_desc_1a37c132a652b2b089d892f33a9d352557" prot="public" virt="non-virtual"><scope>HeapDesc</scope><name>size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

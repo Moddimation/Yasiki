@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File chorus.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-chorusc">File chorus.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_2bd0f0afbf5da90c596578eb9887bbaf/"><strong>axfx</strong></a> <strong>&gt;</strong> <a href="./"><strong>chorus.c</strong></a></p>
+<p><a href="../chorus_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/ax.h&gt;</code></li>
+<li><code>#include &lt;dolphin/axfx.h&gt;</code></li>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>double</strong></a></td>
+<td style="text-align: left;"><a href="#variable-i2fmagic"><strong>i2fMagic</strong></a>   = <code>4503601774854144.0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-f32"><strong>f32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-rsmptab12khz"><strong>rsmpTab12khz</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxchoruscallback"><strong>AXFXChorusCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e/"><strong>AXFX_BUFFERUPDATE</strong></a> * bufferUpdate, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___c_h_o_r_u_s/"><strong>AXFX_CHORUS</strong></a> * chorus) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxchorusinit"><strong>AXFXChorusInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___c_h_o_r_u_s/"><strong>AXFX_CHORUS</strong></a> * c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxchorussettings"><strong>AXFXChorusSettings</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___c_h_o_r_u_s/"><strong>AXFX_CHORUS</strong></a> * c) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxchorusshutdown"><strong>AXFXChorusShutdown</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___c_h_o_r_u_s/"><strong>AXFX_CHORUS</strong></a> * c) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-do_src1"><strong>do_src1</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o/"><strong>AXFX_CHORUS_SRCINFO</strong></a> * src) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-do_src1"><strong>do_src1</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o/"><strong>AXFX_CHORUS_SRCINFO</strong></a> * src) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-do_src2"><strong>do_src2</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o/"><strong>AXFX_CHORUS_SRCINFO</strong></a> * src) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-do_src2"><strong>do_src2</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o/"><strong>AXFX_CHORUS_SRCINFO</strong></a> * src) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-i2fmagic">variable i2fMagic</h3>
+<pre><code class="language-C++">const double i2fMagic;
+</code></pre>
+<hr>
+
+<h3 id="variable-rsmptab12khz">variable rsmpTab12khz</h3>
+<pre><code class="language-C++">f32 rsmpTab12khz[512];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-axfxchoruscallback">function AXFXChorusCallback</h3>
+<pre><code class="language-C++">void AXFXChorusCallback (
+    struct  AXFX_BUFFERUPDATE * bufferUpdate,
+    struct  AXFX_CHORUS * chorus
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxchorusinit">function AXFXChorusInit</h3>
+<pre><code class="language-C++">int AXFXChorusInit (
+    struct  AXFX_CHORUS * c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxchorussettings">function AXFXChorusSettings</h3>
+<pre><code class="language-C++">int AXFXChorusSettings (
+    struct  AXFX_CHORUS * c
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxchorusshutdown">function AXFXChorusShutdown</h3>
+<pre><code class="language-C++">int AXFXChorusShutdown (
+    struct  AXFX_CHORUS * c
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-do_src1">function do_src1</h3>
+<pre><code class="language-C++">static void do_src1 (
+    struct  AXFX_CHORUS_SRCINFO * src
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-do_src1_1">function do_src1</h3>
+<pre><code class="language-C++">static asm  void do_src1 (
+    register  struct  AXFX_CHORUS_SRCINFO * src
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-do_src2">function do_src2</h3>
+<pre><code class="language-C++">static void do_src2 (
+    struct  AXFX_CHORUS_SRCINFO * src
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-do_src2_1">function do_src2</h3>
+<pre><code class="language-C++">static asm  void do_src2 (
+    register  struct  AXFX_CHORUS_SRCINFO * src
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/axfx/chorus.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

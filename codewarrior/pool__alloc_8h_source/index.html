@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File pool_alloc.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-pool_alloch">File pool_alloc.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_27c31b18688c2d3b7fe1d239b44a1620/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../pool__alloc_8h/"><strong>pool_alloc.h</strong></a></p>
+<p><a href="../pool__alloc_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/07/30 00:45:30 $ 
+ *  $Revision: 1.10.4.3 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  pool_alloc.h
+ */
+
+#include &lt;ansi_parms.h&gt;                 /* mm 970905*/
+
+#ifndef _MSL_PRO4_MALLOC
+
+#ifndef __pool_alloc__
+#define __pool_alloc__
+
+#include &lt;ansi_parms.h&gt;                 /* mm 970905*/
+#include &lt;size_t.h&gt;
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#define __heap_version  2   /* jg 980115 */ /* hh 990227 */
+
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+
+void *  __sys_alloc(__std(size_t) size);
+void    __sys_free(void *ptr);
+
+void    __pool_free_all();
+#ifdef _No_Alloc_OS_Support
+int     init_alloc(void * heap_ptr, __std(size_t) heap_size); /* hh 990504 */
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif
+
+#else /* _MSL_PRO4_MALLOC */
+
+#ifndef __pool_alloc__
+#define __pool_alloc__
+
+#include &lt;ansi_parms.h&gt;                 /* mm 970905*/
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+typedef signed long tag_word;
+
+typedef struct block_header {
+    tag_word                tag;
+    struct block_header *   prev;
+    struct block_header *   next;
+} block_header;
+
+typedef struct list_header {
+    block_header *      rover;
+    block_header        header;
+} list_header;
+
+typedef struct heap_header {
+    struct heap_header*     prev;
+    struct heap_header*     next;
+} heap_header;
+
+typedef unsigned long   mem_size;
+
+typedef void *  (*sys_alloc_ptr)(mem_size size, struct mem_pool_obj*);
+typedef void    (*sys_free_ptr)(void * ptr, struct mem_pool_obj*);
+
+typedef struct pool_options{
+    sys_alloc_ptr   sys_alloc_func;
+    sys_free_ptr    sys_free_func;
+    mem_size        min_heap_size;
+#if !__ALTIVEC__                                
+    int             always_search_first;
+#else
+    char            always_search_first;            /* for ALTIVEC */
+    char            block_alignment;
+    char            reserved1;
+    char            reserved2;
+#endif
+} pool_options;
+
+typedef struct mem_pool_obj {
+    list_header     free_list;
+#ifndef _No_Alloc_OS_Support
+    pool_options    options;
+    heap_header*    heap_list;
+    void*           userData;
+#endif
+} mem_pool_obj;
+
+#define __heap_version  1   /* jg 980115 */
+
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+
+_MSL_DLLDATA extern mem_pool_obj __malloc_pool; /*  vss 980901 */
+
+#if __ALTIVEC__
+void    __init_align_pool_obj(mem_pool_obj * pool_obj, char align);
+#endif
+void    __init_pool_obj(mem_pool_obj * pool_obj);
+int     __pool_preallocate(mem_pool_obj * pool_obj, mem_size size);
+void    __pool_preassign(mem_pool_obj * pool_obj, void * ptr, mem_size size);
+void *  __pool_alloc(mem_pool_obj * pool_obj, mem_size size);
+void *  __pool_alloc_clear(mem_pool_obj * pool_obj, mem_size size);
+void *  __pool_realloc(mem_pool_obj * pool_obj, void * ptr, mem_size size);
+void    __pool_free(mem_pool_obj * pool_obj, void * ptr);
+void    __pool_free_all(mem_pool_obj * pool_obj);
+
+void *  __sys_alloc(mem_size size, mem_pool_obj*);
+void    __sys_free(void *ptr, mem_pool_obj*);
+
+#ifdef _No_Alloc_OS_Support
+int     init_alloc(void * heap_ptr, mem_size heap_size);
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif
+
+#endif
+
+/*     Change record
+ *  20-Jul-97 MEA   Changed __no_os to _No_Alloc_OS_Support.
+ * mm 970905  added include of ansi_parms.h to avoid need for prefix file
+ * jg 980115  added __heap_version definition
+ * vss 980901 add extern __malloc_pool
+ * hh 990227  rewrote allocation functions
+ * bobc 990302  support for AltiVec (specify alignment for the pool).
+ * hh 990504 Corrected prototype for init_alloc()
+ */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

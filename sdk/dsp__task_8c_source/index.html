@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dsp_task.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dsp_taskc">File dsp_task.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_37785f48a74f821d91c9dd23d9dd1487/"><strong>dsp</strong></a> <strong>&gt;</strong> <a href="../dsp__task_8c/"><strong>dsp_task.c</strong></a></p>
+<p><a href="../dsp__task_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#include &lt;stddef.h&gt;
+
+#include &quot;dsp_private.h&quot;
+
+static u32 t0, t1, t2; // unused
+
+DSPTaskInfo* __DSP_first_task;
+DSPTaskInfo* __DSP_last_task;
+DSPTaskInfo* __DSP_curr_task;
+DSPTaskInfo* __DSP_tmp_task;
+
+DSPTaskInfo* __DSP_rude_task;
+int          __DSP_rude_task_pending;
+
+void
+__DSPHandler (__OSInterrupt intr, OSContext* context)
+{
+    u8        unused[4];
+    OSContext exceptionContext;
+    u16       tmp;
+    u32       mail;
+
+    tmp          = __DSPRegs[5];
+    tmp          = (tmp &amp; ~0x28) | 0x80;
+    __DSPRegs[5] = tmp;
+    OSClearContext (&amp;exceptionContext);
+    OSSetCurrentContext (&amp;exceptionContext);
+    ASSERTMSGLINE (0x8A,
+                   __DSP_curr_task != NULL,
+                   &quot;__DSPHandler(): No current task! Someone set us up the bomb!\n&quot;);
+    while (DSPCheckMailFromDSP() == 0);
+    mail = DSPReadMailFromDSP();
+    if ((__DSP_curr_task-&gt;flags &amp; (1 &lt;&lt; (31 - 0x1E))) &amp;&amp; (mail + 0x232F0000) == 2)
+    {
+        mail = 0xDCD10003;
+    }
+    switch (mail)
+    {
+        case 0xDCD10000:
+            __DSP_curr_task-&gt;state = 1;
+            if (__DSP_curr_task-&gt;init_cb != NULL)
+            {
+                __DSP_curr_task-&gt;init_cb (__DSP_curr_task);
+            }
+            break;
+        case 0xDCD10001:
+            __DSP_curr_task-&gt;state = 1;
+            if (__DSP_curr_task-&gt;res_cb != NULL)
+            {
+                __DSP_curr_task-&gt;res_cb (__DSP_curr_task);
+            }
+            break;
+        case 0xDCD10002:
+            if (__DSP_rude_task_pending)
+            {
+                if (__DSP_curr_task == __DSP_rude_task)
+                {
+                    DSPSendMailToDSP (0xCDD10003);
+                    while (DSPCheckMailToDSP() != 0);
+                    __DSP_rude_task         = NULL;
+                    __DSP_rude_task_pending = 0;
+                    if (__DSP_curr_task-&gt;res_cb != NULL)
+                    {
+                        __DSP_curr_task-&gt;res_cb (__DSP_curr_task);
+                    }
+                }
+                else
+                {
+                    DSPSendMailToDSP (0xCDD10001);
+                    while (DSPCheckMailToDSP() != 0);
+                    __DSP_exec_task (__DSP_curr_task, __DSP_rude_task);
+                    __DSP_curr_task-&gt;state  = 2;
+                    __DSP_curr_task         = __DSP_rude_task;
+                    __DSP_rude_task         = NULL;
+                    __DSP_rude_task_pending = 0;
+                }
+            }
+            else
+            {
+                if (__DSP_curr_task-&gt;next == NULL)
+                {
+                    if (__DSP_curr_task == __DSP_first_task)
+                    {
+                        DSPSendMailToDSP (0xCDD10003);
+                        while (DSPCheckMailToDSP() != 0);
+                        if (__DSP_curr_task-&gt;res_cb != NULL)
+                        {
+                            __DSP_curr_task-&gt;res_cb (__DSP_curr_task);
+                        }
+                    }
+                    else
+                    {
+                        DSPSendMailToDSP (0xCDD10001);
+                        while (DSPCheckMailToDSP() != 0);
+                        __DSP_exec_task (__DSP_curr_task, __DSP_first_task);
+                        __DSP_curr_task-&gt;state = 2;
+                        __DSP_curr_task        = __DSP_first_task;
+                    }
+                }
+                else
+                {
+                    DSPSendMailToDSP (0xCDD10001);
+                    while (DSPCheckMailToDSP() != 0);
+                    __DSP_exec_task (__DSP_curr_task, __DSP_curr_task-&gt;next);
+                    __DSP_curr_task-&gt;state = 2;
+                    __DSP_curr_task        = __DSP_curr_task-&gt;next;
+                }
+            }
+            break;
+        case 0xDCD10003:
+            if (__DSP_rude_task_pending)
+            {
+                if (__DSP_curr_task-&gt;done_cb != NULL)
+                {
+                    __DSP_curr_task-&gt;done_cb (__DSP_curr_task);
+                }
+                DSPSendMailToDSP (0xCDD10001);
+                while (DSPCheckMailToDSP() != 0);
+                __DSP_exec_task (NULL, __DSP_rude_task);
+                __DSP_remove_task (__DSP_curr_task);
+                __DSP_curr_task         = __DSP_rude_task;
+                __DSP_rude_task         = NULL;
+                __DSP_rude_task_pending = 0;
+            }
+            else
+            {
+                if (__DSP_curr_task-&gt;next == NULL)
+                {
+                    if (__DSP_curr_task == __DSP_first_task)
+                    {
+                        if (__DSP_curr_task-&gt;done_cb != NULL)
+                        {
+                            __DSP_curr_task-&gt;done_cb (__DSP_curr_task);
+                        }
+                        DSPSendMailToDSP (0xCDD10002);
+                        while (DSPCheckMailToDSP() != 0);
+                        __DSP_curr_task-&gt;state = 3;
+                        __DSP_remove_task (__DSP_curr_task);
+                    }
+                    else
+                    {
+                        if (__DSP_curr_task-&gt;done_cb != NULL)
+                        {
+                            __DSP_curr_task-&gt;done_cb (__DSP_curr_task);
+                        }
+                        DSPSendMailToDSP (0xCDD10001);
+                        while (DSPCheckMailToDSP() != 0);
+                        __DSP_curr_task-&gt;state = 3;
+                        __DSP_exec_task (NULL, __DSP_first_task);
+                        __DSP_curr_task = __DSP_first_task;
+                        __DSP_remove_task (__DSP_last_task);
+                    }
+                }
+                else
+                {
+                    if (__DSP_curr_task-&gt;done_cb != NULL)
+                    {
+                        __DSP_curr_task-&gt;done_cb (__DSP_curr_task);
+                    }
+                    DSPSendMailToDSP (0xCDD10001);
+                    while (DSPCheckMailToDSP() != 0);
+                    __DSP_curr_task-&gt;state = 3;
+                    __DSP_exec_task (NULL, __DSP_curr_task-&gt;next);
+                    __DSP_curr_task = __DSP_curr_task-&gt;next;
+                    __DSP_remove_task (__DSP_curr_task-&gt;prev);
+                }
+            }
+            break;
+        case 0xDCD10004:
+            if (__DSP_curr_task-&gt;req_cb != NULL)
+            {
+                __DSP_curr_task-&gt;req_cb (__DSP_curr_task);
+            }
+            break;
+        default:
+            ASSERTMSGLINEV (0x202,
+                            0,
+                            &quot;__DSPHandler(): Unknown msg from DSP 0x%08X - task sync failed!\n&quot;,
+                            mail);
+    }
+    OSClearContext (&amp;exceptionContext);
+    OSSetCurrentContext (context);
+}
+
+void
+__DSP_exec_task (DSPTaskInfo* curr, DSPTaskInfo* next)
+{
+    ASSERTMSGLINE (0x223, next != NULL, &quot;__DSP_exec_task(): NULL task. It is to weep.\n&quot;);
+    if (curr != NULL)
+    {
+        DSPSendMailToDSP ((u32)curr-&gt;dram_mmem_addr);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (curr-&gt;dram_length);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (curr-&gt;dram_addr);
+        while (DSPCheckMailToDSP() != 0);
+    }
+    else
+    {
+        DSPSendMailToDSP (0);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (0);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (0);
+        while (DSPCheckMailToDSP() != 0);
+    }
+    DSPSendMailToDSP ((u32)next-&gt;iram_mmem_addr);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (next-&gt;iram_length);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (next-&gt;iram_addr);
+    while (DSPCheckMailToDSP() != 0);
+    if (next-&gt;state == 0)
+    {
+        DSPSendMailToDSP (next-&gt;dsp_init_vector);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (0);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (0);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (0);
+        while (DSPCheckMailToDSP() != 0);
+    }
+    else
+    {
+        DSPSendMailToDSP (next-&gt;dsp_resume_vector);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP ((u32)next-&gt;dram_mmem_addr);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (next-&gt;dram_length);
+        while (DSPCheckMailToDSP() != 0);
+        DSPSendMailToDSP (next-&gt;dram_addr);
+        while (DSPCheckMailToDSP() != 0);
+    }
+}
+
+void
+__DSP_boot_task (DSPTaskInfo* task)
+{
+    volatile u32 mail;
+
+    ASSERTMSGLINE (0x275, task != NULL, &quot;__DSP_boot_task(): NULL task!\n&quot;);
+    while (DSPCheckMailFromDSP() == 0);
+    mail = DSPReadMailFromDSP();
+    ASSERTMSGLINEV (0x27B,
+                    mail == 0x8071FEED,
+                    &quot;__DSP_boot_task(): Failed to sync DSP on boot! (0x%08X)\n&quot;,
+                    mail);
+    DSPSendMailToDSP (0x80F3A001);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP ((u32)task-&gt;iram_mmem_addr);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (0x80F3C002);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (task-&gt;iram_addr &amp; 0xFFFF);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (0x80F3A002);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (task-&gt;iram_length);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (0x80F3B002);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (0);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (0x80F3D001);
+    while (DSPCheckMailToDSP() != 0);
+    DSPSendMailToDSP (task-&gt;dsp_init_vector);
+    while (DSPCheckMailToDSP() != 0);
+    __DSP_debug_printf (&quot;DSP is booting task: 0x%08X\n&quot;, (u32)task);
+    __DSP_debug_printf (&quot;__DSP_boot_task()  : IRAM MMEM ADDR: 0x%08X\n&quot;,
+                        (u32)task-&gt;iram_mmem_addr);
+    __DSP_debug_printf (&quot;__DSP_boot_task()  : IRAM DSP ADDR : 0x%08X\n&quot;, task-&gt;iram_addr);
+    __DSP_debug_printf (&quot;__DSP_boot_task()  : IRAM LENGTH   : 0x%08X\n&quot;, task-&gt;iram_length);
+    __DSP_debug_printf (&quot;__DSP_boot_task()  : DRAM MMEM ADDR: 0x%08X\n&quot;, task-&gt;dram_length);
+    __DSP_debug_printf (&quot;__DSP_boot_task()  : Start Vector  : 0x%08X\n&quot;, task-&gt;dsp_init_vector);
+}
+
+void
+__DSP_insert_task (DSPTaskInfo* task)
+{
+    DSPTaskInfo* temp;
+
+    if (__DSP_first_task == NULL)
+    {
+        __DSP_curr_task  = task;
+        __DSP_first_task = __DSP_last_task = task;
+        task-&gt;next = task-&gt;prev = NULL;
+        return;
+    }
+    temp = __DSP_first_task;
+    while (temp != NULL)
+    {
+        if (task-&gt;priority &lt; temp-&gt;priority)
+        {
+            task-&gt;prev = temp-&gt;prev;
+            temp-&gt;prev = task;
+            task-&gt;next = temp;
+            if (task-&gt;prev == NULL)
+            {
+                __DSP_first_task = task;
+            }
+            else
+            {
+                task-&gt;prev-&gt;next = task;
+            }
+            break;
+        }
+        temp = temp-&gt;next;
+    }
+    if (temp == NULL)
+    {
+        __DSP_last_task-&gt;next = task;
+        task-&gt;next            = NULL;
+        task-&gt;prev            = __DSP_last_task;
+        __DSP_last_task       = task;
+    }
+}
+
+void
+__DSP_add_task (DSPTaskInfo* task)
+{
+    ASSERTMSGLINE (0x2FE, task != NULL, &quot;__DSP_add_task(): Why are you adding a NULL task?\n&quot;);
+    if (__DSP_last_task == NULL)
+    {
+        __DSP_curr_task  = task;
+        __DSP_last_task  = task;
+        __DSP_first_task = task;
+        task-&gt;next = task-&gt;prev = NULL;
+    }
+    else
+    {
+        __DSP_last_task-&gt;next = task;
+        task-&gt;next            = NULL;
+        task-&gt;prev            = __DSP_last_task;
+        __DSP_last_task       = task;
+    }
+    task-&gt;state = 0;
+    __DSP_debug_printf (&quot;__DSP_add_task() : Added task    : 0x%08X\n&quot;, (u32)task);
+}
+
+void
+__DSP_remove_task (DSPTaskInfo* task)
+{
+    ASSERTMSGLINE (0x328, task != NULL, &quot;__DSP_remove_task(): NULL task! Why? WHY?!?!\n&quot;);
+    task-&gt;flags = 0;
+    task-&gt;state = 3;
+    if (__DSP_first_task == task)
+    {
+        if (task-&gt;next != NULL)
+        {
+            __DSP_first_task = task-&gt;next;
+            task-&gt;next-&gt;prev = NULL;
+        }
+        else
+        {
+            __DSP_first_task = __DSP_last_task = __DSP_curr_task = NULL;
+        }
+        return;
+    }
+    if (__DSP_last_task == task)
+    {
+        __DSP_last_task  = task-&gt;prev;
+        task-&gt;prev-&gt;next = NULL;
+        __DSP_curr_task  = __DSP_first_task;
+        return;
+    }
+    __DSP_curr_task  = task-&gt;next;
+    task-&gt;prev-&gt;next = task-&gt;next;
+    task-&gt;next-&gt;prev = task-&gt;prev;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

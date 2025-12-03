@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="arith_8h" kind="file" language="C++">
+    <compoundname>arith.h</compoundname>
+    <includes refid="ansi__parms_8h" local="no">ansi_parms.h</includes>
+    <includes refid="div__t_8h" local="no">div_t.h</includes>
+    <includedby refid="arith_8c" local="yes">arith.c</includedby>
+    <includedby refid="time_8c" local="yes">time.c</includedby>
+    <includedby refid="wtime_8c" local="no">wtime.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>arith.h</label>
+        <link refid="arith_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>div_t.h</label>
+        <link refid="div__t_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>arith.h</label>
+        <link refid="arith_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>arith.c</label>
+        <link refid="arith_8c"/>
+      </node>
+      <node id="3">
+        <label>time.c</label>
+        <link refid="time_8c"/>
+      </node>
+      <node id="4">
+        <label>wtime.c</label>
+        <link refid="wtime_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="arith_8h_1a2d9217e6617ed18007c8076ff8947003" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __add</definition>
+        <argsstring>(int *x, int y)</argsstring>
+        <name>__add</name>
+        <param>
+          <type>int *</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" line="30" column="4" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/arith.c" bodystart="169" bodyend="185" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" declline="30" declcolumn="4"/>
+        <referencedby refid="time_8c_1ad8639238727431b7d7a158c46b06a16c" compoundref="time_8c" startline="120" endline="129">adjust</referencedby>
+        <referencedby refid="wtime_8c_1ad8639238727431b7d7a158c46b06a16c" compoundref="wtime_8c" startline="126" endline="135">adjust</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="arith_8h_1a569c7802fb546556ecc167c1bcac0f7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __ladd</definition>
+        <argsstring>(long *x, long y)</argsstring>
+        <name>__ladd</name>
+        <param>
+          <type>long *</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" line="31" column="4" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/arith.c" bodystart="187" bodyend="203" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" declline="31" declcolumn="4"/>
+        <referencedby refid="time_8c_1ad34e052772efcc8ddb5653041447e228" compoundref="time_8c" startline="226" endline="293">__tm2time</referencedby>
+        <referencedby refid="wtime_8c_1ad34e052772efcc8ddb5653041447e228" compoundref="wtime_8c" startline="233" endline="305">__tm2time</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="arith_8h_1a8622fdfcc2e5f65e9569bca3fcb1ea1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __mul</definition>
+        <argsstring>(int *x, int y)</argsstring>
+        <name>__mul</name>
+        <param>
+          <type>int *</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" line="36" column="4" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/arith.c" bodystart="226" bodyend="242" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" declline="36" declcolumn="4"/>
+      </memberdef>
+      <memberdef kind="function" id="arith_8h_1a22242fa4f76bb80491cb3407ff6ec201" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __lmul</definition>
+        <argsstring>(long *x, long y)</argsstring>
+        <name>__lmul</name>
+        <param>
+          <type>long *</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" line="37" column="4" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/arith.c" bodystart="244" bodyend="260" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" declline="37" declcolumn="4"/>
+        <referencedby refid="time_8c_1ad34e052772efcc8ddb5653041447e228" compoundref="time_8c" startline="226" endline="293">__tm2time</referencedby>
+        <referencedby refid="wtime_8c_1ad34e052772efcc8ddb5653041447e228" compoundref="wtime_8c" startline="233" endline="305">__tm2time</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="arith_8h_1ad1425e840df9ce9297f23fd8198c6fc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdiv__t" kindref="compound">div_t</ref></type>
+        <definition>div_t __div</definition>
+        <argsstring>(int x, int y)</argsstring>
+        <name>__div</name>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" line="42" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/arith.c" bodystart="283" bodyend="318" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" declline="42" declcolumn="6"/>
+        <references refid="structdiv__t_1a0b9dda2884048daa68ca4aaa12b17b9a" compoundref="div__t_8h" startline="33">div_t::quot</references>
+        <references refid="structdiv__t_1ac64389de252de53eda8b4f8dbb7c623f" compoundref="div__t_8h" startline="34">div_t::rem</references>
+        <referencedby refid="time_8c_1ad8639238727431b7d7a158c46b06a16c" compoundref="time_8c" startline="120" endline="129">adjust</referencedby>
+        <referencedby refid="wtime_8c_1ad8639238727431b7d7a158c46b06a16c" compoundref="wtime_8c" startline="126" endline="135">adjust</referencedby>
+        <referencedby refid="time_8c_1a4472eb898ecd198c9afff695f9ae9637" compoundref="time_8c" startline="74" endline="113">leap_days</referencedby>
+        <referencedby refid="wtime_8c_1a4472eb898ecd198c9afff695f9ae9637" compoundref="wtime_8c" startline="80" endline="119">leap_days</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="arith_8h_1a514a2c525f925f2b2d06a461856ec3c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structldiv__t" kindref="compound">ldiv_t</ref></type>
+        <definition>ldiv_t __ldiv</definition>
+        <argsstring>(long x, long y)</argsstring>
+        <name>__ldiv</name>
+        <param>
+          <type>long</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" line="43" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/arith.c" bodystart="320" bodyend="355" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" declline="43" declcolumn="7"/>
+        <references refid="structldiv__t_1a73efd59c176304c327cb4214d0e5e5c9" compoundref="div__t_8h" startline="38">ldiv_t::quot</references>
+        <references refid="structldiv__t_1a0f217ff62b8640aa945ec84d6d0bd000" compoundref="div__t_8h" startline="39">ldiv_t::rem</references>
+      </memberdef>
+      <memberdef kind="function" id="arith_8h_1a532a5d57316e08d5d56a989fb67273bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __mod</definition>
+        <argsstring>(int x, int y)</argsstring>
+        <name>__mod</name>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" line="49" column="4" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/arith.c" bodystart="397" bodyend="428" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" declline="49" declcolumn="4"/>
+        <referencedby refid="time_8c_1ad94e68ed5337650188a0b037c7936e20" compoundref="time_8c" startline="63" endline="66">__leap_year</referencedby>
+        <referencedby refid="wtime_8c_1a29240070dffe8017714720f34f30ca19" compoundref="wtime_8c" startline="69" endline="72">leap_year</referencedby>
+        <referencedby refid="time_8c_1a167f25aaf13d95c6278f8abcf4afa4d1" compoundref="time_8c" startline="504" endline="514">week_num</referencedby>
+        <referencedby refid="wtime_8c_1a167f25aaf13d95c6278f8abcf4afa4d1" compoundref="wtime_8c" startline="556" endline="566">week_num</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="arith_8h_1a240b281eb0f0a7ff1080bf69adbf2d03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long</type>
+        <definition>long __lmod</definition>
+        <argsstring>(long x, long y)</argsstring>
+        <name>__lmod</name>
+        <param>
+          <type>long</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" line="50" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/arith.c" bodystart="430" bodyend="461" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h" declline="50" declcolumn="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/01/22<sp/>23:40:30<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.7<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>arith.h</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__arith__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__arith__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ansi__parms_8h" kindref="compound">ansi_parms.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="div__t_8h" kindref="compound">div_t.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=native</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>expanded<sp/>__extern<sp/>macro*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="arith_8h_1a2d9217e6617ed18007c8076ff8947003" kindref="member">__add</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>*<sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>y);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="arith_8h_1a569c7802fb546556ecc167c1bcac0f7d" kindref="member">__ladd</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>*<sp/>x,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MSL_LONGLONG_SUPPORT__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981023<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>__lladd(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>*<sp/>x,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/>__MSL_LONGLONG_SUPPORT__<sp/><sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981023<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="arith_8h_1a8622fdfcc2e5f65e9569bca3fcb1ea1f" kindref="member">__mul</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>*<sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>y);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="arith_8h_1a22242fa4f76bb80491cb3407ff6ec201" kindref="member">__lmul</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>*<sp/>x,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MSL_LONGLONG_SUPPORT__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981023<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>__llmul(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>*<sp/>x,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/>__MSL_LONGLONG_SUPPORT__<sp/><sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981023<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><ref refid="structdiv__t" kindref="compound">div_t</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="arith_8h_1ad1425e840df9ce9297f23fd8198c6fc4" kindref="member">__div</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>y);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><ref refid="structldiv__t" kindref="compound">ldiv_t</ref><sp/><sp/><ref refid="arith_8h_1a514a2c525f925f2b2d06a461856ec3c6" kindref="member">__ldiv</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MSL_LONGLONG_SUPPORT__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981023<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">lldiv_t<sp/>__lldiv(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/>__MSL_LONGLONG_SUPPORT__<sp/><sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981023<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__MOTO__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="arith_8h_1a532a5d57316e08d5d56a989fb67273bc" kindref="member">__mod</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>y);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="arith_8h_1a240b281eb0f0a7ff1080bf69adbf2d03" kindref="member">__lmod</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MSL_LONGLONG_SUPPORT__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981023<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>__llmod(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/>__MSL_LONGLONG_SUPPORT__<sp/><sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981023<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>expanded<sp/>__extern<sp/>macro*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline lineno="67"><highlight class="comment">961221<sp/>bkoz<sp/>lien<sp/>30<sp/>added<sp/>mmoss&apos;s<sp/>change</highlight></codeline>
+<codeline lineno="68"><highlight class="comment">hh<sp/>971206<sp/><sp/>expanded<sp/>__extern<sp/>macro</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>mm<sp/>981023<sp/>added<sp/>wrappers<sp/>round<sp/>long<sp/>long<sp/>support</highlight></codeline>
+<codeline lineno="70"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/arith.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="____ppc__eabi__linker_8i" kind="file" language="C++">
+    <compoundname>__ppc_eabi_linker.i</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">;/***************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;FILE</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>__ppc_eabi_linker.h</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;DESCRIPTION</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>Linker-generated<sp/>symbols<sp/>for<sp/>sections<sp/>as<sp/>defined<sp/>for<sp/>use<sp/>in<sp/>[EABI95].</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;-------------------------------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="normal">;ELF<sp/>sect.<sp/><sp/><sp/><sp/><sp/><sp/>mem<sp/>ini<sp/>siz<sp/>ROM<sp/>addr<sp/>symbol<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RAM<sp/>(virtual)<sp/>addr<sp/><sp/>RAM<sp/>(virtual)<sp/>end</highlight></codeline>
+<codeline><highlight class="normal">;---------------<sp/>---<sp/>---<sp/><sp/><sp/><sp/>---<sp/>-----------------------<sp/>-------------------<sp/>-------------------</highlight></codeline>
+<codeline><highlight class="normal">;.text<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RX<sp/><sp/><sp/>Y<sp/><sp/>N/A<sp/>_f_text_rom<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_text<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_e_text</highlight></codeline>
+<codeline><highlight class="normal">;.data<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RW<sp/><sp/><sp/>Y<sp/><sp/>any<sp/>_f_data_rom<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_data<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_e_data</highlight></codeline>
+<codeline><highlight class="normal">;.rodata<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R<sp/><sp/><sp/><sp/>Y<sp/><sp/>any<sp/>_f_rodata_rom<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_rodata<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_e_rodata</highlight></codeline>
+<codeline><highlight class="normal">;.bss<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RW<sp/><sp/><sp/>0<sp/><sp/>any<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_bss<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_e_bss</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;.sdata<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RW<sp/><sp/><sp/>Y<sp/><sp/>&lt;=8<sp/>_f_sdata_rom<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_sdata<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_e_sdata</highlight></codeline>
+<codeline><highlight class="normal">;.sbss<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RW<sp/><sp/><sp/>0<sp/><sp/>&lt;=8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_sbss<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_e_sbss</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;.sdata2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RW*<sp/><sp/>Y<sp/><sp/>&lt;=8<sp/>_f_sdata2_rom<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_sdata2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_e_sdata2</highlight></codeline>
+<codeline><highlight class="normal">;.sbss2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RW<sp/><sp/><sp/>0<sp/><sp/>&lt;=8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_sbss2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_e_sbss2</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;.PPC.EMB.sdata0<sp/>RW<sp/><sp/>Y<sp/><sp/>&lt;=8<sp/>_f_PPC_EMB_sdata0_rom<sp/><sp/><sp/>_f_PPC_EMB_sdata0<sp/><sp/><sp/>_e_PPC_EMB_sdata0</highlight></codeline>
+<codeline><highlight class="normal">;.PPC.EMB.sbss0<sp/>RW<sp/><sp/><sp/>0<sp/><sp/>&lt;=8<sp/>N/A<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_f_PPC_EMB_sbss0<sp/><sp/><sp/><sp/>_e_PPC_EMB_sbss0</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;(stack)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RW<sp/><sp/><sp/>N<sp/><sp/>N/A<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_stack_addr<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_stack_end</highlight></codeline>
+<codeline><highlight class="normal">;(heap)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RW<sp/><sp/><sp/>N<sp/><sp/>N/A<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_heap_addr<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_heap_end</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;-------------------------------------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="normal">;ELF<sp/>sect.<sp/><sp/>Name<sp/>of<sp/>the<sp/>ELF<sp/>section</highlight></codeline>
+<codeline><highlight class="normal">;mem<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Memory<sp/>access:<sp/>R<sp/>=<sp/>R/O,<sp/>RW<sp/>=<sp/>Read/Write,<sp/>RW*<sp/>=<sp/>intended<sp/>R/O,<sp/>but<sp/>RW,<sp/>RX<sp/>=<sp/>Execute</highlight></codeline>
+<codeline><highlight class="normal">;siz<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Datum<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">;ini<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Initialized?<sp/>0<sp/>=<sp/>filled<sp/>with<sp/>zeros,<sp/>Y<sp/>=<sp/>init&apos;ed,<sp/>N<sp/>=<sp/>not<sp/>init&apos;ed</highlight></codeline>
+<codeline><highlight class="normal">;end<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Virtual<sp/>address<sp/>following<sp/>section</highlight></codeline>
+<codeline><highlight class="normal">;-------------------------------------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;The<sp/>symbols<sp/>above<sp/>are<sp/>automatically<sp/>generated<sp/>by<sp/>the<sp/>linker<sp/>based<sp/>on<sp/>the<sp/>spelling<sp/>of<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">;section<sp/>name.<sp/><sp/>Symbols<sp/>not<sp/>above,<sp/>i.e.,<sp/>symbols<sp/>for<sp/>user<sp/>defined<sp/>sections<sp/>follow<sp/>the<sp/>same</highlight></codeline>
+<codeline><highlight class="normal">;naming<sp/>convention.</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;In<sp/>all<sp/>cases,<sp/>any<sp/>&apos;.&apos;<sp/>in<sp/>the<sp/>name<sp/>is<sp/>replaced<sp/>with<sp/>a<sp/>&apos;_&apos;.<sp/><sp/>Addresses<sp/>begin<sp/>with<sp/>a<sp/>&apos;_f&apos;,<sp/>address</highlight></codeline>
+<codeline><highlight class="normal">;after<sp/>last<sp/>byte<sp/>in<sp/>section<sp/>begine<sp/>with<sp/>&apos;_e&apos;<sp/>and<sp/>rom<sp/>addresses<sp/>end<sp/>in<sp/>a<sp/>&apos;_rom&apos;.<sp/><sp/>The<sp/>linker<sp/>command<sp/></highlight></codeline>
+<codeline><highlight class="normal">;file<sp/>allows<sp/>you<sp/>to<sp/>define<sp/>your<sp/>own<sp/>symbols<sp/>and<sp/>it<sp/>allows<sp/>you<sp/>to<sp/>create<sp/>an<sp/>alias<sp/>to<sp/>the<sp/></highlight></codeline>
+<codeline><highlight class="normal">;automatically<sp/>generated<sp/>symbols.</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;For<sp/>example:</highlight></codeline>
+<codeline><highlight class="normal">;ftext<sp/>=<sp/>ADDR(.text);<sp/><sp/><sp/>//<sp/>define<sp/>ftext</highlight></codeline>
+<codeline><highlight class="normal">;etext<sp/>=<sp/>_e_text;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>create<sp/>an<sp/>alias</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;Calculate<sp/>the<sp/>size<sp/>of<sp/>the<sp/>section<sp/>by<sp/>subtracting<sp/>the<sp/>begin<sp/>RAM<sp/>address<sp/>from<sp/>the<sp/>end<sp/>RAM</highlight></codeline>
+<codeline><highlight class="normal">;address.</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;REFERENCES</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>[EABI95]<sp/><sp/><sp/><sp/>PowerPC<sp/>Embedded<sp/>Application<sp/>Binary<sp/>Interface,</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>32-bit<sp/>Implementation.<sp/><sp/>Version<sp/>1.0,<sp/>Initial<sp/>Release,</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1/10/95.<sp/><sp/>Stephen<sp/>Sobek,<sp/>Motorola,<sp/>and<sp/>Kevin<sp/>Burke,<sp/>IBM.</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;NOTES</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;COPYRIGHT<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>(c)<sp/>1996-7<sp/>Metrowerks<sp/>Corporation</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;HISTORY</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>97<sp/>APR<sp/>16<sp/>LLY<sp/><sp/><sp/>Moved<sp/>from<sp/>__start.c,<sp/>new<sp/>names<sp/>for<sp/>4/1/97<sp/>PPC<sp/>EABI<sp/>tools.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>97<sp/>JUN<sp/>8<sp/>MEA<sp/><sp/><sp/><sp/>New<sp/>names<sp/>for<sp/>6/8/97<sp/>PPC<sp/>EABI<sp/>tools<sp/>(C++<sp/>exceptions).</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>97<sp/>JULY<sp/>1<sp/>JFH<sp/><sp/><sp/>created<sp/>asm<sp/>version<sp/>.i<sp/>from<sp/>.h</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>97<sp/>SEP<sp/>11<sp/>MEA<sp/><sp/><sp/>_heap_size<sp/>and<sp/>_stack_size<sp/>are<sp/>now<sp/>in<sp/>bytes.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>97<sp/>DEC<sp/><sp/>7<sp/>MEA<sp/><sp/><sp/>linker<sp/>generated<sp/>symbols<sp/>are<sp/>now<sp/>forced<sp/>into<sp/>the<sp/>.init<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Created<sp/>new<sp/>symbols<sp/>_bss_init_info<sp/>and<sp/>_rom_copy_info.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>98<sp/>JAN<sp/>14<sp/>MEA<sp/><sp/><sp/>New<sp/>spelling<sp/>for<sp/>symbols.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>98<sp/>JAN<sp/>20<sp/>MEA<sp/><sp/><sp/>Removed<sp/>size<sp/>symbols<sp/>and<sp/>added<sp/>end<sp/>symbols<sp/>to<sp/>make<sp/>them</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>easier<sp/>to<sp/>access<sp/>from<sp/>C.</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;*/</highlight></codeline>
+<codeline><highlight class="normal">;/***************************************************************************/</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>Stack<sp/>and<sp/>heap<sp/>pointers<sp/>and<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_stack_addr;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>starting<sp/>address<sp/>for<sp/>stack<sp/>pointer<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_stack_end;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>of<sp/>stack<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_heap_addr;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>starting<sp/>address<sp/>for<sp/>heap<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_heap_end;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>of<sp/>heap<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>extabindex<sp/>--<sp/>read<sp/>only<sp/>C++<sp/>Exception<sp/>Tables</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_fextabindex_rom;<sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>extabindex<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_fextabindex;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>extabindex<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_eextabindex;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>extabindex<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>Small<sp/>Data<sp/>pointers<sp/>(PPC<sp/>EABI)</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>_SDA_BASE_;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>Small<sp/>Data<sp/>Area<sp/>(&lt;=8<sp/>bytes)<sp/>base<sp/>addr<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>used<sp/>for<sp/>.sdata,<sp/>.sbss<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_SDA2_BASE_;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>Small<sp/>Data<sp/>Area<sp/>2<sp/>(&lt;=8<sp/>bytes),<sp/>base<sp/>addr<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>used<sp/>for<sp/>.sdata2,<sp/>.sbss2<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>Special<sp/>symbol<sp/>for<sp/>copying<sp/>sections<sp/>from<sp/>rom<sp/>to<sp/>ram:<sp/>_data_copy_info</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>if<sp/>size<sp/>field<sp/>is<sp/>zero,<sp/>there<sp/>are<sp/>no<sp/>more<sp/>valid<sp/>sections</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>see<sp/>__init_data<sp/>for<sp/>example.<sp/><sp/>_rom_copy_info<sp/>is<sp/>a<sp/>true<sp/>C<sp/>variable.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;typedef<sp/>struct<sp/>__rom_copy_info<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>char<sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rom;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>address<sp/>in<sp/>rom</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>char<sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>address<sp/>in<sp/>ram<sp/>(executing<sp/>address)</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>unsigned<sp/>int<sp/><sp/><sp/><sp/>size;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>size<sp/>of<sp/>section</highlight></codeline>
+<codeline><highlight class="normal">;}<sp/>__rom_copy_info;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>_rom_copy_info;<sp/>/*<sp/>(<sp/>__rom_copy_info<sp/>[]<sp/>)<sp/>An<sp/>array<sp/>of<sp/>all<sp/>initialized<sp/>(data,<sp/>text<sp/>or<sp/>mixed)<sp/>sections<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>Special<sp/>symbol<sp/>for<sp/>initializing<sp/>bss<sp/>type<sp/>sections:<sp/>_bss_init_info</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>if<sp/>size<sp/>field<sp/>is<sp/>zero,<sp/>there<sp/>are<sp/>no<sp/>more<sp/>valid<sp/>sections</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>see<sp/>__init_data<sp/>for<sp/>example.<sp/><sp/>_bss_init_info<sp/>is<sp/>a<sp/>true<sp/>C<sp/>variable.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;typedef<sp/>struct<sp/>__bss_init_info<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>char<sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>address<sp/>in<sp/>ram<sp/>(executing<sp/>address)</highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/><sp/>unsigned<sp/>int<sp/><sp/><sp/><sp/>size;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>size<sp/>of<sp/>section</highlight></codeline>
+<codeline><highlight class="normal">;}<sp/>__bss_init_info;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>_bss_init_info;<sp/>/*<sp/>(<sp/>__bss_init_info<sp/>[]<sp/>)<sp/>An<sp/>array<sp/>of<sp/>all<sp/>uninitialized<sp/>data<sp/>sections<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*<sp/></highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>If<sp/>you<sp/>use<sp/>the<sp/>CodeWarrior<sp/>start-up<sp/>routines<sp/>in<sp/>__start.c<sp/>and<sp/>__ppc_eabi_init.c,</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>the<sp/>above<sp/>are<sp/>the<sp/>only<sp/>linker<sp/>generated<sp/>symbols<sp/>you<sp/>will<sp/>need.<sp/><sp/>The<sp/>linker,<sp/>however</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>will<sp/>still<sp/>automatically<sp/>generate<sp/>symbols<sp/>for<sp/>each<sp/>output<sp/>section<sp/>in<sp/>your<sp/>project.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>The<sp/>following<sp/>are<sp/>declarations<sp/>for<sp/>the<sp/>standard<sp/>sections.</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.init<sp/>--<sp/>executable<sp/>PowerPC<sp/>EABI<sp/>code</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_init_rom;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>.init<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_init;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.init<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_init;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.init<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.text<sp/>--<sp/>executable<sp/>PowerPC<sp/>EABI<sp/>code</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_text_rom;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>.text<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_text;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.text<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_text;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.text<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.rodata<sp/>--<sp/>read<sp/>only<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_rodata_rom;<sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>.rodata<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_rodata;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.rodata<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_rodata;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.rodata<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>extab<sp/>--<sp/>read<sp/>only<sp/>C++<sp/>Exception<sp/>Tables</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_fextab_rom;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>extab<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_fextab;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>extab<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_eextab;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>extab<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.data<sp/>--<sp/>read/write<sp/>initialized<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_data_rom;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>.data<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_data;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.data<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_data;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.data<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.bss<sp/>--<sp/>read/write<sp/>initialized<sp/>(zeroed)<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_bss;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.bss<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_bss;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.bss<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.sdata<sp/>--<sp/>small<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_sdata_rom;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>.sdata<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_sdata;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.sdata<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_sdata;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.sdata<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.sbss<sp/>--<sp/>small<sp/>initialized<sp/>(zeroed)<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_sbss;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.sbss<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_sbss;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.sbss<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.sdata2<sp/>--<sp/>PPC<sp/>embedded<sp/>small<sp/>initlialized<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_sdata2_rom;<sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>.sdata2<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_sdata2;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.sdata2<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_sdata2;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.sdata2<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.sbss2<sp/>--<sp/>PPC<sp/>embedded<sp/>small<sp/>initialized<sp/>(zeroed)<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_sbss2;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.sbss2<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_sbss2;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.sbss2<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.PPC.EMB.sdata0<sp/>--<sp/>PPC<sp/>embedded<sp/>small<sp/>data<sp/>centered<sp/>around<sp/>addr.<sp/>zero</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_PPC_EMB_sdata0_rom;<sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>const<sp/>char<sp/>[]<sp/>)<sp/>.PPC.EMB.sdata0<sp/>source<sp/>(ROM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_PPC_EMB_sdata0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.PPC.EMB.sdata0<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_PPC_EMB_sdata0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.PPC.EMB.sdata0<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;/*</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*<sp/>.PPC.EMB.sbss0<sp/>--<sp/>PPC<sp/>embedded<sp/>small<sp/>initlialized<sp/>(zeroed)<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>_f_PPC_EMB_sbss0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.PPC.EMB.sbss0<sp/>dest.<sp/>(RAM)<sp/>address<sp/>at<sp/>beginning<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">.extern<sp/>_e_PPC_EMB_sbss0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;/*<sp/>(<sp/>char<sp/>[]<sp/>)<sp/>.PPC.EMB.sbss0<sp/>dest.<sp/>(RAM)<sp/>address<sp/>after<sp/>end<sp/>byte<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/__ppc_eabi_linker.i"/>
+  </compounddef>
+</doxygen>

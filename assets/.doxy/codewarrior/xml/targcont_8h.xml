@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="targcont_8h" kind="file" language="C++">
+    <compoundname>targcont.h</compoundname>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <includedby refid="mainloop_8c" local="yes">mainloop.c</includedby>
+    <includedby refid="msghndlr_8c" local="yes">msghndlr.c</includedby>
+    <includedby refid="targcont_8c" local="yes">targcont.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>targcont.h</label>
+        <link refid="targcont_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>targcont.h</label>
+        <link refid="targcont_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>targcont.c</label>
+        <link refid="targcont_8c"/>
+      </node>
+      <node id="2">
+        <label>mainloop.c</label>
+        <link refid="mainloop_8c"/>
+      </node>
+      <node id="3">
+        <label>msghndlr.c</label>
+        <link refid="msghndlr_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetContinue</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKTargetContinue</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/targcont.h" line="10" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/targcont.c" bodystart="5" bodyend="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/targcont.h" declline="10" declcolumn="9"/>
+        <references refid="dolphin__trk__glue_8h_1af747d9e6af2577295e74cee108a3728f" compoundref="dolphin__trk__glue_8c" startline="112" endline="112">ReserveEXI2Port</references>
+        <references refid="targimpl_8h_1a2d4bf41a0ccd928790a518840f5a5676" compoundref="targimpl_8c" startline="728" endline="783">TRKSwapAndGo</references>
+        <references refid="targimpl_8h_1aa49f1d6946b42a48d3d594b604e7c2ec" compoundref="targimpl_8c" startline="1015" endline="1018">TRKTargetSetStopped</references>
+        <references refid="dolphin__trk__glue_8h_1ae403d9818a932b884dee1229d6a8d1d9" compoundref="dolphin__trk__glue_8c" startline="114" endline="114">UnreserveEXI2Port</references>
+        <referencedby refid="msghndlr_8h_1ad1159136e96ee776a183c0236adfced2" compoundref="msghndlr_8c" startline="563" endline="578">TRKDoContinue</referencedby>
+        <referencedby refid="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" compoundref="mainloop_8c" startline="15" endline="20">TRKIdle</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>OS_DOLPHIN_TARGCONT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OS_DOLPHIN_TARGCONT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" kindref="member">TRKTargetContinue</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>OS_DOLPHIN_TARGCONT_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Os/dolphin/targcont.h"/>
+  </compounddef>
+</doxygen>

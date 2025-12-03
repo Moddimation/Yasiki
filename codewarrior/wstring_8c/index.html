@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File wstring.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-wstringc">File wstring.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>wstring.c</strong></a></p>
+<p><a href="../wstring_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;cstring&gt;</code></li>
+<li><code>#include &lt;ansi_parms.h&gt;</code></li>
+<li><code>#include &lt;cstdio&gt;</code></li>
+<li><code>#include &lt;cstddef&gt;</code></li>
+<li><code>#include &lt;cerrno&gt;</code></li>
+<li><code>#include &lt;wchar.h&gt;</code></li>
+<li><code>#include &lt;ThreadLocalData.h&gt;</code></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-wchar_map"><strong>wchar_map</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-wcscat"><strong>wcscat</strong></a> (<a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * dst, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * src) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-wcschr"><strong>wcschr</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> chr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-wcscmp"><strong>wcscmp</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str1, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str2) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-wcscoll"><strong>wcscoll</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str1, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str2) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *()</td>
+<td style="text-align: left;"><a href="#function-wcscpy"><strong>wcscpy</strong></a> (<a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * dst, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * src) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-wcscspn"><strong>wcscspn</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * set) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a>()</td>
+<td style="text-align: left;"><a href="#function-wcslen"><strong>wcslen</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-wcsncat"><strong>wcsncat</strong></a> (<a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * dst, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * src, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-wcsncmp"><strong>wcsncmp</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str1, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str2, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-wcsncpy"><strong>wcsncpy</strong></a> (<a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * dst, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * src, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-wcspbrk"><strong>wcspbrk</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * set) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-wcsrchr"><strong>wcsrchr</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str, <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> chr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-wcsspn"><strong>wcsspn</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * set) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-wcsstr"><strong>wcsstr</strong></a> (const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * pat) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-wcstok"><strong>wcstok</strong></a> (<a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * set) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-wcsxfrm"><strong>wcsxfrm</strong></a> (<a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str1, const <a href="../wchar__t_8h/#typedef-wchar_t"><strong>wchar_t</strong></a> * str2, <a href="../size__t_8h/#typedef-size_t"><strong>size_t</strong></a> n) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-set_wchar_map"><strong>set_wchar_map</strong></a> (map, ch) <code>map[ch&amp;gt;&amp;gt;3] \|= (1 &amp;lt;&amp;lt; (ch&amp;7))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-tst_wchar_map"><strong>tst_wchar_map</strong></a> (map, ch) <code>(map[ch&amp;gt;&amp;gt;3] &amp;  (1 &amp;lt;&amp;lt; (ch&amp;7)))</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-wchar_map">typedef wchar_map</h3>
+<pre><code class="language-C++">typedef wchar_t wchar_map[32];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-wcscat">function wcscat</h3>
+<pre><code class="language-C++">wchar_t * wcscat (
+    wchar_t * dst,
+    const wchar_t * src
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcschr">function wcschr</h3>
+<pre><code class="language-C++">wchar_t * wcschr (
+    const wchar_t * str,
+    const wchar_t chr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcscmp">function wcscmp</h3>
+<pre><code class="language-C++">int wcscmp (
+    const wchar_t * str1,
+    const wchar_t * str2
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcscoll">function wcscoll</h3>
+<pre><code class="language-C++">int wcscoll (
+    const wchar_t * str1,
+    const wchar_t * str2
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcscpy">function wcscpy</h3>
+<pre><code class="language-C++">wchar_t *() wcscpy (
+    wchar_t * dst,
+    const wchar_t * src
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcscspn">function wcscspn</h3>
+<pre><code class="language-C++">size_t wcscspn (
+    const wchar_t * str,
+    const wchar_t * set
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcslen">function wcslen</h3>
+<pre><code class="language-C++">size_t () wcslen (
+    const wchar_t * str
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcsncat">function wcsncat</h3>
+<pre><code class="language-C++">wchar_t * wcsncat (
+    wchar_t * dst,
+    const wchar_t * src,
+    size_t n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcsncmp">function wcsncmp</h3>
+<pre><code class="language-C++">int wcsncmp (
+    const wchar_t * str1,
+    const wchar_t * str2,
+    size_t n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcsncpy">function wcsncpy</h3>
+<pre><code class="language-C++">wchar_t * wcsncpy (
+    wchar_t * dst,
+    const wchar_t * src,
+    size_t n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcspbrk">function wcspbrk</h3>
+<pre><code class="language-C++">wchar_t * wcspbrk (
+    const wchar_t * str,
+    const wchar_t * set
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcsrchr">function wcsrchr</h3>
+<pre><code class="language-C++">wchar_t * wcsrchr (
+    const wchar_t * str,
+    wchar_t chr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcsspn">function wcsspn</h3>
+<pre><code class="language-C++">size_t wcsspn (
+    const wchar_t * str,
+    const wchar_t * set
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcsstr">function wcsstr</h3>
+<pre><code class="language-C++">wchar_t * wcsstr (
+    const wchar_t * str,
+    const wchar_t * pat
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcstok">function wcstok</h3>
+<pre><code class="language-C++">wchar_t * wcstok (
+    wchar_t * str,
+    const wchar_t * set
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-wcsxfrm">function wcsxfrm</h3>
+<pre><code class="language-C++">size_t wcsxfrm (
+    wchar_t * str1,
+    const wchar_t * str2,
+    size_t n
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-set_wchar_map">define set_wchar_map</h3>
+<pre><code class="language-C++">#define set_wchar_map (
+    map,
+    ch
+) `map[ch&gt;&gt;3] |= (1 &lt;&lt; (ch&amp;7))`
+</code></pre>
+<hr>
+
+<h3 id="define-tst_wchar_map">define tst_wchar_map</h3>
+<pre><code class="language-C++">#define tst_wchar_map (
+    map,
+    ch
+) `(map[ch&gt;&gt;3] &amp;  (1 &lt;&lt; (ch&amp;7)))`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wstring.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

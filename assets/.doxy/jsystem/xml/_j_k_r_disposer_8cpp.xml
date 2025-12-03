@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_j_k_r_disposer_8cpp" kind="file" language="C++">
+    <compoundname>JKRDisposer.cpp</compoundname>
+    <includes local="no">dolphin.h</includes>
+    <includes local="no">macros.h</includes>
+    <includes refid="_j_k_r_disposer_8h" local="no">JKRDisposer.h</includes>
+    <includes refid="_j_k_r_heap_8h" local="no">JKRHeap.h</includes>
+    <includes local="no">stddef.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>JKRDisposer.h</label>
+        <link refid="_j_k_r_disposer_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>JKRHeap.h</label>
+        <link refid="_j_k_r_heap_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>JKRDisposer.cpp</label>
+        <link refid="_j_k_r_disposer_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>JSUList.h</label>
+        <link refid="_j_s_u_list_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>JUTTypes.h</label>
+        <link refid="_j_u_t_types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin.h</label>
+      </node>
+      <node id="11">
+        <label>dolphin/os.h</label>
+      </node>
+      <node id="3">
+        <label>macros.h</label>
+      </node>
+      <node id="8">
+        <label>new</label>
+      </node>
+      <node id="9">
+        <label>size_t.h</label>
+      </node>
+      <node id="12">
+        <label>stddef.h</label>
+      </node>
+      <node id="7">
+        <label>types.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;dolphin.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;macros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_j_k_r_disposer_8h" kindref="compound">JKRDisposer.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_j_k_r_heap_8h" kindref="compound">JKRHeap.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="class_j_k_r_disposer_1ac5a1bf5e5a976af8c8f0114452590c22" refkind="member"><highlight class="normal"><ref refid="class_j_k_r_disposer_1ac5a1bf5e5a976af8c8f0114452590c22" kindref="member">JKRDisposer::JKRDisposer</ref><sp/>()</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>:<sp/>mHeapLink<sp/>(this)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" kindref="member">pHeapObj</ref><sp/>=<sp/><ref refid="class_j_k_r_heap_1a77de0a45ee9b249a2b4b9f1e5cd5acfc" kindref="member">JKRHeap::findFromRoot</ref><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" kindref="member">pHeapObj</ref><sp/>!=<sp/><ref refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" kindref="member">Nil</ref>)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" kindref="member">pHeapObj</ref>-&gt;<ref refid="class_j_k_r_heap_1aacd984b702e5fc47861c7f903f941826" kindref="member">appendDisposer</ref><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="class_j_k_r_disposer_1ace9ccd5e957de58c466c6a4e986721f0" refkind="member"><highlight class="normal"><ref refid="class_j_k_r_disposer_1ace9ccd5e957de58c466c6a4e986721f0" kindref="member">JKRDisposer::~JKRDisposer</ref><sp/>()</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" kindref="member">pHeapObj</ref><sp/>!=<sp/><ref refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" kindref="member">Nil</ref>)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" kindref="member">pHeapObj</ref>-&gt;<ref refid="class_j_k_r_heap_1a8172bbbcfd4cd8b47f0ce975a6ee499b" kindref="member">removeDisposer</ref><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/JSystem/System/JKernel/src/JKRDisposer.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File mem_funcs.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-mem_funcsc">File mem_funcs.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>mem_funcs.c</strong></a></p>
+<p><a href="../mem__funcs_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "mem_funcs.h"</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__copy_longs_aligned"><strong>__copy_longs_aligned</strong></a> (void * dst, const void * src, unsigned long n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__copy_longs_rev_aligned"><strong>__copy_longs_rev_aligned</strong></a> (void * dst, const void * src, unsigned long n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__copy_longs_rev_unaligned"><strong>__copy_longs_rev_unaligned</strong></a> (void * dst, const void * src, unsigned long n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__copy_longs_unaligned"><strong>__copy_longs_unaligned</strong></a> (void * dst, const void * src, unsigned long n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__copy_mem"><strong>__copy_mem</strong></a> (void * dst, const void * src, unsigned long n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__fill_mem"><strong>__fill_mem</strong></a> (void * dst, int val, unsigned long n) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__move_mem"><strong>__move_mem</strong></a> (void * dst, const void * src, unsigned long n) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cpd"><strong>cpd</strong></a>  <code>((unsigned char \*) dst)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cps"><strong>cps</strong></a>  <code>((unsigned char \*) src)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-deref_auto_inc"><strong>deref_auto_inc</strong></a> (p) <code>\*(p)++</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-lpd"><strong>lpd</strong></a>  <code>((unsigned long \*) dst)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-lps"><strong>lps</strong></a>  <code>((unsigned long \*) src)</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-__copy_longs_aligned">function __copy_longs_aligned</h3>
+<pre><code class="language-C++">void __copy_longs_aligned (
+    void * dst,
+    const void * src,
+    unsigned long n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__copy_longs_rev_aligned">function __copy_longs_rev_aligned</h3>
+<pre><code class="language-C++">void __copy_longs_rev_aligned (
+    void * dst,
+    const void * src,
+    unsigned long n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__copy_longs_rev_unaligned">function __copy_longs_rev_unaligned</h3>
+<pre><code class="language-C++">void __copy_longs_rev_unaligned (
+    void * dst,
+    const void * src,
+    unsigned long n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__copy_longs_unaligned">function __copy_longs_unaligned</h3>
+<pre><code class="language-C++">void __copy_longs_unaligned (
+    void * dst,
+    const void * src,
+    unsigned long n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__copy_mem">function __copy_mem</h3>
+<pre><code class="language-C++">void __copy_mem (
+    void * dst,
+    const void * src,
+    unsigned long n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__fill_mem">function __fill_mem</h3>
+<pre><code class="language-C++">void __fill_mem (
+    void * dst,
+    int val,
+    unsigned long n
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__move_mem">function __move_mem</h3>
+<pre><code class="language-C++">void __move_mem (
+    void * dst,
+    const void * src,
+    unsigned long n
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-cpd">define cpd</h3>
+<pre><code class="language-C++">#define cpd `((unsigned char *) dst)`
+</code></pre>
+<hr>
+
+<h3 id="define-cps">define cps</h3>
+<pre><code class="language-C++">#define cps `((unsigned char *) src)`
+</code></pre>
+<hr>
+
+<h3 id="define-deref_auto_inc">define deref_auto_inc</h3>
+<pre><code class="language-C++">#define deref_auto_inc (
+    p
+) `*(p)++`
+</code></pre>
+<hr>
+
+<h3 id="define-lpd">define lpd</h3>
+<pre><code class="language-C++">#define lpd `((unsigned long *) dst)`
+</code></pre>
+<hr>
+
+<h3 id="define-lps">define lps</h3>
+<pre><code class="language-C++">#define lps `((unsigned long *) src)`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

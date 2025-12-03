@@ -1,0 +1,958 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dsp__task_8c" kind="file" language="C++">
+    <compoundname>dsp_task.c</compoundname>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes refid="dsp__private_8h" local="yes">dsp_private.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>dolphin/dsp.h</label>
+        <link refid="dsp_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="31">
+        <label>dsp_private.h</label>
+        <link refid="dsp__private_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>dsp_task.c</label>
+        <link refid="dsp__task_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dsp__task_8c_1a59486e743bd380f452d3a4f6a394b025" prot="public" static="yes" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 t0</definition>
+        <argsstring></argsstring>
+        <name>t0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="7" column="12" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="7" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1aed9725a339d99fad947649f621e3a3d8" compoundref="_o_s_rtc_8c" startline="57" endline="80">__OSGetRTC</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp__task_8c_1a9db4e7172e8007dbb1c7c13b48454693" prot="public" static="yes" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 t1</definition>
+        <argsstring></argsstring>
+        <name>t1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="7" column="15" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="7" bodyend="-1"/>
+        <referencedby refid="ai_8c_1a26dda765da51e8c4faea6a7382ded8f7" compoundref="ai_8c" startline="423" endline="484">__AI_SRC_INIT</referencedby>
+        <referencedby refid="_o_s_private_8h_1aed9725a339d99fad947649f621e3a3d8" compoundref="_o_s_rtc_8c" startline="57" endline="80">__OSGetRTC</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp__task_8c_1aac07cf171c6cb737e84a9ffd6aa19395" prot="public" static="yes" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 t2</definition>
+        <argsstring></argsstring>
+        <name>t2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="7" column="18" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_first_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_first_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="9" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="9" bodyend="-1"/>
+        <referencedby refid="dsp__private_8h_1aa044bdc68d938b4e7fe55e2a849ef761" compoundref="dsp__task_8c" startline="322" endline="341">__DSP_add_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a07c77bafc7589c7f5b611b363539b2f7" compoundref="dsp__task_8c" startline="281" endline="319">__DSP_insert_task</referencedby>
+        <referencedby refid="dsp__private_8h_1ab2dc318611012da7ea4211a41b769809" compoundref="dsp__task_8c" startline="344" endline="372">__DSP_remove_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_last_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_last_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="10" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="10" bodyend="-1"/>
+        <referencedby refid="dsp__private_8h_1aa044bdc68d938b4e7fe55e2a849ef761" compoundref="dsp__task_8c" startline="322" endline="341">__DSP_add_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a07c77bafc7589c7f5b611b363539b2f7" compoundref="dsp__task_8c" startline="281" endline="319">__DSP_insert_task</referencedby>
+        <referencedby refid="dsp__private_8h_1ab2dc318611012da7ea4211a41b769809" compoundref="dsp__task_8c" startline="344" endline="372">__DSP_remove_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_curr_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_curr_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="11" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="11" bodyend="-1"/>
+        <referencedby refid="dsp__private_8h_1aa044bdc68d938b4e7fe55e2a849ef761" compoundref="dsp__task_8c" startline="322" endline="341">__DSP_add_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a07c77bafc7589c7f5b611b363539b2f7" compoundref="dsp__task_8c" startline="281" endline="319">__DSP_insert_task</referencedby>
+        <referencedby refid="dsp__private_8h_1ab2dc318611012da7ea4211a41b769809" compoundref="dsp__task_8c" startline="344" endline="372">__DSP_remove_task</referencedby>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp__task_8c_1a05e5d0f89f933542ce075b5fb0c210d5" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_tmp_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_tmp_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="12" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" prot="public" static="no" mutable="no">
+        <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+        <definition>DSPTaskInfo* __DSP_rude_task</definition>
+        <argsstring></argsstring>
+        <name>__DSP_rude_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="14" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="14" bodyend="-1"/>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+        <referencedby refid="dsp_8h_1ad11d95b77d22b0c4ee825ec53396f55d" compoundref="dsp_8c" startline="195" endline="230">DSPAssertTask</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dsp__task_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" prot="public" static="no" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int __DSP_rude_task_pending</definition>
+        <argsstring></argsstring>
+        <name>__DSP_rude_task_pending</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="15" column="14" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="15" bodyend="-1"/>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+        <referencedby refid="dsp_8h_1ad11d95b77d22b0c4ee825ec53396f55d" compoundref="dsp_8c" startline="195" endline="230">DSPAssertTask</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dsp__task_8c_1a7c1ee02b2a9204244ba242be3e7d42ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DSPHandler</definition>
+        <argsstring>(__OSInterrupt intr, OSContext *context)</argsstring>
+        <name>__DSPHandler</name>
+        <param>
+          <type><ref refid="_o_s_interrupt_8h_1a76379944e82db7f08ce8b6adbac2b78b" kindref="member">__OSInterrupt</ref></type>
+          <declname>intr</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_o_s_context" kindref="compound">OSContext</ref> *</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="18" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="18" bodyend="185"/>
+        <references refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" compoundref="dsp__task_8c" startline="11">__DSP_curr_task</references>
+        <references refid="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" compoundref="dsp__task_8c" startline="188" endline="237">__DSP_exec_task</references>
+        <references refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" compoundref="dsp__task_8c" startline="9">__DSP_first_task</references>
+        <references refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" compoundref="dsp__task_8c" startline="10">__DSP_last_task</references>
+        <references refid="dsp__task_8c_1ab2dc318611012da7ea4211a41b769809" compoundref="dsp__task_8c" startline="344" endline="372">__DSP_remove_task</references>
+        <references refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" compoundref="dsp__task_8c" startline="14">__DSP_rude_task</references>
+        <references refid="dsp__task_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" compoundref="dsp__task_8c" startline="15">__DSP_rude_task_pending</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" compoundref="dsp_8h" startline="23">STRUCT_DSP_TASK::done_cb</references>
+        <references refid="dsp_8h_1afecce32d89f9a1372b3181dca348794a" compoundref="dsp_8c" startline="14" endline="17">DSPCheckMailFromDSP</references>
+        <references refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" compoundref="dsp_8c" startline="8" endline="11">DSPCheckMailToDSP</references>
+        <references refid="dsp_8h_1a8eb64a47c193b072da2e67280f98c85e" compoundref="dsp_8c" startline="26" endline="29">DSPReadMailFromDSP</references>
+        <references refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" compoundref="dsp_8c" startline="32" endline="36">DSPSendMailToDSP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" compoundref="dsp_8h" startline="12">STRUCT_DSP_TASK::flags</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a8dfcbcc657b118cc8f6335223fa21b11" compoundref="dsp_8h" startline="21">STRUCT_DSP_TASK::init_cb</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" compoundref="dsp_8h" startline="25">STRUCT_DSP_TASK::next</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784">OSClearContext</references>
+        <references refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7">OSSetCurrentContext</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" compoundref="dsp_8h" startline="26">STRUCT_DSP_TASK::prev</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a03af2d258330f0b70f61461a3ec6f5f0" compoundref="dsp_8h" startline="24">STRUCT_DSP_TASK::req_cb</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a1e45a4fec4a9f33791f1defccb4ea072" compoundref="dsp_8h" startline="22">STRUCT_DSP_TASK::res_cb</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" compoundref="dsp_8h" startline="10">STRUCT_DSP_TASK::state</references>
+        <references refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" compoundref="dvd_8c" startline="17">tmp</references>
+        <referencedby refid="dsp_8h_1a50522be3d6cd6631bca1a31d80e99fc1" compoundref="dsp_8c" startline="61" endline="88">DSPInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DSP_exec_task</definition>
+        <argsstring>(DSPTaskInfo *curr, DSPTaskInfo *next)</argsstring>
+        <name>__DSP_exec_task</name>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>curr</declname>
+        </param>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>next</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="188" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="188" bodyend="237"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" compoundref="dsp_8c" startline="8" endline="11">DSPCheckMailToDSP</references>
+        <references refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" compoundref="dsp_8c" startline="32" endline="36">DSPSendMailToDSP</references>
+        <references refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" compoundref="dvdqueue_8c" startline="9">next</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_d_v_d_command_block_1adf3acb6c9b9d20b55c8143abfeccbdc8" compoundref="dvd_8h" startline="25">DVDCommandBlock::state</references>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp__task_8c_1a26da0ff4339f8c5b9bd6290d09640a81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DSP_boot_task</definition>
+        <argsstring>(DSPTaskInfo *task)</argsstring>
+        <name>__DSP_boot_task</name>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="240" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="240" bodyend="278"/>
+        <references refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" compoundref="dsp__debug_8c" startline="12" endline="13">__DSP_debug_printf</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1abffbc1a25f51d379bace35f35ecebd78" compoundref="dsp_8h" startline="17">STRUCT_DSP_TASK::dram_length</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a616900e3c4d7c5ee0fa2e2ce369ae805" compoundref="dsp_8h" startline="19">STRUCT_DSP_TASK::dsp_init_vector</references>
+        <references refid="dsp_8h_1afecce32d89f9a1372b3181dca348794a" compoundref="dsp_8c" startline="14" endline="17">DSPCheckMailFromDSP</references>
+        <references refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" compoundref="dsp_8c" startline="8" endline="11">DSPCheckMailToDSP</references>
+        <references refid="dsp_8h_1a8eb64a47c193b072da2e67280f98c85e" compoundref="dsp_8c" startline="26" endline="29">DSPReadMailFromDSP</references>
+        <references refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" compoundref="dsp_8c" startline="32" endline="36">DSPSendMailToDSP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6901b630d8f0ab75824c95f824085299" compoundref="dsp_8h" startline="15">STRUCT_DSP_TASK::iram_addr</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ab2847340f24d07450676f2e7448f527f" compoundref="dsp_8h" startline="14">STRUCT_DSP_TASK::iram_length</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9bfca8e0dde7a8274f6672599c10bf8c" compoundref="dsp_8h" startline="13">STRUCT_DSP_TASK::iram_mmem_addr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" compoundref="_a_x_out_8c" startline="11">task</references>
+        <referencedby refid="dsp_8h_1a0234a2d82027499ab430a18371b76758" compoundref="dsp_8c" startline="150" endline="171">DSPAddTask</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp__task_8c_1a1f9067e9df9259ec8bf617c7255c7eee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DSP_insert_task</definition>
+        <argsstring>(DSPTaskInfo *task)</argsstring>
+        <name>__DSP_insert_task</name>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="281" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="281" bodyend="319"/>
+        <references refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" compoundref="dsp__task_8c" startline="11">__DSP_curr_task</references>
+        <references refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" compoundref="dsp__task_8c" startline="9">__DSP_first_task</references>
+        <references refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" compoundref="dsp__task_8c" startline="10">__DSP_last_task</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" compoundref="dsp_8h" startline="25">STRUCT_DSP_TASK::next</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" compoundref="dsp_8h" startline="26">STRUCT_DSP_TASK::prev</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1aa1bad9590317936d38c1e8815ea60700" compoundref="dsp_8h" startline="11">STRUCT_DSP_TASK::priority</references>
+        <references refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" compoundref="_a_x_out_8c" startline="11">task</references>
+        <referencedby refid="dsp_8h_1a0234a2d82027499ab430a18371b76758" compoundref="dsp_8c" startline="150" endline="171">DSPAddTask</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dsp__task_8c_1aa044bdc68d938b4e7fe55e2a849ef761" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DSP_add_task</definition>
+        <argsstring>(DSPTaskInfo *task)</argsstring>
+        <name>__DSP_add_task</name>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="322" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="322" bodyend="341"/>
+        <references refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" compoundref="dsp__task_8c" startline="11">__DSP_curr_task</references>
+        <references refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" compoundref="dsp__debug_8c" startline="12" endline="13">__DSP_debug_printf</references>
+        <references refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" compoundref="dsp__task_8c" startline="9">__DSP_first_task</references>
+        <references refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" compoundref="dsp__task_8c" startline="10">__DSP_last_task</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" compoundref="dsp_8h" startline="25">STRUCT_DSP_TASK::next</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" compoundref="dsp_8h" startline="26">STRUCT_DSP_TASK::prev</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" compoundref="dsp_8h" startline="10">STRUCT_DSP_TASK::state</references>
+        <references refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" compoundref="_a_x_out_8c" startline="11">task</references>
+      </memberdef>
+      <memberdef kind="function" id="dsp__task_8c_1ab2dc318611012da7ea4211a41b769809" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DSP_remove_task</definition>
+        <argsstring>(DSPTaskInfo *task)</argsstring>
+        <name>__DSP_remove_task</name>
+        <param>
+          <type><ref refid="dsp_8h_1a3ba378b25ac0c557cc896522acd8d645" kindref="member">DSPTaskInfo</ref> *</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" line="344" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c" bodystart="344" bodyend="372"/>
+        <references refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" compoundref="dsp__task_8c" startline="11">__DSP_curr_task</references>
+        <references refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" compoundref="dsp__task_8c" startline="9">__DSP_first_task</references>
+        <references refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" compoundref="dsp__task_8c" startline="10">__DSP_last_task</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" compoundref="dsp_8h" startline="12">STRUCT_DSP_TASK::flags</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" compoundref="dsp_8h" startline="25">STRUCT_DSP_TASK::next</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" compoundref="dsp_8h" startline="26">STRUCT_DSP_TASK::prev</references>
+        <references refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" compoundref="dsp_8h" startline="10">STRUCT_DSP_TASK::state</references>
+        <references refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" compoundref="_a_x_out_8c" startline="11">task</references>
+        <referencedby refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" compoundref="dsp__task_8c" startline="18" endline="185">__DSPHandler</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dsp__private_8h" kindref="compound">dsp_private.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="dsp__task_8c_1a59486e743bd380f452d3a4f6a394b025" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="dsp__task_8c_1a59486e743bd380f452d3a4f6a394b025" kindref="member">t0</ref>,<sp/><ref refid="dsp__task_8c_1a9db4e7172e8007dbb1c7c13b48454693" kindref="member">t1</ref>,<sp/><ref refid="dsp__task_8c_1aac07cf171c6cb737e84a9ffd6aa19395" kindref="member">t2</ref>;<sp/></highlight><highlight class="comment">//<sp/>unused</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>;</highlight></codeline>
+<codeline lineno="10" refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref>;</highlight></codeline>
+<codeline lineno="11" refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>;</highlight></codeline>
+<codeline lineno="12" refid="dsp__task_8c_1a05e5d0f89f933542ce075b5fb0c210d5" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp__task_8c_1a05e5d0f89f933542ce075b5fb0c210d5" kindref="member">__DSP_tmp_task</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="dsp_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" refkind="member"><highlight class="normal"><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref>;</highlight></codeline>
+<codeline lineno="15" refid="dsp_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="dsp__private_8h_1a41dd0f7b0a73873af69d157cc3f7e198" refkind="member"><highlight class="normal"><ref refid="dsp__task_8c_1a7c1ee02b2a9204244ba242be3e7d42ac" kindref="member">__DSPHandler</ref><sp/>(<ref refid="_o_s_interrupt_8h_1a76379944e82db7f08ce8b6adbac2b78b" kindref="member">__OSInterrupt</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">intr</ref>,<sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref>*<sp/>context)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">unused</ref>[4];</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5];</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref><sp/>&amp;<sp/>~0x28)<sp/>|<sp/>0x80;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__DSPRegs</ref>[5]<sp/>=<sp/><ref refid="dvd_8c_1ac66cd3a7ffae6c7b7938725ba0098799" kindref="member">tmp</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784" kindref="member">OSClearContext</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7" kindref="member">OSSetCurrentContext</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x8A,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;__DSPHandler():<sp/>No<sp/>current<sp/>task!<sp/>Someone<sp/>set<sp/>us<sp/>up<sp/>the<sp/>bomb!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1afecce32d89f9a1372b3181dca348794a" kindref="member">DSPCheckMailFromDSP</ref>()<sp/>==<sp/>0);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref><sp/>=<sp/><ref refid="dsp_8h_1a8eb64a47c193b072da2e67280f98c85e" kindref="member">DSPReadMailFromDSP</ref>();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" kindref="member">flags</ref><sp/>&amp;<sp/>(1<sp/>&lt;&lt;<sp/>(31<sp/>-<sp/>0x1E)))<sp/>&amp;&amp;<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref><sp/>+<sp/>0x232F0000)<sp/>==<sp/>2)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref><sp/>=<sp/>0xDCD10003;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref>)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0xDCD10000:</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a8dfcbcc657b118cc8f6335223fa21b11" kindref="member">init_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a8dfcbcc657b118cc8f6335223fa21b11" kindref="member">init_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0xDCD10001:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a1e45a4fec4a9f33791f1defccb4ea072" kindref="member">res_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a1e45a4fec4a9f33791f1defccb4ea072" kindref="member">res_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0xDCD10002:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref>)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>==<sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref>)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10003);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a1e45a4fec4a9f33791f1defccb4ea072" kindref="member">res_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a1e45a4fec4a9f33791f1defccb4ea072" kindref="member">res_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10001);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" kindref="member">__DSP_exec_task</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>,<sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>==<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10003);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a1e45a4fec4a9f33791f1defccb4ea072" kindref="member">res_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a1e45a4fec4a9f33791f1defccb4ea072" kindref="member">res_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10001);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" kindref="member">__DSP_exec_task</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>,<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10001);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" kindref="member">__DSP_exec_task</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>,<sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0xDCD10003:</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref>)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" kindref="member">done_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" kindref="member">done_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10001);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" kindref="member">__DSP_exec_task</ref><sp/>(<ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,<sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ab2dc318611012da7ea4211a41b769809" kindref="member">__DSP_remove_task</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1adf1fdf8cbb0eb354a1d48ac56fbf842d" kindref="member">__DSP_rude_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac85b5af7f7ffc035505c19e7021f0ab4" kindref="member">__DSP_rude_task_pending</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>==<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" kindref="member">done_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" kindref="member">done_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10002);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ab2dc318611012da7ea4211a41b769809" kindref="member">__DSP_remove_task</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" kindref="member">done_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" kindref="member">done_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10001);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" kindref="member">__DSP_exec_task</ref><sp/>(<ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>=<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ab2dc318611012da7ea4211a41b769809" kindref="member">__DSP_remove_task</ref><sp/>(<ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref>);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" kindref="member">done_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a38f1cd0008cac40e13e355eff93eb586" kindref="member">done_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0xCDD10001);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" kindref="member">__DSP_exec_task</ref><sp/>(<ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,<sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>=<sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ab2dc318611012da7ea4211a41b769809" kindref="member">__DSP_remove_task</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref>);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0xDCD10004:</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a03af2d258330f0b70f61461a3ec6f5f0" kindref="member">req_cb</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a03af2d258330f0b70f61461a3ec6f5f0" kindref="member">req_cb</ref><sp/>(<ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref>);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINEV</ref><sp/>(0x202,</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;__DSPHandler():<sp/>Unknown<sp/>msg<sp/>from<sp/>DSP<sp/>0x%08X<sp/>-<sp/>task<sp/>sync<sp/>failed!\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref>);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784" kindref="member">OSClearContext</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7" kindref="member">OSSetCurrentContext</ref><sp/>(context);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188" refid="dsp__private_8h_1a0ca11dbcad7a99a785c28f41f16253ae" refkind="member"><highlight class="normal"><ref refid="dsp__task_8c_1ac9c6701f0cc512dc61cfd99dc5654ad8" kindref="member">__DSP_exec_task</ref><sp/>(<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">curr</ref>,<sp/><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>)</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x223,<sp/><ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,<sp/></highlight><highlight class="stringliteral">&quot;__DSP_exec_task():<sp/>NULL<sp/>task.<sp/>It<sp/>is<sp/>to<sp/>weep.\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">curr</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">curr</ref>-&gt;dram_mmem_addr);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">curr</ref>-&gt;dram_length);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">curr</ref>-&gt;dram_addr);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;iram_mmem_addr);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;iram_length);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;iram_addr);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;<ref refid="struct_d_v_d_command_block_1adf3acb6c9b9d20b55c8143abfeccbdc8" kindref="member">state</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;dsp_init_vector);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0);</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;dsp_resume_vector);</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;dram_mmem_addr);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;dram_length);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">next</ref>-&gt;dram_addr);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240" refid="dsp__private_8h_1a5124f7f6320ebb147b592f584a74ff9c" refkind="member"><highlight class="normal"><ref refid="dsp__task_8c_1a26da0ff4339f8c5b9bd6290d09640a81" kindref="member">__DSP_boot_task</ref><sp/>(<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="241"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref>;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x275,<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,<sp/></highlight><highlight class="stringliteral">&quot;__DSP_boot_task():<sp/>NULL<sp/>task!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1afecce32d89f9a1372b3181dca348794a" kindref="member">DSPCheckMailFromDSP</ref>()<sp/>==<sp/>0);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref><sp/>=<sp/><ref refid="dsp_8h_1a8eb64a47c193b072da2e67280f98c85e" kindref="member">DSPReadMailFromDSP</ref>();</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINEV</ref><sp/>(0x27B,</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref><sp/>==<sp/>0x8071FEED,</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;__DSP_boot_task():<sp/>Failed<sp/>to<sp/>sync<sp/>DSP<sp/>on<sp/>boot!<sp/>(0x%08X)\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mail</ref>);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0x80F3A001);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9bfca8e0dde7a8274f6672599c10bf8c" kindref="member">iram_mmem_addr</ref>);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0x80F3C002);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6901b630d8f0ab75824c95f824085299" kindref="member">iram_addr</ref><sp/>&amp;<sp/>0xFFFF);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0x80F3A002);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ab2847340f24d07450676f2e7448f527f" kindref="member">iram_length</ref>);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0x80F3B002);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(0x80F3D001);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp_8h_1a49c7877588d38b5301260975b74cfb7a" kindref="member">DSPSendMailToDSP</ref><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a616900e3c4d7c5ee0fa2e2ce369ae805" kindref="member">dsp_init_vector</ref>);</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="dsp_8h_1a0e550c90eb199a29bd19afeeb75240da" kindref="member">DSPCheckMailToDSP</ref>()<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" kindref="member">__DSP_debug_printf</ref><sp/>(</highlight><highlight class="stringliteral">&quot;DSP<sp/>is<sp/>booting<sp/>task:<sp/>0x%08X\n&quot;</highlight><highlight class="normal">,<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" kindref="member">__DSP_debug_printf</ref><sp/>(</highlight><highlight class="stringliteral">&quot;__DSP_boot_task()<sp/><sp/>:<sp/>IRAM<sp/>MMEM<sp/>ADDR:<sp/>0x%08X\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9bfca8e0dde7a8274f6672599c10bf8c" kindref="member">iram_mmem_addr</ref>);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" kindref="member">__DSP_debug_printf</ref><sp/>(</highlight><highlight class="stringliteral">&quot;__DSP_boot_task()<sp/><sp/>:<sp/>IRAM<sp/>DSP<sp/>ADDR<sp/>:<sp/>0x%08X\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6901b630d8f0ab75824c95f824085299" kindref="member">iram_addr</ref>);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" kindref="member">__DSP_debug_printf</ref><sp/>(</highlight><highlight class="stringliteral">&quot;__DSP_boot_task()<sp/><sp/>:<sp/>IRAM<sp/>LENGTH<sp/><sp/><sp/>:<sp/>0x%08X\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ab2847340f24d07450676f2e7448f527f" kindref="member">iram_length</ref>);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" kindref="member">__DSP_debug_printf</ref><sp/>(</highlight><highlight class="stringliteral">&quot;__DSP_boot_task()<sp/><sp/>:<sp/>DRAM<sp/>MMEM<sp/>ADDR:<sp/>0x%08X\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1abffbc1a25f51d379bace35f35ecebd78" kindref="member">dram_length</ref>);</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" kindref="member">__DSP_debug_printf</ref><sp/>(</highlight><highlight class="stringliteral">&quot;__DSP_boot_task()<sp/><sp/>:<sp/>Start<sp/>Vector<sp/><sp/>:<sp/>0x%08X\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a616900e3c4d7c5ee0fa2e2ce369ae805" kindref="member">dsp_init_vector</ref>);</highlight></codeline>
+<codeline lineno="278"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281" refid="dsp__private_8h_1a07c77bafc7589c7f5b611b363539b2f7" refkind="member"><highlight class="normal"><ref refid="dsp__task_8c_1a1f9067e9df9259ec8bf617c7255c7eee" kindref="member">__DSP_insert_task</ref><sp/>(<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="282"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref>;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref><sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref><sp/>=<sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref><sp/>=<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1aa1bad9590317936d38c1e8815ea60700" kindref="member">priority</ref><sp/>&lt;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref>-&gt;priority)</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref>;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref>;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">temp</ref><sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref>;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322" refid="dsp__private_8h_1aa044bdc68d938b4e7fe55e2a849ef761" refkind="member"><highlight class="normal"><ref refid="dsp__task_8c_1aa044bdc68d938b4e7fe55e2a849ef761" kindref="member">__DSP_add_task</ref><sp/>(<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="323"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x2FE,<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,<sp/></highlight><highlight class="stringliteral">&quot;__DSP_add_task():<sp/>Why<sp/>are<sp/>you<sp/>adding<sp/>a<sp/>NULL<sp/>task?\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref>;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>;</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__debug_8c_1af13a0efbd1fdfa190b68f2cbbbfd0e33" kindref="member">__DSP_debug_printf</ref><sp/>(</highlight><highlight class="stringliteral">&quot;__DSP_add_task()<sp/>:<sp/>Added<sp/>task<sp/><sp/><sp/><sp/>:<sp/>0x%08X\n&quot;</highlight><highlight class="normal">,<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344" refid="dsp__private_8h_1ab2dc318611012da7ea4211a41b769809" refkind="member"><highlight class="normal"><ref refid="dsp__task_8c_1ab2dc318611012da7ea4211a41b769809" kindref="member">__DSP_remove_task</ref><sp/>(<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k" kindref="compound">DSPTaskInfo</ref>*<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="345"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x328,<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,<sp/></highlight><highlight class="stringliteral">&quot;__DSP_remove_task():<sp/>NULL<sp/>task!<sp/>Why?<sp/>WHY?!?!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a6461b494a78610c4cdbdecdc9fbbdc5f" kindref="member">flags</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a9617a937c0e4b9754a724f987ee4edfe" kindref="member">state</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref><sp/>==<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref><sp/>=<sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/>=<sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/>==<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>)</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1a2b47790156d66d7601210ecad8082241" kindref="member">__DSP_last_task</ref><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref>;</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/><sp/>=<sp/><ref refid="dsp__task_8c_1ae4d11addde73d9a955b0c466b0d43be0" kindref="member">__DSP_first_task</ref>;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dsp__task_8c_1ae5b083af0cfed9ca54daf3e7c7e18002" kindref="member">__DSP_curr_task</ref><sp/><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1a5408346c9316f63c9167a7f1c05a56ed" kindref="member">next</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref><sp/>=<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>-&gt;<ref refid="struct_s_t_r_u_c_t___d_s_p___t_a_s_k_1ae03a534bc9cea500145f93fe509ca727" kindref="member">prev</ref>;</highlight></codeline>
+<codeline lineno="372"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/dsp/dsp_task.c"/>
+  </compounddef>
+</doxygen>

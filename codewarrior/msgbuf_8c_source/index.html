@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File msgbuf.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-msgbufc">File msgbuf.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_25028620cc1a8a9857c414f885e69890/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_6f2d6a2144e1eea12d16d0bd9685bdc9/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../dir_5cbf840bf773d4847fc83ef20b01209e/"><strong>Portable</strong></a> <strong>&gt;</strong> <a href="../msgbuf_8c/"><strong>msgbuf.c</strong></a></p>
+<p><a href="../msgbuf_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &quot;Portable/msgbuf.h&quot;
+#include &quot;Portable/nubinit.h&quot;
+#include &quot;Portable/mutex_TRK.h&quot;
+#include &quot;Portable/mem_TRK.h&quot;
+#include &quot;stddef.h&quot;
+
+TRKBuffer gTRKMsgBufs[3];
+
+void TRKSetBufferUsed(TRKBuffer* msg, BOOL state) { msg-&gt;isInUse = state; }
+
+DSError TRKInitializeMessageBuffers(void)
+{
+    int i;
+    for (i = 0; i &lt; 3; i++) {
+        TRKInitializeMutex(&amp;gTRKMsgBufs[i]);
+        TRKAcquireMutex(&amp;gTRKMsgBufs[i]);
+        TRKSetBufferUsed(&amp;gTRKMsgBufs[i], FALSE);
+        TRKReleaseMutex(&amp;gTRKMsgBufs[i]);
+    }
+
+    return DS_NoError;
+}
+
+DSError TRKGetFreeBuffer(int* msgID, TRKBuffer** outMsg)
+{
+    TRKBuffer* buf;
+    DSError error = DS_NoMessageBufferAvailable;
+    int i;
+
+    *outMsg = NULL;
+
+    for (i = 0; i &lt; 3; i++) {
+        buf = TRKGetBuffer(i);
+
+        TRKAcquireMutex(buf);
+        if (!buf-&gt;isInUse) {
+            TRKResetBuffer(buf, TRUE);
+            TRKSetBufferUsed(buf, TRUE);
+            error   = DS_NoError;
+            *outMsg = buf;
+            *msgID  = i;
+            i       = 3; // why not break? weird choice
+        }
+        TRKReleaseMutex(buf);
+    }
+
+    return error;
+}
+
+void* TRKGetBuffer(int idx)
+{
+    TRKBuffer* buf = NULL;
+    if (idx &gt;= 0 &amp;&amp; idx &lt; 3) {
+        buf = &amp;gTRKMsgBufs[idx];
+    }
+
+    return buf;
+}
+
+void TRKReleaseBuffer(int idx)
+{
+    TRKBuffer* msg;
+    if (idx != -1 &amp;&amp; idx &gt;= 0 &amp;&amp; idx &lt; 3) {
+        msg = &amp;gTRKMsgBufs[idx];
+        TRKAcquireMutex(msg);
+        TRKSetBufferUsed(msg, FALSE);
+        TRKReleaseMutex(msg);
+    }
+}
+
+void TRKResetBuffer(TRKBuffer* msg, BOOL keepData)
+{
+    msg-&gt;length   = 0;
+    msg-&gt;position = 0;
+
+    if (!keepData) {
+        TRK_memset(msg-&gt;data, 0, TRKMSGBUF_SIZE);
+    }
+}
+
+DSError TRKSetBufferPosition(TRKBuffer* msg, u32 pos)
+{
+    DSError error = DS_NoError;
+
+    if (pos &gt; 0x880) {
+        error = DS_MessageBufferOverflow;
+    } else {
+        msg-&gt;position = pos;
+        // If the new position is past the current length,
+        // update the length
+        if (pos &gt; msg-&gt;length) {
+            msg-&gt;length = pos;
+        }
+    }
+
+    return error;
+}
+
+DSError TRKAppendBuffer(TRKBuffer* msg, const void* data, size_t length)
+{
+    DSError error = DS_NoError; // r31
+    u32 bytesLeft;
+
+    // Return if no bytes to append
+    if (length == 0) {
+        return DS_NoError;
+    }
+
+    bytesLeft = 0x880 - msg-&gt;position;
+
+    // If there isn't enough space left in the buffer, change the number
+    // of bytes to append to the remaning number of bytes
+    if (bytesLeft &lt; length) {
+        error  = DS_MessageBufferOverflow;
+        length = bytesLeft;
+    }
+
+    if (length == 1) {
+        // If the length of bytes to append is 1, just copy the byte over
+        msg-&gt;data[msg-&gt;position] = ((u8*)data)[0];
+    } else {
+        // Otherwise, use memcpy
+        TRK_memcpy(msg-&gt;data + msg-&gt;position, data, length);
+    }
+
+    // Update the position and length
+    msg-&gt;position += length;
+    msg-&gt;length = msg-&gt;position;
+
+    return error;
+}
+
+DSError TRKReadBuffer(TRKBuffer* msg, void* data, size_t length)
+{
+    DSError error = DS_NoError;
+    unsigned int
+        bytesLeft; // this has to be unsigned int not u32 to match lmfao.
+
+    // Return if no bytes to read
+    if (length == 0) {
+        return DS_NoError;
+    }
+
+    bytesLeft = msg-&gt;length - msg-&gt;position;
+
+    // If the number of bytes to read exceeds the buffer length, change
+    // the length to the remaining number of bytes
+    if (length &gt; bytesLeft) {
+        error  = DS_MessageBufferReadError;
+        length = bytesLeft;
+    }
+
+    TRK_memcpy(data, msg-&gt;data + msg-&gt;position, length);
+    msg-&gt;position += length;
+    return error;
+}
+
+DSError TRKAppendBuffer1_ui16(TRKBuffer* buffer, const u16 data)
+{
+    u8* bigEndianData;
+    u8* byteData;
+    u8 swapBuffer[sizeof(data)];
+
+    if (gTRKBigEndian) {
+        bigEndianData = (u8*)&amp;data;
+    } else {
+        byteData      = (u8*)&amp;data;
+        bigEndianData = swapBuffer;
+
+        bigEndianData[0] = byteData[1];
+        bigEndianData[1] = byteData[0];
+    }
+
+    return TRKAppendBuffer(buffer, (const void*)bigEndianData, sizeof(data));
+}
+
+DSError TRKAppendBuffer1_ui32(TRKBuffer* buffer, const u32 data)
+{
+    u8* bigEndianData;
+    u8* byteData;
+    u8 swapBuffer[sizeof(data)];
+
+    if (gTRKBigEndian) {
+        bigEndianData = (u8*)&amp;data;
+    } else {
+        byteData      = (u8*)&amp;data;
+        bigEndianData = swapBuffer;
+
+        bigEndianData[0] = byteData[3];
+        bigEndianData[1] = byteData[2];
+        bigEndianData[2] = byteData[1];
+        bigEndianData[3] = byteData[0];
+    }
+
+    return TRKAppendBuffer(buffer, (const void*)bigEndianData, sizeof(data));
+}
+
+DSError TRKAppendBuffer1_ui64(TRKBuffer* buffer, const u64 data)
+{
+    u8* bigEndianData;
+    u8* byteData;
+    u8 swapBuffer[sizeof(data)];
+    if (gTRKBigEndian) {
+        bigEndianData = (u8*)&amp;data;
+    } else {
+        byteData      = (u8*)&amp;data;
+        bigEndianData = swapBuffer;
+
+        bigEndianData[0] = byteData[7];
+        bigEndianData[1] = byteData[6];
+        bigEndianData[2] = byteData[5];
+        bigEndianData[3] = byteData[4];
+        bigEndianData[4] = byteData[3];
+        bigEndianData[5] = byteData[2];
+        bigEndianData[6] = byteData[1];
+        bigEndianData[7] = byteData[0];
+    }
+
+    return TRKAppendBuffer(buffer, (const void*)bigEndianData, sizeof(data));
+}
+
+DSError TRKAppendBuffer_ui8(TRKBuffer* buffer, const u8* data, int count)
+{
+    DSError err;
+    int i;
+
+    for (i = 0, err = DS_NoError; err == DS_NoError &amp;&amp; i &lt; count; i++) {
+        err = TRKAppendBuffer1_ui8(buffer, data[i]);
+    }
+
+    return err;
+}
+
+DSError TRKAppendBuffer_ui32(TRKBuffer* buffer, const u32* data, int count)
+{
+    DSError err;
+    int i;
+
+    for (i = 0, err = DS_NoError; err == DS_NoError &amp;&amp; i &lt; count; i++) {
+        err = TRKAppendBuffer1_ui32(buffer, data[i]);
+    }
+
+    return err;
+}
+
+DSError TRKReadBuffer1_ui8(TRKBuffer* buffer, u8* data)
+{
+    return TRKReadBuffer(buffer, (void*)data, 1);
+}
+
+DSError TRKReadBuffer1_ui16(TRKBuffer* buffer, u16* data)
+{
+    DSError err;
+
+    u8* bigEndianData;
+    u8* byteData;
+    u8 swapBuffer[sizeof(data)];
+
+    if (gTRKBigEndian) {
+        bigEndianData = (u8*)data;
+    } else {
+        bigEndianData = swapBuffer;
+    }
+
+    err = TRKReadBuffer(buffer, (void*)bigEndianData, sizeof(*data));
+
+    if (!gTRKBigEndian &amp;&amp; err == DS_NoError) {
+        byteData = (u8*)data;
+
+        byteData[0] = bigEndianData[1];
+        byteData[1] = bigEndianData[0];
+    }
+
+    return err;
+}
+
+DSError TRKReadBuffer1_ui32(TRKBuffer* buffer, u32* data)
+{
+    DSError err;
+
+    u8* bigEndianData;
+    u8* byteData;
+    u8 swapBuffer[sizeof(data)];
+
+    if (gTRKBigEndian) {
+        bigEndianData = (u8*)data;
+    } else {
+        bigEndianData = swapBuffer;
+    }
+
+    err = TRKReadBuffer(buffer, (void*)bigEndianData, sizeof(*data));
+
+    if (!gTRKBigEndian &amp;&amp; err == DS_NoError) {
+        byteData = (u8*)data;
+
+        byteData[0] = bigEndianData[3];
+        byteData[1] = bigEndianData[2];
+        byteData[2] = bigEndianData[1];
+        byteData[3] = bigEndianData[0];
+    }
+
+    return err;
+}
+
+DSError TRKReadBuffer1_ui64(TRKBuffer* buffer, u64* data)
+{
+    DSError err;
+
+    u8* bigEndianData;
+    u8* byteData;
+    u8 swapBuffer[sizeof(data)];
+
+    if (gTRKBigEndian) {
+        bigEndianData = (u8*)data;
+    } else {
+        bigEndianData = swapBuffer;
+    }
+
+    err = TRKReadBuffer(buffer, (void*)bigEndianData, sizeof(*data));
+
+    if (!gTRKBigEndian &amp;&amp; err == 0) {
+        byteData = (u8*)data;
+
+        byteData[0] = bigEndianData[7];
+        byteData[1] = bigEndianData[6];
+        byteData[2] = bigEndianData[5];
+        byteData[3] = bigEndianData[4];
+        byteData[4] = bigEndianData[3];
+        byteData[5] = bigEndianData[2];
+        byteData[6] = bigEndianData[1];
+        byteData[7] = bigEndianData[0];
+    }
+
+    return err;
+}
+
+DSError TRKReadBuffer_ui8(TRKBuffer* buffer, u8* data, int count)
+{
+    DSError err;
+    int i;
+
+    for (i = 0, err = DS_NoError; err == DS_NoError &amp;&amp; i &lt; count; i++) {
+        err = TRKReadBuffer1_ui8(buffer, &amp;(data[i]));
+    }
+
+    return err;
+}
+
+DSError TRKReadBuffer_ui32(TRKBuffer* buffer, u32* data, int count)
+{
+    DSError err;
+    s32 i;
+
+    for (i = 0, err = DS_NoError; err == DS_NoError &amp;&amp; i &lt; count; i++) {
+        err = TRKReadBuffer1_ui32(buffer, &amp;(data[i]));
+    }
+
+    return err;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

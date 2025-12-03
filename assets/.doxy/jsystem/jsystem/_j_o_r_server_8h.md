@@ -1,0 +1,86 @@
+
+
+# File JORServer.h
+
+
+
+[**FileList**](files.md) **>** [**decomp**](dir_0c56b33aa00ddb0e63af648508d6e3f4.md) **>** [**JSystem**](dir_2add8750dabb2c81b6f2c3c5af4cfeba.md) **>** [**System**](dir_e5be38218225624e70ebb9ea7ff5d81f.md) **>** [**JHostIO**](dir_446b97b7538d96ac258297d890e5aab3.md) **>** [**include**](dir_04cedb4e7eb550e4d999dc60e42b6d29.md) **>** [**JORServer.h**](_j_o_r_server_8h.md)
+
+[Go to the source code of this file](_j_o_r_server_8h_source.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| class | [**JORReflexible**](class_j_o_r_reflexible.md) <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------
+The documentation for this class was generated from the following file `decomp/JSystem/System/JHostIO/include/JORServer.h`
+

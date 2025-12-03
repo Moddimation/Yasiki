@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="flush__cache_8h" kind="file" language="C++">
+    <compoundname>flush_cache.h</compoundname>
+    <includes local="no">dolphin/types.h</includes>
+    <includedby refid="dolphin__trk_8c" local="yes">dolphin_trk.c</includedby>
+    <includedby refid="flush__cache_8c" local="yes">flush_cache.c</includedby>
+    <includedby refid="targimpl_8c" local="yes">targimpl.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>flush_cache.h</label>
+        <link refid="flush__cache_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>flush_cache.h</label>
+        <link refid="flush__cache_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin_trk.c</label>
+        <link refid="dolphin__trk_8c"/>
+      </node>
+      <node id="3">
+        <label>flush_cache.c</label>
+        <link refid="flush__cache_8c"/>
+      </node>
+      <node id="4">
+        <label>targimpl.c</label>
+        <link refid="targimpl_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="flush__cache_8h_1aafda2843c0a12b73789d09371666e298" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRK_flush_cache</definition>
+        <argsstring>(void *param_1, int param_2)</argsstring>
+        <name>TRK_flush_cache</name>
+        <param>
+          <type>void *</type>
+          <declname>param_1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>param_2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/flush_cache.h" line="10" column="6" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/flush_cache.h" declline="10" declcolumn="6"/>
+        <referencedby refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" compoundref="dolphin__trk_8c" startline="110" endline="115">TRK_copy_vector</referencedby>
+        <referencedby refid="targimpl_8c_1a16b670ec641e9333d6c5512c1b59737e" compoundref="targimpl_8c" startline="1122" endline="1175">TRKPPCAccessSpecialReg</referencedby>
+        <referencedby refid="targimpl_8h_1a9e46302c24afe0dfdbb3a5ad0b86fda7" compoundref="targimpl_8c" startline="1003" endline="1011">TRKTargetFlushCache</referencedby>
+        <referencedby refid="targimpl_8h_1a6ebf7e476dd31372a01e2e19b8950941" compoundref="targimpl_8c" startline="969" endline="1001">TRKTargetSupportRequest</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>PPC_GENERIC_FLUSH_CACHE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PPC_GENERIC_FLUSH_CACHE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dolphin/types.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="flush__cache_8h_1aafda2843c0a12b73789d09371666e298" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="flush__cache_8h_1aafda2843c0a12b73789d09371666e298" kindref="member">TRK_flush_cache</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>param_1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>param_2);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>PPC_GENERIC_FLUSH_CACHE_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/flush_cache.h"/>
+  </compounddef>
+</doxygen>

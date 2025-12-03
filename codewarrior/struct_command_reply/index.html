@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Struct CommandReply - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="struct-commandreply">Struct CommandReply</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>CommandReply</strong></a></p>
+<ul>
+<li><code>#include &lt;trk.h&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#variable-_00"><strong>_00</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#variable-_0c"><strong>_0C</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u8</td>
+<td style="text-align: left;"><a href="#variable-_10"><strong>_10</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u8</td>
+<td style="text-align: left;"><a href="#variable-b"><strong>b</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">union <a href="./"><strong>CommandReply</strong></a></td>
+<td style="text-align: left;"><a href="#variable-commandid"><strong>commandID</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#enum-messagecommandid"><strong>MessageCommandID</strong></a></td>
+<td style="text-align: left;"><a href="#variable-m"><strong>m</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#enum-dsreplyerror"><strong>DSReplyError</strong></a></td>
+<td style="text-align: left;"><a href="#variable-r"><strong>r</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">union <a href="./"><strong>CommandReply</strong></a></td>
+<td style="text-align: left;"><a href="#variable-replyerror"><strong>replyError</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-_00">variable _00</h3>
+<pre><code class="language-C++">u32 CommandReply::_00;
+</code></pre>
+<hr>
+
+<h3 id="variable-_0c">variable _0C</h3>
+<pre><code class="language-C++">u32 CommandReply::_0C;
+</code></pre>
+<hr>
+
+<h3 id="variable-_10">variable _10</h3>
+<pre><code class="language-C++">u8 CommandReply::_10[0x30];
+</code></pre>
+<hr>
+
+<h3 id="variable-b">variable b</h3>
+<pre><code class="language-C++">u8 CommandReply::b;
+</code></pre>
+<hr>
+
+<h3 id="variable-commandid">variable commandID</h3>
+<pre><code class="language-C++">union CommandReply CommandReply::commandID;
+</code></pre>
+<hr>
+
+<h3 id="variable-m">variable m</h3>
+<pre><code class="language-C++">MessageCommandID CommandReply::m;
+</code></pre>
+<hr>
+
+<h3 id="variable-r">variable r</h3>
+<pre><code class="language-C++">DSReplyError CommandReply::r;
+</code></pre>
+<hr>
+
+<h3 id="variable-replyerror">variable replyError</h3>
+<pre><code class="language-C++">union CommandReply CommandReply::replyError;
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/trk.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="cfloat" kind="file" language="C++">
+    <compoundname>cfloat</compoundname>
+    <includedby refid="float_8h" local="no">float.h</includedby>
+    <includedby refid="wcstold_8c" local="no">wcstold.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>cfloat</label>
+        <link refid="cfloat"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float.h</label>
+        <link refid="float_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float.c</label>
+        <link refid="float_8c"/>
+      </node>
+      <node id="6">
+        <label>printf.c</label>
+        <link refid="printf_8c"/>
+      </node>
+      <node id="7">
+        <label>scanf.c</label>
+        <link refid="scanf_8c"/>
+      </node>
+      <node id="8">
+        <label>strtold.c</label>
+        <link refid="strtold_8c"/>
+      </node>
+      <node id="9">
+        <label>wcstold.c</label>
+        <link refid="wcstold_8c"/>
+      </node>
+      <node id="5">
+        <label>hyperbolicsf.c</label>
+        <link refid="hyperbolicsf_8c"/>
+      </node>
+      <node id="3">
+        <label>ansi_fp.c</label>
+        <link refid="ansi__fp_8c"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/07/30<sp/>00:21:37<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.4.3<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>cfloat<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hh<sp/><sp/>971206<sp/><sp/>this<sp/>file<sp/>used<sp/>to<sp/>be<sp/>float.h</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__cfloat__</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__cfloat__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;msl_t.h&gt;<sp/><sp/>/*<sp/>vss<sp/>990729<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_No_Floating_Point<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>981014<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ansi_parms.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED<sp/><sp/><sp/>/*<sp/>hh<sp/>971230<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/>/*hh<sp/><sp/>971206<sp/><sp/>expanded<sp/>_extern<sp/>macro*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>extern<sp/>&quot;C&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal">hh<sp/><sp/>971206</highlight></codeline>
+<codeline><highlight class="normal">Nothing<sp/>goes<sp/>into<sp/>namespace<sp/>std<sp/>in<sp/>this<sp/>file,<sp/>but<sp/>clients<sp/>need</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>know<sp/>that<sp/>namespace<sp/>std<sp/>exists.</highlight></codeline>
+<codeline><highlight class="normal">*/</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__cplusplus)<sp/>&amp;&amp;<sp/>defined(_MSL_USING_NAMESPACE)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__m56800__<sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>981028<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>vss<sp/>990218<sp/><sp/>added<sp/>extern<sp/>to<sp/>following<sp/>incomplete<sp/>types<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>_MSL_DLLDATA<sp/>_INT32<sp/>__double_min[],<sp/>__double_max[],<sp/>__double_epsilon[],<sp/>__double_huge[];<sp/>/*LS*/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>_MSL_DLLDATA<sp/>_INT32<sp/>__extended_min[],__extended_max[],__extended_epsilon[];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_ROUNDS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/>/*<sp/>see<sp/>fenv.h<sp/>for<sp/>changing<sp/>rounding<sp/>modes<sp/>intel/mac<sp/>only<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_RADIX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MANT_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>24</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-125)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-37)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>128</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>38</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3.402823466e+38F</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_EPSILON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.192092896e-07F</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.175494351e-38F</highlight></codeline>
+<codeline><highlight class="normal">/*hh<sp/><sp/>971206<sp/><sp/>removed<sp/>std()<sp/>macro*/</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/><sp/><sp/>__MC68K__<sp/>/*<sp/>whether<sp/>or<sp/>not<sp/>the<sp/>format<sp/>of<sp/>a<sp/>long<sp/>double<sp/>on<sp/>68K<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/>or<sp/>12<sp/>bytes,<sp/>the<sp/>range<sp/>of<sp/>permissble<sp/>values<sp/>is<sp/>the<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>same.<sp/><sp/>Note<sp/>that<sp/>the<sp/>extra<sp/>16<sp/>bits<sp/>on<sp/>68881<sp/>are<sp/>just<sp/>for</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>padding<sp/>to<sp/>keep<sp/>data<sp/>aligned<sp/>along<sp/>32<sp/>bit<sp/>boundaries,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>not<sp/>for<sp/>additional<sp/>precision.<sp/><sp/>Therefore<sp/>this<sp/>has</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>no<sp/>effect<sp/>on<sp/>the<sp/>constants<sp/>in<sp/>this<sp/>file.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MANT_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>64</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-16381)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-4931)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16384</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4932</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>#if<sp/>!(__option(IEEEdoubles))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>/*<sp/>doubles<sp/>are<sp/>&gt;=<sp/>10<sp/>bytes<sp/>when<sp/>IEEE<sp/>doubles<sp/>is<sp/>not<sp/>specified<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MANT_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LDBL_MANT_DIG</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LDBL_DIG</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LDBL_MIN_EXP</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LDBL_MIN_10_EXP<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LDBL_MAX_EXP</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LDBL_MAX_10_EXP</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MANT_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>53</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>15</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-1021)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-308)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1024</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>#define<sp/>DBL_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>308</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>#endif<sp/>/*<sp/>IEEEdoubles<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>DBL_MANT_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>53</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>DBL_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>15</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>DBL_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-1021)</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>DBL_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-308)</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>DBL_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1024</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>DBL_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>308</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>LDBL_MANT_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DBL_MANT_DIG</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>LDBL_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DBL_DIG<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>LDBL_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DBL_MIN_EXP<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>LDBL_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DBL_MIN_10_EXP</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>LDBL_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DBL_MAX_EXP</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#define<sp/>LDBL_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DBL_MAX_10_EXP</highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>__MC68K__<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*hh<sp/><sp/>971206<sp/><sp/>removed<sp/>std()<sp/>macro*/</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<sp/>(double<sp/>*)<sp/>__double_max)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_EPSILON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<sp/>(double<sp/>*)<sp/>__double_epsilon)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<sp/>(double<sp/>*)<sp/>__double_min)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<sp/>(long<sp/>double*)<sp/>__extended_max)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_EPSILON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<sp/>(long<sp/>double*)<sp/>__extended_epsilon)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<sp/>(long<sp/>double*)<sp/>__extended_min)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/>Target<sp/>Specific<sp/>for<sp/>DSP56800<sp/>*/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>981014<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_DIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-126</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-126</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MIN_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-126</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-39</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-39</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MIN_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-39</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>128</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>128</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MAX_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>128</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>38</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>38</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MAX_10_EXP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>38</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3.4028235e+38</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3.4028235e+38</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3.4028235E+38</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_EPSILON<sp/><sp/><sp/><sp/><sp/><sp/>1.1920929E-07</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_EPSILON<sp/><sp/><sp/><sp/><sp/><sp/>1.1920929E-07</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_EPSILON<sp/><sp/><sp/><sp/><sp/>1.1920929E-07<sp/></highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5.8774717e-39</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5.8774717e-39</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5.8774717e-39</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_ROUNDS<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FLT_MANT_DIG<sp/><sp/><sp/><sp/><sp/>7</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>DBL_MANT_DIG<sp/><sp/><sp/><sp/><sp/>7</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LDBL_MANT_DIG<sp/><sp/><sp/><sp/>7</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>#ifndef<sp/>__m56800__<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>RC_INVOKED<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>ndef<sp/>_No_Floating_Point<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>__cfloat__<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline><highlight class="normal">961212<sp/>KO<sp/><sp/><sp/>Added<sp/>__extern_c<sp/>wrapper<sp/>to<sp/>accomodate<sp/>new<sp/>x86<sp/>name<sp/>mangling.</highlight></codeline>
+<codeline><highlight class="normal">970723<sp/>SCM<sp/><sp/>Wrapped<sp/>entire<sp/>file<sp/>in<sp/>#ifndef<sp/>_No_Floating_Point</highlight></codeline>
+<codeline><highlight class="normal">970801<sp/>Matt<sp/>Fassiotto-<sp/>this<sp/>header<sp/>is<sp/>now<sp/>as<sp/>platform<sp/>independent<sp/>as<sp/>possible,<sp/>for</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>details<sp/>on<sp/>the<sp/>platform<sp/>dependent<sp/>macros<sp/>__double_max,<sp/>etc...<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>see<sp/>the<sp/>source<sp/>file<sp/>float.c<sp/>in<sp/>the<sp/>MSL<sp/>C<sp/>common<sp/>sources.</highlight></codeline>
+<codeline><highlight class="normal">971206<sp/>hh<sp/><sp/><sp/>minor<sp/>namespace<sp/>fixups.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>rjk<sp/>980313<sp/>added<sp/>_MSL_DLLDATA<sp/>macro</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>mm<sp/>981014<sp/><sp/>Added<sp/>target<sp/>specific<sp/>settings<sp/>for<sp/>DSP56800<sp/>and<sp/>wrapper<sp/>for<sp/>_No_Floating_Point</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>mm<sp/>981028<sp/><sp/>Changed<sp/>__DSP568<sp/>wrappers<sp/>to<sp/>__m56800__<sp/>wrappers</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>vss<sp/>990218<sp/>Added<sp/>extern<sp/>to<sp/>incomplete<sp/>types<sp/>for<sp/>MRC<sp/>and<sp/>gcc</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>vss<sp/>990727<sp/>changed<sp/>&lt;cmath&gt;<sp/>to<sp/>&lt;msl_t.h&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/cfloat"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File s_nextafter.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-s_nextafterc">File s_nextafter.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="../s__nextafter_8c/"><strong>s_nextafter.c</strong></a></p>
+<p><a href="../s__nextafter_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+#ifndef _No_Floating_Point  
+/* @(#)s_nextafter.c 1.2 95/01/04 */
+/* $Id: s_nextafter.c,v 1.2.4.1 1999/12/06 19:47:32 fassiott Exp $ */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
+ */
+
+/* IEEE functions
+ *  nextafter(x,y)
+ *  return the next machine floating-point number of x in the
+ *  direction toward y.
+ *   Special cases:
+ */
+
+#include &quot;fdlibm.h&quot;
+
+#ifdef __STDC__
+    double nextafter(double x, double y)
+#else
+    double nextafter(x,y)
+    double x,y;
+#endif
+{
+    int hx,hy,ix,iy;
+    unsigned lx,ly;
+
+    hx = __HI(x);       /* high word of x */
+    lx = __LO(x);       /* low  word of x */
+    hy = __HI(y);       /* high word of y */
+    ly = __LO(y);       /* low  word of y */
+    ix = hx&amp;0x7fffffff;     /* |x| */
+    iy = hy&amp;0x7fffffff;     /* |y| */
+
+    if(((ix&gt;=0x7ff00000)&amp;&amp;((ix-0x7ff00000)|lx)!=0) ||   /* x is nan */ 
+       ((iy&gt;=0x7ff00000)&amp;&amp;((iy-0x7ff00000)|ly)!=0))     /* y is nan */ 
+       return x+y;              
+    if(x==y) return x;      /* x=y, return x */
+    if((ix|lx)==0) {            /* x == 0 */
+        __HI(x) = hy&amp;0x80000000;    /* return +-minsubnormal */
+        __LO(x) = 1;
+        y = x*x;
+        if(y==x) return y; else return x;   /* raise underflow flag */
+    } 
+    if(hx&gt;=0) {             /* x &gt; 0 */
+        if(hx&gt;hy||((hx==hy)&amp;&amp;(lx&gt;ly))) {    /* x &gt; y, x -= ulp */
+        if(lx==0) hx -= 1;
+        lx -= 1;
+        } else {                /* x &lt; y, x += ulp */
+        lx += 1;
+        if(lx==0) hx += 1;
+        }
+    } else {                /* x &lt; 0 */
+        if(hy&gt;=0||hx&gt;hy||((hx==hy)&amp;&amp;(lx&gt;ly))){/* x &lt; y, x -= ulp */
+        if(lx==0) hx -= 1;
+        lx -= 1;
+        } else {                /* x &gt; y, x += ulp */
+        lx += 1;
+        if(lx==0) hx += 1;
+        }
+    }
+    hy = hx&amp;0x7ff00000;
+    if(hy&gt;=0x7ff00000) return x+x;  /* overflow  */
+    if(hy&lt;0x00100000) {     /* underflow */
+        y = x*x;
+        if(y!=x) {      /* raise underflow flag */
+        __HI(y) = hx; __LO(y) = lx;
+        return y;
+        }
+    }
+    __HI(x) = hx; __LO(x) = lx;
+    return x;
+}
+#endif /* _No_Floating_Point  */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

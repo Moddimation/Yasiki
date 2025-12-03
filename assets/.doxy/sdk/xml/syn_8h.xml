@@ -1,0 +1,630 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="syn_8h" kind="file" language="C++">
+    <compoundname>syn.h</compoundname>
+    <includes refid="ax_8h" local="no">dolphin/ax.h</includes>
+    <includedby refid="_s_y_n_private_8h" local="no">SYNPrivate.h</includedby>
+    <includedby refid="seq_8h" local="no">seq.h</includedby>
+    <includedby refid="syn_8c" local="no">syn.c</includedby>
+    <includedby refid="synctrl_8c" local="no">synctrl.c</includedby>
+    <includedby refid="synenv_8c" local="no">synenv.c</includedby>
+    <includedby refid="synlfo_8c" local="no">synlfo.c</includedby>
+    <includedby refid="synmix_8c" local="no">synmix.c</includedby>
+    <includedby refid="synpitch_8c" local="no">synpitch.c</includedby>
+    <includedby refid="synsample_8c" local="no">synsample.c</includedby>
+    <includedby refid="synvoice_8c" local="no">synvoice.c</includedby>
+    <includedby refid="synwt_8c" local="no">synwt.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>dolphin/ax.h</label>
+        <link refid="ax_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>syn.h</label>
+        <link refid="syn_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="12">
+        <label>seq.h</label>
+        <link refid="seq_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>syn.h</label>
+        <link refid="syn_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>seq.c</label>
+        <link refid="seq_8c"/>
+      </node>
+      <node id="2">
+        <label>SYNPrivate.h</label>
+        <link refid="_s_y_n_private_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>syn.c</label>
+        <link refid="syn_8c"/>
+      </node>
+      <node id="4">
+        <label>synctrl.c</label>
+        <link refid="synctrl_8c"/>
+      </node>
+      <node id="5">
+        <label>synenv.c</label>
+        <link refid="synenv_8c"/>
+      </node>
+      <node id="6">
+        <label>synlfo.c</label>
+        <link refid="synlfo_8c"/>
+      </node>
+      <node id="7">
+        <label>synmix.c</label>
+        <link refid="synmix_8c"/>
+      </node>
+      <node id="8">
+        <label>synpitch.c</label>
+        <link refid="synpitch_8c"/>
+      </node>
+      <node id="9">
+        <label>synsample.c</label>
+        <link refid="synsample_8c"/>
+      </node>
+      <node id="10">
+        <label>synvoice.c</label>
+        <link refid="synvoice_8c"/>
+      </node>
+      <node id="11">
+        <label>synwt.c</label>
+        <link refid="synwt_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_w_t_i_n_s_t" prot="public">WTINST</innerclass>
+    <innerclass refid="struct_w_t_r_e_g_i_o_n" prot="public">WTREGION</innerclass>
+    <innerclass refid="struct_w_t_a_r_t" prot="public">WTART</innerclass>
+    <innerclass refid="struct_w_t_s_a_m_p_l_e" prot="public">WTSAMPLE</innerclass>
+    <innerclass refid="struct_w_t_a_d_p_c_m" prot="public">WTADPCM</innerclass>
+    <innerclass refid="struct_s_y_n_s_y_n_t_h" prot="public">SYNSYNTH</innerclass>
+    <innerclass refid="struct_s_y_n_v_o_i_c_e" prot="public">SYNVOICE</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="syn_8h_1a33c594738e86aa7de56b38071e45a933" prot="public" static="no">
+        <name>SYN_INPUT_BUFFER_SIZE</name>
+        <initializer>0x100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="6" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/syn.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="syn_8h_1a3298d094c5201ae912f6234e331c14fb" prot="public" static="no">
+        <name>SYN_SAMPLE_FORMAT_ADPCM</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="149" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/syn.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="syn_8h_1a6ffa273eeca272e8aa79c0b73336545e" prot="public" static="no">
+        <name>SYN_SAMPLE_FORMAT_PCM16</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="150" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/syn.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="syn_8h_1acd1a42b7f26327233e9f4be349e13296" prot="public" static="no">
+        <name>SYN_SAMPLE_FORMAT_PCM8</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="151" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/syn.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="syn_8h_1a3109370aae355619e3622833a4c2e20e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void SYNInit</definition>
+        <argsstring>()</argsstring>
+        <name>SYNInit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="154" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="65" bodyend="74" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="154" declcolumn="6"/>
+        <references refid="syn_8c_1a8cc2fe022fb04a6587c52dd3f7891607" compoundref="syn_8c" startline="12">__SYNSynthList</references>
+        <references refid="_s_y_n_private_8h_1a93df0d8dfa12d2c8d5ce010160197a80" compoundref="synvoice_8c" startline="12">__SYNVoice</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="syn_8h_1a36481e95b4d0533544a1f95b01e32fcd" compoundref="syn_8c" startline="77" endline="80">SYNQuit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1a36481e95b4d0533544a1f95b01e32fcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void SYNQuit</definition>
+        <argsstring>()</argsstring>
+        <name>SYNQuit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="155" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="77" bodyend="80" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="155" declcolumn="6"/>
+        <references refid="syn_8c_1a3109370aae355619e3622833a4c2e20e" compoundref="syn_8c" startline="65" endline="74">SYNInit</references>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1a6a537bdc29c29806cf5677936de14194" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void SYNRunAudioFrame</definition>
+        <argsstring>()</argsstring>
+        <name>SYNRunAudioFrame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="156" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="83" bodyend="96" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="156" declcolumn="6"/>
+        <references refid="synctrl_8c_1a55b42c63e0fd763f67c6b978a870558e" compoundref="synctrl_8c" startline="443" endline="453">__SYNRunInputBufferEvents</references>
+        <references refid="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" compoundref="synvoice_8c" startline="50" endline="89">__SYNServiceVoice</references>
+        <references refid="syn_8c_1a8cc2fe022fb04a6587c52dd3f7891607" compoundref="syn_8c" startline="12">__SYNSynthList</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ae7b442abd7879d0156696a97496294ec" compoundref="syn_8h" startline="72">SYNSYNTH::next</references>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1a9f244787935ff0f7d212bf1c508be9e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void SYNInitSynth</definition>
+        <argsstring>(struct SYNSYNTH *synth, void *wavetable, u32 aramBase, u32 priorityVoiceAlloc, u32 priorityNoteOn, u32 priorityNoteRelease)</argsstring>
+        <name>SYNInitSynth</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>wavetable</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>aramBase</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>priorityVoiceAlloc</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>priorityNoteOn</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>priorityNoteRelease</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="157" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="99" bodyend="152" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="157" declcolumn="6"/>
+        <references refid="syn_8c_1af939070885bffedee6f5a8055682e7ce" compoundref="syn_8c" startline="19" endline="33">__SYNAddSynthToList</references>
+        <references refid="synctrl_8c_1a7ec0427a927747c206595e3718b3ab30" compoundref="synctrl_8c" startline="258" endline="269">__SYNResetAllControllers</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a844eeda5ae559429fe8ba7a4a7216511" compoundref="syn_8h" startline="78">SYNSYNTH::adpcm</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a5853c8b8b6de9a1606efb752bfbb5efd" compoundref="syn_8h" startline="80">SYNSYNTH::aramBaseByte</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a4dc6889eb9db85e92a3a7763c10cbfb2" compoundref="syn_8h" startline="81">SYNSYNTH::aramBaseNibble</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1afd6fddbe5b477d57fcad6caee09b303c" compoundref="syn_8h" startline="79">SYNSYNTH::aramBaseWord</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ad6a9f4dd2f8a7208bb621c304af8047e" compoundref="syn_8h" startline="76">SYNSYNTH::art</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a5e0e5d31f5293f872e72353059df4b11" compoundref="syn_8h" startline="96">SYNSYNTH::input</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a2eae9833d32f3b2349f279396f361b2e" compoundref="syn_8h" startline="98">SYNSYNTH::inputCounter</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a739522a9cd85f58325309faedf4233eb" compoundref="syn_8h" startline="97">SYNSYNTH::inputPosition</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1adfc75906db75d0ccbc7eb95e03e40c68" compoundref="syn_8h" startline="100">SYNSYNTH::keyGroup</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ae07961e8427a1837a259b8eb88756821" compoundref="syn_8h" startline="86">SYNSYNTH::masterVolume</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a5ec712fed2feadff93587cf8b61961c4" compoundref="syn_8h" startline="74">SYNSYNTH::melodicInst</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a83d50a549ccc93d703219229a0f49a57" compoundref="syn_8h" startline="99">SYNSYNTH::notes</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a4ec7d08dc033f005fd33c9b938a3a8be" compoundref="syn_8h" startline="73">SYNSYNTH::percussiveInst</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a74a7f6cb52e4e2ec9884ea04250e7592" compoundref="syn_8h" startline="83">SYNSYNTH::priorityNoteOn</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ad3934d11983d46e2dd645de66dd42a03" compoundref="syn_8h" startline="84">SYNSYNTH::priorityNoteRelease</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a547389cc3df49eeb8d1a6339761eafd4" compoundref="syn_8h" startline="82">SYNSYNTH::priorityVoiceAlloc</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a6676807232618abd2449b182787bf2c8" compoundref="syn_8h" startline="75">SYNSYNTH::region</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a4a508942af4c982a8bf762bbd19935ff" compoundref="syn_8h" startline="77">SYNSYNTH::sample</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" compoundref="syn_8h" startline="101">SYNSYNTH::voice</references>
+        <referencedby refid="seq_8h_1a70c1cb4c4f8db9a3f2bbd91ffdd849e5" compoundref="seq_8c" startline="383" endline="413">SEQAddSequence</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1a7a476d0a6824c6a1b463f501c9f7df0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void SYNQuitSynth</definition>
+        <argsstring>(struct SYNSYNTH *synth)</argsstring>
+        <name>SYNQuitSynth</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="163" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="155" bodyend="177" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="163" declcolumn="6"/>
+        <references refid="syn_8c_1a51f9e7ea18be149fe93953e8cf36f272" compoundref="syn_8c" startline="36" endline="62">__SYNRemoveSynthFromList</references>
+        <references refid="_s_y_n_private_8h_1a93df0d8dfa12d2c8d5ce010160197a80" compoundref="synvoice_8c" startline="12">__SYNVoice</references>
+        <references refid="ax_8h_1af178ccff0e2677fbc8ba313e341024f3" compoundref="_a_x_alloc_8c" startline="188" endline="202">AXFreeVoice</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a11f4c746d8790b4090ffa2843672a1d7" compoundref="syn_8h" startline="107">SYNVOICE::axvpb</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mix_8h_1a7cc3de931ade943e8b29e76c1c3bdc60" compoundref="mix_8c" startline="342" endline="346">MIXReleaseChannel</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a83d50a549ccc93d703219229a0f49a57" compoundref="syn_8h" startline="99">SYNSYNTH::notes</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="seq_8h_1aa577ccc453c265ae9cefd1dfbd8c6731" compoundref="seq_8c" startline="416" endline="421">SEQRemoveSequence</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1a8c64275c314797c1f6fc93e85ddbe096" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void SYNMidiInput</definition>
+        <argsstring>(struct SYNSYNTH *synth, u8 *input)</argsstring>
+        <name>SYNMidiInput</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref> *</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="164" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="180" bodyend="202" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="164" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a2eae9833d32f3b2349f279396f361b2e" compoundref="syn_8h" startline="98">SYNSYNTH::inputCounter</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a739522a9cd85f58325309faedf4233eb" compoundref="syn_8h" startline="97">SYNSYNTH::inputPosition</references>
+        <references refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" compoundref="_o_s_private_8h" startline="111">src</references>
+        <references refid="syn_8h_1a33c594738e86aa7de56b38071e45a933" compoundref="syn_8h" startline="6">SYN_INPUT_BUFFER_SIZE</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="seq_8c_1ab54f3a3b0ec626b058a795fd7d80518c" compoundref="seq_8c" startline="168" endline="200">__SEQHandleSynthEvent</referencedby>
+        <referencedby refid="seq_8h_1a6866b0d8e73a8e859c084da974796728" compoundref="seq_8c" startline="433" endline="480">SEQSetState</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1ad660c96b710399a6760cce2f5dc8876d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void SYNSetMasterVolume</definition>
+        <argsstring>(struct SYNSYNTH *synth, s32 dB)</argsstring>
+        <name>SYNSetMasterVolume</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>dB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="165" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="205" bodyend="209" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="165" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ae07961e8427a1837a259b8eb88756821" compoundref="syn_8h" startline="86">SYNSYNTH::masterVolume</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="seq_8h_1abe1c86bb40b2e51393d95622a7ba42f7" compoundref="seq_8c" startline="516" endline="520">SEQSetVolume</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1a98816ac233402d2b2c08e1187015ffc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 SYNGetMasterVolume</definition>
+        <argsstring>(struct SYNSYNTH *synth)</argsstring>
+        <name>SYNGetMasterVolume</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="166" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="212" bodyend="216" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="166" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ae07961e8427a1837a259b8eb88756821" compoundref="syn_8h" startline="86">SYNSYNTH::masterVolume</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="seq_8h_1a080895cbe7ef648755662df7e58e5587" compoundref="seq_8c" startline="523" endline="527">SEQGetVolume</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1a122c568f80a8b04dba6aa6fefd498825" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 SYNGetActiveNotes</definition>
+        <argsstring>(struct SYNSYNTH *synth)</argsstring>
+        <name>SYNGetActiveNotes</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="167" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="219" bodyend="223" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="167" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a83d50a549ccc93d703219229a0f49a57" compoundref="syn_8h" startline="99">SYNSYNTH::notes</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+      </memberdef>
+      <memberdef kind="function" id="syn_8h_1afaab57c6b658f26209c23a7b6fdff356" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+        <definition>u8 SYNGetMidiController</definition>
+        <argsstring>(struct SYNSYNTH *synth, u8 midiChannel, u8 function)</argsstring>
+        <name>SYNGetMidiController</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>midiChannel</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/syn.h" line="170" column="4" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synctrl.c" bodystart="456" bodyend="462" declfile="decomp/DolphinSDK/include/dolphin/syn.h" declline="170" declcolumn="4"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" compoundref="syn_8h" startline="87">SYNSYNTH::controller</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_SYN_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_SYN_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ax_8h" kindref="compound">dolphin/ax.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="syn_8h_1a33c594738e86aa7de56b38071e45a933" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SYN_INPUT_BUFFER_SIZE<sp/>0x100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="struct_w_t_i_n_s_t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_i_n_s_t" kindref="compound">WTINST</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10" refid="struct_w_t_i_n_s_t_1afc5f406920ef2af0d0f261ea0571d4d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_i_n_s_t_1afc5f406920ef2af0d0f261ea0571d4d2" kindref="member">keyRegion</ref>[128];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="struct_w_t_r_e_g_i_o_n" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_r_e_g_i_o_n" kindref="compound">WTREGION</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15" refid="struct_w_t_r_e_g_i_o_n_1ae17bcbef554952b1c018dfbbbf5dcff3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><ref refid="struct_w_t_r_e_g_i_o_n_1ae17bcbef554952b1c018dfbbbf5dcff3" kindref="member">unityNote</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="16" refid="struct_w_t_r_e_g_i_o_n_1a6d8a1dc2757b040e8bfd30e95fb84fde" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><ref refid="struct_w_t_r_e_g_i_o_n_1a6d8a1dc2757b040e8bfd30e95fb84fde" kindref="member">keyGroup</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17" refid="struct_w_t_r_e_g_i_o_n_1a0e6729cca0c2fff6ed3c41ccc53a56be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a5ffa4f640862b25ba6d4f635b78bdbe1" kindref="member">s16</ref><sp/><ref refid="struct_w_t_r_e_g_i_o_n_1a0e6729cca0c2fff6ed3c41ccc53a56be" kindref="member">fineTune</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18" refid="struct_w_t_r_e_g_i_o_n_1ab1f84ae3162f48f2642debcdb0e238e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_r_e_g_i_o_n_1ab1f84ae3162f48f2642debcdb0e238e2" kindref="member">attn</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19" refid="struct_w_t_r_e_g_i_o_n_1ac37f62d980fcdfc11dd994d25901d19b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_w_t_r_e_g_i_o_n_1ac37f62d980fcdfc11dd994d25901d19b" kindref="member">loopStart</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20" refid="struct_w_t_r_e_g_i_o_n_1ad22b1ecc1fcd262e9f9e8bcbb535ed52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_w_t_r_e_g_i_o_n_1ad22b1ecc1fcd262e9f9e8bcbb535ed52" kindref="member">loopLength</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21" refid="struct_w_t_r_e_g_i_o_n_1ad7332d7bde75fc6c83014c53a2ef4a05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_w_t_r_e_g_i_o_n_1ad7332d7bde75fc6c83014c53a2ef4a05" kindref="member">articulationIndex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22" refid="struct_w_t_r_e_g_i_o_n_1a573dc27900c68f06fe9ac917c67e1252" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_w_t_r_e_g_i_o_n_1a573dc27900c68f06fe9ac917c67e1252" kindref="member">sampleIndex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="struct_w_t_a_r_t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_a_r_t" kindref="compound">WTART</ref></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27" refid="struct_w_t_a_r_t_1adb709a8c5841a1eba65f4d02c1680839" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1adb709a8c5841a1eba65f4d02c1680839" kindref="member">lfoFreq</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28" refid="struct_w_t_a_r_t_1a5e7747a3a0e8ed8e6a941f39a67c5b11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a5e7747a3a0e8ed8e6a941f39a67c5b11" kindref="member">lfoDelay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29" refid="struct_w_t_a_r_t_1a33917c355b9c234dcdf2495d10962db8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a33917c355b9c234dcdf2495d10962db8" kindref="member">lfoAtten</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30" refid="struct_w_t_a_r_t_1ad1fbe6be681621a1ac43b2979c1403ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1ad1fbe6be681621a1ac43b2979c1403ce" kindref="member">lfoPitch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31" refid="struct_w_t_a_r_t_1a96066af52ac3bd77ea3d59c66f3b3125" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a96066af52ac3bd77ea3d59c66f3b3125" kindref="member">lfoMod2Atten</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32" refid="struct_w_t_a_r_t_1a0e469020f4b77b393e5075b65176a893" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a0e469020f4b77b393e5075b65176a893" kindref="member">lfoMod2Pitch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33" refid="struct_w_t_a_r_t_1af3a862cd14bd79036d7b7848d0fb64fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1af3a862cd14bd79036d7b7848d0fb64fa" kindref="member">eg1Attack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34" refid="struct_w_t_a_r_t_1ad615cfd2437d43f4dd5be08052be7a47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1ad615cfd2437d43f4dd5be08052be7a47" kindref="member">eg1Decay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="struct_w_t_a_r_t_1a91e86028d923366f93e926b17e2b47fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a91e86028d923366f93e926b17e2b47fc" kindref="member">eg1Sustain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36" refid="struct_w_t_a_r_t_1a17274ec3a18a7e0d55a074174ed9a59a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a17274ec3a18a7e0d55a074174ed9a59a" kindref="member">eg1Release</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="struct_w_t_a_r_t_1a36533e8d4679ba8946b642cc6473ed73" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a36533e8d4679ba8946b642cc6473ed73" kindref="member">eg1Vel2Attack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="struct_w_t_a_r_t_1ae3f11e0dcf1a64b54b9b8d06e7468206" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1ae3f11e0dcf1a64b54b9b8d06e7468206" kindref="member">eg1Key2Decay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="struct_w_t_a_r_t_1ad0f41b7560f39721d1668207d0170454" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1ad0f41b7560f39721d1668207d0170454" kindref="member">eg2Attack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="struct_w_t_a_r_t_1a33230f7758464df73ca59aa051896a0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a33230f7758464df73ca59aa051896a0a" kindref="member">eg2Decay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="struct_w_t_a_r_t_1ace56f4b4eb17c332986091861b4fe7eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1ace56f4b4eb17c332986091861b4fe7eb" kindref="member">eg2Sustain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="struct_w_t_a_r_t_1a66fa79f1018112e597373fbe9e8f1f44" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a66fa79f1018112e597373fbe9e8f1f44" kindref="member">eg2Release</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="struct_w_t_a_r_t_1a97e14ca8f7aca6c0e63689099fe8ddbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a97e14ca8f7aca6c0e63689099fe8ddbf" kindref="member">eg2Vel2Attack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="struct_w_t_a_r_t_1aec2c2a61da07a841638debbe646e0dce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1aec2c2a61da07a841638debbe646e0dce" kindref="member">eg2Key2Decay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="struct_w_t_a_r_t_1a7721b59ec87a60d864e7f45f98f9e14d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a7721b59ec87a60d864e7f45f98f9e14d" kindref="member">eg2Pitch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="struct_w_t_a_r_t_1a87383a95d49b571b55d544c6baefd9dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="struct_w_t_a_r_t_1a87383a95d49b571b55d544c6baefd9dc" kindref="member">pan</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="struct_w_t_s_a_m_p_l_e" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_s_a_m_p_l_e" kindref="compound">WTSAMPLE</ref></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51" refid="struct_w_t_s_a_m_p_l_e_1a6c8328ad3a4e8a20c08e90f3ec97b17f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_s_a_m_p_l_e_1a6c8328ad3a4e8a20c08e90f3ec97b17f" kindref="member">format</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="struct_w_t_s_a_m_p_l_e_1a4479c64c655f01caf26ee100ad500a5c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_s_a_m_p_l_e_1a4479c64c655f01caf26ee100ad500a5c" kindref="member">sampleRate</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="struct_w_t_s_a_m_p_l_e_1aa502ec1e9abba4688c4ff6cf40ae53b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_w_t_s_a_m_p_l_e_1aa502ec1e9abba4688c4ff6cf40ae53b5" kindref="member">offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="struct_w_t_s_a_m_p_l_e_1a492fae97d5d4af54805758886d5140ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_w_t_s_a_m_p_l_e_1a492fae97d5d4af54805758886d5140ef" kindref="member">length</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="struct_w_t_s_a_m_p_l_e_1a7f8b73bea1688a61c5fb45dcfe6129b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_s_a_m_p_l_e_1a7f8b73bea1688a61c5fb45dcfe6129b7" kindref="member">adpcmIndex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="struct_w_t_a_d_p_c_m" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_a_d_p_c_m" kindref="compound">WTADPCM</ref></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="60" refid="struct_w_t_a_d_p_c_m_1ae40bf2f7ca608fe389c264f2c294ffd0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_a_d_p_c_m_1ae40bf2f7ca608fe389c264f2c294ffd0" kindref="member">a</ref>[8][2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="struct_w_t_a_d_p_c_m_1ab7b70d952b374b9ad8720839d4cd241d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_a_d_p_c_m_1ab7b70d952b374b9ad8720839d4cd241d" kindref="member">gain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="struct_w_t_a_d_p_c_m_1a55d55e8a5b554fa783b277a02c537c81" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_a_d_p_c_m_1a55d55e8a5b554fa783b277a02c537c81" kindref="member">pred_scale</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="struct_w_t_a_d_p_c_m_1a772936bc29d4c9c1eb629a384ea1fa0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_a_d_p_c_m_1a772936bc29d4c9c1eb629a384ea1fa0a" kindref="member">yn1</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="struct_w_t_a_d_p_c_m_1a3fb0e6f5bae865508f80786c82fc9431" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_a_d_p_c_m_1a3fb0e6f5bae865508f80786c82fc9431" kindref="member">yn2</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="struct_w_t_a_d_p_c_m_1aa55be2f3a74a2ad241d698c0eb58828f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_a_d_p_c_m_1aa55be2f3a74a2ad241d698c0eb58828f" kindref="member">loop_pred_scale</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="struct_w_t_a_d_p_c_m_1a6a1863be85230b19335488fbb1ac91ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_a_d_p_c_m_1a6a1863be85230b19335488fbb1ac91ad" kindref="member">loop_yn1</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="struct_w_t_a_d_p_c_m_1abf2d8b07d0263a79893aa2305e90c8d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_w_t_a_d_p_c_m_1abf2d8b07d0263a79893aa2305e90c8d5" kindref="member">loop_yn2</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="struct_s_y_n_s_y_n_t_h" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="72" refid="struct_s_y_n_s_y_n_t_h_1ae7b442abd7879d0156696a97496294ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1ae7b442abd7879d0156696a97496294ec" kindref="member">next</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="struct_s_y_n_s_y_n_t_h_1a4ec7d08dc033f005fd33c9b938a3a8be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_i_n_s_t" kindref="compound">WTINST</ref>*<sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a4ec7d08dc033f005fd33c9b938a3a8be" kindref="member">percussiveInst</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="struct_s_y_n_s_y_n_t_h_1a5ec712fed2feadff93587cf8b61961c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_i_n_s_t" kindref="compound">WTINST</ref>*<sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a5ec712fed2feadff93587cf8b61961c4" kindref="member">melodicInst</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="struct_s_y_n_s_y_n_t_h_1a6676807232618abd2449b182787bf2c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_r_e_g_i_o_n" kindref="compound">WTREGION</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a6676807232618abd2449b182787bf2c8" kindref="member">region</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="struct_s_y_n_s_y_n_t_h_1ad6a9f4dd2f8a7208bb621c304af8047e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_a_r_t" kindref="compound">WTART</ref>*<sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1ad6a9f4dd2f8a7208bb621c304af8047e" kindref="member">art</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="struct_s_y_n_s_y_n_t_h_1a4a508942af4c982a8bf762bbd19935ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_s_a_m_p_l_e" kindref="compound">WTSAMPLE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a4a508942af4c982a8bf762bbd19935ff" kindref="member">sample</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="struct_s_y_n_s_y_n_t_h_1a844eeda5ae559429fe8ba7a4a7216511" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_a_d_p_c_m" kindref="compound">WTADPCM</ref>*<sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a844eeda5ae559429fe8ba7a4a7216511" kindref="member">adpcm</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79" refid="struct_s_y_n_s_y_n_t_h_1afd6fddbe5b477d57fcad6caee09b303c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1afd6fddbe5b477d57fcad6caee09b303c" kindref="member">aramBaseWord</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="struct_s_y_n_s_y_n_t_h_1a5853c8b8b6de9a1606efb752bfbb5efd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a5853c8b8b6de9a1606efb752bfbb5efd" kindref="member">aramBaseByte</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="struct_s_y_n_s_y_n_t_h_1a4dc6889eb9db85e92a3a7763c10cbfb2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a4dc6889eb9db85e92a3a7763c10cbfb2" kindref="member">aramBaseNibble</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="struct_s_y_n_s_y_n_t_h_1a547389cc3df49eeb8d1a6339761eafd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a547389cc3df49eeb8d1a6339761eafd4" kindref="member">priorityVoiceAlloc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="struct_s_y_n_s_y_n_t_h_1a74a7f6cb52e4e2ec9884ea04250e7592" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a74a7f6cb52e4e2ec9884ea04250e7592" kindref="member">priorityNoteOn</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="struct_s_y_n_s_y_n_t_h_1ad3934d11983d46e2dd645de66dd42a03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1ad3934d11983d46e2dd645de66dd42a03" kindref="member">priorityNoteRelease</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="struct_s_y_n_s_y_n_t_h_1aefe2720a119ec1535225e428a1150ba8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_i_n_s_t" kindref="compound">WTINST</ref>*<sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aefe2720a119ec1535225e428a1150ba8" kindref="member">inst</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="struct_s_y_n_s_y_n_t_h_1ae07961e8427a1837a259b8eb88756821" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1ae07961e8427a1837a259b8eb88756821" kindref="member">masterVolume</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" kindref="member">controller</ref>[16][128];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="struct_s_y_n_s_y_n_t_h_1adf27002c82be016f76f4d3b099cdf690" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1adf27002c82be016f76f4d3b099cdf690" kindref="member">rpn</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="struct_s_y_n_s_y_n_t_h_1a85036d5c46f790c5dbccb2cc1e270a5d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a5ffa4f640862b25ba6d4f635b78bdbe1" kindref="member">s16</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a85036d5c46f790c5dbccb2cc1e270a5d" kindref="member">dataEntry</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="struct_s_y_n_s_y_n_t_h_1ac7f314b6416e1262f8484e7a48905a00" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1ac7f314b6416e1262f8484e7a48905a00" kindref="member">pwMaxCents</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="struct_s_y_n_s_y_n_t_h_1a15c46562ed3db830c272db0599cfdcdf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a15c46562ed3db830c272db0599cfdcdf" kindref="member">pwCents</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92" refid="struct_s_y_n_s_y_n_t_h_1a0aa52b9e9f64e014a39b5e761f482438" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a0aa52b9e9f64e014a39b5e761f482438" kindref="member">volAttn</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93" refid="struct_s_y_n_s_y_n_t_h_1a4e654f329600fdb759d12b2d31f62400" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a4e654f329600fdb759d12b2d31f62400" kindref="member">expAttn</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94" refid="struct_s_y_n_s_y_n_t_h_1ae07a9dd74fa0306265d74a6c66c177dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1ae07a9dd74fa0306265d74a6c66c177dc" kindref="member">auxAAttn</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95" refid="struct_s_y_n_s_y_n_t_h_1acd3b29644afc7841c90c97ad35281643" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1acd3b29644afc7841c90c97ad35281643" kindref="member">auxBAttn</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96" refid="struct_s_y_n_s_y_n_t_h_1a5e0e5d31f5293f872e72353059df4b11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a5e0e5d31f5293f872e72353059df4b11" kindref="member">input</ref>[<ref refid="syn_8h_1a33c594738e86aa7de56b38071e45a933" kindref="member">SYN_INPUT_BUFFER_SIZE</ref>][3];<sp/></highlight></codeline>
+<codeline lineno="97" refid="struct_s_y_n_s_y_n_t_h_1a739522a9cd85f58325309faedf4233eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a739522a9cd85f58325309faedf4233eb" kindref="member">inputPosition</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98" refid="struct_s_y_n_s_y_n_t_h_1a2eae9833d32f3b2349f279396f361b2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a2eae9833d32f3b2349f279396f361b2e" kindref="member">inputCounter</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99" refid="struct_s_y_n_s_y_n_t_h_1a83d50a549ccc93d703219229a0f49a57" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1a83d50a549ccc93d703219229a0f49a57" kindref="member">notes</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100" refid="struct_s_y_n_s_y_n_t_h_1adfc75906db75d0ccbc7eb95e03e40c68" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1adfc75906db75d0ccbc7eb95e03e40c68" kindref="member">keyGroup</ref>[16][16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101" refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>[16][128];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="struct_s_y_n_v_o_i_c_e" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref></highlight></codeline>
+<codeline lineno="105"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="106" refid="struct_s_y_n_v_o_i_c_e_1a5291667d1c8533ba0a630d84d1db8354" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a5291667d1c8533ba0a630d84d1db8354" kindref="member">next</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107" refid="struct_s_y_n_v_o_i_c_e_1a11f4c746d8790b4090ffa2843672a1d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___a_x_v_p_b" kindref="compound">AXVPB</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a11f4c746d8790b4090ffa2843672a1d7" kindref="member">axvpb</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108" refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/><ref refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" kindref="member">synth</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109" refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" kindref="member">midiChannel</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110" refid="struct_s_y_n_v_o_i_c_e_1ad5e3b2ad948d49207428e473d8e09df4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1ad5e3b2ad948d49207428e473d8e09df4" kindref="member">keyNum</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111" refid="struct_s_y_n_v_o_i_c_e_1ac42d5c08b47b374f7eafb60c60ad352e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1ac42d5c08b47b374f7eafb60c60ad352e" kindref="member">keyVel</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112" refid="struct_s_y_n_v_o_i_c_e_1adc3adea1335e78949414dc481527b518" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1adc3adea1335e78949414dc481527b518" kindref="member">pan</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113" refid="struct_s_y_n_v_o_i_c_e_1a26f362559a5350a96f9e7f49e4311399" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a26f362559a5350a96f9e7f49e4311399" kindref="member">keyGroup</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114" refid="struct_s_y_n_v_o_i_c_e_1afeb83594f77b9a29e725e4af5cf430b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_r_e_g_i_o_n" kindref="compound">WTREGION</ref>*<sp/><ref refid="struct_s_y_n_v_o_i_c_e_1afeb83594f77b9a29e725e4af5cf430b7" kindref="member">region</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115" refid="struct_s_y_n_v_o_i_c_e_1a299928a50502b106477ded4667b22b06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_a_r_t" kindref="compound">WTART</ref>*<sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a299928a50502b106477ded4667b22b06" kindref="member">art</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116" refid="struct_s_y_n_v_o_i_c_e_1aed4835d9a68eea2909a1e233402530c3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_s_a_m_p_l_e" kindref="compound">WTSAMPLE</ref>*<sp/><ref refid="struct_s_y_n_v_o_i_c_e_1aed4835d9a68eea2909a1e233402530c3" kindref="member">sample</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117" refid="struct_s_y_n_v_o_i_c_e_1a9030fe4517cf5f3b7cb757b3cd295e13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_w_t_a_d_p_c_m" kindref="compound">WTADPCM</ref>*<sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a9030fe4517cf5f3b7cb757b3cd295e13" kindref="member">adpcm</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118" refid="struct_s_y_n_v_o_i_c_e_1ad3948874418b23b88504f22f2bebdcaf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1ad3948874418b23b88504f22f2bebdcaf" kindref="member">hold</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119" refid="struct_s_y_n_v_o_i_c_e_1a0d5e4f32bbb7e16b657be29954c7857e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a0d5e4f32bbb7e16b657be29954c7857e" kindref="member">type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120" refid="struct_s_y_n_v_o_i_c_e_1a04ff122d3519ac1ed90f07111fa2a462" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a04ff122d3519ac1ed90f07111fa2a462" kindref="member">srcRatio</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121" refid="struct_s_y_n_v_o_i_c_e_1a4fbcbe0e815c9073f638dfaf279b0e43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a4fbcbe0e815c9073f638dfaf279b0e43" kindref="member">cents</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122" refid="struct_s_y_n_v_o_i_c_e_1a419592f253decfe69e6fb4846b28f3f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a419592f253decfe69e6fb4846b28f3f7" kindref="member">attn</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123" refid="struct_s_y_n_v_o_i_c_e_1a7a4fc3de7296c8f0bd4198cc7d2f1315" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a7a4fc3de7296c8f0bd4198cc7d2f1315" kindref="member">lfoState</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="124" refid="struct_s_y_n_v_o_i_c_e_1a2b540c5b722dece94f549a1ea92398bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a2b540c5b722dece94f549a1ea92398bf" kindref="member">lfoAttn</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="125" refid="struct_s_y_n_v_o_i_c_e_1a2cf852540c1d7c2b4f571f74cb8a37cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a2cf852540c1d7c2b4f571f74cb8a37cd" kindref="member">lfoCents</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="126" refid="struct_s_y_n_v_o_i_c_e_1ac22bd6f800a687eaf5ccb9cb0cf1e37e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1ac22bd6f800a687eaf5ccb9cb0cf1e37e" kindref="member">lfoFreq</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127" refid="struct_s_y_n_v_o_i_c_e_1a8235e7dfab90902b6ebd832ebd483914" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a8235e7dfab90902b6ebd832ebd483914" kindref="member">lfoDelay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="128" refid="struct_s_y_n_v_o_i_c_e_1a5d9d23575360a3c6a3e1a2c659a791b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a5d9d23575360a3c6a3e1a2c659a791b5" kindref="member">lfoAttn_</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="129" refid="struct_s_y_n_v_o_i_c_e_1a9b0d9df9f6789bd368798f1470cbcd15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a9b0d9df9f6789bd368798f1470cbcd15" kindref="member">lfoCents_</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130" refid="struct_s_y_n_v_o_i_c_e_1a5316c4a85545a12aa857439aa5ae2d35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a5316c4a85545a12aa857439aa5ae2d35" kindref="member">lfoModAttn</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="131" refid="struct_s_y_n_v_o_i_c_e_1a0c079c1704432ea72876cd17668438af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a0c079c1704432ea72876cd17668438af" kindref="member">lfoModCents</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="132" refid="struct_s_y_n_v_o_i_c_e_1afb4a36ebae10d9ebbfb5ec15bf1b12c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1afb4a36ebae10d9ebbfb5ec15bf1b12c4" kindref="member">veState</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="133" refid="struct_s_y_n_v_o_i_c_e_1adc14a2d200a0707922694c67a9afa307" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1adc14a2d200a0707922694c67a9afa307" kindref="member">veAttn</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134" refid="struct_s_y_n_v_o_i_c_e_1a6d318b22bbb1775d0898ec3d8b677279" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a6d318b22bbb1775d0898ec3d8b677279" kindref="member">veAttack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="135" refid="struct_s_y_n_v_o_i_c_e_1a2df78cca89c8f4bea17998512c651c50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a2df78cca89c8f4bea17998512c651c50" kindref="member">veAttackDelta</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136" refid="struct_s_y_n_v_o_i_c_e_1a2339ab4ca01f051aa9a0dbbfb054c3b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a2339ab4ca01f051aa9a0dbbfb054c3b8" kindref="member">veDecay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137" refid="struct_s_y_n_v_o_i_c_e_1a71ef131a2fe52778be24ee4c697d0e7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a71ef131a2fe52778be24ee4c697d0e7a" kindref="member">veSustain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="138" refid="struct_s_y_n_v_o_i_c_e_1a71c1243767cf036c50cbfc2c850b44a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a71c1243767cf036c50cbfc2c850b44a2" kindref="member">veRelease</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="139" refid="struct_s_y_n_v_o_i_c_e_1ac9fe463ae31f79ac3846a9dcb5df0a80" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1ac9fe463ae31f79ac3846a9dcb5df0a80" kindref="member">peState</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="140" refid="struct_s_y_n_v_o_i_c_e_1ae82dc0b37a19e009bc8405d21c8f5578" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1ae82dc0b37a19e009bc8405d21c8f5578" kindref="member">peCents</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141" refid="struct_s_y_n_v_o_i_c_e_1a32ca349469ae72f409948f50dc2ae909" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a32ca349469ae72f409948f50dc2ae909" kindref="member">peAttack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="142" refid="struct_s_y_n_v_o_i_c_e_1a080737341228f8af80728ee91d0db95c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a080737341228f8af80728ee91d0db95c" kindref="member">peDecay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143" refid="struct_s_y_n_v_o_i_c_e_1a0d522eae7dabfdb39787ae76f9921fd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a0d522eae7dabfdb39787ae76f9921fd8" kindref="member">peSustain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144" refid="struct_s_y_n_v_o_i_c_e_1a5d144c90c1e99622fe166900cc7b6012" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a5d144c90c1e99622fe166900cc7b6012" kindref="member">peRelease</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="145" refid="struct_s_y_n_v_o_i_c_e_1a30f96ef94c45086b15c2f37b19a76b56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_s_y_n_v_o_i_c_e_1a30f96ef94c45086b15c2f37b19a76b56" kindref="member">pePitch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="146"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="comment">//<sp/>sample<sp/>formats</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="syn_8h_1a3298d094c5201ae912f6234e331c14fb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SYN_SAMPLE_FORMAT_ADPCM<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="syn_8h_1a6ffa273eeca272e8aa79c0b73336545e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SYN_SAMPLE_FORMAT_PCM16<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="syn_8h_1acd1a42b7f26327233e9f4be349e13296" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SYN_SAMPLE_FORMAT_PCM8<sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="comment">//<sp/>syn.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="syn_8h_1a3109370aae355619e3622833a4c2e20e" kindref="member">SYNInit</ref><sp/>();</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="syn_8h_1a36481e95b4d0533544a1f95b01e32fcd" kindref="member">SYNQuit</ref><sp/>();</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="syn_8h_1a6a537bdc29c29806cf5677936de14194" kindref="member">SYNRunAudioFrame</ref><sp/>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="syn_8h_1a9f244787935ff0f7d212bf1c508be9e1" kindref="member">SYNInitSynth</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth,</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">wavetable</ref>,</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">aramBase</ref>,</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>priorityVoiceAlloc,</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>priorityNoteOn,</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>priorityNoteRelease);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="syn_8h_1a7a476d0a6824c6a1b463f501c9f7df0d" kindref="member">SYNQuitSynth</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="syn_8h_1a8c64275c314797c1f6fc93e85ddbe096" kindref="member">SYNMidiInput</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/>input);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="syn_8h_1ad660c96b710399a6760cce2f5dc8876d" kindref="member">SYNSetMasterVolume</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dB</ref>);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><ref refid="syn_8h_1a98816ac233402d2b2c08e1187015ffc3" kindref="member">SYNGetMasterVolume</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="syn_8h_1a122c568f80a8b04dba6aa6fefd498825" kindref="member">SYNGetActiveNotes</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synctrl.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="syn_8h_1afaab57c6b658f26209c23a7b6fdff356" kindref="member">SYNGetMidiController</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/>midiChannel,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/>function);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_DOLPHIN_SYN_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/include/dolphin/syn.h"/>
+  </compounddef>
+</doxygen>

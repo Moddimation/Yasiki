@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_new_8cp" kind="file" language="C++">
+    <compoundname>New.cp</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Project...:<sp/>Standard<sp/>C++<sp/>Library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Name......:<sp/>New.cp<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose...:<sp/>standard<sp/>C++<sp/>library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Copyright.:<sp/>Copyright<sp/>1993-1998<sp/>Metrowerks,<sp/>Inc.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__MWERKS__<sp/>&amp;&amp;<sp/>!__embedded_cplusplus</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>exceptions<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;new&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;cstdlib&gt;</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>__dest_os<sp/>==<sp/>__mac_os</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;MacMemory.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980121<sp/>commented<sp/>out.<sp/><sp/>#define<sp/>new<sp/>to<sp/>anything<sp/>at<sp/>your<sp/>own<sp/>risk!<sp/><sp/>Not<sp/>recommended!</highlight></codeline>
+<codeline><highlight class="normal">//#ifdef<sp/>DebugNew_H</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>#undef<sp/>new</highlight></codeline>
+<codeline><highlight class="normal">//#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__MC68K__</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>a6frames<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_MSL_THROW_BAD_ALLOC<sp/>throw(_STD::bad_alloc)</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_MSL_THROW_BAD_ALLOC</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE<sp/><sp/><sp/>//<sp/>hh<sp/>971206<sp/><sp/>put<sp/>this<sp/>stuff<sp/>in<sp/>std::</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>non-standard<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>__throw_bad_alloc();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE<sp/><sp/><sp/>//<sp/>hh<sp/>971206</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971207<sp/>Moved<sp/>these<sp/>up<sp/>to<sp/>get<sp/>them<sp/>out<sp/>of<sp/>std::</highlight></codeline>
+<codeline><highlight class="normal">//</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>allow<sp/>user<sp/>definined<sp/>replacements<sp/>of<sp/>operator<sp/>new/delete</highlight></codeline>
+<codeline><highlight class="normal">//</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>overload<sp/><sp/><sp/><sp/>extern<sp/>void<sp/>*operator<sp/>new(_CSTD::size_t)<sp/>_MSL_THROW_BAD_ALLOC;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>overload<sp/><sp/><sp/><sp/>extern<sp/>void<sp/>*operator<sp/>new(_CSTD::size_t,const<sp/>_STD::nothrow_t&amp;)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>overload<sp/><sp/><sp/><sp/>extern<sp/>void<sp/>operator<sp/>delete(void<sp/>*)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__MWERKS__&gt;=0x2020</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>overload<sp/><sp/><sp/><sp/>extern<sp/>void<sp/>*operator<sp/>new[](_CSTD::size_t)<sp/>_MSL_THROW_BAD_ALLOC;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>overload<sp/><sp/><sp/><sp/>extern<sp/>void<sp/>*operator<sp/>new[](_CSTD::size_t,const<sp/>_STD::nothrow_t&amp;)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>overload<sp/><sp/><sp/><sp/>extern<sp/>void<sp/>operator<sp/>delete[](void<sp/>*)<sp/>_MSL_THROW;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971207<sp/>Added<sp/>namespace<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>NEWMODE</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>GENERATINGCFM<sp/>&amp;&amp;<sp/>__MC68K__</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>NEWMODE<sp/>NEWMODE_FAST<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>workaround<sp/>for<sp/>CFM68K<sp/>shared<sp/>lib<sp/>runtimes</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>NEWMODE<sp/>NEWMODE_MALLOC<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>mode<sp/>used<sp/>to<sp/>compile<sp/>this<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>NEWMODE_NONE<sp/><sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>do<sp/>not<sp/>define<sp/>operator<sp/>new/delete</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>NEWMODE_SIMPLE<sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>call<sp/>NewPtr/DisposPtr</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>NEWMODE_MALLOC<sp/><sp/>2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>use<sp/>malloc/free</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>NEWMODE_NORMAL<sp/><sp/>3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>regular<sp/>new/delete</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>NEWMODE_FAST<sp/><sp/><sp/><sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>regular<sp/>new/delete<sp/>fast<sp/>version</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>NEWMODE_NORMAL_FASTFREE</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>NEWMODE_NORMAL_FASTFREE<sp/>0<sp/><sp/><sp/>//<sp/><sp/>NEWMODE_NORMAL<sp/>faster<sp/>free<sp/>(real<sp/>bad<sp/>fragmentation)</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/><sp/><sp/><sp/><sp/>NEWMODE==NEWMODE_SIMPLE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>MALLOCFUNC(x)<sp/><sp/><sp/>NewPtr(x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>MFREEFUNC(x)<sp/><sp/><sp/><sp/>DisposePtr(x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>PTRTYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ptr</highlight></codeline>
+<codeline><highlight class="normal">#elif<sp/><sp/><sp/>NEWMODE==NEWMODE_MALLOC</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>MALLOCFUNC(x)<sp/><sp/><sp/>_CSTD::malloc(x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>MFREEFUNC(x)<sp/><sp/><sp/><sp/>_CSTD::free(x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>PTRTYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>*</highlight></codeline>
+<codeline><highlight class="normal">#elif<sp/><sp/><sp/>NEWMODE==NEWMODE_NORMAL<sp/>||<sp/>NEWMODE==NEWMODE_FAST</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>MALLOCFUNC(x)<sp/><sp/><sp/>my_alloc(x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>MFREEFUNC(x)<sp/><sp/><sp/><sp/>my_free(x)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>PTRTYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>*</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">extern<sp/>new_handler<sp/><sp/>__new_handler;</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal">nothrow_t<sp/>nothrow;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>980124<sp/>added<sp/>nothrow</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>These<sp/>macros<sp/>allow<sp/>DebugNew.cp<sp/>to<sp/>redefine<sp/>operators</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>new<sp/>and<sp/>delete<sp/>in<sp/>debug<sp/>mode<sp/>while<sp/>not<sp/>adding<sp/>any<sp/>overhead</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>for<sp/>the<sp/>non-debug<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>980819<sp/>Hsoi<sp/>-<sp/>Added<sp/>macros<sp/>for<sp/>array<sp/>new<sp/>and<sp/>array<sp/>delete</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>OPERATOR_NEW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>OPERATOR_NEW<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>operator<sp/>new</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>OPERATOR_DELETE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>OPERATOR_DELETE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>operator<sp/>delete</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__MWERKS__&gt;=0x2020</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>OPERATOR_ARRAY_NEW</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>OPERATOR_ARRAY_NEW<sp/><sp/><sp/><sp/><sp/><sp/>operator<sp/>new[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>OPERATOR_ARRAY_DELETE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>OPERATOR_ARRAY_DELETE<sp/><sp/><sp/>operator<sp/>delete[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>NEWMODE==NEWMODE_NORMAL</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>struct<sp/>FreeMemList<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>FreeMemList<sp/><sp/>*next;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>long<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/><sp/><sp/>FreeMemList;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>FreeMemList<sp/><sp/>memlist;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>dummy<sp/>header<sp/>block<sp/>(always<sp/>empty)</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>size_t<sp/>_newpoolsize<sp/><sp/>=<sp/>0x00010000L;<sp/><sp/>//<sp/><sp/>number<sp/>of<sp/>bytes<sp/>allocated<sp/>for<sp/>a<sp/>new<sp/>pool</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>size_t<sp/>_newnonptrmax<sp/>=<sp/>0x00001000L;<sp/><sp/>//<sp/><sp/>any<sp/>object<sp/>bigger<sp/>than<sp/>this<sp/>will<sp/>call<sp/>NewPtr(...)<sp/>directly<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Set<sp/>size<sp/>of<sp/>future<sp/>allocation<sp/>pools<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>future<sp/>allocation<sp/>pools<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>_set_newpoolsize(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_newpoolsize=size;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Set<sp/>NewPtr(...)<sp/>pointer<sp/>threshold<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>new<sp/>threshold<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>_set_newnonptrmax(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_newnonptrmax=size;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Preallocate<sp/>an<sp/>allocation<sp/>pool<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>pool<sp/>to<sp/>allocate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>1:<sp/>no<sp/>error;<sp/>0:<sp/>fail<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>_prealloc_newpool(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FreeMemList<sp/>*list;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if((list=(FreeMemList<sp/>*)NewPtr(size))==NULL)<sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>list-&gt;next=memlist.next;<sp/>list-&gt;size=size;<sp/>memlist.next=list;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Allocate<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>memory<sp/>to<sp/>allocate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>void<sp/>*my_alloc(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Ptr<sp/>ptr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(size&gt;0x7FFFFFF0)<sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size<sp/>=<sp/>4L<sp/>+<sp/>((size<sp/>+<sp/>3L)<sp/>&amp;<sp/>0xFFFFFFFC);<sp/>//<sp/><sp/>alloc<sp/>*4<sp/>quantity<sp/>plus<sp/>4<sp/>extra<sp/>bytes<sp/>for<sp/>size</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(size&gt;=_newnonptrmax)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>try<sp/>to<sp/>get<sp/>pointer<sp/>from<sp/>OS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>((ptr=(char<sp/>*)NewPtr(size))==<sp/>NULL)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(long<sp/>*)ptr=-1L;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>ptr+4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FreeMemList<sp/>*list,*prev;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(prev=&amp;memlist,list=prev-&gt;next;<sp/>list;<sp/>prev=list,list=list-&gt;next)<sp/>if(size&lt;=list-&gt;size)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal">alloc:<sp/><sp/><sp/><sp/><sp/><sp/>if(list-&gt;size&gt;=size+sizeof(FreeMemList))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>split<sp/>this<sp/>free<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>list-&gt;size-=size;<sp/>ptr=(Ptr)list+list-&gt;size;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(long<sp/>*)ptr=size;<sp/>return(ptr+4);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>remove<sp/>this<sp/>block<sp/>from<sp/>list</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prev-&gt;next=list-&gt;next;<sp/>*(long<sp/>*)list=list-&gt;size;<sp/>return((Ptr)list+4);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>not<sp/>enough<sp/>free<sp/>memory<sp/>in<sp/>memlist<sp/>(try<sp/>to<sp/>allocate<sp/>a<sp/>new<sp/>Ptr<sp/>from<sp/>OS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((list=(FreeMemList<sp/>*)NewPtr(_newpoolsize))==NULL)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>try<sp/>to<sp/>allocate<sp/>a<sp/>system<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((ptr=NewPtr(size))!=NULL)<sp/>{<sp/>*(long<sp/>*)ptr=-1L;<sp/>return(ptr+4);<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return(NULL);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>list-&gt;next=memlist.next;<sp/>list-&gt;size=_newpoolsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memlist.next=list;<sp/>prev=&amp;memlist;<sp/>goto<sp/>alloc;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Dispose<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/>(no<sp/>action<sp/>if<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>void<sp/>my_free(void<sp/>*ptr)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(ptr)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>long<sp/><sp/><sp/><sp/>size;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr=(Ptr)ptr-4;<sp/>size=*(long<sp/>*)ptr;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(size!=-1L)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FreeMemList<sp/>*list;</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>!NEWMODE_NORMAL_FASTFREE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FreeMemList<sp/>*prev;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merge=0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(prev=&amp;memlist,list=prev-&gt;next;<sp/>list;<sp/>prev=list,list=list-&gt;next)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((Ptr)ptr+size==(Ptr)list)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>merge<sp/>block<sp/>in<sp/>front<sp/>of<sp/>this<sp/>list<sp/>item</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prev-&gt;next=list-&gt;next;<sp/>size+=list-&gt;size;<sp/>list=prev;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(merge)<sp/>break;<sp/>else<sp/>{<sp/>merge=1;<sp/>continue;<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((Ptr)ptr==(Ptr)list+list-&gt;size)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>merge<sp/>block<sp/>at<sp/>the<sp/>end<sp/>of<sp/>this<sp/>list<sp/>item</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prev-&gt;next=list-&gt;next;<sp/>ptr=list;<sp/>size+=list-&gt;size;<sp/>list=prev;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(merge)<sp/>break;<sp/>else<sp/>{<sp/>merge=1;<sp/>continue;<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>list=(FreeMemList<sp/>*)ptr;<sp/>list-&gt;next=memlist.next;<sp/>list-&gt;size=size;<sp/>memlist.next=list;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>DisposePtr((Ptr)ptr);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#elif<sp/>NEWMODE==NEWMODE_FAST</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>struct<sp/>MemPool<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>MemPool<sp/><sp/><sp/><sp/><sp/><sp/>*next;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>pointer<sp/>to<sp/>next<sp/>pool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>number<sp/>of<sp/>bytes<sp/>in<sp/>pool<sp/>(including<sp/>header)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>variable<sp/>size<sp/>user<sp/>data<sp/>section</highlight></codeline>
+<codeline><highlight class="normal">}<sp/><sp/><sp/>MemPool;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>MemPool<sp/><sp/>*mempools;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>list<sp/>of<sp/>memory<sp/>pools</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>char<sp/><sp/><sp/><sp/><sp/>*lastfree;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>pointer<sp/>to<sp/>last<sp/>free<sp/>block</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>char<sp/><sp/><sp/><sp/><sp/>*lastend;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>pointer<sp/>to<sp/>last<sp/>end</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>size_t<sp/><sp/><sp/>_newpoolsize<sp/><sp/><sp/><sp/>=<sp/>0x00010000L;<sp/><sp/>//<sp/><sp/>number<sp/>of<sp/>bytes<sp/>allocated<sp/>for<sp/>a<sp/>new<sp/>pool</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>size_t<sp/><sp/><sp/>_newnonptrmax<sp/><sp/><sp/>=<sp/>0x00001000L;<sp/><sp/>//<sp/><sp/>any<sp/>object<sp/>bigger<sp/>than<sp/>this<sp/>will<sp/>call<sp/>NewPtr(...)<sp/>directly<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Set<sp/>size<sp/>of<sp/>future<sp/>allocation<sp/>pools<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>future<sp/>allocation<sp/>pools<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>_set_newpoolsize(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_newpoolsize=size;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Set<sp/>NewPtr(...)<sp/>pointer<sp/>threshold<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>new<sp/>threshold<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>_set_newnonptrmax(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_newnonptrmax=size;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Preallocate<sp/>a<sp/>memory<sp/>pool<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>pool<sp/>to<sp/>allocate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>1:<sp/>no<sp/>error;<sp/>0:<sp/>fail<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>_prealloc_newpool(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>MemPool<sp/>*pool;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if((pool=(MemPool<sp/>*)NewPtr(size))==NULL)<sp/>return<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pool-&gt;next=mempools;<sp/>mempools=pool;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pool-&gt;size=size;<sp/>*(long<sp/>*)pool-&gt;data=pool-&gt;size-sizeof(MemPool);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Allocate<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>memory<sp/>to<sp/>allocate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>void<sp/>*my_alloc(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>MemPool<sp/>*pool;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/>*ptr,*end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>long<sp/><sp/><sp/><sp/>bsize,nsize;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(size&gt;0x7FFFFFF0)<sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size<sp/>=<sp/>4L<sp/>+<sp/>((size<sp/>+<sp/>3L)<sp/>&amp;<sp/>0xFFFFFFFC);<sp/>//<sp/><sp/>alloc<sp/>*4<sp/>quantity<sp/>plus<sp/>4<sp/>extra<sp/>bytes<sp/>for<sp/>size</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(size&gt;=_newnonptrmax)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>((ptr=(char<sp/>*)NewPtr(size))==<sp/>NULL)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(long<sp/>*)ptr=0L;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>ptr+4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((ptr=lastfree)!=0L<sp/>&amp;&amp;<sp/>(bsize=*(long<sp/>*)ptr)&gt;=(long)size)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>last<sp/>free<sp/>block<sp/>has<sp/>enough<sp/>memory<sp/>left</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end=lastend;<sp/>goto<sp/>alloc2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(pool=mempools;<sp/>pool;<sp/>pool=pool-&gt;next)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal">alloc:<sp/><sp/><sp/><sp/><sp/><sp/>for(ptr=pool-&gt;data,end=(Ptr)pool+pool-&gt;size;<sp/>ptr&lt;end;)<sp/>if((bsize=*(long<sp/>*)ptr)&gt;0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal">alloc2:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastfree=0L;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>while(ptr+bsize&lt;end<sp/>&amp;&amp;<sp/>(nsize=*(long<sp/>*)(ptr+bsize))&gt;0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>merge<sp/>block<sp/>with<sp/>the<sp/>next<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(long<sp/>*)ptr=bsize=bsize+nsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(bsize&gt;=size)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>pool<sp/>block<sp/>is<sp/>big<sp/>enough</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(bsize&gt;=size+8)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>split<sp/>this<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lastfree=ptr;<sp/>lastend=end;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bsize-=size;<sp/>*(long<sp/>*)ptr=bsize;<sp/>ptr+=bsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(long<sp/>*)ptr=-size;<sp/>return<sp/>ptr+4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>allocate<sp/>whole<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(long<sp/>*)ptr=-bsize;<sp/>return<sp/>ptr+4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>ptr+=bsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(bsize==0)<sp/>break;<sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>corrupt<sp/>heap?</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr-=bsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">next:;<sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>not<sp/>enough<sp/>free<sp/>memory<sp/>in<sp/>mempools<sp/>(try<sp/>to<sp/>allocate<sp/>a<sp/>new<sp/>Ptr<sp/>from<sp/>OS)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((pool=(MemPool<sp/>*)NewPtr(_newpoolsize))!=NULL)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pool-&gt;next=mempools;<sp/>mempools=pool;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pool-&gt;size=_newpoolsize;<sp/>*(long<sp/>*)pool-&gt;data=pool-&gt;size-sizeof(MemPool);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>goto<sp/>alloc;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>try<sp/>to<sp/>allocate<sp/>a<sp/>system<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((ptr=(char<sp/>*)NewPtr(size))!=NULL)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(long<sp/>*)ptr=0L;<sp/>return<sp/>ptr+4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Dispose<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/>(no<sp/>action<sp/>if<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>void<sp/>my_free(void<sp/>*ptr)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(ptr)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr=(char<sp/>*)ptr-4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((*(long<sp/>*)ptr=-*(long<sp/>*)ptr)==0L)<sp/>DisposePtr((Ptr)ptr);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971207<sp/>Added<sp/>namespace<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>NEWMODE!=NEWMODENONE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Allocate<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>memory<sp/>to<sp/>allocate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>*OPERATOR_NEW(_CSTD::size_t<sp/>size)<sp/>_MSL_THROW_BAD_ALLOC</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>*ptr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__MODENALIB__)<sp/>&amp;&amp;<sp/>NEWMODE==NEWMODE_MALLOC</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(size==0)<sp/>{<sp/>size<sp/>=<sp/>sizeof(int);<sp/>}<sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971208<sp/>Changed<sp/>sizeof(1)<sp/>to<sp/>sizeof(int)</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((ptr=MALLOCFUNC(size))!=NULL)<sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(!_STD::__new_handler)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_STD::__throw_bad_alloc();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_STD::__new_handler();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Allocate<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>memory<sp/>to<sp/>allocate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>*OPERATOR_NEW(_CSTD::size_t<sp/>size,const<sp/>_STD::nothrow_t&amp;)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>*ptr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__MODENALIB__)<sp/>&amp;&amp;<sp/>NEWMODE==NEWMODE_MALLOC</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(size==0)<sp/>{<sp/>size<sp/>=<sp/>sizeof(1);<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if((ptr=MALLOCFUNC(size))!=NULL)<sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(!_STD::__new_handler)<sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>try</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_STD::__new_handler();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>catch(_STD::bad_alloc&amp;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Dispose<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>memory<sp/>or<sp/>0L<sp/>(no<sp/>action<sp/>if<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>OPERATOR_DELETE(void<sp/>*ptr)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(ptr)<sp/>MFREEFUNC((PTRTYPE)ptr);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Array<sp/>allocation/deallocation<sp/>functions<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>__MWERKS__&gt;=0x2020</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>*OPERATOR_ARRAY_NEW(_CSTD::size_t<sp/>size)<sp/>_MSL_THROW_BAD_ALLOC</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>OPERATOR_NEW(size);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>*OPERATOR_ARRAY_NEW(_CSTD::size_t<sp/>size,const<sp/>_STD::nothrow_t&amp;<sp/>nt)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>OPERATOR_NEW(size,nt);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>OPERATOR_ARRAY_DELETE(void<sp/>*ptr)<sp/>_MSL_THROW</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OPERATOR_DELETE(ptr);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971207<sp/>Added<sp/>namespace<sp/>support</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971207<sp/>Moved<sp/>operator<sp/>new<sp/>and<sp/>company<sp/>up<sp/>to<sp/>get<sp/>them<sp/>out<sp/>of<sp/>std::</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971208<sp/>Changed<sp/>sizeof(1)<sp/>to<sp/>sizeof(int)</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980121<sp/>commented<sp/>out<sp/>Debug_New<sp/>dance.<sp/><sp/>#define<sp/>new<sp/>to<sp/>anything<sp/>at<sp/>your<sp/>own<sp/>risk!<sp/><sp/>Not<sp/>recommended!</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980124<sp/>added<sp/>nothrow</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Hsoi<sp/>980819<sp/>Modified<sp/>array<sp/>new<sp/>and<sp/>delete<sp/>to<sp/>use<sp/>redefinition<sp/>macros<sp/>for<sp/>DebugNew<sp/>support</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Hsoi<sp/>990121<sp/>Fixed<sp/>incorrect<sp/>placement<sp/>of<sp/>OPERATOR<sp/>#defines<sp/>wrt<sp/>__MWERKS__<sp/>version<sp/>check.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>bds<sp/>990322<sp/>ifdefed<sp/>MacOS-specific<sp/>code<sp/>so<sp/>this<sp/>compiles<sp/>on<sp/>BeOS</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/New.cp"/>
+  </compounddef>
+</doxygen>

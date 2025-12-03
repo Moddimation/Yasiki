@@ -1,0 +1,1172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="targimpl_8h" kind="file" language="C++">
+    <compoundname>targimpl.h</compoundname>
+    <includes refid="nubevent_8h" local="yes">Portable/nubevent.h</includes>
+    <includes refid="stddef_8h" local="yes">stddef.h</includes>
+    <includedby refid="dolphin__trk_8c" local="yes">dolphin_trk.c</includedby>
+    <includedby refid="dolphin__trk__glue_8c" local="yes">dolphin_trk_glue.c</includedby>
+    <includedby refid="mainloop_8c" local="yes">mainloop.c</includedby>
+    <includedby refid="mpc__7xx__603e_8c" local="yes">mpc_7xx_603e.c</includedby>
+    <includedby refid="msghndlr_8c" local="yes">msghndlr.c</includedby>
+    <includedby refid="notify_8c" local="yes">notify.c</includedby>
+    <includedby refid="nubinit_8c" local="yes">nubinit.c</includedby>
+    <includedby refid="targcont_8c" local="yes">targcont.c</includedby>
+    <includedby refid="targimpl_8c" local="yes">targimpl.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>Portable/nubevent.h</label>
+        <link refid="nubevent_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>targimpl.h</label>
+        <link refid="targimpl_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>targimpl.h</label>
+        <link refid="targimpl_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin_trk.c</label>
+        <link refid="dolphin__trk_8c"/>
+      </node>
+      <node id="3">
+        <label>dolphin_trk_glue.c</label>
+        <link refid="dolphin__trk__glue_8c"/>
+      </node>
+      <node id="9">
+        <label>targcont.c</label>
+        <link refid="targcont_8c"/>
+      </node>
+      <node id="4">
+        <label>mainloop.c</label>
+        <link refid="mainloop_8c"/>
+      </node>
+      <node id="6">
+        <label>msghndlr.c</label>
+        <link refid="msghndlr_8c"/>
+      </node>
+      <node id="7">
+        <label>notify.c</label>
+        <link refid="notify_8c"/>
+      </node>
+      <node id="8">
+        <label>nubinit.c</label>
+        <link refid="nubinit_8c"/>
+      </node>
+      <node id="5">
+        <label>mpc_7xx_603e.c</label>
+        <link refid="mpc__7xx__603e_8c"/>
+      </node>
+      <node id="10">
+        <label>targimpl.c</label>
+        <link refid="targimpl_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_d_s_versions" prot="public">DSVersions</innerclass>
+    <innerclass refid="struct_d_s_c_p_u_type" prot="public">DSCPUType</innerclass>
+    <innerclass refid="struct_default___p_p_c" prot="public">Default_PPC</innerclass>
+    <innerclass refid="struct_float___p_p_c" prot="public">Float_PPC</innerclass>
+    <innerclass refid="struct_extended1___p_p_c__6xx__7xx" prot="public">Extended1_PPC_6xx_7xx</innerclass>
+    <innerclass refid="struct_extended2___p_p_c__6xx__7xx" prot="public">Extended2_PPC_6xx_7xx</innerclass>
+    <innerclass refid="struct_processor_state___p_p_c__6xx__7xx" prot="public">ProcessorState_PPC_6xx_7xx</innerclass>
+    <innerclass refid="struct_t_r_k_state" prot="public">TRKState</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="targimpl_8h_1a95812ff145d701bae6e8ce5a1a83a70c" prot="public" static="no">
+        <type>struct <ref refid="struct_d_s_versions" kindref="compound">DSVersions</ref></type>
+        <definition>typedef struct DSVersions DSVersions</definition>
+        <argsstring></argsstring>
+        <name>DSVersions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="48" column="12"/>
+      </memberdef>
+      <memberdef kind="typedef" id="targimpl_8h_1af635f6fc14dd2d4dcefffbc11fe6042d" prot="public" static="no">
+        <type>struct <ref refid="struct_d_s_c_p_u_type" kindref="compound">DSCPUType</ref></type>
+        <definition>typedef struct DSCPUType DSCPUType</definition>
+        <argsstring></argsstring>
+        <name>DSCPUType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="61" column="11"/>
+      </memberdef>
+      <memberdef kind="typedef" id="targimpl_8h_1ab81f6b99e44036bba3bd9a92d2281667" prot="public" static="no">
+        <type>struct <ref refid="struct_default___p_p_c" kindref="compound">Default_PPC</ref></type>
+        <definition>typedef struct Default_PPC Default_PPC</definition>
+        <argsstring></argsstring>
+        <name>Default_PPC</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="71" column="13"/>
+      </memberdef>
+      <memberdef kind="typedef" id="targimpl_8h_1ab0754ebbabac66141c8f9f118bf3556c" prot="public" static="no">
+        <type>struct <ref refid="struct_float___p_p_c" kindref="compound">Float_PPC</ref></type>
+        <definition>typedef struct Float_PPC Float_PPC</definition>
+        <argsstring></argsstring>
+        <name>Float_PPC</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="77" column="11"/>
+      </memberdef>
+      <memberdef kind="typedef" id="targimpl_8h_1ab11f42c32cd75b4ccad7cffa10e6e883" prot="public" static="no">
+        <type>struct <ref refid="struct_extended1___p_p_c__6xx__7xx" kindref="compound">Extended1_PPC_6xx_7xx</ref></type>
+        <definition>typedef struct Extended1_PPC_6xx_7xx Extended1_PPC_6xx_7xx</definition>
+        <argsstring></argsstring>
+        <name>Extended1_PPC_6xx_7xx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="155" column="23"/>
+      </memberdef>
+      <memberdef kind="typedef" id="targimpl_8h_1a8de5fe032a1b0c0c6c8ee0ec492b23ae" prot="public" static="no">
+        <type>struct <ref refid="struct_extended2___p_p_c__6xx__7xx" kindref="compound">Extended2_PPC_6xx_7xx</ref></type>
+        <definition>typedef struct Extended2_PPC_6xx_7xx Extended2_PPC_6xx_7xx</definition>
+        <argsstring></argsstring>
+        <name>Extended2_PPC_6xx_7xx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="159" column="23"/>
+      </memberdef>
+      <memberdef kind="typedef" id="targimpl_8h_1afadbedf457224b8e235f5ae34d46c803" prot="public" static="no">
+        <type>struct <ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC_6xx_7xx</ref></type>
+        <definition>typedef struct ProcessorState_PPC_6xx_7xx ProcessorState_PPC_6xx_7xx</definition>
+        <argsstring></argsstring>
+        <name>ProcessorState_PPC_6xx_7xx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="167" column="28"/>
+      </memberdef>
+      <memberdef kind="typedef" id="targimpl_8h_1a3586221fa303cec01c136d3573287581" prot="public" static="no">
+        <type><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC_6xx_7xx</ref></type>
+        <definition>typedef ProcessorState_PPC_6xx_7xx ProcessorState_PPC</definition>
+        <argsstring></argsstring>
+        <name>ProcessorState_PPC</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="169" column="36" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="targimpl_8h_1ab1169727b62876eae6de52936d9852c6" prot="public" static="no">
+        <type>struct <ref refid="struct_t_r_k_state" kindref="compound">TRKState</ref></type>
+        <definition>typedef struct TRKState TRKState</definition>
+        <argsstring></argsstring>
+        <name>TRKState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="183" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="targimpl_8h_1a3586221fa303cec01c136d3573287581" kindref="member">ProcessorState_PPC</ref></type>
+        <definition>ProcessorState_PPC gTRKCPUState</definition>
+        <argsstring></argsstring>
+        <name>gTRKCPUState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="170" column="27" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="47" bodyend="-1" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="170" declcolumn="27"/>
+        <referencedby refid="_dolphin_trk_init_8h_1a020b3df25a2eef9e0bcf01db895ddd31" compoundref="dolphin__trk_8c" startline="32" endline="92">InitMetroTRK</referencedby>
+        <referencedby refid="targimpl_8h_1ab710e1af85d10fa1fda801379aad50d9" compoundref="targimpl_8c" startline="540" endline="648">TRKInterruptHandler</referencedby>
+        <referencedby refid="targimpl_8h_1a0075cae0164ee12279b57ec55d62a106" compoundref="targimpl_8c" startline="698" endline="726">TRKPostInterruptEvent</referencedby>
+        <referencedby refid="mpc__7xx__603e_8c_1a4272a8c4f58521a89c15daaa900e1ecb" compoundref="mpc__7xx__603e_8c" startline="127" endline="246">TRKRestoreExtended1Block</referencedby>
+        <referencedby refid="trk_8h_1a9b0b6af4fd78fab6f6992c5946219663" compoundref="mpc__7xx__603e_8c" startline="6" endline="125">TRKSaveExtended1Block</referencedby>
+        <referencedby refid="targimpl_8h_1a2d4bf41a0ccd928790a518840f5a5676" compoundref="targimpl_8c" startline="728" endline="783">TRKSwapAndGo</referencedby>
+        <referencedby refid="targimpl_8h_1abdb4c8fec113f38cd6cab73438d3aa6c" compoundref="targimpl_8c" startline="831" endline="846">TRKTargetAddStopInfo</referencedby>
+        <referencedby refid="targimpl_8c_1ac5d96f427868445b02a18a396fb22aa7" compoundref="targimpl_8c" startline="869" endline="877">TRKTargetEnableTrace</referencedby>
+        <referencedby refid="targimpl_8h_1a8c3f4a10d73e16cd5935ccb3da9d63ae" compoundref="targimpl_8c" startline="967" endline="967">TRKTargetGetPC</referencedby>
+        <referencedby refid="targimpl_8c_1a132fd71a550b948d5d1e1cfac9f2cd4c" compoundref="targimpl_8c" startline="879" endline="903">TRKTargetStepDone</referencedby>
+        <referencedby refid="targimpl_8h_1a6ebf7e476dd31372a01e2e19b8950941" compoundref="targimpl_8c" startline="969" endline="1001">TRKTargetSupportRequest</referencedby>
+        <referencedby refid="dolphin__trk_8h_1a676e3041d9fd3f9e12fc2c9214558f35" compoundref="dolphin__trk_8c" startline="96" endline="106">TRKTargetTranslate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="targimpl_8h_1a08f8e1919152b12ff57fb130a57e9be1" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="struct_t_r_k_state" kindref="compound">TRKState</ref></type>
+        <definition>TRKState gTRKState</definition>
+        <argsstring></argsstring>
+        <name>gTRKState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="184" column="17" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="48" bodyend="-1" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="184" declcolumn="17"/>
+        <referencedby refid="dolphin__trk_8h_1af6cda24a52d37e510e398c2b0187ffb1" compoundref="dolphin__trk_8c" startline="131" endline="137">TRKInitializeTarget</referencedby>
+        <referencedby refid="targimpl_8h_1ab710e1af85d10fa1fda801379aad50d9" compoundref="targimpl_8c" startline="540" endline="648">TRKInterruptHandler</referencedby>
+        <referencedby refid="targimpl_8c_1a32694ca22b3f824325ab07e928d49110" compoundref="targimpl_8c" startline="785" endline="811">TRKInterruptHandlerEnableInterrupts</referencedby>
+        <referencedby refid="targimpl_8h_1a0075cae0164ee12279b57ec55d62a106" compoundref="targimpl_8c" startline="698" endline="726">TRKPostInterruptEvent</referencedby>
+        <referencedby refid="targimpl_8h_1a2d4bf41a0ccd928790a518840f5a5676" compoundref="targimpl_8c" startline="728" endline="783">TRKSwapAndGo</referencedby>
+        <referencedby refid="targimpl_8h_1ae69805c8b96b5aec6753256a7236b010" compoundref="targimpl_8c" startline="1177" endline="1177">TRKTargetSetInputPendingPtr</referencedby>
+        <referencedby refid="targimpl_8h_1aa49f1d6946b42a48d3d594b604e7c2ec" compoundref="targimpl_8c" startline="1015" endline="1018">TRKTargetSetStopped</referencedby>
+        <referencedby refid="targimpl_8h_1ae48095356ebe78ea030c8d3b92e585e1" compoundref="targimpl_8c" startline="1013" endline="1013">TRKTargetStopped</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="targimpl_8h_1ae69805c8b96b5aec6753256a7236b010" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKTargetSetInputPendingPtr</definition>
+        <argsstring>(void *ptr)</argsstring>
+        <name>TRKTargetSetInputPendingPtr</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="11" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="1177" bodyend="1177" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="11" declcolumn="6"/>
+        <references refid="targimpl_8c_1a08f8e1919152b12ff57fb130a57e9be1" compoundref="targimpl_8c" startline="48">gTRKState</references>
+        <references refid="struct_t_r_k_state_1a4603d883d4780a71a328790cde2fcf3f" compoundref="targimpl_8h" startline="182">TRKState::inputPendingPtr</references>
+        <referencedby refid="nubinit_8h_1af78b850dea3b4c5446dc83345be3e5b0" compoundref="nubinit_8c" startline="16" endline="47">TRKInitializeNub</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a2d4bf41a0ccd928790a518840f5a5676" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKSwapAndGo</definition>
+        <argsstring>()</argsstring>
+        <name>TRKSwapAndGo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="13" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="728" bodyend="783" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="13" declcolumn="6"/>
+        <references refid="struct_t_r_k_state___p_p_c_1a5f2da39d56e2944139c35b4900ba7082" compoundref="trk_8h" startline="224">TRKState_PPC::CTR</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a0702b9b2e39184c7653060bbce170caf" compoundref="trk_8h" startline="227">TRKState_PPC::DAR</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" compoundref="targimpl_8h" startline="162">ProcessorState_PPC_6xx_7xx::Default</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a88dcdd0746399e8d5419820e98c3615c" compoundref="trk_8h" startline="228">TRKState_PPC::DSISR</references>
+        <references refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" compoundref="targimpl_8h" startline="65">Default_PPC::GPR</references>
+        <references refid="struct_t_r_k_state___p_p_c_1ac7ca850d21a17873cf48201edd46109e" compoundref="trk_8h" startline="222">TRKState_PPC::GPR</references>
+        <references refid="targimpl_8c_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="targimpl_8c_1aeb928400c3b7025797c9aaba2b9ab263" compoundref="targimpl_8c" startline="42" endline="42">gTRKExceptionStatus</references>
+        <references refid="targimpl_8c_1a08f8e1919152b12ff57fb130a57e9be1" compoundref="targimpl_8c" startline="48">gTRKState</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a51da5b8a7a2dfffccfeb305b616b25a2" compoundref="trk_8h" startline="230">TRKState_PPC::inputActivated</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a0b481b14441f4bdd91d0c5021c2072b3" compoundref="trk_8h" startline="231">TRKState_PPC::inputPendingPtr</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a89ee7f58cc3b60a3c7b8a80bd225c33e" compoundref="trk_8h" startline="223">TRKState_PPC::LR</references>
+        <references refid="struct_t_r_k_state___p_p_c_1ad551af704e01ee3a0c89d111c0dc6930" compoundref="trk_8h" startline="226">TRKState_PPC::MSR</references>
+        <references refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" compoundref="targimpl_8h" startline="66">Default_PPC::PC</references>
+        <references refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" compoundref="e__lgamma__r_8c" startline="144">r1</references>
+        <references refid="e__lgamma__r_8c_1a9c7bfbe56a69ec779a2877fe5ccb5cd6" compoundref="e__lgamma__r_8c" startline="145">r2</references>
+        <references refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" compoundref="e__lgamma__r_8c" startline="146">r3</references>
+        <references refid="targimpl_8c_1a32694ca22b3f824325ab07e928d49110" compoundref="targimpl_8c" startline="785" endline="811">TRKInterruptHandlerEnableInterrupts</references>
+        <references refid="mpc__7xx__603e_8c_1a4272a8c4f58521a89c15daaa900e1ecb" compoundref="mpc__7xx__603e_8c" startline="127" endline="246">TRKRestoreExtended1Block</references>
+        <references refid="struct_t_r_k_state___p_p_c_1ad6a0f4fd5c366296ef8851e4533cc9b5" compoundref="trk_8h" startline="225">TRKState_PPC::XER</references>
+        <referencedby refid="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" compoundref="targcont_8c" startline="5" endline="12">TRKTargetContinue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1aa49f1d6946b42a48d3d594b604e7c2ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKTargetSetStopped</definition>
+        <argsstring>(unsigned int)</argsstring>
+        <name>TRKTargetSetStopped</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>stopped</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="14" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="1015" bodyend="1018" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="14" declcolumn="6"/>
+        <references refid="targimpl_8c_1a08f8e1919152b12ff57fb130a57e9be1" compoundref="targimpl_8c" startline="48">gTRKState</references>
+        <references refid="struct_t_r_k_state_1aec4785eaa9ea746de151bd0cc1128b93" compoundref="targimpl_8h" startline="180">TRKState::isStopped</references>
+        <referencedby refid="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" compoundref="targcont_8c" startline="5" endline="12">TRKTargetContinue</referencedby>
+        <referencedby refid="targimpl_8c_1a8891c47fa77977c5d5d6a3ad9c1d009d" compoundref="targimpl_8c" startline="905" endline="917">TRKTargetDoStep</referencedby>
+        <referencedby refid="targimpl_8h_1a8ed359d07fddc63055f82f800dc5fb3e" compoundref="targimpl_8c" startline="813" endline="829">TRKTargetInterrupt</referencedby>
+        <referencedby refid="targimpl_8h_1a0b12b79764f15613753ffd7d011bd539" compoundref="targimpl_8c" startline="1020" endline="1024">TRKTargetStop</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a8ed359d07fddc63055f82f800dc5fb3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetInterrupt</definition>
+        <argsstring>(TRKEvent *)</argsstring>
+        <name>TRKTargetInterrupt</name>
+        <param>
+          <type><ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="15" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="813" bodyend="829" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="15" declcolumn="9"/>
+        <references refid="targimpl_8c_1ac7ca56dcadbdc252c0c8d705d406921d" compoundref="targimpl_8c" startline="486">DS_NoError</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfaa1c9338b9a6928a005cf7f22c38ac08b" compoundref="trk_8h" startline="80">DSMSG_NotifyStopped</references>
+        <references refid="struct_t_r_k_event_1aca28443d10ca7e86a6c768bc3161e10d" compoundref="nubevent_8h" startline="13">TRKEvent::eventType</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127aa660875c25379e47ce86e38c79aad27c" compoundref="trk_8h" startline="155">NUBEVENT_Breakpoint</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a93368cd4e38607bee1e07f4a7b7d1948" compoundref="trk_8h" startline="156">NUBEVENT_Exception</references>
+        <references refid="notify_8h_1a568b242b6bffbf5d5c5e8867832c8dfb" compoundref="notify_8c" startline="7" endline="40">TRKDoNotifyStopped</references>
+        <references refid="targimpl_8c_1aae4851b036fc01e758e6ff089c691040" compoundref="targimpl_8c" startline="919" endline="932">TRKTargetCheckStep</references>
+        <references refid="targimpl_8c_1a950e20734fad73e2b9078f23b91888ac" compoundref="targimpl_8c" startline="1015" endline="1018">TRKTargetSetStopped</references>
+        <referencedby refid="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" compoundref="mainloop_8c" startline="22" endline="70">TRKNubMainLoop</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a6ebf7e476dd31372a01e2e19b8950941" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetSupportRequest</definition>
+        <argsstring>()</argsstring>
+        <name>TRKTargetSupportRequest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="16" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="969" bodyend="1001" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="16" declcolumn="9"/>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" compoundref="targimpl_8h" startline="162">ProcessorState_PPC_6xx_7xx::Default</references>
+        <references refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384a1d6f7de0285954fcb13d1a7e2b98d129" compoundref="trk_8h" startline="55">DS_IOError</references>
+        <references refid="trk_8h_1abb04573ed5817a3349abfeb032fc2384acb1188feeea1a6620028be3681ea915d" compoundref="trk_8h" startline="54">DS_IONoError</references>
+        <references refid="targimpl_8c_1ac7ca56dcadbdc252c0c8d705d406921d" compoundref="targimpl_8c" startline="486">DS_NoError</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa5d8e4eacaf01479931e9b58f72b1ea3b" compoundref="trk_8h" startline="84">DSMSG_ReadFile</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa82669fbeea5bcca2fd7d81320608c786" compoundref="trk_8h" startline="83">DSMSG_WriteFile</references>
+        <references refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" compoundref="targimpl_8h" startline="65">Default_PPC::GPR</references>
+        <references refid="targimpl_8c_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" compoundref="targimpl_8h" startline="66">Default_PPC::PC</references>
+        <references refid="flush__cache_8h_1aafda2843c0a12b73789d09371666e298">TRK_flush_cache</references>
+        <references refid="nubevent_8h_1a1fcd345d0adc775a3b2c2d12a604f6ce" compoundref="nubevent_8c" startline="65" endline="70">TRKConstructEvent</references>
+        <references refid="nubevent_8h_1a8e164da33d9c9fd1e4b2f2054314dc66" compoundref="nubevent_8c" startline="41" endline="63">TRKPostEvent</references>
+        <references refid="support_8h_1a854fab9a6aa5fb8a16021f32df8b68f5" compoundref="support_8c" startline="9" endline="103">TRKSuppAccessFile</references>
+        <referencedby refid="mainloop_8c_1a7299c3bf7baa9c95141d32ed1faea556" compoundref="mainloop_8c" startline="13" endline="13">TRKHandleSupportEvent</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a497ec2095f59c64fe63495e6673c4e4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKDestructEvent</definition>
+        <argsstring>(TRKEvent *)</argsstring>
+        <name>TRKDestructEvent</name>
+        <param>
+          <type><ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="17" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/nubevent.c" bodystart="72" bodyend="72" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a9e46302c24afe0dfdbb3a5ad0b86fda7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetFlushCache</definition>
+        <argsstring>(u8, void *start, void *end)</argsstring>
+        <name>TRKTargetFlushCache</name>
+        <param>
+          <type>u8</type>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="18" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="1003" bodyend="1011" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="18" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba3bf83afc71cde7063a8cb7a86fa6e082" compoundref="trk_8h" startline="32">DS_InvalidMemory</references>
+        <references refid="targimpl_8c_1ac7ca56dcadbdc252c0c8d705d406921d" compoundref="targimpl_8c" startline="486">DS_NoError</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa0e97c69c73117f6c0109b2d7d1d9cedc" compoundref="strtold_8c" startline="124">start</references>
+        <references refid="flush__cache_8h_1aafda2843c0a12b73789d09371666e298">TRK_flush_cache</references>
+        <referencedby refid="msghndlr_8h_1af942ca4e251667e5a5c75729b57a6fcc" compoundref="msghndlr_8c" startline="509" endline="561">TRKDoFlushCache</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1ae48095356ebe78ea030c8d3b92e585e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BOOL</type>
+        <definition>BOOL TRKTargetStopped</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKTargetStopped</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="19" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="1013" bodyend="1013" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="19" declcolumn="6"/>
+        <references refid="targimpl_8c_1a08f8e1919152b12ff57fb130a57e9be1" compoundref="targimpl_8c" startline="48">gTRKState</references>
+        <references refid="struct_t_r_k_state_1aec4785eaa9ea746de151bd0cc1128b93" compoundref="targimpl_8h" startline="180">TRKState::isStopped</references>
+        <referencedby refid="msghndlr_8h_1ad1159136e96ee776a183c0236adfced2" compoundref="msghndlr_8c" startline="563" endline="578">TRKDoContinue</referencedby>
+        <referencedby refid="msghndlr_8h_1a4e701ab24dd6073f7cc5afba7a1d216b" compoundref="msghndlr_8c" startline="580" endline="650">TRKDoStep</referencedby>
+        <referencedby refid="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" compoundref="mainloop_8c" startline="15" endline="20">TRKIdle</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1abdb4c8fec113f38cd6cab73438d3aa6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetAddStopInfo</definition>
+        <argsstring>(TRKBuffer *b)</argsstring>
+        <name>TRKTargetAddStopInfo</name>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="20" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="831" bodyend="846" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="20" declcolumn="9"/>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" compoundref="targimpl_8h" startline="162">ProcessorState_PPC_6xx_7xx::Default</references>
+        <references refid="struct_extended1___p_p_c__6xx__7xx_1a0d1b865d3b868382dcbbf132e678aabb" compoundref="targimpl_8h" startline="149">Extended1_PPC_6xx_7xx::exceptionID</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1ab93554b55c63a0a75d8442ea52db723d" compoundref="targimpl_8h" startline="164">ProcessorState_PPC_6xx_7xx::Extended1</references>
+        <references refid="targimpl_8c_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" compoundref="targimpl_8h" startline="66">Default_PPC::PC</references>
+        <references refid="msgbuf_8h_1aa599fc23a6704a209587bb74f8364ec3" compoundref="msgbuf_8c" startline="158" endline="175">TRKAppendBuffer1_ui16</references>
+        <references refid="msgbuf_8h_1a3bc47ac2930bb78b6e3de38d3f726c55" compoundref="msgbuf_8c" startline="177" endline="196">TRKAppendBuffer1_ui32</references>
+        <referencedby refid="notify_8h_1a568b242b6bffbf5d5c5e8867832c8dfb" compoundref="notify_8c" startline="7" endline="40">TRKDoNotifyStopped</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a08578a67c09219154d9787b6c463b6e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetAddExceptionInfo</definition>
+        <argsstring>(TRKBuffer *b)</argsstring>
+        <name>TRKTargetAddExceptionInfo</name>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="21" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="848" bodyend="867" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="21" declcolumn="9"/>
+        <references refid="struct_stop_info___p_p_c_1a4dd0955f88c3bc8741d3be518637d3f2" compoundref="targimpl_8c" startline="23">StopInfo_PPC::exceptionID</references>
+        <references refid="struct_t_r_k_exception_status_1af38cdb5da6ec18278e010248760e8755" compoundref="targimpl_8c" startline="27">TRKExceptionStatus::exceptionInfo</references>
+        <references refid="targimpl_8c_1aeb928400c3b7025797c9aaba2b9ab263" compoundref="targimpl_8c" startline="42" endline="42">gTRKExceptionStatus</references>
+        <references refid="struct_stop_info___p_p_c_1a562e2dc8b6429c45496588b8de887fa4" compoundref="targimpl_8c" startline="21">StopInfo_PPC::PC</references>
+        <references refid="msgbuf_8h_1aa599fc23a6704a209587bb74f8364ec3" compoundref="msgbuf_8c" startline="158" endline="175">TRKAppendBuffer1_ui16</references>
+        <references refid="msgbuf_8h_1a3bc47ac2930bb78b6e3de38d3f726c55" compoundref="msgbuf_8c" startline="177" endline="196">TRKAppendBuffer1_ui32</references>
+        <referencedby refid="notify_8h_1a568b242b6bffbf5d5c5e8867832c8dfb" compoundref="notify_8c" startline="7" endline="40">TRKDoNotifyStopped</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1ae9fa5b63a5a7c5a0c85357a18fc90c72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetAccessARAM</definition>
+        <argsstring>(u32 p1, u32 p2, u32 *p3, BOOL read)</argsstring>
+        <name>TRKTargetAccessARAM</name>
+        <param>
+          <type>u32</type>
+          <declname>p1</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>p2</declname>
+        </param>
+        <param>
+          <type>u32 *</type>
+          <declname>p3</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>read</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="22" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="22" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a444e155616233de07083ef8285d017cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetAccessMemory</definition>
+        <argsstring>(void *data, u32 start, size_t *length, MemoryAccessOptions accessOptions, BOOL read)</argsstring>
+        <name>TRKTargetAccessMemory</name>
+        <param>
+          <type>void *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>length</declname>
+        </param>
+        <param>
+          <type><ref refid="trk_8h_1a6fb92968028dbeb2bfaf43e5e876a43c" kindref="member">MemoryAccessOptions</ref></type>
+          <declname>accessOptions</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>read</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="23" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="23" declcolumn="9"/>
+        <referencedby refid="msghndlr_8h_1abfd0a00aa14140d0a6fd5c9e9bd5cf13" compoundref="msghndlr_8c" startline="159" endline="239">TRKDoReadMemory</referencedby>
+        <referencedby refid="msghndlr_8h_1a611492329b0054e347ba124f01aed83a" compoundref="msghndlr_8c" startline="241" endline="324">TRKDoWriteMemory</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a4868eb2d557aa00cc8f459e16ce43e44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetAccessDefault</definition>
+        <argsstring>(u32 firstRegister, u32 lastRegister, TRKBuffer *b, size_t *registersLengthPtr, BOOL read)</argsstring>
+        <name>TRKTargetAccessDefault</name>
+        <param>
+          <type>u32</type>
+          <declname>firstRegister</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>lastRegister</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>registersLengthPtr</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>read</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="25" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="25" declcolumn="9"/>
+        <referencedby refid="msghndlr_8h_1a7a5d90f98a042709d55a35446659a0de" compoundref="msghndlr_8c" startline="326" endline="414">TRKDoReadRegisters</referencedby>
+        <referencedby refid="msghndlr_8h_1a3f98dc5d2374cbcbb2cbe5a2cc112d6e" compoundref="msghndlr_8c" startline="416" endline="507">TRKDoWriteRegisters</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1ac3eaeb287ac0489f71ed0c250e6be69c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetAccessFP</definition>
+        <argsstring>(u32 firstRegister, u32 lastRegister, TRKBuffer *b, size_t *registersLengthPtr, BOOL read)</argsstring>
+        <name>TRKTargetAccessFP</name>
+        <param>
+          <type>u32</type>
+          <declname>firstRegister</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>lastRegister</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>registersLengthPtr</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>read</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="28" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="28" declcolumn="9"/>
+        <referencedby refid="msghndlr_8h_1a7a5d90f98a042709d55a35446659a0de" compoundref="msghndlr_8c" startline="326" endline="414">TRKDoReadRegisters</referencedby>
+        <referencedby refid="msghndlr_8h_1a3f98dc5d2374cbcbb2cbe5a2cc112d6e" compoundref="msghndlr_8c" startline="416" endline="507">TRKDoWriteRegisters</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1afd13a99f9807060da6356f82730e3cb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetAccessExtended1</definition>
+        <argsstring>(u32 firstRegister, u32 lastRegister, TRKBuffer *b, size_t *registersLengthPtr, BOOL read)</argsstring>
+        <name>TRKTargetAccessExtended1</name>
+        <param>
+          <type>u32</type>
+          <declname>firstRegister</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>lastRegister</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>registersLengthPtr</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>read</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="30" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="30" declcolumn="9"/>
+        <referencedby refid="msghndlr_8h_1a7a5d90f98a042709d55a35446659a0de" compoundref="msghndlr_8c" startline="326" endline="414">TRKDoReadRegisters</referencedby>
+        <referencedby refid="msghndlr_8h_1a3f98dc5d2374cbcbb2cbe5a2cc112d6e" compoundref="msghndlr_8c" startline="416" endline="507">TRKDoWriteRegisters</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1aa6e02757ce4bfd592c8bb8d329beeb6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetAccessExtended2</definition>
+        <argsstring>(u32 firstRegister, u32 lastRegister, TRKBuffer *b, size_t *registerStorageSize, BOOL read)</argsstring>
+        <name>TRKTargetAccessExtended2</name>
+        <param>
+          <type>u32</type>
+          <declname>firstRegister</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>lastRegister</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>registerStorageSize</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>read</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="33" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="33" declcolumn="9"/>
+        <referencedby refid="msghndlr_8h_1a7a5d90f98a042709d55a35446659a0de" compoundref="msghndlr_8c" startline="326" endline="414">TRKDoReadRegisters</referencedby>
+        <referencedby refid="msghndlr_8h_1a3f98dc5d2374cbcbb2cbe5a2cc112d6e" compoundref="msghndlr_8c" startline="416" endline="507">TRKDoWriteRegisters</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a8c3f4a10d73e16cd5935ccb3da9d63ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>u32</type>
+        <definition>u32 TRKTargetGetPC</definition>
+        <argsstring>()</argsstring>
+        <name>TRKTargetGetPC</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="36" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="967" bodyend="967" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="36" declcolumn="5"/>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" compoundref="targimpl_8h" startline="162">ProcessorState_PPC_6xx_7xx::Default</references>
+        <references refid="targimpl_8c_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" compoundref="targimpl_8h" startline="66">Default_PPC::PC</references>
+        <referencedby refid="msghndlr_8h_1a4e701ab24dd6073f7cc5afba7a1d216b" compoundref="msghndlr_8c" startline="580" endline="650">TRKDoStep</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a67b201d470fcbb6ea79e22c0f1a54447" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetSingleStep</definition>
+        <argsstring>(u32 count, BOOL stepOver)</argsstring>
+        <name>TRKTargetSingleStep</name>
+        <param>
+          <type>u32</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>stepOver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="37" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="934" bodyend="947" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="37" declcolumn="9"/>
+        <references refid="struct_t_r_k_step_status_1a77dc605c993e37cd54d99ce3839f1e1f" compoundref="targimpl_8c" startline="35">TRKStepStatus::count</references>
+        <references refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58">count</references>
+        <references refid="targimpl_8c_1ac7ca56dcadbdc252c0c8d705d406921d" compoundref="targimpl_8c" startline="486">DS_NoError</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba1f3b456c3a20b741429065609f7fc8e6" compoundref="trk_8h" startline="35">DS_UnsupportedError</references>
+        <references refid="trk_8h_1a5b538f42a2e6625f06b1dba3dc6f1cbea974d137adf39e28c45a9cda64ee878f3" compoundref="trk_8h" startline="102">DSSTEP_IntoCount</references>
+        <references refid="targimpl_8c_1ab6e298071126786c07cfc28b70f1e08a" compoundref="targimpl_8c" startline="44" endline="44">gTRKStepStatus</references>
+        <references refid="targimpl_8c_1a8891c47fa77977c5d5d6a3ad9c1d009d" compoundref="targimpl_8c" startline="905" endline="917">TRKTargetDoStep</references>
+        <references refid="struct_t_r_k_step_status_1acdb846b175e9ae2f68b8ddd239eb2c21" compoundref="targimpl_8c" startline="34">TRKStepStatus::type</references>
+        <referencedby refid="msghndlr_8h_1a4e701ab24dd6073f7cc5afba7a1d216b" compoundref="msghndlr_8c" startline="580" endline="650">TRKDoStep</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a1936dd5b6a3f2e4bf57a0d8582ae89f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetStepOutOfRange</definition>
+        <argsstring>(u32 rangeStart, u32 rangeEnd, BOOL stepOver)</argsstring>
+        <name>TRKTargetStepOutOfRange</name>
+        <param>
+          <type>u32</type>
+          <declname>rangeStart</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>rangeEnd</declname>
+        </param>
+        <param>
+          <type>BOOL</type>
+          <declname>stepOver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="38" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="949" bodyend="965" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="38" declcolumn="9"/>
+        <references refid="targimpl_8c_1ac7ca56dcadbdc252c0c8d705d406921d" compoundref="targimpl_8c" startline="486">DS_NoError</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba1f3b456c3a20b741429065609f7fc8e6" compoundref="trk_8h" startline="35">DS_UnsupportedError</references>
+        <references refid="trk_8h_1a5b538f42a2e6625f06b1dba3dc6f1cbea3f17af0e466e8beacbed701a2edfd2a3" compoundref="trk_8h" startline="103">DSSTEP_IntoRange</references>
+        <references refid="targimpl_8c_1ab6e298071126786c07cfc28b70f1e08a" compoundref="targimpl_8c" startline="44" endline="44">gTRKStepStatus</references>
+        <references refid="struct_t_r_k_step_status_1a724828ff612b80dbd7086c24e75d5346" compoundref="targimpl_8c" startline="37">TRKStepStatus::rangeEnd</references>
+        <references refid="struct_t_r_k_step_status_1ac6bd5612b6bff933c57937495124fe05" compoundref="targimpl_8c" startline="36">TRKStepStatus::rangeStart</references>
+        <references refid="targimpl_8c_1a8891c47fa77977c5d5d6a3ad9c1d009d" compoundref="targimpl_8c" startline="905" endline="917">TRKTargetDoStep</references>
+        <references refid="struct_t_r_k_step_status_1acdb846b175e9ae2f68b8ddd239eb2c21" compoundref="targimpl_8c" startline="34">TRKStepStatus::type</references>
+        <referencedby refid="msghndlr_8h_1a4e701ab24dd6073f7cc5afba7a1d216b" compoundref="msghndlr_8c" startline="580" endline="650">TRKDoStep</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a0b12b79764f15613753ffd7d011bd539" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>u32</type>
+        <definition>u32 TRKTargetStop</definition>
+        <argsstring>()</argsstring>
+        <name>TRKTargetStop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="39" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="1020" bodyend="1024" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="39" declcolumn="5"/>
+        <references refid="targimpl_8c_1a950e20734fad73e2b9078f23b91888ac" compoundref="targimpl_8c" startline="1015" endline="1018">TRKTargetSetStopped</references>
+        <referencedby refid="msghndlr_8h_1ab092eea736acba450e0e82c0e3057fc4" compoundref="msghndlr_8c" startline="652" endline="675">TRKDoStop</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1ab710e1af85d10fa1fda801379aad50d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKInterruptHandler</definition>
+        <argsstring>()</argsstring>
+        <name>TRKInterruptHandler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="40" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="540" bodyend="648" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="40" declcolumn="6"/>
+        <references refid="struct_default___p_p_c_1a7984812ee9b46193ba74be21de7f2fd6" compoundref="targimpl_8h" startline="68">Default_PPC::CR</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a5f2da39d56e2944139c35b4900ba7082" compoundref="trk_8h" startline="224">TRKState_PPC::CTR</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a0702b9b2e39184c7653060bbce170caf" compoundref="trk_8h" startline="227">TRKState_PPC::DAR</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" compoundref="targimpl_8h" startline="162">ProcessorState_PPC_6xx_7xx::Default</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a88dcdd0746399e8d5419820e98c3615c" compoundref="trk_8h" startline="228">TRKState_PPC::DSISR</references>
+        <references refid="struct_extended1___p_p_c__6xx__7xx_1a0d1b865d3b868382dcbbf132e678aabb" compoundref="targimpl_8h" startline="149">Extended1_PPC_6xx_7xx::exceptionID</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1ab93554b55c63a0a75d8442ea52db723d" compoundref="targimpl_8h" startline="164">ProcessorState_PPC_6xx_7xx::Extended1</references>
+        <references refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" compoundref="targimpl_8h" startline="65">Default_PPC::GPR</references>
+        <references refid="struct_t_r_k_state___p_p_c_1ac7ca850d21a17873cf48201edd46109e" compoundref="trk_8h" startline="222">TRKState_PPC::GPR</references>
+        <references refid="targimpl_8c_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="targimpl_8c_1aeb928400c3b7025797c9aaba2b9ab263" compoundref="targimpl_8c" startline="42" endline="42">gTRKExceptionStatus</references>
+        <references refid="targimpl_8c_1a0fe1a054b1bc37e08300403e80308fd1" compoundref="targimpl_8c" startline="53">gTRKSaveState</references>
+        <references refid="targimpl_8c_1a08f8e1919152b12ff57fb130a57e9be1" compoundref="targimpl_8c" startline="48">gTRKState</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a51da5b8a7a2dfffccfeb305b616b25a2" compoundref="trk_8h" startline="230">TRKState_PPC::inputActivated</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a0b481b14441f4bdd91d0c5021c2072b3" compoundref="trk_8h" startline="231">TRKState_PPC::inputPendingPtr</references>
+        <references refid="struct_t_r_k_exception_status_1a042a7538969ebf798e361340b1aec2ca" compoundref="targimpl_8c" startline="28">TRKExceptionStatus::inTRK</references>
+        <references refid="struct_t_r_k_state___p_p_c_1a89ee7f58cc3b60a3c7b8a80bd225c33e" compoundref="trk_8h" startline="223">TRKState_PPC::LR</references>
+        <references refid="struct_t_r_k_state___p_p_c_1ad551af704e01ee3a0c89d111c0dc6930" compoundref="trk_8h" startline="226">TRKState_PPC::MSR</references>
+        <references refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" compoundref="targimpl_8h" startline="66">Default_PPC::PC</references>
+        <references refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" compoundref="e__lgamma__r_8c" startline="144">r1</references>
+        <references refid="e__lgamma__r_8c_1a9c7bfbe56a69ec779a2877fe5ccb5cd6" compoundref="e__lgamma__r_8c" startline="145">r2</references>
+        <references refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" compoundref="e__lgamma__r_8c" startline="146">r3</references>
+        <references refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" compoundref="e__lgamma__r_8c" startline="147">r4</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1ac51f9ca9b15e08e1848ddc229dbe86aa" compoundref="targimpl_8h" startline="166">ProcessorState_PPC_6xx_7xx::transport_handler_saved_ra</references>
+        <references refid="targimpl_8c_1a1531b65977d24f759783f99bbff55228" compoundref="targimpl_8c" startline="46">TRK_saved_exceptionID</references>
+        <references refid="targimpl_8c_1ab65ed892893c6106daf24049e6ab54f0" compoundref="targimpl_8c" startline="650" endline="696">TRKExceptionHandler</references>
+        <references refid="targimpl_8c_1a0075cae0164ee12279b57ec55d62a106" compoundref="targimpl_8c" startline="698" endline="726">TRKPostInterruptEvent</references>
+        <references refid="trk_8h_1a9b0b6af4fd78fab6f6992c5946219663" compoundref="mpc__7xx__603e_8c" startline="6" endline="125">TRKSaveExtended1Block</references>
+        <references refid="dolphin__trk__glue_8c_1acd4f25ab7ae097c6592cb04d6cd6b4d9" compoundref="dolphin__trk__glue_8c" startline="87" endline="87">TRKUARTInterruptHandler</references>
+        <references refid="struct_t_r_k_state___p_p_c_1ad6a0f4fd5c366296ef8851e4533cc9b5" compoundref="trk_8h" startline="225">TRKState_PPC::XER</references>
+        <referencedby refid="dolphin__trk__glue_8h_1ac1ff6ae39db31bf0670b3060d5d9c786" compoundref="dolphin__trk__glue_8c" startline="9" endline="50">TRKLoadContext</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a0075cae0164ee12279b57ec55d62a106" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKPostInterruptEvent</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKPostInterruptEvent</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="41" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="698" bodyend="726" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="41" declcolumn="6"/>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" compoundref="targimpl_8h" startline="162">ProcessorState_PPC_6xx_7xx::Default</references>
+        <references refid="struct_extended1___p_p_c__6xx__7xx_1a0d1b865d3b868382dcbbf132e678aabb" compoundref="targimpl_8h" startline="149">Extended1_PPC_6xx_7xx::exceptionID</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1ab93554b55c63a0a75d8442ea52db723d" compoundref="targimpl_8h" startline="164">ProcessorState_PPC_6xx_7xx::Extended1</references>
+        <references refid="targimpl_8c_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="targimpl_8c_1a08f8e1919152b12ff57fb130a57e9be1" compoundref="targimpl_8c" startline="48">gTRKState</references>
+        <references refid="struct_t_r_k_state_1a55c26a25b50cddc0b6fee421d5555fc7" compoundref="targimpl_8h" startline="181">TRKState::inputActivated</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127aa660875c25379e47ce86e38c79aad27c" compoundref="trk_8h" startline="155">NUBEVENT_Breakpoint</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a93368cd4e38607bee1e07f4a7b7d1948" compoundref="trk_8h" startline="156">NUBEVENT_Exception</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127a635c32cdba4c6f699587ce9753006232" compoundref="trk_8h" startline="157">NUBEVENT_Support</references>
+        <references refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" compoundref="targimpl_8h" startline="66">Default_PPC::PC</references>
+        <references refid="nubevent_8h_1a1fcd345d0adc775a3b2c2d12a604f6ce" compoundref="nubevent_8c" startline="65" endline="70">TRKConstructEvent</references>
+        <references refid="nubevent_8h_1a8e164da33d9c9fd1e4b2f2054314dc66" compoundref="nubevent_8c" startline="41" endline="63">TRKPostEvent</references>
+        <referencedby refid="targimpl_8h_1ab710e1af85d10fa1fda801379aad50d9" compoundref="targimpl_8c" startline="540" endline="648">TRKInterruptHandler</referencedby>
+        <referencedby refid="targimpl_8c_1a32694ca22b3f824325ab07e928d49110" compoundref="targimpl_8c" startline="785" endline="811">TRKInterruptHandlerEnableInterrupts</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a842c62a1fb7ca664d48aab4dc3fe1529" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetVersions</definition>
+        <argsstring>(DSVersions *versions)</argsstring>
+        <name>TRKTargetVersions</name>
+        <param>
+          <type><ref refid="struct_d_s_versions" kindref="compound">DSVersions</ref> *</type>
+          <declname>versions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="50" column="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="50" declcolumn="9"/>
+        <referencedby refid="msghndlr_8h_1aee3f68ae5c3a8f7f47b9252fcc2fe384" compoundref="msghndlr_8c" startline="71" endline="97">TRKDoVersions</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1a3459b4db6f0c42c4e497fee5f2a10733" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetSupportMask</definition>
+        <argsstring>(u8 mask[32])</argsstring>
+        <name>TRKTargetSupportMask</name>
+        <param>
+          <type>u8</type>
+          <declname>mask</declname>
+          <array>[32]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="51" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="489" bodyend="524" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="51" declcolumn="9"/>
+        <references refid="targimpl_8c_1ac7ca56dcadbdc252c0c8d705d406921d" compoundref="targimpl_8c" startline="486">DS_NoError</references>
+        <referencedby refid="msghndlr_8h_1ad2e317de732287998b803441fa89837c" compoundref="msghndlr_8c" startline="99" endline="120">TRKDoSupportMask</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="targimpl_8h_1ad53ab9610e7f962dccf98aba8621e743" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetCPUType</definition>
+        <argsstring>(DSCPUType *cpuType)</argsstring>
+        <name>TRKTargetCPUType</name>
+        <param>
+          <type><ref refid="struct_d_s_c_p_u_type" kindref="compound">DSCPUType</ref> *</type>
+          <declname>cpuType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" line="62" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Processor/ppc/Generic/targimpl.c" bodystart="528" bodyend="538" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h" declline="62" declcolumn="9"/>
+        <references refid="struct_d_s_c_p_u_type_1aeb73ae78911766a5d89fe51dd904c9c0" compoundref="targimpl_8h" startline="56">DSCPUType::bigEndian</references>
+        <references refid="struct_d_s_c_p_u_type_1aa07546e9ad6b9a88083fb040a5230b08" compoundref="targimpl_8h" startline="54">DSCPUType::cpuMajor</references>
+        <references refid="struct_d_s_c_p_u_type_1afa60bb57cd3e2b39730d7b5312f0fcc6" compoundref="targimpl_8h" startline="55">DSCPUType::cpuMinor</references>
+        <references refid="struct_d_s_c_p_u_type_1a092ff0391eee7d67a15aa1bb42b86738" compoundref="targimpl_8h" startline="57">DSCPUType::defaultTypeSize</references>
+        <references refid="targimpl_8c_1ac7ca56dcadbdc252c0c8d705d406921d" compoundref="targimpl_8c" startline="486">DS_NoError</references>
+        <references refid="struct_d_s_c_p_u_type_1a2e434e86111f3dff6511111bef8bfc2e" compoundref="targimpl_8h" startline="59">DSCPUType::extended1TypeSize</references>
+        <references refid="struct_d_s_c_p_u_type_1a770a831d6d2029adf0b02a092fe50d7c" compoundref="targimpl_8h" startline="60">DSCPUType::extended2TypeSize</references>
+        <references refid="struct_d_s_c_p_u_type_1a23f3ed93f98e80395f426a5f2f52b38b" compoundref="targimpl_8h" startline="58">DSCPUType::fpTypeSize</references>
+        <references refid="targimpl_8c_1af64f917cbef35bc94c36eabf2b1931af" compoundref="nubinit_8c" startline="12">gTRKBigEndian</references>
+        <references refid="mpc__7xx__603e_8h_1a818d3f8deca09dc38d36f994321edf09" compoundref="mpc__7xx__603e_8c" startline="248" endline="248">TRKTargetCPUMinorType</references>
+        <referencedby refid="msghndlr_8h_1a139b2d998e8c87885ec295374f5df78a" compoundref="msghndlr_8c" startline="122" endline="157">TRKDoCPUType</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>PPC_GENERIC_TARGIMPL_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PPC_GENERIC_TARGIMPL_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="nubevent_8h" kindref="compound">Portable/nubevent.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stddef_8h" kindref="compound">stddef.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="targimpl_8h_1ae69805c8b96b5aec6753256a7236b010" kindref="member">TRKTargetSetInputPendingPtr</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ptr);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="targimpl_8h_1a2d4bf41a0ccd928790a518840f5a5676" kindref="member">TRKSwapAndGo</ref>();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="targimpl_8h_1aa49f1d6946b42a48d3d594b604e7c2ec" kindref="member">TRKTargetSetStopped</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a8ed359d07fddc63055f82f800dc5fb3e" kindref="member">TRKTargetInterrupt</ref>(<ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref>*);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a6ebf7e476dd31372a01e2e19b8950941" kindref="member">TRKTargetSupportRequest</ref>();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="targimpl_8h_1a497ec2095f59c64fe63495e6673c4e4e" kindref="member">TRKDestructEvent</ref>(<ref refid="struct_t_r_k_event" kindref="compound">TRKEvent</ref>*);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a9e46302c24afe0dfdbb3a5ad0b86fda7" kindref="member">TRKTargetFlushCache</ref>(u8,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa0e97c69c73117f6c0109b2d7d1d9cedc" kindref="member">start</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>end);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">BOOL<sp/><ref refid="targimpl_8h_1ae48095356ebe78ea030c8d3b92e585e1" kindref="member">TRKTargetStopped</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1abdb4c8fec113f38cd6cab73438d3aa6c" kindref="member">TRKTargetAddStopInfo</ref>(<ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>b);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a08578a67c09219154d9787b6c463b6e3" kindref="member">TRKTargetAddExceptionInfo</ref>(<ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>b);</highlight></codeline>
+<codeline lineno="22" refid="targimpl_8h_1ae9fa5b63a5a7c5a0c85357a18fc90c72" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1ae9fa5b63a5a7c5a0c85357a18fc90c72" kindref="member">TRKTargetAccessARAM</ref>(u32<sp/>p1,<sp/>u32<sp/>p2,<sp/>u32*<sp/>p3,<sp/>BOOL<sp/>read);</highlight></codeline>
+<codeline lineno="23" refid="targimpl_8h_1a444e155616233de07083ef8285d017cc" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a444e155616233de07083ef8285d017cc" kindref="member">TRKTargetAccessMemory</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/>u32<sp/><ref refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa0e97c69c73117f6c0109b2d7d1d9cedc" kindref="member">start</ref>,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>length,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a6fb92968028dbeb2bfaf43e5e876a43c" kindref="member">MemoryAccessOptions</ref><sp/>accessOptions,<sp/>BOOL<sp/>read);</highlight></codeline>
+<codeline lineno="25" refid="targimpl_8h_1a4868eb2d557aa00cc8f459e16ce43e44" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a4868eb2d557aa00cc8f459e16ce43e44" kindref="member">TRKTargetAccessDefault</ref>(u32<sp/>firstRegister,<sp/>u32<sp/>lastRegister,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>b,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>registersLengthPtr,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BOOL<sp/>read);</highlight></codeline>
+<codeline lineno="28" refid="targimpl_8h_1ac3eaeb287ac0489f71ed0c250e6be69c" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1ac3eaeb287ac0489f71ed0c250e6be69c" kindref="member">TRKTargetAccessFP</ref>(u32<sp/>firstRegister,<sp/>u32<sp/>lastRegister,<sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>b,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>registersLengthPtr,<sp/>BOOL<sp/>read);</highlight></codeline>
+<codeline lineno="30" refid="targimpl_8h_1afd13a99f9807060da6356f82730e3cb0" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1afd13a99f9807060da6356f82730e3cb0" kindref="member">TRKTargetAccessExtended1</ref>(u32<sp/>firstRegister,<sp/>u32<sp/>lastRegister,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>b,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>registersLengthPtr,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BOOL<sp/>read);</highlight></codeline>
+<codeline lineno="33" refid="targimpl_8h_1aa6e02757ce4bfd592c8bb8d329beeb6c" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1aa6e02757ce4bfd592c8bb8d329beeb6c" kindref="member">TRKTargetAccessExtended2</ref>(u32<sp/>firstRegister,<sp/>u32<sp/>lastRegister,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>b,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>registerStorageSize,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BOOL<sp/>read);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">u32<sp/><ref refid="targimpl_8h_1a8c3f4a10d73e16cd5935ccb3da9d63ae" kindref="member">TRKTargetGetPC</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a67b201d470fcbb6ea79e22c0f1a54447" kindref="member">TRKTargetSingleStep</ref>(u32<sp/><ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref>,<sp/>BOOL<sp/>stepOver);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a1936dd5b6a3f2e4bf57a0d8582ae89f7" kindref="member">TRKTargetStepOutOfRange</ref>(u32<sp/>rangeStart,<sp/>u32<sp/>rangeEnd,<sp/>BOOL<sp/>stepOver);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">u32<sp/><ref refid="targimpl_8h_1a0b12b79764f15613753ffd7d011bd539" kindref="member">TRKTargetStop</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="targimpl_8h_1ab710e1af85d10fa1fda801379aad50d9" kindref="member">TRKInterruptHandler</ref>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="targimpl_8h_1a0075cae0164ee12279b57ec55d62a106" kindref="member">TRKPostInterruptEvent</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="struct_d_s_versions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_d_s_versions" kindref="compound">DSVersions</ref><sp/>{</highlight></codeline>
+<codeline lineno="44" refid="struct_d_s_versions_1a3888d5ac29c3f26f072b49d1f8216241" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_versions_1a3888d5ac29c3f26f072b49d1f8216241" kindref="member">kernelMajor</ref>;</highlight></codeline>
+<codeline lineno="45" refid="struct_d_s_versions_1aebce90d04f19a5fb13b8104b11db0b8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_versions_1aebce90d04f19a5fb13b8104b11db0b8b" kindref="member">kernelMinor</ref>;</highlight></codeline>
+<codeline lineno="46" refid="struct_d_s_versions_1a691034c9da27a19b6ed9be1b85322be0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_versions_1a691034c9da27a19b6ed9be1b85322be0" kindref="member">protocolMajor</ref>;</highlight></codeline>
+<codeline lineno="47" refid="struct_d_s_versions_1a2784072123ae18d84bc07885dd29fe65" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_versions_1a2784072123ae18d84bc07885dd29fe65" kindref="member">protocolMinor</ref>;</highlight></codeline>
+<codeline lineno="48" refid="targimpl_8h_1a95812ff145d701bae6e8ce5a1a83a70c" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_d_s_versions" kindref="compound">DSVersions</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="targimpl_8h_1a842c62a1fb7ca664d48aab4dc3fe1529" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a842c62a1fb7ca664d48aab4dc3fe1529" kindref="member">TRKTargetVersions</ref>(<ref refid="struct_d_s_versions" kindref="compound">DSVersions</ref>*<sp/>versions);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1a3459b4db6f0c42c4e497fee5f2a10733" kindref="member">TRKTargetSupportMask</ref>(u8<sp/>mask[32]);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="struct_d_s_c_p_u_type" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_d_s_c_p_u_type" kindref="compound">DSCPUType</ref><sp/>{</highlight></codeline>
+<codeline lineno="54" refid="struct_d_s_c_p_u_type_1aa07546e9ad6b9a88083fb040a5230b08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_c_p_u_type_1aa07546e9ad6b9a88083fb040a5230b08" kindref="member">cpuMajor</ref>;</highlight></codeline>
+<codeline lineno="55" refid="struct_d_s_c_p_u_type_1afa60bb57cd3e2b39730d7b5312f0fcc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_c_p_u_type_1afa60bb57cd3e2b39730d7b5312f0fcc6" kindref="member">cpuMinor</ref>;</highlight></codeline>
+<codeline lineno="56" refid="struct_d_s_c_p_u_type_1aeb73ae78911766a5d89fe51dd904c9c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_c_p_u_type_1aeb73ae78911766a5d89fe51dd904c9c0" kindref="member">bigEndian</ref>;</highlight></codeline>
+<codeline lineno="57" refid="struct_d_s_c_p_u_type_1a092ff0391eee7d67a15aa1bb42b86738" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_c_p_u_type_1a092ff0391eee7d67a15aa1bb42b86738" kindref="member">defaultTypeSize</ref>;</highlight></codeline>
+<codeline lineno="58" refid="struct_d_s_c_p_u_type_1a23f3ed93f98e80395f426a5f2f52b38b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_c_p_u_type_1a23f3ed93f98e80395f426a5f2f52b38b" kindref="member">fpTypeSize</ref>;</highlight></codeline>
+<codeline lineno="59" refid="struct_d_s_c_p_u_type_1a2e434e86111f3dff6511111bef8bfc2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_c_p_u_type_1a2e434e86111f3dff6511111bef8bfc2e" kindref="member">extended1TypeSize</ref>;</highlight></codeline>
+<codeline lineno="60" refid="struct_d_s_c_p_u_type_1a770a831d6d2029adf0b02a092fe50d7c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct_d_s_c_p_u_type_1a770a831d6d2029adf0b02a092fe50d7c" kindref="member">extended2TypeSize</ref>;</highlight></codeline>
+<codeline lineno="61" refid="targimpl_8h_1af635f6fc14dd2d4dcefffbc11fe6042d" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_d_s_c_p_u_type" kindref="compound">DSCPUType</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targimpl_8h_1ad53ab9610e7f962dccf98aba8621e743" kindref="member">TRKTargetCPUType</ref>(<ref refid="struct_d_s_c_p_u_type" kindref="compound">DSCPUType</ref>*<sp/>cpuType);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="struct_default___p_p_c" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_default___p_p_c" kindref="compound">Default_PPC</ref><sp/>{</highlight></codeline>
+<codeline lineno="65" refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" kindref="member">GPR</ref>[32];</highlight></codeline>
+<codeline lineno="66" refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" kindref="member">PC</ref>;</highlight></codeline>
+<codeline lineno="67" refid="struct_default___p_p_c_1a59df8e4ca06b11edc3be052722ac968b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_default___p_p_c_1a59df8e4ca06b11edc3be052722ac968b" kindref="member">LR</ref>;</highlight></codeline>
+<codeline lineno="68" refid="struct_default___p_p_c_1a7984812ee9b46193ba74be21de7f2fd6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_default___p_p_c_1a7984812ee9b46193ba74be21de7f2fd6" kindref="member">CR</ref>;</highlight></codeline>
+<codeline lineno="69" refid="struct_default___p_p_c_1a462a1ee52f5a568423572eaf572ad7d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_default___p_p_c_1a462a1ee52f5a568423572eaf572ad7d0" kindref="member">CTR</ref>;</highlight></codeline>
+<codeline lineno="70" refid="struct_default___p_p_c_1ab4e0c3ca4f1ad9f9b16b9dbcad5c48e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_default___p_p_c_1ab4e0c3ca4f1ad9f9b16b9dbcad5c48e4" kindref="member">XER</ref>;</highlight></codeline>
+<codeline lineno="71" refid="targimpl_8h_1ab81f6b99e44036bba3bd9a92d2281667" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_default___p_p_c" kindref="compound">Default_PPC</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="struct_float___p_p_c" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_float___p_p_c" kindref="compound">Float_PPC</ref><sp/>{</highlight></codeline>
+<codeline lineno="74" refid="struct_float___p_p_c_1af88f8120b86fae6342236627baf4f6a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u64<sp/><ref refid="struct_float___p_p_c_1af88f8120b86fae6342236627baf4f6a0" kindref="member">FPR</ref>[32];</highlight></codeline>
+<codeline lineno="75" refid="struct_float___p_p_c_1a305896a883c64ac9d41c582e3699dd07" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u64<sp/><ref refid="struct_float___p_p_c_1a305896a883c64ac9d41c582e3699dd07" kindref="member">FPSCR</ref>;</highlight></codeline>
+<codeline lineno="76" refid="struct_float___p_p_c_1ac43ebd7d356c6879cf03d11f638ab1a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u64<sp/><ref refid="struct_float___p_p_c_1ac43ebd7d356c6879cf03d11f638ab1a8" kindref="member">FPECR</ref>;</highlight></codeline>
+<codeline lineno="77" refid="targimpl_8h_1ab0754ebbabac66141c8f9f118bf3556c" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_float___p_p_c" kindref="compound">Float_PPC</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="struct_extended1___p_p_c__6xx__7xx" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_extended1___p_p_c__6xx__7xx" kindref="compound">Extended1_PPC_6xx_7xx</ref><sp/>{</highlight></codeline>
+<codeline lineno="80" refid="struct_extended1___p_p_c__6xx__7xx_1af1fe0f17a26cf30016fc8b4f15147759" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1af1fe0f17a26cf30016fc8b4f15147759" kindref="member">SR</ref>[16];</highlight></codeline>
+<codeline lineno="81" refid="struct_extended1___p_p_c__6xx__7xx_1a96302105ae2835058076811aed055c1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a96302105ae2835058076811aed055c1a" kindref="member">TBL</ref>;</highlight></codeline>
+<codeline lineno="82" refid="struct_extended1___p_p_c__6xx__7xx_1ad01be7e8653f85e2d4400e3e4e0d3651" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ad01be7e8653f85e2d4400e3e4e0d3651" kindref="member">TBU</ref>;</highlight></codeline>
+<codeline lineno="83" refid="struct_extended1___p_p_c__6xx__7xx_1ab96e6b47c2342c94cf6d4eccbbde5768" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ab96e6b47c2342c94cf6d4eccbbde5768" kindref="member">HID0</ref>;</highlight></codeline>
+<codeline lineno="84" refid="struct_extended1___p_p_c__6xx__7xx_1a3682b1360ea5f6725e2f7b633e02539f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a3682b1360ea5f6725e2f7b633e02539f" kindref="member">HID1</ref>;</highlight></codeline>
+<codeline lineno="85" refid="struct_extended1___p_p_c__6xx__7xx_1a6a59d66fbadb0623b7c7f32559883ec5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a6a59d66fbadb0623b7c7f32559883ec5" kindref="member">MSR</ref>;</highlight></codeline>
+<codeline lineno="86" refid="struct_extended1___p_p_c__6xx__7xx_1a358b5f9209bb52d328661994d1bacea8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a358b5f9209bb52d328661994d1bacea8" kindref="member">PVR</ref>;</highlight></codeline>
+<codeline lineno="87" refid="struct_extended1___p_p_c__6xx__7xx_1a62802a33c01ed9c13c35035fc3631299" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a62802a33c01ed9c13c35035fc3631299" kindref="member">IBAT0U</ref>;</highlight></codeline>
+<codeline lineno="88" refid="struct_extended1___p_p_c__6xx__7xx_1a52fd60ce2e84be29e658100a0ce9df60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a52fd60ce2e84be29e658100a0ce9df60" kindref="member">IBAT0L</ref>;</highlight></codeline>
+<codeline lineno="89" refid="struct_extended1___p_p_c__6xx__7xx_1afbb14baf8ed3f3647937057ddcd3ee7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1afbb14baf8ed3f3647937057ddcd3ee7d" kindref="member">IBAT1U</ref>;</highlight></codeline>
+<codeline lineno="90" refid="struct_extended1___p_p_c__6xx__7xx_1a1fa12bdbb16d848dae36f75fcfa98dca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a1fa12bdbb16d848dae36f75fcfa98dca" kindref="member">IBAT1L</ref>;</highlight></codeline>
+<codeline lineno="91" refid="struct_extended1___p_p_c__6xx__7xx_1a1e7e0442ad2a79bb226bc1e3cd00d21f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a1e7e0442ad2a79bb226bc1e3cd00d21f" kindref="member">IBAT2U</ref>;</highlight></codeline>
+<codeline lineno="92" refid="struct_extended1___p_p_c__6xx__7xx_1a92f7106668309f66dc89f11e63a9e050" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a92f7106668309f66dc89f11e63a9e050" kindref="member">IBAT2L</ref>;</highlight></codeline>
+<codeline lineno="93" refid="struct_extended1___p_p_c__6xx__7xx_1aab6e95ce9d909dfce7f0d960cd7ab9a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1aab6e95ce9d909dfce7f0d960cd7ab9a7" kindref="member">IBAT3U</ref>;</highlight></codeline>
+<codeline lineno="94" refid="struct_extended1___p_p_c__6xx__7xx_1a50477a66b734ec3e52e2c59e75c33cc2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a50477a66b734ec3e52e2c59e75c33cc2" kindref="member">IBAT3L</ref>;</highlight></codeline>
+<codeline lineno="95" refid="struct_extended1___p_p_c__6xx__7xx_1a265ddd485d55ee51e519456114a35943" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a265ddd485d55ee51e519456114a35943" kindref="member">DBAT0U</ref>;</highlight></codeline>
+<codeline lineno="96" refid="struct_extended1___p_p_c__6xx__7xx_1a958111a03e6fad821d3200f43b6ff4e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a958111a03e6fad821d3200f43b6ff4e1" kindref="member">DBAT0L</ref>;</highlight></codeline>
+<codeline lineno="97" refid="struct_extended1___p_p_c__6xx__7xx_1a95957ea9cfaf39700c2b9a45c8d7fb44" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a95957ea9cfaf39700c2b9a45c8d7fb44" kindref="member">DBAT1U</ref>;</highlight></codeline>
+<codeline lineno="98" refid="struct_extended1___p_p_c__6xx__7xx_1a02661a269bc5be7f9ef984d13a65f07d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a02661a269bc5be7f9ef984d13a65f07d" kindref="member">DBAT1L</ref>;</highlight></codeline>
+<codeline lineno="99" refid="struct_extended1___p_p_c__6xx__7xx_1ad1fd600fa1ce039cd385798c7ceec4f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ad1fd600fa1ce039cd385798c7ceec4f5" kindref="member">DBAT2U</ref>;</highlight></codeline>
+<codeline lineno="100" refid="struct_extended1___p_p_c__6xx__7xx_1aa716c6e5b06c8f47df920441fdcf559b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1aa716c6e5b06c8f47df920441fdcf559b" kindref="member">DBAT2L</ref>;</highlight></codeline>
+<codeline lineno="101" refid="struct_extended1___p_p_c__6xx__7xx_1a45412863c96576b5b7233422635fd7e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a45412863c96576b5b7233422635fd7e8" kindref="member">DBAT3U</ref>;</highlight></codeline>
+<codeline lineno="102" refid="struct_extended1___p_p_c__6xx__7xx_1ab237d394f8aded88545b5b5041ee662e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ab237d394f8aded88545b5b5041ee662e" kindref="member">DBAT3L</ref>;</highlight></codeline>
+<codeline lineno="103" refid="struct_extended1___p_p_c__6xx__7xx_1ae745926f35e2f18d735c22e847bb3d1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ae745926f35e2f18d735c22e847bb3d1e" kindref="member">DMISS</ref>;</highlight></codeline>
+<codeline lineno="104" refid="struct_extended1___p_p_c__6xx__7xx_1a9c80dcc498573f0b056c64d376c178d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a9c80dcc498573f0b056c64d376c178d5" kindref="member">DCMP</ref>;</highlight></codeline>
+<codeline lineno="105" refid="struct_extended1___p_p_c__6xx__7xx_1ac9d1f92c6e9d8b0daf7098d226ff9466" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ac9d1f92c6e9d8b0daf7098d226ff9466" kindref="member">HASH1</ref>;</highlight></codeline>
+<codeline lineno="106" refid="struct_extended1___p_p_c__6xx__7xx_1ac3f1a4e7d816a070cc41cd9ce7ae2af1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ac3f1a4e7d816a070cc41cd9ce7ae2af1" kindref="member">HASH2</ref>;</highlight></codeline>
+<codeline lineno="107" refid="struct_extended1___p_p_c__6xx__7xx_1a114038474f5510bc9e1c61f63e619a28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a114038474f5510bc9e1c61f63e619a28" kindref="member">IMISS</ref>;</highlight></codeline>
+<codeline lineno="108" refid="struct_extended1___p_p_c__6xx__7xx_1a6edac281e8255fcfd8216f938b68f5fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a6edac281e8255fcfd8216f938b68f5fd" kindref="member">ICMP</ref>;</highlight></codeline>
+<codeline lineno="109" refid="struct_extended1___p_p_c__6xx__7xx_1adb3ff64518af19309a4d595ac2836b3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1adb3ff64518af19309a4d595ac2836b3f" kindref="member">RPA</ref>;</highlight></codeline>
+<codeline lineno="110" refid="struct_extended1___p_p_c__6xx__7xx_1ad55d60231cb7f250cb16c4615bcac898" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ad55d60231cb7f250cb16c4615bcac898" kindref="member">SDR1</ref>;</highlight></codeline>
+<codeline lineno="111" refid="struct_extended1___p_p_c__6xx__7xx_1a4b8bedbe049a3d06d4c46c5cff09cfb2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a4b8bedbe049a3d06d4c46c5cff09cfb2" kindref="member">DAR</ref>;</highlight></codeline>
+<codeline lineno="112" refid="struct_extended1___p_p_c__6xx__7xx_1a85183ba2c5cd68d4d7733af02e05a361" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a85183ba2c5cd68d4d7733af02e05a361" kindref="member">DSISR</ref>;</highlight></codeline>
+<codeline lineno="113" refid="struct_extended1___p_p_c__6xx__7xx_1a389d761750f5e98386af956c6c37340d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a389d761750f5e98386af956c6c37340d" kindref="member">SPRG0</ref>;</highlight></codeline>
+<codeline lineno="114" refid="struct_extended1___p_p_c__6xx__7xx_1ac6119aaa828e8fc912e24a3aaaa8cb0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ac6119aaa828e8fc912e24a3aaaa8cb0b" kindref="member">SPRG1</ref>;</highlight></codeline>
+<codeline lineno="115" refid="struct_extended1___p_p_c__6xx__7xx_1a9297f7c1f7725587e522b69a8439a291" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a9297f7c1f7725587e522b69a8439a291" kindref="member">SPRG2</ref>;</highlight></codeline>
+<codeline lineno="116" refid="struct_extended1___p_p_c__6xx__7xx_1aad1720caba87a20cd06360a039ada148" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1aad1720caba87a20cd06360a039ada148" kindref="member">SPRG3</ref>;</highlight></codeline>
+<codeline lineno="117" refid="struct_extended1___p_p_c__6xx__7xx_1a82dfc3dde9b52c0cd03581142d7c6a1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a82dfc3dde9b52c0cd03581142d7c6a1b" kindref="member">DEC</ref>;</highlight></codeline>
+<codeline lineno="118" refid="struct_extended1___p_p_c__6xx__7xx_1ab6d4ba07f40f28b3756fbcaa62d8acdf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ab6d4ba07f40f28b3756fbcaa62d8acdf" kindref="member">IABR</ref>;</highlight></codeline>
+<codeline lineno="119" refid="struct_extended1___p_p_c__6xx__7xx_1af0c24fdf8b36b6ab370825d92a6a7f10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1af0c24fdf8b36b6ab370825d92a6a7f10" kindref="member">EAR</ref>;</highlight></codeline>
+<codeline lineno="120" refid="struct_extended1___p_p_c__6xx__7xx_1a2db6779488687f6c14a88c6f1aeb7b28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a2db6779488687f6c14a88c6f1aeb7b28" kindref="member">DABR</ref>;</highlight></codeline>
+<codeline lineno="121" refid="struct_extended1___p_p_c__6xx__7xx_1a3f56a9cfe677ebf16a9afb7c3593fe36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a3f56a9cfe677ebf16a9afb7c3593fe36" kindref="member">PMC1</ref>;</highlight></codeline>
+<codeline lineno="122" refid="struct_extended1___p_p_c__6xx__7xx_1add3c0fdf21ad13d031dc714c2b1e2bea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1add3c0fdf21ad13d031dc714c2b1e2bea" kindref="member">PMC2</ref>;</highlight></codeline>
+<codeline lineno="123" refid="struct_extended1___p_p_c__6xx__7xx_1ac2dae6dddafa795c3541ecf073155e1d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ac2dae6dddafa795c3541ecf073155e1d" kindref="member">PMC3</ref>;</highlight></codeline>
+<codeline lineno="124" refid="struct_extended1___p_p_c__6xx__7xx_1a3ec8a278b7da65009875f76c4f62d21e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a3ec8a278b7da65009875f76c4f62d21e" kindref="member">PMC4</ref>;</highlight></codeline>
+<codeline lineno="125" refid="struct_extended1___p_p_c__6xx__7xx_1a7560b388ffff6d0a2af622f36b918f64" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a7560b388ffff6d0a2af622f36b918f64" kindref="member">SIA</ref>;</highlight></codeline>
+<codeline lineno="126" refid="struct_extended1___p_p_c__6xx__7xx_1a1fb31e2016313bcd570fde9fd3fdfeaf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a1fb31e2016313bcd570fde9fd3fdfeaf" kindref="member">MMCR0</ref>;</highlight></codeline>
+<codeline lineno="127" refid="struct_extended1___p_p_c__6xx__7xx_1a3343c8a0f3a8ccb9f0d7d0f55df38baa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a3343c8a0f3a8ccb9f0d7d0f55df38baa" kindref="member">MMCR1</ref>;</highlight></codeline>
+<codeline lineno="128" refid="struct_extended1___p_p_c__6xx__7xx_1a11406fc82a6e6fcfacaf47d84595924b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a11406fc82a6e6fcfacaf47d84595924b" kindref="member">THRM1</ref>;</highlight></codeline>
+<codeline lineno="129" refid="struct_extended1___p_p_c__6xx__7xx_1a61a6ac2c0c0860a8d7a9c7022df3f72b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a61a6ac2c0c0860a8d7a9c7022df3f72b" kindref="member">THRM2</ref>;</highlight></codeline>
+<codeline lineno="130" refid="struct_extended1___p_p_c__6xx__7xx_1ad77c2725c336c1943a9cd36434a72d68" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ad77c2725c336c1943a9cd36434a72d68" kindref="member">THRM3</ref>;</highlight></codeline>
+<codeline lineno="131" refid="struct_extended1___p_p_c__6xx__7xx_1adb5c4a06dbd6aacec56389aac24b30ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1adb5c4a06dbd6aacec56389aac24b30ba" kindref="member">ICTC</ref>;</highlight></codeline>
+<codeline lineno="132" refid="struct_extended1___p_p_c__6xx__7xx_1ab8f09ad44909e368a963186a898a0a82" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ab8f09ad44909e368a963186a898a0a82" kindref="member">L2CR</ref>;</highlight></codeline>
+<codeline lineno="133" refid="struct_extended1___p_p_c__6xx__7xx_1a66dcb1fd65ccc0d8b4a5e1c810f3a8fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a66dcb1fd65ccc0d8b4a5e1c810f3a8fd" kindref="member">UMMCR2</ref>;</highlight></codeline>
+<codeline lineno="134" refid="struct_extended1___p_p_c__6xx__7xx_1af8f6950df314b5590b19af9a2ac8771c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1af8f6950df314b5590b19af9a2ac8771c" kindref="member">UBAMR</ref>;</highlight></codeline>
+<codeline lineno="135" refid="struct_extended1___p_p_c__6xx__7xx_1a9bd78e3beee39091615d9082c5f0b06c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a9bd78e3beee39091615d9082c5f0b06c" kindref="member">UMMCR0</ref>;</highlight></codeline>
+<codeline lineno="136" refid="struct_extended1___p_p_c__6xx__7xx_1af677144e8fb285df12217f874cae84a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1af677144e8fb285df12217f874cae84a3" kindref="member">UPMC1</ref>;</highlight></codeline>
+<codeline lineno="137" refid="struct_extended1___p_p_c__6xx__7xx_1aa84587c23d7c301416f9a51633cc7128" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1aa84587c23d7c301416f9a51633cc7128" kindref="member">UPMC2</ref>;</highlight></codeline>
+<codeline lineno="138" refid="struct_extended1___p_p_c__6xx__7xx_1a415d58320986de0fce7407c73eb57944" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a415d58320986de0fce7407c73eb57944" kindref="member">USIA</ref>;</highlight></codeline>
+<codeline lineno="139" refid="struct_extended1___p_p_c__6xx__7xx_1aeb2d9c316ddfab7d244684d51bbd1367" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1aeb2d9c316ddfab7d244684d51bbd1367" kindref="member">UMMCR1</ref>;</highlight></codeline>
+<codeline lineno="140" refid="struct_extended1___p_p_c__6xx__7xx_1aa8ebf143a953c1f477203f0707cc9a7e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1aa8ebf143a953c1f477203f0707cc9a7e" kindref="member">UPMC3</ref>;</highlight></codeline>
+<codeline lineno="141" refid="struct_extended1___p_p_c__6xx__7xx_1a815c5f64da6821a4680388628ff090de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a815c5f64da6821a4680388628ff090de" kindref="member">UPMC4</ref>;</highlight></codeline>
+<codeline lineno="142" refid="struct_extended1___p_p_c__6xx__7xx_1a75a453fc01fda3aa70d6b64f6bf3a711" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a75a453fc01fda3aa70d6b64f6bf3a711" kindref="member">USDA</ref>;</highlight></codeline>
+<codeline lineno="143" refid="struct_extended1___p_p_c__6xx__7xx_1a433a0fb5a6319f2892e278bdcc971b8f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a433a0fb5a6319f2892e278bdcc971b8f" kindref="member">MMCR2</ref>;</highlight></codeline>
+<codeline lineno="144" refid="struct_extended1___p_p_c__6xx__7xx_1afdbc272fa863f5be415b832be6198a26" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1afdbc272fa863f5be415b832be6198a26" kindref="member">BAMR</ref>;</highlight></codeline>
+<codeline lineno="145" refid="struct_extended1___p_p_c__6xx__7xx_1afbf0973a4752b8bb4580a8f8787fe747" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1afbf0973a4752b8bb4580a8f8787fe747" kindref="member">SDA</ref>;</highlight></codeline>
+<codeline lineno="146" refid="struct_extended1___p_p_c__6xx__7xx_1a2176d926e0e7c0e3b94bca171681bc2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a2176d926e0e7c0e3b94bca171681bc2e" kindref="member">MSSCR0</ref>;</highlight></codeline>
+<codeline lineno="147" refid="struct_extended1___p_p_c__6xx__7xx_1ac97c9065785ba8de6b96cbcec0611998" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1ac97c9065785ba8de6b96cbcec0611998" kindref="member">MSSCR1</ref>;</highlight></codeline>
+<codeline lineno="148" refid="struct_extended1___p_p_c__6xx__7xx_1a3c33ae90c35d81279c0c541bbe1e357e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a3c33ae90c35d81279c0c541bbe1e357e" kindref="member">PIR</ref>;</highlight></codeline>
+<codeline lineno="149" refid="struct_extended1___p_p_c__6xx__7xx_1a0d1b865d3b868382dcbbf132e678aabb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a0d1b865d3b868382dcbbf132e678aabb" kindref="member">exceptionID</ref>;</highlight></codeline>
+<codeline lineno="150" refid="struct_extended1___p_p_c__6xx__7xx_1a5fe9b1417cfe1c3d96d71c05f79599c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a5fe9b1417cfe1c3d96d71c05f79599c6" kindref="member">GQR</ref>[8];</highlight></codeline>
+<codeline lineno="151" refid="struct_extended1___p_p_c__6xx__7xx_1a19b90699cf9702b2034febdb26f2ec35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a19b90699cf9702b2034febdb26f2ec35" kindref="member">HID_G</ref>;</highlight></codeline>
+<codeline lineno="152" refid="struct_extended1___p_p_c__6xx__7xx_1a2398b9a5ecc18c54020182019f23c2a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a2398b9a5ecc18c54020182019f23c2a6" kindref="member">WPAR</ref>;</highlight></codeline>
+<codeline lineno="153" refid="struct_extended1___p_p_c__6xx__7xx_1a672e5d51f34399e62b31bed0814d5c15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a672e5d51f34399e62b31bed0814d5c15" kindref="member">DMA_U</ref>;</highlight></codeline>
+<codeline lineno="154" refid="struct_extended1___p_p_c__6xx__7xx_1a3275320d14d2fb3cca3bf25ea29d74d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx_1a3275320d14d2fb3cca3bf25ea29d74d9" kindref="member">DMA_L</ref>;</highlight></codeline>
+<codeline lineno="155" refid="targimpl_8h_1ab11f42c32cd75b4ccad7cffa10e6e883" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_extended1___p_p_c__6xx__7xx" kindref="compound">Extended1_PPC_6xx_7xx</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="struct_extended2___p_p_c__6xx__7xx" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_extended2___p_p_c__6xx__7xx" kindref="compound">Extended2_PPC_6xx_7xx</ref><sp/>{</highlight></codeline>
+<codeline lineno="158" refid="struct_extended2___p_p_c__6xx__7xx_1acb28e466493aeb3906ce6e384230fc32" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_extended2___p_p_c__6xx__7xx_1acb28e466493aeb3906ce6e384230fc32" kindref="member">PSR</ref>[32][2];</highlight></codeline>
+<codeline lineno="159" refid="targimpl_8h_1a8de5fe032a1b0c0c6c8ee0ec492b23ae" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_extended2___p_p_c__6xx__7xx" kindref="compound">Extended2_PPC_6xx_7xx</ref>;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="struct_processor_state___p_p_c__6xx__7xx" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC_6xx_7xx</ref><sp/>{</highlight></codeline>
+<codeline lineno="162" refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_default___p_p_c" kindref="compound">Default_PPC</ref><sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>;</highlight></codeline>
+<codeline lineno="163" refid="struct_processor_state___p_p_c__6xx__7xx_1a8ed063205d14a6620b20353899356cb7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_float___p_p_c" kindref="compound">Float_PPC</ref><sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx_1a8ed063205d14a6620b20353899356cb7" kindref="member">Float</ref>;</highlight></codeline>
+<codeline lineno="164" refid="struct_processor_state___p_p_c__6xx__7xx_1ab93554b55c63a0a75d8442ea52db723d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_extended1___p_p_c__6xx__7xx" kindref="compound">Extended1_PPC_6xx_7xx</ref><sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx_1ab93554b55c63a0a75d8442ea52db723d" kindref="member">Extended1</ref>;</highlight></codeline>
+<codeline lineno="165" refid="struct_processor_state___p_p_c__6xx__7xx_1aa9b60a22cad6ded793c213e84ec2648e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_extended2___p_p_c__6xx__7xx" kindref="compound">Extended2_PPC_6xx_7xx</ref><sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx_1aa9b60a22cad6ded793c213e84ec2648e" kindref="member">Extended2</ref>;</highlight></codeline>
+<codeline lineno="166" refid="struct_processor_state___p_p_c__6xx__7xx_1ac51f9ca9b15e08e1848ddc229dbe86aa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx_1ac51f9ca9b15e08e1848ddc229dbe86aa" kindref="member">transport_handler_saved_ra</ref>;</highlight></codeline>
+<codeline lineno="167" refid="targimpl_8h_1afadbedf457224b8e235f5ae34d46c803" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC_6xx_7xx</ref>;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="targimpl_8h_1a3586221fa303cec01c136d3573287581" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC_6xx_7xx</ref><sp/><ref refid="targimpl_8h_1a3586221fa303cec01c136d3573287581" kindref="member">ProcessorState_PPC</ref>;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref><sp/><ref refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" kindref="member">gTRKCPUState</ref>;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="struct_t_r_k_state" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_t_r_k_state" kindref="compound">TRKState</ref><sp/>{</highlight></codeline>
+<codeline lineno="173" refid="struct_t_r_k_state_1af93169b588ce47f4494fc1e5f884c85d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_t_r_k_state_1af93169b588ce47f4494fc1e5f884c85d" kindref="member">gpr</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_00</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="struct_t_r_k_state_1a53698a84e7e152724187591c67035f1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_t_r_k_state_1a53698a84e7e152724187591c67035f1f" kindref="member">lr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_80</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175" refid="struct_t_r_k_state_1a4dd3cb9d364a9d4969545759f606506c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_t_r_k_state_1a4dd3cb9d364a9d4969545759f606506c" kindref="member">ctr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_84</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176" refid="struct_t_r_k_state_1a317466f63f9e5fe1e5e1434d8f51e625" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_t_r_k_state_1a317466f63f9e5fe1e5e1434d8f51e625" kindref="member">xer</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_88</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="struct_t_r_k_state_1a6055a72df3d0a88dbcc082d00b800828" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_t_r_k_state_1a6055a72df3d0a88dbcc082d00b800828" kindref="member">msr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_8C</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178" refid="struct_t_r_k_state_1abd69b43010ca1bdde1dad01dd5f322df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_t_r_k_state_1abd69b43010ca1bdde1dad01dd5f322df" kindref="member">dar</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_90</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179" refid="struct_t_r_k_state_1a5bacd933e38a8fc92f23be9565ce6426" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct_t_r_k_state_1a5bacd933e38a8fc92f23be9565ce6426" kindref="member">dsisr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_94</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180" refid="struct_t_r_k_state_1aec4785eaa9ea746de151bd0cc1128b93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOL<sp/><ref refid="struct_t_r_k_state_1aec4785eaa9ea746de151bd0cc1128b93" kindref="member">isStopped</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_98</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181" refid="struct_t_r_k_state_1a55c26a25b50cddc0b6fee421d5555fc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOL<sp/><ref refid="struct_t_r_k_state_1a55c26a25b50cddc0b6fee421d5555fc7" kindref="member">inputActivated</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_9C</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182" refid="struct_t_r_k_state_1a4603d883d4780a71a328790cde2fcf3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="struct_t_r_k_state_1a4603d883d4780a71a328790cde2fcf3f" kindref="member">inputPendingPtr</ref>;<sp/></highlight><highlight class="comment">//<sp/>_A0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="targimpl_8h_1ab1169727b62876eae6de52936d9852c6" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_t_r_k_state" kindref="compound">TRKState</ref>;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_t_r_k_state" kindref="compound">TRKState</ref><sp/><ref refid="targimpl_8h_1a08f8e1919152b12ff57fb130a57e9be1" kindref="member">gTRKState</ref>;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>PPC_GENERIC_TARGIMPL_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Processor/ppc/Generic/targimpl.h"/>
+  </compounddef>
+</doxygen>

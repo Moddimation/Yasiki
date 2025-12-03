@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File JKRHeap.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-jkrheapcpp">File JKRHeap.cpp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_2add8750dabb2c81b6f2c3c5af4cfeba/"><strong>JSystem</strong></a> <strong>&gt;</strong> <a href="../dir_e5be38218225624e70ebb9ea7ff5d81f/"><strong>System</strong></a> <strong>&gt;</strong> <a href="../dir_cddf90ee7c92ffd4474a8c27c5ea5882/"><strong>JKernel</strong></a> <strong>&gt;</strong> <a href="../dir_2af99252d1c483de143a7a3f414b45a2/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_j_k_r_heap_8cpp/"><strong>JKRHeap.cpp</strong></a></p>
+<p><a href="../_j_k_r_heap_8cpp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;JKRHeap.h&gt;
+
+JKRHeap*        JKRHeap::sSystemHeap   = Nil;
+JKRHeap*        JKRHeap::sCurrentHeap  = Nil;
+JKRHeap*        JKRHeap::sRootHeap     = Nil;
+JKRErrorRoutine JKRHeap::mErrorHandler = Nil;
+
+JKRHeap::JKRHeap (void* obj, size_t size, JKRHeap* parent, BOOL error)
+  : JKRDisposer(),
+    mHeapTree (this),
+    mDisposerList()
+{
+    OSInitMutex (&amp;mMutex);
+    mSize  = size;
+    mStart = obj;
+    mEnd   = (void*)((int)obj + size);
+
+    if (parent == Nil)
+    {
+        becomeSystemHeap();
+        becomeCurrentHeap();
+    }
+    else
+    {
+        parent-&gt;mHeapTree.appendChild (&amp;mHeapTree);
+
+        if (sSystemHeap == sRootHeap)
+        {
+            becomeSystemHeap();
+        }
+        if (sCurrentHeap == sRootHeap)
+        {
+            becomeCurrentHeap();
+        }
+    }
+    mErrorFlag = error;
+    if (mErrorFlag == true &amp;&amp; mErrorHandler == Nil)
+    {
+        mErrorHandler = JKRDefaultMemoryErrorRoutine;
+    }
+}
+
+JKRHeap::~JKRHeap ()
+{
+    mHeapTree.getParent()-&gt;removeChild (&amp;mHeapTree);
+    JSUTree&lt;JKRHeap&gt;* pNewRoot = sRootHeap-&gt;mHeapTree.getFirstChild();
+    if (sCurrentHeap == this)
+    {
+        sCurrentHeap = pNewRoot == Nil ? sRootHeap : (JKRHeap*)pNewRoot-&gt;getObject();
+    }
+    if (sSystemHeap == this)
+    {
+        sSystemHeap = pNewRoot == Nil ? sRootHeap : (JKRHeap*)pNewRoot-&gt;getObject();
+    }
+}
+
+BOOL
+JKRHeap::initArena (char** ramStart, u32* ramSize, int maxHeaps)
+{
+    void* arenaLo = OSGetArenaLo();
+    void* arenaHi = OSGetArenaHi();
+
+    if (arenaLo == arenaHi)
+    {
+        return FALSE;
+    }
+
+    void* arenaStart = OSInitAlloc (arenaLo, arenaHi, maxHeaps);
+
+    arenaHi          = (void*)OSRoundDown32B (arenaHi);
+    arenaLo          = (void*)OSRoundUp32B (arenaStart);
+
+    OSSetArenaLo (arenaHi);
+    OSSetArenaHi (arenaHi);
+
+    *ramStart = (char*)arenaLo;
+    *ramSize  = (u32)arenaHi - (u32)arenaLo;
+
+    return TRUE;
+}
+
+JKRHeap*
+JKRHeap::becomeSystemHeap ()
+{
+    USE_SYSTEMHEAP;
+    sSystemHeap = this;
+    return heap;
+}
+
+JKRHeap*
+JKRHeap::becomeCurrentHeap ()
+{
+    USE_CURRENTHEAP;
+    sCurrentHeap = this;
+    return heap;
+}
+
+void*
+JKRHeap::alloc (size_t size, int align, JKRHeap* heap)
+{
+    void* ret = Nil;
+
+    if (heap != Nil)
+    {
+        ret = heap-&gt;alloc (size, align);
+    }
+    else if (sCurrentHeap != Nil)
+    {
+        ret = sCurrentHeap-&gt;alloc (size, align);
+    }
+
+    return ret;
+}
+
+void
+JKRHeap::free (void* obj, JKRHeap* heap)
+{
+    if (heap == Nil)
+    {
+        heap = findFromRoot (obj);
+        if (heap == Nil)
+        {
+            return;
+        }
+    }
+    heap-&gt;free (obj);
+}
+
+void
+JKRHeap::freeAll (void)
+{
+    unk64 _;
+#pragma unused(_)
+
+    JSUListIterator&lt;JKRDisposer&gt; iter;
+    while (iter = mDisposerList.getFirst(), iter != mDisposerList.getEnd())
+    {
+        iter.getObject()-&gt;~JKRDisposer();
+    }
+}
+
+JKRHeap*
+JKRHeap::findFromRoot (void* obj)
+{
+    if (getRootHeap() != Nil)
+    {
+        return getRootHeap()-&gt;find (obj);
+    }
+
+    return Nil;
+}
+
+JKRHeap*
+JKRHeap::find (void* obj) const
+{
+    if (mStart &lt;= obj &amp;&amp; obj &lt;= mEnd)
+    {
+        if (mHeapTree.getNumChildren() != 0)
+        {
+            for (JSUTreeIterator&lt;JKRHeap&gt; iter (mHeapTree.getFirstChild());
+                 iter != mHeapTree.getEndChild();
+                 --iter)
+            {
+                JKRHeap* search = iter-&gt;find (obj);
+                if (search != Nil)
+                {
+                    return search;
+                }
+            }
+        }
+        return const_cast&lt;JKRHeap*&gt; (this);
+    }
+    return Nil;
+}
+
+void
+JKRHeap::dispose_subroutine (size_t begin, size_t end)
+{
+    JSUListIterator&lt;JKRDisposer&gt; iter_prev;
+    JSUListIterator&lt;JKRDisposer&gt; iter_next;
+    JSUListIterator&lt;JKRDisposer&gt; iter_curr;
+
+    for (iter_curr = mDisposerList.getFirst(); iter_curr != mDisposerList.getEnd();
+         iter_curr = iter_next)
+    {
+        void* obj = iter_curr.getObject();
+        if ((void*)begin &lt;= obj &amp;&amp; obj &lt; (void*)end)
+        {
+            iter_curr.getObject()-&gt;~JKRDisposer();
+            if (iter_prev == Nil)
+            {
+                iter_next = mDisposerList.getFirst();
+            }
+            else
+            {
+                iter_next = iter_prev;
+                iter_next--;
+            }
+        }
+        else
+        {
+            iter_prev = iter_curr;
+            iter_next = iter_curr;
+            iter_next--;
+        }
+    }
+}
+
+int
+JKRHeap::dispose (void* obj, u32 size)
+{
+    u32 begin = (u32)obj;
+    u32 end   = (u32)obj + size;
+    dispose_subroutine (begin, end);
+    return 0;
+}
+
+void
+JKRHeap::dispose (void* begin, void* end)
+{
+    dispose_subroutine ((u32)begin, (u32)end);
+}
+
+void
+JKRHeap::dispose ()
+{
+    unk64 _;
+#pragma unused(_)
+
+    JSUListIterator&lt;JKRDisposer&gt; iterator;
+    while (iterator = mDisposerList.getFirst(), iterator != mDisposerList.getEnd())
+    {
+        iterator-&gt;~JKRDisposer();
+    }
+}
+
+static inline void
+__copyMemory (u32* __dest, u32* __source, u32 size)
+{
+    while (size-- &gt; 0)
+    {
+        *__dest = *__source;
+        __dest++;
+        __source++;
+    }
+}
+
+void
+JKRHeap::copyMemory (void* dest, void* source, u32 size)
+{
+    __copyMemory ((u32*)dest, (u32*)source, (size + 3) / 4);
+}
+
+void
+JKRDefaultMemoryErrorRoutine (JKRHeap* heap, size_t size, int align)
+{
+#pragma unused(heap)
+#pragma unused(size)
+#pragma unused(align)
+
+    OSPanic (__FILE__, 629, &quot;abort\n&quot;);
+}
+
+void*
+operator new (size_t size)
+{
+    return JKRHeap::alloc (size, 4, Nil);
+}
+
+void*
+operator new (size_t size, int align)
+{
+    return JKRHeap::alloc (size, align, Nil);
+}
+
+void*
+operator new (size_t size, JKRHeap* heap, int align)
+{
+    return JKRHeap::alloc (size, align, heap);
+}
+
+void*
+operator new[] (size_t size)
+{
+    return operator new (size);
+}
+
+void*
+operator new[] (size_t size, int align)
+{
+    return operator new (size, align);
+}
+
+void*
+operator new[] (size_t size, JKRHeap* heap, int align)
+{
+    return operator new (size, heap, align);
+}
+
+void
+operator delete (void* obj)
+{
+    JKRHeap::free (obj, Nil);
+}
+
+void
+operator delete[] (void* obj)
+{
+    operator delete (obj);
+}
+
+u32
+JKRHeap::getUNK (void)
+{
+    return 0;
+}
+
+u32
+JKRHeap::getCurrentGroupId (void)
+{
+    return 0;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File __init_cpp_exceptions.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-__init_cpp_exceptionscpp">File __init_cpp_exceptions.cpp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_1789e36d750963f536ec280b459db2bf/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../____init__cpp__exceptions_8cpp/"><strong>__init_cpp_exceptions.cpp</strong></a></p>
+<p><a href="../____init__cpp__exceptions_8cpp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/***************************************************************************/
+/*
+
+FILE
+    __init_cpp_exceptions.c
+
+DESCRIPTION
+
+    Runtime file.  Contains calls to initialize c++ exceptions.  Contents
+    will be included only if your project has exceptions.
+
+
+COPYRIGHT   
+    (c) 1999 Metrowerks Corporation
+    All rights reserved.
+
+HISTORY
+    99 JAN 22 MEA   Created.
+
+*/
+/***************************************************************************/
+
+#if __MWERKS__
+#pragma exceptions off
+#pragma internal on
+#endif
+
+#include &lt;__ppc_eabi_linker.h&gt;      /* linker-generated symbol declarations */
+#include &lt;NMWException.h&gt;
+
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+
+extern void __init_cpp_exceptions(void);
+extern void __fini_cpp_exceptions(void);
+extern void suspend(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+static int fragmentID = -2;         /* ID given to fragment by exception-handling       */
+                                    /* valid numbers are 0 - MAX_INT; if -1 then        */
+                                    /* too many fragments were loaded                   */
+
+static asm char *GetR2(void)
+{
+    /*
+     *  Get the contents of the r2 register
+     */
+    nofralloc
+    mr      r3,r2
+    blr
+}
+
+extern void __init_cpp_exceptions(void)
+{
+    char *R2;               /* r2 register contents                             */
+
+    if (fragmentID == -2) {
+    /* use suspend with some OSes */
+#ifdef TERMINATE_WITH_SUSPEND
+        set_terminate(suspend);
+#endif
+
+        R2 = GetR2();
+
+        /*
+         *  initialize exception tables
+         */
+        fragmentID = __register_fragment(_eti_init_info, R2);
+    }
+}
+
+extern void __fini_cpp_exceptions(void)
+{
+    if (fragmentID != -2) {
+        __unregister_fragment(fragmentID);
+        fragmentID = -2;
+    }
+}
+
+#if __MWERKS__ &amp;&amp; __PPC_EABI__
+__declspec(section &quot;.ctors&quot;) 
+    static const void * const __init_cpp_exceptions_reference = __init_cpp_exceptions;
+#if __dest_os != __eppc_vxworks
+__declspec(section &quot;.dtors&quot;) 
+    static void * const __destroy_global_chain_reference = __destroy_global_chain;
+__declspec(section &quot;.dtors&quot;) 
+    static void * const __fini_cpp_exceptions_reference = __fini_cpp_exceptions;
+#endif
+#endif
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File hashtbl.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-hashtblh">File hashtbl.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../hashtbl_8h/"><strong>hashtbl.h</strong></a></p>
+<p><a href="../hashtbl_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  Version 2.4  1998 March 10  */
+
+/*  $Date: 1999/12/09 17:58:49 $ 
+ *  $Revision: 1.12.4.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+#ifndef MSIPL_HASH_TABLE_H
+#define MSIPL_HASH_TABLE_H
+
+#ifndef _No_Floating_Point
+
+#include &lt;mcompile.h&gt;
+
+#include &lt;cstdlib&gt;     // hh 971220 fixed MOD_C_INCLUDE
+
+#include &lt;iosfwd&gt;      // hh 971220 fixed MOD_INCLUDE
+#include &lt;iterator&gt;    // hh 971220 fixed MOD_INCLUDE
+#include &lt;functional_ext&gt;  // hh 971220 fixed MOD_INCLUDE
+#include &lt;algorithm&gt;  // hh 971220 fixed MOD_INCLUDE
+#include &lt;vector&gt;      // hh 971220 fixed MOD_INCLUDE
+
+#ifdef MSIPL_ANSI_HEADER
+#include &lt;stdexcept&gt;   // hh 971220 fixed MOD_INCLUDE
+#else
+#include &lt;mexcept.h&gt;   // hh 971220 fixed MOD_INCLUDE
+#endif
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+MSIPL_STD_BEGIN
+#define HT_TEMPLATE template &lt;class Key, class Value, class KeyOfValue, class HashFunction, class KeyEqual, class Allocator&gt;
+#define HT_TYPE hash_table&lt;Key, Value, KeyOfValue, HashFunction, KeyEqual, Allocator&gt;
+
+HT_TEMPLATE
+class hash_table {
+
+public:
+    struct hash_node;
+    class iterator; friend class iterator;
+    class const_iterator; friend class const_iterator;
+
+    typedef size_t                               size_type;
+    typedef Key                                  key_type;
+    typedef Value                                value_type;
+    typedef HashFunction                         hash_function;
+    typedef ptrdiff_t                            difference_type;
+    typedef value_type&amp;                          reference;
+    typedef const value_type&amp;                    const_reference;
+    typedef value_type*                          pointer;
+    typedef const value_type*                    const_pointer;
+    typedef ALLOC_BIND(hash_node)                hash_node_allocator_type;
+    typedef ALLOC_BIND(value_type)               value_allocator_type;
+    typedef pair&lt;iterator, bool&gt;                 pair_iterator_bool;
+    typedef pair&lt;iterator, iterator&gt;             pair_iterator_iterator;
+    typedef pair&lt;const_iterator, const_iterator&gt; pair_citerator_citerator;
+    typedef typename hash_node_allocator_type::pointer    link_type;
+    typedef ALLOC_BIND(link_type)                         allocator_link_type;
+
+    struct hash_node {
+        value_type val;
+        link_type  next;
+    };
+
+public:
+    class iterator 
+    : public MSIPLSTD::iterator &lt;forward_iterator_tag, Value, difference_type,
+                                 pointer, reference&gt;
+    {
+        friend class const_iterator;
+        friend class hash_table&lt;Key, Value, KeyOfValue, HashFunction, KeyEqual,
+                                Allocator&gt;;
+    protected:
+        HT_TYPE*   ht;       // hast table to which the iterator is pointing 
+        link_type  cur;      // Pointer to the current element in the bucket
+
+    public:
+        iterator (link_type ptr, const HT_TYPE* ht)
+        :  ht ((HT_TYPE*)ht), cur (ptr) {}
+
+        iterator () : ht (0), cur (0) { }
+
+        ~iterator () {}
+
+        bool operator== (const iterator&amp; rhs) const
+        { READ_LOCK(ht-&gt;_mutex); return (cur == rhs.cur); }
+
+        bool operator!= (const iterator&amp; rhs) const
+        { READ_LOCK(ht-&gt;_mutex); return (cur != rhs.cur); }
+
+        bool operator== (const const_iterator&amp; rhs) const
+        { READ_LOCK(ht-&gt;_mutex); return (cur == rhs.cur); }
+
+        bool operator!= (const const_iterator&amp; rhs) const
+        { READ_LOCK(ht-&gt;_mutex); return (cur != rhs.cur); }
+
+        reference operator* () { READ_LOCK(ht-&gt;_mutex); return cur-&gt;val; }
+
+        pointer operator-&gt; () { READ_LOCK(ht-&gt;_mutex); return &amp;(operator* ()); }
+
+        iterator&amp; operator++ () 
+        {
+            WRITE_LOCK(ht-&gt;_mutex);
+            link_type old = cur;
+            cur = cur-&gt;next;
+            if (!cur) {
+                size_type bucket = ht-&gt;bkt_num (old-&gt;val);
+                while (!cur &amp;&amp; ++bucket &lt; ht-&gt;buckets.size ())
+                    cur = ht-&gt;buckets[bucket];
+            }
+            return *this;
+        }
+
+        iterator operator++ (int) 
+        {
+            iterator tmp = *this;
+            ++*this;
+            return tmp;
+        }
+    };   // end class iterator
+
+    class const_iterator
+    : public MSIPLSTD::iterator &lt;forward_iterator_tag, Value, difference_type,
+                                 pointer, reference&gt;
+    {
+        friend class hash_table&lt;Key, Value, KeyOfValue, HashFunction, KeyEqual,
+                                Allocator&gt;::iterator;  // hh 980109 added qualified name
+        friend class hash_table&lt;Key, Value, KeyOfValue, HashFunction, KeyEqual,
+                                Allocator&gt;;
+    protected:
+        HT_TYPE*  ht;        // hast table to which the iterator is pointing
+        link_type  cur;      // Pointer to the current element in the bucket
+
+    public:
+        const_iterator (link_type ptr, const HT_TYPE*  ht)
+        :  ht ((HT_TYPE*)ht), cur (ptr) { }
+
+        const_iterator () : ht (0),  cur (0) { }
+
+        const_iterator (const hash_table&lt;Key, Value, KeyOfValue, HashFunction, // hh 980109 added qualified name
+            KeyEqual, Allocator&gt;::iterator&amp; x) : ht (x.ht), cur (x.cur) { }
+
+        ~const_iterator () {}
+
+        bool operator== (const hash_table&lt;Key, Value, KeyOfValue, HashFunction, // hh 980109 added qualified name
+            KeyEqual, Allocator&gt;::iterator&amp; rhs) const
+        { READ_LOCK(ht-&gt;_mutex); return (cur == rhs.cur); }
+
+        bool operator!= (const hash_table&lt;Key, Value, KeyOfValue, HashFunction, // hh 980109 added qualified name
+            KeyEqual, Allocator&gt;::iterator&amp; rhs) const
+        { READ_LOCK(ht-&gt;_mutex); return (cur != rhs.cur); }
+
+        bool operator== (const const_iterator&amp; rhs) const
+        { READ_LOCK(ht-&gt;_mutex); return (cur == rhs.cur); }
+
+        bool operator!= (const const_iterator&amp; rhs) const
+        { READ_LOCK(ht-&gt;_mutex); return (cur != rhs.cur); }
+
+        const_reference operator* () 
+        { 
+             READ_LOCK(ht-&gt;_mutex); 
+             return cur-&gt;val; 
+        }
+
+        const_pointer operator-&gt; () 
+        { 
+             READ_LOCK(ht-&gt;_mutex); 
+             return &amp;(operator* ()); 
+        }
+
+        const_iterator&amp; operator++ ()
+        {
+            WRITE_LOCK(ht-&gt;_mutex);
+            link_type old = cur;
+            cur = cur-&gt;next;
+            if (!cur) {
+                size_type bucket = ht-&gt;bkt_num(old-&gt;val);
+                while (!cur &amp;&amp; ++bucket &lt; ht-&gt;buckets.size())
+                    cur = ht-&gt;buckets[bucket];
+            }
+            return *this;
+        }
+
+        const_iterator operator++ (int)
+        {
+            const_iterator tmp = *this;
+            ++*this;
+            return tmp;
+        }
+    };   // end class const_iterator
+
+private:
+
+#define _MN_(size) if (n &lt; size) return size;
+    inline unsigned long __stl_next_prime(unsigned long n) const
+   {
+        _MN_(53)  _MN_(97)  _MN_(193)  _MN_(389)  _MN_(769)  _MN_(1543) 
+        _MN_(3079)  _MN_(6151)  _MN_(12289)  _MN_(24593)  _MN_(49157) 
+        _MN_(98317)  _MN_(196613)  _MN_(393241)  _MN_(786433)  
+        _MN_(1572869)  _MN_(3145739)  _MN_(6291469)  _MN_(12582917)  
+        _MN_(25165843)  _MN_(50331653)  _MN_(100663319)  
+        _MN_(201326611)  _MN_(402653189) 
+        _MN_(805306457)  _MN_(1610612741)  _MN_(3221225473)  
+        return 4294967291;
+   }
+#undef _MN_
+
+     void copy_from (const HT_TYPE&amp; ht)
+     {
+          WRITE_LOCK(_mutex);
+          buckets.reserve (ht.buckets.size ());
+          buckets.insert (buckets.end (), ht.buckets.size (), NULL);
+          MSIPL_TRY
+          {
+               for (size_type i = 0; i &lt; ht.buckets.size (); ++i) {
+                    if (link_type cur = ht.buckets[i]) {
+                         link_type copy = new_node (cur-&gt;val);
+                         buckets[i] = copy;
+
+                         for (link_type next = cur-&gt;next; next; cur = next, next = cur-&gt;next) {
+                              copy-&gt;next = new_node (next-&gt;val);
+                              copy = copy-&gt;next;
+                         }
+                         copy-&gt;next = NULL;
+                    }
+               }
+               num_elements = ht.num_elements;
+          }
+        #ifdef MSIPL_EXCEPT // hh 980902 added
+          MSIPL_CATCH
+          {
+               clear (true);
+               throw;
+          } 
+        #endif
+     }
+
+    void erase_bucket (const size_type n, link_type first, link_type last)
+    {
+        WRITE_LOCK (_mutex);
+        link_type cur = buckets[n];
+        if (cur == first)
+            erase_bucket (n, last);
+        else {
+            link_type next;
+            for (next = cur-&gt;next; next != first; cur = next, next = cur-&gt;next)
+                ;
+            while (next) {
+                cur-&gt;next = next-&gt;next;
+                put_node (next);
+                next = cur-&gt;next;
+                --num_elements;
+            }
+        }
+    }
+
+    void erase_bucket (const size_type n, link_type last)
+    {
+        WRITE_LOCK(_mutex);
+        link_type cur = buckets[n];
+        while (cur != last) {
+            link_type next = cur-&gt;next;
+            put_node (cur);
+            cur = next;
+            buckets[n] = cur;
+            --num_elements;
+        }
+    }
+
+    link_type get_node ()
+    {
+       WRITE_LOCK(_mutex);
+       link_type tmp = free_list;
+       if (tmp)
+           free_list = free_list-&gt;next;  // hh 990225
+       else
+           tmp = hash_node_allocator.allocate (1);
+       return tmp;
+    }
+
+    link_type new_node (const value_type&amp; obj)
+    {
+        link_type n = get_node ();
+        MSIPL_TRY 
+        {
+            value_allocator.construct (&amp;(n-&gt;val), obj);
+        }
+        #ifdef MSIPL_EXCEPT // hh 980902 added
+        MSIPL_CATCH
+        {
+            hash_node_allocator.deallocate (n, 1);
+            throw;
+        }
+        #endif
+        return n;
+    }
+
+    void delete_node (link_type n)
+    {
+        value_allocator.destroy (&amp;(n-&gt;val));
+        hash_node_allocator.deallocate (n, 1);
+    }
+
+    void put_node(link_type n)
+    {
+        if (n)
+        {
+            value_allocator.destroy (&amp;(n-&gt;val));
+            n-&gt;next = free_list;
+            free_list = n;
+        }
+    }
+
+    void clear (bool delete_it = false)
+    {
+        for (size_type i = 0; i &lt; buckets.size (); ++i) {
+            link_type cur = buckets[i];
+            while (cur != 0) {
+                link_type next = cur-&gt;next;
+                if (delete_it)
+                    delete_node (cur);
+                else
+                    put_node (cur);
+                cur = next;
+            }
+            buckets[i] = 0;
+        }
+        if (delete_it) {
+            link_type tmp;
+            while(free_list) { 
+                tmp = free_list; 
+                free_list = free_list-&gt;next;
+                hash_node_allocator.deallocate (tmp, 1);
+            }
+        }
+        num_elements = 0;
+    }
+
+    size_type next_size(size_type n) const { return __stl_next_prime (n); }
+
+    size_type bkt_num_key (const key_type&amp; key) const
+    {
+        return bkt_num_key (key, buckets.size ());
+    }
+
+    size_type bkt_num (const value_type&amp; obj) const
+    {
+        return bkt_num_key(get_key (obj));
+    }
+
+    size_type bkt_num_key(const key_type&amp; key, size_t n) const
+    {
+        return hash(key) % n;
+    }
+
+    size_type bkt_num(const value_type&amp; obj, size_t n) const
+    {
+        return bkt_num_key(get_key(obj), n);
+    }
+
+protected:
+    HashFunction  hash;           // Actual hash function being used
+    KeyEqual      equals;         // Function object used to compare keys
+    size_type     num_elements;   // Keeps track of the # of elements
+    KeyOfValue    get_key;
+    link_type     free_list;
+    hash_node_allocator_type hash_node_allocator;
+    value_allocator_type value_allocator;
+    vector&lt;link_type, allocator_link_type&gt; buckets;
+    DEC_OBJ_LOCK(_mutex)
+
+public:
+
+    // allocation - deallocation    
+    hash_table (size_type initSize,
+                const HashFunction&amp; hf = HashFunction (),
+                const KeyEqual&amp; equal  = KeyEqual (),
+                const KeyOfValue&amp; ext  = KeyOfValue())
+    : num_elements (0), buckets (next_size (initSize)),  hash (hf), 
+      equals (equal), get_key (ext), free_list (0)
+    { }
+
+    hash_table (const value_type* first,
+                const value_type* last, 
+                size_type initSize,
+                const HashFunction&amp; hf = HashFunction (), 
+                const KeyEqual&amp; equal  = KeyEqual (),
+                const KeyOfValue&amp; ext  = KeyOfValue())
+    : num_elements (0),  hash (hf), equals (equal), 
+      buckets (next_size (initSize)), get_key(ext), free_list(0)
+    { insert_equal (first, last); }
+
+    // copying, assignment, swap
+    //
+    hash_table (const HT_TYPE&amp; ht)
+    : num_elements (0), hash (ht.hash), equals (ht.equals),
+      get_key (ht.get_key), free_list (0)
+    { copy_from (ht); }
+
+    HT_TYPE&amp; operator= (const HT_TYPE&amp; ht)
+    {
+        if (&amp;ht != this) {
+            WRITE_LOCK(_mutex);
+            hash = ht.hash;
+            equals = ht.equals;
+            get_key = ht.get_key;
+            clear();
+            buckets.erase (buckets.begin (), buckets.end ());
+            copy_from (ht);
+        }
+        return *this;
+    }
+
+
+    void swap (HT_TYPE&amp; ht)
+    {
+        if (&amp;ht != this) {
+            WRITE_LOCK(_mutex);
+            {WRITE_LOCK(ht._mutex);
+            MSIPLSTD::swap(hash, ht.hash);
+            MSIPLSTD::swap(equals, ht.equals);
+            MSIPLSTD::swap(get_key, ht.get_key);
+            MSIPLSTD::swap(free_list, ht.free_list);
+            MSIPLSTD::swap(num_elements, ht.num_elements);
+            buckets.swap( ht.buckets );}
+        }
+    }
+
+    bool operator==(const HT_TYPE&amp; ht)
+    {
+        if(this != &amp;ht)
+        {
+            READ_LOCK(_mutex);
+            if (buckets.size() != ht.buckets.size())
+                return false;
+            for (size_type n = 0; n &lt; buckets.size(); ++n) {
+                link_type cur1 = buckets[n];
+                link_type cur2 = ht.buckets[n];
+                for ( ; cur1 &amp;&amp; cur2 &amp;&amp; cur1-&gt;val == cur2-&gt;val;
+                        cur1 = cur1-&gt;next, cur2 = cur2-&gt;next)
+                {}
+                if (cur1 || cur2)
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    bool operator!=(const HT_TYPE&amp; ht)
+    {
+         return !(*this == ht); 
+    }
+
+    ~hash_table()               
+    { 
+        clear (true);            // delete nodes aswell.
+    }
+
+    size_type size ()     const 
+    { 
+        READ_LOCK (_mutex); 
+        return  (num_elements); 
+    }
+
+    size_type max_size () const 
+    { 
+        return size_type(-1);   
+    }
+
+    bool      empty ()    const 
+    { 
+        READ_LOCK (_mutex); 
+        return  (size () == 0); 
+    }
+
+    // accessors
+    KeyEqual           key_comp ()    const 
+    { 
+        READ_LOCK (_mutex); 
+        return equals;           
+    }
+    hash_function      hash_funct ()  const 
+    { 
+        READ_LOCK (_mutex); 
+        return hash;             
+    }
+
+    size_type bucket_count() const 
+    { 
+        return buckets.size(); 
+    }
+
+    // iterators
+    iterator begin()
+    {
+        READ_LOCK (_mutex); 
+        for (size_type n = 0; n &lt; buckets.size(); ++n)
+            if (buckets[n])
+                return iterator(buckets[n], this);
+        return end();
+    }
+
+    iterator end() 
+    { 
+        READ_LOCK (_mutex); 
+        return iterator(0, this); 
+    }
+
+    const_iterator begin() const
+    {
+        READ_LOCK (_mutex); 
+        for (size_type n = 0; n &lt; buckets.size(); ++n)
+            if (buckets[n])
+                return const_iterator(buckets[n], this);
+        return end();
+    }
+
+    const_iterator end() const 
+    { 
+        READ_LOCK (_mutex); 
+        return const_iterator(0, this); 
+    }
+
+    size_type max_bucket_count() const
+    { 
+        return 4294967291;
+    }
+
+    size_type elems_in_bucket(size_type bucket) const
+    {
+        READ_LOCK (_mutex); 
+        size_type result = 0;
+        for (link_type cur = buckets[bucket]; cur; cur = cur-&gt;next)
+            result += 1;
+        return result;
+    }
+
+    pair_iterator_bool insert_unique(const value_type&amp; obj)
+    {
+        resize(num_elements + 1);
+        return insert_unique_noresize(obj);
+    }
+
+    iterator insert_equal(const value_type&amp; obj)
+    {
+        resize(num_elements + 1);
+        return insert_equal_noresize(obj);
+    }
+
+    reference find_or_insert(const value_type&amp; obj);
+
+    iterator find(const key_type&amp; key)
+    {
+        READ_LOCK(_mutex); 
+        size_type n = bkt_num_key (key);
+        link_type first;
+        for ( first = buckets[n];
+              first &amp;&amp; !equals (get_key(first-&gt;val), key);
+              first = first-&gt;next) {}
+        return iterator (first, this);
+    }
+
+    const_iterator find (const key_type&amp; key) const
+    {
+        READ_LOCK (_mutex); 
+        size_type n = bkt_num_key (key);
+        link_type first;
+        for ( first = buckets[n];
+              first &amp;&amp; !equals(get_key (first-&gt;val), key);
+              first = first-&gt;next) {}
+        return const_iterator (first, this);
+    }
+
+    size_type count(const key_type&amp; key) const
+    {
+        READ_LOCK(_mutex); 
+        const size_type n = bkt_num_key (key);
+        size_type result = 0;
+        for (link_type cur = buckets[n]; cur; cur = cur-&gt;next)
+            if (equals(get_key (cur-&gt;val), key))
+                ++result;
+        return result;
+    }
+
+    size_type erase(const key_type&amp; key);
+    void erase(const iterator&amp; it);
+    void erase(iterator first, iterator last);
+    void erase(const const_iterator&amp; it);
+    void erase(const_iterator first, const_iterator last);
+
+    void resize(size_type num_elements_hint);
+
+    pair&lt;iterator, bool&gt; insert_unique_noresize(const value_type&amp; obj);
+    iterator insert_equal_noresize(const value_type&amp; obj);
+
+#ifdef MSIPL_MEMBER_TEMPLATE
+    template &lt;class InputIterator&gt;
+    void insert_unique(InputIterator f, InputIterator l)
+    {
+        size_type n = distance(f, l);
+        resize(num_elements + n);
+        for ( ; n &gt; 0; --n, ++f)
+            insert_unique_noresize(*f);
+    }
+
+    template &lt;class InputIterator&gt;
+    void insert_equal(InputIterator f, InputIterator l)
+    {
+        size_type n = distance(f, l);
+        resize(num_elements + n);
+        for ( ; n &gt; 0; --n, ++f)
+            insert_equal_noresize(*f); 
+    }
+#else
+    void insert_unique(const value_type* f, const value_type* l)
+    {
+        size_type n = l - f;
+        resize(num_elements + n);
+        for ( ; n &gt; 0; --n, ++f)
+            insert_unique_noresize(*f);
+    }
+
+    void insert_equal(const value_type* f, const value_type* l)
+    {
+        size_type n = l - f;
+        resize(num_elements + n);
+        for ( ; n &gt; 0; --n, ++f)
+            insert_equal_noresize(*f);
+    }
+
+    void insert_unique(const_iterator f, const_iterator l)
+    {
+        size_type n = distance(f, l);
+        resize(num_elements + n);
+        for ( ; n &gt; 0; --n, ++f)
+            insert_unique_noresize(*f);
+    }
+
+    void insert_equal(const_iterator f, const_iterator l)
+    {
+        size_type n = distance(f, l);
+        resize(num_elements + n);
+        for ( ; n &gt; 0; --n, ++f)
+            insert_equal_noresize(*f);
+    }
+
+    void insert_unique(iterator f, iterator l)
+    {
+        size_type n = distance(f, l);
+        resize(num_elements + n);
+        for ( ; n &gt; 0; --n, ++f)
+            insert_unique_noresize(*f);
+    }
+
+    void insert_equal(iterator f, iterator l)
+    {
+        size_type n = distance(f, l);
+        resize(num_elements + n);
+        for ( ; n &gt; 0; --n, ++f)
+            insert_equal_noresize(*f);
+    }
+#endif
+
+    iterator lower_bound (const key_type&amp; key)
+    {
+        READ_LOCK (_mutex);
+        link_type first = buckets[bkt_num_key(key)];
+        for (; first; first = first-&gt;next)
+            if (equals(get_key(first-&gt;val), key)) 
+                return iterator(first, this);
+        return iterator(0, this);
+    }
+
+    const_iterator lower_bound (const key_type&amp; key) const
+    {
+        READ_LOCK (_mutex);
+        link_type first = buckets[bkt_num_key(key)];
+        for (; first; first = first-&gt;next) 
+            if (equals(get_key(first-&gt;val), key)) 
+                return const_iterator(first, this);
+        return const_iterator(0, this);
+    }
+
+    iterator upper_bound (const key_type&amp; key)
+    {
+        READ_LOCK (_mutex);
+        const size_type n = bkt_num_key(key);
+        for (link_type first = buckets[n]; first; first = first-&gt;next) {
+            if (equals(get_key(first-&gt;val), key)) {
+                for (link_type cur = first-&gt;next; cur; cur = cur-&gt;next)
+                    if (!equals(get_key(cur-&gt;val), key))
+                        return iterator(cur, this);
+                for (size_type m = n + 1; m &lt; buckets.size(); ++m)
+                    if (buckets[m])
+                        return iterator(buckets[m], this);
+                return iterator(0, this);
+            }
+        }
+        return iterator(0, this);
+    }
+
+    const_iterator upper_bound (const key_type&amp; key) const
+    {
+        READ_LOCK (_mutex);
+        const size_type n = bkt_num_key(key);
+        for (link_type first = buckets[n]; first; first = first-&gt;next) {
+            if (equals(get_key(first-&gt;val), key)) {
+                for (link_type cur = first-&gt;next; cur; cur = cur-&gt;next)
+                    if (!equals(get_key(cur-&gt;val), key))
+                        return const_iterator(cur, this);
+                for (size_type m = n + 1; m &lt; buckets.size(); ++m)
+                    if (buckets[m])
+                        return const_iterator(buckets[m], this);
+                return const_iterator(0, this);
+            }
+        }
+        return const_iterator(0, this);
+    }
+
+    pair_iterator_iterator equal_range (const key_type&amp; key)
+    {
+        READ_LOCK (_mutex); 
+        typedef pair_iterator_iterator pii;
+        const size_type n = bkt_num_key(key);
+        for (link_type first = buckets[n]; first; first = first-&gt;next) {
+            if (equals(get_key(first-&gt;val), key)) {
+                for (link_type cur = first-&gt;next; cur; cur = cur-&gt;next)
+                    if (!equals(get_key(cur-&gt;val), key))
+                        return pii(iterator(first, this), iterator(cur, this));
+                for (size_type m = n + 1; m &lt; buckets.size(); ++m)
+                    if (buckets[m])
+                        return pii(iterator(first, this), 
+                                   iterator(buckets[m], this));
+                return pii(iterator(first, this), end());
+            }
+        }
+        return pii(end(), end());
+    }
+
+    pair_citerator_citerator equal_range (const key_type&amp; key) const
+    {
+        READ_LOCK (_mutex); 
+        typedef pair_citerator_citerator pii;
+        const size_type n = bkt_num_key(key);
+        for (link_type first = buckets[n]; first; first = first-&gt;next) {
+            if (equals(get_key(first-&gt;val), key)) {
+                for (link_type cur = first-&gt;next; cur; cur = cur-&gt;next)
+                    if (!equals(get_key(cur-&gt;val), key))
+                        return pii(const_iterator(first, this), const_iterator(cur, this));
+                for (size_type m = n + 1; m &lt; buckets.size(); ++m)
+                    if (buckets[m])
+                        return pii(const_iterator(first, this),
+                                   const_iterator(buckets[m], this));
+                return pii(const_iterator(first, this), end());
+            }
+        }
+        return pii(end(), end());
+    }
+
+};  // end class hash_table;
+
+HT_TEMPLATE inline typename HT_TYPE::pair_iterator_bool
+HT_TYPE::insert_unique_noresize(const typename HT_TYPE::value_type&amp; obj)
+{
+    const size_type n = bkt_num(obj);
+    link_type first = buckets[n];
+    for (link_type cur = first; cur; cur = cur-&gt;next)
+        if (equals(get_key(cur-&gt;val), get_key(obj)))
+            return pair&lt;iterator, bool&gt;(iterator(cur, this), false);
+    link_type tmp = new_node(obj);
+    tmp-&gt;next = first;
+    buckets[n] = tmp;
+    ++num_elements;
+    return pair&lt;iterator, bool&gt;(iterator(tmp, this), true);
+}
+
+HT_TEMPLATE inline typename HT_TYPE::iterator
+HT_TYPE::insert_equal_noresize(const typename HT_TYPE::value_type&amp; obj)
+{
+    WRITE_LOCK (_mutex); 
+    const size_type n = bkt_num(obj);
+    link_type first = buckets[n];
+    for (link_type cur = first; cur; cur = cur-&gt;next)
+        if (equals(get_key(cur-&gt;val), get_key(obj))) {
+            link_type tmp = new_node(obj);
+            tmp-&gt;next = cur-&gt;next;
+            cur-&gt;next = tmp;
+            ++num_elements;
+            return iterator(tmp, this);
+        }
+    link_type tmp = new_node(obj);
+    tmp-&gt;next = first;
+    buckets[n] = tmp;
+    ++num_elements;
+    return iterator(tmp, this);
+}
+
+HT_TEMPLATE inline typename HT_TYPE::reference
+HT_TYPE::find_or_insert(const typename HT_TYPE::value_type&amp; obj)
+{
+    WRITE_LOCK (_mutex); 
+    resize(num_elements + 1);
+    size_type n = bkt_num(obj);
+    link_type first = buckets[n];
+    for (link_type cur = first; cur; cur = cur-&gt;next)
+        if (equals(get_key(cur-&gt;val), get_key(obj)))
+            return cur-&gt;val;
+    link_type tmp = new_node(obj);
+    tmp-&gt;next = first;
+    buckets[n] = tmp;
+    ++num_elements;
+    return tmp-&gt;val;
+}
+
+HT_TEMPLATE inline typename HT_TYPE::size_type
+HT_TYPE::erase(const typename HT_TYPE::key_type&amp; key)
+{
+    WRITE_LOCK (_mutex); 
+    const size_type n = bkt_num_key(key);
+    link_type first = buckets[n];
+    size_type erased = 0;
+    if (first) {
+        link_type cur = first;
+        link_type next = cur-&gt;next;
+        while (next) {
+            if (equals(get_key(next-&gt;val), key)) {
+                cur-&gt;next = next-&gt;next;
+                put_node (next);
+                next = cur-&gt;next;
+                ++erased;
+            }
+            else {
+            cur = next;
+            next = cur-&gt;next;
+            }
+        }
+        if (equals(get_key(first-&gt;val), key)) {
+            buckets[n] = first-&gt;next;
+            put_node (first);
+            ++erased;
+        }
+    }
+    num_elements -= erased;
+    return erased;
+}
+
+HT_TEMPLATE inline void
+HT_TYPE::erase(const typename HT_TYPE::iterator&amp; it)
+{
+    WRITE_LOCK (_mutex); 
+    link_type const p = it.cur;
+    if (p) {
+        const size_type n = bkt_num(p-&gt;val);
+        link_type cur = buckets[n];
+        if (cur == p) {
+            buckets[n] = cur-&gt;next;
+            put_node (cur);
+            --num_elements;
+        }
+        else {
+            link_type next = cur-&gt;next;
+            while (next) {
+                if (next == p) {
+                    cur-&gt;next = next-&gt;next;
+
+                    put_node (next);
+                    --num_elements;
+                    break;
+                }
+                else {
+                cur = next;
+                next = cur-&gt;next;
+                }
+            }
+        }
+    }
+}
+
+HT_TEMPLATE inline void
+HT_TYPE::erase(typename HT_TYPE::iterator first, typename HT_TYPE::iterator last)
+{
+    WRITE_LOCK (_mutex); 
+    size_type f_bucket = first.cur ? bkt_num(first.cur-&gt;val) : buckets.size();
+    size_type l_bucket = last.cur ? bkt_num(last.cur-&gt;val) : buckets.size();
+    if (first.cur == last.cur)
+        return;
+    else if (f_bucket == l_bucket)
+        erase_bucket(f_bucket, first.cur, last.cur);
+    else {
+        erase_bucket(f_bucket, first.cur, 0);
+        for (size_type n = f_bucket + 1; n &lt; l_bucket; ++n)
+            erase_bucket(n, 0);
+        if (l_bucket != buckets.size())
+            erase_bucket(l_bucket, last.cur);
+    }
+}
+
+HT_TEMPLATE inline void
+HT_TYPE::erase(typename HT_TYPE::const_iterator first, 
+               typename HT_TYPE::const_iterator last)
+{
+    WRITE_LOCK (_mutex);
+    size_type f_bucket = first.cur ? bkt_num(first.cur-&gt;val) : buckets.size();
+    size_type l_bucket = last.cur ? bkt_num(last.cur-&gt;val) : buckets.size();
+    if (first.cur == last.cur)
+        return;
+    else if (f_bucket == l_bucket)
+        erase_bucket(f_bucket, first.cur, last.cur);
+    else {
+        erase_bucket(f_bucket, first.cur, 0);
+        for (size_type n = f_bucket + 1; n &lt; l_bucket; ++n)
+            erase_bucket(n, 0);
+        if (l_bucket != buckets.size())
+            erase_bucket(l_bucket, last.cur);
+    }
+}
+
+HT_TEMPLATE inline void
+HT_TYPE::erase(const typename HT_TYPE::const_iterator&amp; it)
+{
+    WRITE_LOCK (_mutex);
+    link_type const p = it.cur;
+    if (p) {
+        const size_type n = bkt_num(p-&gt;val);
+        link_type cur = buckets[n];
+        if (cur == p) {
+            buckets[n] = cur-&gt;next;
+            put_node (cur);
+            --num_elements;
+        }
+        else {
+            link_type next = cur-&gt;next;
+            while (next) {
+                if (next == p) {
+                    cur-&gt;next = next-&gt;next;
+
+                    put_node (next);
+                    --num_elements;
+                    break;
+                }
+                else {
+                cur = next;
+                next = cur-&gt;next;
+                }
+            }
+        }
+    }
+}
+
+HT_TEMPLATE inline void
+HT_TYPE::resize(size_type num_elements_hint)
+{
+    WRITE_LOCK (_mutex); 
+    const size_type old_n = buckets.size();
+    if (num_elements_hint &gt; old_n) {
+        const size_type n = next_size(num_elements_hint);
+        if (n &gt; old_n) {
+            HT_TYPE tmp(n-1); // hh 980809 Put in -1.  The constructor calls next_size on the argument
+            for (size_type bucket = 0; bucket &lt; old_n; ++bucket) {
+                link_type first = buckets[bucket];
+                while (first) {
+                    size_type new_bucket = bkt_num(first-&gt;val, n);
+                    buckets[bucket] = first-&gt;next;
+                    first-&gt;next = tmp.buckets[new_bucket];
+                    tmp.buckets[new_bucket] = first;
+                    first = buckets[bucket];
+
+                }
+            }
+            buckets.clear();
+            buckets.swap(tmp.buckets);
+        }
+    }
+}
+
+MSIPL_STD_END
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif /* #ifndef _No_Floating_Point */
+
+#endif /* MSIPL_HASH_TABLE_H */
+
+// 970723 scm  wrapped file in #ifndef _No_Floating_Point
+// hh 971220 fixed MOD_INCLUDE and MOD_C_INCLUDE
+// hh 971222 added alignment wrapper
+// hh 980109 added qualified name to iterator in const_iterator
+// hh 980809 Put in -1 in resize.  The constructor calls next_size on the argument
+// hh 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT
+// hh 990225 fixed bug in get_node with free_list
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

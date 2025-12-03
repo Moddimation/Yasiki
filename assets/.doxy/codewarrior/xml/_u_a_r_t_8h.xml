@@ -1,0 +1,585 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_u_a_r_t_8h" kind="file" language="C++">
+    <compoundname>UART.h</compoundname>
+    <includedby refid="uart__console__config_8h" local="yes">uart_console_config.h</includedby>
+    <includedby refid="uart__console__io_8c" local="yes">uart_console_io.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>UART.h</label>
+        <link refid="_u_a_r_t_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>uart_console_io.c</label>
+        <link refid="uart__console__io_8c"/>
+      </node>
+      <node id="2">
+        <label>uart_console_config.h</label>
+        <link refid="uart__console__config_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635" prot="public" static="no" strong="no">
+        <type></type>
+        <name></name>
+        <enumvalue id="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635ae8d2bbf437238fdcac40f7713ebc6d94" prot="public">
+          <name>kUARTDataError</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a23e70b77b8b60801e1ed1b7babd86776" prot="public">
+          <name>kUARTNoError</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635ab6ccb2fbc28308ba58e051108b70e472" prot="public">
+          <name>kUARTUnknownBaudRate</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a4429c4c3b6615688de169465702ec40f" prot="public">
+          <name>kUARTConfigurationError</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a106d3d0f60dad760144083d6e8c607f9" prot="public">
+          <name>kUARTBufferOverflow</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a5f0b10c2ab57e642e5c1ee61a218854c" prot="public">
+          <name>kUARTNoData</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="67" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" bodystart="67" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="enum" id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986d" prot="public" static="no" strong="no">
+        <type></type>
+        <name>UARTBaudRate</name>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0f1a4c1a04145a5344f7274018ead6a6" prot="public">
+          <name>kBaudHWSet</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dabb91b0c7572c7967f53dbcf7787ac99a" prot="public">
+          <name>kBaud300</name>
+          <initializer>= 300</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dac86de04aec6276261b187a6fb66cb263" prot="public">
+          <name>kBaud600</name>
+          <initializer>= 600</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da653952e03037f67dcaeb655d13e373a3" prot="public">
+          <name>kBaud1200</name>
+          <initializer>= 1200</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dac122f6a6a07d0f6c2a4b08b7021cc505" prot="public">
+          <name>kBaud1800</name>
+          <initializer>= 1800</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daeec331c13498a7524063717b3686a42f" prot="public">
+          <name>kBaud2000</name>
+          <initializer>= 2000</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da4b521d2aa089614a080fc3e8440ea622" prot="public">
+          <name>kBaud2400</name>
+          <initializer>= 2400</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da4faae7491b5f4bd1e8542767dea09cef" prot="public">
+          <name>kBaud3600</name>
+          <initializer>= 3600</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daff6280d8197afa309925e4b559af38c7" prot="public">
+          <name>kBaud4800</name>
+          <initializer>= 4800</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dacb4e2c004dfa48b91d2d99e5e06655f6" prot="public">
+          <name>kBaud7200</name>
+          <initializer>= 7200</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0f607e5cc0af65e8826ea46786ef0bb3" prot="public">
+          <name>kBaud9600</name>
+          <initializer>= 9600</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0cbc3804097cddb7051a33aaabc6dea4" prot="public">
+          <name>kBaud19200</name>
+          <initializer>= 19200</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0afdbaf434f644ef6ba0d767ede5e298" prot="public">
+          <name>kBaud38400</name>
+          <initializer>= 38400</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da1e2f876b380623c60e12bac291f323b0" prot="public">
+          <name>kBaud57600</name>
+          <initializer>= 57600</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da12fcfc442c405356bea2facc0ed84393" prot="public">
+          <name>kBaud115200</name>
+          <initializer>= 115200</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daece5834051ac00a5f1b8146e96420e08" prot="public">
+          <name>kBaud230400</name>
+          <initializer>= 230400</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="78" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" bodystart="78" bodyend="95"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_u_a_r_t_8h_1a88256575d7bc3e8d7fc9ec75628225f7" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int UARTError</definition>
+        <argsstring></argsstring>
+        <name>UARTError</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="65" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_u_a_r_t_8h_1a0e828776573fde28103df3cb5b157806" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError InitializeUART</definition>
+        <argsstring>(UARTBaudRate baudRate)</argsstring>
+        <name>InitializeUART</name>
+        <param>
+          <type><ref refid="trk_8h_1a5bd871a9bbeafd0ddf9b66101739986d" kindref="member">UARTBaudRate</ref></type>
+          <declname>baudRate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="101" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="101" declcolumn="11"/>
+        <referencedby refid="uart__console__io_8c_1ac002c2a597c01ad709f9468f84b7ce9a" compoundref="uart__console__io_8c" startline="113" endline="127">__init_uart_console</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1a69a4e3eb68211b7bf4cfe2007d06e11a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError InitializeIntDrivenUART</definition>
+        <argsstring>(UARTBaudRate baudRate, unsigned char intDrivenInput, unsigned char intDrivenOutput, volatile unsigned char **inputPendingPtrRef)</argsstring>
+        <name>InitializeIntDrivenUART</name>
+        <param>
+          <type><ref refid="trk_8h_1a5bd871a9bbeafd0ddf9b66101739986d" kindref="member">UARTBaudRate</ref></type>
+          <declname>baudRate</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>intDrivenInput</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>intDrivenOutput</declname>
+        </param>
+        <param>
+          <type>volatile unsigned char **</type>
+          <declname>inputPendingPtrRef</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="102" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="102" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1a6c2a7240545d0b8f0658f164deaf6952" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError TerminateUART</definition>
+        <argsstring>(void)</argsstring>
+        <name>TerminateUART</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="106" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="106" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1ab6fcaa2561161074bd0e7694d7ee8484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError ReadUARTPoll</definition>
+        <argsstring>(char *c)</argsstring>
+        <name>ReadUARTPoll</name>
+        <param>
+          <type>char *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="108" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="108" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1a3a20d68bb5cd39a63d0a3fa5071c3ab4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError ReadUART1</definition>
+        <argsstring>(char *c)</argsstring>
+        <name>ReadUART1</name>
+        <param>
+          <type>char *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="110" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="110" declcolumn="11"/>
+        <referencedby refid="uart__console__io_8c_1ab8d09a91a8ba6ef7e9a4347b2786e350" compoundref="uart__console__io_8c" startline="39" endline="77">__read_console</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1a49f77978a1b4a068757d56e54301d2df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError ReadUARTN</definition>
+        <argsstring>(void *bytes, unsigned long length)</argsstring>
+        <name>ReadUARTN</name>
+        <param>
+          <type>void *</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="111" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="111" declcolumn="11"/>
+        <referencedby refid="uart__console__io_8c_1ab8d09a91a8ba6ef7e9a4347b2786e350" compoundref="uart__console__io_8c" startline="39" endline="77">__read_console</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1af0d13143bd21260e11c59a0c1676ad7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError ReadUARTString</definition>
+        <argsstring>(char *string, unsigned long limit, char terminateChar)</argsstring>
+        <name>ReadUARTString</name>
+        <param>
+          <type>char *</type>
+          <declname>string</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>limit</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>terminateChar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="112" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="112" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1a401f599b0777ec7da38822630ea972cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError WriteUART1</definition>
+        <argsstring>(char c)</argsstring>
+        <name>WriteUART1</name>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="114" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="114" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1ad488cdee3eaefed0c37fd3cfd253fb7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError WriteUARTN</definition>
+        <argsstring>(const void *bytes, unsigned long length)</argsstring>
+        <name>WriteUARTN</name>
+        <param>
+          <type>const void *</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="115" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="115" declcolumn="11"/>
+        <referencedby refid="uart__console__io_8c_1aab7469e82cf93cd0486ed6177171724d" compoundref="uart__console__io_8c" startline="82" endline="98">__write_console</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1a9a1eac237379b4ccebee9e824e1e6e8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError WriteUARTString</definition>
+        <argsstring>(const char *string)</argsstring>
+        <name>WriteUARTString</name>
+        <param>
+          <type>const char *</type>
+          <declname>string</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="116" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="116" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="_u_a_r_t_8h_1a56551975e19914ee436310e8d51e24a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UARTInterruptHandler</definition>
+        <argsstring>(void)</argsstring>
+        <name>UARTInterruptHandler</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" line="118" column="6" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h" declline="118" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment">FILE</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/><sp/><sp/>UART.h</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/><sp/><sp/><sp/>$Header:<sp/>/u/msl/MSL_C/MSL_Common_Embedded/Include/UART.h,v<sp/>1.1.2.1<sp/>1999/12/07<sp/>20:30:53<sp/>fassiott<sp/>Exp<sp/>$</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment">DESCRIPTION</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"></highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/><sp/><sp/><sp/>Abstract<sp/>interface<sp/>to<sp/>serial<sp/>device<sp/>(UART)<sp/>for<sp/>MetroTRK.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/><sp/><sp/><sp/>For<sp/>maximum<sp/>portability,<sp/>do<sp/>not<sp/>change<sp/>this<sp/>file.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"></highlight></codeline>
+<codeline lineno="15"><highlight class="comment">COPYRIGHT</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"></highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/><sp/><sp/><sp/>(C)<sp/>1996-8<sp/>Metrowerks<sp/>Corporation</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"></highlight></codeline>
+<codeline lineno="20"><highlight class="comment">HISTORY</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"></highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/><sp/><sp/><sp/>96<sp/>DEC<sp/>08<sp/>LLY<sp/><sp/><sp/>Created.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/><sp/><sp/><sp/>$History:<sp/>UART.h<sp/>$</highlight></codeline>
+<codeline lineno="25"><highlight class="comment">//<sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="comment">//<sp/><sp/>*****************<sp/><sp/>Version<sp/>5<sp/><sp/>*****************</highlight></codeline>
+<codeline lineno="27"><highlight class="comment">//<sp/><sp/>User:<sp/>Smoore<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Date:<sp/>8/09/99<sp/><sp/><sp/><sp/>Time:<sp/>5:31p</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">//<sp/><sp/>Updated<sp/>in<sp/>$/Embedded/MetroTRK/Export</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">//<sp/><sp/>Added<sp/>kDataError<sp/>definition.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">//<sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="comment">//<sp/><sp/>*****************<sp/><sp/>Version<sp/>4<sp/><sp/>*****************</highlight></codeline>
+<codeline lineno="32"><highlight class="comment">//<sp/><sp/>User:<sp/>Smoore<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Date:<sp/>6/25/98<sp/><sp/><sp/><sp/>Time:<sp/>1:59p</highlight></codeline>
+<codeline lineno="33"><highlight class="comment">//<sp/><sp/>Updated<sp/>in<sp/>$/Embedded/MetroTRK/Import</highlight></codeline>
+<codeline lineno="34"><highlight class="comment">//<sp/><sp/>Merging<sp/>in<sp/>latest<sp/>changes<sp/>from<sp/>VR<sp/>TRK:</highlight></codeline>
+<codeline lineno="35"><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>-<sp/>Added<sp/>support<sp/>for<sp/>FlushCache<sp/>and<sp/>Stop<sp/>commands.</highlight></codeline>
+<codeline lineno="36"><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>-<sp/>Added<sp/>support<sp/>for<sp/>interrupt-driven<sp/>I/O.</highlight></codeline>
+<codeline lineno="37"><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>-<sp/>Added<sp/>several<sp/>extensions<sp/>to<sp/>the<sp/>MetroTRK<sp/>API,</highlight></codeline>
+<codeline lineno="38"><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/>including<sp/>Level<sp/>3<sp/>(OS-level)<sp/>extensions.</highlight></codeline>
+<codeline lineno="39"><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>-<sp/>Added<sp/>support<sp/>for<sp/>the<sp/>Midas<sp/>RTE-VR5000-PC<sp/>board.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="comment">//<sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="comment">//<sp/><sp/>*****************<sp/><sp/>Version<sp/>5<sp/><sp/>*****************</highlight></codeline>
+<codeline lineno="43"><highlight class="comment">//<sp/><sp/>User:<sp/>Smoore<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Date:<sp/>6/24/98<sp/><sp/><sp/><sp/>Time:<sp/>2:39p</highlight></codeline>
+<codeline lineno="44"><highlight class="comment">//<sp/><sp/>Updated<sp/>in<sp/>$/Embedded/TRK_In_Progress/NEC_VR_TRK/MetroTRK/Import</highlight></codeline>
+<codeline lineno="45"><highlight class="comment">//<sp/><sp/>Added<sp/>support<sp/>for<sp/>interrupt-driven<sp/>I/O.</highlight></codeline>
+<codeline lineno="46"><highlight class="comment">//<sp/><sp/>Added<sp/>support<sp/>for<sp/>the<sp/>FlushCache<sp/>command.</highlight></codeline>
+<codeline lineno="47"><highlight class="comment">//<sp/><sp/>Made<sp/>several<sp/>extensions<sp/>to<sp/>the<sp/>MetroTRK<sp/>API,<sp/>including<sp/>all<sp/>of<sp/>the</highlight></codeline>
+<codeline lineno="48"><highlight class="comment">//<sp/><sp/>level<sp/>3<sp/>(OS-level)<sp/>extensions.<sp/><sp/>None<sp/>are<sp/>currently<sp/>implemented.</highlight></codeline>
+<codeline lineno="49"><highlight class="comment">//<sp/><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="comment">//<sp/><sp/>*****************<sp/><sp/>Version<sp/>3<sp/><sp/>*****************</highlight></codeline>
+<codeline lineno="51"><highlight class="comment">//<sp/><sp/>User:<sp/>Smoore<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Date:<sp/>11/07/97<sp/><sp/><sp/>Time:<sp/>5:16p</highlight></codeline>
+<codeline lineno="52"><highlight class="comment">//<sp/><sp/>Updated<sp/>in<sp/>$/Embedded/MetroTRK/Import</highlight></codeline>
+<codeline lineno="53"><highlight class="comment">//<sp/><sp/>Replace<sp/>&apos;#pragma<sp/>once&apos;<sp/>with<sp/>#ifdef&apos;s.<sp/><sp/>Added<sp/>hardware-set<sp/>baud</highlight></codeline>
+<codeline lineno="54"><highlight class="comment">//<sp/><sp/>rate<sp/>option.</highlight></codeline>
+<codeline lineno="55"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>#pragma<sp/>once<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>uart_h_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>uart_h_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="_u_a_r_t_8h_1a88256575d7bc3e8d7fc9ec75628225f7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_u_a_r_t_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="68" refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635ae8d2bbf437238fdcac40f7713ebc6d94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635ae8d2bbf437238fdcac40f7713ebc6d94" kindref="member">kUARTDataError</ref><sp/>=<sp/>-1,</highlight></codeline>
+<codeline lineno="69" refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a23e70b77b8b60801e1ed1b7babd86776" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a23e70b77b8b60801e1ed1b7babd86776" kindref="member">kUARTNoError</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="70" refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635ab6ccb2fbc28308ba58e051108b70e472" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635ab6ccb2fbc28308ba58e051108b70e472" kindref="member">kUARTUnknownBaudRate</ref>,</highlight></codeline>
+<codeline lineno="71" refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a4429c4c3b6615688de169465702ec40f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a4429c4c3b6615688de169465702ec40f" kindref="member">kUARTConfigurationError</ref>,</highlight></codeline>
+<codeline lineno="72" refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a106d3d0f60dad760144083d6e8c607f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a106d3d0f60dad760144083d6e8c607f9" kindref="member">kUARTBufferOverflow</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>specified<sp/>buffer<sp/>was<sp/>too<sp/>small<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a5f0b10c2ab57e642e5c1ee61a218854c" kindref="member">kUARTNoData</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>no<sp/>data<sp/>available<sp/>from<sp/>polling<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="_u_a_r_t_8h_1a726ca809ffd3d67ab4b8476646f26635a5f0b10c2ab57e642e5c1ee61a218854c" refkind="member"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="79" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0f1a4c1a04145a5344f7274018ead6a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0f1a4c1a04145a5344f7274018ead6a6" kindref="member">kBaudHWSet</ref><sp/>=<sp/>-1,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>use<sp/>HW<sp/>settings<sp/>such<sp/>as<sp/>DIP<sp/>switches<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dabb91b0c7572c7967f53dbcf7787ac99a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dabb91b0c7572c7967f53dbcf7787ac99a" kindref="member">kBaud300</ref><sp/>=<sp/>300,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>valid<sp/>baud<sp/>rates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dac86de04aec6276261b187a6fb66cb263" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dac86de04aec6276261b187a6fb66cb263" kindref="member">kBaud600</ref><sp/>=<sp/>600,</highlight></codeline>
+<codeline lineno="82" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da653952e03037f67dcaeb655d13e373a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da653952e03037f67dcaeb655d13e373a3" kindref="member">kBaud1200</ref><sp/>=<sp/>1200,</highlight></codeline>
+<codeline lineno="83" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dac122f6a6a07d0f6c2a4b08b7021cc505" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dac122f6a6a07d0f6c2a4b08b7021cc505" kindref="member">kBaud1800</ref><sp/>=<sp/>1800,</highlight></codeline>
+<codeline lineno="84" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daeec331c13498a7524063717b3686a42f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daeec331c13498a7524063717b3686a42f" kindref="member">kBaud2000</ref><sp/>=<sp/>2000,</highlight></codeline>
+<codeline lineno="85" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da4b521d2aa089614a080fc3e8440ea622" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da4b521d2aa089614a080fc3e8440ea622" kindref="member">kBaud2400</ref><sp/>=<sp/>2400,</highlight></codeline>
+<codeline lineno="86" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da4faae7491b5f4bd1e8542767dea09cef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da4faae7491b5f4bd1e8542767dea09cef" kindref="member">kBaud3600</ref><sp/>=<sp/>3600,</highlight></codeline>
+<codeline lineno="87" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daff6280d8197afa309925e4b559af38c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daff6280d8197afa309925e4b559af38c7" kindref="member">kBaud4800</ref><sp/>=<sp/>4800,</highlight></codeline>
+<codeline lineno="88" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dacb4e2c004dfa48b91d2d99e5e06655f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986dacb4e2c004dfa48b91d2d99e5e06655f6" kindref="member">kBaud7200</ref><sp/>=<sp/>7200,</highlight></codeline>
+<codeline lineno="89" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0f607e5cc0af65e8826ea46786ef0bb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0f607e5cc0af65e8826ea46786ef0bb3" kindref="member">kBaud9600</ref><sp/>=<sp/>9600,</highlight></codeline>
+<codeline lineno="90" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0cbc3804097cddb7051a33aaabc6dea4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0cbc3804097cddb7051a33aaabc6dea4" kindref="member">kBaud19200</ref><sp/>=<sp/>19200,</highlight></codeline>
+<codeline lineno="91" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0afdbaf434f644ef6ba0d767ede5e298" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da0afdbaf434f644ef6ba0d767ede5e298" kindref="member">kBaud38400</ref><sp/>=<sp/>38400,</highlight></codeline>
+<codeline lineno="92" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da1e2f876b380623c60e12bac291f323b0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da1e2f876b380623c60e12bac291f323b0" kindref="member">kBaud57600</ref><sp/>=<sp/>57600,</highlight></codeline>
+<codeline lineno="93" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da12fcfc442c405356bea2facc0ed84393" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986da12fcfc442c405356bea2facc0ed84393" kindref="member">kBaud115200</ref><sp/>=<sp/>115200,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daece5834051ac00a5f1b8146e96420e08" kindref="member">kBaud230400</ref><sp/>=<sp/>230400</highlight></codeline>
+<codeline lineno="95" refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986daece5834051ac00a5f1b8146e96420e08" refkind="member"><highlight class="normal">}<sp/><ref refid="_u_a_r_t_8h_1a5bd871a9bbeafd0ddf9b66101739986d" kindref="member">UARTBaudRate</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="_u_a_r_t_8h_1a0e828776573fde28103df3cb5b157806" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1a0e828776573fde28103df3cb5b157806" kindref="member">InitializeUART</ref>(<ref refid="trk_8h_1a5bd871a9bbeafd0ddf9b66101739986d" kindref="member">UARTBaudRate</ref><sp/>baudRate);</highlight></codeline>
+<codeline lineno="102" refid="_u_a_r_t_8h_1a69a4e3eb68211b7bf4cfe2007d06e11a" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1a69a4e3eb68211b7bf4cfe2007d06e11a" kindref="member">InitializeIntDrivenUART</ref>(<sp/><ref refid="trk_8h_1a5bd871a9bbeafd0ddf9b66101739986d" kindref="member">UARTBaudRate</ref><sp/>baudRate,<sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>intDrivenInput,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>intDrivenOutput,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**inputPendingPtrRef<sp/>);</highlight></codeline>
+<codeline lineno="106" refid="_u_a_r_t_8h_1a6c2a7240545d0b8f0658f164deaf6952" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1a6c2a7240545d0b8f0658f164deaf6952" kindref="member">TerminateUART</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="_u_a_r_t_8h_1ab6fcaa2561161074bd0e7694d7ee8484" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1ab6fcaa2561161074bd0e7694d7ee8484" kindref="member">ReadUARTPoll</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>c);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="_u_a_r_t_8h_1a3a20d68bb5cd39a63d0a3fa5071c3ab4" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1a3a20d68bb5cd39a63d0a3fa5071c3ab4" kindref="member">ReadUART1</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>c);</highlight></codeline>
+<codeline lineno="111" refid="_u_a_r_t_8h_1a49f77978a1b4a068757d56e54301d2df" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1a49f77978a1b4a068757d56e54301d2df" kindref="member">ReadUARTN</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>bytes,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>length);</highlight></codeline>
+<codeline lineno="112" refid="_u_a_r_t_8h_1af0d13143bd21260e11c59a0c1676ad7f" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1af0d13143bd21260e11c59a0c1676ad7f" kindref="member">ReadUARTString</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>limit,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>terminateChar);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="_u_a_r_t_8h_1a401f599b0777ec7da38822630ea972cc" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1a401f599b0777ec7da38822630ea972cc" kindref="member">WriteUART1</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>c);</highlight></codeline>
+<codeline lineno="115" refid="_u_a_r_t_8h_1ad488cdee3eaefed0c37fd3cfd253fb7e" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1ad488cdee3eaefed0c37fd3cfd253fb7e" kindref="member">WriteUARTN</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>bytes,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>length);</highlight></codeline>
+<codeline lineno="116" refid="_u_a_r_t_8h_1a9a1eac237379b4ccebee9e824e1e6e8e" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="_u_a_r_t_8h_1a9a1eac237379b4ccebee9e824e1e6e8e" kindref="member">WriteUARTString</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="_u_a_r_t_8h_1a56551975e19914ee436310e8d51e24a2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_u_a_r_t_8h_1a56551975e19914ee436310e8d51e24a2" kindref="member">UARTInterruptHandler</ref>(<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>uart_h_included<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Include/UART.h"/>
+  </compounddef>
+</doxygen>

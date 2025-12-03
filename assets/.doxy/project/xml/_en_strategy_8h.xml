@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_en_strategy_8h" kind="file" language="C++">
+    <compoundname>EnStrategy.h</compoundname>
+    <includes local="yes">dolphin/types.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>EnStrategy.h</label>
+        <link refid="_en_strategy_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_en_strategy_container" prot="public">EnStrategyContainer</innerclass>
+    <innerclass refid="class_en_tsuri_strategies" prot="public">EnTsuriStrategies</innerclass>
+    <innerclass refid="class_en_attack_strategies" prot="public">EnAttackStrategies</innerclass>
+    <innerclass refid="class_en_cond_strategies" prot="public">EnCondStrategies</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>EN_STRATEGY_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EN_STRATEGY_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dolphin/types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="class_en_strategy_container" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_en_strategy_container" kindref="compound">EnStrategyContainer</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10" refid="class_en_strategy_container_1a9daeaa3a64380699cd1faec849fac4ac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_en_strategy_container_1a9daeaa3a64380699cd1faec849fac4ac" kindref="member">mBuffer</ref>[0x180];</highlight></codeline>
+<codeline lineno="11" refid="class_en_strategy_container_1a9de2ffbb2483819eb1b61fa98a864076" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>*<sp/><ref refid="class_en_strategy_container_1a9de2ffbb2483819eb1b61fa98a864076" kindref="member">mpStrategy</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_en_strategy_container_1a3b403d0f67e47cd24e61c8e02fa25541" kindref="member">EnStrategyContainer</ref><sp/>();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_en_strategy_container_1acd0bc2d74272ce4453f374a6db7acf4a" kindref="member">~EnStrategyContainer</ref><sp/>();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="class_en_strategy_container_1a38809e83cb1559e4411c5cc1cc4859d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>s32<sp/><ref refid="class_en_strategy_container_1a38809e83cb1559e4411c5cc1cc4859d4" kindref="member">getStrategyId</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_entityIdx)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_en_strategy_container_1a8dfd117c0d67ded0f213c3b0f1e701e6" kindref="member">destroyStrategy</ref><sp/>();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>*<sp/><ref refid="class_en_strategy_container_1aeed873402a9a560ca617814468fb9a6b" kindref="member">createStrategy</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_entityIdx);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight></codeline>
+<codeline lineno="23" refid="class_en_strategy_container_1a8da089559b0de99ebed223b934290a22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_en_strategy_container_1a8da089559b0de99ebed223b934290a22" kindref="member">getBuffer</ref><sp/>()</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_en_strategy_container_1a9daeaa3a64380699cd1faec849fac4ac" kindref="member">mBuffer</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="class_en_strategy_container_1a5d02499d6222af3acd1dec94062fa36b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_en_strategy_container_1a5d02499d6222af3acd1dec94062fa36b" kindref="member">getBufferSize</ref><sp/>()</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0x180;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="class_en_tsuri_strategies" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_en_tsuri_strategies" kindref="compound">EnTsuriStrategies</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_en_strategy_container" kindref="compound">EnStrategyContainer</ref></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>s32<sp/><ref refid="class_en_tsuri_strategies_1a72b43d4b37fa30b5639c9531cb83d0ef" kindref="member">getStrategyId</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_entityIdx);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="class_en_attack_strategies" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_en_attack_strategies" kindref="compound">EnAttackStrategies</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_en_strategy_container" kindref="compound">EnStrategyContainer</ref></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>s32<sp/><ref refid="class_en_attack_strategies_1a11d28e7b801d0f5da5e8cc2acc824c2a" kindref="member">getStrategyId</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_entityIdx);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="class_en_cond_strategies" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_en_cond_strategies" kindref="compound">EnCondStrategies</ref></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49" refid="class_en_cond_strategies_1a3049795980d088b6c23c1f0c5a3c9362" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_en_cond_strategies_1a3049795980d088b6c23c1f0c5a3c9362" kindref="member">mBuffer</ref>[0x40];</highlight></codeline>
+<codeline lineno="50" refid="class_en_cond_strategies_1adcb4a7409bf06b0020fb84106425d983" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>*<sp/><ref refid="class_en_cond_strategies_1adcb4a7409bf06b0020fb84106425d983" kindref="member">mpCondStrategy</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_en_cond_strategies_1a26326b0df27019b9b2c2eca0d4a555be" kindref="member">~EnCondStrategies</ref><sp/>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_en_cond_strategies_1a58d9a0914bdc42a8e644a696e2ec0b0a" kindref="member">destroyCondStrategy</ref><sp/>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>*<sp/><ref refid="class_en_cond_strategies_1aa235bde1639237509b42b9a3fedfcf07" kindref="member">createCondStrategy</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_condType);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>s32<sp/><ref refid="class_en_cond_strategies_1a86d084f4c40c4ba2038293fc8a977117" kindref="member">getCondStrategyId</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_entityIdx);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight></codeline>
+<codeline lineno="61" refid="class_en_cond_strategies_1ac58ac27a7ab7fa0ddec5b716f0f727b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_en_cond_strategies_1ac58ac27a7ab7fa0ddec5b716f0f727b6" kindref="member">getBuffer</ref><sp/>()</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_en_cond_strategies_1a3049795980d088b6c23c1f0c5a3c9362" kindref="member">mBuffer</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="class_en_cond_strategies_1aeb056b784018a0c2e44f7d940bb62703" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_en_cond_strategies_1aeb056b784018a0c2e44f7d940bb62703" kindref="member">getBufferSize</ref><sp/>()</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0x40;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/Project/sources/Sato/include/EnStrategy.h"/>
+  </compounddef>
+</doxygen>

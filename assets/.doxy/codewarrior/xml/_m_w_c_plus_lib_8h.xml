@@ -1,0 +1,669 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_m_w_c_plus_lib_8h" kind="file" language="C++">
+    <compoundname>MWCPlusLib.h</compoundname>
+    <includes refid="stddef_8h" local="no">stddef.h</includes>
+    <includedby refid="global__destructor__chain_8c" local="no">global_destructor_chain.c</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MWCPlusLib.h</label>
+        <link refid="_m_w_c_plus_lib_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>MWCPlusLib.h</label>
+        <link refid="_m_w_c_plus_lib_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>global_destructor_chain.c</label>
+        <link refid="global__destructor__chain_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_p_t_m_f" prot="public">PTMF</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a05a98139ff21737b5ea540a7d78eae23" prot="public" static="no">
+        <name>CABI_ZEROOFFSETVTABLE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="29" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a848f971ba3ca392c2af3ea0d963434b1" prot="public" static="no">
+        <name>CTORARG_TYPE</name>
+        <initializer>short</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="58" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a68c352ca845110aa67e882d2513ed627" prot="public" static="no">
+        <name>CTORARG_PARTIAL</name>
+        <initializer>(0)				/*	construct non-virtual bases	*/</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="59" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a1ff803d984e00dd509d0b5b415bafb48" prot="public" static="no">
+        <name>CTORARG_COMPLETE</name>
+        <initializer>(1)				/*	construct all bases			*/</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="60" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a30ce139ce924a2d3a6475ecb32ff88fa" prot="public" static="no">
+        <name>CTORCALL_COMPLETE</name>
+        <param><defname>ctor</defname></param>
+        <param><defname>objptr</defname></param>
+        <initializer>	(((void (*)(void *,<ref refid="_m_w_c_plus_lib_8h_1a848f971ba3ca392c2af3ea0d963434b1" kindref="member">CTORARG_TYPE</ref>))ctor)(objptr,<ref refid="_m_w_c_plus_lib_8h_1a1ff803d984e00dd509d0b5b415bafb48" kindref="member">CTORARG_COMPLETE</ref>))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="76" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="76" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a2385c51d4e581ee9903110499d149b88" prot="public" static="no">
+        <name>DTORARG_TYPE</name>
+        <initializer>short</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="81" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1ae0960e94d7b36327cb0723e89d596a50" prot="public" static="no">
+        <name>DTORARG_PARTIAL</name>
+        <initializer>(0)				/*	destroy non-virtual bases			*/</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="82" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a91fb68fd4acac0a3c2ed9f33d7d9e7a6" prot="public" static="no">
+        <name>DTORARG_COMPLETE</name>
+        <initializer>(-1)			/*	destroy all bases					*/</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="83" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a39f6cc430a0e295d082f895ae762c44c" prot="public" static="no">
+        <name>DTORARG_DELETE</name>
+        <initializer>(1)				/*	destroy all bases and delete object	*/</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="84" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1ae4104a73d99126d2aa8f0d534292c6bd" prot="public" static="no">
+        <name>DTORCALL_COMPLETE</name>
+        <param><defname>dtor</defname></param>
+        <param><defname>objptr</defname></param>
+        <initializer>	(((void (*)(void *,<ref refid="_m_w_c_plus_lib_8h_1a2385c51d4e581ee9903110499d149b88" kindref="member">DTORARG_TYPE</ref>))dtor)(objptr,<ref refid="_m_w_c_plus_lib_8h_1a91fb68fd4acac0a3c2ed9f33d7d9e7a6" kindref="member">DTORARG_COMPLETE</ref>))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="86" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="86" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="define" id="_m_w_c_plus_lib_8h_1a6f94f1f542884789ecd953cbc8934f1b" prot="public" static="no">
+        <name>DTORCALL_PARTIAL</name>
+        <param><defname>dtor</defname></param>
+        <param><defname>objptr</defname></param>
+        <initializer>	(((void (*)(void *,<ref refid="_m_w_c_plus_lib_8h_1a2385c51d4e581ee9903110499d149b88" kindref="member">DTORARG_TYPE</ref>))dtor)(objptr,<ref refid="_m_w_c_plus_lib_8h_1ae0960e94d7b36327cb0723e89d596a50" kindref="member">DTORARG_PARTIAL</ref>))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="89" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="89" bodyend="90"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ConstructorDestructor</definition>
+        <argsstring></argsstring>
+        <name>ConstructorDestructor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="94" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="_m_w_c_plus_lib_8h_1a299f934e121b8961a55b6ebf8f0d0035" prot="public" static="no">
+        <type>struct <ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref></type>
+        <definition>typedef struct PTMF PTMF</definition>
+        <argsstring></argsstring>
+        <name>PTMF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="103" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1ab8e45e906c5da52971ea2907901d0568" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref> *</type>
+        <definition>PTMF * __ptmf_cast</definition>
+        <argsstring>(long offset, const PTMF *ptmfrom, PTMF *ptmto)</argsstring>
+        <name>__ptmf_cast</name>
+        <param>
+          <type>long</type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref> *</type>
+          <declname>ptmfrom</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref> *</type>
+          <declname>ptmto</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="116" column="12" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/ptmf.c" bodystart="270" bodyend="276" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="116" declcolumn="12"/>
+        <references refid="struct_p_t_m_f_1a8df598a11577b4c4f6e22377fda44c87">PTMF::func_data</references>
+        <references refid="struct_p_t_m_f_1a27653c5983c7d3b5682435d768073f96" compoundref="_m_w_c_plus_lib_8h" startline="97">PTMF::this_delta</references>
+        <references refid="struct_p_t_m_f_1a92cede38aff6fcac1f2d88e3a291cd06" compoundref="_m_w_c_plus_lib_8h" startline="98">PTMF::vtbl_offset</references>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a92f5de41286c4fab655da2d7c9b3ce60" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __copy</definition>
+        <argsstring>(char *to, char *from, size_t size)</argsstring>
+        <name>__copy</name>
+        <param>
+          <type>char *</type>
+          <declname>to</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="118" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="118" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a46b3b47d0000065a3515d1bcfe46025a" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __new_hdl</definition>
+        <argsstring>(size_t size)</argsstring>
+        <name>__new_hdl</name>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="119" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="119" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1adf5bc5239246d83ba9ea1cfbf17c337c" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __del_hdl</definition>
+        <argsstring>(void *hdl)</argsstring>
+        <name>__del_hdl</name>
+        <param>
+          <type>void *</type>
+          <declname>hdl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="120" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="120" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a6a8a2f67766a0c0fadbb36710dd88723" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __init_arr</definition>
+        <argsstring>(void *memptr, ConstructorDestructor constructor, size_t object_size, size_t nobjects)</argsstring>
+        <name>__init_arr</name>
+        <param>
+          <type>void *</type>
+          <declname>memptr</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>constructor</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>object_size</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>nobjects</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="121" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="121" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a8ef933a5f7d92c0707b92fc67877bf45" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __new_arr</definition>
+        <argsstring>(ConstructorDestructor constructor, size_t object_size, size_t objects)</argsstring>
+        <name>__new_arr</name>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>constructor</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>object_size</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>objects</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="122" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="122" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a913d7fcef997320b824af6c955c49f0f" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __del_arr</definition>
+        <argsstring>(void *memptr, ConstructorDestructor destructor)</argsstring>
+        <name>__del_arr</name>
+        <param>
+          <type>void *</type>
+          <declname>memptr</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>destructor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="123" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="123" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1ad170a768dd0f61dbca93c770ee0df8e3" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __dc_arr</definition>
+        <argsstring>(void *mem, ConstructorDestructor con_des, short object_size, short objects)</argsstring>
+        <name>__dc_arr</name>
+        <param>
+          <type>void *</type>
+          <declname>mem</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>con_des</declname>
+        </param>
+        <param>
+          <type>short</type>
+          <declname>object_size</declname>
+        </param>
+        <param>
+          <type>short</type>
+          <declname>objects</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="124" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="124" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a1ee0506d8ae3f2235843669e0441b9c3" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __construct_array</definition>
+        <argsstring>(void *block, ConstructorDestructor ctor, ConstructorDestructor dtor, size_t size, size_t n)</argsstring>
+        <name>__construct_array</name>
+        <param>
+          <type>void *</type>
+          <declname>block</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>ctor</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>dtor</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="126" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="126" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a31f54f2deefc26ed577d7519b64f19d8" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __destroy_arr</definition>
+        <argsstring>(void *block, ConstructorDestructor dtor, size_t size, size_t n)</argsstring>
+        <name>__destroy_arr</name>
+        <param>
+          <type>void *</type>
+          <declname>block</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>dtor</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="127" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="127" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a37149abe6662aeb9a4b3b48f12711833" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __construct_new_array</definition>
+        <argsstring>(void *block, ConstructorDestructor ctor, ConstructorDestructor dtor, size_t size, size_t n)</argsstring>
+        <name>__construct_new_array</name>
+        <param>
+          <type>void *</type>
+          <declname>block</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>ctor</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>dtor</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="128" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="128" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a88a96a69dc3d6128194241784b02b3f3" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __destroy_new_array</definition>
+        <argsstring>(void *block, ConstructorDestructor dtor)</argsstring>
+        <name>__destroy_new_array</name>
+        <param>
+          <type>void *</type>
+          <declname>block</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>dtor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="129" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="129" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="_m_w_c_plus_lib_8h_1a74ee0d23fb8411ad43a763e9b855fa1e" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __destroy_new_array2</definition>
+        <argsstring>(void *block, ConstructorDestructor dtor)</argsstring>
+        <name>__destroy_new_array2</name>
+        <param>
+          <type>void *</type>
+          <declname>block</declname>
+        </param>
+        <param>
+          <type><ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref></type>
+          <declname>dtor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" line="130" column="12" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h" declline="130" declcolumn="12"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Project...:<sp/>Standard<sp/>C++<sp/>Library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Name......:<sp/>CPlusLib.h<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Purpose...:<sp/>C++<sp/>specific<sp/>runtime<sp/>functions<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Copyright.:<sp/>Copyright<sp/>1993-1997<sp/>Metrowerks,<sp/>Inc.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__CPLUSLIB__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__CPLUSLIB__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stddef_8h" kindref="compound">stddef.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>#define<sp/>CABI_ZEROOFFSETVTABLE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/>forces<sp/>vtable<sp/>pointer<sp/>to<sp/>point<sp/>to<sp/>the<sp/>first<sp/>virtual<sp/>function<sp/>pointer,</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/>the<sp/>RTTI<sp/>header<sp/>will<sp/>be<sp/>at<sp/>offset<sp/>-sizeof(RTTIVTableHeader)</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/>This<sp/>flag<sp/>must<sp/>be<sp/>set<sp/>in<sp/>CABI.c<sp/>and<sp/>in<sp/>MWRTTI.cp</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>#define<sp/>__INTEL__<sp/>1<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/>define<sp/>to<sp/>1<sp/>to<sp/>test<sp/>WIN_ABI<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__INTEL__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CABI_ZEROOFFSETVTABLE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="_m_w_c_plus_lib_8h_1a05a98139ff21737b5ea540a7d78eae23" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CABI_ZEROOFFSETVTABLE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/><sp/>invisible<sp/>constructor/destructor<sp/>argument<sp/>handling</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__INTEL__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORARG_TYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORARG_PARTIAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>construct<sp/>non-virtual<sp/>bases<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORARG_COMPLETE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>construct<sp/>all<sp/>bases<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORCALL_COMPLETE(ctor,objptr)\</highlight></codeline>
+<codeline lineno="44"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(((void<sp/>(*)(void<sp/>*,CTORARG_TYPE))ctor)(objptr,CTORARG_COMPLETE))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORARG_TYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORARG_DELETEFLAG<sp/><sp/><sp/><sp/><sp/><sp/>0x0001<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>delete<sp/>after<sp/>destruction<sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORARG_VECTORFLAG<sp/><sp/><sp/><sp/><sp/><sp/>0x0002<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>array<sp/>destruction<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORCALL_COMPLETE(dtor,objptr)\</highlight></codeline>
+<codeline lineno="51"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(((void<sp/>(*)(void<sp/>*,DTORARG_TYPE))dtor)(objptr,0))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORCALL_PARTIAL(dtor,objptr)\</highlight></codeline>
+<codeline lineno="54"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(((void<sp/>(*)(void<sp/>*))dtor)(objptr))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="_m_w_c_plus_lib_8h_1a848f971ba3ca392c2af3ea0d963434b1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORARG_TYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>short</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="_m_w_c_plus_lib_8h_1a68c352ca845110aa67e882d2513ed627" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORARG_PARTIAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>construct<sp/>non-virtual<sp/>bases<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="_m_w_c_plus_lib_8h_1a1ff803d984e00dd509d0b5b415bafb48" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORARG_COMPLETE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>construct<sp/>all<sp/>bases<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__CFM68K__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>__getA7(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>=<sp/>{<sp/>0x200F<sp/>};</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>__setA7(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="e__lgamma__r_8c_1a74a305674806348134c904038f117b8d" kindref="member">a7</ref>:__d0)<sp/>=<sp/>{<sp/>0x2E40<sp/>};</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORCALL_COMPLETE(ctor,objptr)\</highlight></codeline>
+<codeline lineno="68"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>{\</highlight></codeline>
+<codeline lineno="69"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>long<sp/>__savedA7<sp/>=<sp/>__getA7();\</highlight></codeline>
+<codeline lineno="70"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((void<sp/>(*)(void<sp/>*,CTORARG_TYPE))ctor)(objptr,CTORARG_COMPLETE));\</highlight></codeline>
+<codeline lineno="71"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__setA7(__savedA7);\</highlight></codeline>
+<codeline lineno="72"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="_m_w_c_plus_lib_8h_1a30ce139ce924a2d3a6475ecb32ff88fa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTORCALL_COMPLETE(ctor,objptr)\</highlight></codeline>
+<codeline lineno="77"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(((void<sp/>(*)(void<sp/>*,CTORARG_TYPE))ctor)(objptr,CTORARG_COMPLETE))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="_m_w_c_plus_lib_8h_1a2385c51d4e581ee9903110499d149b88" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORARG_TYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>short</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="_m_w_c_plus_lib_8h_1ae0960e94d7b36327cb0723e89d596a50" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORARG_PARTIAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>destroy<sp/>non-virtual<sp/>bases<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="_m_w_c_plus_lib_8h_1a91fb68fd4acac0a3c2ed9f33d7d9e7a6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORARG_COMPLETE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>destroy<sp/>all<sp/>bases<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="_m_w_c_plus_lib_8h_1a39f6cc430a0e295d082f895ae762c44c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORARG_DELETE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>destroy<sp/>all<sp/>bases<sp/>and<sp/>delete<sp/>object<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="_m_w_c_plus_lib_8h_1ae4104a73d99126d2aa8f0d534292c6bd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORCALL_COMPLETE(dtor,objptr)\</highlight></codeline>
+<codeline lineno="87"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(((void<sp/>(*)(void<sp/>*,DTORARG_TYPE))dtor)(objptr,DTORARG_COMPLETE))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="_m_w_c_plus_lib_8h_1a6f94f1f542884789ecd953cbc8934f1b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DTORCALL_PARTIAL(dtor,objptr)\</highlight></codeline>
+<codeline lineno="90"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(((void<sp/>(*)(void<sp/>*,DTORARG_TYPE))dtor)(objptr,DTORARG_PARTIAL))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>constructor/destructor<sp/>function<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="struct_p_t_m_f" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref><sp/>{</highlight></codeline>
+<codeline lineno="97" refid="struct_p_t_m_f_1a27653c5983c7d3b5682435d768073f96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_p_t_m_f_1a27653c5983c7d3b5682435d768073f96" kindref="member">this_delta</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>delta<sp/>to<sp/>this<sp/>pointer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="struct_p_t_m_f_1a92cede38aff6fcac1f2d88e3a291cd06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_p_t_m_f_1a92cede38aff6fcac1f2d88e3a291cd06" kindref="member">vtbl_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>offset<sp/>of<sp/>virtual<sp/>function<sp/>pointer<sp/>in<sp/>vtable<sp/>(&lt;0:<sp/>non-virtual<sp/>function<sp/>address)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">union<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100" refid="struct_p_t_m_f_1ac8fe707dca5c8f53ff1d91910795ab0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="struct_p_t_m_f_1ac8fe707dca5c8f53ff1d91910795ab0a" kindref="member">func_addr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>non-virtual<sp/>function<sp/>address<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="struct_p_t_m_f_1aaf292ac959a6a98ac6fd12530e688d52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_p_t_m_f_1aaf292ac959a6a98ac6fd12530e688d52" kindref="member">ventry_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>offset<sp/>of<sp/>vtable<sp/>pointer<sp/>in<sp/>class<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="struct_p_t_m_f_1a8df598a11577b4c4f6e22377fda44c87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><ref refid="struct_p_t_m_f_1a8df598a11577b4c4f6e22377fda44c87" kindref="member">func_data</ref>;</highlight></codeline>
+<codeline lineno="103" refid="_m_w_c_plus_lib_8h_1a299f934e121b8961a55b6ebf8f0d0035" refkind="member"><highlight class="normal">}<sp/><sp/><sp/><ref refid="_m_w_c_plus_lib_8h_1a299f934e121b8961a55b6ebf8f0d0035" kindref="member">PTMF</ref>;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MC68K__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="ptmf_8c_1a56b34d5720649b3eeff15cc5224516b7" kindref="member">__ptmf_test</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref><sp/>*ptmf);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="ptmf_8c_1a5b79cebeb99ba545c572f55793bb798e" kindref="member">__ptmf_cmpr</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref><sp/>*ptmf1,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref><sp/>*ptmf2);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="ptmf_8c_1a167c04e9d6adfabba2d763fd65ea9e05" kindref="member">__ptmf_call</ref>(...);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="ptmf_8c_1a9a1ddbe3e0d4931df4d8b3d746b57907" kindref="member">__ptmf_scall</ref>(...);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref><sp/><sp/><sp/><sp/><sp/>*<ref refid="_m_w_c_plus_lib_8h_1ab8e45e906c5da52971ea2907901d0568" kindref="member">__ptmf_cast</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>offset,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref><sp/>*ptmfrom,<ref refid="struct_p_t_m_f" kindref="compound">PTMF</ref><sp/>*ptmto);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="_m_w_c_plus_lib_8h_1a92f5de41286c4fab655da2d7c9b3ce60" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<ref refid="_m_w_c_plus_lib_8h_1a92f5de41286c4fab655da2d7c9b3ce60" kindref="member">__copy</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*to,</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*from,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="119" refid="_m_w_c_plus_lib_8h_1a46b3b47d0000065a3515d1bcfe46025a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<ref refid="_m_w_c_plus_lib_8h_1a46b3b47d0000065a3515d1bcfe46025a" kindref="member">__new_hdl</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="120" refid="_m_w_c_plus_lib_8h_1adf5bc5239246d83ba9ea1cfbf17c337c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="_m_w_c_plus_lib_8h_1adf5bc5239246d83ba9ea1cfbf17c337c" kindref="member">__del_hdl</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*hdl);</highlight></codeline>
+<codeline lineno="121" refid="_m_w_c_plus_lib_8h_1a6a8a2f67766a0c0fadbb36710dd88723" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<ref refid="_m_w_c_plus_lib_8h_1a6a8a2f67766a0c0fadbb36710dd88723" kindref="member">__init_arr</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*memptr,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>constructor,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>object_size,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>nobjects);</highlight></codeline>
+<codeline lineno="122" refid="_m_w_c_plus_lib_8h_1a8ef933a5f7d92c0707b92fc67877bf45" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<ref refid="_m_w_c_plus_lib_8h_1a8ef933a5f7d92c0707b92fc67877bf45" kindref="member">__new_arr</ref>(<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>constructor,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>object_size,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>objects);</highlight></codeline>
+<codeline lineno="123" refid="_m_w_c_plus_lib_8h_1a913d7fcef997320b824af6c955c49f0f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="_m_w_c_plus_lib_8h_1a913d7fcef997320b824af6c955c49f0f" kindref="member">__del_arr</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*memptr,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>destructor);</highlight></codeline>
+<codeline lineno="124" refid="_m_w_c_plus_lib_8h_1ad170a768dd0f61dbca93c770ee0df8e3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="_m_w_c_plus_lib_8h_1ad170a768dd0f61dbca93c770ee0df8e3" kindref="member">__dc_arr</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*mem,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>con_des,</highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>object_size,</highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>objects);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="_m_w_c_plus_lib_8h_1a1ee0506d8ae3f2235843669e0441b9c3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="_m_w_c_plus_lib_8h_1a1ee0506d8ae3f2235843669e0441b9c3" kindref="member">__construct_array</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*block,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>ctor,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>dtor,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="127" refid="_m_w_c_plus_lib_8h_1a31f54f2deefc26ed577d7519b64f19d8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="_m_w_c_plus_lib_8h_1a31f54f2deefc26ed577d7519b64f19d8" kindref="member">__destroy_arr</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*block,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>dtor,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="128" refid="_m_w_c_plus_lib_8h_1a37149abe6662aeb9a4b3b48f12711833" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<ref refid="_m_w_c_plus_lib_8h_1a37149abe6662aeb9a4b3b48f12711833" kindref="member">__construct_new_array</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*block,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>ctor,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>dtor,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="129" refid="_m_w_c_plus_lib_8h_1a88a96a69dc3d6128194241784b02b3f3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="_m_w_c_plus_lib_8h_1a88a96a69dc3d6128194241784b02b3f3" kindref="member">__destroy_new_array</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*block,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>dtor);</highlight></codeline>
+<codeline lineno="130" refid="_m_w_c_plus_lib_8h_1a74ee0d23fb8411ad43a763e9b855fa1e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>*<ref refid="_m_w_c_plus_lib_8h_1a74ee0d23fb8411ad43a763e9b855fa1e" kindref="member">__destroy_new_array2</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*block,<ref refid="_m_w_c_plus_lib_8h_1a3cd31b6cce988595e2fc553db81f5b08" kindref="member">ConstructorDestructor</ref><sp/>dtor);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/MWCPlusLib.h"/>
+  </compounddef>
+</doxygen>

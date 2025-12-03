@@ -1,0 +1,802 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="file__io_8c" kind="file" language="C++">
+    <compoundname>file_io.c</compoundname>
+    <includes refid="stdio_8h" local="no">stdio.h</includes>
+    <includes refid="stdlib_8h" local="no">stdlib.h</includes>
+    <includes refid="ansi__files_8h" local="yes">ansi_files.h</includes>
+    <includes refid="buffer__io_8h" local="yes">buffer_io.h</includes>
+    <includes refid="critical__regions_8h" local="yes">critical_regions.h</includes>
+    <includes refid="file__io_8h" local="yes">file_io.h</includes>
+    <includes refid="misc__io_8h" local="yes">misc_io.h</includes>
+    <includes local="no">ThreadLocalData.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>ansi_files.h</label>
+        <link refid="ansi__files_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>buffer_io.h</label>
+        <link refid="buffer__io_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>critical_regions.h</label>
+        <link refid="critical__regions_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cstdio</label>
+        <link refid="cstdio"/>
+      </node>
+      <node id="5">
+        <label>cstdlib</label>
+        <link refid="cstdlib"/>
+      </node>
+      <node id="12">
+        <label>file_io.h</label>
+        <link refid="file__io_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>misc_io.h</label>
+        <link refid="misc__io_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+        <link refid="stdio_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+        <link refid="stdlib_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>file_io.c</label>
+        <link refid="file__io_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>ThreadLocalData.h</label>
+      </node>
+      <node id="9">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="file__io_8c_1a2befc01d3813d616edd387d8bf2a33aa" prot="public" static="no" mutable="no">
+        <type>__file_modes</type>
+        <definition>__file_modes __temp_file_mode</definition>
+        <argsstring></argsstring>
+        <name>__temp_file_mode</name>
+        <initializer>= 
+
+			{__create_or_truncate, __read_write, _IOFBF, __disk_file, __unoriented, 1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="46" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="46" bodyend="48"/>
+        <referencedby refid="file__io_8stub_8c_1af28176b7eba40905f0380a43d54b1da5" compoundref="file__io_8stub_8c" startline="64" endline="85">__open_temp_file</referencedby>
+        <referencedby refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" compoundref="file__io_8c" startline="88" endline="110">tmpfile</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="file__io_8c_1a4dec9ff1b41a23f58ed31179c4cb92f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int remove</definition>
+        <argsstring>(const char *name)</argsstring>
+        <name>remove</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="53" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="53" bodyend="56"/>
+        <references refid="file__io_8h_1a4d2d7288afe0ee16cfacf47411a0993f" compoundref="file__io_8stub_8c" startline="118" endline="122">__delete_file</references>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1a0efedc832bf3605509df4bb7084f1187" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * tmpnam</definition>
+        <argsstring>(char *name)</argsstring>
+        <name>tmpnam</name>
+        <param>
+          <type>char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="66" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="66" bodyend="86"/>
+        <references refid="file__io_8h_1a15f7d6e00de7402cdf54b3693814a4c7" compoundref="file__io_8stub_8c" startline="112" endline="116">__temp_file_name</references>
+        <references refid="ansi__parms_8h_1aed1b906c27f00d650f7d3f5e31c70a27" compoundref="ansi__parms_8h" startline="92">__tls</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FILE *</type>
+        <definition>FILE * tmpfile</definition>
+        <argsstring>(void)</argsstring>
+        <name>tmpfile</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="88" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="88" bodyend="110"/>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="ansi__files_8c_1a882daf170464a00fcf4288111f7b237f" compoundref="ansi__files_8c" startline="261" endline="285">__find_unopened_file</references>
+        <references refid="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf">__init_file</references>
+        <references refid="file__io_8h_1a5f9f2949b56a8aad47cf99377d2f6f1b">__open_temp_file</references>
+        <references refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" compoundref="misc__io_8c" startline="63" endline="74">__stdio_atexit</references>
+        <references refid="file__io_8c_1a2befc01d3813d616edd387d8bf2a33aa" compoundref="file__io_8c" startline="46" endline="48">__temp_file_mode</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" compoundref="critical__regions_8h" startline="48">files_access</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fclose</definition>
+        <argsstring>(FILE *file)</argsstring>
+        <name>fclose</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="114" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="114" bodyend="138"/>
+        <references refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" compoundref="eof_8h" startline="19">EOF</references>
+        <references refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" compoundref="file__io_8c" startline="141" endline="184">fflush</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <referencedby refid="ansi__files_8h_1aa72a267c9e92460d88f8d7f5f35e777d" compoundref="ansi__files_8c" startline="328" endline="362">__close_all</referencedby>
+        <referencedby refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" compoundref="file__io_8c" startline="246" endline="266">__handle_reopen</referencedby>
+        <referencedby refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" compoundref="file__io_8c" startline="203" endline="231">freopen</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fflush</definition>
+        <argsstring>(FILE *file)</argsstring>
+        <name>fflush</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="141" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="141" bodyend="184"/>
+        <references refid="ansi__files_8h_1a6bc3f8b1d19c45cb71e12668bec75f6c" compoundref="ansi__files_8c" startline="365" endline="389">__flush_all</references>
+        <references refid="buffer__io_8h_1ad2de67062ee54922a2d2971a467b86ec">__flush_buffer</references>
+        <references refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" compoundref="eof_8h" startline="19">EOF</references>
+        <references refid="file__pos_8c_1a4399930feb9924f5b18db49e684b42af" compoundref="file__pos_8c" startline="89" endline="92">ftell</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <references refid="ansi__files_8h_1aab8b859ddd827ae3b6db09c89902e382" compoundref="ansi__files_8h" startline="30" endline="36">set_error</references>
+        <referencedby refid="ansi__files_8h_1a6bc3f8b1d19c45cb71e12668bec75f6c" compoundref="ansi__files_8c" startline="365" endline="389">__flush_all</referencedby>
+        <referencedby refid="ansi__files_8h_1a4d62a8e02791d9358cc1fd5e5c6ad680" compoundref="ansi__files_8c" startline="393" endline="423">__flush_line_buffered_output_files</referencedby>
+        <referencedby refid="k__standard_8c_1aaa2b2c25f94d1826d2b501dd16794bf4" compoundref="k__standard_8c" startline="82" endline="738">__kernel_standard</referencedby>
+        <referencedby refid="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" compoundref="file__io_8c" startline="114" endline="138">fclose</referencedby>
+        <referencedby refid="buffer__io_8c_1a8983a75e756d0028cfe7f1d59b88c8b8" compoundref="buffer__io_8c" startline="221" endline="288">setvbuf</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1a2823cc9d4bd8134b99dde72a1c32d7c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FILE *</type>
+        <definition>FILE * fopen</definition>
+        <argsstring>(const char *name, const char *mode)</argsstring>
+        <name>fopen</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="190" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="190" bodyend="201"/>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="ansi__files_8c_1a882daf170464a00fcf4288111f7b237f" compoundref="ansi__files_8c" startline="261" endline="285">__find_unopened_file</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" compoundref="critical__regions_8h" startline="48">files_access</references>
+        <references refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" compoundref="file__io_8c" startline="203" endline="231">freopen</references>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FILE *</type>
+        <definition>FILE * freopen</definition>
+        <argsstring>(const char *name, const char *mode, FILE *file)</argsstring>
+        <name>freopen</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="203" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="203" bodyend="231"/>
+        <references refid="file__io_8c_1ae78b5f016d845aa60694ae2b5c7a4070" compoundref="file__io_8c" startline="268" endline="351">__get_file_modes</references>
+        <references refid="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf">__init_file</references>
+        <references refid="file__io_8h_1ab39f05f6763b208c33c16dcb35c59094">__open_file</references>
+        <references refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" compoundref="misc__io_8c" startline="63" endline="74">__stdio_atexit</references>
+        <references refid="misc__io_8c_1afadf6615530e3705bf25e2c7704e235f" compoundref="misc__io_8c" startline="37" endline="41">clearerr</references>
+        <references refid="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" compoundref="file__io_8c" startline="114" endline="138">fclose</references>
+        <references refid="file__pos_8c_1a1f80caab1d0e9d5128594e9103516ab3" compoundref="file__pos_8c" startline="190" endline="195">fseek</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <referencedby refid="file__io_8c_1a2823cc9d4bd8134b99dde72a1c32d7c5" compoundref="file__io_8c" startline="190" endline="201">fopen</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1a86ceab643412c88db9836756ca2c8869" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FILE *</type>
+        <definition>FILE * __handle_open</definition>
+        <argsstring>(__file_handle handle, const char *mode)</argsstring>
+        <name>__handle_open</name>
+        <param>
+          <type>__file_handle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="233" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="233" bodyend="244"/>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="ansi__files_8c_1a882daf170464a00fcf4288111f7b237f" compoundref="ansi__files_8c" startline="261" endline="285">__find_unopened_file</references>
+        <references refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" compoundref="file__io_8c" startline="246" endline="266">__handle_reopen</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" compoundref="critical__regions_8h" startline="48">files_access</references>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FILE *</type>
+        <definition>FILE * __handle_reopen</definition>
+        <argsstring>(__file_handle handle, const char *mode, FILE *file)</argsstring>
+        <name>__handle_reopen</name>
+        <param>
+          <type>__file_handle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="246" column="7" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="246" bodyend="266"/>
+        <references refid="file__io_8c_1ae78b5f016d845aa60694ae2b5c7a4070" compoundref="file__io_8c" startline="268" endline="351">__get_file_modes</references>
+        <references refid="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf">__init_file</references>
+        <references refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" compoundref="misc__io_8c" startline="63" endline="74">__stdio_atexit</references>
+        <references refid="misc__io_8c_1afadf6615530e3705bf25e2c7704e235f" compoundref="misc__io_8c" startline="37" endline="41">clearerr</references>
+        <references refid="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" compoundref="file__io_8c" startline="114" endline="138">fclose</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <referencedby refid="file__io_8c_1a86ceab643412c88db9836756ca2c8869" compoundref="file__io_8c" startline="233" endline="244">__handle_open</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1ae78b5f016d845aa60694ae2b5c7a4070" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __get_file_modes</definition>
+        <argsstring>(const char *mode, __file_modes *modes)</argsstring>
+        <name>__get_file_modes</name>
+        <param>
+          <type>const char *</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>__file_modes *</type>
+          <declname>modes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="268" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="268" bodyend="351"/>
+        <referencedby refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" compoundref="file__io_8c" startline="246" endline="266">__handle_reopen</referencedby>
+        <referencedby refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" compoundref="file__io_8c" startline="203" endline="231">freopen</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8c_1ac9329fe82b8789c57f014c941be04191" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __set_idle_proc</definition>
+        <argsstring>(FILE *file, __idle_proc idle_proc)</argsstring>
+        <name>__set_idle_proc</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>__idle_proc</type>
+          <declname>idle_proc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" line="355" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c" bodystart="355" bodyend="358"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/03/09<sp/>17:16:22<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.10<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>file_io.c</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>Routines</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>--------</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>remove</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>rename</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>tmpnam</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>tmpfile</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>fclose</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>fflush</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>fopen</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>freopen</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__handle_reopen</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stdio_8h" kindref="compound">stdio.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stdlib_8h" kindref="compound">stdlib.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ansi__files_8h" kindref="compound">ansi_files.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="buffer__io_8h" kindref="compound">buffer_io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="critical__regions_8h" kindref="compound">critical_regions.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="file__io_8h" kindref="compound">file_io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="misc__io_8h" kindref="compound">misc_io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/><sp/>==<sp/>__win32_os<sp/><sp/>||<sp/>__dest_os<sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;ThreadLocalData.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Disk_File_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="44"><highlight class="comment">hh<sp/><sp/>971206<sp/><sp/>Moved<sp/>__temp_file_mode<sp/>to<sp/>get<sp/>it<sp/>into<sp/>::</highlight></codeline>
+<codeline lineno="45"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="file__io_8c_1a2befc01d3813d616edd387d8bf2a33aa" refkind="member"><highlight class="normal">__file_modes<sp/><sp/><sp/><sp/><ref refid="file__io_8c_1a2befc01d3813d616edd387d8bf2a33aa" kindref="member">__temp_file_mode</ref><sp/>=<sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__NO_WIDE_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>980707<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{__create_or_truncate,<sp/>__read_write,<sp/>_IOFBF,<sp/>__disk_file,<sp/>__unoriented,<sp/>1};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{__create_or_truncate,<sp/>__read_write,<sp/>_IOFBF,<sp/>__disk_file,<sp/>1};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>not<sp/>__NO_WIDE_CHAR<sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>980707<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="file__io_8c_1a4dec9ff1b41a23f58ed31179c4cb92f6" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8c_1a4dec9ff1b41a23f58ed31179c4cb92f6" kindref="member">remove</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>name)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((<ref refid="file__io_8h_1a4d2d7288afe0ee16cfacf47411a0993f" kindref="member">__delete_file</ref>(name)<sp/>==<sp/>__no_io_error)<sp/>?<sp/>0<sp/>:<sp/>-1);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>!=<sp/>__be_os<sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>bds<sp/>990121<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>beos<sp/>has<sp/>its<sp/>own<sp/>version<sp/>of<sp/>this<sp/>funtion<sp/><sp/>bds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rename(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>old_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>new_name)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((<ref refid="file__io_8h_1a9ff66a62ffbf413c64849ec57da6f452" kindref="member">__rename_file</ref>(old_name,<sp/>new_name)<sp/>==<sp/>__no_io_error)<sp/>?<sp/>0<sp/>:<sp/>-1);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="file__io_8c_1a0efedc832bf3605509df4bb7084f1187" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/><ref refid="file__io_8c_1a0efedc832bf3605509df4bb7084f1187" kindref="member">tmpnam</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>name)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ansi__parms_8h_1aed1b906c27f00d650f7d3f5e31c70a27" kindref="member">__tls</ref><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>temp_name[L_tmpnam];</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(name)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="file__io_8h_1a15f7d6e00de7402cdf54b3693814a4c7" kindref="member">__temp_file_name</ref>(name,<sp/><ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(name);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>961219<sp/>KO<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>_MWMT<sp/>&amp;&amp;<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/>||<sp/>__dest_os<sp/><sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="file__io_8h_1a15f7d6e00de7402cdf54b3693814a4c7" kindref="member">__temp_file_name</ref>(_GetThreadLocalData()-&gt;tmpnam_temp_name,<sp/><ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(_GetThreadLocalData()-&gt;tmpnam_temp_name);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="file__io_8h_1a15f7d6e00de7402cdf54b3693814a4c7" kindref="member">__temp_file_name</ref>(temp_name,<sp/><ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(temp_name);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" refkind="member"><highlight class="normal">FILE<sp/>*<sp/><ref refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" kindref="member">tmpfile</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*<sp/><sp/>file;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" kindref="member">__stdio_atexit</ref>();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" kindref="member">__begin_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" kindref="member">files_access</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((file<sp/>=<sp/><ref refid="ansi__files_8c_1a882daf170464a00fcf4288111f7b237f" kindref="member">__find_unopened_file</ref>())<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf" kindref="member">__init_file</ref>(file,<sp/><ref refid="file__io_8c_1a2befc01d3813d616edd387d8bf2a33aa" kindref="member">__temp_file_mode</ref>,<sp/>0,<sp/>BUFSIZ);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="file__io_8h_1a5f9f2949b56a8aad47cf99377d2f6f1b" kindref="member">__open_temp_file</ref>(&amp;file-&gt;handle))</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;mode.file_kind<sp/>=<sp/>__closed_file;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file<sp/>=<sp/><ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" kindref="member">__end_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" kindref="member">files_access</ref>);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(file);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ndef<sp/>_No_Disk_File_OS_Support<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" kindref="member">fclose</ref>(FILE<sp/>*<sp/>file)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flush_result,<sp/>close_result;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file<sp/>==<sp/><ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>MM-960625<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" kindref="member">EOF</ref>);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>MM-960625<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;mode.file_kind<sp/>==<sp/>__closed_file)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>flush_result<sp/>=<sp/><ref refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" kindref="member">fflush</ref>(file);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>close_result<sp/>=<sp/>(*file-&gt;close_proc)(file-&gt;handle);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;mode.file_kind<sp/>=<sp/>__closed_file;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;handle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;state.free_buffer)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Disk_File_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(file-&gt;buffer);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((flush_result<sp/>||<sp/>close_result)<sp/>?<sp/><ref refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" kindref="member">EOF</ref><sp/>:<sp/>0);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__m56800__<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981029<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" kindref="member">fflush</ref>(FILE<sp/>*<sp/>file)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>fpos_t<sp/><sp/>position;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>970708<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="ansi__files_8h_1a6bc3f8b1d19c45cb71e12668bec75f6c" kindref="member">__flush_all</ref>());</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;state.error<sp/>||<sp/>file-&gt;mode.file_kind<sp/>==<sp/>__closed_file)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" kindref="member">EOF</ref>);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;mode.io_mode<sp/>==<sp/>__read)<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>980430<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>980430<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;state.io_state<sp/>&gt;=<sp/>__rereading)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;state.io_state<sp/>=<sp/>__reading;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;state.io_state<sp/>==<sp/>__reading)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;buffer_len<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;state.io_state<sp/>!=<sp/>__writing)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;state.io_state<sp/>=<sp/>__neutral;<sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>970905<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Disk_File_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;mode.file_kind<sp/>!=<sp/>__disk_file<sp/>||<sp/>(position<sp/>=<sp/><ref refid="file__pos_8c_1a4399930feb9924f5b18db49e684b42af" kindref="member">ftell</ref>(file))<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>position<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>position<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="buffer__io_8h_1ad2de67062ee54922a2d2971a467b86ec" kindref="member">__flush_buffer</ref>(file,<sp/><ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>))</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ansi__files_8h_1aab8b859ddd827ae3b6db09c89902e382" kindref="member">set_error</ref>(file);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" kindref="member">EOF</ref>);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;state.io_state<sp/>=<sp/>__neutral;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;position<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>position;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_len<sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifndef<sp/>__m56800__<sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981029<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Disk_File_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190" refid="file__io_8c_1a2823cc9d4bd8134b99dde72a1c32d7c5" refkind="member"><highlight class="normal">FILE<sp/>*<sp/><ref refid="file__io_8c_1a2823cc9d4bd8134b99dde72a1c32d7c5" kindref="member">fopen</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>mode)</highlight></codeline>
+<codeline lineno="191"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*<sp/>file;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" kindref="member">__begin_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" kindref="member">files_access</ref>);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>file<sp/>=<sp/><ref refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" kindref="member">freopen</ref>(name,<sp/>mode,<sp/><ref refid="ansi__files_8c_1a882daf170464a00fcf4288111f7b237f" kindref="member">__find_unopened_file</ref>());</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" kindref="member">__end_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" kindref="member">files_access</ref>);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(file);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" refkind="member"><highlight class="normal">FILE<sp/>*<sp/><ref refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" kindref="member">freopen</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>mode,<sp/>FILE<sp/>*<sp/>file)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>__file_modes<sp/><sp/><sp/><sp/>modes;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" kindref="member">__stdio_atexit</ref>();</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file)</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" kindref="member">fclose</ref>(file);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="misc__io_8c_1afadf6615530e3705bf25e2c7704e235f" kindref="member">clearerr</ref>(file);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="file__io_8c_1ae78b5f016d845aa60694ae2b5c7a4070" kindref="member">__get_file_modes</ref>(mode,<sp/>&amp;modes))</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf" kindref="member">__init_file</ref>(file,<sp/>modes,<sp/>0,<sp/>BUFSIZ);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="file__io_8h_1ab39f05f6763b208c33c16dcb35c59094" kindref="member">__open_file</ref>(name,<sp/>modes,<sp/>&amp;file-&gt;handle))</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;mode.file_kind<sp/>=<sp/>__closed_file;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;state.free_buffer)<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm-960719<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(file-&gt;buffer);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm-960719<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(modes.io_mode<sp/>&amp;<sp/>__append)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990119<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="file__pos_8c_1a1f80caab1d0e9d5128594e9103516ab3" kindref="member">fseek</ref>(file,<sp/>0,<sp/>SEEK_END);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990119<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(file);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233" refid="file__io_8c_1a86ceab643412c88db9836756ca2c8869" refkind="member"><highlight class="normal">FILE<sp/>*<sp/><ref refid="file__io_8c_1a86ceab643412c88db9836756ca2c8869" kindref="member">__handle_open</ref>(__file_handle<sp/>handle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>mode)</highlight></codeline>
+<codeline lineno="234"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*<sp/>file;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" kindref="member">__begin_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" kindref="member">files_access</ref>);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>file<sp/>=<sp/><ref refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" kindref="member">__handle_reopen</ref>(handle,<sp/>mode,<sp/><ref refid="ansi__files_8c_1a882daf170464a00fcf4288111f7b237f" kindref="member">__find_unopened_file</ref>());</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" kindref="member">__end_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" kindref="member">files_access</ref>);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(file);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246" refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" refkind="member"><highlight class="normal">FILE<sp/>*<sp/><ref refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" kindref="member">__handle_reopen</ref>(__file_handle<sp/>handle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>mode,<sp/>FILE<sp/>*<sp/>file)</highlight></codeline>
+<codeline lineno="247"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/>__file_modes<sp/><sp/><sp/><sp/>modes;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" kindref="member">__stdio_atexit</ref>();</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file)</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" kindref="member">fclose</ref>(file);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="misc__io_8c_1afadf6615530e3705bf25e2c7704e235f" kindref="member">clearerr</ref>(file);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="file__io_8c_1ae78b5f016d845aa60694ae2b5c7a4070" kindref="member">__get_file_modes</ref>(mode,<sp/>&amp;modes))</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf" kindref="member">__init_file</ref>(file,<sp/>modes,<sp/>0,<sp/>BUFSIZ);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;handle<sp/>=<sp/>handle;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(file);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268" refid="file__io_8c_1ae78b5f016d845aa60694ae2b5c7a4070" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8c_1ae78b5f016d845aa60694ae2b5c7a4070" kindref="member">__get_file_modes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>mode,<sp/>__file_modes<sp/>*<sp/>modes)</highlight></codeline>
+<codeline lineno="269"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/>mode_ptr<sp/>=<sp/>mode;</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/>mode_str;</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>open_mode,<sp/>io_mode;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>modes-&gt;file_kind<sp/>=<sp/>__disk_file;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__NO_WIDE_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>980204<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>modes-&gt;file_orientation<sp/>=<sp/>__unoriented;</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>not<sp/>__NO_WIDE_CHAR<sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>980204<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>modes-&gt;binary_io<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>mode_str<sp/>=<sp/>*mode_ptr++;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(mode_str)</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;r&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>open_mode<sp/>=<sp/>__must_exist;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;w&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>open_mode<sp/>=<sp/>__create_or_truncate;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>open_mode<sp/>=<sp/>__create_if_necessary;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>modes-&gt;open_mode<sp/>=<sp/>open_mode;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(*mode_ptr++)</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;b&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modes-&gt;binary_io<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*mode_ptr<sp/>==<sp/></highlight><highlight class="charliteral">&apos;+&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mode_str<sp/>=<sp/>(mode_str<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/></highlight><highlight class="charliteral">&apos;+&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;+&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mode_str<sp/>=<sp/>(mode_str<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/></highlight><highlight class="charliteral">&apos;+&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*mode_ptr<sp/>==<sp/></highlight><highlight class="charliteral">&apos;b&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modes-&gt;binary_io<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(mode_str)</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;r&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io_mode<sp/>=<sp/>__read;</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;w&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io_mode<sp/>=<sp/>__write;</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io_mode<sp/>=<sp/>__write<sp/>|<sp/>__append;</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&apos;r+&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io_mode<sp/>=<sp/>__read_write;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&apos;w+&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io_mode<sp/>=<sp/>__read_write;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&apos;a+&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io_mode<sp/>=<sp/>__read_write<sp/>|<sp/>__append;</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/>modes-&gt;io_mode<sp/>=<sp/>io_mode;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="351"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ndef<sp/>_No_Disk_File_OS_Support<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"></highlight></codeline>
+<codeline lineno="355" refid="file__io_8c_1ac9329fe82b8789c57f014c941be04191" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="file__io_8c_1ac9329fe82b8789c57f014c941be04191" kindref="member">__set_idle_proc</ref>(FILE<sp/>*<sp/>file,<sp/>__idle_proc<sp/>idle_proc)</highlight></codeline>
+<codeline lineno="356"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;idle_proc<sp/>=<sp/>idle_proc;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"></highlight></codeline>
+<codeline lineno="360"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Change<sp/>Record</highlight></codeline>
+<codeline lineno="361"><highlight class="comment"><sp/>*<sp/><sp/>14-Aug-95<sp/>JFH<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline lineno="362"><highlight class="comment"><sp/>*<sp/><sp/>16-Oct-95<sp/>JFH<sp/><sp/>Modified<sp/>fflush<sp/>to<sp/>flush<sp/>read<sp/>buffers<sp/>for<sp/>SIOUX</highlight></codeline>
+<codeline lineno="363"><highlight class="comment"><sp/>*<sp/><sp/>13-Dec-95<sp/>JFH<sp/><sp/>Added<sp/>idle_proc<sp/>to<sp/>FILE<sp/>and<sp/>__set_idle_proc().<sp/>Intended<sp/>primarily<sp/>for<sp/>Mac<sp/>I/O</highlight></codeline>
+<codeline lineno="364"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(see<sp/>file_io.mac.c).</highlight></codeline>
+<codeline lineno="365"><highlight class="comment"><sp/>*<sp/><sp/>19-Feb-96<sp/>JFH<sp/><sp/>Added<sp/>closed-file<sp/>check<sp/>to<sp/>fflush.</highlight></codeline>
+<codeline lineno="366"><highlight class="comment"><sp/>*<sp/><sp/>25-Apr-96<sp/>JFH<sp/><sp/>Modified<sp/>fflush<sp/>to<sp/>account<sp/>for<sp/>multi-level<sp/>&apos;ungetc&apos;.</highlight></codeline>
+<codeline lineno="367"><highlight class="comment"><sp/>*<sp/><sp/>29-Apr-96<sp/>JFH<sp/><sp/>Merged<sp/>Win32<sp/>changes<sp/>in.</highlight></codeline>
+<codeline lineno="368"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTV</highlight></codeline>
+<codeline lineno="369"><highlight class="comment"><sp/>*<sp/><sp/>96-Jun-25<sp/>MM<sp/><sp/><sp/>Added<sp/>code<sp/>to<sp/>avoid<sp/>bus<sp/>error<sp/>in<sp/>fclose<sp/>with<sp/>null<sp/>file<sp/>pointer</highlight></codeline>
+<codeline lineno="370"><highlight class="comment"><sp/>*<sp/><sp/>96-Jul-19<sp/>MM<sp/><sp/><sp/>Added<sp/>code<sp/>to<sp/>prevent<sp/>memory<sp/>leak<sp/>in<sp/>freopen</highlight></codeline>
+<codeline lineno="371"><highlight class="comment"><sp/>*<sp/><sp/>19-Dec-96<sp/>KO<sp/><sp/><sp/><sp/>Added<sp/>some<sp/>Win32<sp/>ifdefs<sp/>to<sp/>use<sp/>my<sp/>thread<sp/>local<sp/>data<sp/>structure<sp/>rather</highlight></codeline>
+<codeline lineno="372"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>than<sp/>static<sp/>local<sp/>variables.</highlight></codeline>
+<codeline lineno="373"><highlight class="comment"><sp/>*<sp/><sp/>961228<sp/><sp/><sp/><sp/>bobk<sp/>line<sp/>135<sp/>added<sp/>for<sp/>clean<sp/>exits<sp/>on<sp/>win32</highlight></codeline>
+<codeline lineno="374"><highlight class="comment"><sp/>*<sp/><sp/>11-Jul-97<sp/>SCM<sp/><sp/>Wrapped<sp/>os-dependent<sp/>functions<sp/>in<sp/>#ifndef<sp/>__no_os.</highlight></codeline>
+<codeline lineno="375"><highlight class="comment"><sp/>*<sp/><sp/>20-Jul-97<sp/>MEA<sp/><sp/>Changed<sp/>__no_os<sp/>to<sp/>_No_Disk_File_OS_Support.</highlight></codeline>
+<codeline lineno="376"><highlight class="comment"><sp/>*<sp/>mm<sp/>970708<sp/><sp/>Inserted<sp/>Be<sp/>changes</highlight></codeline>
+<codeline lineno="377"><highlight class="comment"><sp/>*<sp/>mm<sp/>970905<sp/><sp/>Correction<sp/>to<sp/>mark<sp/>file<sp/>as<sp/>_neutral<sp/>when<sp/>flushed<sp/>in<sp/>other<sp/>than<sp/>_writing<sp/>mode.</highlight></codeline>
+<codeline lineno="378"><highlight class="comment"><sp/>*<sp/>mm<sp/>980204<sp/><sp/>Changes<sp/>to<sp/>support<sp/>wide<sp/>characters</highlight></codeline>
+<codeline lineno="379"><highlight class="comment"><sp/>*<sp/>mm<sp/>980430<sp/><sp/>The<sp/>Standard<sp/>does<sp/>not<sp/>define<sp/>any<sp/>action<sp/>for<sp/>fflush<sp/>on<sp/>a<sp/>file<sp/>opened<sp/>in<sp/>read<sp/>only<sp/>mode<sp/>so<sp/>do</highlight></codeline>
+<codeline lineno="380"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nothing.<sp/><sp/>MW02733</highlight></codeline>
+<codeline lineno="381"><highlight class="comment"><sp/>*<sp/>mf<sp/>980512<sp/><sp/>wince<sp/>changes</highlight></codeline>
+<codeline lineno="382"><highlight class="comment"><sp/>*<sp/>mm<sp/>980707<sp/><sp/>Corrected<sp/>initialization<sp/>of<sp/>__temp_file_mode<sp/>to<sp/>allow<sp/>for<sp/>wide<sp/>characters</highlight></codeline>
+<codeline lineno="383"><highlight class="comment"><sp/>*<sp/>mm<sp/>981029<sp/><sp/>Excluded<sp/>fflush()<sp/>for<sp/>__m56800__</highlight></codeline>
+<codeline lineno="384"><highlight class="comment"><sp/>*<sp/>mm<sp/>990119<sp/><sp/>When<sp/>a<sp/>file<sp/>is<sp/>opened<sp/>in<sp/>append<sp/>mode,<sp/>make<sp/>sure<sp/>that<sp/>it<sp/>is<sp/>positioned<sp/>to<sp/>eof<sp/>IL9901-1347<sp/></highlight></codeline>
+<codeline lineno="385"><highlight class="comment"><sp/>*<sp/>bds<sp/>990121<sp/>Added<sp/>BEOS<sp/>wrapper</highlight></codeline>
+<codeline lineno="386"><highlight class="comment"><sp/>*<sp/>mf<sp/><sp/>990301<sp/>removed<sp/>calls<sp/>to<sp/>_GetThreadLocalData<sp/>for<sp/>single<sp/>threaded<sp/>lib<sp/>ansix86st.lib</highlight></codeline>
+<codeline lineno="387"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/file_io.c"/>
+  </compounddef>
+</doxygen>

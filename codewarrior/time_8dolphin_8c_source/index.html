@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File time.dolphin.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-timedolphinc">File time.dolphin.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_c1d1bd04e3565fc1d2309a4becb25213/"><strong>PPC_EABI</strong></a> <strong>&gt;</strong> <a href="../dir_618995e550e2af44021355ee08c1ffde/"><strong>SRC</strong></a> <strong>&gt;</strong> <a href="../time_8dolphin_8c/"><strong>time.dolphin.c</strong></a></p>
+<p><a href="../time_8dolphin_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*---------------------------------------------------------------------------*
+  Project:  Dolphin MSL time suppert
+  File:     time.dolphin.c
+
+  Copyright 2000 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: time.dolphin.c,v $
+  Revision 1.1.2.1  2000/10/30 22:27:33  swells
+  Updates for R1.0
+
+  $NoKeywords: $
+ *---------------------------------------------------------------------------*/
+/*  Metrowerks Standard Library  Version 2.1.2  1997 May  */
+
+// Include your OS dependent include files
+#include &lt;time.h&gt;
+
+// This has a dependency on the Dolphin OS existing
+// OS.h is needed to get OS_TIMER_CLOCK and OSTicksToSeconds.
+// swells on 08-22-00
+#include &lt;dolphin/os.h&gt;
+
+#define BIAS    ((100 * 365LU + 24) * 86400)    // Dolphin counts since midnight, 1/1/2000
+
+// __get_clock returns the processor time used so far
+// Dolphin returns -1 for now. Use OSGetTick or OSGetTime instead.
+clock_t __get_clock(void)
+{
+   return (clock_t) -1;
+}
+
+// __get_time returns the current calendar time in seconds since midnight, 1/1/1900
+time_t __get_time(void)
+{
+    return (time_t) (OSTicksToSeconds(OSGetTime())) + BIAS;
+}
+
+// Dolphin does not support time zone and just returns 0
+int __to_gm_time(time_t* time)
+{
+    #pragma unused (time)
+    return 0;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

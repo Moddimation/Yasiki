@@ -1,0 +1,347 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="setjmp_8c" kind="file" language="C++">
+    <compoundname>setjmp.c</compoundname>
+    <includes refid="ansi__parms_8h" local="no">ansi_parms.h</includes>
+    <includes refid="____jmp__buf_8h" local="yes">__jmp_buf.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>__jmp_buf.h</label>
+        <link refid="____jmp__buf_8h"/>
+      </node>
+      <node id="1">
+        <label>setjmp.c</label>
+        <link refid="setjmp_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="setjmp_8c_1ab5704b35fc40dedd00fb0245ef86af36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __setjmp</definition>
+        <argsstring>(__jmp_buf *env)</argsstring>
+        <name>__setjmp</name>
+        <param>
+          <type><ref refid="struct____jmp__buf" kindref="compound">__jmp_buf</ref> *</type>
+          <declname>env</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c" line="64" column="5" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c" declline="64" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="setjmp_8c_1a387b00750057030a453148cf779dc58c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void longjmp</definition>
+        <argsstring>(__jmp_buf *env, int val)</argsstring>
+        <name>longjmp</name>
+        <param>
+          <type><ref refid="struct____jmp__buf" kindref="compound">__jmp_buf</ref> *</type>
+          <declname>env</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c" line="68" column="6" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c" declline="68" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="setjmp_8c_1ac2b33e8d031bd36ebf353ddd3fa2e054" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>asm int</type>
+        <definition>asm int __setjmp</definition>
+        <argsstring>(register __jmp_buf *env)</argsstring>
+        <name>__setjmp</name>
+        <param>
+          <type>register <ref refid="struct____jmp__buf" kindref="compound">__jmp_buf</ref> *</type>
+          <declname>env</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c" line="79" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c" bodystart="79" bodyend="115"/>
+        <references refid="struct____jmp__buf_1a60206d516c9a2972860c2fb95d7ca4d0" compoundref="____jmp__buf_8h" startline="12">__jmp_buf::cr</references>
+        <references refid="struct____jmp__buf_1a4fc600e1cb6d2ca7055a33c7facdd17d" compoundref="____jmp__buf_8h" startline="24">__jmp_buf::fp14</references>
+        <references refid="struct____jmp__buf_1a8cbec5087b6b339446c4166055c247df" compoundref="____jmp__buf_8h" startline="25">__jmp_buf::fp15</references>
+        <references refid="struct____jmp__buf_1a0e6fdf636caa3a345f3459e30f8d4905" compoundref="____jmp__buf_8h" startline="26">__jmp_buf::fp16</references>
+        <references refid="struct____jmp__buf_1a896371f8711e081a7c07ec938a42c933" compoundref="____jmp__buf_8h" startline="27">__jmp_buf::fp17</references>
+        <references refid="struct____jmp__buf_1ae1038cf1db6efad4ffbb44708405e0c8" compoundref="____jmp__buf_8h" startline="28">__jmp_buf::fp18</references>
+        <references refid="struct____jmp__buf_1a4865623f60813633a654e2765a01dfe6" compoundref="____jmp__buf_8h" startline="29">__jmp_buf::fp19</references>
+        <references refid="struct____jmp__buf_1ae0fd5d8ae560e0904dc325ee27469317" compoundref="____jmp__buf_8h" startline="30">__jmp_buf::fp20</references>
+        <references refid="struct____jmp__buf_1afd73f1fe68cae2660dee324770a0572d" compoundref="____jmp__buf_8h" startline="31">__jmp_buf::fp21</references>
+        <references refid="struct____jmp__buf_1a05b2094db3944c55596efa94c94393f1" compoundref="____jmp__buf_8h" startline="32">__jmp_buf::fp22</references>
+        <references refid="struct____jmp__buf_1add49300aacaa1dfeed1c7b53d66dc472" compoundref="____jmp__buf_8h" startline="33">__jmp_buf::fp23</references>
+        <references refid="struct____jmp__buf_1a849fe9631ab035a52f858876962c7ccd" compoundref="____jmp__buf_8h" startline="34">__jmp_buf::fp24</references>
+        <references refid="struct____jmp__buf_1acbb635ed6506b1e45f1e8ea15efaa8c4" compoundref="____jmp__buf_8h" startline="35">__jmp_buf::fp25</references>
+        <references refid="struct____jmp__buf_1a928c4489c16830b371a7ae928fdbc84b" compoundref="____jmp__buf_8h" startline="36">__jmp_buf::fp26</references>
+        <references refid="struct____jmp__buf_1a892499d0c208d77f6fc50a64691ae1a8" compoundref="____jmp__buf_8h" startline="37">__jmp_buf::fp27</references>
+        <references refid="struct____jmp__buf_1ac7b80b3a3037ae9f448bcae0cedebc37" compoundref="____jmp__buf_8h" startline="38">__jmp_buf::fp28</references>
+        <references refid="struct____jmp__buf_1a5a52e13275449d5ace3e59719aca456f" compoundref="____jmp__buf_8h" startline="39">__jmp_buf::fp29</references>
+        <references refid="struct____jmp__buf_1aeef30bf60df7afacc822cec3225be25d" compoundref="____jmp__buf_8h" startline="40">__jmp_buf::fp30</references>
+        <references refid="struct____jmp__buf_1a89b0bb6db960182d1cfc0471da0da1e5" compoundref="____jmp__buf_8h" startline="41">__jmp_buf::fp31</references>
+        <references refid="struct____jmp__buf_1a042af6eed571829dca939e78f1129bbb" compoundref="____jmp__buf_8h" startline="42">__jmp_buf::fpscr</references>
+        <references refid="struct____jmp__buf_1afcb94779717b273121fdcf99c9b75e9f" compoundref="____jmp__buf_8h" startline="22">__jmp_buf::gprs</references>
+        <references refid="struct____jmp__buf_1abca6e64d47d8bb4bb3aba229c324259f" compoundref="____jmp__buf_8h" startline="11">__jmp_buf::pc</references>
+        <references refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" compoundref="e__lgamma__r_8c" startline="146">r3</references>
+        <references refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" compoundref="e__lgamma__r_8c" startline="148">r5</references>
+        <references refid="e__lgamma__r_8c_1a6b391eb3b125bb77b4f3d1273ee18114" compoundref="e__lgamma__r_8c" startline="149">r6</references>
+        <references refid="struct____jmp__buf_1ae89434f57e2f9563ba463e2008805851" compoundref="____jmp__buf_8h" startline="14">__jmp_buf::rtoc</references>
+        <references refid="struct____jmp__buf_1af28ed89635e81bc20193a4a0e8dcd7e5" compoundref="____jmp__buf_8h" startline="13">__jmp_buf::sp</references>
+      </memberdef>
+      <memberdef kind="function" id="setjmp_8c_1a5dc1231d3a88256f903159890781bbda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>asm void</type>
+        <definition>asm void longjmp</definition>
+        <argsstring>(register __jmp_buf *env, register int val)</argsstring>
+        <name>longjmp</name>
+        <param>
+          <type>register <ref refid="struct____jmp__buf" kindref="compound">__jmp_buf</ref> *</type>
+          <declname>env</declname>
+        </param>
+        <param>
+          <type>register int</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c" line="124" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c" bodystart="124" bodyend="165"/>
+        <references refid="struct____jmp__buf_1a60206d516c9a2972860c2fb95d7ca4d0" compoundref="____jmp__buf_8h" startline="12">__jmp_buf::cr</references>
+        <references refid="struct____jmp__buf_1a4fc600e1cb6d2ca7055a33c7facdd17d" compoundref="____jmp__buf_8h" startline="24">__jmp_buf::fp14</references>
+        <references refid="struct____jmp__buf_1a8cbec5087b6b339446c4166055c247df" compoundref="____jmp__buf_8h" startline="25">__jmp_buf::fp15</references>
+        <references refid="struct____jmp__buf_1a0e6fdf636caa3a345f3459e30f8d4905" compoundref="____jmp__buf_8h" startline="26">__jmp_buf::fp16</references>
+        <references refid="struct____jmp__buf_1a896371f8711e081a7c07ec938a42c933" compoundref="____jmp__buf_8h" startline="27">__jmp_buf::fp17</references>
+        <references refid="struct____jmp__buf_1ae1038cf1db6efad4ffbb44708405e0c8" compoundref="____jmp__buf_8h" startline="28">__jmp_buf::fp18</references>
+        <references refid="struct____jmp__buf_1a4865623f60813633a654e2765a01dfe6" compoundref="____jmp__buf_8h" startline="29">__jmp_buf::fp19</references>
+        <references refid="struct____jmp__buf_1ae0fd5d8ae560e0904dc325ee27469317" compoundref="____jmp__buf_8h" startline="30">__jmp_buf::fp20</references>
+        <references refid="struct____jmp__buf_1afd73f1fe68cae2660dee324770a0572d" compoundref="____jmp__buf_8h" startline="31">__jmp_buf::fp21</references>
+        <references refid="struct____jmp__buf_1a05b2094db3944c55596efa94c94393f1" compoundref="____jmp__buf_8h" startline="32">__jmp_buf::fp22</references>
+        <references refid="struct____jmp__buf_1add49300aacaa1dfeed1c7b53d66dc472" compoundref="____jmp__buf_8h" startline="33">__jmp_buf::fp23</references>
+        <references refid="struct____jmp__buf_1a849fe9631ab035a52f858876962c7ccd" compoundref="____jmp__buf_8h" startline="34">__jmp_buf::fp24</references>
+        <references refid="struct____jmp__buf_1acbb635ed6506b1e45f1e8ea15efaa8c4" compoundref="____jmp__buf_8h" startline="35">__jmp_buf::fp25</references>
+        <references refid="struct____jmp__buf_1a928c4489c16830b371a7ae928fdbc84b" compoundref="____jmp__buf_8h" startline="36">__jmp_buf::fp26</references>
+        <references refid="struct____jmp__buf_1a892499d0c208d77f6fc50a64691ae1a8" compoundref="____jmp__buf_8h" startline="37">__jmp_buf::fp27</references>
+        <references refid="struct____jmp__buf_1ac7b80b3a3037ae9f448bcae0cedebc37" compoundref="____jmp__buf_8h" startline="38">__jmp_buf::fp28</references>
+        <references refid="struct____jmp__buf_1a5a52e13275449d5ace3e59719aca456f" compoundref="____jmp__buf_8h" startline="39">__jmp_buf::fp29</references>
+        <references refid="struct____jmp__buf_1aeef30bf60df7afacc822cec3225be25d" compoundref="____jmp__buf_8h" startline="40">__jmp_buf::fp30</references>
+        <references refid="struct____jmp__buf_1a89b0bb6db960182d1cfc0471da0da1e5" compoundref="____jmp__buf_8h" startline="41">__jmp_buf::fp31</references>
+        <references refid="struct____jmp__buf_1a042af6eed571829dca939e78f1129bbb" compoundref="____jmp__buf_8h" startline="42">__jmp_buf::fpscr</references>
+        <references refid="struct____jmp__buf_1afcb94779717b273121fdcf99c9b75e9f" compoundref="____jmp__buf_8h" startline="22">__jmp_buf::gprs</references>
+        <references refid="struct____jmp__buf_1abca6e64d47d8bb4bb3aba229c324259f" compoundref="____jmp__buf_8h" startline="11">__jmp_buf::pc</references>
+        <references refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" compoundref="e__lgamma__r_8c" startline="146">r3</references>
+        <references refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" compoundref="e__lgamma__r_8c" startline="148">r5</references>
+        <references refid="e__lgamma__r_8c_1a6b391eb3b125bb77b4f3d1273ee18114" compoundref="e__lgamma__r_8c" startline="149">r6</references>
+        <references refid="struct____jmp__buf_1ae89434f57e2f9563ba463e2008805851" compoundref="____jmp__buf_8h" startline="14">__jmp_buf::rtoc</references>
+        <references refid="struct____jmp__buf_1af28ed89635e81bc20193a4a0e8dcd7e5" compoundref="____jmp__buf_8h" startline="13">__jmp_buf::sp</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#if<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>ANSI_strict<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>setjmp.c<sp/><sp/><sp/><sp/>-<sp/><sp/><sp/>setjmp()<sp/>and<sp/>longjmp()<sp/>routines<sp/>for<sp/>Metrowerks<sp/>C++<sp/>for<sp/>PowerPC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Copyright<sp/>1995-1997<sp/>Metrowerks,<sp/>Inc.<sp/><sp/>All<sp/>Rights<sp/>Reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>THEORY<sp/>OF<sp/>OPERATION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>The<sp/>runtime<sp/>support<sp/>routines<sp/>__setjmp()<sp/>and<sp/>longjmp()<sp/>support<sp/>the<sp/>C<sp/>&lt;setjmp.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>facilities.<sp/>These<sp/>routines<sp/>are<sp/>(finally)<sp/>compatible<sp/>with<sp/>Apple&apos;s<sp/>StdCLib.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>__setjmp()<sp/>captures<sp/>the<sp/>state<sp/>of<sp/>the<sp/>program<sp/>in<sp/>a<sp/>jmp_buf<sp/>data<sp/>structure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>which<sp/>has<sp/>the<sp/>following<sp/>C<sp/>definition:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>struct<sp/>__jmp_buf<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>PC;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>0:<sp/>saved<sp/>PC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>CR;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>4:<sp/>saved<sp/>CR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>SP;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>8:<sp/>saved<sp/>SP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>RTOC;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>12:<sp/>saved<sp/>RTOC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>reserved;<sp/><sp/><sp/>//<sp/>16:<sp/>not<sp/>used</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>long<sp/><sp/><sp/>GPRs[19];<sp/><sp/><sp/>//<sp/>20:<sp/>saved<sp/>r13-r31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FPRs[18];<sp/><sp/><sp/>//<sp/>96:<sp/>saved<sp/>fp14-fp31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FPSCR;<sp/><sp/><sp/><sp/><sp/><sp/>//240:<sp/>saved<sp/>FPSCR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>*__jmp_buf;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>longjmp()<sp/>restores<sp/>the<sp/>state,<sp/>effecting<sp/>a<sp/>transfer<sp/>back<sp/>to<sp/>the<sp/>saved<sp/>PC<sp/>with</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>appropriate<sp/>registers,<sp/>stack,<sp/>TOC,<sp/>etc.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>In<sp/>&lt;setjmp.h&gt;<sp/>the<sp/>jmp_buf<sp/>type<sp/>must<sp/>be<sp/>defined<sp/>as<sp/>an<sp/>array<sp/>(per<sp/>ANSI<sp/>rules):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>jmp_buf[62];</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>setjmp()<sp/>and<sp/>longjmp()<sp/>are<sp/>defined<sp/>as<sp/>follows:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>__setjmp(jmp_buf<sp/>env);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>setjmp(env)<sp/>__setjmp(env)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>longjmp(jmp_buf<sp/>env,<sp/>int<sp/>val);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Because<sp/>__setjmp()<sp/>needs<sp/>to<sp/>save<sp/>the<sp/>RTOC<sp/>of<sp/>the<sp/>calling<sp/>function,<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>cannot<sp/>be<sp/>called<sp/>across<sp/>a<sp/>fragment<sp/>boundary.<sp/>To<sp/>ensure<sp/>this,<sp/>we<sp/>omit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>the<sp/>TVector<sp/>for<sp/>setjmp()<sp/>so<sp/>that<sp/>link<sp/>errors<sp/>will<sp/>occur</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>if<sp/>a<sp/>fragment<sp/>does<sp/>not<sp/>have<sp/>a<sp/>local<sp/>copy<sp/>of<sp/>these<sp/>routines.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>(We<sp/>can&apos;t<sp/>omit<sp/>the<sp/>TVector<sp/>for<sp/>longjmp()<sp/>because<sp/>the<sp/>Plum<sp/>Hall<sp/>suite</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>tests<sp/>for<sp/>it<sp/>by<sp/>taking<sp/>its<sp/>address,<sp/>which<sp/>requires<sp/>a<sp/>TVector)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ansi__parms_8h" kindref="compound">ansi_parms.h</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>hh<sp/>971207<sp/>Added<sp/>&lt;ansi_parms.h&gt;<sp/>header<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="____jmp__buf_8h" kindref="compound">__jmp_buf.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/><sp/>Prototypes</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>tvectors<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>internal<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="setjmp_8c_1ab5704b35fc40dedd00fb0245ef86af36" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="setjmp_8c_1ab5704b35fc40dedd00fb0245ef86af36" kindref="member">__setjmp</ref>(<ref refid="struct____jmp__buf" kindref="compound">__jmp_buf</ref><sp/>*env);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>internal<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="setjmp_8c_1a387b00750057030a453148cf779dc58c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="setjmp_8c_1a387b00750057030a453148cf779dc58c" kindref="member">longjmp</ref>(<ref refid="struct____jmp__buf" kindref="compound">__jmp_buf</ref><sp/>*env,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>val);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>__setjmp<sp/><sp/><sp/><sp/>-<sp/><sp/><sp/>C<sp/>setjmp()<sp/>routine</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>On<sp/>entry<sp/>R3<sp/>points<sp/>to<sp/>a<sp/>jmp_buf<sp/>struct.<sp/>On<sp/>exit,<sp/>R3<sp/>is<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="setjmp_8c_1ac2b33e8d031bd36ebf353ddd3fa2e054" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="setjmp_8c_1ab5704b35fc40dedd00fb0245ef86af36" kindref="member">__setjmp</ref>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct____jmp__buf" kindref="compound">__jmp_buf</ref><sp/>*env)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__PPC_EABI__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nofralloc</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mflr<sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mfcr<sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a6b391eb3b125bb77b4f3d1273ee18114" kindref="member">r6</ref></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,env-&gt;<ref refid="struct____jmp__buf_1abca6e64d47d8bb4bb3aba229c324259f" kindref="member">pc</ref><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>save<sp/>PC<sp/>(LR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a6b391eb3b125bb77b4f3d1273ee18114" kindref="member">r6</ref>,env-&gt;<ref refid="struct____jmp__buf_1a60206d516c9a2972860c2fb95d7ca4d0" kindref="member">cr</ref><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>save<sp/>CR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>SP,env-&gt;<ref refid="struct____jmp__buf_1af28ed89635e81bc20193a4a0e8dcd7e5" kindref="member">sp</ref><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>save<sp/>SP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>RTOC,env-&gt;<ref refid="struct____jmp__buf_1ae89434f57e2f9563ba463e2008805851" kindref="member">rtoc</ref><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>save<sp/>#RTOC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stmw<sp/><sp/><sp/><sp/>r13,env-&gt;<ref refid="struct____jmp__buf_1afcb94779717b273121fdcf99c9b75e9f" kindref="member">gprs</ref><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>save<sp/>R13-R31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Floating_Point_Regs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mffs<sp/><sp/><sp/><sp/>fp0</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp14,env-&gt;<ref refid="struct____jmp__buf_1a4fc600e1cb6d2ca7055a33c7facdd17d" kindref="member">fp14</ref><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>save<sp/>FP14-FP31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp15,env-&gt;<ref refid="struct____jmp__buf_1a8cbec5087b6b339446c4166055c247df" kindref="member">fp15</ref></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp16,env-&gt;<ref refid="struct____jmp__buf_1a0e6fdf636caa3a345f3459e30f8d4905" kindref="member">fp16</ref></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp17,env-&gt;<ref refid="struct____jmp__buf_1a896371f8711e081a7c07ec938a42c933" kindref="member">fp17</ref></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp18,env-&gt;<ref refid="struct____jmp__buf_1ae1038cf1db6efad4ffbb44708405e0c8" kindref="member">fp18</ref></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp19,env-&gt;<ref refid="struct____jmp__buf_1a4865623f60813633a654e2765a01dfe6" kindref="member">fp19</ref></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp20,env-&gt;<ref refid="struct____jmp__buf_1ae0fd5d8ae560e0904dc325ee27469317" kindref="member">fp20</ref></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp21,env-&gt;<ref refid="struct____jmp__buf_1afd73f1fe68cae2660dee324770a0572d" kindref="member">fp21</ref></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp22,env-&gt;<ref refid="struct____jmp__buf_1a05b2094db3944c55596efa94c94393f1" kindref="member">fp22</ref></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp23,env-&gt;<ref refid="struct____jmp__buf_1add49300aacaa1dfeed1c7b53d66dc472" kindref="member">fp23</ref></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp24,env-&gt;<ref refid="struct____jmp__buf_1a849fe9631ab035a52f858876962c7ccd" kindref="member">fp24</ref></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp25,env-&gt;<ref refid="struct____jmp__buf_1acbb635ed6506b1e45f1e8ea15efaa8c4" kindref="member">fp25</ref></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp26,env-&gt;<ref refid="struct____jmp__buf_1a928c4489c16830b371a7ae928fdbc84b" kindref="member">fp26</ref></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp27,env-&gt;<ref refid="struct____jmp__buf_1a892499d0c208d77f6fc50a64691ae1a8" kindref="member">fp27</ref></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp28,env-&gt;<ref refid="struct____jmp__buf_1ac7b80b3a3037ae9f448bcae0cedebc37" kindref="member">fp28</ref></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp29,env-&gt;<ref refid="struct____jmp__buf_1a5a52e13275449d5ace3e59719aca456f" kindref="member">fp29</ref></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp30,env-&gt;<ref refid="struct____jmp__buf_1aeef30bf60df7afacc822cec3225be25d" kindref="member">fp30</ref></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp31,env-&gt;<ref refid="struct____jmp__buf_1a89b0bb6db960182d1cfc0471da0da1e5" kindref="member">fp31</ref></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stfd<sp/><sp/><sp/><sp/>fp0,env-&gt;<ref refid="struct____jmp__buf_1a042af6eed571829dca939e78f1129bbb" kindref="member">fpscr</ref><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>save<sp/>FPSCR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ndef<sp/>_No_Floating_Point_Regs<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,0</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blr</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>longjmp<sp/><sp/><sp/><sp/><sp/>-<sp/><sp/><sp/>C<sp/>longjmp()<sp/>routine</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>On<sp/>entry<sp/>R3<sp/>points<sp/>to<sp/>a<sp/>jmp_buf<sp/>struct<sp/>and<sp/>R4<sp/>contains<sp/>the<sp/>return<sp/>value.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>On<sp/>exit,<sp/>R3<sp/>contains<sp/>1<sp/>if<sp/>R4<sp/>was<sp/>0,<sp/>otherwise<sp/>it<sp/>contains<sp/>the<sp/>value<sp/>from<sp/>R4.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="setjmp_8c_1a5dc1231d3a88256f903159890781bbda" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="setjmp_8c_1a387b00750057030a453148cf779dc58c" kindref="member">longjmp</ref>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct____jmp__buf" kindref="compound">__jmp_buf</ref><sp/>*env,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>val)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__PPC_EABI__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nofralloc</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,env-&gt;<ref refid="struct____jmp__buf_1abca6e64d47d8bb4bb3aba229c324259f" kindref="member">pc</ref></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a6b391eb3b125bb77b4f3d1273ee18114" kindref="member">r6</ref>,env-&gt;<ref refid="struct____jmp__buf_1a60206d516c9a2972860c2fb95d7ca4d0" kindref="member">cr</ref></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mtlr<sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>restore<sp/>PC<sp/>(LR)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mtcrf<sp/><sp/><sp/>255,<ref refid="e__lgamma__r_8c_1a6b391eb3b125bb77b4f3d1273ee18114" kindref="member">r6</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>restore<sp/>CR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/>SP,env-&gt;<ref refid="struct____jmp__buf_1af28ed89635e81bc20193a4a0e8dcd7e5" kindref="member">sp</ref><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>restore<sp/>SP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lwz<sp/><sp/><sp/><sp/><sp/>RTOC,env-&gt;<ref refid="struct____jmp__buf_1ae89434f57e2f9563ba463e2008805851" kindref="member">rtoc</ref><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>restore<sp/>RTOC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lmw<sp/><sp/><sp/><sp/><sp/>r13,env-&gt;<ref refid="struct____jmp__buf_1afcb94779717b273121fdcf99c9b75e9f" kindref="member">gprs</ref><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>restore<sp/>R13-R31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Floating_Point_Regs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp14,env-&gt;<ref refid="struct____jmp__buf_1a4fc600e1cb6d2ca7055a33c7facdd17d" kindref="member">fp14</ref><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>restore<sp/>FP14-FP31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp15,env-&gt;<ref refid="struct____jmp__buf_1a8cbec5087b6b339446c4166055c247df" kindref="member">fp15</ref></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp16,env-&gt;<ref refid="struct____jmp__buf_1a0e6fdf636caa3a345f3459e30f8d4905" kindref="member">fp16</ref></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp17,env-&gt;<ref refid="struct____jmp__buf_1a896371f8711e081a7c07ec938a42c933" kindref="member">fp17</ref></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp18,env-&gt;<ref refid="struct____jmp__buf_1ae1038cf1db6efad4ffbb44708405e0c8" kindref="member">fp18</ref></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp19,env-&gt;<ref refid="struct____jmp__buf_1a4865623f60813633a654e2765a01dfe6" kindref="member">fp19</ref></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp20,env-&gt;<ref refid="struct____jmp__buf_1ae0fd5d8ae560e0904dc325ee27469317" kindref="member">fp20</ref></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp21,env-&gt;<ref refid="struct____jmp__buf_1afd73f1fe68cae2660dee324770a0572d" kindref="member">fp21</ref></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp22,env-&gt;<ref refid="struct____jmp__buf_1a05b2094db3944c55596efa94c94393f1" kindref="member">fp22</ref></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp23,env-&gt;<ref refid="struct____jmp__buf_1add49300aacaa1dfeed1c7b53d66dc472" kindref="member">fp23</ref></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp24,env-&gt;<ref refid="struct____jmp__buf_1a849fe9631ab035a52f858876962c7ccd" kindref="member">fp24</ref></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp25,env-&gt;<ref refid="struct____jmp__buf_1acbb635ed6506b1e45f1e8ea15efaa8c4" kindref="member">fp25</ref></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp26,env-&gt;<ref refid="struct____jmp__buf_1a928c4489c16830b371a7ae928fdbc84b" kindref="member">fp26</ref></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp27,env-&gt;<ref refid="struct____jmp__buf_1a892499d0c208d77f6fc50a64691ae1a8" kindref="member">fp27</ref></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp28,env-&gt;<ref refid="struct____jmp__buf_1ac7b80b3a3037ae9f448bcae0cedebc37" kindref="member">fp28</ref></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp29,env-&gt;<ref refid="struct____jmp__buf_1a5a52e13275449d5ace3e59719aca456f" kindref="member">fp29</ref></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp30,env-&gt;<ref refid="struct____jmp__buf_1aeef30bf60df7afacc822cec3225be25d" kindref="member">fp30</ref></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp0,env-&gt;<ref refid="struct____jmp__buf_1a042af6eed571829dca939e78f1129bbb" kindref="member">fpscr</ref></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lfd<sp/><sp/><sp/><sp/><sp/>fp31,env-&gt;<ref refid="struct____jmp__buf_1a89b0bb6db960182d1cfc0471da0da1e5" kindref="member">fp31</ref></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ndef<sp/>_No_Floating_Point_Regs<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cmpwi<sp/><sp/><sp/>val,0</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mr<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,val</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Floating_Point_Regs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mtfsf<sp/><sp/><sp/>255,fp0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>restore<sp/>FPSCR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ndef<sp/>_No_Floating_Point_Regs<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bnelr<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>return<sp/>&apos;val&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>li<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>return<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blr</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/><sp/><sp/><sp/>Change<sp/>Record</highlight></codeline>
+<codeline lineno="170"><highlight class="comment"><sp/>*<sp/>hh<sp/><sp/>971207<sp/>Added<sp/>&lt;ansi_parms.h&gt;<sp/>header</highlight></codeline>
+<codeline lineno="171"><highlight class="comment">*/</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/setjmp.c"/>
+  </compounddef>
+</doxygen>

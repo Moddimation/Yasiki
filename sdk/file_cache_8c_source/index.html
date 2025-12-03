@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File fileCache.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-filecachec">File fileCache.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_4ddba504d40851ddcdd8c9a647bf66a4/"><strong>fileCache</strong></a> <strong>&gt;</strong> <a href="../file_cache_8c/"><strong>fileCache.c</strong></a></p>
+<p><a href="../file_cache_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#include &lt;charPipeline/fileCache.h&gt;
+
+DSCache DODisplayCache;
+u8      DOCacheInitialized;
+
+static u8   AllocCacheNode (DSCacheNodePtr* cacheNode, char* name);
+static void FreeCacheNode (DSCacheNodePtr* cacheNode);
+
+DSCacheNodePtr
+DSAddCacheNode (DSCachePtr cache, char* name, Ptr data, Ptr OSFreeFunc)
+{
+    DSCacheNodePtr cacheNode;
+
+    cacheNode = NULL;
+    if (!AllocCacheNode (&amp;cacheNode, name))
+    {
+        return NULL;
+    }
+    Strcpy (cacheNode-&gt;Name, name);
+    cacheNode-&gt;Data = data;
+    cacheNode-&gt;Free = (void (*) (Ptr*))OSFreeFunc;
+    cacheNode-&gt;ReferenceCount = 0;
+    DSInsertListObject (&amp;cache-&gt;CacheNodeList, NULL, (Ptr)cacheNode);
+    return cacheNode;
+}
+
+static u8
+AllocCacheNode (DSCacheNodePtr* cacheNode, char* name)
+{
+    if (*cacheNode)
+    {
+        FreeCacheNode (cacheNode);
+    }
+    *cacheNode = OSAlloc (sizeof (DSCacheNode));
+    if (!*cacheNode)
+    {
+        return FALSE;
+    }
+    (*cacheNode)-&gt;Name = OSAlloc (Strlen (name) + 1);
+    if (!(*cacheNode)-&gt;Name)
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+void
+DSEmptyCache (DSCachePtr cache)
+{
+    DSCacheNodePtr cursor;
+    DSCacheNodePtr cacheNode;
+
+    cursor = (DSCacheNodePtr)cache-&gt;CacheNodeList.Head;
+    while (cursor)
+    {
+        cacheNode = cursor;
+        cursor = (DSCacheNodePtr)cursor-&gt;Link.Next;
+        DSRemoveListObject (&amp;cache-&gt;CacheNodeList, (Ptr)cacheNode);
+        FreeCacheNode (&amp;cacheNode);
+    }
+}
+
+static DSCacheNodePtr
+FindCacheNode (DSCachePtr cache, char* name, Ptr data)
+{
+    DSCacheNodePtr cacheNode;
+
+    cacheNode = (DSCacheNodePtr)cache-&gt;CacheNodeList.Head;
+    if (data)
+    {
+        while (cacheNode)
+        {
+            if (data == cacheNode-&gt;Data)
+            {
+                return cacheNode;
+            }
+            cacheNode = (DSCacheNodePtr)cacheNode-&gt;Link.Next;
+        }
+    }
+    else if (name)
+    {
+        while (cacheNode)
+        {
+            if (Strcmp (name, cacheNode-&gt;Name) == 0)
+            {
+                return cacheNode;
+            }
+            cacheNode = (DSCacheNodePtr)cacheNode-&gt;Link.Next;
+        }
+    }
+    return NULL;
+}
+
+Ptr
+DSGetCacheObj (DSCachePtr cache, char* name)
+{
+    DSCacheNodePtr cacheNode;
+
+    cacheNode = FindCacheNode (cache, name, NULL);
+    if (cacheNode)
+    {
+        cacheNode-&gt;ReferenceCount++;
+        return cacheNode-&gt;Data;
+    }
+    return NULL;
+}
+
+static void
+FreeCacheNode (DSCacheNodePtr* cacheNode)
+{
+    if (*cacheNode)
+    {
+        if ((*cacheNode)-&gt;Free)
+        {
+            (*cacheNode)-&gt;Free (&amp;(*cacheNode)-&gt;Data);
+        }
+        OSFree ((*cacheNode)-&gt;Name);
+        OSFree (*cacheNode);
+        *cacheNode = NULL;
+    }
+}
+
+void
+DSInitCache (DSCachePtr cache)
+{
+    DSCacheNode cacheNode;
+
+    cache-&gt;PurgeFlag = DS_AUTO_PURGE;
+    DSInitList (&amp;cache-&gt;CacheNodeList, (Ptr)&amp;cacheNode, &amp;cacheNode.Link);
+}
+
+void
+DSPurgeCache (DSCachePtr cache)
+{
+    DSCacheNodePtr cursor;
+    DSCacheNodePtr cacheNode;
+
+    cursor = (DSCacheNodePtr)cache-&gt;CacheNodeList.Head;
+    while (cursor)
+    {
+        cacheNode = cursor;
+        cursor = (DSCacheNodePtr)cursor-&gt;Link.Next;
+        if (cacheNode-&gt;ReferenceCount == 0)
+        {
+            DSRemoveListObject (&amp;cache-&gt;CacheNodeList, (Ptr)cacheNode);
+            FreeCacheNode (&amp;cacheNode);
+        }
+    }
+}
+
+void
+DSReleaseCacheObj (DSCachePtr cache, Ptr data)
+{
+    DSCacheNodePtr cacheNode;
+
+    cacheNode = FindCacheNode (cache, NULL, data);
+    if (cacheNode)
+    {
+        if (cacheNode-&gt;ReferenceCount != 0)
+        {
+            cacheNode-&gt;ReferenceCount--;
+        }
+        if (cacheNode-&gt;ReferenceCount == 0 &amp;&amp; cache-&gt;PurgeFlag == DS_AUTO_PURGE)
+        {
+            DSRemoveListObject (&amp;cache-&gt;CacheNodeList, (Ptr)cacheNode);
+            FreeCacheNode (&amp;cacheNode);
+        }
+    }
+}
+
+void
+DSSetCachePurgeFlag (DSCachePtr cache, u8 purgeFlag)
+{
+    cache-&gt;PurgeFlag = purgeFlag;
+}
+
+void
+CSHInitDisplayCache (void)
+{
+    DSInitCache (&amp;DODisplayCache);
+    DOCacheInitialized = TRUE;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

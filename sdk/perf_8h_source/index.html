@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File perf.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-perfh">File perf.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../perf_8h/"><strong>perf.h</strong></a></p>
+<p><a href="../perf_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef _DOLPHIN_PERF_H_
+#define _DOLPHIN_PERF_H_
+
+#include &lt;dolphin/gx/GXStruct.h&gt;
+#include &lt;types.h&gt;
+
+#ifdef __cplusplus
+extern &quot;C&quot;
+{
+#endif
+
+typedef u8 PERFId;
+
+typedef enum
+{
+    PERF_CPU_EVENT,
+    PERF_CPU_GP_EVENT,
+    PERF_GP_EVENT
+} PerfType;
+
+typedef struct PerfSample
+{
+    u8  id;                
+    u32 cpuTimeStampStart; 
+    u32 cpuTimeStampEnd;   
+    u32 gpTimeStampStart;  
+    u32 gpTimeStampEnd;    
+    int interrupted;       
+    u32 origcpuStart;      
+    u32 origgpStart;       
+    u32 cacheMisses[4];    
+    u32 instructions[4];   
+    u32 cpReq[2];          
+    u32 tcReq[2];          
+    u32 cpuRdReq[2];       
+    u32 cpuWrReq[2];       
+    u32 dspReq[2];         
+    u32 ioReq[2];          
+    u32 viReq[2];          
+    u32 peReq[2];          
+    u32 rfReq[2];          
+    u32 fiReq[2];          
+    u32 xfWaitIn[2];       
+    u32 xfWaitOut[2];      
+    u32 rasBusy[2];        
+    u32 rasClocks[2];      
+} PerfSample;
+
+struct Frame
+{
+    // total size: 0x10
+    PerfSample* samples;         // offset 0x0, size 0x4
+    s32         lastSample;      // offset 0x4, size 0x4
+    u32         end;             // offset 0x8, size 0x4
+    u32         cachemisscycles; // offset 0xC, size 0x4
+};
+
+struct PerfEvent
+{
+    // total size: 0x10
+    char*    name;                      // offset 0x0, size 0x4
+    PerfType type;                      // offset 0x4, size 0x4
+    s32      currSample;                // offset 0x8, size 0x4
+    GXColor  color;                     // offset 0xC, size 0x4
+};
+
+typedef void* (*PERFAllocator) (u32 size);
+typedef void  (*PERFDeallocator) (void* block);
+typedef void  (*PERFDrawCallback) (void);
+
+extern void (*GameDrawInit)();          // size: 0x4, address: 0x14
+
+u32  PERFInit (u32              numSamples,
+               u32              numFramesHistory,
+               u32              numTypes,
+               PERFAllocator    allocator,
+               PERFDeallocator  deallocator,
+               PERFDrawCallback initDraw);
+void PERFEventStart (PERFId id);
+void PERFEventEnd (PERFId id);
+void PERFSetEvent (PERFId id, char* name, PerfType type);
+void PERFStartFrame (void);
+void PERFEndFrame (void);
+void PERFStartAutoSampling (f32 msInterval);
+void PERFStopAutoSampling (void);
+
+void PERFPreDraw ();
+void PERFDumpScreen ();
+void PERFPostDraw ();
+void PERFSetDrawBWBarKey (int tf);
+void PERFSetDrawBWBar (int tf);
+void PERFSetDrawCPUBar (int tf);
+void PERFSetDrawXFBars (int tf);
+void PERFSetDrawRASBar (int tf);
+void PERFToggleDrawBWBarKey ();
+void PERFToggleDrawBWBar ();
+void PERFToggleDrawCPUBar ();
+void PERFToggleDrawXFBars ();
+void PERFToggleDrawRASBar ();
+
+extern struct Frame*     PERFFrames;    // size: 0x4, address: 0x0
+extern u32               PERFCurrFrame; // size: 0x4, address: 0x0
+extern struct PerfEvent* PERFEvents;    // size: 0x4, address: 0x0
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

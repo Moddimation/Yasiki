@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="global__destructor__chain_8c" kind="file" language="C++">
+    <compoundname>global_destructor_chain.c</compoundname>
+    <includes refid="_m_w_c_plus_lib_8h" local="no">MWCPlusLib.h</includes>
+    <includes refid="_n_m_w_exception_8h" local="no">NMWException.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MWCPlusLib.h</label>
+        <link refid="_m_w_c_plus_lib_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>NMWException.h</label>
+        <link refid="_n_m_w_exception_8h"/>
+      </node>
+      <node id="1">
+        <label>global_destructor_chain.c</label>
+        <link refid="global__destructor__chain_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_destructor_chain" kindref="compound">DestructorChain</ref> *</type>
+        <definition>DestructorChain* __global_destructor_chain</definition>
+        <argsstring></argsstring>
+        <name>__global_destructor_chain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c" line="35" column="17" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c" bodystart="35" bodyend="-1"/>
+        <referencedby refid="abort__exit_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" compoundref="global__destructor__chain_8c" startline="61" endline="70">__destroy_global_chain</referencedby>
+        <referencedby refid="_n_m_w_exception_8h_1a939dd693a6cb4f7418d805bba4ec26e7" compoundref="global__destructor__chain_8c" startline="45" endline="53">__register_global_object</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="global__destructor__chain_8c_1a939dd693a6cb4f7418d805bba4ec26e7" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __register_global_object</definition>
+        <argsstring>(void *object, void *destructor, void *regmem)</argsstring>
+        <name>__register_global_object</name>
+        <param>
+          <type>void *</type>
+          <declname>object</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>destructor</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>regmem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c" line="45" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c" bodystart="45" bodyend="53" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c" declline="45" declcolumn="13"/>
+        <references refid="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" compoundref="global__destructor__chain_8c" startline="35">__global_destructor_chain</references>
+        <references refid="struct_destructor_chain_1a80660a2505445d58ad4e561fdd543c5f" compoundref="_n_m_w_exception_8h" startline="29">DestructorChain::destructor</references>
+        <references refid="struct_destructor_chain_1a766d473a707bd7b0f3d2c3258238a9b6" compoundref="_n_m_w_exception_8h" startline="28">DestructorChain::next</references>
+      </memberdef>
+      <memberdef kind="function" id="global__destructor__chain_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __destroy_global_chain</definition>
+        <argsstring>(void)</argsstring>
+        <name>__destroy_global_chain</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c" line="61" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c" bodystart="61" bodyend="70"/>
+        <references refid="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" compoundref="global__destructor__chain_8c" startline="35">__global_destructor_chain</references>
+        <references refid="struct_destructor_chain_1a80660a2505445d58ad4e561fdd543c5f" compoundref="_n_m_w_exception_8h" startline="29">DestructorChain::destructor</references>
+        <references refid="_m_w_c_plus_lib_8h_1ae4104a73d99126d2aa8f0d534292c6bd" compoundref="_m_w_c_plus_lib_8h" startline="86" endline="87">DTORCALL_COMPLETE</references>
+        <references refid="struct_destructor_chain_1a766d473a707bd7b0f3d2c3258238a9b6" compoundref="_n_m_w_exception_8h" startline="28">DestructorChain::next</references>
+        <references refid="struct_destructor_chain_1add7d77c8737fc1ae476cadf9a3030131" compoundref="_n_m_w_exception_8h" startline="30">DestructorChain::object</references>
+        <referencedby refid="abort__exit_8h_1abf637c452b7d3a3afc3a5afe705a08a3" compoundref="abort__exit_8c" startline="327" endline="362">_CleanUpMSL</referencedby>
+        <referencedby refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" compoundref="abort__exit_8c" startline="204" endline="254">_libc_exit_</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/><sp/>global_destructor_chain.c<sp/><sp/><sp/>-<sp/><sp/><sp/>global<sp/>destruction<sp/>support<sp/>for<sp/>CodeWarriorC/C++<sp/>(PowerPC)</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>Copyright<sp/>ゥ<sp/>1995-1997<sp/>Metrowerks,<sp/>Inc.<sp/>All<sp/>Rights<sp/>Reserved.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/>THEORY<sp/>OF<sp/>OPERATION</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/>When<sp/>the<sp/>compiler<sp/>generates<sp/>code<sp/>to<sp/>call<sp/>initializers<sp/>for<sp/>global<sp/>variables<sp/>and</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/>nonlocal<sp/>static<sp/>variables,<sp/>it<sp/>calls<sp/>the<sp/>function<sp/>__register_global_object()<sp/>to</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>register<sp/>the<sp/>constructed<sp/>object<sp/>for<sp/>destruction.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>When<sp/>the<sp/>program<sp/>exits,<sp/>it<sp/>calls<sp/>__destroy_global_chain()<sp/>to<sp/>call<sp/>destructors</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>for<sp/>the<sp/>registered<sp/>objects,<sp/>in<sp/>the<sp/>reverse<sp/>order<sp/>of<sp/>their<sp/>construction.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/>For<sp/>most<sp/>applications,<sp/>there<sp/>is<sp/>a<sp/>single<sp/>global<sp/>destructor<sp/>chain<sp/>for<sp/>the</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/>entire<sp/>program,<sp/>even<sp/>if<sp/>the<sp/>program<sp/>is<sp/>composed<sp/>of<sp/>multiple<sp/>fragments<sp/>(shared<sp/>libs)</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/>This<sp/>is<sp/>necessary<sp/>to<sp/>support<sp/>the<sp/>proper<sp/>program<sp/>termination<sp/>sequence,<sp/>wherein</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/>all<sp/>destructors<sp/>must<sp/>be<sp/>called<sp/>before<sp/>e.g.<sp/>closing<sp/>open<sp/>files<sp/>and<sp/>cleaning<sp/>up</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/>the<sp/>console<sp/>window.</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/>&quot;Drop-ins&quot;<sp/>which<sp/>may<sp/>load<sp/>and<sp/>unload<sp/>as<sp/>a<sp/>program<sp/>is<sp/>running<sp/>should<sp/>each<sp/>have</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/><sp/>their<sp/>own<sp/>global<sp/>destructor<sp/>chain<sp/>which<sp/>is<sp/>created<sp/>when<sp/>the<sp/>drop-in<sp/>is<sp/>loaded</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/>and<sp/>destroyed<sp/>when<sp/>the<sp/>drop-in<sp/>is<sp/>unloaded.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_m_w_c_plus_lib_8h" kindref="compound">MWCPlusLib.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_n_m_w_exception_8h" kindref="compound">NMWException.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>public<sp/>data<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="_n_m_w_exception_8h_1adcda40838abcde863d67edde5acb6767" refkind="member"><highlight class="normal"><ref refid="struct_destructor_chain" kindref="compound">DestructorChain</ref><sp/>*<ref refid="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" kindref="member">__global_destructor_chain</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Purpose..:<sp/><sp/>Register<sp/>a<sp/>global<sp/>object<sp/>for<sp/>later<sp/>destruction<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>global<sp/>object<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>global<sp/>registration<sp/>structure<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>global<sp/>object<sp/>(pass<sp/>thru)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="_n_m_w_exception_8h_1a939dd693a6cb4f7418d805bba4ec26e7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="global__destructor__chain_8c_1a939dd693a6cb4f7418d805bba4ec26e7" kindref="member">__register_global_object</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">,</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*destructor,</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*regmem)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>((<ref refid="struct_destructor_chain" kindref="compound">DestructorChain</ref><sp/>*)regmem)-&gt;<ref refid="struct_destructor_chain_1a766d473a707bd7b0f3d2c3258238a9b6" kindref="member">next</ref>=<ref refid="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" kindref="member">__global_destructor_chain</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>((<ref refid="struct_destructor_chain" kindref="compound">DestructorChain</ref><sp/>*)regmem)-&gt;<ref refid="struct_destructor_chain_1a80660a2505445d58ad4e561fdd543c5f" kindref="member">destructor</ref>=destructor;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>((<ref refid="struct_destructor_chain" kindref="compound">DestructorChain</ref><sp/>*)regmem)-&gt;object=object;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" kindref="member">__global_destructor_chain</ref>=(<ref refid="struct_destructor_chain" kindref="compound">DestructorChain</ref><sp/>*)regmem;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>object;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Purpose..:<sp/>Destroy<sp/>all<sp/>constructed<sp/>global<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input....:<sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Return...:<sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="abort__exit_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="global__destructor__chain_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" kindref="member">__destroy_global_chain</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_destructor_chain" kindref="compound">DestructorChain</ref><sp/>*gdc;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">((gdc=<ref refid="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" kindref="member">__global_destructor_chain</ref>)!=0L)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" kindref="member">__global_destructor_chain</ref>=gdc-&gt;<ref refid="struct_destructor_chain_1a766d473a707bd7b0f3d2c3258238a9b6" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_m_w_c_plus_lib_8h_1ae4104a73d99126d2aa8f0d534292c6bd" kindref="member">DTORCALL_COMPLETE</ref>(gdc-&gt;<ref refid="struct_destructor_chain_1a80660a2505445d58ad4e561fdd543c5f" kindref="member">destructor</ref>,gdc-&gt;<ref refid="struct_destructor_chain_1add7d77c8737fc1ae476cadf9a3030131" kindref="member">object</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__MWERKS__<sp/>&amp;&amp;<sp/>__PPC_EABI__<sp/>&amp;&amp;<sp/>__dest_os!=__eppc_vxworks</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><ref refid="dolphin__trk_8c_1abc93178f7083946e434dde3acc6ed52d" kindref="member">__declspec</ref>(section<sp/></highlight><highlight class="stringliteral">&quot;.dtors&quot;</highlight><highlight class="normal">)<sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>__destroy_global_chain_reference<sp/>=<sp/><ref refid="global__destructor__chain_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" kindref="member">__destroy_global_chain</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c"/>
+  </compounddef>
+</doxygen>

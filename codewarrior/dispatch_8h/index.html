@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dispatch.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dispatchh">File dispatch.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_25028620cc1a8a9857c414f885e69890/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_ecf524e1d45118e058413ae4d34b2285/"><strong>Priv</strong></a> <strong>&gt;</strong> <a href="../dir_ce9d0fbd51586ee7cfe465fa88acc648/"><strong>Portable</strong></a> <strong>&gt;</strong> <a href="./"><strong>dispatch.h</strong></a></p>
+<p><a href="../dispatch_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include "dolphin/types.h"</code></li>
+<li><code>#include "trk.h"</code></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-trkbuffer"><strong>TRKBuffer</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">BOOL</td>
+<td style="text-align: left;"><a href="#function-trkdispatchmessage"><strong>TRKDispatchMessage</strong></a> (<a href="../struct_t_r_k_buffer/"><strong>TRKBuffer</strong></a> * buffer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../trk_8h/#typedef-dserror"><strong>DSError</strong></a></td>
+<td style="text-align: left;"><a href="#function-trkinitializedispatcher"><strong>TRKInitializeDispatcher</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_connect"><strong>TRK_DISPATCH_CMD_CONNECT</strong></a>  <code>1  /\* Connect to the console \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_continue"><strong>TRK_DISPATCH_CMD_CONTINUE</strong></a>  <code>24 /\* Continue debugging \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_disconnect"><strong>TRK_DISPATCH_CMD_DISCONNECT</strong></a>  <code>2  /\* Disconnect from the console \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_getsupportmask"><strong>TRK_DISPATCH_CMD_GETSUPPORTMASK</strong></a>  <code>5  /\* Get Support Mask \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_getversion"><strong>TRK_DISPATCH_CMD_GETVERSION</strong></a>  <code>4  /\* Get debugger version \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_override"><strong>TRK_DISPATCH_CMD_OVERRIDE</strong></a>  <code>7  /\* Override? \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_readmem"><strong>TRK_DISPATCH_CMD_READMEM</strong></a>  <code>16 /\* Reading from memory \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_readregs"><strong>TRK_DISPATCH_CMD_READREGS</strong></a>  <code>18 /\* Read a register value \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_reset"><strong>TRK_DISPATCH_CMD_RESET</strong></a>  <code>3  /\* Reset the debugger \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_setoption"><strong>TRK_DISPATCH_CMD_SETOPTION</strong></a>  <code>23 /\* Set an option? \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_step"><strong>TRK_DISPATCH_CMD_STEP</strong></a>  <code>25 /\* Step through an instruction \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_stop"><strong>TRK_DISPATCH_CMD_STOP</strong></a>  <code>26 /\* Stop the debugger \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_writemem"><strong>TRK_DISPATCH_CMD_WRITEMEM</strong></a>  <code>17 /\* Writing to memory \*/</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-trk_dispatch_cmd_writeregs"><strong>TRK_DISPATCH_CMD_WRITEREGS</strong></a>  <code>19 /\* Set a register \*/</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-trkbuffer">typedef TRKBuffer</h3>
+<pre><code class="language-C++">typedef struct TRKBuffer TRKBuffer;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-trkdispatchmessage">function TRKDispatchMessage</h3>
+<pre><code class="language-C++">BOOL TRKDispatchMessage (
+    TRKBuffer * buffer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-trkinitializedispatcher">function TRKInitializeDispatcher</h3>
+<pre><code class="language-C++">DSError TRKInitializeDispatcher () 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-trk_dispatch_cmd_connect">define TRK_DISPATCH_CMD_CONNECT</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_CONNECT `1  /* Connect to the console */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_continue">define TRK_DISPATCH_CMD_CONTINUE</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_CONTINUE `24 /* Continue debugging */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_disconnect">define TRK_DISPATCH_CMD_DISCONNECT</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_DISCONNECT `2  /* Disconnect from the console */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_getsupportmask">define TRK_DISPATCH_CMD_GETSUPPORTMASK</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_GETSUPPORTMASK `5  /* Get Support Mask */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_getversion">define TRK_DISPATCH_CMD_GETVERSION</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_GETVERSION `4  /* Get debugger version */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_override">define TRK_DISPATCH_CMD_OVERRIDE</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_OVERRIDE `7  /* Override? */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_readmem">define TRK_DISPATCH_CMD_READMEM</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_READMEM `16 /* Reading from memory */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_readregs">define TRK_DISPATCH_CMD_READREGS</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_READREGS `18 /* Read a register value */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_reset">define TRK_DISPATCH_CMD_RESET</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_RESET `3  /* Reset the debugger */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_setoption">define TRK_DISPATCH_CMD_SETOPTION</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_SETOPTION `23 /* Set an option? */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_step">define TRK_DISPATCH_CMD_STEP</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_STEP `25 /* Step through an instruction */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_stop">define TRK_DISPATCH_CMD_STOP</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_STOP `26 /* Stop the debugger */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_writemem">define TRK_DISPATCH_CMD_WRITEMEM</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_WRITEMEM `17 /* Writing to memory */`
+</code></pre>
+<hr>
+
+<h3 id="define-trk_dispatch_cmd_writeregs">define TRK_DISPATCH_CMD_WRITEREGS</h3>
+<pre><code class="language-C++">#define TRK_DISPATCH_CMD_WRITEREGS `19 /* Set a register */`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/dispatch.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

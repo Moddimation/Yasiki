@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_c_plus_lib_p_p_c_8cp" kind="file" language="C++">
+    <compoundname>CPlusLibPPC.cp</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>CPlusLibPPC.cp<sp/><sp/><sp/><sp/><sp/><sp/>-<sp/><sp/><sp/>C++<sp/>Runtime<sp/>Support<sp/>Routines<sp/>for<sp/>Metrowerks<sp/>C++<sp/>(PowerPC)</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>Copyright<sp/>1993-1997<sp/>Metrowerks,<sp/>Inc.<sp/>All<sp/>Rights<sp/>Reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;MWCPlusLib.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>__copy<sp/><sp/><sp/><sp/><sp/><sp/>-<sp/><sp/><sp/>copy<sp/>&apos;size&apos;<sp/>bytes<sp/>data<sp/>from<sp/>&apos;from&apos;<sp/>to<sp/>&apos;to&apos;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>We<sp/>return<sp/>the<sp/>pointer<sp/>to<sp/>the<sp/>destination.<sp/>If<sp/>it<sp/>is<sp/>0,<sp/>no<sp/>copy<sp/>is<sp/>performed.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>*__copy(char<sp/>*to,<sp/>char<sp/>*from,<sp/>size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/>*p;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(to<sp/>&amp;&amp;<sp/>size)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p<sp/>=<sp/>to;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>do<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p<sp/>=<sp/>*from;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++p;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++from;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>--size;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>while<sp/>(size);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return(to);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>__init_arr<sp/><sp/>-<sp/><sp/><sp/>initialize<sp/>an<sp/>array<sp/>of<sp/>objects</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>Given<sp/>a<sp/>pointer<sp/>to<sp/>space<sp/>for<sp/>an<sp/>array<sp/>of<sp/>&apos;nobjects&apos;<sp/>elements<sp/>of<sp/>size<sp/>&apos;objectsize&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>and<sp/>space<sp/>to<sp/>store<sp/>&apos;nobjects&apos;<sp/>and<sp/>&apos;objectsize&apos;<sp/>(for<sp/>later<sp/>deletion),<sp/>we<sp/>call</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>the<sp/>given<sp/>constructor<sp/>for<sp/>each<sp/>object<sp/>in<sp/>the<sp/>array.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">void<sp/>*__init_arr(void<sp/>*memptr,<sp/>ConstructorDestructor<sp/>constructor,<sp/>size_t<sp/>objectsize,<sp/>size_t<sp/>nobjects)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/>*p;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>((p<sp/>=<sp/>(char<sp/>*)<sp/>memptr)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((size_t<sp/>*)<sp/>p)[0]<sp/>=<sp/>objectsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((size_t<sp/>*)<sp/>p)[1]<sp/>=<sp/>nobjects;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p<sp/>+=<sp/>2<sp/>*<sp/>sizeof(size_t);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(constructor)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(;<sp/>nobjects--;<sp/>p<sp/>+=<sp/>objectsize)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTORCALL_COMPLETE(constructor,<sp/>p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return(memptr);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>__new_arr<sp/><sp/><sp/>-<sp/><sp/><sp/>allocate<sp/>and<sp/>construct<sp/>an<sp/>array<sp/>of<sp/>objects</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>We<sp/>allocate<sp/>space<sp/>for<sp/>an<sp/>array<sp/>of<sp/>&apos;nobjects&apos;<sp/>elements<sp/>of<sp/>size<sp/>&apos;objectsize&apos;,<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>space<sp/>to<sp/>store<sp/>&apos;nobjects&apos;<sp/>and<sp/>&apos;objectsize&apos;<sp/>(for<sp/>later<sp/>deletion).<sp/>Then<sp/>we<sp/>call</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>the<sp/>given<sp/>constructor<sp/>for<sp/>each<sp/>object<sp/>in<sp/>the<sp/>array.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">void<sp/>*__new_arr(ConstructorDestructor<sp/>constructor,<sp/>size_t<sp/>objectsize,<sp/>size_t<sp/>nobjects)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/>*memptr,<sp/>*p;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>((memptr<sp/>=<sp/>(char<sp/>*)<sp/>::operator<sp/>new(2*sizeof(size_t)<sp/>+<sp/>nobjects*objectsize))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memptr<sp/>+=<sp/>2*sizeof(size_t);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((size_t<sp/>*)<sp/>memptr)[-2]<sp/>=<sp/>objectsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((size_t<sp/>*)<sp/>memptr)[-1]<sp/>=<sp/>nobjects;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(constructor)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(p<sp/>=<sp/>memptr;<sp/>nobjects--;<sp/>p<sp/>+=<sp/>objectsize)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTORCALL_COMPLETE(constructor,<sp/>p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return(memptr);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>__del_arr<sp/><sp/><sp/>-<sp/><sp/><sp/>destroy<sp/>and<sp/>deallocate<sp/>an<sp/>array<sp/>of<sp/>objects</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>We<sp/>use<sp/>the<sp/>previously<sp/>saved<sp/>&apos;nobjects&apos;<sp/>and<sp/>&apos;objectsize&apos;<sp/>values<sp/>to<sp/>call<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>destructor<sp/>for<sp/>each<sp/>element<sp/>of<sp/>the<sp/>array.<sp/>Then<sp/>we<sp/>delete<sp/>the<sp/>space<sp/>allocated</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>to<sp/>it.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">void<sp/>__del_arr(void<sp/>*memptr,<sp/>ConstructorDestructor<sp/>destructor)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/>nobjects,<sp/>objectsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/>*p;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(memptr)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(destructor)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objectsize<sp/>=<sp/>((size_t<sp/>*)<sp/>memptr)[-2];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nobjects<sp/>=<sp/>((size_t<sp/>*)<sp/>memptr)[-1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(p<sp/>=<sp/>(char<sp/>*)<sp/>memptr+objectsize*nobjects;<sp/>nobjects--;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p<sp/>-=<sp/>objectsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DTORCALL_COMPLETE(destructor,<sp/>p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>::delete<sp/>(&amp;((size_t<sp/>*)<sp/>memptr)[-2]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>__dc_arr<sp/><sp/><sp/><sp/>-<sp/><sp/><sp/>construct<sp/>or<sp/>destroy<sp/>a<sp/>statically<sp/>allocated<sp/>array<sp/>of<sp/>objects</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>We<sp/>call<sp/>the<sp/>given<sp/>constructor<sp/>or<sp/>destructor<sp/>for<sp/>each<sp/>of<sp/>&apos;nobjects&apos;<sp/>elements<sp/>of<sp/>size</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>&apos;objectsize&apos;<sp/>in<sp/>a<sp/>statically<sp/>allocated<sp/>array.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">void<sp/>__dc_arr(void<sp/>*memptr,<sp/>ConstructorDestructor<sp/>constructordestructor,<sp/>short<sp/>objectsize,<sp/>short<sp/>nobjects)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/>*p;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>DTORCALL_COMPLETE<sp/>isn&apos;t<sp/>quite<sp/>correct<sp/>for<sp/>constructions,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>but<sp/>this<sp/>function<sp/>is<sp/>not<sp/>used<sp/>by<sp/>the<sp/>current<sp/>compilers.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(p<sp/>=<sp/>(char<sp/>*)<sp/>memptr;<sp/>nobjects--;<sp/>p<sp/>+=<sp/>objectsize)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DTORCALL_COMPLETE(constructordestructor,<sp/>p);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/CPlusLibPPC.cp"/>
+  </compounddef>
+</doxygen>

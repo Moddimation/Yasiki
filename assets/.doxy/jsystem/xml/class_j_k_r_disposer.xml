@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_j_k_r_disposer" kind="class" language="C++" prot="public">
+    <compoundname>JKRDisposer</compoundname>
+    <derivedcompoundref refid="class_j_k_r_heap" prot="public" virt="non-virtual">JKRHeap</derivedcompoundref>
+    <derivedcompoundref refid="class_j_k_r_thread" prot="public" virt="non-virtual">JKRThread</derivedcompoundref>
+    <includes refid="_j_k_r_disposer_8h" local="no">JKRDisposer.h</includes>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_j_k_r_disposer_1a997b9b8ac43316f16c61cab7bf8621e4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class JKRHeap</definition>
+        <argsstring></argsstring>
+        <name>JKRHeap</name>
+        <qualifiedname>JKRDisposer::JKRHeap</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRDisposer.h" line="10" column="18" bodyfile="decomp/JSystem/System/JKernel/include/JKRDisposer.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap* JKRDisposer::pHeapObj</definition>
+        <argsstring></argsstring>
+        <name>pHeapObj</name>
+        <qualifiedname>JKRDisposer::pHeapObj</qualifiedname>
+        <briefdescription>
+<para>0x00 // Pointer to inheriting heap (?) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRDisposer.h" line="16" column="25" bodyfile="decomp/JSystem/System/JKernel/include/JKRDisposer.h" bodystart="16" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_disposer_1ac5a1bf5e5a976af8c8f0114452590c22" compoundref="_j_k_r_disposer_8cpp" startline="9" endline="17">JKRDisposer</referencedby>
+        <referencedby refid="class_j_k_r_disposer_1ace9ccd5e957de58c466c6a4e986721f0" compoundref="_j_k_r_disposer_8cpp" startline="19" endline="25">~JKRDisposer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_disposer_1a159ab203c05ca292bf3067cef1c20e1c" prot="protected" static="no" mutable="no">
+        <type><ref refid="struct_j_s_u_link" kindref="compound">JSULink</ref>&lt; <ref refid="class_j_k_r_disposer" kindref="compound">JKRDisposer</ref> &gt;</type>
+        <definition>JSULink&lt;JKRDisposer&gt; JKRDisposer::mHeapLink</definition>
+        <argsstring></argsstring>
+        <name>mHeapLink</name>
+        <qualifiedname>JKRDisposer::mHeapLink</qualifiedname>
+        <briefdescription>
+<para>0x04 // Link to disposer, for heap (?) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRDisposer.h" line="17" column="13" bodyfile="decomp/JSystem/System/JKernel/include/JKRDisposer.h" bodystart="17" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_heap_1aacd984b702e5fc47861c7f903f941826" compoundref="_j_k_r_heap_8h" startline="45" endline="48">JKRHeap::appendDisposer</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a8172bbbcfd4cd8b47f0ce975a6ee499b" compoundref="_j_k_r_heap_8h" startline="51" endline="54">JKRHeap::removeDisposer</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_j_k_r_disposer_1ac5a1bf5e5a976af8c8f0114452590c22" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_j_u_t_types_8h_1a29d583e02d7d25852fb356110c1a0bf7" kindref="member">constructor</ref></type>
+        <definition>JKRDisposer::JKRDisposer</definition>
+        <argsstring>()</argsstring>
+        <name>JKRDisposer</name>
+        <qualifiedname>JKRDisposer::JKRDisposer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRDisposer.h" line="13" column="17" bodyfile="decomp/JSystem/System/JKernel/src/JKRDisposer.cpp" bodystart="9" bodyend="17"/>
+        <references refid="class_j_k_r_heap_1aacd984b702e5fc47861c7f903f941826" compoundref="_j_k_r_heap_8h" startline="45" endline="48">JKRHeap::appendDisposer</references>
+        <references refid="class_j_k_r_heap_1a77de0a45ee9b249a2b4b9f1e5cd5acfc" compoundref="_j_k_r_heap_8cpp" startline="143" endline="151">JKRHeap::findFromRoot</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="13">Nil</references>
+        <references refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" compoundref="_j_k_r_disposer_8h" startline="16">pHeapObj</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_disposer_1ace9ccd5e957de58c466c6a4e986721f0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_j_u_t_types_8h_1a9e47057ec8b35a4c28c50454143074d3" kindref="member">destructor</ref></type>
+        <definition>JKRDisposer::~JKRDisposer</definition>
+        <argsstring>()</argsstring>
+        <name>~JKRDisposer</name>
+        <qualifiedname>JKRDisposer::~JKRDisposer</qualifiedname>
+        <briefdescription>
+<para>0x08v </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JKernel/include/JKRDisposer.h" line="14" column="16" bodyfile="decomp/JSystem/System/JKernel/src/JKRDisposer.cpp" bodystart="19" bodyend="25"/>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="13">Nil</references>
+        <references refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" compoundref="_j_k_r_disposer_8h" startline="16">pHeapObj</references>
+        <references refid="class_j_k_r_heap_1a8172bbbcfd4cd8b47f0ce975a6ee499b" compoundref="_j_k_r_heap_8h" startline="51" endline="54">JKRHeap::removeDisposer</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>JKRDisposer</label>
+        <link refid="class_j_k_r_disposer"/>
+      </node>
+      <node id="3">
+        <label>JKRExpHeap</label>
+        <link refid="class_j_k_r_exp_heap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>JKRHeap</label>
+        <link refid="class_j_k_r_heap"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JKRSolidHeap</label>
+        <link refid="class_j_k_r_solid_heap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>JKRThread</label>
+        <link refid="class_j_k_r_thread"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>JKRDisposer</label>
+        <link refid="class_j_k_r_disposer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pHeapObj</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>mHeapLink</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>JKRHeap</label>
+        <link refid="class_j_k_r_heap"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sCurrentHeap</edgelabel>
+          <edgelabel>sRootHeap</edgelabel>
+          <edgelabel>sSystemHeap</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mHeapTree</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>mDisposerList</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>JSULink&lt; JKRDisposer &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; JKRDisposer &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>JSUList&lt; JKRDisposer &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="template-instance">
+          <edgelabel>&lt; JKRDisposer &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>JSUPtrLink</label>
+        <link refid="struct_j_s_u_ptr_link"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>pSupervisor</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>pNext</edgelabel>
+          <edgelabel>pPrev</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>JSUPtrList</label>
+        <link refid="class_j_s_u_ptr_list"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>pFirst</edgelabel>
+          <edgelabel>pLast</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>JSUTree&lt; T &gt;</label>
+        <link refid="class_j_s_u_tree"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>JSUTree&lt; JKRHeap &gt;</label>
+        <link refid="class_j_s_u_tree"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="template-instance">
+          <edgelabel>&lt; JKRHeap &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/JSystem/System/JKernel/include/JKRDisposer.h" line="8" column="1" bodyfile="decomp/JSystem/System/JKernel/include/JKRDisposer.h" bodystart="9" bodyend="18"/>
+    <listofallmembers>
+      <member refid="class_j_k_r_disposer_1ac5a1bf5e5a976af8c8f0114452590c22" prot="protected" virt="non-virtual"><scope>JKRDisposer</scope><name>JKRDisposer</name></member>
+      <member refid="class_j_k_r_disposer_1a997b9b8ac43316f16c61cab7bf8621e4" prot="private" virt="non-virtual"><scope>JKRDisposer</scope><name>JKRHeap</name></member>
+      <member refid="class_j_k_r_disposer_1a159ab203c05ca292bf3067cef1c20e1c" prot="protected" virt="non-virtual"><scope>JKRDisposer</scope><name>mHeapLink</name></member>
+      <member refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" prot="protected" virt="non-virtual"><scope>JKRDisposer</scope><name>pHeapObj</name></member>
+      <member refid="class_j_k_r_disposer_1ace9ccd5e957de58c466c6a4e986721f0" prot="protected" virt="non-virtual"><scope>JKRDisposer</scope><name>~JKRDisposer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

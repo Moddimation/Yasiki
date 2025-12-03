@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File cwctype - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cwctype">File cwctype</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_27c31b18688c2d3b7fe1d239b44a1620/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../cwctype/"><strong>cwctype</strong></a></p>
+<p><a href="../cwctype/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/07/30 00:42:25 $
+ *  $Revision: 1.9.4.1 $
+ *  $NoKeywords: $
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  cwctype
+ */
+
+#ifndef __cwctype
+#define __cwctype
+#ifndef __NO_WIDE_CHAR                          /* mm 981020 */
+
+#include &lt;ansi_parms.h&gt;
+#include &lt;eof.h&gt;                                /* vss 980817 */
+#include &lt;wchar_t.h&gt;
+/* #include &lt;cstdio&gt;        */ /* vss 980817 */ /* mm 970918*/
+/*#include &lt;cstddef&gt;*/                          /* mm 990217 */
+/* #include &lt;wchar.h&gt; */
+
+#ifndef RC_INVOKED
+
+#pragma options align = native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+#pragma import on
+#endif
+
+#ifdef __cplusplus
+#ifdef _MSL_USING_NAMESPACE
+namespace std
+{
+#endif
+extern &quot;C&quot;
+{
+#endif
+
+#ifndef _WCTYPE_T_DEFINED
+#define _WCTYPE_T_DEFINED
+
+typedef wchar_t wint_t;
+typedef wchar_t wctype_t;
+typedef int     mbstate_t; /* mm 980627 */
+typedef wchar_t Wint_t;    /* mm 980627 */
+
+#endif                     /* ifndef _WCTYPE_T_DEFINED */
+
+#ifndef WEOF
+#define WEOF (wint_t) (0xFFFF)
+#endif                     /* ifndef WEOF */
+
+extern _MSL_DLLDATA wchar_t __wctype_map[];
+extern _MSL_DLLDATA wchar_t __wlower_map[];
+extern _MSL_DLLDATA wchar_t __wupper_map[];
+
+#define __wcontrol_char 0x01
+#define __wmotion_char  0x02
+#define __wspace_char   0x04
+#define __wpunctuation  0x08
+#define __wdigit        0x10
+#define __whex_digit    0x20
+#define __wlower_case   0x40
+#define __wupper_case   0x80
+
+#define __wletter       (__wlower_case | __wupper_case)
+#define __walphanumeric (__wletter | __wdigit)
+#define __wgraphic      (__walphanumeric | __wpunctuation)
+#define __wprintable    (__wgraphic | __wspace_char)
+#define __wwhitespace   (__wmotion_char | __wspace_char)
+#define __wcontrol      (__wmotion_char | __wcontrol_char)
+#define __wz_fill(c)    ((wchar_t)(wchar_t)(c))
+#define __WCMAP_SIZE    256
+
+#ifdef __cplusplus
+} // extern &quot;C&quot;  // hh 981221
+
+/* begin mm 980626 */
+inline int
+iswalnum (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __walphanumeric) : 0);
+}
+
+inline int
+iswalpha (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wletter) : 0);
+}
+
+inline int
+iswcntrl (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wcontrol) : 0);
+}
+
+inline int
+iswdigit (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wdigit) : 0);
+}
+
+inline int
+iswgraph (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wgraphic) : 0);
+}
+
+inline int
+iswlower (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wlower_case) : 0);
+}
+
+inline int
+iswprint (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wprintable) : 0);
+}
+
+inline int
+iswpunct (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wpunctuation) : 0);
+}
+
+inline int
+iswspace (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wwhitespace) : 0);
+}
+
+inline int
+iswupper (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wupper_case) : 0);
+}
+
+inline int
+iswxdigit (wint_t c)
+{
+    return ((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __whex_digit) : 0);
+}
+
+/* begin mm 970918*/
+inline wint_t
+towlower (wint_t c)
+{
+    return ((c &gt;= __WCMAP_SIZE) ? c : ((wint_t)__wlower_map[__wz_fill (c)]));
+} /* mm 980205 */
+
+inline wint_t
+towupper (wint_t c)
+{
+    return ((c &gt;= __WCMAP_SIZE) ? c : ((wint_t)__wupper_map[__wz_fill (c)]));
+} /* mm 980205 */
+
+/* end mm 970918*/
+inline int
+wctob (wint_t c)
+{
+    return ((c &amp; 0xFF00) ? EOF : (int)c);
+}                                             /* mm 980625 */
+
+extern &quot;C&quot;
+{                                             // hh 981221
+
+#else                                         /* !__cplusplus */
+
+int     iswalnum (wint_t);
+int     iswalpha (wint_t);
+int     iswcntrl (wint_t);
+int     iswdigit (wint_t);
+int     iswgraph (wint_t);
+int     iswlower (wint_t);
+int     iswprint (wint_t);
+int     iswpunct (wint_t);
+int     iswspace (wint_t);
+int     iswupper (wint_t);
+int     iswxdigit (wint_t);
+wchar_t towlower (wint_t);
+wchar_t towupper (wint_t);
+int     wctob (wint_t); /* mm 980625 */
+
+#define iswalnum(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __walphanumeric) : 0)))
+#define iswalpha(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wletter) : 0)))
+#define iswcntrl(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wcontrol) : 0)))
+#define iswdigit(c) ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wdigit) : 0)))
+#define iswgraph(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wgraphic) : 0)))
+#define iswlower(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wlower_case) : 0)))
+#define iswprint(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wprintable) : 0)))
+#define iswpunct(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wpunctuation) : 0)))
+#define iswspace(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wwhitespace) : 0)))
+#define iswupper(c)                                                                            \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __wupper_case) : 0)))
+#define iswxdigit(c)                                                                           \
+    ((int)(((c &lt; __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] &amp; __whex_digit) : 0)))
+/* end mm 980626 */
+
+#endif /* __cplusplus */                      /* mm 990401 */
+
+wctype_t wctype (const char* property);       /* mm 980629 */
+int      iswctype (wint_t wc, wctype_t desc); /* mm 980629 */
+
+#ifdef __cplusplus
+}
+#ifdef _MSL_USING_NAMESPACE
+}
+#endif
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+#pragma import reset
+#endif
+#pragma options align = reset
+
+#endif                                        /* RC_INVOKED */
+
+#endif /*#ifndef __NO_WIDE_CHAR     */        /* mm 981020 */
+
+#endif                                        /* __cwctype__ */
+
+/*  Change Record
+ *  980121  JCM  First code release.
+ *  rjk 980313 added _MSL_DLLDATA
+ *  mm 980625  Added declarations for wctob.
+ *  mm 980626  Considerable rewrite of the wc classification functions, towlower and towupper to
+ *             match C9x
+ *  mm 980627  Inserted missing typedefs for mbstate_t and Wint_t
+ *  mm 980629  Added prototypes for wctype() and iswctype().
+ * vss 980817  Added eof.h to get EOF defined, removed &lt;cstdio&gt; because of circular dependency
+ *  mm 981020  Added #ifndef __NO_WIDE_CHAR wrappers
+ *  hh 981221  Made inline methods extern &quot;C++&quot;
+ *  mm 990217  Replaced include of cstddef with one of  wchar_t.h
+ *  mm 990401   Moved #endif to include defines of iswalnum()... inside !__cplusplus
+ */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

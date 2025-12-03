@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File ios - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-ios">File ios</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../ios/"><strong>ios</strong></a></p>
+<p><a href="../ios/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:58:50 $ 
+ *  $Revision: 1.9.6.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  ios
+ **/
+
+#ifndef _IOS
+#define _IOS
+
+#include &lt;mslconfig&gt;
+
+#ifndef _MSL_NO_IO
+
+#include &lt;cstdlib&gt;
+#include &lt;iosfwd&gt;
+#include &lt;exception&gt;
+#include &lt;MSLstring.h&gt;
+#include &lt;utility&gt;
+#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;locale&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+// typedef  OFF_T   streamoff;  in &lt;iosfwd&gt; so that &lt;string&gt; can see it
+typedef long streamsize;
+
+// fpos
+
+template &lt;class stateT&gt;
+class fpos
+{
+public:
+    fpos(streamoff o);
+    operator streamoff() const;
+    fpos&amp; operator += (streamoff o);
+    fpos&amp; operator -= (streamoff o);
+    fpos operator + (streamoff o) const;
+    fpos operator - (streamoff o) const;
+    // _lib.fpos.members_ Members
+    stateT state() const;
+    void state(stateT s);
+private:
+    streamoff offset_;
+    stateT st_;
+};
+
+template &lt;class stateT&gt;
+inline
+fpos&lt;stateT&gt;::fpos(streamoff o)
+    : offset_(o),
+      st_(stateT())
+{
+}
+
+template &lt;class stateT&gt;
+inline
+fpos&lt;stateT&gt;::operator streamoff() const
+{
+    return offset_;
+}
+
+template &lt;class stateT&gt;
+inline
+fpos&lt;stateT&gt;&amp;
+fpos&lt;stateT&gt;::operator += (streamoff o)
+{
+    offset_ += o;
+    return *this;
+}
+
+template &lt;class stateT&gt;
+inline
+fpos&lt;stateT&gt;&amp;
+fpos&lt;stateT&gt;::operator -= (streamoff o)
+{
+    offset_ -= o;
+    return *this;
+}
+
+template &lt;class stateT&gt;
+inline
+fpos&lt;stateT&gt;
+fpos&lt;stateT&gt;::operator + (streamoff o) const
+{
+    return fpos&lt;stateT&gt;(offset_ + o);
+}
+
+template &lt;class stateT&gt;
+inline
+fpos&lt;stateT&gt;
+fpos&lt;stateT&gt;::operator - (streamoff o) const
+{
+    return fpos&lt;stateT&gt;(offset_ - o);
+}
+
+template &lt;class stateT&gt;
+inline
+stateT
+fpos&lt;stateT&gt;::state() const
+{
+    return st_;
+}
+
+template &lt;class stateT&gt;
+inline
+void
+fpos&lt;stateT&gt;::state(stateT s)
+{
+    st_ = s;
+}
+
+template &lt;class stateT&gt;
+inline
+streamoff
+operator - (const fpos&lt;stateT&gt;&amp; lhs, const fpos&lt;stateT&gt;&amp; rhs)
+{
+    return streamoff(lhs) - streamoff(rhs);
+}
+
+// ios_base
+
+class ios_base
+{
+public:
+    class failure;
+
+    enum fmtflags
+    {
+        boolalpha   = 1 &lt;&lt;  0,
+        dec         = 1 &lt;&lt;  1,
+        fixed       = 1 &lt;&lt;  2,
+        hex         = 1 &lt;&lt;  3,
+        internal    = 1 &lt;&lt;  4,
+        left        = 1 &lt;&lt;  5,
+        oct         = 1 &lt;&lt;  6,
+        right       = 1 &lt;&lt;  7,
+        scientific  = 1 &lt;&lt;  8,
+        showbase    = 1 &lt;&lt;  9,
+        showpoint   = 1 &lt;&lt; 10,
+        showpos     = 1 &lt;&lt; 11,
+        skipws      = 1 &lt;&lt; 12,
+        unitbuf     = 1 &lt;&lt; 13,
+        uppercase   = 1 &lt;&lt; 14,
+        adjustfield = left | right | internal,
+        basefield   = dec | oct | hex,
+        floatfield  = scientific | fixed
+    };
+
+    enum iostate
+    {
+        goodbit = 0,
+        badbit  = 1 &lt;&lt;  0,
+        eofbit  = 1 &lt;&lt;  1,
+        failbit = 1 &lt;&lt;  2
+    };
+
+    enum openmode
+    {
+        app    = 1 &lt;&lt;  0,
+        ate    = 1 &lt;&lt;  1,
+        binary = 1 &lt;&lt;  2,
+        in     = 1 &lt;&lt;  3,
+        out    = 1 &lt;&lt;  4,
+        trunc  = 1 &lt;&lt;  5
+    };
+
+    enum seekdir
+    {
+        beg = 1 &lt;&lt; 0,
+        cur = 1 &lt;&lt; 1,
+        end = 1 &lt;&lt; 2
+    };
+
+    class Init;
+
+    //  lib.fmtflags.state fmtflags state:
+    fmtflags flags() const;
+    fmtflags flags(fmtflags fmtfl);
+    fmtflags setf(fmtflags fmtfl);
+    fmtflags setf(fmtflags fmtfl, fmtflags mask);
+    void unsetf(fmtflags mask);
+
+    streamsize precision() const;
+    streamsize precision(streamsize prec);
+    streamsize width() const;
+    streamsize width(streamsize wide);
+
+    void* rdbuf() const;
+    void* rdbuf(void* sb);
+
+    bool good() const;
+    bool eof()  const;
+    bool fail() const;
+    bool bad()  const;
+
+    iostate exceptions() const;
+    void exceptions(iostate except);
+
+    operator void*() const;
+    bool operator!() const;
+    iostate rdstate() const;
+    void clear(iostate state = goodbit);
+    void setstate(iostate state);
+
+    //  lib.ios.base.locales locales:
+    locale imbue(const locale&amp; loc);
+    locale getloc() const;
+
+    //  lib.ios.base.storage storage:
+    static int xalloc();
+    long&amp;  iword(int index);
+    void*&amp; pword(int index);
+
+    // copy and assginment
+    ios_base(const ios_base&amp; rhs);
+    ios_base&amp; operator=(const ios_base&amp; rhs);
+
+    //  destructor
+    virtual ~ios_base();
+
+    //  lib.ios.base.callback callbacks;
+    enum event { erase_event, imbue_event, copyfmt_event };
+    typedef void (*event_callback)(event, ios_base&amp;, int index);
+    void register_callback(event_callback fn, int index);
+
+    static bool sync_with_stdio(bool sync = true);
+
+protected:
+    ios_base();
+    void init(void* sb);
+    iostate&amp; state();
+    void do_callbacks(event evnt);
+
+private:
+
+    typedef pair&lt;event_callback, int&gt; event_data;
+
+    static int index_;
+    event_data* cb_vec_;
+    size_t cb_siz_;
+    size_t cb_cap_;
+    long* iarray_;
+    size_t isize_;
+    void** parray_;
+    size_t psize_;
+    locale* loc_;
+    void* rdbuf_;
+    streamsize precision_;
+    streamsize width_;
+    fmtflags fmtflags_;
+    iostate iostate_;
+    iostate exceptions_;
+
+    void copy_ios_base(const ios_base&amp; rhs);
+};
+
+// failure
+
+class ios_base::failure
+    : public exception
+{
+public:
+    explicit failure(const char* msg);
+    explicit failure(const string&amp; msg);
+    virtual const char* what() const _MSL_THROW;
+private:
+    _MSLstring what_;
+};
+
+inline
+ios_base::failure::failure(const char* msg)
+    : what_(msg)
+{
+}
+
+inline
+ios_base::failure::failure(const string&amp; msg)
+    : what_(msg)
+{
+}
+
+inline
+const char*
+ios_base::failure::what() const _MSL_THROW
+{
+    return what_.c_str();
+}
+
+// Init - implemented in iostream.cpp
+
+class ios_base::Init
+{
+public:
+    Init();
+    ~Init();
+private:
+    static int init_cnt_s;
+};
+
+// fmtflags
+
+inline
+ios_base::fmtflags
+operator &amp; (ios_base::fmtflags x, ios_base::fmtflags y)
+{
+    return static_cast&lt;ios_base::fmtflags&gt;(static_cast&lt;int&gt;(x) &amp; static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::fmtflags
+operator | (ios_base::fmtflags x, ios_base::fmtflags y)
+{
+    return static_cast&lt;ios_base::fmtflags&gt;(static_cast&lt;int&gt;(x) | static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::fmtflags
+operator ^ (ios_base::fmtflags x, ios_base::fmtflags y)
+{
+    return static_cast&lt;ios_base::fmtflags&gt;(static_cast&lt;int&gt;(x) ^ static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::fmtflags
+operator ~ (ios_base::fmtflags x)
+{
+    return static_cast&lt;ios_base::fmtflags&gt;(~static_cast&lt;int&gt;(x));
+}
+
+inline
+ios_base::fmtflags&amp;
+operator &amp;= (ios_base::fmtflags&amp; x, ios_base::fmtflags y)
+{
+    return x = x &amp; y;
+}
+
+inline
+ios_base::fmtflags&amp;
+operator |= (ios_base::fmtflags&amp; x, ios_base::fmtflags y)
+{
+    return x = x | y;
+}
+
+inline
+ios_base::fmtflags&amp;
+operator ^= (ios_base::fmtflags&amp; x, ios_base::fmtflags y)
+{
+    return x = x ^ y;
+}
+
+// iostate
+
+inline
+ios_base::iostate
+operator &amp; (ios_base::iostate x, ios_base::iostate y)
+{
+    return static_cast&lt;ios_base::iostate&gt;(static_cast&lt;int&gt;(x) &amp; static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::iostate
+operator | (ios_base::iostate x, ios_base::iostate y)
+{
+    return static_cast&lt;ios_base::iostate&gt;(static_cast&lt;int&gt;(x) | static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::iostate
+operator ^ (ios_base::iostate x, ios_base::iostate y)
+{
+    return static_cast&lt;ios_base::iostate&gt;(static_cast&lt;int&gt;(x) ^ static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::iostate
+operator ~ (ios_base::iostate x)
+{
+    return static_cast&lt;ios_base::iostate&gt;(~static_cast&lt;int&gt;(x));
+}
+
+inline
+ios_base::iostate&amp;
+operator &amp;= (ios_base::iostate&amp; x, ios_base::iostate y)
+{
+    return x = x &amp; y;
+}
+
+inline
+ios_base::iostate&amp;
+operator |= (ios_base::iostate&amp; x, ios_base::iostate y)
+{
+    return x = x | y;
+}
+
+inline
+ios_base::iostate&amp;
+operator ^= (ios_base::iostate&amp; x, ios_base::iostate y)
+{
+    return x = x ^ y;
+}
+
+// openmode
+
+inline
+ios_base::openmode
+operator &amp; (ios_base::openmode x, ios_base::openmode y)
+{
+    return static_cast&lt;ios_base::openmode&gt;(static_cast&lt;int&gt;(x) &amp; static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::openmode
+operator | (ios_base::openmode x, ios_base::openmode y)
+{
+    return static_cast&lt;ios_base::openmode&gt;(static_cast&lt;int&gt;(x) | static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::openmode
+operator ^ (ios_base::openmode x, ios_base::openmode y)
+{
+    return static_cast&lt;ios_base::openmode&gt;(static_cast&lt;int&gt;(x) ^ static_cast&lt;int&gt;(y));
+}
+
+inline
+ios_base::openmode
+operator ~ (ios_base::openmode x)
+{
+    return static_cast&lt;ios_base::openmode&gt;(~static_cast&lt;int&gt;(x));
+}
+
+inline
+ios_base::openmode&amp;
+operator &amp;= (ios_base::openmode&amp; x, ios_base::openmode y)
+{
+    return x = x &amp; y;
+}
+
+inline
+ios_base::openmode&amp;
+operator |= (ios_base::openmode&amp; x, ios_base::openmode y)
+{
+    return x = x | y;
+}
+
+inline
+ios_base::openmode&amp;
+operator ^= (ios_base::openmode&amp; x, ios_base::openmode y)
+{
+    return x = x ^ y;
+}
+
+// ios_base inline Implementation
+
+inline
+ios_base::fmtflags
+ios_base::flags() const
+{
+    return fmtflags_;
+}
+
+inline
+ios_base::fmtflags
+ios_base::flags(fmtflags fmtfl)
+{
+    fmtflags result = fmtflags_;
+    fmtflags_ = fmtfl;
+    return result;
+}
+
+inline
+ios_base::fmtflags
+ios_base::setf(fmtflags fmtfl)
+{
+    fmtflags result = fmtflags_;
+    fmtflags_ |= fmtfl;
+    return result;
+}
+
+inline
+ios_base::fmtflags
+ios_base::setf(fmtflags fmtfl, fmtflags mask)
+{
+    fmtflags result = fmtflags_;
+    fmtflags_ &amp;= ~mask;
+    fmtflags_ |= fmtfl &amp; mask;
+    return result;
+}
+
+inline
+void
+ios_base::unsetf(fmtflags mask)
+{
+    fmtflags_ &amp;= ~mask;
+}
+
+inline
+streamsize
+ios_base::precision() const
+{
+    return precision_;
+}
+
+inline
+streamsize
+ios_base::precision(streamsize prec)
+{
+    streamsize result = precision_;
+    precision_ = prec;
+    return result;
+}
+
+inline
+streamsize
+ios_base::width() const
+{
+    return width_;
+}
+
+inline
+streamsize
+ios_base::width(streamsize wide)
+{
+    streamsize result = width_;
+    width_ = wide;
+    return result;
+}
+
+inline
+void*
+ios_base::rdbuf() const
+{
+    return rdbuf_;
+}
+
+inline
+void
+ios_base::clear(iostate state)
+{
+    iostate_ = state;
+    if (rdbuf_ == 0)
+        iostate_ |= badbit;
+    if (iostate_ &amp; exceptions_)
+    #ifndef _MSL_NO_EXCEPTIONS
+        throw failure(&quot;ios_base failure in clear&quot;);
+    #else
+        __msl_error(&quot;ios_base failure in clear\n&quot;);
+    #endif
+}
+
+inline
+void*
+ios_base::rdbuf(void* sb)
+{
+    void* result = rdbuf_;
+    rdbuf_ = sb;
+    clear();
+    return result;
+}
+
+inline
+bool
+ios_base::good() const
+{
+    return static_cast&lt;bool&gt;(iostate_ == goodbit);
+}
+
+inline
+bool
+ios_base::eof() const
+{
+    return static_cast&lt;bool&gt;(iostate_ &amp; eofbit);
+}
+
+inline
+bool
+ios_base::fail() const
+{
+    return static_cast&lt;bool&gt;(iostate_ &amp; (failbit | badbit));
+}
+
+inline
+bool
+ios_base::bad() const
+{
+    return static_cast&lt;bool&gt;(iostate_ &amp; badbit);
+}
+
+inline
+ios_base::iostate
+ios_base::exceptions() const
+{
+    return exceptions_;
+}
+
+inline
+void
+ios_base::exceptions(iostate except)
+{
+    exceptions_ = except;
+    if (rdbuf_ == 0)
+        iostate_ |= badbit;
+    if (iostate_ &amp; exceptions_)
+    #ifndef _MSL_NO_EXCEPTIONS
+        throw failure(&quot;ios_base failure in exceptions&quot;);
+    #else
+        __msl_error(&quot;ios_base failure in exceptions\n&quot;);
+    #endif
+}
+
+inline
+ios_base::operator void*() const
+{
+    return fail() ? 0 : rdbuf_;
+}
+
+inline
+bool
+ios_base::operator!() const
+{
+    return fail();
+}
+
+inline
+ios_base::iostate
+ios_base::rdstate() const
+{
+    return iostate_;
+}
+
+inline
+void
+ios_base::setstate(iostate state)
+{
+    clear(rdstate() | state);
+}
+
+inline
+locale
+ios_base::getloc() const
+{
+    return *loc_;
+}
+
+inline
+int
+ios_base::xalloc()
+{
+    return index_++;
+}
+
+inline
+ios_base::ios_base(const ios_base&amp; rhs)
+    : cb_vec_(0),
+      cb_cap_(0),
+      iarray_(0),
+      isize_(0),
+      parray_(0),
+      psize_(0),
+      loc_(0),
+      rdbuf_(0)
+{
+    copy_ios_base(rhs);
+}
+
+inline
+ios_base&amp;
+ios_base::operator=(const ios_base&amp; rhs)
+{
+    if (this != &amp;rhs)
+        copy_ios_base(rhs);
+    return *this;
+}
+
+inline
+ios_base::ios_base()
+{
+}
+
+inline
+bool
+ios_base::sync_with_stdio(bool)
+{
+    return true;
+}
+
+inline
+ios_base::iostate&amp;
+ios_base::state()
+{
+    return iostate_;
+}
+
+inline
+void
+ios_base::do_callbacks(event evnt)
+{
+    for (size_t i = cb_siz_; i &gt; 0;)
+    {
+        event_data&amp; ev = cb_vec_[--i];
+        ev.first(evnt, *this, ev.second);
+    }
+}
+
+// basic_ios
+
+template &lt;class charT, class traits&gt;
+class basic_ios
+    : public ios_base
+{
+public:
+    //  Types:
+    typedef charT                     char_type;
+    typedef typename traits::int_type int_type;
+    typedef typename traits::pos_type pos_type;
+    typedef typename traits::off_type off_type;
+    typedef traits                    traits_type;
+
+    //  lib.basic.ios.cons Constructor/destructor:
+    explicit basic_ios(basic_streambuf&lt;charT, traits&gt;* sb);
+
+    //  lib.basic.ios.members Members:
+    basic_ostream&lt;charT, traits&gt;* tie() const;
+    basic_ostream&lt;charT, traits&gt;* tie(basic_ostream&lt;charT, traits&gt;* tiestr);
+
+    basic_streambuf&lt;charT, traits&gt;* rdbuf() const;
+    basic_streambuf&lt;charT, traits&gt;* rdbuf(basic_streambuf&lt;charT, traits&gt;* sb);
+
+    basic_ios&amp; copyfmt(const basic_ios&amp; rhs);
+
+    char_type fill() const;
+    char_type fill(char_type ch);
+
+    //  lib.ios.base.locales locales:
+    locale imbue(const locale&amp; loc);
+
+    char     narrow(char_type c, char dfault) const;
+    char_type widen(char c) const;
+
+protected:
+    basic_ios();
+    void init(basic_streambuf&lt;charT, traits&gt;* sb);
+
+private:
+    basic_ostream&lt;charT, traits&gt;* tiestr_;
+    char_type fill_;
+
+    basic_ios(const basic_ios&amp; );              //  not defined
+    basic_ios&amp; operator=(const basic_ios&amp;);    //  not defined
+};
+
+// basic_ios Implementation
+
+template &lt;class charT, class traits&gt;
+inline
+basic_ios&lt;charT, traits&gt;::basic_ios(basic_streambuf&lt;charT, traits&gt;* sb)
+{
+    init(sb);
+}
+
+template &lt;class charT, class traits&gt;
+inline
+basic_ios&lt;charT, traits&gt;::basic_ios()
+{
+}
+
+template &lt;class charT, class traits&gt;
+inline
+basic_ostream&lt;charT, traits&gt;*
+basic_ios&lt;charT, traits&gt;::tie() const
+{
+    return tiestr_;
+}
+
+template &lt;class charT, class traits&gt;
+inline
+basic_ostream&lt;charT, traits&gt;*
+basic_ios&lt;charT, traits&gt;::tie(basic_ostream&lt;charT, traits&gt;* tiestr)
+{
+    basic_ostream&lt;charT, traits&gt;* result = tiestr_;
+    tiestr_ = tiestr;
+    return result;
+}
+
+template &lt;class charT, class traits&gt;
+inline
+basic_streambuf&lt;charT, traits&gt;*
+basic_ios&lt;charT, traits&gt;::rdbuf() const
+{
+    return static_cast&lt;basic_streambuf&lt;charT, traits&gt;*&gt;(ios_base::rdbuf());
+}
+
+template &lt;class charT, class traits&gt;
+inline
+basic_streambuf&lt;charT, traits&gt;*
+basic_ios&lt;charT, traits&gt;::rdbuf(basic_streambuf&lt;charT, traits&gt;* sb)
+{
+    return static_cast&lt;basic_streambuf&lt;charT, traits&gt;*&gt;(ios_base::rdbuf(sb));
+}
+
+template &lt;class charT, class traits&gt;
+basic_ios&lt;charT, traits&gt;&amp;
+basic_ios&lt;charT, traits&gt;::copyfmt(const basic_ios&amp; rhs)
+{
+    do_callbacks(erase_event);
+    ios_base::operator = (rhs);
+//  tiestr_ = rhs.tiestr_;  // ???
+    fill_ = rhs.fill_;
+    do_callbacks(copyfmt_event);
+    exceptions(rhs.exceptions());
+    return *this;
+}
+
+template &lt;class charT, class traits&gt;
+inline
+typename basic_ios&lt;charT, traits&gt;::char_type
+basic_ios&lt;charT, traits&gt;::fill() const
+{
+    return fill_;
+}
+
+template &lt;class charT, class traits&gt;
+inline
+typename basic_ios&lt;charT, traits&gt;::char_type
+basic_ios&lt;charT, traits&gt;::fill(char_type ch)
+{
+    char_type result = fill_;
+    fill_ = ch;
+    return result;
+}
+
+template &lt;class charT, class traits&gt;
+inline
+locale
+basic_ios&lt;charT, traits&gt;::imbue(const locale&amp; loc)
+{
+    locale result = ios_base::imbue(loc);
+    if (rdbuf())
+        rdbuf()-&gt;pubimbue(loc);
+    return result;
+}
+
+template &lt;class charT, class traits&gt;
+inline
+char
+basic_ios&lt;charT, traits&gt;::narrow(char_type c, char dfault) const
+{
+    return _USE_FACET(ctype&lt;char_type&gt;, getloc()).narrow(c, dfault);
+}
+
+template &lt;class charT, class traits&gt;
+inline
+typename basic_ios&lt;charT, traits&gt;::char_type
+basic_ios&lt;charT, traits&gt;::widen(char c) const
+{
+    return _USE_FACET(ctype&lt;char_type&gt;, getloc()).widen(c);
+}
+
+template &lt;class charT, class traits&gt;
+inline
+void
+basic_ios&lt;charT, traits&gt;::init(basic_streambuf&lt;charT, traits&gt;* sb)
+{
+    ios_base::init(sb);
+    tiestr_ = 0;
+    fill_ = widen(' ');
+}
+
+//  lib.std.ios.manip, manipulators:
+
+inline
+ios_base&amp;
+boolalpha(ios_base&amp; str)
+{
+    str.setf(ios_base::boolalpha);
+    return str;
+}
+
+inline
+ios_base&amp;
+noboolalpha(ios_base&amp; str)
+{
+    str.unsetf(ios_base::boolalpha);
+    return str;
+}
+
+inline
+ios_base&amp;
+showbase(ios_base&amp; str)
+{
+    str.setf(ios_base::showbase);
+    return str;
+}
+
+inline
+ios_base&amp;
+noshowbase(ios_base&amp; str)
+{
+    str.unsetf(ios_base::showbase);
+    return str;
+}
+
+inline
+ios_base&amp;
+showpoint(ios_base&amp; str)
+{
+    str.setf(ios_base::showpoint);
+    return str;
+}
+
+inline
+ios_base&amp;
+noshowpoint(ios_base&amp; str)
+{
+    str.unsetf(ios_base::showpoint);
+    return str;
+}
+
+inline
+ios_base&amp;
+showpos(ios_base&amp; str)
+{
+    str.setf(ios_base::showpos);
+    return str;
+}
+
+inline
+ios_base&amp;
+noshowpos(ios_base&amp; str)
+{
+    str.unsetf(ios_base::showpos);
+    return str;
+}
+
+inline
+ios_base&amp;
+skipws(ios_base&amp; str)
+{
+    str.setf(ios_base::skipws);
+    return str;
+}
+
+inline
+ios_base&amp;
+noskipws(ios_base&amp; str)
+{
+    str.unsetf(ios_base::skipws);
+    return str;
+}
+
+inline
+ios_base&amp;
+uppercase(ios_base&amp; str)
+{
+    str.setf(ios_base::uppercase);
+    return str;
+}
+
+inline
+ios_base&amp;
+nouppercase(ios_base&amp; str)
+{
+    str.unsetf(ios_base::uppercase);
+    return str;
+}
+
+inline
+ios_base&amp;
+unitbuf(ios_base&amp; str)
+{
+    str.setf(ios_base::unitbuf);
+    return str;
+}
+
+inline
+ios_base&amp;
+nounitbuf(ios_base&amp; str)
+{
+    str.unsetf(ios_base::unitbuf);
+    return str;
+}
+
+//  lib.adjustfield.manip adjustfield:
+
+inline
+ios_base&amp;
+internal(ios_base&amp; str)
+{
+    str.setf(ios_base::internal, ios_base::adjustfield);
+    return str;
+}
+
+inline
+ios_base&amp;
+left(ios_base&amp; str)
+{
+    str.setf(ios_base::left, ios_base::adjustfield);
+    return str;
+}
+
+inline
+ios_base&amp;
+right(ios_base&amp; str)
+{
+    str.setf(ios_base::right, ios_base::adjustfield);
+    return str;
+}
+
+//  lib.basefield.manip basefield:
+
+inline
+ios_base&amp;
+dec(ios_base&amp; str)
+{
+    str.setf(ios_base::dec, ios_base::basefield);
+    return str;
+}
+
+inline
+ios_base&amp;
+hex(ios_base&amp; str)
+{
+    str.setf(ios_base::hex, ios_base::basefield);
+    return str;
+}
+
+inline
+ios_base&amp;
+oct(ios_base&amp; str)
+{
+    str.setf(ios_base::oct, ios_base::basefield);
+    return str;
+}
+
+//  lib.floatfield.manip floatfield:
+
+inline
+ios_base&amp;
+fixed(ios_base&amp; str)
+{
+    str.setf(ios_base::fixed, ios_base::floatfield);
+    return str;
+}
+
+inline
+ios_base&amp;
+scientific(ios_base&amp; str)
+{
+    str.setf(ios_base::scientific, ios_base::floatfield);
+    return str;
+}
+
+// Auxillary helper class to that saves and restores ios_base::fmtflags on the stack
+
+class _SaveFlags
+{
+public:
+    _SaveFlags(ios_base&amp; str);
+    ~_SaveFlags();
+private:
+    ios_base&amp; str_;
+    ios_base::fmtflags flags_;
+
+    _SaveFlags(const _SaveFlags&amp;);              // Not defined
+    _SaveFlags&amp; operator= (const _SaveFlags&amp;);  // Not defined
+};
+
+inline
+_SaveFlags::_SaveFlags(ios_base&amp; str)
+    : str_(str),
+      flags_(str_.flags())
+{
+}
+
+inline
+_SaveFlags::~_SaveFlags()
+{
+    str_.flags(flags_);
+}
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _MSL_NO_IO
+
+#endif // _IOS
+
+// hh 971220 fixed MOD_INCLUDE
+// hh 971222 added wrapper for alignment
+// hh 971222 Changed filename from ios.h to ios
+// hh 971222 Made include guards standard
+// hh 971230 added RC_INVOKED wrapper
+// hh 980202 moved streamoff from &lt;iosfwd&gt; per standard
+// hh 980909 fpos added
+// hh 981111 made throwfailure() public
+// hh 981220 Added typename to appropriate return types
+// hh 981226 Added mutex accessor to help encapsulate future changes
+// hh 990524 Rewrote
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

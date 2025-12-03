@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="strtold_8h" kind="file" language="C++">
+    <compoundname>strtold.h</compoundname>
+    <includes refid="ansi__parms_8h" local="no">ansi_parms.h</includes>
+    <includes refid="cstdio" local="no">cstdio</includes>
+    <includedby refid="scanf_8c" local="yes">scanf.c</includedby>
+    <includedby refid="strtold_8c" local="yes">strtold.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cstdio</label>
+        <link refid="cstdio"/>
+      </node>
+      <node id="3">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>strtold.h</label>
+        <link refid="strtold_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>strtold.h</label>
+        <link refid="strtold_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>scanf.c</label>
+        <link refid="scanf_8c"/>
+      </node>
+      <node id="3">
+        <label>strtold.c</label>
+        <link refid="strtold_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="strtold_8h_1ac15e96379b0d6cfdcb5ba26bdd6b46be" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long double</type>
+        <definition>long double __strtold</definition>
+        <argsstring>(int max_width, int(*ReadProc)(void *, int, int), void *ReadProcArg, int *chars_scanned, int *overflow)</argsstring>
+        <name>__strtold</name>
+        <param>
+          <type>int</type>
+          <declname>max_width</declname>
+        </param>
+        <param>
+          <type>int(*)(void *, int, int)</type>
+          <declname>ReadProc</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ReadProcArg</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>chars_scanned</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>overflow</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/strtold.h" line="31" column="20" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/strtold.c" bodystart="156" bodyend="459" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/strtold.h" declline="31" declcolumn="20"/>
+        <references refid="ansi__fp_8h_1acb351f25b263f04ec15520110b0f2da4" compoundref="ansi__fp_8h" startline="30">__dec2num</references>
+        <references refid="lconv_8h_1a57d1ad7724f273e968be3f2af4e2a6d4" compoundref="locale_8c" startline="28" endline="47">__lconv</references>
+        <references refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58">count</references>
+        <references refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" compoundref="eof_8h" startline="19">EOF</references>
+        <references refid="structdecimal_1a0c233cfa6ac31e0674705a9cb35b3de0" compoundref="ansi__fp_8h" startline="66">decimal::exp</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfae83538ea76c0b266ae3bc1e2d21ce137" compoundref="strtold_8c" startline="134">exp_digit_loop</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa28a497d4d6c8ff90734f56c55d6d3e2f" compoundref="strtold_8c" startline="131">exp_start</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa75d6cb8119712d486737f0341231e7b9" compoundref="strtold_8c" startline="136">failure</references>
+        <references refid="strtold_8c_1a93cf5c67ba0f12a50c8a426c8b7d6bde" compoundref="strtold_8c" startline="150">fetch</references>
+        <references refid="strtold_8c_1a0b5bc6f9dcf7e2f6172ca22e67154606" compoundref="strtold_8c" startline="141">final_state</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfaaf38e35232eb6728664f98c8110d11a4" compoundref="strtold_8c" startline="135">finished</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa6baa5acac31ed1dec8db1dbbc98e69b0" compoundref="strtold_8c" startline="129">frac_digit_loop</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa95b952f67853bbe44962ed7cc54f8d8e" compoundref="strtold_8c" startline="128">frac_start</references>
+        <references refid="k__standard_8c_1af2164b2db92d8a0ed3838ad5c28db971">HUGE_VAL</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfae9039efead5b838b6914c1677adeb749" compoundref="strtold_8c" startline="127">int_digit_loop</references>
+        <references refid="ctype_8c_1ab41fa91ea7dbfdc9de643e5c108dd699" compoundref="ctype_8c" startline="148" endline="148">isdigit</references>
+        <references refid="ctype_8c_1ae91e69891a2089b4de2555ac11a16a71" compoundref="ctype_8c" startline="153" endline="153">isspace</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfaa3bf2ed568776186043b030c5563a454" compoundref="strtold_8c" startline="132">leading_exp_digit</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfacbd4861acfe0b458618a962edb688f2c" compoundref="strtold_8c" startline="133">leading_exp_zeroes</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfaf9c34e110a32638784094df2ffa19e3e" compoundref="strtold_8c" startline="126">leading_sig_zeroes</references>
+        <references refid="structdecimal_1af15525f506d0d2b1163c9acf6bd25506" compoundref="ansi__fp_8h" startline="69">decimal::length</references>
+        <references refid="strtold_8c_1abbb42b9eedc96431fe64afd076ea4ba2" compoundref="strtold_8c" startline="139">MAX_SIG_DIG</references>
+        <references refid="structdecimal_1aae58bad32c1182548aa595cc8d97ab59">decimal::sig</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfaa68f88fded84d6dcdc502bfb2814e966" compoundref="strtold_8c" startline="130">sig_end</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa346d15e3d2c447d0cfbff99226d1fcc2" compoundref="strtold_8c" startline="125">sig_start</references>
+        <references refid="strtold_8c_1ac812c5ecefd961b87d832c6c9a2f1bdfa0e97c69c73117f6c0109b2d7d1d9cedc" compoundref="strtold_8c" startline="124">start</references>
+        <references refid="strtold_8c_1adb13687a896636dc481916a3a3d32fe8" compoundref="strtold_8c" startline="143" endline="148">success</references>
+        <references refid="structdecimal_1a430ef427c3f5924f769e7d2411baead7" compoundref="ansi__fp_8h" startline="70">decimal::text</references>
+        <references refid="strtold_8c_1ae21f63fba0b6473bd59ef6a15e9938c9" compoundref="strtold_8c" startline="151">unfetch</references>
+        <referencedby refid="scanf_8c_1a1b5e34f50a9405f7216d11815f60bf4e" compoundref="scanf_8c" startline="434" endline="1017">__sformatter</referencedby>
+        <referencedby refid="strtold_8c_1a3e7495e0a329416a89b445a247460406" compoundref="strtold_8c" startline="461" endline="481">strtod</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/07/30<sp/>00:47:14<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.4.1<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/>strtold.h</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__strtold__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__strtold__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ansi__parms_8h" kindref="compound">ansi_parms.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="cstdio" kindref="compound">cstdio</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>970905<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>namespace<sp/>support*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=native</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>namespace<sp/>support*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__INTEL__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>k63d_calls<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="strtold_8h_1ac15e96379b0d6cfdcb5ba26bdd6b46be" kindref="member">__strtold</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_width,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>(*ReadProc)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">),<sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990325<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>ReadProcArg,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990325<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>chars_scanned,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>overflow);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__INTEL__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>k63d_calls<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>namespace<sp/>support*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>mm<sp/>970905<sp/><sp/>added<sp/>include<sp/>of<sp/>stdio.h<sp/>to<sp/>allow<sp/>this<sp/>header<sp/>to<sp/>be<sp/>included<sp/>first.</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*<sp/>hh<sp/>971206<sp/><sp/>namespace<sp/>support</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>hh<sp/>990121<sp/><sp/>Fixed<sp/>__std</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/><sp/>mm<sp/>990325<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Made<sp/>to<sp/>work<sp/>with<sp/>input<sp/>functions<sp/>passed<sp/>by<sp/>pointers<sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/><sp/>mf<sp/>990420<sp/><sp/><sp/><sp/><sp/><sp/>had<sp/>to<sp/>provide<sp/>k6<sp/>wrap<sp/>internal<sp/>function<sp/>__strtold<sp/>as<sp/>well</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"></highlight></codeline>
+<codeline lineno="59"><highlight class="comment">*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/strtold.h"/>
+  </compounddef>
+</doxygen>

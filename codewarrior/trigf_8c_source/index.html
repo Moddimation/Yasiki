@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File trigf.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-trigfc">File trigf.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_e8afb2b224d923f9df254cf5acbdc830/"><strong>Single_precision</strong></a> <strong>&gt;</strong> <a href="../trigf_8c/"><strong>trigf.c</strong></a></p>
+<p><a href="../trigf_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">// fast sin and cos
+
+#include &lt;math.h&gt;
+
+#define __PIO2__ 1.57079632679489661923132169163975f
+#define __PI  3.1415926535897932384626433832795f
+#define __two_over_pi .636619772367581343075535053490057f
+#define __four_over_pi 1.27323954473516268615107010698011f
+
+#define __SQRT_FLT_EPSILON__ 3.4526698300e-04f
+#define __sqrt2_m1  .41421356237f
+#define __ln2  0.6931471805599f
+
+#pragma cplusplus on
+extern &quot;C&quot; {
+extern const float __sincos_poly[];  
+//sin(n*pi/4),cos(n*pi/4),sin(n*pi/4)
+
+extern const float __sincos_on_quadrant[];
+}
+const int tmp_float[4]={0x3E800000,0x3Cbe6080,0x34372200,0x2da44152};
+
+static const float  __four_over_pi_m1[]={*(float*)&amp;tmp_float[0],*(float*)&amp;tmp_float[1],
+                                         *(float*)&amp;tmp_float[2],*(float*)&amp;tmp_float[3]}; 
+
+extern &quot;C&quot; float sinf(float x)
+{           
+
+  float z=__two_over_pi*x ; 
+//note: |z-n|&lt;=.5 i.e. we choose n so that |n*pi/2 - x|&lt; .5*(pi/2)=pi/4, then use the poly for [0,pi/4], but
+//      also notice that n(mod(4)) gives which quadrant we're in and enables us to use the trig addition identities.
+//      Exactly one of these terms drops out because either sin(n*pi/2) or cos(n*pi/2) is 0.
+#define __FAST_MATH_MODE__ 0
+
+#if __FAST_MATH_MODE__
+  _INT32 n= (_INT32)z; //note: truncation insures |n|&lt;z and cos/sin(x)=cos/sin(n*pi/4+frac_part)
+  const float frac_part= z -(float)(n&lt;&lt;1) ;
+#else
+
+
+
+//note we multiply n by 2 below because the polynomial we are using is for [o,pi/4]. n is the nearest multiple
+// of pi/2 not pi/4.
+//  frac_part is the remainder(mod(pi/4))
+// i.e. the actual arg that will be evaluated is frac_part*(pi/4)
+// note: since n is signed n&lt;&lt;1 may pad rightmost bit w/a one.
+ _INT32 n= (__HI(x)&amp;0x80000000) ? (_INT32)(z -.5f) : (_INT32)(z + .5f) ;  
+
+ const float frac_part= ((((x - (float)(n*2)) + __four_over_pi_m1[0]*x) + __four_over_pi_m1[1]*x)+
+                                                __four_over_pi_m1[2]*x) + __four_over_pi_m1[3]*x/*) +
+                                                   __four_over_pi_m1[4]*x  */; 
+#endif  
+
+    float xsq; 
+
+   //assumes 2's complement integer storage for negative numbers.
+    n&amp;=0x00000003;
+
+   if(fabsf(frac_part) &lt; __SQRT_FLT_EPSILON__)
+   {
+    n&lt;&lt;=1;   //index into __sincos_on_quadrant array
+    return __sincos_on_quadrant[n] + (__sincos_on_quadrant[n+1]*frac_part*__sincos_poly[9]);
+   }
+
+   xsq=frac_part*frac_part;
+   if(n&amp;0x00000001)  // we are at a multiple of pi/2 thus cos(n*pi/4)= 0
+   {
+
+    n&lt;&lt;=1;   //index into __sincos_on_quadrant array
+    z=((( __sincos_poly[0]*xsq +__sincos_poly[2])*xsq + __sincos_poly[4])*xsq + __sincos_poly[6])*xsq + 
+    __sincos_poly[8];
+
+    return z*__sincos_on_quadrant[n];// sin(frac_part)*cos(n*pi/4);  note: n*pi/4 is a multiple of pi/2(not pi)
+    //return z;// sin(frac_part)*cos(n*pi/4);  note: n*pi/4 is a multiple of pi/2(not pi)
+   }
+
+// if here we are near a multiple of pi so sin(n*pi/4) =0
+    n&lt;&lt;=1;   //index into __sincos_on_quadrant array
+
+    z= ((((__sincos_poly[1]*xsq +__sincos_poly[3])*xsq + __sincos_poly[5])*xsq + __sincos_poly[7])*xsq + __sincos_poly[9])*frac_part;
+    //return z;// sin(frac_part)*cos(n*pi/4);  note: n*pi/4 is a multiple of pi/2(not pi)
+
+    return z*__sincos_on_quadrant[n+1];// sin(frac_part)*cos(n*pi/4);  note: n*pi/4 is a multiple of pi/2(not pi)
+
+
+}
+
+
+float cosf(float x)
+{
+
+    float z=__two_over_pi*x ; 
+    #define __FAST_MATH_MODE__ 0
+
+#if __FAST_MATH_MODE__
+  _INT32 n= (_INT32)z; //note: truncation insures |n|&lt;z and cos/sin(x)=cos/sin(n*pi/4+frac_part)
+  const float frac_part= z -(float)(n&lt;&lt;1) ;
+#else
+
+
+
+//note we multiply n by 2 below because the polynomial we are using is for [o,pi/4]. n is the nearest multiple
+// of pi/2 not pi/4.
+//  frac_part is the remainder(mod(pi/4))
+// i.e. the actual arg that will be evaluated is frac_part*(pi/4)
+// note: since n is signed n&lt;&lt;1 may pad rightmost bit w/a one.
+ _INT32 n= (__HI(x)&amp;0x80000000) ? (_INT32)(z -.5f) : (_INT32)(z + .5f) ;  
+
+ const float frac_part= ((((x - (float)(n*2)) + __four_over_pi_m1[0]*x) + __four_over_pi_m1[1]*x)+
+                                                  __four_over_pi_m1[2]*x) + __four_over_pi_m1[3]*x/*) +
+                                                   __four_over_pi_m1[4]*x  */; 
+#endif  
+
+    float xsq;
+    n&amp;=0x00000003;
+
+   if(fabsf(frac_part) &lt; __SQRT_FLT_EPSILON__)
+   {
+     n&lt;&lt;=1;   //index into __sincos_on_quadrant array
+     return __sincos_on_quadrant[n+1] - (__sincos_on_quadrant[n]*frac_part);
+   }
+
+
+   //use identity cos(x)=cos(n*pi/4 + frac_part)=cos(n*pi/4)cos(frac_part)- sin(n*pi/4)sin(frac_part)
+   xsq=frac_part*frac_part;
+   if(n&amp;0x00000001)  // we are at a multiple of pi/2 thus cos(n*pi/4)= 0
+   {   
+     n&lt;&lt;=1;   //index into __sincos_on_quadrant array 
+     z= -((((__sincos_poly[1]*xsq +__sincos_poly[3])*xsq + __sincos_poly[5])*xsq + __sincos_poly[7])*xsq + __sincos_poly[9])*frac_part;
+     return z*__sincos_on_quadrant[n];
+   }
+
+    n&lt;&lt;=1;   //index into __sincos_on_quadrant array
+    // if here we are near a multiple of pi so sin(n*pi/4) =0
+
+     z=((( __sincos_poly[0]*xsq +__sincos_poly[2])*xsq + __sincos_poly[4])*xsq + __sincos_poly[6])*xsq + __sincos_poly[8];
+     return z*__sincos_on_quadrant[n+1];// sin(frac_part)*cos(n*pi/4);  note: n*pi/4 is a multiple of pi/2(not pi)
+}
+
+float tanf(float x)
+ {
+
+   return sin(x)/cos(x); 
+
+ }
+
+
+#pragma cplusplus reset
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

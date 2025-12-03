@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_include_strategy_8cpp" kind="file" language="C++">
+    <compoundname>IncludeStrategy.cpp</compoundname>
+    <includes local="yes">Unsorted/IncludeStrategy.h</includes>
+    <includes local="yes">Sato/EnemyStrategy.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>IncludeStrategy.cpp</label>
+        <link refid="_include_strategy_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Sato/EnemyStrategy.h</label>
+      </node>
+      <node id="2">
+        <label>Unsorted/IncludeStrategy.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;Unsorted/IncludeStrategy.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;Sato/EnemyStrategy.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="class_include_strategy_1a3f4a47b73e3b5d34663b8549af639b74" refkind="member"><highlight class="normal"><ref refid="class_include_strategy_1a3f4a47b73e3b5d34663b8549af639b74" kindref="member">IncludeStrategy::IncludeStrategy</ref><sp/>()<sp/>:<sp/>mpStrategy<sp/>(NULL)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" kindref="member">destroyStrategy</ref>();</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="class_include_strategy_1a5c55ae01f8f7697ce63def4c8cfd5912" refkind="member"><highlight class="normal"><ref refid="class_include_strategy_1a5c55ae01f8f7697ce63def4c8cfd5912" kindref="member">IncludeStrategy::~IncludeStrategy</ref><sp/>()</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" kindref="member">destroyStrategy</ref>();</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="class_include_strategy_1ab68bed9315be483c35265f66503d7f29" refkind="member"><highlight class="normal"><ref refid="class_include_strategy_1ab68bed9315be483c35265f66503d7f29" kindref="member">IncludeStrategy::setStrategy</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_entityIdx)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" kindref="member">destroyStrategy</ref>();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_include_strategy_1ad6a597cd8ddb457145928214c6a830c7" kindref="member">mpStrategy</ref><sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal"><sp/>(</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<ref refid="_enemy_strategy_8h_1a1fe8911513a68790297e955f8f25093f" kindref="member">getEnemyStrategyInitFunc</ref><sp/>(i_entityIdx))<sp/>(<ref refid="class_include_strategy_1a1f85b281575d09582674019c71b4772e" kindref="member">getBuffer</ref>(),<sp/>0x800));</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" refkind="member"><highlight class="normal"><ref refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" kindref="member">IncludeStrategy::destroyStrategy</ref><sp/>()</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>*<sp/>strategy<sp/>=<sp/><ref refid="class_include_strategy_1ad6a597cd8ddb457145928214c6a830c7" kindref="member">mpStrategy</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strategy<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>object<sp/>was<sp/>initialized<sp/>via<sp/>placement<sp/>new,<sp/>so<sp/>we</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>can<sp/>just<sp/>call<sp/>its<sp/>destructor<sp/>and<sp/>invalidate<sp/>its<sp/>pointer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strategy-&gt;<ref refid="class_enemy_strategy_1ad759854ea39c4827c89acb5ecec27e67" kindref="member">~EnemyStrategy</ref>();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_include_strategy_1ad6a597cd8ddb457145928214c6a830c7" kindref="member">mpStrategy</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/Project/sources/Koga/src/IncludeStrategy.cpp"/>
+  </compounddef>
+</doxygen>

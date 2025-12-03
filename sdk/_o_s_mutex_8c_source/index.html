@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSMutex.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osmutexc">File OSMutex.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="../_o_s_mutex_8c/"><strong>OSMutex.c</strong></a></p>
+<p><a href="../_o_s_mutex_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#include &quot;OSPrivate.h&quot;
+
+#define ENQUEUE_MUTEX(mutex, queue, link)                                                      \
+    do {                                                                                       \
+        OSMutex* __prev = (queue)-&gt;tail;                                                       \
+        if (__prev == NULL)                                                                    \
+        {                                                                                      \
+            (queue)-&gt;head = (mutex);                                                           \
+        }                                                                                      \
+        else                                                                                   \
+        {                                                                                      \
+            __prev-&gt;link.next = (mutex);                                                       \
+        }                                                                                      \
+        (mutex)-&gt;link.prev = __prev;                                                           \
+        (mutex)-&gt;link.next = 0;                                                                \
+        (queue)-&gt;tail = (mutex);                                                               \
+    }                                                                                          \
+    while (0);
+
+#define DEQUEUE_MUTEX(mutex, queue, link)                                                      \
+    do {                                                                                       \
+        OSMutex* __next = (mutex)-&gt;link.next;                                                  \
+        OSMutex* __prev = (mutex)-&gt;link.prev;                                                  \
+        if (__next == NULL)                                                                    \
+        {                                                                                      \
+            (queue)-&gt;tail = __prev;                                                            \
+        }                                                                                      \
+        else                                                                                   \
+        {                                                                                      \
+            __next-&gt;link.prev = __prev;                                                        \
+        }                                                                                      \
+        if (__prev == NULL)                                                                    \
+        {                                                                                      \
+            (queue)-&gt;head = __next;                                                            \
+        }                                                                                      \
+        else                                                                                   \
+        {                                                                                      \
+            __prev-&gt;link.next = __next;                                                        \
+        }                                                                                      \
+    }                                                                                          \
+    while (0);
+
+#define DEQUEUE_HEAD(mutex, queue, link)                                                       \
+    do {                                                                                       \
+        OSMutex* __next = mutex-&gt;link.next;                                                    \
+        if (__next == NULL)                                                                    \
+        {                                                                                      \
+            (queue)-&gt;tail = 0;                                                                 \
+        }                                                                                      \
+        else                                                                                   \
+        {                                                                                      \
+            __next-&gt;link.prev = 0;                                                             \
+        }                                                                                      \
+        (queue)-&gt;head = __next;                                                                \
+    }                                                                                          \
+    while (0);
+
+static BOOL IsMember (OSMutexQueue* queue, OSMutex* mutex);
+int         __OSCheckMutex (OSMutex* mutex);
+int         __OSCheckDeadLock (OSThread* thread);
+int         __OSCheckMutexes (OSThread* thread);
+
+void
+OSInitMutex (OSMutex* mutex)
+{
+    OSInitThreadQueue (&amp;mutex-&gt;queue);
+    mutex-&gt;thread = 0;
+    mutex-&gt;count = 0;
+}
+
+void
+OSLockMutex (OSMutex* mutex)
+{
+    int       enabled = OSDisableInterrupts();
+    OSThread* currentThread = OSGetCurrentThread();
+
+    ASSERTMSGLINE (0x8C, currentThread, &quot;OSLockMutex(): current thread does not exist.&quot;);
+    ASSERTMSGLINE (0x8E,
+                   currentThread-&gt;state == 2,
+                   &quot;OSLockMutex(): current thread is not running.&quot;);
+
+    while (1)
+    {
+        OSThread* ownerThread = mutex-&gt;thread;
+        if (ownerThread == 0)
+        {
+            mutex-&gt;thread = currentThread;
+            mutex-&gt;count++;
+            ENQUEUE_MUTEX (mutex, &amp;currentThread-&gt;queueMutex, link);
+            break;
+        }
+        else if (ownerThread == currentThread)
+        {
+            mutex-&gt;count++;
+            break;
+        }
+        else
+        {
+            currentThread-&gt;mutex = mutex;
+            __OSPromoteThread (mutex-&gt;thread, currentThread-&gt;priority);
+            ASSERTMSG2LINE (0xA4,
+                            __OSCheckDeadLock (currentThread) == 0,
+                            &quot;OSLockMutex(): detected deadlock: current thread %p, mutex %p.&quot;,
+                            currentThread,
+                            mutex);
+            OSSleepThread (&amp;mutex-&gt;queue);
+            currentThread-&gt;mutex = NULL;
+        }
+    }
+    OSRestoreInterrupts (enabled);
+}
+
+void
+OSUnlockMutex (OSMutex* mutex)
+{
+    int       enabled = OSDisableInterrupts();
+    OSThread* currentThread = OSGetCurrentThread();
+
+    ASSERTMSGLINE (0xBD, currentThread, &quot;OSUnlockMutex(): current thread does not exist.&quot;);
+    ASSERTMSGLINE (0xBF,
+                   currentThread-&gt;state == 2,
+                   &quot;OSUnlockMutex(): current thread is not running.&quot;);
+    ASSERTMSG2LINE (0xC2,
+                    mutex-&gt;thread == currentThread,
+                    &quot;OSUnlockMutex(): current thread %p is not the owner of mutex %p.&quot;,
+                    currentThread,
+                    mutex);
+
+    if (mutex-&gt;thread == currentThread)
+    {
+        if (!--mutex-&gt;count)
+        {
+            DEQUEUE_MUTEX (mutex, &amp;currentThread-&gt;queueMutex, link);
+            mutex-&gt;thread = 0;
+
+            if (currentThread-&gt;priority &lt; currentThread-&gt;base)
+            {
+                currentThread-&gt;priority = __OSGetEffectivePriority (currentThread);
+            }
+            OSWakeupThread (&amp;mutex-&gt;queue);
+        }
+    }
+    OSRestoreInterrupts (enabled);
+}
+
+void
+__OSUnlockAllMutex (OSThread* thread)
+{
+    OSMutex* mutex;
+
+    while (thread-&gt;queueMutex.head)
+    {
+        mutex = thread-&gt;queueMutex.head;
+        DEQUEUE_HEAD (mutex, &amp;thread-&gt;queueMutex, link);
+        ASSERTLINE (0xE5, mutex-&gt;thread == thread);
+        mutex-&gt;count = 0;
+        mutex-&gt;thread = 0;
+        OSWakeupThread (&amp;mutex-&gt;queue);
+    }
+}
+
+BOOL
+OSTryLockMutex (OSMutex* mutex)
+{
+    int       enabled = OSDisableInterrupts();
+    OSThread* currentThread = OSGetCurrentThread();
+    int       locked;
+
+    ASSERTMSGLINE (0xFF, currentThread, &quot;OSTryLockMutex(): current thread does not exist.&quot;);
+    ASSERTMSGLINE (0x101,
+                   currentThread-&gt;state == 2,
+                   &quot;OSTryLockMutex(): current thread is not running.&quot;);
+
+    if (!mutex-&gt;thread)
+    {
+        mutex-&gt;thread = currentThread;
+        mutex-&gt;count++;
+        ENQUEUE_MUTEX (mutex, &amp;currentThread-&gt;queueMutex, link);
+        locked = TRUE;
+    }
+    else if (mutex-&gt;thread == currentThread)
+    {
+        mutex-&gt;count++;
+        locked = TRUE;
+    }
+    else
+    {
+        locked = FALSE;
+    }
+    OSRestoreInterrupts (enabled);
+    return locked;
+}
+
+void
+OSInitCond (OSCond* cond)
+{
+    OSInitThreadQueue (&amp;cond-&gt;queue);
+}
+
+void
+OSWaitCond (OSCond* cond, OSMutex* mutex)
+{
+    int       enabled = OSDisableInterrupts();
+    OSThread* currentThread = OSGetCurrentThread();
+
+    ASSERTMSGLINE (0x139, currentThread, &quot;OSWaitCond(): current thread does not exist.&quot;);
+    ASSERTMSGLINE (0x13B,
+                   currentThread-&gt;state == 2,
+                   &quot;OSWaitCond(): current thread is not running.&quot;);
+    ASSERTMSG2LINE (0x13E,
+                    mutex-&gt;thread == currentThread,
+                    &quot;OSWaitCond(): current thread %p is not the owner of mutex %p.&quot;,
+                    currentThread,
+                    mutex);
+
+    if (mutex-&gt;thread == currentThread)
+    {
+        s32 count = mutex-&gt;count;
+        mutex-&gt;count = 0;
+        DEQUEUE_MUTEX (mutex, &amp;currentThread-&gt;queueMutex, link);
+        mutex-&gt;thread = 0;
+        if (currentThread-&gt;priority &lt; currentThread-&gt;base)
+        {
+            currentThread-&gt;priority = __OSGetEffectivePriority (currentThread);
+        }
+        OSDisableScheduler();
+        OSWakeupThread (&amp;mutex-&gt;queue);
+        OSEnableScheduler();
+        OSSleepThread (&amp;cond-&gt;queue);
+        OSLockMutex (mutex);
+        mutex-&gt;count = count;
+    }
+    OSRestoreInterrupts (enabled);
+}
+
+void
+OSSignalCond (OSCond* cond)
+{
+    OSWakeupThread (&amp;cond-&gt;queue);
+}
+
+static BOOL
+IsMember (OSMutexQueue* queue, OSMutex* mutex)
+{
+    OSMutex* member = queue-&gt;head;
+
+    while (member)
+    {
+        if (mutex == member)
+        {
+            return TRUE;
+        }
+        member = member-&gt;link.next;
+    }
+
+    return FALSE;
+}
+
+BOOL
+__OSCheckMutex (OSMutex* mutex)
+{
+    OSThread*      thread;
+    OSThreadQueue* queue;
+    s32            priority;
+
+    priority = 0;
+    queue = &amp;mutex-&gt;queue;
+
+    if (queue-&gt;head != NULL &amp;&amp; queue-&gt;head-&gt;link.prev != NULL)
+    {
+        return FALSE;
+    }
+    if (queue-&gt;tail != NULL &amp;&amp; queue-&gt;tail-&gt;link.next != NULL)
+    {
+        return FALSE;
+    }
+    thread = queue-&gt;head;
+    while (thread)
+    {
+        if (thread-&gt;link.next != NULL &amp;&amp; (thread != thread-&gt;link.next-&gt;link.prev))
+        {
+            return FALSE;
+        }
+        if (thread-&gt;link.prev != NULL &amp;&amp; (thread != thread-&gt;link.prev-&gt;link.next))
+        {
+            return FALSE;
+        }
+        if (thread-&gt;state != 4)
+        {
+            return FALSE;
+        }
+        if (thread-&gt;priority &lt; priority)
+        {
+            return FALSE;
+        }
+        priority = thread-&gt;priority;
+        thread = thread-&gt;link.next;
+    }
+    if (mutex-&gt;thread)
+    {
+        if (mutex-&gt;count &lt;= 0)
+        {
+            return FALSE;
+        }
+    }
+    else if (mutex-&gt;count != 0)
+    {
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+BOOL
+__OSCheckDeadLock (OSThread* thread)
+{
+    OSMutex* mutex = thread-&gt;mutex;
+
+    while (mutex &amp;&amp; mutex-&gt;thread)
+    {
+        if (mutex-&gt;thread == thread)
+        {
+            return TRUE;
+        }
+        mutex = mutex-&gt;thread-&gt;mutex;
+    }
+
+    return FALSE;
+}
+
+BOOL
+__OSCheckMutexes (OSThread* thread)
+{
+    OSMutex* mutex = thread-&gt;queueMutex.head;
+
+    while (mutex)
+    {
+        if (mutex-&gt;thread != thread)
+        {
+            return FALSE;
+        }
+        if (__OSCheckMutex (mutex) == 0)
+        {
+            return FALSE;
+        }
+        mutex = mutex-&gt;link.next;
+    }
+
+    return TRUE;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

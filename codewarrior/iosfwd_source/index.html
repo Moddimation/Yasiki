@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File iosfwd - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-iosfwd">File iosfwd</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../iosfwd/"><strong>iosfwd</strong></a></p>
+<p><a href="../iosfwd/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:58:50 $ 
+ *  $Revision: 1.9.6.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  iosfwd
+ **/
+
+#ifndef _IOSFWD            // hh 971222 Made include guards standard
+#define _IOSFWD
+
+#include &lt;mslconfig&gt;
+
+#ifndef _MSL_NO_WCHART
+    #include &lt;cwchar&gt;  // hh 980908 for mbstate_t
+#else
+    typedef int mbstate_t;
+#endif
+
+#ifndef RC_INVOKED // hh 971230
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+template&lt;class charT&gt; struct char_traits;
+
+template&lt;class T&gt; class allocator;
+
+#ifndef _MSL_NO_IO
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_ios;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_streambuf;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_istream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_ostream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_iostream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt;, class Allocator = allocator&lt;charT&gt; &gt;
+class basic_stringbuf;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt;, class Allocator = allocator&lt;charT&gt; &gt;
+class basic_istringstream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt;, class Allocator = allocator&lt;charT&gt; &gt;
+class basic_ostringstream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt;, class Allocator = allocator&lt;charT&gt; &gt;
+class basic_stringstream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_filebuf;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_ifstream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_ofstream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class basic_fstream;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class istreambuf_iterator;
+
+template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+class ostreambuf_iterator;
+
+template &lt;&gt; struct char_traits&lt;char&gt;;
+
+typedef basic_ios&lt;char, char_traits&lt;char&gt; &gt; ios;
+
+typedef basic_streambuf&lt;char, char_traits&lt;char&gt; &gt; streambuf;
+typedef basic_istream&lt;char, char_traits&lt;char&gt; &gt;   istream;
+typedef basic_ostream&lt;char, char_traits&lt;char&gt; &gt;   ostream;
+typedef basic_iostream&lt;char, char_traits&lt;char&gt; &gt;  iostream;
+
+typedef basic_stringbuf&lt;char, char_traits&lt;char&gt;, allocator&lt;char&gt; &gt;     stringbuf;
+typedef basic_istringstream&lt;char, char_traits&lt;char&gt;, allocator&lt;char&gt; &gt; istringstream;
+typedef basic_ostringstream&lt;char, char_traits&lt;char&gt;, allocator&lt;char&gt; &gt; ostringstream;
+typedef basic_stringstream&lt;char, char_traits&lt;char&gt;, allocator&lt;char&gt; &gt;  stringstream;
+
+typedef basic_filebuf&lt;char, char_traits&lt;char&gt; &gt;  filebuf;
+typedef basic_ifstream&lt;char, char_traits&lt;char&gt; &gt; ifstream;
+typedef basic_ofstream&lt;char, char_traits&lt;char&gt; &gt; ofstream;
+typedef basic_fstream&lt;char, char_traits&lt;char&gt; &gt;  fstream;
+
+#ifndef _MSL_NO_WCHART
+
+    template &lt;&gt; struct char_traits&lt;wchar_t&gt;;
+
+    typedef basic_ios&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt; wios;
+
+    typedef basic_streambuf&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt; wstreambuf;
+    typedef basic_istream&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt;   wistream;
+    typedef basic_ostream&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt;   wostream;
+    typedef basic_iostream&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt;  wiostream;
+
+    typedef basic_stringbuf&lt;wchar_t, char_traits&lt;wchar_t&gt;, allocator&lt;wchar_t&gt; &gt;     wstringbuf;
+    typedef basic_istringstream&lt;wchar_t, char_traits&lt;wchar_t&gt;, allocator&lt;wchar_t&gt; &gt; wistringstream;
+    typedef basic_ostringstream&lt;wchar_t, char_traits&lt;wchar_t&gt;, allocator&lt;wchar_t&gt; &gt; wostringstream;
+    typedef basic_stringstream&lt;wchar_t, char_traits&lt;wchar_t&gt;, allocator&lt;wchar_t&gt; &gt;  wstringstream;
+
+    typedef basic_filebuf&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt;  wfilebuf;
+    typedef basic_ifstream&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt; wifstream;
+    typedef basic_ofstream&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt; wofstream;
+    typedef basic_fstream&lt;wchar_t, char_traits&lt;wchar_t&gt; &gt;  wfstream;
+
+#endif // _MSL_NO_WCHART
+
+#endif // _MSL_NO_IO
+
+template &lt;class state&gt; class fpos;
+// hh 980908 added
+typedef fpos&lt;mbstate_t&gt; streampos;
+typedef fpos&lt;mbstate_t&gt; wstreampos;
+
+typedef long streamoff;
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _IOSFWD
+
+// hh  971222 added alignment wrapper
+// hh  971222 Changed filename from iosfwd.h to iosfwd
+// hh  971222 Made include guards standard
+// hh  971230 added RC_INVOKED wrapper
+// blc 980313 fixed char_traits structness
+// hh 981027 wrapped #include &lt;cwchar&gt; up in MSIPL_WCHART
+// hh 990102 fixed names of stream iterator forward declarations
+// hh 990120 changed name of MSIPL flags
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

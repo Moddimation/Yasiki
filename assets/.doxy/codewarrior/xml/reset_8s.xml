@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="reset_8s" kind="file" language="C++">
+    <compoundname>reset.s</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#//<sp/>This<sp/>is<sp/>an<sp/>example<sp/>of<sp/>how<sp/>to<sp/>make<sp/>your<sp/>code<sp/>boot<sp/>from<sp/>reset.</highlight></codeline>
+<codeline><highlight class="normal">#//<sp/>__start<sp/>is<sp/>the<sp/>entry<sp/>point,<sp/>and<sp/>we<sp/>want<sp/>to<sp/>put<sp/>a<sp/>branch<sp/>to<sp/>it</highlight></codeline>
+<codeline><highlight class="normal">#//<sp/>at<sp/>the<sp/>reset<sp/>vector.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.extern<sp/>__start<sp/><sp/><sp/><sp/><sp/>#//<sp/>entry<sp/>point</highlight></codeline>
+<codeline><highlight class="normal">.globl<sp/><sp/>reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.section<sp/><sp/><sp/><sp/>.reset,<sp/>8,<sp/>x</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">.org<sp/><sp/><sp/><sp/>0x100</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">reset:</highlight></codeline>
+<codeline><highlight class="normal">b<sp/><sp/><sp/>__start</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/reset.s"/>
+  </compounddef>
+</doxygen>

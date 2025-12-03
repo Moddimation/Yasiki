@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dispatch.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dispatchh">File dispatch.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_25028620cc1a8a9857c414f885e69890/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_ecf524e1d45118e058413ae4d34b2285/"><strong>Priv</strong></a> <strong>&gt;</strong> <a href="../dir_ce9d0fbd51586ee7cfe465fa88acc648/"><strong>Portable</strong></a> <strong>&gt;</strong> <a href="../dispatch_8h/"><strong>dispatch.h</strong></a></p>
+<p><a href="../dispatch_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef METROTRK_PORTABLE_DISPATCH_H
+#define METROTRK_PORTABLE_DISPATCH_H
+
+#include &quot;dolphin/types.h&quot;
+#include &quot;trk.h&quot;
+
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+
+#define TRK_DISPATCH_CMD_CONNECT        1  /* Connect to the console */
+#define TRK_DISPATCH_CMD_DISCONNECT     2  /* Disconnect from the console */
+#define TRK_DISPATCH_CMD_RESET          3  /* Reset the debugger */
+#define TRK_DISPATCH_CMD_GETVERSION     4  /* Get debugger version */
+#define TRK_DISPATCH_CMD_GETSUPPORTMASK 5  /* Get Support Mask */
+#define TRK_DISPATCH_CMD_OVERRIDE       7  /* Override? */
+#define TRK_DISPATCH_CMD_READMEM        16 /* Reading from memory */
+#define TRK_DISPATCH_CMD_WRITEMEM       17 /* Writing to memory */
+#define TRK_DISPATCH_CMD_READREGS       18 /* Read a register value */
+#define TRK_DISPATCH_CMD_WRITEREGS      19 /* Set a register */
+#define TRK_DISPATCH_CMD_SETOPTION      23 /* Set an option? */
+#define TRK_DISPATCH_CMD_CONTINUE       24 /* Continue debugging */
+#define TRK_DISPATCH_CMD_STEP           25 /* Step through an instruction */
+#define TRK_DISPATCH_CMD_STOP           26 /* Stop the debugger */
+
+typedef struct TRKBuffer TRKBuffer;
+
+DSError TRKInitializeDispatcher();
+BOOL TRKDispatchMessage(TRKBuffer* buffer);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* METROTRK_PORTABLE_DISPATCH_H */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

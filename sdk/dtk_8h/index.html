@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dtk.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dtkh">File dtk.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>dtk.h</strong></a></p>
+<p><a href="../dtk_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/dvd.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-dtkcallback"><strong>DTKCallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-dtkflushcallback"><strong>DTKFlushCallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-dtktrack"><strong>DTKTrack</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkflushtracks"><strong>DTKFlushTracks</strong></a> (<a href="./#typedef-dtkflushcallback"><strong>DTKFlushCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-dtkgetcurrenttrack"><strong>DTKGetCurrentTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetinterruptfrequency"><strong>DTKGetInterruptFrequency</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetposition"><strong>DTKGetPosition</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetrepeatmode"><strong>DTKGetRepeatMode</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetsamplerate"><strong>DTKGetSampleRate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetstate"><strong>DTKGetState</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetvolume"><strong>DTKGetVolume</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkinit"><strong>DTKInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtknexttrack"><strong>DTKNextTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkprevtrack"><strong>DTKPrevTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkqueuetrack"><strong>DTKQueueTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * fileName, <a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> * track, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> eventMask, <a href="./#typedef-dtkcallback"><strong>DTKCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkremovetrack"><strong>DTKRemoveTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> * track) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetinterruptfrequency"><strong>DTKSetInterruptFrequency</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> samples) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetrepeatmode"><strong>DTKSetRepeatMode</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> repeat) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetsamplerate"><strong>DTKSetSampleRate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> samplerate) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetstate"><strong>DTKSetState</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> state) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetvolume"><strong>DTKSetVolume</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> left, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> right) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkshutdown"><strong>DTKShutdown</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dtk_mode_allrepeat"><strong>DTK_MODE_ALLREPEAT</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dtk_mode_norepeat"><strong>DTK_MODE_NOREPEAT</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dtk_mode_repeat1"><strong>DTK_MODE_REPEAT1</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dtk_state_busy"><strong>DTK_STATE_BUSY</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dtk_state_pause"><strong>DTK_STATE_PAUSE</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dtk_state_prepare"><strong>DTK_STATE_PREPARE</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dtk_state_run"><strong>DTK_STATE_RUN</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dtk_state_stop"><strong>DTK_STATE_STOP</strong></a>  <code>0</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-dtkcallback">typedef DTKCallback</h3>
+<pre><code class="language-C++">typedef void(* DTKCallback) (u32 eventMask);
+</code></pre>
+<hr>
+
+<h3 id="typedef-dtkflushcallback">typedef DTKFlushCallback</h3>
+<pre><code class="language-C++">typedef void(* DTKFlushCallback) (void);
+</code></pre>
+<hr>
+
+<h3 id="typedef-dtktrack">typedef DTKTrack</h3>
+<pre><code class="language-C++">typedef struct DTKTrack DTKTrack;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-dtkflushtracks">function DTKFlushTracks</h3>
+<pre><code class="language-C++">void DTKFlushTracks (
+    DTKFlushCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetcurrenttrack">function DTKGetCurrentTrack</h3>
+<pre><code class="language-C++">DTKTrack * DTKGetCurrentTrack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetinterruptfrequency">function DTKGetInterruptFrequency</h3>
+<pre><code class="language-C++">u32 DTKGetInterruptFrequency (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetposition">function DTKGetPosition</h3>
+<pre><code class="language-C++">u32 DTKGetPosition (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetrepeatmode">function DTKGetRepeatMode</h3>
+<pre><code class="language-C++">u32 DTKGetRepeatMode (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetsamplerate">function DTKGetSampleRate</h3>
+<pre><code class="language-C++">u32 DTKGetSampleRate (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetstate">function DTKGetState</h3>
+<pre><code class="language-C++">u32 DTKGetState (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetvolume">function DTKGetVolume</h3>
+<pre><code class="language-C++">u16 DTKGetVolume (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkinit">function DTKInit</h3>
+<pre><code class="language-C++">void DTKInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtknexttrack">function DTKNextTrack</h3>
+<pre><code class="language-C++">void DTKNextTrack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkprevtrack">function DTKPrevTrack</h3>
+<pre><code class="language-C++">void DTKPrevTrack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkqueuetrack">function DTKQueueTrack</h3>
+<pre><code class="language-C++">u32 DTKQueueTrack (
+    char * fileName,
+    DTKTrack * track,
+    u32 eventMask,
+    DTKCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkremovetrack">function DTKRemoveTrack</h3>
+<pre><code class="language-C++">u32 DTKRemoveTrack (
+    struct  DTKTrack * track
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetinterruptfrequency">function DTKSetInterruptFrequency</h3>
+<pre><code class="language-C++">void DTKSetInterruptFrequency (
+    u32 samples
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetrepeatmode">function DTKSetRepeatMode</h3>
+<pre><code class="language-C++">void DTKSetRepeatMode (
+    u32 repeat
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetsamplerate">function DTKSetSampleRate</h3>
+<pre><code class="language-C++">void DTKSetSampleRate (
+    u32 samplerate
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetstate">function DTKSetState</h3>
+<pre><code class="language-C++">void DTKSetState (
+    u32 state
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetvolume">function DTKSetVolume</h3>
+<pre><code class="language-C++">void DTKSetVolume (
+    u8 left,
+    u8 right
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkshutdown">function DTKShutdown</h3>
+<pre><code class="language-C++">void DTKShutdown (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-dtk_mode_allrepeat">define DTK_MODE_ALLREPEAT</h3>
+<pre><code class="language-C++">#define DTK_MODE_ALLREPEAT `1`
+</code></pre>
+<hr>
+
+<h3 id="define-dtk_mode_norepeat">define DTK_MODE_NOREPEAT</h3>
+<pre><code class="language-C++">#define DTK_MODE_NOREPEAT `0`
+</code></pre>
+<hr>
+
+<h3 id="define-dtk_mode_repeat1">define DTK_MODE_REPEAT1</h3>
+<pre><code class="language-C++">#define DTK_MODE_REPEAT1 `2`
+</code></pre>
+<hr>
+
+<h3 id="define-dtk_state_busy">define DTK_STATE_BUSY</h3>
+<pre><code class="language-C++">#define DTK_STATE_BUSY `3`
+</code></pre>
+<hr>
+
+<h3 id="define-dtk_state_pause">define DTK_STATE_PAUSE</h3>
+<pre><code class="language-C++">#define DTK_STATE_PAUSE `2`
+</code></pre>
+<hr>
+
+<h3 id="define-dtk_state_prepare">define DTK_STATE_PREPARE</h3>
+<pre><code class="language-C++">#define DTK_STATE_PREPARE `4`
+</code></pre>
+<hr>
+
+<h3 id="define-dtk_state_run">define DTK_STATE_RUN</h3>
+<pre><code class="language-C++">#define DTK_STATE_RUN `1`
+</code></pre>
+<hr>
+
+<h3 id="define-dtk_state_stop">define DTK_STATE_STOP</h3>
+<pre><code class="language-C++">#define DTK_STATE_STOP `0`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/dtk.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

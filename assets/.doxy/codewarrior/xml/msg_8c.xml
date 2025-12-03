@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="msg_8c" kind="file" language="C++">
+    <compoundname>msg.c</compoundname>
+    <includes refid="msg_8h" local="yes">Portable/msg.h</includes>
+    <includes refid="dolphin__trk__glue_8h" local="yes">Os/dolphin/dolphin_trk_glue.h</includes>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>Os/dolphin/dolphin_trk_glue.h</label>
+        <link refid="dolphin__trk__glue_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Portable/msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>msg.c</label>
+        <link refid="msg_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="7">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os.h</label>
+      </node>
+      <node id="4">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="msg_8c_1a203bf9c50b4319005a017bd85031a0b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKMessageSend</definition>
+        <argsstring>(TRK_Msg *msg)</argsstring>
+        <name>TRKMessageSend</name>
+        <param>
+          <type><ref refid="msg_8h_1ace8d2628c07b01b974f0123ffa3d29d5" kindref="member">TRK_Msg</ref> *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/msg.c" line="5" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/msg.c" bodystart="5" bodyend="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="struct___t_r_k___msg_1a7eb46377141aea2e512f5635e832561e" compoundref="msg_8h" startline="11">_TRK_Msg::m_msg</references>
+        <references refid="struct___t_r_k___msg_1a3dfde36b24337d44e0b28598540d6afa" compoundref="msg_8h" startline="9">_TRK_Msg::m_msgLength</references>
+        <references refid="dolphin__trk__glue_8h_1ae1f3633c297b6864b7e495f2fdcfb232" compoundref="dolphin__trk__glue_8c" startline="106" endline="110">TRKWriteUARTN</references>
+        <referencedby refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" compoundref="support_8c" startline="105" endline="177">TRKRequestSend</referencedby>
+        <referencedby refid="msghndlr_8c_1ab0b8ff950fd0676ea933645dfe5d9a71" compoundref="msghndlr_8c" startline="18" endline="30">TRKSendACK</referencedby>
+        <referencedby refid="support_8h_1a854fab9a6aa5fb8a16021f32df8b68f5" compoundref="support_8c" startline="9" endline="103">TRKSuppAccessFile</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">Portable/msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dolphin__trk__glue_8h" kindref="compound">Os/dolphin/dolphin_trk_glue.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="msg_8c_1a203bf9c50b4319005a017bd85031a0b0" kindref="member">TRKMessageSend</ref>(<ref refid="struct___t_r_k___msg" kindref="compound">TRK_Msg</ref>*<sp/>msg)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/>write_err<sp/>=<sp/><ref refid="dolphin__trk__glue_8h_1ae1f3633c297b6864b7e495f2fdcfb232" kindref="member">TRKWriteUARTN</ref>(&amp;msg-&gt;<ref refid="struct___t_r_k___msg_1a7eb46377141aea2e512f5635e832561e" kindref="member">m_msg</ref>,<sp/>msg-&gt;<ref refid="struct___t_r_k___msg_1a3dfde36b24337d44e0b28598540d6afa" kindref="member">m_msgLength</ref>);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/msg.c"/>
+  </compounddef>
+</doxygen>

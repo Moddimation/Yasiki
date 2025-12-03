@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_j_k_r_solid_heap_8h" kind="file" language="C++">
+    <compoundname>JKRSolidHeap.h</compoundname>
+    <includes refid="_j_k_r_heap_8h" local="no">JKRHeap.h</includes>
+    <includedby refid="_j_k_r_solid_heap_8cpp" local="no">JKRSolidHeap.cpp</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>JKRDisposer.h</label>
+        <link refid="_j_k_r_disposer_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>JKRHeap.h</label>
+        <link refid="_j_k_r_heap_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>JKRSolidHeap.h</label>
+        <link refid="_j_k_r_solid_heap_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>JSUList.h</label>
+        <link refid="_j_s_u_list_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>JUTTypes.h</label>
+        <link refid="_j_u_t_types_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/os.h</label>
+      </node>
+      <node id="7">
+        <label>macros.h</label>
+      </node>
+      <node id="9">
+        <label>new</label>
+      </node>
+      <node id="10">
+        <label>size_t.h</label>
+      </node>
+      <node id="8">
+        <label>types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>JKRSolidHeap.h</label>
+        <link refid="_j_k_r_solid_heap_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>JKRSolidHeap.cpp</label>
+        <link refid="_j_k_r_solid_heap_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_j_k_r_solid_heap" prot="public">JKRSolidHeap</innerclass>
+    <innerclass refid="struct_j_k_r_solid_heap_1_1_iter" prot="protected">JKRSolidHeap::Iter</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__JKR_SOLIDHEAP_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__JKR_SOLIDHEAP_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_j_k_r_heap_8h" kindref="compound">JKRHeap.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="class_j_k_r_solid_heap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_j_k_r_solid_heap" kindref="compound">JKRSolidHeap</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap" kindref="compound">JKRSolidHeap</ref>*<sp/><ref refid="class_j_k_r_solid_heap_1a3903f9d0a13b8483e27798113158b4b6" kindref="member">create</ref><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref>*<sp/>parent,<sp/><ref refid="_j_u_t_types_8h_1ae4cc35dcc70810fa972cc8a5185a28fa" kindref="member">BOOL</ref><sp/>isError);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_solid_heap_1ad38ccc0f300112ea5b594e30b00215b1" kindref="member">destroy</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="class_j_k_r_solid_heap_1a78fac85d797c6a671ee288a307c15dbf" kindref="member">alloc</ref><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>align);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_solid_heap_1a323b583deb9e64b0682a7302b55b5d40" kindref="member">allocFromHead</ref><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>align);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_solid_heap_1a66c117e298a51a11d15e462750f37036" kindref="member">allocFromTail</ref><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>align);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap_1afec8c42e88f2866be102e5e465d9383a" kindref="member">free</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ptr);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap_1ae5d8e7c1d7bcc16ea9094d0930aceb2f" kindref="member">freeAll</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap_1a3aa9227885869918bdca488ca20b6341" kindref="member">freeTail</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap_1a67b8fa81239f2c7a68d0d7bb02f8b094" kindref="member">resize</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>obj,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>s32<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_solid_heap_1a7279e82156ad90d2df4ca92836f2d6ea" kindref="member">adjustSize</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap_1a84d4e54f1fbc6ac6e5c616a69a26b616" kindref="member">getSize</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>obj);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="class_j_k_r_solid_heap_1aac89137d8888bcf4188ab138a78ea014" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_solid_heap_1aac89137d8888bcf4188ab138a78ea014" kindref="member">getFreeSize</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap_1a8ce8425beec305b52ad75ffb8ab2520b" kindref="member">mFreeSize</ref>;<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>match<sp/>this,<sp/>it<sp/>is<sp/>the<sp/>only<sp/>function<sp/>not<sp/>being<sp/>bundled<sp/>in<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tu<sp/>block,<sp/>making<sp/>vtable<sp/>mismatch</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap_1a2434c9a6a223662dd7779a1a5a8f9365" kindref="member">getTotalFreeSize</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>u32<sp/><sp/><ref refid="class_j_k_r_solid_heap_1ab5802d440265e51460eb4c8502fdc3cc" kindref="member">getHeapType</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/><ref refid="_j_u_t_types_8h_1ae4cc35dcc70810fa972cc8a5185a28fa" kindref="member">BOOL</ref><sp/><ref refid="class_j_k_r_solid_heap_1a0c5d2e4fb681eca394c06f55a48b73a1" kindref="member">check</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/><ref refid="_j_u_t_types_8h_1ae4cc35dcc70810fa972cc8a5185a28fa" kindref="member">BOOL</ref><sp/><ref refid="class_j_k_r_solid_heap_1a317277dd190655cb629fa603402a72b7" kindref="member">dump</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39" refid="struct_j_k_r_solid_heap_1_1_iter" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_j_k_r_solid_heap_1_1_iter" kindref="compound">Iter</ref></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="41" refid="struct_j_k_r_solid_heap_1_1_iter_1a346d2fd0b7950372788026599b626858" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unk32<sp/><ref refid="struct_j_k_r_solid_heap_1_1_iter_1a346d2fd0b7950372788026599b626858" kindref="member">_0</ref>;</highlight></codeline>
+<codeline lineno="42" refid="struct_j_k_r_solid_heap_1_1_iter_1a9b82717188ac94f4b850ec86b18dcab4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unk32<sp/><ref refid="struct_j_k_r_solid_heap_1_1_iter_1a9b82717188ac94f4b850ec86b18dcab4" kindref="member">_4</ref>;</highlight></codeline>
+<codeline lineno="43" refid="struct_j_k_r_solid_heap_1_1_iter_1a009a9720c0d23e30ba2392a7c5f145bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unk32<sp/><ref refid="struct_j_k_r_solid_heap_1_1_iter_1a009a9720c0d23e30ba2392a7c5f145bb" kindref="member">_8</ref>;</highlight></codeline>
+<codeline lineno="44" refid="struct_j_k_r_solid_heap_1_1_iter_1a3c516318aff4b9d6065c1ef493137420" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="struct_j_k_r_solid_heap_1_1_iter_1a3c516318aff4b9d6065c1ef493137420" kindref="member">mTail</ref>;</highlight></codeline>
+<codeline lineno="45" refid="struct_j_k_r_solid_heap_1_1_iter_1a59cfbc1429e3af24b173026bde4cf2f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_j_k_r_solid_heap_1_1_iter" kindref="compound">Iter</ref>*<sp/><ref refid="struct_j_k_r_solid_heap_1_1_iter_1a59cfbc1429e3af24b173026bde4cf2f6" kindref="member">mHead</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="47" refid="class_j_k_r_solid_heap_1ae0f5af44705a7698f44bf1cff336d5fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_j_k_r_solid_heap_1_1_iter" kindref="compound">Iter</ref><sp/><ref refid="struct_j_k_r_solid_heap_1_1_iter" kindref="compound">Iter</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="class_j_k_r_solid_heap_1a8ce8425beec305b52ad75ffb8ab2520b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_solid_heap_1a8ce8425beec305b52ad75ffb8ab2520b" kindref="member">mFreeSize</ref>;</highlight></codeline>
+<codeline lineno="50" refid="class_j_k_r_solid_heap_1adb2194e47fc2d7380c186e0c4bfe4310" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><ref refid="class_j_k_r_solid_heap_1adb2194e47fc2d7380c186e0c4bfe4310" kindref="member">mHead</ref>;</highlight></codeline>
+<codeline lineno="51" refid="class_j_k_r_solid_heap_1a838d1c6d89f563f43467938674855fe6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><ref refid="class_j_k_r_solid_heap_1a838d1c6d89f563f43467938674855fe6" kindref="member">mTail</ref>;</highlight></codeline>
+<codeline lineno="52" refid="class_j_k_r_solid_heap_1ab3c92974f06ffd47711d11b9849aafa9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_j_k_r_solid_heap_1_1_iter" kindref="compound">Iter</ref>*<sp/><sp/><ref refid="class_j_k_r_solid_heap_1ab3c92974f06ffd47711d11b9849aafa9" kindref="member">mIter</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_j_u_t_types_8h_1a29d583e02d7d25852fb356110c1a0bf7" kindref="member">constructor</ref><sp/><ref refid="class_j_k_r_heap_1ab470536acb85ba41b44e5cbbeda27817" kindref="member">JKRSolidHeap</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>obj,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref>*<sp/>parent,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_error);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_j_u_t_types_8h_1a9e47057ec8b35a4c28c50454143074d3" kindref="member">destructor</ref><sp/><ref refid="class_j_k_r_solid_heap_1a8d616a1380121bcba109df5ae7da4e66" kindref="member">~JKRSolidHeap</ref>();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">SASSERT_SIZE<sp/>(<ref refid="class_j_k_r_solid_heap" kindref="compound">JKRSolidHeap</ref>,<sp/>0x78);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/JSystem/System/JKernel/include/JKRSolidHeap.h"/>
+  </compounddef>
+</doxygen>

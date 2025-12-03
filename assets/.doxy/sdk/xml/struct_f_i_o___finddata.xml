@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_f_i_o___finddata" kind="struct" language="C++" prot="public">
+    <compoundname>FIO_Finddata</compoundname>
+    <includes refid="mcc_8h" local="no">mcc.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_f_i_o___finddata_1a27ab3cf3194ad5ad06427b43706cd22a" prot="public" static="no" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_f_i_o___stat" kindref="compound">FIO_Stat</ref></type>
+        <definition>struct FIO_Stat FIO_Finddata::stat</definition>
+        <argsstring></argsstring>
+        <name>stat</name>
+        <qualifiedname>FIO_Finddata::stat</qualifiedname>
+        <briefdescription>
+<para>0x00 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="136" column="19" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_f_i_o___finddata_1a5601c1b75c22a23b7b0d87882d532d81" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref></type>
+        <definition>s8 FIO_Finddata::filename[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>filename</name>
+        <qualifiedname>FIO_Finddata::filename</qualifiedname>
+        <briefdescription>
+<para>0x24 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="137" column="21" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="137" bodyend="-1"/>
+        <referencedby refid="mcc_8h_1a0ef932e79fe575d404b7da7c0ae3803b" compoundref="fio_8c" startline="691" endline="741">FIOFindFirst</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>FIO_Date</label>
+        <link refid="struct_f_i_o___date"/>
+      </node>
+      <node id="5">
+        <label>FIO_Daytime</label>
+        <link refid="struct_f_i_o___daytime"/>
+      </node>
+      <node id="1">
+        <label>FIO_Finddata</label>
+        <link refid="struct_f_i_o___finddata"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>stat</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FIO_Stat</label>
+        <link refid="struct_f_i_o___stat"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>creationTime</edgelabel>
+          <edgelabel>lastAccessTime</edgelabel>
+          <edgelabel>lastWriteTime</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FIO_Timestamp</label>
+        <link refid="struct_f_i_o___timestamp"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>date</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="134" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="135" bodyend="138"/>
+    <listofallmembers>
+      <member refid="struct_f_i_o___finddata_1a5601c1b75c22a23b7b0d87882d532d81" prot="public" virt="non-virtual"><scope>FIO_Finddata</scope><name>filename</name></member>
+      <member refid="struct_f_i_o___finddata_1a27ab3cf3194ad5ad06427b43706cd22a" prot="public" virt="non-virtual"><scope>FIO_Finddata</scope><name>stat</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

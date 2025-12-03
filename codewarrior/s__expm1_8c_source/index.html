@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File s_expm1.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-s_expm1c">File s_expm1.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="../s__expm1_8c/"><strong>s_expm1.c</strong></a></p>
+<p><a href="../s__expm1_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+#ifndef _No_Floating_Point  
+/* @(#)s_expm1.c 1.2 95/01/04 */
+/* $Id: s_expm1.c,v 1.2.4.1 1999/12/06 19:47:31 fassiott Exp $ */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
+ */
+
+/* expm1(x)
+ * Returns exp(x)-1, the exponential of x minus 1.
+ *
+ * Method
+ *   1. Argument reduction:
+ *  Given x, find r and integer k such that
+ *
+ *               x = k*ln2 + r,  |r| &lt;= 0.5*ln2 ~ 0.34658  
+ *
+ *      Here a correction term c will be computed to compensate 
+ *  the error in r when rounded to a floating-point number.
+ *
+ *   2. Approximating expm1(r) by a special rational function on
+ *  the interval [0,0.34658]:
+ *  Since
+ *      r*(exp(r)+1)/(exp(r)-1) = 2+ r^2/6 - r^4/360 + ...
+ *  we define R1(r*r) by
+ *      r*(exp(r)+1)/(exp(r)-1) = 2+ r^2/6 * R1(r*r)
+ *  That is,
+ *      R1(r**2) = 6/r *((exp(r)+1)/(exp(r)-1) - 2/r)
+ *           = 6/r * ( 1 + 2.0*(1/(exp(r)-1) - 1/r))
+ *           = 1 - r^2/60 + r^4/2520 - r^6/100800 + ...
+ *      We use a special Reme algorithm on [0,0.347] to generate 
+ *  a polynomial of degree 5 in r*r to approximate R1. The 
+ *  maximum error of this polynomial approximation is bounded 
+ *  by 2**-61. In other words,
+ *      R1(z) ~ 1.0 + Q1*z + Q2*z**2 + Q3*z**3 + Q4*z**4 + Q5*z**5
+ *  where   Q1  =  -1.6666666666666567384E-2,
+ *      Q2  =   3.9682539681370365873E-4,
+ *      Q3  =  -9.9206344733435987357E-6,
+ *      Q4  =   2.5051361420808517002E-7,
+ *      Q5  =  -6.2843505682382617102E-9;
+ *      (where z=r*r, and the values of Q1 to Q5 are listed below)
+ *  with error bounded by
+ *      |                  5           |     -61
+ *      | 1.0+Q1*z+...+Q5*z   -  R1(z) | &lt;= 2 
+ *      |                              |
+ *  
+ *  expm1(r) = exp(r)-1 is then computed by the following 
+ *  specific way which minimize the accumulation rounding error: 
+ *                 2     3
+ *                r     r    [ 3 - (R1 + R1*r/2)  ]
+ *        expm1(r) = r + --- + --- * [--------------------]
+ *                    2     2    [ 6 - r*(3 - R1*r/2) ]
+ *  
+ *  To compensate the error in the argument reduction, we use
+ *      expm1(r+c) = expm1(r) + c + expm1(r)*c 
+ *             ~ expm1(r) + c + r*c 
+ *  Thus c+r*c will be added in as the correction terms for
+ *  expm1(r+c). Now rearrange the term to avoid optimization 
+ *  screw up:
+ *              (      2                                    2 )
+ *              ({  ( r    [ R1 -  (3 - R1*r/2) ]  )  }    r  )
+ *   expm1(r+c)~r - ({r*(--- * [--------------------]-c)-c} - --- )
+ *                  ({  ( 2    [ 6 - r*(3 - R1*r/2) ]  )  }    2  )
+ *                      (                                             )
+ *      
+ *         = r - E
+ *   3. Scale back to obtain expm1(x):
+ *  From step 1, we have
+ *     expm1(x) = either 2^k*[expm1(r)+1] - 1
+ *          = or     2^k*[expm1(r) + (1-2^-k)]
+ *   4. Implementation notes:
+ *  (A). To save one multiplication, we scale the coefficient Qi
+ *       to Qi*2^i, and replace z by (x^2)/2.
+ *  (B). To achieve maximum accuracy, we compute expm1(x) by
+ *    (i)   if x &lt; -56*ln2, return -1.0, (raise inexact if x!=inf)
+ *    (ii)  if k=0, return r-E
+ *    (iii) if k=-1, return 0.5*(r-E)-0.5
+ *        (iv)  if k=1 if r &lt; -0.25, return 2*((r+0.5)- E)
+ *                 else      return  1.0+2.0*(r-E);
+ *    (v)   if (k&lt;-2||k&gt;56) return 2^k(1-(E-r)) - 1 (or exp(x)-1)
+ *    (vi)  if k &lt;= 20, return 2^k((1-2^-k)-(E-r)), else
+ *    (vii) return 2^k(1-((E+2^-k)-r)) 
+ *
+ * Special cases:
+ *  expm1(INF) is INF, expm1(NaN) is NaN;
+ *  expm1(-INF) is -1, and
+ *  for finite argument, only expm1(0)=0 is exact.
+ *
+ * Accuracy:
+ *  according to an error analysis, the error is always less than
+ *  1 ulp (unit in the last place).
+ *
+ * Misc. info.
+ *  For IEEE double 
+ *      if x &gt;  7.09782712893383973096e+02 then expm1(x) overflow
+ *
+ * Constants:
+ * The hexadecimal values are the intended ones for the following 
+ * constants. The decimal values may be used, provided that the 
+ * compiler will convert from decimal to binary accurately enough
+ * to produce the hexadecimal values shown.
+ */
+
+#include &quot;fdlibm.h&quot;
+
+#ifdef __STDC__
+static const double
+#else
+static double
+#endif
+one     = 1.0,
+big         = 1.0e+300,
+tiny        = 1.0e-300,
+o_threshold = 7.09782712893383973096e+02,/* 0x40862E42, 0xFEFA39EF */
+ln2_hi      = 6.93147180369123816490e-01,/* 0x3fe62e42, 0xfee00000 */
+ln2_lo      = 1.90821492927058770002e-10,/* 0x3dea39ef, 0x35793c76 */
+invln2      = 1.44269504088896338700e+00,/* 0x3ff71547, 0x652b82fe */
+    /* scaled coefficients related to expm1 */
+Q1  =  -3.33333333333331316428e-02, /* BFA11111 111110F4 */
+Q2  =   1.58730158725481460165e-03, /* 3F5A01A0 19FE5585 */
+Q3  =  -7.93650757867487942473e-05, /* BF14CE19 9EAADBB7 */
+Q4  =   4.00821782732936239552e-06, /* 3ED0CFCA 86E65239 */
+Q5  =  -2.01099218183624371326e-07; /* BE8AFDB7 6E09C32D */
+
+#ifdef __STDC__
+    double expm1(double x)
+#else
+    double __expm1(x)
+    double x;
+#endif
+{
+    double y,hi,lo,c,t,e,hxs,hfx,r1;
+    int k,xsb;
+    unsigned hx;
+
+    hx  = __HI(x);  /* high word of x */
+    xsb = hx&amp;0x80000000;        /* sign bit of x */
+    if(xsb==0) y=x; else y= -x; /* y = |x| */
+    hx &amp;= 0x7fffffff;       /* high word of |x| */
+
+    /* filter out big and non-finite argument */
+    if(hx &gt;= 0x4043687A) {          /* if |x|&gt;=56*ln2 */
+        if(hx &gt;= 0x40862E42) {      /* if |x|&gt;=709.78... */
+                if(hx&gt;=0x7ff00000) {
+            if(((hx&amp;0xfffff)|__LO(x))!=0) 
+                 return x+x;     /* NaN */
+            else return (xsb==0)? x:-1.0;/* exp(+-inf)={inf,-1} */
+            }
+            if(x &gt; o_threshold) return big*big; /* overflow */
+        }
+        if(xsb!=0) { /* x &lt; -56*ln2, return -1.0 with inexact */
+        if(x+tiny&lt;0.0)      /* raise inexact */
+        return tiny-one;    /* return -1 */
+        }
+    }
+
+    /* argument reduction */
+    if(hx &gt; 0x3fd62e42) {       /* if  |x| &gt; 0.5 ln2 */ 
+        if(hx &lt; 0x3FF0A2B2) {   /* and |x| &lt; 1.5 ln2 */
+        if(xsb==0)
+            {hi = x - ln2_hi; lo =  ln2_lo;  k =  1;}
+        else
+            {hi = x + ln2_hi; lo = -ln2_lo;  k = -1;}
+        } else {
+        k  = invln2*x+((xsb==0)?0.5:-0.5);
+        t  = k;
+        hi = x - t*ln2_hi;  /* t*ln2_hi is exact here */
+        lo = t*ln2_lo;
+        }
+        x  = hi - lo;
+        c  = (hi-x)-lo;
+    } 
+    else if(hx &lt; 0x3c900000) {      /* when |x|&lt;2**-54, return x */
+        t = big+x;  /* return x with inexact flags when x!=0 */
+        return x - (t-(big+x)); 
+    }
+    else k = 0;
+
+    /* x is now in primary range */
+    hfx = 0.5*x;
+    hxs = x*hfx;
+    r1 = one+hxs*(Q1+hxs*(Q2+hxs*(Q3+hxs*(Q4+hxs*Q5))));
+    t  = 3.0-r1*hfx;
+    e  = hxs*((r1-t)/(6.0 - x*t));
+    if(k==0) return x - (x*e-hxs);      /* c is 0 */
+    else {
+        e  = (x*(e-c)-c);
+        e -= hxs;
+        if(k== -1) return 0.5*(x-e)-0.5;
+        if(k==1) 
+            if(x &lt; -0.25) return -2.0*(e-(x+0.5));
+            else          return  one+2.0*(x-e);
+        if (k &lt;= -2 || k&gt;56) {   /* suffice to return exp(x)-1 */
+            y = one-(e-x);
+            __HI(y) += (k&lt;&lt;20); /* add k to y's exponent */
+            return y-one;
+        }
+        t = one;
+        if(k&lt;20) {
+            __HI(t) = 0x3ff00000 - (0x200000&gt;&gt;k);  /* t=1-2^-k */
+            y = t-(e-x);
+            __HI(y) += (k&lt;&lt;20); /* add k to y's exponent */
+       } else {
+            __HI(t)  = ((0x3ff-k)&lt;&lt;20); /* 2^-k */
+            y = x-(e+t);
+            y += one;
+            __HI(y) += (k&lt;&lt;20); /* add k to y's exponent */
+        }
+    }
+    return y;
+}
+#endif /* _No_Floating_Point  */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

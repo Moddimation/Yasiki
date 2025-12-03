@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OS.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osc">File OS.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="../_o_s_8c/"><strong>OS.c</strong></a></p>
+<p><a href="../_o_s_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/db.h&gt;
+#include &lt;dolphin/exi.h&gt;
+#include &lt;dolphin/os.h&gt;
+
+#include &lt;DolphinTrkInit.h&gt;
+#include &lt;string.h&gt;
+
+#include &quot;OSPrivate.h&quot;
+
+#define OS_BI2_DEBUG_ADDRESS    0x800000F4
+#define DEBUGFLAG_ADDR          0x800030E8
+#define OS_DEBUG_ADDRESS_2      0x800030E9
+#define OS_CURRENTCONTEXT_PADDR 0x00C0
+
+#define OS_EXCEPTIONTABLE_ADDR  0x3000
+#define OS_DBJUMPPOINT_ADDR     0x60
+// memory locations for important stuff
+#define OS_CACHED_REGION_PREFIX 0x8000
+#define OS_BI2_DEBUG_ADDRESS    0x800000F4
+#define OS_BI2_DEBUGFLAG_OFFSET 0xC
+#define PAD3_BUTTON_ADDR        0x800030E4
+#define OS_DVD_DEVICECODE       0x800030E6
+#define DEBUGFLAG_ADDR          0x800030E8
+#define OS_DEBUG_ADDRESS_2      0x800030E9
+#define DB_EXCEPTIONRET_OFFSET  0xC
+#define DB_EXCEPTIONDEST_OFFSET 0x8
+
+extern u32 __DVDLongFileNameFlag;
+extern u32 __PADSpec;
+extern u16 __ArenaLo[];
+extern s8  _stack_addr[];
+extern u16 __ArenaHi[];
+
+// dummy entry points to the OS Exception vector
+void __OSEVStart (void);
+void __OSEVEnd (void);
+void __OSEVSetNumber (void);
+void __OSExceptionVector (void);
+
+void __DBVECTOR (void);
+void __OSDBINTSTART (void);
+void __OSDBINTEND (void);
+void __OSDBJUMPSTART (void);
+void __OSDBJUMPEND (void);
+
+#define NOP 0x60000000
+
+static struct OSBootInfo_s* BootInfo;
+static u32*                 BI2DebugFlag;
+static double               ZeroF;
+static int                  AreWeInitialized;
+static void                 (**OSExceptionTable) (u8, OSContext*);
+
+// functions
+static asm void __OSInitFPRs (void);
+static void     OSExceptionInit (void);
+static void     OSDefaultExceptionHandler (u8 exception /* r3 */, OSContext* context /* r4 */);
+
+u32
+__OSIsDebuggerPresent ()
+{
+    return *(u32*)OSPhysicalToCached (0x40);
+}
+
+static asm void
+__OSInitFPRs (void)
+{
+#ifdef __MWERKS__
+    nofralloc;
+    lfd fp0, ZeroF;
+    fmr fp1, fp0;
+    fmr fp2, fp0;
+    fmr fp3, fp0;
+    fmr fp4, fp0;
+    fmr fp5, fp0;
+    fmr fp6, fp0;
+    fmr fp7, fp0;
+    fmr fp8, fp0;
+    fmr fp9, fp0;
+    fmr fp10, fp0;
+    fmr fp11, fp0;
+    fmr fp12, fp0;
+    fmr fp13, fp0;
+    fmr fp14, fp0;
+    fmr fp15, fp0;
+    fmr fp16, fp0;
+    fmr fp17, fp0;
+    fmr fp18, fp0;
+    fmr fp19, fp0;
+    fmr fp20, fp0;
+    fmr fp21, fp0;
+    fmr fp22, fp0;
+    fmr fp23, fp0;
+    fmr fp24, fp0;
+    fmr fp25, fp0;
+    fmr fp26, fp0;
+    fmr fp27, fp0;
+    fmr fp28, fp0;
+    fmr fp29, fp0;
+    fmr fp30, fp0;
+    fmr fp31, fp0;
+    blr;
+#endif
+}
+
+u32
+OSGetConsoleType ()
+{
+    if ((!BootInfo) || (BootInfo-&gt;consoleType == 0))
+    {
+        return OS_CONSOLE_ARTHUR;
+    }
+    return BootInfo-&gt;consoleType;
+}
+
+void
+OSInit ()
+{
+    u32   consoleType;
+    void* bi2StartAddr;
+
+    if (AreWeInitialized == 0)
+    {
+        AreWeInitialized = 1;
+        OSDisableInterrupts();
+        BootInfo = (struct OSBootInfo_s*)OSPhysicalToCached (0);
+        BI2DebugFlag = NULL;
+        __DVDLongFileNameFlag = 0;
+        bi2StartAddr = (void*)(*(u32*)OSPhysicalToCached (0xF4));
+        if (bi2StartAddr)
+        {
+            BI2DebugFlag = (void*)((char*)bi2StartAddr + 0xC);
+            __DVDLongFileNameFlag = ((u32*)bi2StartAddr)[8];
+            __PADSpec = ((u32*)bi2StartAddr)[9];
+        }
+        OSSetArenaLo ((!BootInfo-&gt;arenaLo) ? &amp;__ArenaLo : BootInfo-&gt;arenaLo);
+        if ((!BootInfo-&gt;arenaLo) &amp;&amp; (BI2DebugFlag) &amp;&amp; (*(u32*)BI2DebugFlag &lt; 2))
+        {
+            OSSetArenaLo ((void*)(((u32)(char*)&amp;_stack_addr + 0x1F) &amp; 0xFFFFFFE0));
+        }
+        OSSetArenaHi ((!BootInfo-&gt;arenaHi) ? &amp;__ArenaHi : BootInfo-&gt;arenaHi);
+        OSExceptionInit();
+        __OSInitSystemCall();
+        __OSModuleInit();
+        __OSInterruptInit();
+        __OSSetInterruptHandler (0x16, &amp;__OSResetSWInterruptHandler);
+        __OSContextInit();
+        __OSCacheInit();
+        EXIInit();
+        SIInit();
+        __OSInitSram();
+        __OSThreadInit();
+        __OSInitAudioSystem();
+        ASSERTLINE (
+            0x252,
+            BootInfo); // oh sure, assert NOW, you've already dereferenced it a bunch of times.
+        if ((BootInfo-&gt;consoleType &amp; OS_CONSOLE_DEVELOPMENT) != 0)
+        {
+            BootInfo-&gt;consoleType = OS_CONSOLE_DEVHW1;
+        }
+        else
+        {
+            BootInfo-&gt;consoleType = OS_CONSOLE_RETAIL1;
+        }
+        BootInfo-&gt;consoleType += (__PIRegs[11] &amp; 0xF0000000) &gt;&gt; 28;
+        OSReport (&quot;\nDolphin OS $Revision: &quot; MSTRING (BUILD_REV) &quot; $.\n&quot;);
+#if DEBUG
+        OSReport (&quot;Kernel built : %s %s\n&quot;, BUILD_DATE, BUILD_TIME);
+#else
+        OSReport (&quot;Kernel built : %s %s\n&quot;, BUILD_DATE, BUILD_TIME);
+#endif
+        OSReport (&quot;Console Type : &quot;);
+
+        // work out what console type this corresponds to and report it
+        // consoleTypeSwitchHi = inputConsoleType &amp; 0xF0000000;
+        consoleType = OSGetConsoleType();
+        if ((consoleType &amp; 0x10000000) == OS_CONSOLE_RETAIL)
+        {     // check &quot;first&quot; byte
+            OSReport (&quot;Retail %d\n&quot;, consoleType);
+        }
+        else
+        {
+            switch (consoleType)
+            { // if &quot;first&quot; byte is 2, check &quot;the rest&quot;
+                case OS_CONSOLE_EMULATOR:
+                    OSReport (&quot;Mac Emulator\n&quot;);
+                    break;
+                case OS_CONSOLE_PC_EMULATOR:
+                    OSReport (&quot;PC Emulator\n&quot;);
+                    break;
+                case OS_CONSOLE_ARTHUR:
+                    OSReport (&quot;EPPC Arthur\n&quot;);
+                    break;
+                case OS_CONSOLE_MINNOW:
+                    OSReport (&quot;EPPC Minnow\n&quot;);
+                    break;
+                default:
+                    OSReport (&quot;Development HW%d\n&quot;, ((u32)consoleType - 0x10000000) - 3);
+                    break;
+            }
+        }
+        // report memory size
+        OSReport (&quot;Memory %d MB\n&quot;, (u32)BootInfo-&gt;memorySize &gt;&gt; 0x14U);
+        // report heap bounds
+        OSReport (&quot;Arena : 0x%x - 0x%x\n&quot;, OSGetArenaLo(), OSGetArenaHi());
+
+        // if location of debug flag exists, and flag is &gt;= 2, enable MetroTRKInterrupts
+        if (BI2DebugFlag &amp;&amp; ((*BI2DebugFlag) &gt;= 2))
+        {
+            EnableMetroTRKInterrupts();
+        }
+        OSEnableInterrupts();
+    }
+}
+
+static u32 __OSExceptionLocations[] = {
+    0x00000100, 0x00000200, 0x00000300, 0x00000400, 0x00000500,
+    0x00000600, 0x00000700, 0x00000800, 0x00000900, 0x00000C00,
+    0x00000D00, 0x00000F00, 0x00001300, 0x00001400, 0x00001700,
+};
+
+#if DEBUG
+char* __OSExceptionNames[15] = {
+    &quot;System reset&quot;,  &quot;MachineCheck&quot;, &quot;DSI&quot;,          &quot;ISI&quot;,
+    &quot;External Int.&quot;, &quot;Alignment&quot;,    &quot;Program&quot;,      &quot;FP Unavailable&quot;,
+    &quot;Decrementer&quot;,   &quot;System call&quot;,  &quot;Trace&quot;,        &quot;Perf mon&quot;,
+    &quot;IABR&quot;,          &quot;SMI&quot;,          &quot;Thermal Int.&quot;,
+};
+#endif
+
+static void
+OSExceptionInit (void)
+{
+    __OSException exception;
+    void*         destAddr;
+
+    // These two vars help us change the exception number embedded
+    // in the exception handler code.
+    u32* opCodeAddr;
+    u32  oldOpCode;
+
+    // Address range of the actual code to be copied.
+    u8* handlerStart;
+    u32 handlerSize;
+
+    ASSERTMSGLINE (0x2F1,
+                   ((u32)&amp;__OSEVEnd - (u32)&amp;__OSEVStart) &lt;= 0x100,
+                   &quot;OSExceptionInit(): too big exception vector code.&quot;);
+
+    // Install the first level exception vector.
+    opCodeAddr = (u32*)__OSEVSetNumber;
+    oldOpCode = *opCodeAddr;
+    handlerStart = (u8*)__OSEVStart;
+    handlerSize = (u32)((u8*)__OSEVEnd - (u8*)__OSEVStart);
+
+    // Install the DB integrator, only if we are the first OSInit to be run
+    destAddr = (void*)OSPhysicalToCached (OS_DBJUMPPOINT_ADDR);
+    if (*(u32*)destAddr == 0) // Lomem should be zero cleared only once by BS2
+    {
+        DBPrintf (&quot;Installing OSDBIntegrator\n&quot;);
+        memcpy (destAddr, (void*)__OSDBINTSTART, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+        DCFlushRangeNoSync (destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+        __sync();
+        ICInvalidateRange (destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+    }
+
+    // Copy the right vector into the table
+    for (exception = 0; exception &lt; __OS_EXCEPTION_MAX; exception++)
+    {
+        if (BI2DebugFlag &amp;&amp; (*BI2DebugFlag &gt;= 2) &amp;&amp; __DBIsExceptionMarked (exception))
+        {
+            // this DBPrintf is suspicious.
+            DBPrintf (&quot;&gt;&gt;&gt; OSINIT: exception %d commandeered by TRK\n&quot;, exception);
+            continue;
+        }
+
+        // Modify the copy of code in text before transferring
+        // to the exception table.
+        *opCodeAddr = oldOpCode | exception;
+
+        // Modify opcodes at __DBVECTOR if necessary
+        if (__DBIsExceptionMarked (exception))
+        {
+            DBPrintf (&quot;&gt;&gt;&gt; OSINIT: exception %d vectored to debugger\n&quot;, exception);
+            memcpy ((void*)__DBVECTOR,
+                    (void*)__OSDBJUMPSTART,
+                    (u32)__OSDBJUMPEND - (u32)__OSDBJUMPSTART);
+        }
+        else
+        {
+            // make sure the opcodes are still nop
+            u32* ops = (u32*)__DBVECTOR;
+            int  cb;
+
+            for (cb = 0; cb &lt; (u32)__OSDBJUMPEND - (u32)__OSDBJUMPSTART; cb += sizeof (u32))
+            {
+                *ops++ = NOP;
+            }
+        }
+
+        // Install the modified handler.
+        destAddr = (void*)OSPhysicalToCached (__OSExceptionLocations[(u32)exception]);
+        memcpy (destAddr, handlerStart, handlerSize);
+        DCFlushRangeNoSync (destAddr, handlerSize);
+        __sync();
+        ICInvalidateRange (destAddr, handlerSize);
+    }
+    // initialize pointer to exception table
+    OSExceptionTable = (void*)OSPhysicalToCached (OS_EXCEPTIONTABLE_ADDR);
+
+    // install default exception handlers
+    for (exception = 0; exception &lt; __OS_EXCEPTION_MAX; exception++)
+    {
+        __OSSetExceptionHandler (exception, OSDefaultExceptionHandler);
+    }
+
+    // restore the old opcode, so that we can re-start an application without
+    // downloading the text segments
+    *opCodeAddr = oldOpCode;
+
+    DBPrintf (&quot;Exceptions initialized...\n&quot;);
+}
+
+static asm void
+__OSDBIntegrator (void)
+{
+#ifdef __MWERKS__
+    nofralloc;
+    entry __OSDBINTSTART;
+    li    r5, OS_DBINTERFACE_ADDR;
+    mflr  r3;
+    stw   r3, DB_EXCEPTIONRET_OFFSET (r5);
+    lwz   r3, DB_EXCEPTIONDEST_OFFSET (r5);
+    oris  r3, r3, OS_CACHED_REGION_PREFIX;
+    mtlr  r3;
+    li    r3, 0x30; // MSR_IR | MSR_DR     // turn on memory addressing
+    mtmsr r3;
+    blr;
+    entry __OSDBINTEND
+#endif
+}
+
+static asm void
+__OSDBJump (void)
+{
+#ifdef __MWERKS__
+
+    nofralloc;
+    entry __OSDBJUMPSTART;
+    bla   OS_DBJUMPPOINT_ADDR;
+    entry __OSDBJUMPEND;
+#endif
+}
+
+__OSExceptionHandler
+__OSSetExceptionHandler (__OSException exception, __OSExceptionHandler handler)
+{
+    __OSExceptionHandler oldHandler;
+
+    ASSERTMSGLINE (0x37F,
+                   exception &lt; __OS_EXCEPTION_MAX,
+                   &quot;__OSSetExceptionHandler(): unknown exception.&quot;);
+
+    oldHandler = OSExceptionTable[exception];
+    OSExceptionTable[exception] = handler;
+    return oldHandler;
+}
+
+__OSExceptionHandler
+__OSGetExceptionHandler (__OSException exception)
+{
+    ASSERTMSGLINE (0x396,
+                   exception &lt; __OS_EXCEPTION_MAX,
+                   &quot;__OSGetExceptionHandler(): unknown exception.&quot;);
+    return OSExceptionTable[exception];
+}
+
+static asm void
+OSExceptionVector (void)
+{
+#ifdef __MWERKS__
+    nofralloc;
+
+    entry __OSEVStart;
+    // Save r4 into SPRG0
+    mtsprg 0, r4;
+
+    // Load current context physical address into r4
+    lwz r4, OS_CURRENTCONTEXT_PADDR;
+
+    // Save r3 - r5 into the current context
+    stw    r3, OS_CONTEXT_R3 (r4);
+    mfsprg r3, 0;
+    stw    r3, OS_CONTEXT_R4 (r4);
+    stw    r5, OS_CONTEXT_R5 (r4);
+
+    lhz r3, OS_CONTEXT_STATE (r4);
+    ori r3, r3, OS_CONTEXT_STATE_EXC;
+    sth r3, OS_CONTEXT_STATE (r4);
+
+    // Save misc registers
+    mfcr   r3;
+    stw    r3, OS_CONTEXT_CR (r4);
+    mflr   r3;
+    stw    r3, OS_CONTEXT_LR (r4);
+    mfctr  r3;
+    stw    r3, OS_CONTEXT_CTR (r4);
+    mfxer  r3;
+    stw    r3, OS_CONTEXT_XER (r4);
+    mfsrr0 r3;
+    stw    r3, OS_CONTEXT_SRR0 (r4);
+    mfsrr1 r3;
+    stw    r3, OS_CONTEXT_SRR1 (r4);
+    mr     r5, r3;
+
+    entry __DBVECTOR;
+    nop;
+
+    // Set SRR1[IR|DR] to turn on address
+    // translation at the next RFI
+    mfmsr  r3;
+    ori    r3, r3, 0x30;
+    mtsrr1 r3;
+
+    // This lets us change the exception number based on the
+    // exception we're installing.
+    entry __OSEVSetNumber;
+    addi  r3, 0, 0x0000;
+
+    // Load current context virtual address into r4
+    lwz r4, 0xD4;
+
+    // Check non-recoverable interrupt
+    rlwinm.r5, r5, 0, MSR_RI_BIT, MSR_RI_BIT;
+    bne    recoverable;
+    addis  r5, 0, OSDefaultExceptionHandler @ha;
+    addi   r5, r5, OSDefaultExceptionHandler @l;
+    mtsrr0 r5;
+    rfi;
+    // NOT REACHED HERE
+
+recoverable:
+    // Locate exception handler.
+    rlwinm r5, r3, 2, 22, 29; // r5 contains exception*4
+    lwz    r5, OS_EXCEPTIONTABLE_ADDR (r5);
+    mtsrr0 r5;
+
+    // Final state
+    // r3 - exception number
+    // r4 - pointer to context
+    // r5 - garbage
+    // srr0 - exception handler
+    // srr1 - address translation enalbed, not yet recoverable
+
+    rfi;
+    // NOT REACHED HERE
+    // The handler will restore state
+
+    entry __OSEVEnd;
+    nop;
+#endif
+}
+
+void __OSUnhandledException (__OSException exception, OSContext* context, u32 dsisr, u32 dar);
+
+asm void
+OSDefaultExceptionHandler (register __OSException exception, register OSContext* context)
+{
+#pragma unused(exception)
+
+#ifdef __MWERKS__
+    nofralloc;
+    OS_EXCEPTION_SAVE_GPRS (context);
+    mfdsisr r5;
+    mfdar   r6;
+
+    b __OSUnhandledException;
+#endif
+}
+
+void
+__OSPSInit (void)
+{
+    PPCMthid2 (PPCMfhid2() | 0x80000000 | 0x20000000);
+    ICFlashInvalidate();
+    __sync();
+#ifdef __MWERKS__
+    asm
+    {
+        li    r3, 0;
+        mtspr GQR0, r3;
+    }
+#endif
+}
+
+u8
+__OSGetDIConfig (void)
+{
+    return (u8)__DIRegs[DI_CFG];
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

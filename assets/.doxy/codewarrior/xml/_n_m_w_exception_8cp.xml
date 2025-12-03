@@ -1,0 +1,436 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_n_m_w_exception_8cp" kind="file" language="C++">
+    <compoundname>NMWException.cp</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Project...:<sp/>Standard<sp/>C++<sp/>Library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Name......:<sp/>NMWException.cp<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose...:<sp/>portable<sp/>exception<sp/>handling<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Copyright.:<sp/>Copyright<sp/>1993-1997<sp/>Metrowerks,<sp/>Inc.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__MWERKS__<sp/>&amp;&amp;<sp/>!__embedded_cplusplus</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>exceptions<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__MC68K__</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>far_data<sp/>off</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>__NOSTRING__<sp/><sp/><sp/><sp/>//<sp/><sp/>do<sp/>not<sp/>include<sp/>&lt;string&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//#include<sp/>&lt;Types.h&gt;<sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971215<sp/>commented<sp/>out<sp/>per<sp/>John<sp/>McEnerney&apos;s<sp/>instructions</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;stdlib.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;MWCPlusLib.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>!__embedded_cplusplus</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;exception.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;NMWException.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971207<sp/>Added<sp/>namespace<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>!__embedded_cplusplus</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>void<sp/>dthandler()<sp/><sp/><sp/><sp/><sp/>{<sp/>abort();<sp/>};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>default<sp/>terminate<sp/>handler<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>terminate_handler<sp/><sp/><sp/><sp/>thandler<sp/>=<sp/>dthandler;<sp/><sp/><sp/>//<sp/><sp/>pointer<sp/>to<sp/>terminate<sp/>handler<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>void<sp/>duhandler()<sp/><sp/><sp/><sp/><sp/>{<sp/>terminate();<sp/>};<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>default<sp/>unexpected<sp/>handler<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>unexpected_handler<sp/><sp/><sp/>uhandler<sp/>=<sp/>duhandler;<sp/><sp/><sp/>//<sp/><sp/>pointer<sp/>to<sp/>unexpected<sp/>handler<sp/>function</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Set<sp/>a<sp/>terminate<sp/>handler<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>terminate<sp/>handler<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>terminate_handler<sp/>set_terminate(terminate_handler<sp/>handler)<sp/>throw()<sp/><sp/>//<sp/>hh<sp/>980102<sp/>added<sp/>exception<sp/>specific</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>terminate_handler<sp/>old=thandler;<sp/>thandler=handler;<sp/>return<sp/>old;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Terminate<sp/>exception<sp/>handling<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/>(shall<sp/>not<sp/>return<sp/>to<sp/>caller)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>terminate()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>thandler();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Set<sp/>an<sp/>unexpected<sp/>handler<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>unexpected<sp/>handler<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>unexpected_handler<sp/>set_unexpected(unexpected_handler<sp/>handler)<sp/>throw()<sp/><sp/>//<sp/>hh<sp/>980102<sp/>added<sp/>exception<sp/>specific</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unexpected_handler<sp/>old=uhandler;<sp/>uhandler=handler;<sp/>return<sp/>old;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Handle<sp/>unexpected<sp/>exception<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/>(shall<sp/>not<sp/>return<sp/>to<sp/>caller)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>unexpected()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uhandler();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>!__embedded_cplusplus<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_USING_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Register<sp/>a<sp/>global<sp/>object<sp/>for<sp/>later<sp/>destruction<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>global<sp/>object<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>global<sp/>registration<sp/>structure<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>global<sp/>object<sp/>(pass<sp/>thru)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>!defined(__POWERPC__)<sp/>&amp;&amp;<sp/>!defined(__CFM68K__)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>only<sp/>needed<sp/>for<sp/>classic<sp/>68K<sp/>...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>*__register_global_object(void<sp/>*object,void<sp/>*destructor,void<sp/>*regmem)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((DestructorChain<sp/>*)regmem)-&gt;next=__global_destructor_chain;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((DestructorChain<sp/>*)regmem)-&gt;destructor=destructor;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>((DestructorChain<sp/>*)regmem)-&gt;object=object;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__global_destructor_chain=(DestructorChain<sp/>*)regmem;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>object;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>Purpose..:<sp/>Compare<sp/>a<sp/>throw<sp/>and<sp/>a<sp/>catch<sp/>type<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>Input....:<sp/>pointer<sp/>to<sp/>throw<sp/>type<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>Input....:<sp/>pointer<sp/>to<sp/>catch<sp/>type<sp/>(0L:<sp/>catch(...)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>Return...:<sp/>true:<sp/>can<sp/>catch;<sp/>false:<sp/>cannot<sp/>catch<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>char<sp/>__throw_catch_compare(const<sp/>char<sp/>*throwtype,const<sp/>char<sp/>*catchtype,long<sp/>*offset_result)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>char<sp/><sp/>*cptr1,*cptr2;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*offset_result=0;<sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if((cptr2=catchtype)==0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>catch(...)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cptr1=throwtype;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(*cptr2==&apos;P&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>catch(cv<sp/>T<sp/>*)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cptr2++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr2==&apos;C&apos;)<sp/>cptr2++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr2==&apos;V&apos;)<sp/>cptr2++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr2==&apos;v&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>catch(cv<sp/>void<sp/>*)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1==&apos;P&apos;<sp/>||<sp/>*cptr1==&apos;*&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>throw<sp/>T*;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cptr2=catchtype;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>switch(*cptr1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>class<sp/>pointer/reference<sp/>throw</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>&apos;*&apos;:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>case<sp/>&apos;!&apos;:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1++!=*cptr2++)<sp/>return<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(;;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>class<sp/>name<sp/>compare<sp/>loop</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1==*cptr2++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1++==&apos;!&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>class<sp/>match<sp/>found<sp/>/<sp/>get<sp/>offset</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>long<sp/>offset;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(offset=0;<sp/>*cptr1!=&apos;!&apos;;)<sp/>offset=offset*10+*cptr1++-&apos;0&apos;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*offset_result=offset;<sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>while(*cptr1++!=&apos;!&apos;)<sp/>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>skip<sp/>class<sp/>name</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>while(*cptr1++!=&apos;!&apos;)<sp/>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>skip<sp/>offset</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1==0)<sp/>return<sp/>false;<sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>no<sp/>more<sp/>class<sp/>names<sp/>=&gt;<sp/>no<sp/>match</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cptr2=catchtype+1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>retry<sp/>with<sp/>next<sp/>class<sp/>name</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>while((*cptr1==&apos;P&apos;<sp/>||<sp/>*cptr1==&apos;R&apos;)<sp/>&amp;&amp;<sp/>*cptr1==*cptr2)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>pointer/reference<sp/>catch<sp/>=&gt;<sp/>match<sp/>cv-qualifiers</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cptr1++;<sp/>cptr2++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr2==&apos;C&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>ignore<sp/>&apos;const&apos;<sp/>in<sp/>throw<sp/>type</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1==&apos;C&apos;)<sp/>cptr1++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cptr2++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1==&apos;C&apos;)<sp/>return<sp/>false;<sp/><sp/><sp/>//<sp/><sp/>throw<sp/>type<sp/>is<sp/>more<sp/>cv-qualified</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr2==&apos;V&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>ignore<sp/>&apos;volatile&apos;<sp/>in<sp/>throw<sp/>type</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1==&apos;V&apos;)<sp/>cptr1++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cptr2++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(*cptr1==&apos;V&apos;)<sp/>return<sp/>false;<sp/><sp/><sp/>//<sp/><sp/>throw<sp/>type<sp/>is<sp/>more<sp/>cv-qualified</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>plain<sp/>type<sp/>throw<sp/>catch</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;<sp/>*cptr1==*cptr2;<sp/>cptr1++,cptr2++)<sp/>if(*cptr1==0)<sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__MC68K__)<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Initialize<sp/>a<sp/>new<sp/>allocated<sp/>array<sp/>of<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>allocated<sp/>memory<sp/>(+8<sp/>bytes)<sp/>(0L:<sp/>error)<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>default<sp/>constructor<sp/>function<sp/>(or<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/>(or<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>one<sp/>array<sp/>element<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>number<sp/>of<sp/>array<sp/>elements<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>first<sp/>object<sp/>in<sp/>array<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>*__construct_new_array(void<sp/>*block,ConstructorDestructor<sp/>ctor,ConstructorDestructor<sp/>dtor_arg,size_t<sp/>size,size_t<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/>*ptr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if((ptr=(char<sp/>*)block)!=0L)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>store<sp/>number<sp/>of<sp/>allocated<sp/>objects<sp/>and<sp/>size<sp/>of<sp/>one<sp/>object<sp/>at<sp/>the<sp/>beginnig<sp/>of<sp/>the<sp/>allocated<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(size_t<sp/>*)ptr=size;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(size_t<sp/>*)(ptr+sizeof(size_t))=n;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr+=sizeof(size_t)*2;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(ctor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>call<sp/>constructor<sp/>to<sp/>initialize<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>volatile<sp/>ConstructorDestructor<sp/><sp/>dtor=dtor_arg;<sp/><sp/>//<sp/><sp/>force<sp/>reference<sp/>to<sp/>dtor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#pragma<sp/>exception_arrayinit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>this<sp/>#pragma<sp/>adds<sp/>partial<sp/>array<sp/>construction<sp/>exception<sp/>action<sp/>(ptr,dtor,size,i)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(i=0,p=ptr;<sp/>i&lt;n;<sp/>i++,p+=size)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTORCALL_COMPLETE(ctor,p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr;<sp/>//<sp/><sp/>return<sp/>pointer<sp/>to<sp/>first<sp/>object;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Construct<sp/>an<sp/>array<sp/>of<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>array<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>default<sp/>constructor<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/>(or<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>one<sp/>array<sp/>element<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>number<sp/>of<sp/>array<sp/>elements<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>__construct_array(void<sp/>*ptr,ConstructorDestructor<sp/>ctor,ConstructorDestructor<sp/>dtor_arg,size_t<sp/>size,size_t<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>volatile<sp/>ConstructorDestructor<sp/><sp/>dtor=dtor_arg;<sp/><sp/>//<sp/><sp/>force<sp/>reference<sp/>to<sp/>dtor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>exception_arrayinit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>this<sp/>#pragma<sp/>adds<sp/>partial<sp/>array<sp/>construction<sp/>exception<sp/>action<sp/>(ptr,dtor,size,i)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(i=0,p=(char<sp/>*)ptr;<sp/>i&lt;n;<sp/>i++,p+=size)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTORCALL_COMPLETE(ctor,p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>class<sp/>__partial_array_destructor</highlight></codeline>
+<codeline><highlight class="normal">//</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>This<sp/>class<sp/>is<sp/>used<sp/>to<sp/>guarantee<sp/>correct<sp/>destruction<sp/>of<sp/>partially</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>constructed<sp/>arrays<sp/>if<sp/>an<sp/>exception<sp/>is<sp/>thrown<sp/>from<sp/>an<sp/>array-element<sp/>constructor.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>We<sp/>use<sp/>the<sp/>members<sp/>of<sp/>this<sp/>class<sp/>to<sp/>keep<sp/>track<sp/>of<sp/>the<sp/>partially-constructed</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>state<sp/>of<sp/>the<sp/>array.<sp/>If<sp/>the<sp/>destructor<sp/>for<sp/>this<sp/>class<sp/>is<sp/>called<sp/>and<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>array<sp/>was<sp/>not<sp/>fully-constructed,<sp/>we<sp/>must<sp/>have<sp/>thrown<sp/>an<sp/>exception,<sp/>so<sp/>we</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/><sp/>destroy<sp/>each<sp/>fully-constructed<sp/>element<sp/>of<sp/>the<sp/>array<sp/>in<sp/>reverse<sp/>order.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>__partial_array_destructor<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p;<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>pointer<sp/>to<sp/>start<sp/>of<sp/>array<sp/>being<sp/>constructed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size;<sp/><sp/><sp/>//<sp/><sp/>size<sp/>of<sp/>each<sp/>array<sp/>element</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n;<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>#<sp/>of<sp/>elements<sp/>being<sp/>constructed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ConstructorDestructor<sp/><sp/><sp/>dtor;<sp/><sp/><sp/>//<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>for<sp/>elements<sp/>or<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i;<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>current<sp/>element<sp/>being<sp/>constructed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__partial_array_destructor(void*<sp/>array,<sp/>size_t<sp/>elementsize,<sp/>size_t<sp/>nelements,<sp/>ConstructorDestructor<sp/>destructor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p=array;<sp/>size=elementsize;<sp/>n=nelements;<sp/>dtor=destructor;<sp/>i=n;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>~__partial_array_destructor()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char<sp/>*ptr;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(i&lt;n<sp/>&amp;&amp;<sp/>dtor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(ptr=(char<sp/>*)p+size*i;<sp/>i&gt;0;<sp/>i--)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr-=size;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DTORCALL_COMPLETE(dtor,ptr);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Initialize<sp/>a<sp/>new<sp/>allocated<sp/>array<sp/>of<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>allocated<sp/>memory<sp/>(+8<sp/>bytes)<sp/>(0L:<sp/>error)<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>default<sp/>constructor<sp/>function<sp/>(or<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/>(or<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>one<sp/>array<sp/>element<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>number<sp/>of<sp/>array<sp/>elements<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>first<sp/>object<sp/>in<sp/>array<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>*__construct_new_array(void<sp/>*block,ConstructorDestructor<sp/>ctor,ConstructorDestructor<sp/>dtor,size_t<sp/>size,size_t<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/>*ptr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if((ptr=(char<sp/>*)block)!=0L)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/><sp/>store<sp/>number<sp/>of<sp/>allocated<sp/>objects<sp/>and<sp/>size<sp/>of<sp/>one<sp/>object<sp/>at<sp/>the<sp/>beginnig<sp/>of<sp/>the<sp/>allocated<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(size_t<sp/>*)ptr=size;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(size_t<sp/>*)(ptr+sizeof(size_t))=n;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr+=sizeof(size_t)*2;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(ctor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>call<sp/>constructor<sp/>to<sp/>initialize<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__partial_array_destructor<sp/>pad(ptr,size,n,dtor);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/>*p;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(pad.i=0,p=(char<sp/>*)ptr;<sp/>pad.i&lt;n;<sp/>pad.i++,p+=size)<sp/>CTORCALL_COMPLETE(ctor,p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr;<sp/>//<sp/><sp/>return<sp/>pointer<sp/>to<sp/>first<sp/>object;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Construct<sp/>an<sp/>array<sp/>of<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>array<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>default<sp/>constructor<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/>(or<sp/>0L)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>one<sp/>array<sp/>element<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>number<sp/>of<sp/>array<sp/>elements<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>__construct_array(void<sp/>*ptr,ConstructorDestructor<sp/>ctor,ConstructorDestructor<sp/>dtor,size_t<sp/>size,size_t<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__partial_array_destructor<sp/>pad(ptr,size,n,dtor);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/>*p;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(pad.i=0,p=(char<sp/>*)ptr;<sp/>pad.i&lt;n;<sp/>pad.i++,p+=size)<sp/>CTORCALL_COMPLETE(ctor,p);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Destroy<sp/>an<sp/>array<sp/>of<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>array<sp/>memory<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>size<sp/>of<sp/>one<sp/>object<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>number<sp/>of<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>__destroy_arr(void<sp/>*block,ConstructorDestructor<sp/>dtor,size_t<sp/>size,size_t<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/>*p;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(p=(char<sp/>*)block+size*n;<sp/>n&gt;0;<sp/>n--)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p-=size;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DTORCALL_COMPLETE(dtor,p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Delete<sp/>an<sp/>array<sp/>of<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>first<sp/>object<sp/>(can<sp/>be<sp/>NULL)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>---<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>__destroy_new_array(void<sp/>*block,ConstructorDestructor<sp/>dtor)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(block)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(dtor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_t<sp/><sp/>i,objects,objectsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/>*p;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objectsize=*(size_t<sp/>*)((char<sp/>*)block-2*sizeof(size_t));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objects=*(size_t<sp/>*)((char<sp/>*)block-sizeof(size_t));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p=(char<sp/>*)block+objectsize*objects;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(i=0;<sp/>i&lt;objects;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p-=objectsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DTORCALL_COMPLETE(dtor,p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#if<sp/>__MWERKS__&gt;=0x2020</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>::operator<sp/>delete[]<sp/>((char<sp/>*)block-2*sizeof(size_t));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>::operator<sp/>delete<sp/>((char<sp/>*)block-2*sizeof(size_t));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Purpose..:<sp/><sp/>Destroy<sp/>a<sp/>new<sp/>allocated<sp/>array<sp/>of<sp/>objects<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>first<sp/>object<sp/>(can<sp/>be<sp/>NULL)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Input....:<sp/><sp/>pointer<sp/>to<sp/>destructor<sp/>function<sp/>(not<sp/>NULL)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>Return...:<sp/><sp/>pointer<sp/>to<sp/>complete<sp/>array<sp/>block<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">/************************************************************************/</highlight></codeline>
+<codeline><highlight class="normal">extern<sp/>void<sp/>*__destroy_new_array2(void<sp/>*block,ConstructorDestructor<sp/>dtor)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_t<sp/><sp/>i,objects,objectsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/>*p;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(block==NULL)<sp/>return<sp/>NULL;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(dtor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/>//<sp/><sp/>destroy<sp/>array<sp/>members</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objectsize=*(size_t<sp/>*)((char<sp/>*)block-2*sizeof(size_t));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objects=*(size_t<sp/>*)((char<sp/>*)block-sizeof(size_t));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p=(char<sp/>*)block+objectsize*objects;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(i=0;<sp/>i&lt;objects;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p-=objectsize;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DTORCALL_COMPLETE(dtor,p);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>return<sp/>pointer<sp/>to<sp/>complete<sp/>array<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>(char<sp/>*)block-2*sizeof(size_t);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971207<sp/>Added<sp/>namespace<sp/>support</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971215<sp/>commented<sp/>out<sp/>&lt;Types.h&gt;<sp/>per<sp/>John<sp/>McEnerney&apos;s<sp/>instructions</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980102<sp/>added<sp/>exception<sp/>specific<sp/>to<sp/>set_terminate<sp/>and<sp/>set_unexpected</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/NMWException.cp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File arith.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-arithc">File arith.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../arith_8c/"><strong>arith.c</strong></a></p>
+<p><a href="../arith_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/01/22 23:40:32 $ 
+ *  $Revision: 1.7 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  arith.c
+ *  
+ *  Routines
+ *  --------
+ *      abs
+ *      div
+ *
+ *      labs
+ *      ldiv
+ *
+ *      __add
+ *      __ladd
+ *
+ *      __mul
+ *      __lmul
+ *
+ *      __div
+ *      __ldiv
+ *
+ *      __mod
+ *      __lmod
+ *
+ *  Notes
+ *  -----
+ *
+ *      __add and __ladd provide int and long addition with overflow checking. If
+ *      overflow occurs, a zero value is returned; otherwise, the sum replaces the
+ *      value pointed to by the first argument and a nonzero value is returned.
+ *      
+ *      __mul and __lmul provide int and long multiplication with overflow checking
+ *      in a similar fashion. Note that a result of INT_MIN or LONG_MIN (whose
+ *      magnitudes are 1 greater than INT_MAX and LONG_MAX respectively) is
+ *      considered an overflow.
+ *      
+ *      __div and __ldiv provide int and long division/remainder. The definition of
+ *      remainder here is different from that of div and ldiv and provides for
+ *      more mmathematically consistent modular arithmetic (see Knuth Vol. 1, pp.
+ *      37-38).
+ *
+ *      __mod and __lmod return the same remainder as __div and __ldiv do, but
+ *      without the quotient - just a single scalar return value.
+ *
+ *
+ */
+
+#include &quot;arith.h&quot;
+#include &lt;limits.h&gt;
+#include &lt;stdlib.h&gt;
+
+int (abs)(int n)
+{
+    if (n &lt; 0)
+        return(-n);
+    else
+        return(n);
+}
+
+long (labs)(long n)
+{
+    if (n &lt; 0)
+        return(-n);
+    else
+        return(n);
+}
+
+/* hh 980122 added long long support */
+#ifdef __MSL_LONGLONG_SUPPORT__                 /* mm 981023 */
+long long (llabs)(long long n)
+{
+    if (n &lt; 0)
+        return(-n);
+    else
+        return(n);
+}
+#endif  /* #ifdef __MSL_LONGLONG_SUPPORT__  */  /* mm 981023 */
+
+div_t div(int numerator, int denominator)
+{
+    int     n_sign, d_sign;
+    div_t   value;
+
+    n_sign = 1;
+    d_sign = 1;
+
+    if (numerator &lt; 0)
+    {
+        numerator = -numerator;
+        n_sign    = -1;
+    }
+
+    if (denominator &lt; 0)
+    {
+        denominator = -denominator;
+        d_sign      = -1;
+    }
+
+    value.quot = (numerator / denominator) * (n_sign * d_sign);
+    value.rem  = (numerator * n_sign) - (value.quot * denominator * d_sign);
+
+    return(value);
+}
+
+ldiv_t ldiv(long numerator, long denominator)
+{
+    long        n_sign, d_sign;
+    ldiv_t  value;
+
+    n_sign = 1;
+    d_sign = 1;
+
+    if (numerator &lt; 0)
+    {
+        numerator = -numerator;
+        n_sign    = -1;
+    }
+
+    if (denominator &lt; 0)
+    {
+        denominator = -denominator;
+        d_sign      = -1;
+    }
+
+    value.quot = (numerator / denominator) * (n_sign * d_sign);
+    value.rem  = (numerator * n_sign) - (value.quot * denominator * d_sign);
+
+    return(value);
+}
+
+/* hh 980122 added long long support */
+#ifdef __MSL_LONGLONG_SUPPORT__                 /* mm 981023 */
+lldiv_t lldiv(long long numerator, long long denominator)
+{
+    long long       n_sign, d_sign;
+    lldiv_t value;
+
+    n_sign = 1;
+    d_sign = 1;
+
+    if (numerator &lt; 0)
+    {
+        numerator = -numerator;
+        n_sign    = -1;
+    }
+
+    if (denominator &lt; 0)
+    {
+        denominator = -denominator;
+        d_sign      = -1;
+    }
+
+    value.quot = (numerator / denominator) * (n_sign * d_sign);
+    value.rem  = (numerator * n_sign) - (value.quot * denominator * d_sign);
+
+    return(value);
+}
+#endif  /* #ifdef __MSL_LONGLONG_SUPPORT__  */  /* mm 981023 */
+
+int __add(int * x, int y)
+{
+    int _x = *x;
+
+    if (y &lt; 0)
+    {
+        if (_x &lt; 0 &amp;&amp; y &lt; INT_MIN - _x)
+            return(0);
+    }
+    else
+        if (_x &gt; 0 &amp;&amp; y &gt; INT_MAX - _x)
+            return(0);
+
+    *x = _x + y;
+
+    return(1);
+}
+
+int __ladd(long * x, long y)
+{
+    long _x = *x;
+
+    if (y &lt; 0)
+    {
+        if (_x &lt; 0 &amp;&amp; y &lt; LONG_MIN - _x)
+            return(0);
+    }
+    else
+        if (_x &gt; 0 &amp;&amp; y &gt; LONG_MAX - _x)
+            return(0);
+
+    *x = _x + y;
+
+    return(1);
+}
+
+/* hh 980122 added long long support */
+#ifdef __MSL_LONGLONG_SUPPORT__                 /* mm 981023 */
+int __lladd(long long * x, long long y)
+{
+    long long _x = *x;
+
+    if (y &lt; 0)
+    {
+        if (_x &lt; 0 &amp;&amp; y &lt; LLONG_MIN - _x)
+            return(0);
+    }
+    else
+        if (_x &gt; 0 &amp;&amp; y &gt; LLONG_MAX - _x)
+            return(0);
+
+    *x = _x + y;
+
+    return(1);
+}
+#endif  /* #ifdef __MSL_LONGLONG_SUPPORT__  */  /* mm 981023 */
+
+int __mul(int * x, int y)
+{
+    int _x = *x;
+    int sign;
+
+    sign = ((_x &lt; 0) ^ (y &lt; 0)) ? -1 : 1;
+
+    if (_x &lt; 0) _x = -_x;
+    if ( y &lt; 0)  y = - y;
+
+    if (_x &gt; INT_MAX / y)
+        return(0);
+
+    *x = _x * y * sign;
+
+    return(1);
+}
+
+int __lmul(long * x, long y)
+{
+    long    _x = *x;
+    int     sign;
+
+    sign = ((_x &lt; 0) ^ (y &lt; 0)) ? -1 : 1;
+
+    if (_x &lt; 0) _x = -_x;
+    if ( y &lt; 0)  y = - y;
+
+    if (_x &gt; LONG_MAX / y)
+        return(0);
+
+    *x = _x * y * sign;
+
+    return(1);
+}
+
+/* hh 980122 added long long support */
+#ifdef __MSL_LONGLONG_SUPPORT__                 /* mm 981023 */
+int __llmul(long long * x, long long y)
+{
+    long long   _x = *x;
+    int     sign;
+
+    sign = ((_x &lt; 0) ^ (y &lt; 0)) ? -1 : 1;
+
+    if (_x &lt; 0) _x = -_x;
+    if ( y &lt; 0)  y = - y;
+
+    if (_x &gt; LLONG_MAX / y)
+        return(0);
+
+    *x = _x * y * sign;
+
+    return(1);
+}
+#endif  /* #ifdef __MSL_LONGLONG_SUPPORT__  */  /* mm 981023 */
+
+div_t __div(int x, int y)
+{
+    int     q, r, x_sign, y_sign, q_sign;
+    div_t   result;
+
+    x_sign = 1;
+    y_sign = 1;
+
+    if (x &lt; 0)
+    {
+        x      = -x;
+        x_sign = -1;
+    }
+
+    if (y &lt; 0)
+    {
+        y      = -y;
+        y_sign = -1;
+    }
+
+    q_sign = x_sign * y_sign;
+
+    q = (x / y) * q_sign;
+    r = (x * x_sign) - (q * y * y_sign);
+
+    if (r &amp;&amp; q_sign &lt; 0)
+    {
+        q -= 1;
+        r += y * y_sign;
+    }
+
+    result.quot = q;
+    result.rem  = r;
+
+    return(result);
+}
+
+ldiv_t __ldiv(long x, long y)
+{
+    long        q, r, x_sign, y_sign, q_sign;
+    ldiv_t  result;
+
+    x_sign = 1;
+    y_sign = 1;
+
+    if (x &lt; 0)
+    {
+        x      = -x;
+        x_sign = -1;
+    }
+
+    if (y &lt; 0)
+    {
+        y      = -y;
+        y_sign = -1;
+    }
+
+    q_sign = x_sign * y_sign;
+
+    q = (x / y) * q_sign;
+    r = (x * x_sign) - (q * y * y_sign);
+
+    if (r &amp;&amp; q_sign &lt; 0)
+    {
+        q -= 1;
+        r += y * y_sign;
+    }
+
+    result.quot = q;
+    result.rem  = r;
+
+    return(result);
+}
+
+/* hh 980122 added long long support */
+#ifdef __MSL_LONGLONG_SUPPORT__                 /* mm 981023 */
+lldiv_t __lldiv(long long x, long long y)
+{
+    long long       q, r, x_sign, y_sign, q_sign;
+    lldiv_t result;
+
+    x_sign = 1;
+    y_sign = 1;
+
+    if (x &lt; 0)
+    {
+        x      = -x;
+        x_sign = -1;
+    }
+
+    if (y &lt; 0)
+    {
+        y      = -y;
+        y_sign = -1;
+    }
+
+    q_sign = x_sign * y_sign;
+
+    q = (x / y) * q_sign;
+    r = (x * x_sign) - (q * y * y_sign);
+
+    if (r &amp;&amp; q_sign &lt; 0)
+    {
+        q -= 1;
+        r += y * y_sign;
+    }
+
+    result.quot = q;
+    result.rem  = r;
+
+    return(result);
+}
+#endif  /* #ifdef __MSL_LONGLONG_SUPPORT__  */  /* mm 981023 */
+
+int __mod(int x, int y)
+{
+    int     q, r, x_sign, y_sign, q_sign;
+
+    x_sign = 1;
+    y_sign = 1;
+
+    if (x &lt; 0)
+    {
+        x      = -x;
+        x_sign = -1;
+    }
+
+    if (y &lt; 0)
+    {
+        y      = -y;
+        y_sign = -1;
+    }
+
+    q_sign = x_sign * y_sign;
+
+    q = (x / y) * q_sign;
+    r = (x * x_sign) - (q * y * y_sign);
+
+    if (r &amp;&amp; q_sign &lt; 0)
+    {
+        q -= 1;
+        r += y * y_sign;
+    }
+
+    return(r);
+}
+
+long __lmod(long x, long y)
+{
+    long        q, r, x_sign, y_sign, q_sign;
+
+    x_sign = 1;
+    y_sign = 1;
+
+    if (x &lt; 0)
+    {
+        x      = -x;
+        x_sign = -1;
+    }
+
+    if (y &lt; 0)
+    {
+        y      = -y;
+        y_sign = -1;
+    }
+
+    q_sign = x_sign * y_sign;
+
+    q = (x / y) * q_sign;
+    r = (x * x_sign) - (q * y * y_sign);
+
+    if (r &amp;&amp; q_sign &lt; 0)
+    {
+        q -= 1;
+        r += y * y_sign;
+    }
+
+    return(r);
+}
+
+/* hh 980122 added long long support */
+#ifdef __MSL_LONGLONG_SUPPORT__                 /* mm 981023 */
+long long __llmod(long long x, long long y)
+{
+    long long       q, r, x_sign, y_sign, q_sign;
+
+    x_sign = 1;
+    y_sign = 1;
+
+    if (x &lt; 0)
+    {
+        x      = -x;
+        x_sign = -1;
+    }
+
+    if (y &lt; 0)
+    {
+        y      = -y;
+        y_sign = -1;
+    }
+
+    q_sign = x_sign * y_sign;
+
+    q = (x / y) * q_sign;
+    r = (x * x_sign) - (q * y * y_sign);
+
+    if (r &amp;&amp; q_sign &lt; 0)
+    {
+        q -= 1;
+        r += y * y_sign;
+    }
+
+    return(r);
+}
+#endif  /* #ifdef __MSL_LONGLONG_SUPPORT__  */  /* mm 981023 */
+
+/*     Change record
+ *  07-Jun-95 JFH  First code release.
+ *  05-Oct-95 JFH  Added __add, __ladd, etc. - primarily for time.c
+ *  14-Feb-96 JFH  Brackets abs() and labs() by #if !(__POWERPC__ &amp;&amp; __cplusplus)
+ *                               because they are inlined in &lt;stdlib.h&gt; under those conditions.
+ *  hh 980205 undid previous #if because this file must always be compiled C.  __cplusplus is
+ *            never defined.
+ * hh 980122 added long long support 
+ * mm 981023 added wrappers round long long support
+*/
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

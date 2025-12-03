@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CARDRead.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardreadc">File CARDRead.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_2dfa3b55db09c289c0394a464581d568/"><strong>card</strong></a> <strong>&gt;</strong> <a href="../_c_a_r_d_read_8c/"><strong>CARDRead.c</strong></a></p>
+<p><a href="../_c_a_r_d_read_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/card.h&gt;
+#include &lt;dolphin/os.h&gt;
+
+#include &quot;CARDPrivate.h&quot;
+
+// functions
+static void ReadCallback (s32 chan, s32 result);
+
+#define TRUNC(n, a) (((u32)(n)) &amp; ~((a) - 1))
+
+s32
+__CARDSeek (CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard)
+{
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
+    s32          result;
+    u16*         fat;
+
+    ASSERTLINE (0x57, 0 &lt;= fileInfo-&gt;chan &amp;&amp; fileInfo-&gt;chan &lt; 2);
+    ASSERTLINE (0x58, 0 &lt;= fileInfo-&gt;fileNo &amp;&amp; fileInfo-&gt;fileNo &lt; CARD_MAX_FILE);
+
+    result = __CARDGetControlBlock (fileInfo-&gt;chan, &amp;card);
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    ASSERTLINE (0x5F, CARDIsValidBlockNo (card, fileInfo-&gt;iBlock));
+    ASSERTLINE (0x60, fileInfo-&gt;offset &lt; card-&gt;cBlock * card-&gt;sectorSize);
+
+    if (!CARDIsValidBlockNo (card, fileInfo-&gt;iBlock) ||
+        card-&gt;cBlock * card-&gt;sectorSize &lt;= fileInfo-&gt;offset)
+    {
+        return __CARDPutControlBlock (card, CARD_RESULT_FATAL_ERROR);
+    }
+
+    dir = __CARDGetDirBlock (card);
+    ent = &amp;dir[fileInfo-&gt;fileNo];
+
+    ASSERTLINE (0x6A, ent-&gt;gameName[0] != 0xff);
+
+    if (ent-&gt;length * card-&gt;sectorSize &lt;= offset ||
+        ent-&gt;length * card-&gt;sectorSize &lt; offset + length)
+    {
+        return __CARDPutControlBlock (card, CARD_RESULT_LIMIT);
+    }
+
+    card-&gt;fileInfo   = fileInfo;
+    fileInfo-&gt;length = length;
+    if (offset &lt; fileInfo-&gt;offset)
+    {
+        fileInfo-&gt;offset = 0;
+        fileInfo-&gt;iBlock = ent-&gt;startBlock;
+        if (!CARDIsValidBlockNo (card, fileInfo-&gt;iBlock))
+        {
+            return __CARDPutControlBlock (card, CARD_RESULT_BROKEN);
+        }
+    }
+    fat = __CARDGetFatBlock (card);
+    while (fileInfo-&gt;offset &lt; TRUNC (offset, card-&gt;sectorSize))
+    {
+        fileInfo-&gt;offset += card-&gt;sectorSize;
+        fileInfo-&gt;iBlock  = fat[fileInfo-&gt;iBlock];
+        if (!CARDIsValidBlockNo (card, fileInfo-&gt;iBlock))
+        {
+            return __CARDPutControlBlock (card, CARD_RESULT_BROKEN);
+        }
+    }
+
+    fileInfo-&gt;offset = offset;
+
+    *pcard           = card;
+
+    return CARD_RESULT_READY;
+}
+
+static void
+ReadCallback (s32 chan, s32 result)
+{
+    CARDControl*  card;
+    CARDCallback  callback;
+    u16*          fat;
+    CARDFileInfo* fileInfo;
+    s32           length;
+
+    card = &amp;__CARDBlock[chan];
+    if (result &lt; 0)
+    {
+        goto error;
+    }
+
+    fileInfo = card-&gt;fileInfo;
+    if (fileInfo-&gt;length &lt; 0)
+    {
+        result = CARD_RESULT_CANCELED;
+        goto error;
+    }
+
+    length =
+        (s32)TRUNC (fileInfo-&gt;offset + card-&gt;sectorSize, card-&gt;sectorSize) - fileInfo-&gt;offset;
+    fileInfo-&gt;length -= length;
+    if (fileInfo-&gt;length &lt;= 0)
+    {
+        goto error;
+    }
+
+    fat               = __CARDGetFatBlock (card);
+    fileInfo-&gt;offset += length;
+    fileInfo-&gt;iBlock  = fat[fileInfo-&gt;iBlock];
+    if (!CARDIsValidBlockNo (card, fileInfo-&gt;iBlock))
+    {
+        result = CARD_RESULT_BROKEN;
+        goto error;
+    }
+
+    ASSERTLINE (0xBC, OFFSET (fileInfo-&gt;length, CARD_SEG_SIZE) == 0);
+    ASSERTLINE (0xBD, OFFSET (fileInfo-&gt;offset, card-&gt;sectorSize) == 0);
+
+    result =
+        __CARDRead (chan,
+                    card-&gt;sectorSize * (u32)fileInfo-&gt;iBlock,
+                    (fileInfo-&gt;length &lt; card-&gt;sectorSize) ? fileInfo-&gt;length : card-&gt;sectorSize,
+                    card-&gt;buffer,
+                    ReadCallback);
+    if (result &lt; 0)
+    {
+        goto error;
+    }
+
+    return;
+
+error:
+    callback          = card-&gt;apiCallback;
+    card-&gt;apiCallback = NULL;
+    __CARDPutControlBlock (card, result);
+    ASSERTLINE (0xCE, callback);
+    callback (chan, result);
+}
+
+s32
+CARDReadAsync (CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset, CARDCallback callback)
+{
+    CARDControl* card;
+    s32          result;
+    CARDDir*     dir;
+    CARDDir*     ent;
+
+    ASSERTLINE (0xF0, buf &amp;&amp; OFFSET (buf, 32) == 0);
+    ASSERTLINE (0xF1, OFFSET (offset, CARD_SEG_SIZE) == 0);
+    ASSERTLINE (0xF2, 0 &lt; length &amp;&amp; OFFSET (length, CARD_SEG_SIZE) == 0);
+
+    if (OFFSET (offset, CARD_SEG_SIZE) != 0 || OFFSET (length, CARD_SEG_SIZE) != 0)
+    {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+    result = __CARDSeek (fileInfo, length, offset, &amp;card);
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    dir    = __CARDGetDirBlock (card);
+    ent    = &amp;dir[fileInfo-&gt;fileNo];
+    result = __CARDAccess (ent);
+    if (result == CARD_RESULT_NOPERM)
+    {
+        result = __CARDIsPublic (ent);
+    }
+    if (result &lt; 0)
+    {
+        return __CARDPutControlBlock (card, result);
+    }
+
+    DCInvalidateRange (buf, (u32)length);
+    card-&gt;apiCallback = callback ? callback : __CARDDefaultApiCallback;
+
+    offset            = (s32)OFFSET (fileInfo-&gt;offset, card-&gt;sectorSize);
+    length = (length &lt; card-&gt;sectorSize - offset) ? length : card-&gt;sectorSize - offset;
+    result = __CARDRead (fileInfo-&gt;chan,
+                         card-&gt;sectorSize * (u32)fileInfo-&gt;iBlock + offset,
+                         length,
+                         buf,
+                         ReadCallback);
+    if (result &lt; 0)
+    {
+        __CARDPutControlBlock (card, result);
+    }
+
+    return result;
+}
+
+s32
+CARDRead (struct CARDFileInfo* fileInfo, void* buf, s32 length, long offset)
+{
+    s32 result = CARDReadAsync (fileInfo, buf, length, offset, __CARDSyncCallback);
+
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    return __CARDSync (fileInfo-&gt;chan);
+}
+
+s32
+CARDCancel (CARDFileInfo* fileInfo)
+{
+    BOOL         intrEnabled;
+    s32          result;
+    CARDControl* card;
+
+    ASSERTLINE (0x14D, 0 &lt;= fileInfo-&gt;chan &amp;&amp; fileInfo-&gt;chan &lt; 2);
+    ASSERTLINE (0x14E, 0 &lt;= fileInfo-&gt;fileNo &amp;&amp; fileInfo-&gt;fileNo &lt; CARD_MAX_FILE);
+
+    intrEnabled = OSDisableInterrupts();
+
+    card        = &amp;__CARDBlock[fileInfo-&gt;chan];
+    result      = CARD_RESULT_READY;
+    if (!card-&gt;attached)
+    {
+        result = CARD_RESULT_NOCARD;
+    }
+    else if (card-&gt;result == CARD_RESULT_BUSY &amp;&amp; card-&gt;fileInfo == fileInfo)
+    {
+        fileInfo-&gt;length = -1;
+        result           = CARD_RESULT_CANCELED;
+    }
+    OSRestoreInterrupts (intrEnabled);
+
+    return result;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

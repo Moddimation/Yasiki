@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File runtime.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-runtimec">File runtime.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_1789e36d750963f536ec280b459db2bf/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>runtime.c</strong></a></p>
+<p><a href="../runtime_8c_source/">Go to the source code of this file</a></p>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-save_fpr"><strong>SAVE_FPR</strong></a> (14) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__cvt_dbl_usll"><strong>__cvt_dbl_usll</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">unsigned long</td>
+<td style="text-align: left;"><a href="#function-__cvt_fp2unsigned"><strong>__cvt_fp2unsigned</strong></a> (double d) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm unsigned long</td>
+<td style="text-align: left;"><a href="#function-__cvt_fp2unsigned"><strong>__cvt_fp2unsigned</strong></a> (register double d) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__cvt_sll_dbl"><strong>__cvt_sll_dbl</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__cvt_sll_flt"><strong>__cvt_sll_flt</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__cvt_ull_dbl"><strong>__cvt_ull_dbl</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__cvt_ull_flt"><strong>__cvt_ull_flt</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__div2i"><strong>__div2i</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__div2u"><strong>__div2u</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__mod2i"><strong>__mod2i</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__mod2u"><strong>__mod2u</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-__ptr_glue"><strong>__ptr_glue</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__shl2i"><strong>__shl2i</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__shr2i"><strong>__shr2i</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__shr2u"><strong>__shr2u</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">unsigned long</td>
+<td style="text-align: left;"><a href="#function-__uitrunc"><strong>__uitrunc</strong></a> (double d) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-_ptrgl"><strong>_ptrgl</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-_ptrgl12"><strong>_ptrgl12</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-_ptrglpas"><strong>_ptrglpas</strong></a> (void) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__restore_fpr"><strong>__restore_fpr</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">asm void</td>
+<td style="text-align: left;"><a href="#function-__save_fpr"><strong>__save_fpr</strong></a> (void) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-entry_restore_fpr"><strong>ENTRY_RESTORE_FPR</strong></a> (reg) <code>entry [**RESTORE\_FPR**](runtime_8c.md#define-restore_fpr)(reg)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-entry_restore_fpr2"><strong>ENTRY_RESTORE_FPR2</strong></a> (reg) <code>entry [**RESTORE\_FPR2**](runtime_8c.md#define-restore_fpr2)(reg)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-entry_save_fpr"><strong>ENTRY_SAVE_FPR</strong></a> (reg) <code>entry [**SAVE\_FPR**](runtime_8c.md#define-save_fpr)(reg)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-entry_save_fpr2"><strong>ENTRY_SAVE_FPR2</strong></a> (reg) <code>entry [**SAVE\_FPR2**](runtime_8c.md#define-save_fpr2)(reg)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ppc_rt_round_nearest"><strong>PPC_RT_ROUND_NEAREST</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-restore_fpr"><strong>RESTORE_FPR</strong></a> (reg) <code>\_\_restore\_fpr\_ ## reg</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-restore_fpr2"><strong>RESTORE_FPR2</strong></a> (reg) <code>\_restf ## reg</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-save_fpr"><strong>SAVE_FPR</strong></a> (reg) <code>\_\_save\_fpr\_ ## reg</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-save_fpr2"><strong>SAVE_FPR2</strong></a> (reg) <code>\_savef ## reg</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-getloword"><strong>getloword</strong></a>  <code>-4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-hilong"><strong>hilong</strong></a>  <code>24</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-lolong"><strong>lolong</strong></a>  <code>28</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-save_restore_reg"><strong>save_restore_reg</strong></a>  <code>SP</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-storedouble"><strong>storedouble</strong></a>  <code>-8</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-save_fpr">function SAVE_FPR</h3>
+<pre><code class="language-C++">void SAVE_FPR (
+    14
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cvt_dbl_usll">function __cvt_dbl_usll</h3>
+<pre><code class="language-C++">asm void __cvt_dbl_usll (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cvt_fp2unsigned">function __cvt_fp2unsigned</h3>
+<pre><code class="language-C++">unsigned long __cvt_fp2unsigned (
+    double d
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cvt_fp2unsigned_1">function __cvt_fp2unsigned</h3>
+<pre><code class="language-C++">asm unsigned long __cvt_fp2unsigned (
+    register double d
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cvt_sll_dbl">function __cvt_sll_dbl</h3>
+<pre><code class="language-C++">asm void __cvt_sll_dbl (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cvt_sll_flt">function __cvt_sll_flt</h3>
+<pre><code class="language-C++">asm void __cvt_sll_flt (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cvt_ull_dbl">function __cvt_ull_dbl</h3>
+<pre><code class="language-C++">asm void __cvt_ull_dbl (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cvt_ull_flt">function __cvt_ull_flt</h3>
+<pre><code class="language-C++">asm void __cvt_ull_flt (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__div2i">function __div2i</h3>
+<pre><code class="language-C++">asm void __div2i (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__div2u">function __div2u</h3>
+<pre><code class="language-C++">asm void __div2u (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__mod2i">function __mod2i</h3>
+<pre><code class="language-C++">asm void __mod2i (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__mod2u">function __mod2u</h3>
+<pre><code class="language-C++">asm void __mod2u (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ptr_glue">function __ptr_glue</h3>
+<pre><code class="language-C++">void __ptr_glue (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__shl2i">function __shl2i</h3>
+<pre><code class="language-C++">asm void __shl2i (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__shr2i">function __shr2i</h3>
+<pre><code class="language-C++">asm void __shr2i (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__shr2u">function __shr2u</h3>
+<pre><code class="language-C++">asm void __shr2u (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__uitrunc">function __uitrunc</h3>
+<pre><code class="language-C++">unsigned long __uitrunc (
+    double d
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-_ptrgl">function _ptrgl</h3>
+<pre><code class="language-C++">void _ptrgl (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-_ptrgl12">function _ptrgl12</h3>
+<pre><code class="language-C++">void _ptrgl12 (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-_ptrglpas">function _ptrglpas</h3>
+<pre><code class="language-C++">asm void _ptrglpas (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-__restore_fpr">function __restore_fpr</h3>
+<pre><code class="language-C++">static asm void __restore_fpr (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__save_fpr">function __save_fpr</h3>
+<pre><code class="language-C++">static asm void __save_fpr (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-entry_restore_fpr">define ENTRY_RESTORE_FPR</h3>
+<pre><code class="language-C++">#define ENTRY_RESTORE_FPR (
+    reg
+) `entry RESTORE_FPR (reg)`
+</code></pre>
+<hr>
+
+<h3 id="define-entry_restore_fpr2">define ENTRY_RESTORE_FPR2</h3>
+<pre><code class="language-C++">#define ENTRY_RESTORE_FPR2 (
+    reg
+) `entry RESTORE_FPR2 (reg)`
+</code></pre>
+<hr>
+
+<h3 id="define-entry_save_fpr">define ENTRY_SAVE_FPR</h3>
+<pre><code class="language-C++">#define ENTRY_SAVE_FPR (
+    reg
+) `entry SAVE_FPR (reg)`
+</code></pre>
+<hr>
+
+<h3 id="define-entry_save_fpr2">define ENTRY_SAVE_FPR2</h3>
+<pre><code class="language-C++">#define ENTRY_SAVE_FPR2 (
+    reg
+) `entry SAVE_FPR2 (reg)`
+</code></pre>
+<hr>
+
+<h3 id="define-ppc_rt_round_nearest">define PPC_RT_ROUND_NEAREST</h3>
+<pre><code class="language-C++">#define PPC_RT_ROUND_NEAREST `1`
+</code></pre>
+<hr>
+
+<h3 id="define-restore_fpr">define RESTORE_FPR</h3>
+<pre><code class="language-C++">#define RESTORE_FPR (
+    reg
+) `__restore_fpr_ ## reg`
+</code></pre>
+<hr>
+
+<h3 id="define-restore_fpr2">define RESTORE_FPR2</h3>
+<pre><code class="language-C++">#define RESTORE_FPR2 (
+    reg
+) `_restf ## reg`
+</code></pre>
+<hr>
+
+<h3 id="define-save_fpr">define SAVE_FPR</h3>
+<pre><code class="language-C++">#define SAVE_FPR (
+    reg
+) `__save_fpr_ ## reg`
+</code></pre>
+<hr>
+
+<h3 id="define-save_fpr2">define SAVE_FPR2</h3>
+<pre><code class="language-C++">#define SAVE_FPR2 (
+    reg
+) `_savef ## reg`
+</code></pre>
+<hr>
+
+<h3 id="define-getloword">define getloword</h3>
+<pre><code class="language-C++">#define getloword `-4`
+</code></pre>
+<hr>
+
+<h3 id="define-hilong">define hilong</h3>
+<pre><code class="language-C++">#define hilong `24`
+</code></pre>
+<hr>
+
+<h3 id="define-lolong">define lolong</h3>
+<pre><code class="language-C++">#define lolong `28`
+</code></pre>
+<hr>
+
+<h3 id="define-save_restore_reg">define save_restore_reg</h3>
+<pre><code class="language-C++">#define save_restore_reg `SP`
+</code></pre>
+<hr>
+
+<h3 id="define-storedouble">define storedouble</h3>
+<pre><code class="language-C++">#define storedouble `-8`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/runtime.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

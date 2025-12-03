@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File inverse_trig.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-inverse_trigc">File inverse_trig.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_e8afb2b224d923f9df254cf5acbdc830/"><strong>Single_precision</strong></a> <strong>&gt;</strong> <a href="../inverse__trig_8c/"><strong>inverse_trig.c</strong></a></p>
+<p><a href="../inverse__trig_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;math.h&gt;
+#define __PI_O2 1.570796327f  
+#define __PI  3.1415926535897932384626433832795f  
+/*
+   Author:  Matthew D. Fassiotto
+   Date:    first written 4/15/99
+   Purpose: non-optimal single precision version of standard inverse trig functions
+   Theory:  atan is a well known algorithm taken straight from &quot;Computer Approximations&quot; 
+            by Hart et. al. 
+            1978 reprint
+            pgs. 125-130.  
+
+*/
+/* for _MIPS_ISA4/PPC we use the inverse sqrt instruction-- these are implemented in math_mips.h, for software fpu I've
+   implemented _inv_sqrtf  in file sqrtf.c
+*/
+
+extern float _inv_sqrtf(float x);
+float atan2f(float y, float x)
+{
+// need to figure out which quadrant we're in first
+// note |atanf(y/x)| &lt; pi/2 and will return quadrant 1 if y and x
+// have the same sign and quadrant 4 if the signs differ.
+const _INT32 _sign_x=__HI(x)&amp;0x80000000;
+const _INT32 _sign_y=__HI(y)&amp;0x80000000;
+if(_sign_x == _sign_y)
+{
+  if(_sign_x)  //we know both x, y&lt;0 and angle is in quad 3
+    return atanf(y/x) -__PI;
+  if(x)
+   return atanf(y/x);
+  else
+   return __PI_O2 ;  
+}
+// signs differ
+if( x &lt; 0.0f)  // (x,y) in quadrant 2
+ {
+  return __PI + atanf(y/x);
+ }
+ // (x,y) in quadrant 4
+ if(x)
+  return atanf(y/x);
+
+
+ __HI(y)=_sign_y+ 0x3FC90FDB;
+  return y;
+}  
+
+
+
+float acosf(float x)
+{
+  return __PI_O2 - atan(x*_inv_sqrtf(1.0f- x*x));  
+  /* note if |x| &gt; 1 a quiet NaN will be returned via the sqrtf function */
+}
+
+
+float asinf(float x)
+{
+  return atan(x*_inv_sqrtf(1.0f- x*x)); 
+   /* note if |x| &gt; 1 a quiet NaN will be returned via the sqrtf function */
+
+}
+
+float atanf(float x)
+{  
+  float z,z_square;
+  int index=-1,inv=0;
+  const  int sign=(*(_INT32*)&amp;x)&amp;0x80000000;
+
+  /* poly # 4964-- poly for  [0,tan(pi/8)]  */                      
+
+  static const float  atan_coeff[]={.999999999f,-.3333333213f,.19999886356f,-.14281650536f,
+                                    .11041179874f, -.084597554152f,.04714243524f/*.76f */};     
+
+/* data for argument reduction  */ 
+  //static const float  one_over_xi[]={2.414213562f, 1.49660575f,1.00000000f,
+    //                                   .668178618f,  .414213568f,.198912367f};
+
+  static const  float   onep_one_over_xisqr_hi[]={6.82842f,3.239828f,2.0f,    /*   6.828427125f  */
+                                                 1.446462f,1.17157292f,1.039566130f};
+
+  static const  float   onep_one_over_xisqr_lo[]={.000007135f,0.00000082f,.0f,  
+                                                 0.00000063f, 0.0f, 0.0f};
+
+  static const  float   atan_xi_hi[]= {0.0f,.39269f,.5890486f,  .7853981f,  /* .3926990817f  */
+                                        .981747f,1.178097f,1.374446f};
+  static const  float   atan_xi_lo[]= {0.0f,.000009081698724f,.000000023f,.000000063f,
+                                        .000000704f, .00000025f,.00000079f};                                     
+
+  static const  float   one_over_xi_hi[]={2.414213f, 1.49660575f,1.00000000f,
+                                         .668178618f,.414213568f,.198912367f};
+
+  static const float    one_over_xi_lo[]={.000000562f, 0.0f,0.0f,
+                                          0.0f, 0.0f,0.0f};  
+
+
+  (*(_INT32*)&amp;x) &amp;=0x7fffffff;  /*  |x| */
+
+  if(x &gt;=  2.414213565f)             /* x is &lt;= 1.0 */ //0x401A827A
+  {
+   z=1.0f/x;  
+   inv++ ;
+  } 
+  else if(.4142135624f &lt;  x)     //0x3ED413CD  //(4.14213583e-01
+  {
+    index++;  // index is now 0
+    switch(__HI(x)&amp;0x7f800000)
+    {  
+      case 0x3F000000: /* .5  &lt;= x &lt; 1 */       
+      if(__HI(x) &gt;= 0x3F08D5B9) 
+        index++;  //0.5345111 == tan(5pi/32)
+      if(__HI(x) &gt;= 0x3F521801)
+        index++;   //0.8206788
+      break;
+      case 0x3F800000: /* 1 &lt;= x &lt; 2    */
+       index+=2;
+      if(__HI(x) &gt;= 0x3F9bf7ec)
+        index++;   //1.2185035
+      if(__HI(x) &gt;= 0x3FEF789E)
+        index++;  //1.8708684
+      break;
+     case 0x40000000: /* 2 &lt;= x &lt;  2.414213565f   */
+      index+=4;
+      break;       
+   }
+
+   z=1.0f/(one_over_xi_hi[index]+(one_over_xi_lo[index]+x));
+   z=(one_over_xi_hi[index] -  onep_one_over_xisqr_hi[index]*z) +
+     (one_over_xi_lo[index] -  onep_one_over_xisqr_lo[index]*z);
+
+ }
+ else
+   z=x;
+
+  z_square=z*z;
+  z+= z*z_square*(atan_coeff[1]+ z_square*(atan_coeff[2]+ 
+        z_square*(atan_coeff[3]+ z_square*(atan_coeff[4]+  
+        z_square*(atan_coeff[5]+ z_square*atan_coeff[6])) )) 
+  );  
+   z+=atan_xi_lo[index+1];
+   z+=atan_xi_hi[index+1];
+
+  if(inv) 
+  {
+    z-=__PI_O2;
+    if(sign)   
+      return z; 
+
+   return -z;
+  }
+
+    (*(_INT32*)&amp;z)|=sign;
+   return z;
+
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="stack" kind="file" language="C++">
+    <compoundname>stack</compoundname>
+    <includedby refid="stack_8h" local="no">stack.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>stack</label>
+        <link refid="stack"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stack.h</label>
+        <link refid="stack_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:59:45<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.8.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>stack</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_STACK</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_STACK</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;deque&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>Container<sp/>=<sp/>deque&lt;T&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>stack</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Container::value_type<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Container::size_type<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Container<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>container_type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>stack(const<sp/>Container&amp;<sp/>x<sp/>=<sp/>Container())<sp/>:<sp/>c(x)<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/><sp/><sp/><sp/><sp/><sp/>empty()<sp/>const<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>return<sp/>c.empty();<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/>size()<sp/><sp/>const<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>return<sp/>c.size();<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>value_type&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>top()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>return<sp/>c.back();<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>value_type&amp;<sp/>top()<sp/>const<sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>return<sp/>c.back();<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>push(const<sp/>value_type&amp;<sp/>x)<sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>c.push_back(x);<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>pop()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>c.pop_back();<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Container<sp/>c;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator==<sp/>&lt;T,<sp/>Container&gt;(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator!=<sp/>&lt;T,<sp/>Container&gt;(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator&lt;<sp/><sp/>&lt;T,<sp/>Container&gt;(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator&lt;=<sp/>&lt;T,<sp/>Container&gt;(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator&gt;<sp/><sp/>&lt;T,<sp/>Container&gt;(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>friend<sp/>bool<sp/>operator&gt;=<sp/>&lt;T,<sp/>Container&gt;(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x.c<sp/>==<sp/>y.c;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;<sp/>(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x.c<sp/>&lt;<sp/>y.c;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x.c<sp/>!=<sp/>y.c;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;<sp/>(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x.c<sp/>&gt;<sp/>y.c;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;=(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x.c<sp/>&gt;=<sp/>y.c;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T,<sp/>class<sp/>Container&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;=(const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>x,<sp/>const<sp/>stack&lt;T,<sp/>Container&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x.c<sp/>&lt;=<sp/>y.c;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_STACK</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971223<sp/>Changed<sp/>filename<sp/>from<sp/>stack.h<sp/>to<sp/>stack</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971223<sp/>added<sp/>alignment<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971223<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980113<sp/>Updated<sp/>friend<sp/>syntax<sp/>of<sp/>global<sp/>methods<sp/>and<sp/>moved<sp/>out<sp/>of<sp/>template<sp/>definition.</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981129<sp/>Rewrote</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990120<sp/>changed<sp/>name<sp/>of<sp/>MSIPL<sp/>flags</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/stack"/>
+  </compounddef>
+</doxygen>

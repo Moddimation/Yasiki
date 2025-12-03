@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ansi__files_8h" kind="file" language="C++">
+    <compoundname>ansi_files.h</compoundname>
+    <includes refid="ansi__parms_8h" local="no">ansi_parms.h</includes>
+    <includes refid="cstdio" local="no">cstdio</includes>
+    <includedby refid="ansi__files_8c" local="yes">ansi_files.c</includedby>
+    <includedby refid="char__io_8c" local="yes">char_io.c</includedby>
+    <includedby refid="direct__io_8c" local="yes">direct_io.c</includedby>
+    <includedby refid="file__io_8c" local="yes">file_io.c</includedby>
+    <includedby refid="file__pos_8c" local="yes">file_pos.c</includedby>
+    <includedby refid="misc__io_8c" local="yes">misc_io.c</includedby>
+    <includedby refid="string__io_8c" local="yes">string_io.c</includedby>
+    <includedby refid="wchar__io_8c" local="yes">wchar_io.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>ansi_files.h</label>
+        <link refid="ansi__files_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cstdio</label>
+        <link refid="cstdio"/>
+      </node>
+      <node id="3">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>ansi_files.h</label>
+        <link refid="ansi__files_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ansi_files.c</label>
+        <link refid="ansi__files_8c"/>
+      </node>
+      <node id="3">
+        <label>char_io.c</label>
+        <link refid="char__io_8c"/>
+      </node>
+      <node id="4">
+        <label>direct_io.c</label>
+        <link refid="direct__io_8c"/>
+      </node>
+      <node id="5">
+        <label>file_io.c</label>
+        <link refid="file__io_8c"/>
+      </node>
+      <node id="6">
+        <label>file_pos.c</label>
+        <link refid="file__pos_8c"/>
+      </node>
+      <node id="7">
+        <label>misc_io.c</label>
+        <link refid="misc__io_8c"/>
+      </node>
+      <node id="8">
+        <label>string_io.c</label>
+        <link refid="string__io_8c"/>
+      </node>
+      <node id="9">
+        <label>wchar_io.c</label>
+        <link refid="wchar__io_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="ansi__files_8h_1a2428f521d10198e79cf696481945409d" prot="public" static="no">
+        <name>set_eof</name>
+        <param><defname>file</defname></param>
+        <initializer>	do										\
+	{										\
+		(file)-&gt;state.io_state = __neutral;	\
+		(file)-&gt;state.eof = 1;				\
+		(file)-&gt;buffer_len = 0;				\
+	}										\
+	while (0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" line="21" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" bodystart="21" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="define" id="ansi__files_8h_1aab8b859ddd827ae3b6db09c89902e382" prot="public" static="no">
+        <name>set_error</name>
+        <param><defname>file</defname></param>
+        <initializer>	do								\
+	{								\
+		(file)-&gt;state.error = 1;	\
+		(file)-&gt;buffer_len = 0;		\
+	}								\
+	while (0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" line="30" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" bodystart="30" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ansi__files_8h_1addc40ef8d0d314f93f3dda23855c5076" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>__std</definition>
+        <argsstring>(FILE) *__find_unopened_file(void)</argsstring>
+        <name>__std</name>
+        <param>
+          <type>FILE</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" line="47" column="1" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" declline="47" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __init_file</definition>
+        <argsstring>(__std(FILE) *file, __std(__file_modes) mode, char *buff, __std(size_t) size)</argsstring>
+        <name>__init_file</name>
+        <param>
+          <type><ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(FILE) *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(__file_modes)</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buff</declname>
+        </param>
+        <param>
+          <type><ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(<ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref>)</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" line="48" column="5" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" declline="48" declcolumn="5"/>
+        <referencedby refid="file__io_8c_1afb5c4bc3d8a9f6109095262ad5c8b21c" compoundref="file__io_8c" startline="246" endline="266">__handle_reopen</referencedby>
+        <referencedby refid="string__io_8c_1abd2f4c16abb9eb10f4ff92c21bc33a69" compoundref="string__io_8c" startline="30" endline="46">__open_string_file</referencedby>
+        <referencedby refid="file__io_8c_1a0ebee308447bc4694bf0e092a75bd704" compoundref="file__io_8c" startline="203" endline="231">freopen</referencedby>
+        <referencedby refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" compoundref="file__io_8c" startline="88" endline="110">tmpfile</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="ansi__files_8h_1aa72a267c9e92460d88f8d7f5f35e777d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __close_all</definition>
+        <argsstring>(void)</argsstring>
+        <name>__close_all</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" line="49" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ansi_files.c" bodystart="328" bodyend="362" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" declline="49" declcolumn="5"/>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="ansi__files_8c_1ad557f326bb09a5905f47093b0afe3fb9" compoundref="ansi__files_8c" startline="64" endline="257">__files</references>
+        <references refid="file__io_8c_1aeed1b4add2577fc4f74c99b9da038aba" compoundref="file__io_8c" startline="114" endline="138">fclose</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0af9bee695825339ad0faab1f76b0b8cb0" compoundref="critical__regions_8h" startline="48">files_access</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <referencedby refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" compoundref="misc__io_8c" startline="63" endline="74">__stdio_atexit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="ansi__files_8h_1a6bc3f8b1d19c45cb71e12668bec75f6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __flush_all</definition>
+        <argsstring>(void)</argsstring>
+        <name>__flush_all</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" line="50" column="4" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ansi_files.c" bodystart="365" bodyend="389" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" declline="50" declcolumn="4"/>
+        <references refid="ansi__files_8c_1ad557f326bb09a5905f47093b0afe3fb9" compoundref="ansi__files_8c" startline="64" endline="257">__files</references>
+        <references refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" compoundref="eof_8h" startline="19">EOF</references>
+        <references refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" compoundref="file__io_8c" startline="141" endline="184">fflush</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <referencedby refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" compoundref="file__io_8c" startline="141" endline="184">fflush</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="ansi__files_8h_1a4d62a8e02791d9358cc1fd5e5c6ad680" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __flush_line_buffered_output_files</definition>
+        <argsstring>(void)</argsstring>
+        <name>__flush_line_buffered_output_files</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" line="57" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ansi_files.c" bodystart="393" bodyend="423" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h" declline="57" declcolumn="5"/>
+        <references refid="ansi__files_8c_1ad557f326bb09a5905f47093b0afe3fb9" compoundref="ansi__files_8c" startline="64" endline="257">__files</references>
+        <references refid="eof_8h_1a59adc4c82490d23754cd39c2fb99b0da" compoundref="eof_8h" startline="19">EOF</references>
+        <references refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" compoundref="file__io_8c" startline="141" endline="184">fflush</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+        <referencedby refid="direct__io_8c_1ac7a633f6567456e45e219b4767ba4b98" compoundref="direct__io_8c" startline="29" endline="168">fread</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/03/08<sp/>17:32:44<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.8<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>ansi_files.h</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__ansi_files__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__ansi_files__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ansi__parms_8h" kindref="compound">ansi_parms.h</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>this<sp/>header<sp/>must<sp/>come<sp/>first*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="cstdio" kindref="compound">cstdio</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>namespace<sp/>support*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="ansi__files_8h_1a2428f521d10198e79cf696481945409d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>set_eof(file)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="22"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>do<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="23"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="24"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(file)-&gt;state.io_state<sp/>=<sp/>__neutral;<sp/>\</highlight></codeline>
+<codeline lineno="25"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(file)-&gt;state.eof<sp/>=<sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="26"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(file)-&gt;buffer_len<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="27"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="28"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>while<sp/>(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="ansi__files_8h_1aab8b859ddd827ae3b6db09c89902e382" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>set_error(file)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="31"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>do<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="32"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="33"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(file)-&gt;state.error<sp/>=<sp/>1;<sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="34"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(file)-&gt;buffer_len<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>while<sp/>(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=native</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>namespace<sp/>support*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="ansi__files_8h_1addc40ef8d0d314f93f3dda23855c5076" refkind="member"><highlight class="normal"><ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(FILE)<sp/>*<sp/><sp/><sp/><ref refid="ansi__files_8c_1a882daf170464a00fcf4288111f7b237f" kindref="member">__find_unopened_file</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);<sp/></highlight><highlight class="comment">/*<sp/>990121<sp/>fixed<sp/>__std<sp/>6<sp/>places<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ansi__files_8h_1a4ff24d55c63d64b5fc2779bb50961edf" kindref="member">__init_file</ref>(<ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(FILE)<sp/>*<sp/>file,<sp/><ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(__file_modes)<sp/>mode,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>buff,<sp/><ref refid="ansi__parms_8h_1a357cae79fa8cfe2896e2baf187808a22" kindref="member">__std</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ansi__files_8h_1aa72a267c9e92460d88f8d7f5f35e777d" kindref="member">__close_all</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ansi__files_8h_1a6bc3f8b1d19c45cb71e12668bec75f6c" kindref="member">__flush_all</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>mm<sp/>981015<sp/>If<sp/>these<sp/>routines<sp/>are<sp/>really<sp/>needed,<sp/>they<sp/>need<sp/>updating<sp/>to<sp/>account<sp/>for<sp/>dynamically<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>allocated<sp/>file<sp/>structures<sp/><sp/>You<sp/>can<sp/>look<sp/>on<sp/>this<sp/>as<sp/>like<sp/>the<sp/>cheshire<sp/>cat&apos;s<sp/>smile,<sp/>remaining<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>after<sp/>the<sp/>cat<sp/>has<sp/>disappeared<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">/*int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__file_to_num(__std(FILE)<sp/>*<sp/>file);</highlight></codeline>
+<codeline lineno="56"><highlight class="comment">__std(FILE)<sp/>*<sp/><sp/><sp/>__num_to_file(int<sp/>file_num);*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ansi__files_8h_1a4d62a8e02791d9358cc1fd5e5c6ad680" kindref="member">__flush_line_buffered_output_files</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*hh<sp/>971206<sp/><sp/>expanded<sp/>_extern<sp/>macro*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>hh<sp/>971206<sp/><sp/>namespace<sp/>support</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>mm<sp/>981015<sp/><sp/>Commented<sp/>out<sp/>__file_to_num<sp/>and<sp/>__num_to_file<sp/>while<sp/>investigating<sp/>whether<sp/>they<sp/>are<sp/>really<sp/>needed.</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>990121<sp/>fixed<sp/>__std<sp/>6<sp/>places</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>990308<sp/>blc<sp/><sp/>fixed<sp/>tabbing<sp/>on<sp/>macro<sp/>definitions</highlight></codeline>
+<codeline lineno="75"><highlight class="comment">*/</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/ansi_files.h"/>
+  </compounddef>
+</doxygen>

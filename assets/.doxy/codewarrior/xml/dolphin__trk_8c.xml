@@ -1,0 +1,473 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dolphin__trk_8c" kind="file" language="C++">
+    <compoundname>dolphin_trk.c</compoundname>
+    <includes refid="dolphin__trk_8h" local="yes">Os/dolphin/dolphin_trk.h</includes>
+    <includes refid="main___t_r_k_8h" local="yes">Portable/main_TRK.h</includes>
+    <includes refid="mem___t_r_k_8h" local="yes">Portable/mem_TRK.h</includes>
+    <includes refid="dolphin__trk__glue_8h" local="yes">Os/dolphin/dolphin_trk_glue.h</includes>
+    <includes refid="targimpl_8h" local="yes">Processor/ppc/Generic/targimpl.h</includes>
+    <includes refid="flush__cache_8h" local="yes">Processor/ppc/Generic/flush_cache.h</includes>
+    <includes local="yes">dolphin/ar.h</includes>
+    <includes refid="stddef_8h" local="yes">stddef.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>Os/dolphin/dolphin_trk.h</label>
+        <link refid="dolphin__trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Os/dolphin/dolphin_trk_glue.h</label>
+        <link refid="dolphin__trk__glue_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Portable/main_TRK.h</label>
+        <link refid="main___t_r_k_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Portable/mem_TRK.h</label>
+        <link refid="mem___t_r_k_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Portable/nubevent.h</label>
+        <link refid="nubevent_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Processor/ppc/Generic/flush_cache.h</label>
+        <link refid="flush__cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Processor/ppc/Generic/targimpl.h</label>
+        <link refid="targimpl_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>dolphin_trk.c</label>
+        <link refid="dolphin__trk_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="7">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/ar.h</label>
+      </node>
+      <node id="10">
+        <label>dolphin/os.h</label>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="dolphin__trk_8c_1af849701ecd97c4e240063ee04dd8b9a0" prot="public" static="no">
+        <name>EXCEPTIONMASK_ADDR</name>
+        <initializer>0x80000044</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="10" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" prot="public" static="yes" mutable="no">
+        <type>u32</type>
+        <definition>u32 lc_base</definition>
+        <argsstring></argsstring>
+        <name>lc_base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="12" column="12" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="12" bodyend="-1"/>
+        <referencedby refid="dolphin__trk_8h_1af6cda24a52d37e510e398c2b0187ffb1" compoundref="dolphin__trk_8c" startline="131" endline="137">TRKInitializeTarget</referencedby>
+        <referencedby refid="dolphin__trk_8h_1a676e3041d9fd3f9e12fc2c9214558f35" compoundref="dolphin__trk_8c" startline="96" endline="106">TRKTargetTranslate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dolphin__trk_8c_1af26f6ae6d217cc73526b8c60f7d65683" prot="public" static="yes" mutable="no">
+        <type>u32</type>
+        <definition>u32 TRK_ISR_OFFSETS[15]</definition>
+        <argsstring>[15]</argsstring>
+        <name>TRK_ISR_OFFSETS</name>
+        <initializer>= { <ref refid="trk_8h_1a2fd84779cea8256a238b78559c888a53" kindref="member">PPC_SystemReset</ref>,
+	                               <ref refid="trk_8h_1a5008264b6068382513ccafa7f7c4a0a7" kindref="member">PPC_MachineCheck</ref>,
+	                               <ref refid="trk_8h_1ad738b5f8f975443f4ddeed4bb6fec5fe" kindref="member">PPC_DataStorage</ref>,
+	                               <ref refid="trk_8h_1a2a74bae4d9dfb401746f553a78442604" kindref="member">PPC_InstructionStorage</ref>,
+	                               <ref refid="trk_8h_1aa27ee1d99c0b230d5db5df479f7bf744" kindref="member">PPC_ExternalInterrupt</ref>,
+	                               <ref refid="trk_8h_1a3a8ddbcd321dd05ae38c890af3fb68bc" kindref="member">PPC_Alignment</ref>,
+	                               <ref refid="trk_8h_1a04c2209c2396c4d8fdece352ca49cfdd" kindref="member">PPC_Program</ref>,
+	                               <ref refid="trk_8h_1a3ee300a093318c5b8a52dac1818a86ed" kindref="member">PPC_FloatingPointUnavaiable</ref>,
+	                               <ref refid="trk_8h_1a58f2a8e59b978d8c3fd16f5e75c197b9" kindref="member">PPC_Decrementer</ref>,
+	                               <ref refid="trk_8h_1a80426ba404bdb261a20a1c94e0474161" kindref="member">PPC_SystemCall</ref>,
+	                               <ref refid="trk_8h_1af5b1a0d7af42e65e3fafcd27a1c8f6b2" kindref="member">PPC_Trace</ref>,
+	                               <ref refid="trk_8h_1a8b4eb77a05e449f87acdb7507ec2f7a6" kindref="member">PPC_PerformanceMonitor</ref>,
+	                               <ref refid="trk_8h_1ae40f4878ab4295a1fe6f0ca51519dd90" kindref="member">PPC_InstructionAddressBreakpoint</ref>,
+	                               <ref refid="trk_8h_1a20d66cb7fc08e42ed5ea183fe0063a05" kindref="member">PPC_SystemManagementInterrupt</ref>,
+	                               <ref refid="trk_8h_1a7fb10f1f33f511cb5fbca3ad96cef3da" kindref="member">PPC_ThermalManagementInterrupt</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="14" column="12" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="14" bodyend="28"/>
+        <referencedby refid="dolphin__trk_8h_1a4b2cf677f84afff232858e0e68957938" compoundref="dolphin__trk_8c" startline="117" endline="129">__TRK_copy_vectors</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dolphin__trk_8c_1aae5ae080f49e56efae0b6f6ddbc82c67" prot="public" static="no" extern="yes" mutable="no">
+        <type>u8</type>
+        <definition>u8 gTRKInterruptVectorTable[]</definition>
+        <argsstring>[]</argsstring>
+        <name>gTRKInterruptVectorTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="108" column="11" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" declline="108" declcolumn="11"/>
+        <referencedby refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" compoundref="dolphin__trk_8c" startline="110" endline="115">TRK_copy_vector</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dolphin__trk_8c_1abc93178f7083946e434dde3acc6ed52d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>__declspec</definition>
+        <argsstring>(section &quot;.init&quot;)</argsstring>
+        <name>__declspec</name>
+        <param>
+          <type>section &quot;.init&quot;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="30" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="30" bodyend="30"/>
+        <references refid="dolphin__trk_8c_1a4b2cf677f84afff232858e0e68957938" compoundref="dolphin__trk_8c" startline="117" endline="129">__TRK_copy_vectors</references>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8c_1a0faa78a47acd226cecd44aefd6c98a1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>asm void</type>
+        <definition>asm void InitMetroTRK</definition>
+        <argsstring>()</argsstring>
+        <name>InitMetroTRK</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="32" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="32" bodyend="92"/>
+        <references refid="struct_default___p_p_c_1a7984812ee9b46193ba74be21de7f2fd6" compoundref="targimpl_8h" startline="68">Default_PPC::CR</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" compoundref="targimpl_8h" startline="162">ProcessorState_PPC_6xx_7xx::Default</references>
+        <references refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" compoundref="targimpl_8h" startline="65">Default_PPC::GPR</references>
+        <references refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="dolphin__trk__glue_8h_1afe7403d68dd17fcf6dc14bd0e6dd15b2" compoundref="dolphin__trk__glue_8c" startline="58" endline="85">InitMetroTRKCommTable</references>
+        <references refid="struct_default___p_p_c_1a59df8e4ca06b11edc3be052722ac968b" compoundref="targimpl_8h" startline="67">Default_PPC::LR</references>
+        <references refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" compoundref="targimpl_8h" startline="66">Default_PPC::PC</references>
+        <references refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" compoundref="e__lgamma__r_8c" startline="144">r1</references>
+        <references refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" compoundref="e__lgamma__r_8c" startline="146">r3</references>
+        <references refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" compoundref="e__lgamma__r_8c" startline="147">r4</references>
+        <references refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" compoundref="e__lgamma__r_8c" startline="148">r5</references>
+        <references refid="trk_8h_1a9b0b6af4fd78fab6f6992c5946219663" compoundref="mpc__7xx__603e_8c" startline="6" endline="125">TRKSaveExtended1Block</references>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8c_1abfc2559be37befc776575de2d2d254e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnableMetroTRKInterrupts</definition>
+        <argsstring>(void)</argsstring>
+        <name>EnableMetroTRKInterrupts</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="94" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="94" bodyend="94"/>
+        <references refid="dolphin__trk__glue_8h_1a9a6eaa9650d929d4bf27a576b28b64a7" compoundref="dolphin__trk__glue_8c" startline="96" endline="96">EnableEXI2Interrupts</references>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8c_1a676e3041d9fd3f9e12fc2c9214558f35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>u32</type>
+        <definition>u32 TRKTargetTranslate</definition>
+        <argsstring>(u32 param_0)</argsstring>
+        <name>TRKTargetTranslate</name>
+        <param>
+          <type>u32</type>
+          <declname>param_0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="96" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="96" bodyend="106"/>
+        <references refid="struct_extended1___p_p_c__6xx__7xx_1a45412863c96576b5b7233422635fd7e8" compoundref="targimpl_8h" startline="101">Extended1_PPC_6xx_7xx::DBAT3U</references>
+        <references refid="struct_processor_state___p_p_c__6xx__7xx_1ab93554b55c63a0a75d8442ea52db723d" compoundref="targimpl_8h" startline="164">ProcessorState_PPC_6xx_7xx::Extended1</references>
+        <references refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" compoundref="targimpl_8c" startline="47">gTRKCPUState</references>
+        <references refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" compoundref="dolphin__trk_8c" startline="12">lc_base</references>
+        <referencedby refid="dolphin__trk_8h_1a4b2cf677f84afff232858e0e68957938" compoundref="dolphin__trk_8c" startline="117" endline="129">__TRK_copy_vectors</referencedby>
+        <referencedby refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" compoundref="dolphin__trk_8c" startline="110" endline="115">TRK_copy_vector</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRK_copy_vector</definition>
+        <argsstring>(u32 offset)</argsstring>
+        <name>TRK_copy_vector</name>
+        <param>
+          <type>u32</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="110" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="110" bodyend="115"/>
+        <references refid="dolphin__trk_8c_1aae5ae080f49e56efae0b6f6ddbc82c67">gTRKInterruptVectorTable</references>
+        <references refid="flush__cache_8h_1aafda2843c0a12b73789d09371666e298">TRK_flush_cache</references>
+        <references refid="mem___t_r_k_8h_1a28146942b9a1ecd9c0be8dfa28ed635a">TRK_memcpy</references>
+        <references refid="dolphin__trk_8c_1a676e3041d9fd3f9e12fc2c9214558f35" compoundref="dolphin__trk_8c" startline="96" endline="106">TRKTargetTranslate</references>
+        <referencedby refid="dolphin__trk_8h_1a4b2cf677f84afff232858e0e68957938" compoundref="dolphin__trk_8c" startline="117" endline="129">__TRK_copy_vectors</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8c_1a4b2cf677f84afff232858e0e68957938" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __TRK_copy_vectors</definition>
+        <argsstring>(void)</argsstring>
+        <name>__TRK_copy_vectors</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="117" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="117" bodyend="129"/>
+        <references refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" compoundref="dolphin__trk_8c" startline="110" endline="115">TRK_copy_vector</references>
+        <references refid="dolphin__trk_8c_1af26f6ae6d217cc73526b8c60f7d65683" compoundref="dolphin__trk_8c" startline="14" endline="28">TRK_ISR_OFFSETS</references>
+        <references refid="dolphin__trk_8c_1a676e3041d9fd3f9e12fc2c9214558f35" compoundref="dolphin__trk_8c" startline="96" endline="106">TRKTargetTranslate</references>
+        <referencedby refid="dolphin__trk_8c_1abc93178f7083946e434dde3acc6ed52d" compoundref="dolphin__trk_8c" startline="30" endline="30">__declspec</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk_8c_1af6cda24a52d37e510e398c2b0187ffb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKInitializeTarget</definition>
+        <argsstring>()</argsstring>
+        <name>TRKInitializeTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" line="131" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c" bodystart="131" bodyend="137"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="targimpl_8h_1a08f8e1919152b12ff57fb130a57e9be1" compoundref="targimpl_8c" startline="48">gTRKState</references>
+        <references refid="struct_t_r_k_state_1aec4785eaa9ea746de151bd0cc1128b93" compoundref="targimpl_8h" startline="180">TRKState::isStopped</references>
+        <references refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" compoundref="dolphin__trk_8c" startline="12">lc_base</references>
+        <references refid="struct_t_r_k_state_1a6055a72df3d0a88dbcc082d00b800828" compoundref="targimpl_8h" startline="177">TRKState::msr</references>
+        <referencedby refid="nubinit_8h_1af78b850dea3b4c5446dc83345be3e5b0" compoundref="nubinit_8c" startline="16" endline="47">TRKInitializeNub</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dolphin__trk_8h" kindref="compound">Os/dolphin/dolphin_trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="main___t_r_k_8h" kindref="compound">Portable/main_TRK.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mem___t_r_k_8h" kindref="compound">Portable/mem_TRK.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dolphin__trk__glue_8h" kindref="compound">Os/dolphin/dolphin_trk_glue.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="targimpl_8h" kindref="compound">Processor/ppc/Generic/targimpl.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="flush__cache_8h" kindref="compound">Processor/ppc/Generic/flush_cache.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dolphin/ar.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stddef_8h" kindref="compound">stddef.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="dolphin__trk_8c_1af849701ecd97c4e240063ee04dd8b9a0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXCEPTIONMASK_ADDR<sp/>0x80000044</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>u32<sp/><ref refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" kindref="member">lc_base</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="dolphin__trk_8c_1af26f6ae6d217cc73526b8c60f7d65683" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>u32<sp/><ref refid="dolphin__trk_8c_1af26f6ae6d217cc73526b8c60f7d65683" kindref="member">TRK_ISR_OFFSETS</ref>[15]<sp/>=<sp/>{<sp/><ref refid="trk_8h_1a2fd84779cea8256a238b78559c888a53" kindref="member">PPC_SystemReset</ref>,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a5008264b6068382513ccafa7f7c4a0a7" kindref="member">PPC_MachineCheck</ref>,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1ad738b5f8f975443f4ddeed4bb6fec5fe" kindref="member">PPC_DataStorage</ref>,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a2a74bae4d9dfb401746f553a78442604" kindref="member">PPC_InstructionStorage</ref>,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1aa27ee1d99c0b230d5db5df479f7bf744" kindref="member">PPC_ExternalInterrupt</ref>,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a3a8ddbcd321dd05ae38c890af3fb68bc" kindref="member">PPC_Alignment</ref>,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a04c2209c2396c4d8fdece352ca49cfdd" kindref="member">PPC_Program</ref>,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a3ee300a093318c5b8a52dac1818a86ed" kindref="member">PPC_FloatingPointUnavaiable</ref>,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a58f2a8e59b978d8c3fd16f5e75c197b9" kindref="member">PPC_Decrementer</ref>,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a80426ba404bdb261a20a1c94e0474161" kindref="member">PPC_SystemCall</ref>,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1af5b1a0d7af42e65e3fafcd27a1c8f6b2" kindref="member">PPC_Trace</ref>,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a8b4eb77a05e449f87acdb7507ec2f7a6" kindref="member">PPC_PerformanceMonitor</ref>,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1ae40f4878ab4295a1fe6f0ca51519dd90" kindref="member">PPC_InstructionAddressBreakpoint</ref>,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a20d66cb7fc08e42ed5ea183fe0063a05" kindref="member">PPC_SystemManagementInterrupt</ref>,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trk_8h_1a7fb10f1f33f511cb5fbca3ad96cef3da" kindref="member">PPC_ThermalManagementInterrupt</ref><sp/>};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="dolphin__trk_8c_1abc93178f7083946e434dde3acc6ed52d" refkind="member"><highlight class="normal"><ref refid="dolphin__trk_8c_1abc93178f7083946e434dde3acc6ed52d" kindref="member">__declspec</ref>(section<sp/></highlight><highlight class="stringliteral">&quot;.init&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>__TRK_reset(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{<sp/><ref refid="dolphin__trk_8c_1a4b2cf677f84afff232858e0e68957938" kindref="member">__TRK_copy_vectors</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="_dolphin_trk_init_8h_1a020b3df25a2eef9e0bcf01db895ddd31" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk_8c_1a0faa78a47acd226cecd44aefd6c98a1d" kindref="member">InitMetroTRK</ref>()</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__<sp/></highlight><highlight class="comment">//<sp/>clang-format<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>nofralloc</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>addi<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/>-4</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/>0(<ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" kindref="member">gTRKCPUState</ref>@h</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" kindref="member">gTRKCPUState</ref>@l</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>stmw<sp/>r0,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" kindref="member">GPR</ref>(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)<sp/></highlight><highlight class="comment">//Save<sp/>the<sp/>gprs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>0(<ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>addi<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/>4</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" kindref="member">GPR</ref>[1](<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" kindref="member">GPR</ref>[3](<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>mflr<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1a59df8e4ca06b11edc3be052722ac968b" kindref="member">LR</ref>(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1abd04ecf262719f55db652ab1f69eb8fe" kindref="member">PC</ref>(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>mfcr<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1a7984812ee9b46193ba74be21de7f2fd6" kindref="member">CR</ref>(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//???</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>mfmsr<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>(1<sp/>&lt;&lt;<sp/>(31<sp/>-<sp/>16))</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>xori<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/>(1<sp/>&lt;&lt;<sp/>(31<sp/>-<sp/>16))</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>mtmsr<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>mtsrr1<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref><sp/></highlight><highlight class="comment">//Copy<sp/>msr<sp/>to<sp/>srr1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Save<sp/>misc<sp/>registers<sp/>to<sp/>gTRKCPUState</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>bl<sp/><ref refid="trk_8h_1a9b0b6af4fd78fab6f6992c5946219663" kindref="member">TRKSaveExtended1Block</ref></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" kindref="member">gTRKCPUState</ref>@h</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" kindref="member">gTRKCPUState</ref>@l</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>lmw<sp/>r0,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" kindref="member">GPR</ref>(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)<sp/></highlight><highlight class="comment">//Restore<sp/>the<sp/>gprs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Reset<sp/>IABR<sp/>and<sp/>DABR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>li<sp/>r0,<sp/>0</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/>0x3f2,<sp/>r0</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/>0x3f5,<sp/>r0</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Restore<sp/>stack<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/>0x80426008@h</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/>0x80426008@l</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>mr<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>bl<sp/><ref refid="dolphin__trk__glue_8h_1afe7403d68dd17fcf6dc14bd0e6dd15b2" kindref="member">InitMetroTRKCommTable</ref><sp/></highlight><highlight class="comment">//Initialize<sp/>comm<sp/>table</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/><sp/><sp/><sp/>If<sp/>InitMetroTRKCommTable<sp/>returned<sp/>1<sp/>(failure),<sp/>an<sp/>invalid<sp/>hardware</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/><sp/>id<sp/>or<sp/>the<sp/>id<sp/>for<sp/>GDEV<sp/>was<sp/>somehow<sp/>passed.<sp/>Since<sp/>only<sp/>BBA<sp/>or<sp/>NDEV</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/><sp/>are<sp/>supported,<sp/>we<sp/>return<sp/>early.<sp/>Otherwise,<sp/>we<sp/>proceed<sp/>with</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/><sp/><sp/>starting<sp/>up<sp/>TRK.</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>cmpwi<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/>1</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>bne<sp/>initCommTableSuccess</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/><sp/><sp/><sp/>BUG:<sp/>The<sp/>code<sp/>probably<sp/>orginally<sp/>reloaded<sp/>gTRKCPUState<sp/>here,<sp/>but</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/><sp/><sp/><sp/>as<sp/>is<sp/>it<sp/>will<sp/>read<sp/>the<sp/>returned<sp/>value<sp/>of<sp/>InitMetroTRKCommTable</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/><sp/><sp/><sp/>as<sp/>a<sp/>TRKCPUState<sp/>struct<sp/>pointer,<sp/>causing<sp/>the<sp/>CPU<sp/>to<sp/>return<sp/>to</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/><sp/><sp/><sp/>a<sp/>garbage<sp/>code<sp/>address.</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1a59df8e4ca06b11edc3be052722ac968b" kindref="member">LR</ref>(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>mtlr<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="87" refid="____ppc__eabi__init_8h_1ac9ac93a9d6380d3fc9ed30c8269ab3fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>lmw<sp/>r0,<sp/><ref refid="struct_processor_state___p_p_c__6xx__7xx" kindref="compound">ProcessorState_PPC</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1a597f65c39415dd1c0f5e804b450c1663" kindref="member">Default</ref>.<ref refid="struct_default___p_p_c_1ae33f1843d514b07a3af166a9922e700f" kindref="member">GPR</ref>(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)<sp/></highlight><highlight class="comment">//Restore<sp/>the<sp/>gprs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>blr</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">initCommTableSuccess:</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/><ref refid="main___t_r_k_8h_1a591e3b76e11affee132799e9f2b0a99c" kindref="member">TRK_main</ref><sp/></highlight><highlight class="comment">//Jump<sp/>to<sp/>TRK_main</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>clang-format<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="_dolphin_trk_init_8h_1abfc2559be37befc776575de2d2d254e8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk_8c_1abfc2559be37befc776575de2d2d254e8" kindref="member">EnableMetroTRKInterrupts</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{<sp/><ref refid="dolphin__trk__glue_8h_1a9a6eaa9650d929d4bf27a576b28b64a7" kindref="member">EnableEXI2Interrupts</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="dolphin__trk_8h_1a676e3041d9fd3f9e12fc2c9214558f35" refkind="member"><highlight class="normal">u32<sp/><ref refid="dolphin__trk_8c_1a676e3041d9fd3f9e12fc2c9214558f35" kindref="member">TRKTargetTranslate</ref>(u32<sp/>param_0)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_0<sp/>&gt;=<sp/><ref refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" kindref="member">lc_base</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((param_0<sp/>&lt;<sp/><ref refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" kindref="member">lc_base</ref><sp/>+<sp/>0x4000)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;&amp;<sp/>((<ref refid="targimpl_8h_1ab961142f38f6b4951af8f5ed917f220c" kindref="member">gTRKCPUState</ref>.<ref refid="struct_processor_state___p_p_c__6xx__7xx_1ab93554b55c63a0a75d8442ea52db723d" kindref="member">Extended1</ref>.<ref refid="struct_extended1___p_p_c__6xx__7xx_1a45412863c96576b5b7233422635fd7e8" kindref="member">DBAT3U</ref><sp/>&amp;<sp/>3)<sp/>!=<sp/>0))<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>param_0;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>param_0<sp/>&amp;<sp/>0x3FFFFFFF<sp/>|<sp/>0x80000000;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>u8<sp/><ref refid="dolphin__trk_8c_1aae5ae080f49e56efae0b6f6ddbc82c67" kindref="member">gTRKInterruptVectorTable</ref>[];</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" kindref="member">TRK_copy_vector</ref>(u32<sp/>offset)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>destPtr<sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="dolphin__trk_8c_1a676e3041d9fd3f9e12fc2c9214558f35" kindref="member">TRKTargetTranslate</ref>(offset);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mem___t_r_k_8h_1a28146942b9a1ecd9c0be8dfa28ed635a" kindref="member">TRK_memcpy</ref>(destPtr,<sp/><ref refid="dolphin__trk_8c_1aae5ae080f49e56efae0b6f6ddbc82c67" kindref="member">gTRKInterruptVectorTable</ref><sp/>+<sp/>offset,<sp/>0x100);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="flush__cache_8h_1aafda2843c0a12b73789d09371666e298" kindref="member">TRK_flush_cache</ref>(destPtr,<sp/>0x100);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="dolphin__trk_8h_1a4b2cf677f84afff232858e0e68957938" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk_8c_1a4b2cf677f84afff232858e0e68957938" kindref="member">__TRK_copy_vectors</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/>mask;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>mask<sp/>=<sp/>*(u32*)<ref refid="dolphin__trk_8c_1a676e3041d9fd3f9e12fc2c9214558f35" kindref="member">TRKTargetTranslate</ref>(0x44);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;=<sp/>14;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mask<sp/>&amp;<sp/>(1<sp/>&lt;&lt;<sp/>i))<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk_8c_1aea9e19c653493babdcefa062cfe8fb9f" kindref="member">TRK_copy_vector</ref>(<ref refid="dolphin__trk_8c_1af26f6ae6d217cc73526b8c60f7d65683" kindref="member">TRK_ISR_OFFSETS</ref>[i]);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="dolphin__trk_8h_1af6cda24a52d37e510e398c2b0187ffb1" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="dolphin__trk_8c_1af6cda24a52d37e510e398c2b0187ffb1" kindref="member">TRKInitializeTarget</ref>()</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="targimpl_8h_1a08f8e1919152b12ff57fb130a57e9be1" kindref="member">gTRKState</ref>.<ref refid="struct_t_r_k_state_1aec4785eaa9ea746de151bd0cc1128b93" kindref="member">isStopped</ref><sp/>=<sp/>TRUE;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="targimpl_8h_1a08f8e1919152b12ff57fb130a57e9be1" kindref="member">gTRKState</ref>.<ref refid="struct_t_r_k_state_1a6055a72df3d0a88dbcc082d00b800828" kindref="member">msr</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>__TRK_get_MSR();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dolphin__trk_8c_1a4073ed8ff1a2a373649c6d839fae0006" kindref="member">lc_base</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0xE0000000;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk.c"/>
+  </compounddef>
+</doxygen>

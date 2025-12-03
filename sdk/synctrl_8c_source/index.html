@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File synctrl.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-synctrlc">File synctrl.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_69283c2dbc63a8d4f909cdea61511c2a/"><strong>syn</strong></a> <strong>&gt;</strong> <a href="../synctrl_8c/"><strong>synctrl.c</strong></a></p>
+<p><a href="../synctrl_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+#include &lt;dolphin/mix.h&gt;
+#include &lt;dolphin/syn.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;fake_tgmath.h&quot;
+#include &quot;SYNPrivate.h&quot;
+
+// .data
+float __SYNn128[128] = {
+    0.000000f, 0.007813f, 0.015625f, 0.023438f, 0.031250f, 0.039063f, 0.046875f, 0.054688f,
+    0.062500f, 0.070313f, 0.078125f, 0.085938f, 0.093750f, 0.101563f, 0.109375f, 0.117188f,
+    0.125000f, 0.132813f, 0.140625f, 0.148438f, 0.156250f, 0.164063f, 0.171875f, 0.179688f,
+    0.187500f, 0.195313f, 0.203125f, 0.210938f, 0.218750f, 0.226563f, 0.234375f, 0.242188f,
+    0.250000f, 0.257813f, 0.265625f, 0.273438f, 0.281250f, 0.289063f, 0.296875f, 0.304688f,
+    0.312500f, 0.320313f, 0.328125f, 0.335938f, 0.343750f, 0.351563f, 0.359375f, 0.367188f,
+    0.375000f, 0.382813f, 0.390625f, 0.398438f, 0.406250f, 0.414063f, 0.421875f, 0.429688f,
+    0.437500f, 0.445313f, 0.453125f, 0.460938f, 0.468750f, 0.476563f, 0.484375f, 0.492188f,
+    0.500000f, 0.507813f, 0.515625f, 0.523438f, 0.531250f, 0.539063f, 0.546875f, 0.554688f,
+    0.562500f, 0.570313f, 0.578125f, 0.585938f, 0.593750f, 0.601563f, 0.609375f, 0.617188f,
+    0.625000f, 0.632813f, 0.640625f, 0.648438f, 0.656250f, 0.664063f, 0.671875f, 0.679688f,
+    0.687500f, 0.695313f, 0.703125f, 0.710938f, 0.718750f, 0.726563f, 0.734375f, 0.742188f,
+    0.750000f, 0.757813f, 0.765625f, 0.773438f, 0.781250f, 0.789063f, 0.796875f, 0.804688f,
+    0.812500f, 0.820313f, 0.828125f, 0.835938f, 0.843750f, 0.851563f, 0.859375f, 0.867188f,
+    0.875000f, 0.882813f, 0.890625f, 0.898438f, 0.906250f, 0.914063f, 0.921875f, 0.929688f,
+    0.937500f, 0.945313f, 0.953125f, 0.960938f, 0.968750f, 0.976563f, 0.984375f, 0.992188f
+};
+
+// functions
+static void __SYNSetData (struct SYNSYNTH* synth, u8 midiChannel);
+static void __SYNSetSustainPedal (struct SYNSYNTH* synth, u8 midiChannel, u8 data);
+static void __SYNProgramChange (struct SYNSYNTH* synth, u8 midiChannel, u8 program);
+static void __SYNReleaseChannelNotes (struct SYNSYNTH* synth, u8 midiChannel);
+static void __SYNNoteOff (struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum);
+static void __SYNNoteOn (struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum, u8 keyVel);
+static void __SYNPitchWheel (struct SYNSYNTH* synth, u8 midiChannel, u8 lsb, u8 msb);
+static void __SYNMidiIn (struct SYNSYNTH* synth, u8* input);
+
+static void
+__SYNSetData (struct SYNSYNTH* synth, u8 midiChannel)
+{
+    ASSERTLINE (0x3B, synth);
+    ASSERTLINE (0x3C, midiChannel &lt; 16);
+    if (synth-&gt;rpn[midiChannel])
+    {
+        u16 param =
+            (synth-&gt;controller[midiChannel][0x65] &lt;&lt; 8) + synth-&gt;controller[midiChannel][0x64];
+        switch (param)
+        {
+            case 0:
+                synth-&gt;pwMaxCents[midiChannel] = (synth-&gt;controller[midiChannel][0x26] +
+                                                  (synth-&gt;controller[midiChannel][0x6] * 100))
+                                                 &lt;&lt; 0x10;
+                break;
+            case 1:
+                ASSERTMSGLINE (0x50, FALSE, &quot;RPN 0001 not supported¥n&quot;);
+                break;
+            case 2:
+                ASSERTMSGLINE (0x56, FALSE, &quot;RPN 0002 not supported¥n&quot;);
+                break;
+            case 3:
+                ASSERTMSGLINE (0x5C, FALSE, &quot;RPN 0003 not supported¥n&quot;);
+                break;
+            case 4:
+                ASSERTMSGLINE (0x62, FALSE, &quot;RPN 0004 not supported¥n&quot;);
+                break;
+        }
+    }
+}
+
+static void
+__SYNSetSustainPedal (struct SYNSYNTH* synth, u8 midiChannel, u8 data)
+{
+    int              i;
+    struct SYNVOICE* voice;
+
+    ASSERTLINE (0x6F, synth);
+    ASSERTLINE (0x70, midiChannel &lt; 16);
+    ASSERTLINE (0x71, data &lt; 128);
+    // check if you're below 0x80 only to check if you're below 0x40. ok then.
+    if (data &lt; 64)
+    {
+        for (i = 0; i &lt; 0x80; i++)
+        {
+            voice = synth-&gt;voice[midiChannel][i];
+            if (voice &amp;&amp; voice-&gt;hold)
+            {
+                __SYNSetVoiceToRelease (voice, synth-&gt;priorityNoteRelease);
+                voice-&gt;synth-&gt;voice[voice-&gt;midiChannel][voice-&gt;keyNum] = 0;
+            }
+        }
+    }
+}
+
+static void
+__SYNProgramChange (struct SYNSYNTH* synth, u8 midiChannel, u8 program)
+{
+    ASSERTLINE (0x8E, synth);
+    ASSERTLINE (0x8F, midiChannel &lt; 16);
+    ASSERTLINE (0x90, program &lt; 128);
+    if (midiChannel == 9)
+    {
+        synth-&gt;inst[midiChannel] = synth-&gt;percussiveInst;
+    }
+    else
+    {
+        synth-&gt;inst[midiChannel] = synth-&gt;melodicInst;
+    }
+    synth-&gt;inst[midiChannel] += program;
+}
+
+static void
+__SYNReleaseChannelNotes (struct SYNSYNTH* synth, u8 midiChannel)
+{
+    int              i;
+    struct SYNVOICE* voice;
+
+    ASSERTLINE (0xA2, synth);
+    ASSERTLINE (0xA3, midiChannel &lt; 16);
+    for (i = 0; i &lt; 0x80; i++)
+    {
+        voice = synth-&gt;voice[midiChannel][i];
+        if (voice)
+        {
+            __SYNSetVoiceToRelease (voice, synth-&gt;priorityNoteRelease);
+            synth-&gt;voice[midiChannel][i] = 0;
+        }
+    }
+}
+
+void
+__SYNClearAllNotes (struct SYNSYNTH* synth)
+{
+    u8 i;
+
+    ASSERTLINE (0xBD, synth);
+    for (i = 0; i &lt; 16; i++)
+    {
+        __SYNReleaseChannelNotes (synth, i);
+    }
+}
+
+void
+__SYNSetController (struct SYNSYNTH* synth, u8 midiChannel, u8 function, u8 value)
+{
+    ASSERTLINE (0xC9, synth);
+    ASSERTLINE (0xCA, midiChannel &lt; 16);
+    ASSERTLINE (0xCB, function &lt; 128);
+    ASSERTLINE (0xCC, value &lt; 128);
+
+    synth-&gt;controller[midiChannel][function] = value;
+    switch (function)
+    {
+        case 6:
+            __SYNSetData (synth, midiChannel);
+            break;
+        case 7:
+            synth-&gt;volAttn[midiChannel] = __SYNVolumeAttenuation[value];
+            break;
+        case 11:
+            synth-&gt;expAttn[midiChannel] = __SYNVolumeAttenuation[value];
+            break;
+        case 0x26:
+            __SYNSetData (synth, midiChannel);
+            break;
+        case 0x40:
+            __SYNSetSustainPedal (synth, midiChannel, value);
+            break;
+        case 0x5B:
+            synth-&gt;auxAAttn[midiChannel] = __SYNVolumeAttenuation[value];
+            break;
+        case 0x5C:
+            synth-&gt;auxBAttn[midiChannel] = __SYNVolumeAttenuation[value];
+            break;
+        case 0x5D:
+            break;
+        case 0x62:
+        case 0x63:
+            synth-&gt;rpn[midiChannel] = 0;
+            break;
+        case 0x64:
+        case 0x65:
+            synth-&gt;rpn[midiChannel] = 1;
+            break;
+        case 0x78:
+            __SYNReleaseChannelNotes (synth, midiChannel);
+            break;
+        case 0x79:
+            if (value == 0)
+            {
+                __SYNResetController0 (synth, midiChannel);
+            }
+            else
+            {
+                __SYNResetController (synth, midiChannel);
+            }
+            break;
+        case 0x7B:
+        case 0x7C:
+        case 0x7D:
+        case 0x7E:
+        case 0x7F:
+            __SYNReleaseChannelNotes (synth, midiChannel);
+            break;
+        default:
+            break;
+    }
+}
+
+void
+__SYNResetController0 (struct SYNSYNTH* synth, u8 midiChannel)
+{
+    u8  volume;
+    u8  pan;
+    u8  expression;
+    int i;
+
+    ASSERTLINE (0x13B, synth);
+    ASSERTLINE (0x13C, midiChannel &lt; 16);
+    synth-&gt;pwMaxCents[midiChannel] = 0xC80000;
+    synth-&gt;pwCents[midiChannel] = 0;
+    volume = synth-&gt;controller[midiChannel][7];
+    pan = synth-&gt;controller[midiChannel][10];
+    expression = synth-&gt;controller[midiChannel][11];
+    for (i = 0; i &lt; 128; i++)
+    {
+        synth-&gt;controller[midiChannel][i] = 0;
+    }
+    __SYNSetController (synth, midiChannel, 7, volume);
+    __SYNSetController (synth, midiChannel, 0xA, pan);
+    __SYNSetController (synth, midiChannel, 0xB, expression);
+    __SYNSetController (synth, midiChannel, 0x5B, 0);
+    __SYNSetController (synth, midiChannel, 0x5C, 0);
+}
+
+void
+__SYNResetController (struct SYNSYNTH* synth, u8 midiChannel)
+{
+    int i;
+
+    ASSERTLINE (0x159, synth);
+    ASSERTLINE (0x15A, midiChannel &lt; 16);
+    synth-&gt;pwMaxCents[midiChannel] = 0xC80000;
+    synth-&gt;pwCents[midiChannel] = 0;
+    for (i = 0; i &lt; 128; i++)
+    {
+        synth-&gt;controller[midiChannel][i] = 0;
+    }
+    __SYNSetController (synth, midiChannel, 7, 0x64);
+    __SYNSetController (synth, midiChannel, 0xA, 0x40);
+    __SYNSetController (synth, midiChannel, 0xB, 0x7F);
+    __SYNSetController (synth, midiChannel, 0x5B, 0);
+    __SYNSetController (synth, midiChannel, 0x5C, 0);
+}
+
+void
+__SYNResetAllControllers (struct SYNSYNTH* synth)
+{
+    u8 midiChannel;
+
+    ASSERTLINE (0x174, synth);
+
+    for (midiChannel = 0; midiChannel &lt; 16; midiChannel++)
+    {
+        __SYNProgramChange (synth, midiChannel, 0);
+        __SYNResetController (synth, midiChannel);
+    }
+}
+
+static void
+__SYNNoteOff (struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum)
+{
+    struct SYNVOICE* voice;
+
+    ASSERTLINE (0x185, synth);
+    ASSERTLINE (0x186, midiChannel &lt; 16);
+    ASSERTLINE (0x187, keyNum &lt; 128);
+    voice = synth-&gt;voice[midiChannel][keyNum];
+    if (voice)
+    {
+        if (synth-&gt;controller[midiChannel][64] &gt; 64)
+        {
+            voice-&gt;hold = 1;
+            return;
+        }
+        __SYNSetVoiceToRelease (voice, synth-&gt;priorityNoteRelease);
+        synth-&gt;voice[midiChannel][keyNum] = 0;
+    }
+}
+
+static void
+__SYNNoteOn (struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum, u8 keyVel)
+{
+    AXVPB*           axvpb;
+    struct SYNVOICE* voice;
+    struct SYNVOICE* oldVoice;
+
+    ASSERTLINE (0x1A4, synth);
+    ASSERTLINE (0x1A5, midiChannel &lt; 16);
+    ASSERTLINE (0x1A6, keyNum &lt; 128);
+    ASSERTLINE (0x1A7, keyVel &lt; 128);
+
+    if (keyVel)
+    {
+        if (synth-&gt;voice[midiChannel][keyNum])
+        {
+            __SYNSetVoiceToRelease (synth-&gt;voice[midiChannel][keyNum], synth-&gt;priorityNoteRelease);
+            synth-&gt;voice[midiChannel][keyNum] = 0;
+        }
+        axvpb = AXAcquireVoice (synth-&gt;priorityVoiceAlloc, &amp;__SYNClearVoiceReferences, (u32)synth);
+        if (axvpb)
+        {
+            voice = &amp;__SYNVoice[axvpb-&gt;index];
+            voice-&gt;axvpb = axvpb;
+            voice-&gt;synth = synth;
+            voice-&gt;midiChannel = midiChannel;
+            voice-&gt;keyNum = keyNum;
+            voice-&gt;keyVel = keyVel;
+            voice-&gt;hold = 0;
+            if (__SYNGetWavetableData (voice) != 0)
+            {
+                synth-&gt;voice[midiChannel][keyNum] = voice;
+                synth-&gt;notes++;
+                voice-&gt;keyGroup = voice-&gt;region-&gt;keyGroup;
+                if (voice-&gt;keyGroup != 0)
+                {
+                    oldVoice = synth-&gt;keyGroup[midiChannel][voice-&gt;keyGroup];
+                    if (oldVoice)
+                    {
+                        oldVoice-&gt;synth = 0;
+                        MIXReleaseChannel (oldVoice-&gt;axvpb);
+                        AXFreeVoice (oldVoice-&gt;axvpb);
+                        synth-&gt;voice[midiChannel][oldVoice-&gt;keyNum] = 0;
+                        synth-&gt;notes--;
+                    }
+                    synth-&gt;keyGroup[midiChannel][voice-&gt;keyGroup] = voice;
+                }
+                __SYNSetupPitch (voice);
+                __SYNSetupVolume (voice);
+                __SYNSetupPan (voice);
+                __SYNSetupLfo (voice);
+                __SYNSetupVolumeEnvelope (voice);
+                __SYNSetupPitchEnvelope (voice);
+                if (midiChannel == 9)
+                {
+                    MIXInitChannel (axvpb,
+                                    0,
+                                    __SYNGetVoiceInput (voice),
+                                    synth-&gt;auxAAttn[midiChannel] &gt;&gt; 0x10,
+                                    synth-&gt;auxBAttn[midiChannel] &gt;&gt; 0x10,
+                                    voice-&gt;pan,
+                                    0x7F,
+                                    __SYNGetVoiceFader (voice));
+                }
+                else
+                {
+                    MIXInitChannel (axvpb,
+                                    0,
+                                    __SYNGetVoiceInput (voice),
+                                    synth-&gt;auxAAttn[midiChannel] &gt;&gt; 0x10,
+                                    synth-&gt;auxBAttn[midiChannel] &gt;&gt; 0x10,
+                                    synth-&gt;controller[midiChannel][10],
+                                    0x7F,
+                                    __SYNGetVoiceFader (voice));
+                }
+                __SYNSetupSample (voice);
+                __SYNSetupSrc (voice);
+                axvpb-&gt;pb.state = 1;
+                axvpb-&gt;sync = (axvpb-&gt;sync | 4);
+                AXSetVoicePriority (axvpb, synth-&gt;priorityNoteOn);
+                return;
+            }
+            voice-&gt;synth = NULL;
+            MIXReleaseChannel (axvpb);
+            AXFreeVoice (axvpb);
+        }
+    }
+    else
+    {
+        __SYNNoteOff (synth, midiChannel, keyNum);
+    }
+}
+
+static void
+__SYNPitchWheel (struct SYNSYNTH* synth, u8 midiChannel, u8 lsb, u8 msb)
+{
+    s32 position;
+
+    ASSERTLINE (0x235, synth);
+    ASSERTLINE (0x236, midiChannel &lt; 16);
+    ASSERTLINE (0x237, lsb &lt; 128);
+    ASSERTLINE (0x238, msb &lt; 128);
+    position = lsb + (msb &lt;&lt; 7) - 0x2000;
+    synth-&gt;pwCents[midiChannel] = (synth-&gt;pwMaxCents[midiChannel] * ((f32)position / 8192.0f));
+}
+
+static void
+__SYNMidiIn (struct SYNSYNTH* synth, u8* input)
+{
+    u8* ch;
+    u8  midiFunction;
+    u8  midiChannel;
+    u8  _2ndByte;
+    u8  _3rdByte;
+
+    ASSERTLINE (0x24D, synth);
+    ASSERTLINE (0x24E, input);
+    ch = input;
+    midiFunction = (*(ch) &gt;&gt; 4);
+    ch += 0;
+    midiChannel = (*(ch) &amp; 0xF);
+    ch += 1;
+    _2ndByte = *(ch);
+    ch += 1;
+    switch (midiFunction)
+    {
+        case 8:
+            __SYNNoteOff (synth, midiChannel, _2ndByte);
+            return;
+        case 9:
+            _3rdByte = *(ch);
+            ch += 1;
+            __SYNNoteOn (synth, midiChannel, _2ndByte, _3rdByte);
+            return;
+        case 11:
+            _3rdByte = *(ch);
+            ch += 1;
+            __SYNSetController (synth, midiChannel, _2ndByte, _3rdByte);
+            return;
+        case 12:
+            __SYNProgramChange (synth, midiChannel, _2ndByte);
+            return;
+        case 14:
+            _3rdByte = *(ch);
+            ch += 1;
+            __SYNPitchWheel (synth, midiChannel, _2ndByte, _3rdByte);
+            return;
+    }
+}
+
+void
+__SYNRunInputBufferEvents (struct SYNSYNTH* synth)
+{
+    u8* input;
+
+    for (input = &amp;synth-&gt;input[0][0]; synth-&gt;inputCounter; synth-&gt;inputCounter--)
+    {
+        __SYNMidiIn (synth, input);
+        input += 3;
+    }
+    synth-&gt;inputPosition = &amp;synth-&gt;input[0][0];
+}
+
+u8
+SYNGetMidiController (struct SYNSYNTH* synth, u8 midiChannel, u8 function)
+{
+    ASSERTLINE (0x2A6, synth);
+    ASSERTLINE (0x2A7, midiChannel &lt; 16);
+    ASSERTLINE (0x2A8, function &lt; 128);
+    return synth-&gt;controller[midiChannel][function];
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

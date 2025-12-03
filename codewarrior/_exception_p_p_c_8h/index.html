@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File ExceptionPPC.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-exceptionppch">File ExceptionPPC.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_192ee455ef94b5a11e62d491224058e4/"><strong>Inc</strong></a> <strong>&gt;</strong> <a href="./"><strong>ExceptionPPC.h</strong></a></p>
+<p><a href="../_exception_p_p_c_8h_source/">Go to the source code of this file</a></p>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_exception_range_large/"><strong>ExceptionRangeLarge</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_exception_range_small/"><strong>ExceptionRangeSmall</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_exception_table_index/"><strong>ExceptionTableIndex</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_exception_table_large/"><strong>ExceptionTableLarge</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_exception_table_small/"><strong>ExceptionTableSmall</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_exception_table_small_vector/"><strong>ExceptionTableSmallVector</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__activecatchblock/"><strong>ex_activecatchblock</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__branch/"><strong>ex_branch</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__catchblock/"><strong>ex_catchblock</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__deletepointer/"><strong>ex_deletepointer</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__deletepointercond/"><strong>ex_deletepointercond</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__destroylocal/"><strong>ex_destroylocal</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__destroylocalarray/"><strong>ex_destroylocalarray</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__destroylocalcond/"><strong>ex_destroylocalcond</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__destroylocalpointer/"><strong>ex_destroylocalpointer</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__destroymember/"><strong>ex_destroymember</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__destroymemberarray/"><strong>ex_destroymemberarray</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__destroymembercond/"><strong>ex_destroymembercond</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__specification/"><strong>ex_specification</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structex__terminate/"><strong>ex_terminate</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_exception_range_large/"><strong>ExceptionRangeLarge</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-exceptionrangelarge"><strong>ExceptionRangeLarge</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_exception_range_small/"><strong>ExceptionRangeSmall</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-exceptionrangesmall"><strong>ExceptionRangeSmall</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_exception_table_index/"><strong>ExceptionTableIndex</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-exceptiontableindex"><strong>ExceptionTableIndex</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_exception_table_large/"><strong>ExceptionTableLarge</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-exceptiontablelarge"><strong>ExceptionTableLarge</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_exception_table_small/"><strong>ExceptionTableSmall</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-exceptiontablesmall"><strong>ExceptionTableSmall</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../struct_exception_table_small_vector/"><strong>ExceptionTableSmallVector</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-exceptiontablesmallvector"><strong>ExceptionTableSmallVector</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__activecatchblock/"><strong>ex_activecatchblock</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_activecatchblock"><strong>ex_activecatchblock</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__branch/"><strong>ex_branch</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_branch"><strong>ex_branch</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__catchblock/"><strong>ex_catchblock</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_catchblock"><strong>ex_catchblock</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__deletepointer/"><strong>ex_deletepointer</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_deletepointer"><strong>ex_deletepointer</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__deletepointercond/"><strong>ex_deletepointercond</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_deletepointercond"><strong>ex_deletepointercond</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__destroylocal/"><strong>ex_destroylocal</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_destroylocal"><strong>ex_destroylocal</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__destroylocalarray/"><strong>ex_destroylocalarray</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_destroylocalarray"><strong>ex_destroylocalarray</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__destroylocalcond/"><strong>ex_destroylocalcond</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_destroylocalcond"><strong>ex_destroylocalcond</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__destroylocalpointer/"><strong>ex_destroylocalpointer</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_destroylocalpointer"><strong>ex_destroylocalpointer</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__destroymember/"><strong>ex_destroymember</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_destroymember"><strong>ex_destroymember</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__destroymemberarray/"><strong>ex_destroymemberarray</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_destroymemberarray"><strong>ex_destroymemberarray</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__destroymembercond/"><strong>ex_destroymembercond</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_destroymembercond"><strong>ex_destroymembercond</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__specification/"><strong>ex_specification</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_specification"><strong>ex_specification</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef struct <a href="../structex__terminate/"><strong>ex_terminate</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ex_terminate"><strong>ex_terminate</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef unsigned char</td>
+<td style="text-align: left;"><a href="#typedef-exaction_type"><strong>exaction_type</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-eti_getdirectstore"><strong>ETI_GetDirectStore</strong></a> (field) <code>((field)&amp;gt;&amp;gt;31)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-eti_getfunctionsize"><strong>ETI_GetFunctionSize</strong></a> (field) <code>((field)&amp;0x7fffffff)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-eti_makefield"><strong>ETI_MakeField</strong></a> (direct, fsize) <code>((((long)(direct))&amp;lt;&amp;lt;31)\|((fsize)&amp;0x7fffffff))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-et_clearlargebit"><strong>ET_ClearLargeBit</strong></a> (field) <code>((field) &amp; ~(1&amp;lt;&amp;lt;3))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-et_gethasframeptr"><strong>ET_GetHasFramePtr</strong></a> (field) <code>(((field)&amp;gt;&amp;gt;4)&amp;0x0001)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-et_getsavedcr"><strong>ET_GetSavedCR</strong></a> (field) <code>(((field)&amp;gt;&amp;gt;5)&amp;0x0001)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-et_getsavedfprs"><strong>ET_GetSavedFPRs</strong></a> (field) <code>(((field)&amp;gt;&amp;gt;6)&amp;0x001f)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-et_getsavedgprs"><strong>ET_GetSavedGPRs</strong></a> (field) <code>((field)&amp;gt;&amp;gt;11)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-et_islargetable"><strong>ET_IsLargeTable</strong></a> (field) <code>(((field)&amp;gt;&amp;gt;3)&amp;0x0001)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-et_makefield"><strong>ET_MakeField</strong></a> (savedGPRs, savedFPRs, savedCR, hasframeptr, isLarge) <code>(((savedGPRs)&amp;lt;&amp;lt;11)\|((savedFPRs&amp;0x001f)&amp;lt;&amp;lt;6)\|((savedCR&amp;0x0001)&amp;lt;&amp;lt;5)\|((hasframeptr&amp;0x0001)&amp;lt;&amp;lt;4)\|((isLarge&amp;1)&amp;lt;&amp;lt;3))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-et_setlargebit"><strong>ET_SetLargeBit</strong></a> (field) <code>((field) \|  (1&amp;lt;&amp;lt;3))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_activecatchblock"><strong>EXACTION_ACTIVECATCHBLOCK</strong></a>  <code>13</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_branch"><strong>EXACTION_BRANCH</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_catchblock"><strong>EXACTION_CATCHBLOCK</strong></a>  <code>12</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_deletepointer"><strong>EXACTION_DELETEPOINTER</strong></a>  <code>10</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_deletepointercond"><strong>EXACTION_DELETEPOINTERCOND</strong></a>  <code>11</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_destroybase"><strong>EXACTION_DESTROYBASE</strong></a>  <code>6</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_destroylocal"><strong>EXACTION_DESTROYLOCAL</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_destroylocalarray"><strong>EXACTION_DESTROYLOCALARRAY</strong></a>  <code>5</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_destroylocalcond"><strong>EXACTION_DESTROYLOCALCOND</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_destroylocalpointer"><strong>EXACTION_DESTROYLOCALPOINTER</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_destroymember"><strong>EXACTION_DESTROYMEMBER</strong></a>  <code>7</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_destroymemberarray"><strong>EXACTION_DESTROYMEMBERARRAY</strong></a>  <code>9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_destroymembercond"><strong>EXACTION_DESTROYMEMBERCOND</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_endbit"><strong>EXACTION_ENDBIT</strong></a>  <code>0x80</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_endoflist"><strong>EXACTION_ENDOFLIST</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_mask"><strong>EXACTION_MASK</strong></a>  <code>0x7F</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_specification"><strong>EXACTION_SPECIFICATION</strong></a>  <code>15</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exaction_terminate"><strong>EXACTION_TERMINATE</strong></a>  <code>14</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_deletepointer_getregpointer"><strong>ex_deletepointer_GetRegPointer</strong></a> (field) <code>((field)&amp;gt;&amp;gt;7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_deletepointer_makefield"><strong>ex_deletepointer_MakeField</strong></a> (regpointer) <code>(((regpointer)&amp;lt;&amp;lt;7))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_deletepointercond_getregcond"><strong>ex_deletepointercond_GetRegCond</strong></a> (field) <code>((field)&amp;gt;&amp;gt;7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_deletepointercond_getregpointer"><strong>ex_deletepointercond_GetRegPointer</strong></a> (field) <code>(((field)&amp;gt;&amp;gt;6)&amp;0x0001)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_deletepointercond_makefield"><strong>ex_deletepointercond_MakeField</strong></a> (regcond, regpointer) <code>(((regcond)&amp;lt;&amp;lt;7)\|(((regpointer)&amp;0x0001)&amp;lt;&amp;lt;6))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroylocalcond_getregcond"><strong>ex_destroylocalcond_GetRegCond</strong></a> (field) <code>((field)&amp;gt;&amp;gt;7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroylocalcond_makefield"><strong>ex_destroylocalcond_MakeField</strong></a> (regcond) <code>(((regcond)&amp;lt;&amp;lt;7))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroylocalpointer_getregpointer"><strong>ex_destroylocalpointer_GetRegPointer</strong></a> (field) <code>((field)&amp;gt;&amp;gt;7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroylocalpointer_makefield"><strong>ex_destroylocalpointer_MakeField</strong></a> (regpointer) <code>(((regpointer)&amp;lt;&amp;lt;7))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroymember_getregpointer"><strong>ex_destroymember_GetRegPointer</strong></a> (field) <code>((field)&amp;gt;&amp;gt;7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroymember_makefield"><strong>ex_destroymember_MakeField</strong></a> (regpointer) <code>(((regpointer)&amp;lt;&amp;lt;7))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroymemberarray_getregpointer"><strong>ex_destroymemberarray_GetRegPointer</strong></a> (field) <code>((field)&amp;gt;&amp;gt;7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroymemberarray_makefield"><strong>ex_destroymemberarray_MakeField</strong></a> (regpointer) <code>(((regpointer)&amp;lt;&amp;lt;7))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroymembercond_getregcond"><strong>ex_destroymembercond_GetRegCond</strong></a> (field) <code>((field)&amp;gt;&amp;gt;7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroymembercond_getregpointer"><strong>ex_destroymembercond_GetRegPointer</strong></a> (field) <code>(((field)&amp;gt;&amp;gt;6)&amp;0x0001)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ex_destroymembercond_makefield"><strong>ex_destroymembercond_MakeField</strong></a> (regcond, regpointer) <code>(((regcond)&amp;lt;&amp;lt;7)\|(((regpointer)&amp;0x0001)&amp;lt;&amp;lt;6))</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-exceptionrangelarge">typedef ExceptionRangeLarge</h3>
+<pre><code class="language-C++">typedef struct ExceptionRangeLarge ExceptionRangeLarge;
+</code></pre>
+<hr>
+
+<h3 id="typedef-exceptionrangesmall">typedef ExceptionRangeSmall</h3>
+<pre><code class="language-C++">typedef struct ExceptionRangeSmall ExceptionRangeSmall;
+</code></pre>
+<hr>
+
+<h3 id="typedef-exceptiontableindex">typedef ExceptionTableIndex</h3>
+<pre><code class="language-C++">typedef struct ExceptionTableIndex ExceptionTableIndex;
+</code></pre>
+<hr>
+
+<h3 id="typedef-exceptiontablelarge">typedef ExceptionTableLarge</h3>
+<pre><code class="language-C++">typedef struct ExceptionTableLarge ExceptionTableLarge;
+</code></pre>
+<hr>
+
+<h3 id="typedef-exceptiontablesmall">typedef ExceptionTableSmall</h3>
+<pre><code class="language-C++">typedef struct ExceptionTableSmall ExceptionTableSmall;
+</code></pre>
+<hr>
+
+<h3 id="typedef-exceptiontablesmallvector">typedef ExceptionTableSmallVector</h3>
+<pre><code class="language-C++">typedef struct ExceptionTableSmallVector ExceptionTableSmallVector;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_activecatchblock">typedef ex_activecatchblock</h3>
+<pre><code class="language-C++">typedef struct ex_activecatchblock ex_activecatchblock;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_branch">typedef ex_branch</h3>
+<pre><code class="language-C++">typedef struct ex_branch ex_branch;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_catchblock">typedef ex_catchblock</h3>
+<pre><code class="language-C++">typedef struct ex_catchblock ex_catchblock;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_deletepointer">typedef ex_deletepointer</h3>
+<pre><code class="language-C++">typedef struct ex_deletepointer ex_deletepointer;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_deletepointercond">typedef ex_deletepointercond</h3>
+<pre><code class="language-C++">typedef struct ex_deletepointercond ex_deletepointercond;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_destroylocal">typedef ex_destroylocal</h3>
+<pre><code class="language-C++">typedef struct ex_destroylocal ex_destroylocal;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_destroylocalarray">typedef ex_destroylocalarray</h3>
+<pre><code class="language-C++">typedef struct ex_destroylocalarray ex_destroylocalarray;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_destroylocalcond">typedef ex_destroylocalcond</h3>
+<pre><code class="language-C++">typedef struct ex_destroylocalcond ex_destroylocalcond;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_destroylocalpointer">typedef ex_destroylocalpointer</h3>
+<pre><code class="language-C++">typedef struct ex_destroylocalpointer ex_destroylocalpointer;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_destroymember">typedef ex_destroymember</h3>
+<pre><code class="language-C++">typedef struct ex_destroymember ex_destroymember;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_destroymemberarray">typedef ex_destroymemberarray</h3>
+<pre><code class="language-C++">typedef struct ex_destroymemberarray ex_destroymemberarray;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_destroymembercond">typedef ex_destroymembercond</h3>
+<pre><code class="language-C++">typedef struct ex_destroymembercond ex_destroymembercond;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_specification">typedef ex_specification</h3>
+<pre><code class="language-C++">typedef struct ex_specification ex_specification;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ex_terminate">typedef ex_terminate</h3>
+<pre><code class="language-C++">typedef struct ex_terminate ex_terminate;
+</code></pre>
+<hr>
+
+<h3 id="typedef-exaction_type">typedef exaction_type</h3>
+<pre><code class="language-C++">typedef unsigned char exaction_type;
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-eti_getdirectstore">define ETI_GetDirectStore</h3>
+<pre><code class="language-C++">#define ETI_GetDirectStore (
+    field
+) `((field)&gt;&gt;31)`
+</code></pre>
+<hr>
+
+<h3 id="define-eti_getfunctionsize">define ETI_GetFunctionSize</h3>
+<pre><code class="language-C++">#define ETI_GetFunctionSize (
+    field
+) `((field)&amp;0x7fffffff)`
+</code></pre>
+<hr>
+
+<h3 id="define-eti_makefield">define ETI_MakeField</h3>
+<pre><code class="language-C++">#define ETI_MakeField (
+    direct,
+    fsize
+) `((((long)(direct))&lt;&lt;31)|((fsize)&amp;0x7fffffff))`
+</code></pre>
+<hr>
+
+<h3 id="define-et_clearlargebit">define ET_ClearLargeBit</h3>
+<pre><code class="language-C++">#define ET_ClearLargeBit (
+    field
+) `((field) &amp; ~(1&lt;&lt;3))`
+</code></pre>
+<hr>
+
+<h3 id="define-et_gethasframeptr">define ET_GetHasFramePtr</h3>
+<pre><code class="language-C++">#define ET_GetHasFramePtr (
+    field
+) `(((field)&gt;&gt;4)&amp;0x0001)`
+</code></pre>
+<hr>
+
+<h3 id="define-et_getsavedcr">define ET_GetSavedCR</h3>
+<pre><code class="language-C++">#define ET_GetSavedCR (
+    field
+) `(((field)&gt;&gt;5)&amp;0x0001)`
+</code></pre>
+<hr>
+
+<h3 id="define-et_getsavedfprs">define ET_GetSavedFPRs</h3>
+<pre><code class="language-C++">#define ET_GetSavedFPRs (
+    field
+) `(((field)&gt;&gt;6)&amp;0x001f)`
+</code></pre>
+<hr>
+
+<h3 id="define-et_getsavedgprs">define ET_GetSavedGPRs</h3>
+<pre><code class="language-C++">#define ET_GetSavedGPRs (
+    field
+) `((field)&gt;&gt;11)`
+</code></pre>
+<hr>
+
+<h3 id="define-et_islargetable">define ET_IsLargeTable</h3>
+<pre><code class="language-C++">#define ET_IsLargeTable (
+    field
+) `(((field)&gt;&gt;3)&amp;0x0001)`
+</code></pre>
+<hr>
+
+<h3 id="define-et_makefield">define ET_MakeField</h3>
+<pre><code class="language-C++">#define ET_MakeField (
+    savedGPRs,
+    savedFPRs,
+    savedCR,
+    hasframeptr,
+    isLarge
+) `(((savedGPRs)&lt;&lt;11)|((savedFPRs&amp;0x001f)&lt;&lt;6)|((savedCR&amp;0x0001)&lt;&lt;5)|((hasframeptr&amp;0x0001)&lt;&lt;4)|((isLarge&amp;1)&lt;&lt;3))`
+</code></pre>
+<hr>
+
+<h3 id="define-et_setlargebit">define ET_SetLargeBit</h3>
+<pre><code class="language-C++">#define ET_SetLargeBit (
+    field
+) `((field) |  (1&lt;&lt;3))`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_activecatchblock">define EXACTION_ACTIVECATCHBLOCK</h3>
+<pre><code class="language-C++">#define EXACTION_ACTIVECATCHBLOCK `13`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_branch">define EXACTION_BRANCH</h3>
+<pre><code class="language-C++">#define EXACTION_BRANCH `1`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_catchblock">define EXACTION_CATCHBLOCK</h3>
+<pre><code class="language-C++">#define EXACTION_CATCHBLOCK `12`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_deletepointer">define EXACTION_DELETEPOINTER</h3>
+<pre><code class="language-C++">#define EXACTION_DELETEPOINTER `10`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_deletepointercond">define EXACTION_DELETEPOINTERCOND</h3>
+<pre><code class="language-C++">#define EXACTION_DELETEPOINTERCOND `11`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_destroybase">define EXACTION_DESTROYBASE</h3>
+<pre><code class="language-C++">#define EXACTION_DESTROYBASE `6`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_destroylocal">define EXACTION_DESTROYLOCAL</h3>
+<pre><code class="language-C++">#define EXACTION_DESTROYLOCAL `2`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_destroylocalarray">define EXACTION_DESTROYLOCALARRAY</h3>
+<pre><code class="language-C++">#define EXACTION_DESTROYLOCALARRAY `5`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_destroylocalcond">define EXACTION_DESTROYLOCALCOND</h3>
+<pre><code class="language-C++">#define EXACTION_DESTROYLOCALCOND `3`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_destroylocalpointer">define EXACTION_DESTROYLOCALPOINTER</h3>
+<pre><code class="language-C++">#define EXACTION_DESTROYLOCALPOINTER `4`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_destroymember">define EXACTION_DESTROYMEMBER</h3>
+<pre><code class="language-C++">#define EXACTION_DESTROYMEMBER `7`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_destroymemberarray">define EXACTION_DESTROYMEMBERARRAY</h3>
+<pre><code class="language-C++">#define EXACTION_DESTROYMEMBERARRAY `9`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_destroymembercond">define EXACTION_DESTROYMEMBERCOND</h3>
+<pre><code class="language-C++">#define EXACTION_DESTROYMEMBERCOND `8`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_endbit">define EXACTION_ENDBIT</h3>
+<pre><code class="language-C++">#define EXACTION_ENDBIT `0x80`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_endoflist">define EXACTION_ENDOFLIST</h3>
+<pre><code class="language-C++">#define EXACTION_ENDOFLIST `0`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_mask">define EXACTION_MASK</h3>
+<pre><code class="language-C++">#define EXACTION_MASK `0x7F`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_specification">define EXACTION_SPECIFICATION</h3>
+<pre><code class="language-C++">#define EXACTION_SPECIFICATION `15`
+</code></pre>
+<hr>
+
+<h3 id="define-exaction_terminate">define EXACTION_TERMINATE</h3>
+<pre><code class="language-C++">#define EXACTION_TERMINATE `14`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_deletepointer_getregpointer">define ex_deletepointer_GetRegPointer</h3>
+<pre><code class="language-C++">#define ex_deletepointer_GetRegPointer (
+    field
+) `((field)&gt;&gt;7)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_deletepointer_makefield">define ex_deletepointer_MakeField</h3>
+<pre><code class="language-C++">#define ex_deletepointer_MakeField (
+    regpointer
+) `(((regpointer)&lt;&lt;7))`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_deletepointercond_getregcond">define ex_deletepointercond_GetRegCond</h3>
+<pre><code class="language-C++">#define ex_deletepointercond_GetRegCond (
+    field
+) `((field)&gt;&gt;7)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_deletepointercond_getregpointer">define ex_deletepointercond_GetRegPointer</h3>
+<pre><code class="language-C++">#define ex_deletepointercond_GetRegPointer (
+    field
+) `(((field)&gt;&gt;6)&amp;0x0001)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_deletepointercond_makefield">define ex_deletepointercond_MakeField</h3>
+<pre><code class="language-C++">#define ex_deletepointercond_MakeField (
+    regcond,
+    regpointer
+) `(((regcond)&lt;&lt;7)|(((regpointer)&amp;0x0001)&lt;&lt;6))`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroylocalcond_getregcond">define ex_destroylocalcond_GetRegCond</h3>
+<pre><code class="language-C++">#define ex_destroylocalcond_GetRegCond (
+    field
+) `((field)&gt;&gt;7)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroylocalcond_makefield">define ex_destroylocalcond_MakeField</h3>
+<pre><code class="language-C++">#define ex_destroylocalcond_MakeField (
+    regcond
+) `(((regcond)&lt;&lt;7))`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroylocalpointer_getregpointer">define ex_destroylocalpointer_GetRegPointer</h3>
+<pre><code class="language-C++">#define ex_destroylocalpointer_GetRegPointer (
+    field
+) `((field)&gt;&gt;7)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroylocalpointer_makefield">define ex_destroylocalpointer_MakeField</h3>
+<pre><code class="language-C++">#define ex_destroylocalpointer_MakeField (
+    regpointer
+) `(((regpointer)&lt;&lt;7))`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroymember_getregpointer">define ex_destroymember_GetRegPointer</h3>
+<pre><code class="language-C++">#define ex_destroymember_GetRegPointer (
+    field
+) `((field)&gt;&gt;7)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroymember_makefield">define ex_destroymember_MakeField</h3>
+<pre><code class="language-C++">#define ex_destroymember_MakeField (
+    regpointer
+) `(((regpointer)&lt;&lt;7))`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroymemberarray_getregpointer">define ex_destroymemberarray_GetRegPointer</h3>
+<pre><code class="language-C++">#define ex_destroymemberarray_GetRegPointer (
+    field
+) `((field)&gt;&gt;7)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroymemberarray_makefield">define ex_destroymemberarray_MakeField</h3>
+<pre><code class="language-C++">#define ex_destroymemberarray_MakeField (
+    regpointer
+) `(((regpointer)&lt;&lt;7))`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroymembercond_getregcond">define ex_destroymembercond_GetRegCond</h3>
+<pre><code class="language-C++">#define ex_destroymembercond_GetRegCond (
+    field
+) `((field)&gt;&gt;7)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroymembercond_getregpointer">define ex_destroymembercond_GetRegPointer</h3>
+<pre><code class="language-C++">#define ex_destroymembercond_GetRegPointer (
+    field
+) `(((field)&gt;&gt;6)&amp;0x0001)`
+</code></pre>
+<hr>
+
+<h3 id="define-ex_destroymembercond_makefield">define ex_destroymembercond_MakeField</h3>
+<pre><code class="language-C++">#define ex_destroymembercond_MakeField (
+    regcond,
+    regpointer
+) `(((regcond)&lt;&lt;7)|(((regpointer)&amp;0x0001)&lt;&lt;6))`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Inc/ExceptionPPC.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

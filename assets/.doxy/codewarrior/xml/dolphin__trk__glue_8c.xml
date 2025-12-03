@@ -1,0 +1,497 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dolphin__trk__glue_8c" kind="file" language="C++">
+    <compoundname>dolphin_trk_glue.c</compoundname>
+    <includes refid="dolphin__trk__glue_8h" local="yes">Os/dolphin/dolphin_trk_glue.h</includes>
+    <includes refid="targimpl_8h" local="yes">Processor/ppc/Generic/targimpl.h</includes>
+    <includes local="no">OdemuExi2Lib/DebuggerDriver.h</includes>
+    <includes local="no">dolphin/amcstubs/AmcExi2Stubs.h</includes>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>Os/dolphin/dolphin_trk_glue.h</label>
+        <link refid="dolphin__trk__glue_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Portable/nubevent.h</label>
+        <link refid="nubevent_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Processor/ppc/Generic/targimpl.h</label>
+        <link refid="targimpl_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>dolphin_trk_glue.c</label>
+        <link refid="dolphin__trk__glue_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OdemuExi2Lib/DebuggerDriver.h</label>
+      </node>
+      <node id="11">
+        <label>dolphin/amcstubs/AmcExi2Stubs.h</label>
+      </node>
+      <node id="3">
+        <label>dolphin/os.h</label>
+      </node>
+      <node id="5">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_d_b_comm_table" kindref="compound">DBCommTable</ref></type>
+        <definition>DBCommTable gDBCommTable</definition>
+        <argsstring></argsstring>
+        <name>gDBCommTable</name>
+        <initializer>= {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="7" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="7" bodyend="7"/>
+        <referencedby refid="dolphin__trk__glue_8h_1a9a6eaa9650d929d4bf27a576b28b64a7" compoundref="dolphin__trk__glue_8c" startline="96" endline="96">EnableEXI2Interrupts</referencedby>
+        <referencedby refid="dolphin__trk__glue_8h_1afe7403d68dd17fcf6dc14bd0e6dd15b2" compoundref="dolphin__trk__glue_8c" startline="58" endline="85">InitMetroTRKCommTable</referencedby>
+        <referencedby refid="dolphin__trk__glue_8h_1af747d9e6af2577295e74cee108a3728f" compoundref="dolphin__trk__glue_8c" startline="112" endline="112">ReserveEXI2Port</referencedby>
+        <referencedby refid="dolphin__trk__glue_8h_1a30b8a50ae233394f1861d34c0e6fde61" compoundref="dolphin__trk__glue_8c" startline="89" endline="94">TRKInitializeIntDrivenUART</referencedby>
+        <referencedby refid="dolphin__trk__glue_8h_1a812abd7f696ef7465d6cf68c40c0a0fb" compoundref="dolphin__trk__glue_8c" startline="98" endline="98">TRKPollUART</referencedby>
+        <referencedby refid="dolphin__trk__glue_8h_1a32822833340c71ac78934d6356190390" compoundref="dolphin__trk__glue_8c" startline="100" endline="104">TRKReadUARTN</referencedby>
+        <referencedby refid="dolphin__trk__glue_8h_1ae1f3633c297b6864b7e495f2fdcfb232" compoundref="dolphin__trk__glue_8c" startline="106" endline="110">TRKWriteUARTN</referencedby>
+        <referencedby refid="dolphin__trk__glue_8h_1ae403d9818a932b884dee1229d6a8d1d9" compoundref="dolphin__trk__glue_8c" startline="114" endline="114">UnreserveEXI2Port</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1afac7345aba346cce89d8d54c18564a01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>asm void</type>
+        <definition>asm void TRKLoadContext</definition>
+        <argsstring>(OSContext *ctx, u32)</argsstring>
+        <name>TRKLoadContext</name>
+        <param>
+          <type>OSContext *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <defname>r4</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="9" column="10" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="9" bodyend="50"/>
+        <references refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" compoundref="e__lgamma__r_8c" startline="144">r1</references>
+        <references refid="e__lgamma__r_8c_1a9c7bfbe56a69ec779a2877fe5ccb5cd6" compoundref="e__lgamma__r_8c" startline="145">r2</references>
+        <references refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" compoundref="e__lgamma__r_8c" startline="146">r3</references>
+        <references refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" compoundref="e__lgamma__r_8c" startline="147">r4</references>
+        <references refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" compoundref="e__lgamma__r_8c" startline="148">r5</references>
+        <references refid="e__lgamma__r_8c_1a6b391eb3b125bb77b4f3d1273ee18114" compoundref="e__lgamma__r_8c" startline="149">r6</references>
+        <references refid="targimpl_8h_1ab710e1af85d10fa1fda801379aad50d9" compoundref="targimpl_8c" startline="540" endline="648">TRKInterruptHandler</references>
+        <referencedby refid="dolphin__trk__glue_8c_1ae556169ca96b49f7a01b8951beb7118d" compoundref="dolphin__trk__glue_8c" startline="52" endline="56">TRKEXICallBack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1ae556169ca96b49f7a01b8951beb7118d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKEXICallBack</definition>
+        <argsstring>(__OSInterrupt param_0, OSContext *ctx)</argsstring>
+        <name>TRKEXICallBack</name>
+        <param>
+          <type>__OSInterrupt</type>
+          <declname>param_0</declname>
+        </param>
+        <param>
+          <type>OSContext *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="52" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="52" bodyend="56"/>
+        <references refid="dolphin__trk__glue_8c_1afac7345aba346cce89d8d54c18564a01" compoundref="dolphin__trk__glue_8c" startline="9" endline="50">TRKLoadContext</references>
+        <referencedby refid="dolphin__trk__glue_8h_1a30b8a50ae233394f1861d34c0e6fde61" compoundref="dolphin__trk__glue_8c" startline="89" endline="94">TRKInitializeIntDrivenUART</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1afe7403d68dd17fcf6dc14bd0e6dd15b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int InitMetroTRKCommTable</definition>
+        <argsstring>(int hwId)</argsstring>
+        <name>InitMetroTRKCommTable</name>
+        <param>
+          <type>int</type>
+          <declname>hwId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="58" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="58" bodyend="85"/>
+        <references refid="struct_d_b_comm_table_1a9c81eb1a04bf0078c89c9d79f7c6f890" compoundref="dolphin__trk__glue_8h" startline="25">DBCommTable::close_func</references>
+        <references refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" compoundref="dolphin__trk__glue_8c" startline="7" endline="7">gDBCommTable</references>
+        <references refid="trk_8h_1ae4dfd42394001deb6e8a0e60c81d6f7aa181ac37291dea86149f13ddb1d84837e" compoundref="trk_8h" startline="14">HARDWARE_GDEV</references>
+        <references refid="struct_d_b_comm_table_1a42df62b918c09698df210a28f48b1f98" compoundref="dolphin__trk__glue_8h" startline="20">DBCommTable::init_interrupts_func</references>
+        <references refid="struct_d_b_comm_table_1ac28b5f14781abcab55d1430c83e2db5c" compoundref="dolphin__trk__glue_8h" startline="19">DBCommTable::initialize_func</references>
+        <references refid="struct_d_b_comm_table_1a255d01cba345f18d94815d8ff985f26c" compoundref="dolphin__trk__glue_8h" startline="24">DBCommTable::open_func</references>
+        <references refid="struct_d_b_comm_table_1a3358eb1c3653aabc0fe11fde297a9bd2" compoundref="dolphin__trk__glue_8h" startline="21">DBCommTable::peek_func</references>
+        <references refid="struct_d_b_comm_table_1aabe6fbb3031b80fe5a137f09f83dd588" compoundref="dolphin__trk__glue_8h" startline="22">DBCommTable::read_func</references>
+        <references refid="struct_d_b_comm_table_1abc85cac5c3ea6f7b5c6fb90e238aa85f" compoundref="dolphin__trk__glue_8h" startline="23">DBCommTable::write_func</references>
+        <referencedby refid="_dolphin_trk_init_8h_1a020b3df25a2eef9e0bcf01db895ddd31" compoundref="dolphin__trk_8c" startline="32" endline="92">InitMetroTRK</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1acd4f25ab7ae097c6592cb04d6cd6b4d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKUARTInterruptHandler</definition>
+        <argsstring>()</argsstring>
+        <name>TRKUARTInterruptHandler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="87" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="87" bodyend="87"/>
+        <referencedby refid="targimpl_8h_1ab710e1af85d10fa1fda801379aad50d9" compoundref="targimpl_8c" startline="540" endline="648">TRKInterruptHandler</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1a30b8a50ae233394f1861d34c0e6fde61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKInitializeIntDrivenUART</definition>
+        <argsstring>(u32 param_0, u32 param_1, u32 param_2, volatile u8 **param_3)</argsstring>
+        <name>TRKInitializeIntDrivenUART</name>
+        <param>
+          <type>u32</type>
+          <declname>param_0</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>param_1</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>param_2</declname>
+        </param>
+        <param>
+          <type>volatile u8 **</type>
+          <declname>param_3</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="89" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="89" bodyend="94"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" compoundref="dolphin__trk__glue_8c" startline="7" endline="7">gDBCommTable</references>
+        <references refid="struct_d_b_comm_table_1ac28b5f14781abcab55d1430c83e2db5c" compoundref="dolphin__trk__glue_8h" startline="19">DBCommTable::initialize_func</references>
+        <references refid="dolphin__trk__glue_8c_1ae556169ca96b49f7a01b8951beb7118d" compoundref="dolphin__trk__glue_8c" startline="52" endline="56">TRKEXICallBack</references>
+        <referencedby refid="nubinit_8h_1af78b850dea3b4c5446dc83345be3e5b0" compoundref="nubinit_8c" startline="16" endline="47">TRKInitializeNub</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1a9a6eaa9650d929d4bf27a576b28b64a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnableEXI2Interrupts</definition>
+        <argsstring>(void)</argsstring>
+        <name>EnableEXI2Interrupts</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="96" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="96" bodyend="96"/>
+        <references refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" compoundref="dolphin__trk__glue_8c" startline="7" endline="7">gDBCommTable</references>
+        <references refid="struct_d_b_comm_table_1a42df62b918c09698df210a28f48b1f98" compoundref="dolphin__trk__glue_8h" startline="20">DBCommTable::init_interrupts_func</references>
+        <referencedby refid="_dolphin_trk_init_8h_1abfc2559be37befc776575de2d2d254e8" compoundref="dolphin__trk_8c" startline="94" endline="94">EnableMetroTRKInterrupts</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1a812abd7f696ef7465d6cf68c40c0a0fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int TRKPollUART</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKPollUART</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="98" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="98" bodyend="98"/>
+        <references refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" compoundref="dolphin__trk__glue_8c" startline="7" endline="7">gDBCommTable</references>
+        <references refid="struct_d_b_comm_table_1a3358eb1c3653aabc0fe11fde297a9bd2" compoundref="dolphin__trk__glue_8h" startline="21">DBCommTable::peek_func</references>
+        <referencedby refid="serpoll_8h_1af64c66110bd037b1a16f7a5bcc80f3d6" compoundref="serpoll_8c" startline="12" endline="41">TRKTestForPacket</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1a32822833340c71ac78934d6356190390" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError TRKReadUARTN</definition>
+        <argsstring>(void *bytes, u32 length)</argsstring>
+        <name>TRKReadUARTN</name>
+        <param>
+          <type>void *</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="100" column="11" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="100" bodyend="104"/>
+        <references refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" compoundref="dolphin__trk__glue_8c" startline="7" endline="7">gDBCommTable</references>
+        <references refid="struct_d_b_comm_table_1aabe6fbb3031b80fe5a137f09f83dd588" compoundref="dolphin__trk__glue_8h" startline="22">DBCommTable::read_func</references>
+        <referencedby refid="serpoll_8h_1af64c66110bd037b1a16f7a5bcc80f3d6" compoundref="serpoll_8c" startline="12" endline="41">TRKTestForPacket</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1ae1f3633c297b6864b7e495f2fdcfb232" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref></type>
+        <definition>UARTError TRKWriteUARTN</definition>
+        <argsstring>(const void *bytes, u32 length)</argsstring>
+        <name>TRKWriteUARTN</name>
+        <param>
+          <type>const void *</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="106" column="11" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="106" bodyend="110"/>
+        <references refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" compoundref="dolphin__trk__glue_8c" startline="7" endline="7">gDBCommTable</references>
+        <references refid="struct_d_b_comm_table_1abc85cac5c3ea6f7b5c6fb90e238aa85f" compoundref="dolphin__trk__glue_8h" startline="23">DBCommTable::write_func</references>
+        <referencedby refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" compoundref="msg_8c" startline="5" endline="9">TRKMessageSend</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1af747d9e6af2577295e74cee108a3728f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ReserveEXI2Port</definition>
+        <argsstring>(void)</argsstring>
+        <name>ReserveEXI2Port</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="112" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="112" bodyend="112"/>
+        <references refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" compoundref="dolphin__trk__glue_8c" startline="7" endline="7">gDBCommTable</references>
+        <references refid="struct_d_b_comm_table_1a255d01cba345f18d94815d8ff985f26c" compoundref="dolphin__trk__glue_8h" startline="24">DBCommTable::open_func</references>
+        <referencedby refid="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" compoundref="targcont_8c" startline="5" endline="12">TRKTargetContinue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1ae403d9818a932b884dee1229d6a8d1d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnreserveEXI2Port</definition>
+        <argsstring>(void)</argsstring>
+        <name>UnreserveEXI2Port</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="114" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="114" bodyend="114"/>
+        <references refid="struct_d_b_comm_table_1a9c81eb1a04bf0078c89c9d79f7c6f890" compoundref="dolphin__trk__glue_8h" startline="25">DBCommTable::close_func</references>
+        <references refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" compoundref="dolphin__trk__glue_8c" startline="7" endline="7">gDBCommTable</references>
+        <referencedby refid="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" compoundref="targcont_8c" startline="5" endline="12">TRKTargetContinue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dolphin__trk__glue_8c_1aea76fa8c9b39081ecc3b260d42fedeee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRK_board_display</definition>
+        <argsstring>(char *str)</argsstring>
+        <name>TRK_board_display</name>
+        <param>
+          <type>char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" line="116" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c" bodystart="116" bodyend="116"/>
+        <referencedby refid="nubinit_8h_1ad1eac653527ba5c0230377a4e86b5e9c" compoundref="nubinit_8c" startline="55" endline="59">TRKNubWelcome</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dolphin__trk__glue_8h" kindref="compound">Os/dolphin/dolphin_trk_glue.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="targimpl_8h" kindref="compound">Processor/ppc/Generic/targimpl.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;OdemuExi2Lib/DebuggerDriver.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dolphin/amcstubs/AmcExi2Stubs.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" refkind="member"><highlight class="normal"><ref refid="struct_d_b_comm_table" kindref="compound">DBCommTable</ref><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="dolphin__trk__glue_8h_1ac1ff6ae39db31bf0670b3060d5d9c786" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1afac7345aba346cce89d8d54c18564a01" kindref="member">TRKLoadContext</ref>(OSContext*<sp/>ctx,<sp/>u32)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__<sp/></highlight><highlight class="comment">//<sp/>clang-format<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>nofralloc</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/>r0,<sp/>OSContext.gpr[0](<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a636240abcfe01b37aedcf389075c0916" kindref="member">r1</ref>,<sp/>OSContext.gpr[1](<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a9c7bfbe56a69ec779a2877fe5ccb5cd6" kindref="member">r2</ref>,<sp/>OSContext.gpr[2](<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>lhz<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>OSContext.state(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>rlwinm.<sp/><ref refid="e__lgamma__r_8c_1a6b391eb3b125bb77b4f3d1273ee18114" kindref="member">r6</ref>,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>0,<sp/>0x1e,<sp/>0x1e</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>beq<sp/>lbl_80371C1C</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>rlwinm<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>0,<sp/>0x1f,<sp/>0x1d</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>sth<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>OSContext.state(<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>lmw<sp/><ref refid="e__lgamma__r_8c_1a670942294dd8014296b00a64779dabb6" kindref="member">r5</ref>,<sp/>OSContext.gpr[5](<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/>lbl_80371C20</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">lbl_80371C1C:</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>lmw<sp/>r13,<sp/>OSContext.gpr[13](<ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">lbl_80371C20:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>mr<sp/>r31,<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>mr<sp/><ref refid="e__lgamma__r_8c_1a405712d2aec7ffe398484ea58f3d8de2" kindref="member">r3</ref>,<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>OSContext.cr(r31)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>mtcrf<sp/>0xff,<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>OSContext.lr(r31)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>mtlr<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>OSContext.ctr(r31)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>mtctr<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>OSContext.xer(r31)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>mtxer<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>mfmsr<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>rlwinm<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>0,<sp/>0x11,<sp/>0xf<sp/></highlight><highlight class="comment">//Turn<sp/>off<sp/>external<sp/>exceptions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>rlwinm<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>0,<sp/>0x1f,<sp/>0x1d<sp/></highlight><highlight class="comment">//Turn<sp/>off<sp/>recoverable<sp/>exception<sp/>flag</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>mtmsr<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>mtsprg<sp/>1,<sp/><ref refid="e__lgamma__r_8c_1a9c7bfbe56a69ec779a2877fe5ccb5cd6" kindref="member">r2</ref></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>OSContext.gpr[3](r31)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>mtsprg<sp/>2,<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>OSContext.gpr[4](r31)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>mtsprg<sp/>3,<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a9c7bfbe56a69ec779a2877fe5ccb5cd6" kindref="member">r2</ref>,<sp/>OSContext.srr0(r31)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/><ref refid="e__lgamma__r_8c_1a0fd28160fed79f307e1b4ae64c5c8fdd" kindref="member">r4</ref>,<sp/>OSContext.srr1(r31)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>lwz<sp/>r31,<sp/>OSContext.gpr[31](r31)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/><ref refid="targimpl_8h_1ab710e1af85d10fa1fda801379aad50d9" kindref="member">TRKInterruptHandler</ref></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">#endif<sp/></highlight><highlight class="comment">//<sp/>clang-format<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="dolphin__trk__glue_8c_1ae556169ca96b49f7a01b8951beb7118d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1ae556169ca96b49f7a01b8951beb7118d" kindref="member">TRKEXICallBack</ref>(__OSInterrupt<sp/>param_0,<sp/>OSContext*<sp/>ctx)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>OSEnableScheduler();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1afac7345aba346cce89d8d54c18564a01" kindref="member">TRKLoadContext</ref>(ctx,<sp/>0x500);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="dolphin__trk__glue_8h_1afe7403d68dd17fcf6dc14bd0e6dd15b2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1afe7403d68dd17fcf6dc14bd0e6dd15b2" kindref="member">InitMetroTRKCommTable</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>hwId)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(hwId<sp/>==<sp/><ref refid="trk_8h_1ae4dfd42394001deb6e8a0e60c81d6f7aa181ac37291dea86149f13ddb1d84837e" kindref="member">HARDWARE_GDEV</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>Hu_IsStub();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1ac28b5f14781abcab55d1430c83e2db5c" kindref="member">initialize_func</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>DBInitComm;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a42df62b918c09698df210a28f48b1f98" kindref="member">init_interrupts_func</ref><sp/>=<sp/>DBInitInterrupts;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a3358eb1c3653aabc0fe11fde297a9bd2" kindref="member">peek_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>DBQueryData;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1aabe6fbb3031b80fe5a137f09f83dd588" kindref="member">read_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>DBRead;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1abc85cac5c3ea6f7b5c6fb90e238aa85f" kindref="member">write_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>DBWrite;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a255d01cba345f18d94815d8ff985f26c" kindref="member">open_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>DBOpen;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a9c81eb1a04bf0078c89c9d79f7c6f890" kindref="member">close_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>DBClose;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>AMC_IsStub();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1ac28b5f14781abcab55d1430c83e2db5c" kindref="member">initialize_func</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>EXI2_Init;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a42df62b918c09698df210a28f48b1f98" kindref="member">init_interrupts_func</ref><sp/>=<sp/>EXI2_EnableInterrupts;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a3358eb1c3653aabc0fe11fde297a9bd2" kindref="member">peek_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>EXI2_Poll;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1aabe6fbb3031b80fe5a137f09f83dd588" kindref="member">read_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>EXI2_ReadN;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1abc85cac5c3ea6f7b5c6fb90e238aa85f" kindref="member">write_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>EXI2_WriteN;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a255d01cba345f18d94815d8ff985f26c" kindref="member">open_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>EXI2_Reserve;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a9c81eb1a04bf0078c89c9d79f7c6f890" kindref="member">close_func</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>EXI2_Unreserve;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="dolphin__trk__glue_8c_1acd4f25ab7ae097c6592cb04d6cd6b4d9" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1acd4f25ab7ae097c6592cb04d6cd6b4d9" kindref="member">TRKUARTInterruptHandler</ref>()<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="dolphin__trk__glue_8h_1a30b8a50ae233394f1861d34c0e6fde61" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="dolphin__trk__glue_8c_1a30b8a50ae233394f1861d34c0e6fde61" kindref="member">TRKInitializeIntDrivenUART</ref>(u32<sp/>param_0,<sp/>u32<sp/>param_1,<sp/>u32<sp/>param_2,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal"><sp/>u8**<sp/>param_3)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1ac28b5f14781abcab55d1430c83e2db5c" kindref="member">initialize_func</ref>(param_3,<sp/><ref refid="dolphin__trk__glue_8c_1ae556169ca96b49f7a01b8951beb7118d" kindref="member">TRKEXICallBack</ref>);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="dolphin__trk__glue_8h_1a9a6eaa9650d929d4bf27a576b28b64a7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1a9a6eaa9650d929d4bf27a576b28b64a7" kindref="member">EnableEXI2Interrupts</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{<sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a42df62b918c09698df210a28f48b1f98" kindref="member">init_interrupts_func</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="dolphin__trk__glue_8h_1a812abd7f696ef7465d6cf68c40c0a0fb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1a812abd7f696ef7465d6cf68c40c0a0fb" kindref="member">TRKPollUART</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a3358eb1c3653aabc0fe11fde297a9bd2" kindref="member">peek_func</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="dolphin__trk__glue_8h_1a32822833340c71ac78934d6356190390" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="dolphin__trk__glue_8c_1a32822833340c71ac78934d6356190390" kindref="member">TRKReadUARTN</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>bytes,<sp/>u32<sp/>length)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>readErr<sp/>=<sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1aabe6fbb3031b80fe5a137f09f83dd588" kindref="member">read_func</ref>(bytes,<sp/>length);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>readErr<sp/>==<sp/>0<sp/>?<sp/>0<sp/>:<sp/>-1;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="dolphin__trk__glue_8h_1ae1f3633c297b6864b7e495f2fdcfb232" refkind="member"><highlight class="normal"><ref refid="trk_8h_1a88256575d7bc3e8d7fc9ec75628225f7" kindref="member">UARTError</ref><sp/><ref refid="dolphin__trk__glue_8c_1ae1f3633c297b6864b7e495f2fdcfb232" kindref="member">TRKWriteUARTN</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>bytes,<sp/>u32<sp/>length)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>writeErr<sp/>=<sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1abc85cac5c3ea6f7b5c6fb90e238aa85f" kindref="member">write_func</ref>(bytes,<sp/>length);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>writeErr<sp/>==<sp/>0<sp/>?<sp/>0<sp/>:<sp/>-1;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="dolphin__trk__glue_8h_1af747d9e6af2577295e74cee108a3728f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1af747d9e6af2577295e74cee108a3728f" kindref="member">ReserveEXI2Port</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{<sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a255d01cba345f18d94815d8ff985f26c" kindref="member">open_func</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="dolphin__trk__glue_8h_1ae403d9818a932b884dee1229d6a8d1d9" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1ae403d9818a932b884dee1229d6a8d1d9" kindref="member">UnreserveEXI2Port</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{<sp/><ref refid="dolphin__trk__glue_8c_1ac8b3b925a7d495fd7435945e674667dd" kindref="member">gDBCommTable</ref>.<ref refid="struct_d_b_comm_table_1a9c81eb1a04bf0078c89c9d79f7c6f890" kindref="member">close_func</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="dolphin__trk__glue_8h_1aea76fa8c9b39081ecc3b260d42fedeee" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dolphin__trk__glue_8c_1aea76fa8c9b39081ecc3b260d42fedeee" kindref="member">TRK_board_display</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>str)<sp/>{<sp/>OSReport(str);<sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/dolphin_trk_glue.c"/>
+  </compounddef>
+</doxygen>

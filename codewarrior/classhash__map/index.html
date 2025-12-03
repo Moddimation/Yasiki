@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Class hash_map - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="class-hash_map">Class hash_map</h1>
+<p><strong>template &lt;class Key, class <a href="../k__tan_8c/#variable-t"><strong>T</strong></a>, class HashFunction, class KeyEqual&gt;</strong></p>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>hash_map</strong></a></p>
+<p><a href="../hashmap_8h/"><em><strong>hashmap.h</strong></em></a> __<a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include &lt;hashmap.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classhash__map_1_1value__compare/"><strong>value_compare</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef rep_type::const_iterator</td>
+<td style="text-align: left;"><a href="#typedef-const_iterator"><strong>const_iterator</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../classhash__table/#typedef-const_reference"><strong>rep_type::const_reference</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-const_reference"><strong>const_reference</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../classhash__table/#typedef-difference_type"><strong>rep_type::difference_type</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-difference_type"><strong>difference_type</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef HashFunction</td>
+<td style="text-align: left;"><a href="#typedef-hash_function"><strong>hash_function</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef rep_type::iterator</td>
+<td style="text-align: left;"><a href="#typedef-iterator"><strong>iterator</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef KeyEqual</td>
+<td style="text-align: left;"><a href="#typedef-key_equal"><strong>key_equal</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef Key</td>
+<td style="text-align: left;"><a href="#typedef-key_type"><strong>key_type</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef pair&lt; <a href="./#typedef-const_iterator"><strong>const_iterator</strong></a>, <a href="./#typedef-const_iterator"><strong>const_iterator</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#typedef-pair_citerator_citerator"><strong>pair_citerator_citerator</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef pair&lt; <a href="./#typedef-iterator"><strong>iterator</strong></a>, <a href="../stdbool_8h/#define-bool"><strong>bool</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#typedef-pair_iterator_bool"><strong>pair_iterator_bool</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef pair&lt; <a href="./#typedef-iterator"><strong>iterator</strong></a>, <a href="./#typedef-iterator"><strong>iterator</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#typedef-pair_iterator_iterator"><strong>pair_iterator_iterator</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../classhash__table/#typedef-reference"><strong>rep_type::reference</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-reference"><strong>reference</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../classhash__table/#typedef-size_type"><strong>rep_type::size_type</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-size_type"><strong>size_type</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef pair&lt; <a href="../mcompile_8h/#define-m_const"><strong>M_CONST</strong></a> Key, <a href="../k__tan_8c/#variable-t"><strong>T</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#typedef-value_type"><strong>value_type</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-begin-12"><strong>begin</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-const_iterator"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-begin-22"><strong>begin</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-clear"><strong>clear</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-count"><strong>count</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../stdbool_8h/#define-bool"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="#function-empty"><strong>empty</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-end-12"><strong>end</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-const_iterator"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-end-22"><strong>end</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-pair_iterator_iterator"><strong>pair_iterator_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-equal_range-12"><strong>equal_range</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-pair_citerator_citerator"><strong>pair_citerator_citerator</strong></a></td>
+<td style="text-align: left;"><a href="#function-equal_range-22"><strong>equal_range</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-erase-13"><strong>erase</strong></a> (<a href="./#typedef-iterator"><strong>iterator</strong></a> position) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-erase-23"><strong>erase</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-erase-33"><strong>erase</strong></a> (<a href="./#typedef-iterator"><strong>iterator</strong></a> beg_, <a href="./#typedef-iterator"><strong>iterator</strong></a> end_) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-find-12"><strong>find</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-const_iterator"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-find-22"><strong>find</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-hash_function"><strong>hash_function</strong></a></td>
+<td style="text-align: left;"><a href="#function-hash_funct"><strong>hash_funct</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-hash_map-13"><strong>hash_map</strong></a> (<a href="./#typedef-size_type"><strong>size_type</strong></a> initSize=10007, const HashFunction &amp; hf=HashFunction(), const KeyEqual &amp; equal=KeyEqual()) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-hash_map-23"><strong>hash_map</strong></a> (const <a href="./#typedef-value_type"><strong>value_type</strong></a> * first, const <a href="./#typedef-value_type"><strong>value_type</strong></a> * last, <a href="./#typedef-size_type"><strong>size_type</strong></a> initSize=10007, const HashFunction &amp; hf=HashFunction(), const KeyEqual &amp; equal=KeyEqual()) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-hash_map-33"><strong>hash_map</strong></a> (const <a href="./"><strong>hash_map</strong></a>&lt; Key, <a href="../k__tan_8c/#variable-t"><strong>T</strong></a>, HashFunction, KeyEqual &gt; &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-pair_iterator_bool"><strong>pair_iterator_bool</strong></a></td>
+<td style="text-align: left;"><a href="#function-insert-13"><strong>insert</strong></a> (const <a href="./#typedef-value_type"><strong>value_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-insert-23"><strong>insert</strong></a> (<a href="./#typedef-const_iterator"><strong>const_iterator</strong></a> first, <a href="./#typedef-const_iterator"><strong>const_iterator</strong></a> last) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-insert-33"><strong>insert</strong></a> (const <a href="./#typedef-value_type"><strong>value_type</strong></a> * first, const <a href="./#typedef-value_type"><strong>value_type</strong></a> * last) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-key_equal"><strong>key_equal</strong></a></td>
+<td style="text-align: left;"><a href="#function-key_comp"><strong>key_comp</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-lower_bound-12"><strong>lower_bound</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-const_iterator"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-lower_bound-22"><strong>lower_bound</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-max_size"><strong>max_size</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>hash_map</strong></a>&lt; Key, <a href="../k__tan_8c/#variable-t"><strong>T</strong></a>, HashFunction, KeyEqual &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (const <a href="./"><strong>hash_map</strong></a>&lt; Key, <a href="../k__tan_8c/#variable-t"><strong>T</strong></a>, HashFunction, KeyEqual &gt; &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">allocator&lt; <a href="../k__tan_8c/#variable-t"><strong>T</strong></a> &gt;<a href="./#typedef-reference"><strong>::reference</strong></a></td>
+<td style="text-align: left;"><a href="#function-operator_1"><strong>operator[]</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; k) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-size_type"><strong>size_type</strong></a></td>
+<td style="text-align: left;"><a href="#function-size"><strong>size</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-swap"><strong>swap</strong></a> (<a href="./"><strong>hash_map</strong></a>&lt; Key, <a href="../k__tan_8c/#variable-t"><strong>T</strong></a>, HashFunction, KeyEqual &gt; &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-upper_bound-12"><strong>upper_bound</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-const_iterator"><strong>const_iterator</strong></a></td>
+<td style="text-align: left;"><a href="#function-upper_bound-22"><strong>upper_bound</strong></a> (const <a href="./#typedef-key_type"><strong>key_type</strong></a> &amp; x) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classhash__map_1_1value__compare/"><strong>value_compare</strong></a></td>
+<td style="text-align: left;"><a href="#function-value_comp"><strong>value_comp</strong></a> () const<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description</h2>
+<p>Lib++ : The Modena C++ Standard Library, Version 2.4, October 1997</p>
+<p>Copyright (c) 1995-1997 Modena Software Inc. </p>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-const_iterator">typedef const_iterator</h3>
+<pre><code class="language-C++">typedef rep_type::const_iterator hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::const_iterator;
+</code></pre>
+<hr>
+
+<h3 id="typedef-const_reference">typedef const_reference</h3>
+<pre><code class="language-C++">typedef rep_type::const_reference hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::const_reference;
+</code></pre>
+<hr>
+
+<h3 id="typedef-difference_type">typedef difference_type</h3>
+<pre><code class="language-C++">typedef rep_type::difference_type hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::difference_type;
+</code></pre>
+<hr>
+
+<h3 id="typedef-hash_function">typedef hash_function</h3>
+<pre><code class="language-C++">typedef HashFunction hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::hash_function;
+</code></pre>
+<hr>
+
+<h3 id="typedef-iterator">typedef iterator</h3>
+<pre><code class="language-C++">typedef rep_type::iterator hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::iterator;
+</code></pre>
+<hr>
+
+<h3 id="typedef-key_equal">typedef key_equal</h3>
+<pre><code class="language-C++">typedef KeyEqual hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::key_equal;
+</code></pre>
+<hr>
+
+<h3 id="typedef-key_type">typedef key_type</h3>
+<pre><code class="language-C++">typedef Key hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::key_type;
+</code></pre>
+<hr>
+
+<h3 id="typedef-pair_citerator_citerator">typedef pair_citerator_citerator</h3>
+<pre><code class="language-C++">typedef pair&lt;const_iterator, const_iterator&gt; hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::pair_citerator_citerator;
+</code></pre>
+<hr>
+
+<h3 id="typedef-pair_iterator_bool">typedef pair_iterator_bool</h3>
+<pre><code class="language-C++">typedef pair&lt;iterator, bool&gt; hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::pair_iterator_bool;
+</code></pre>
+<hr>
+
+<h3 id="typedef-pair_iterator_iterator">typedef pair_iterator_iterator</h3>
+<pre><code class="language-C++">typedef pair&lt;iterator, iterator&gt; hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::pair_iterator_iterator;
+</code></pre>
+<hr>
+
+<h3 id="typedef-reference">typedef reference</h3>
+<pre><code class="language-C++">typedef rep_type::reference hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::reference;
+</code></pre>
+<hr>
+
+<h3 id="typedef-size_type">typedef size_type</h3>
+<pre><code class="language-C++">typedef rep_type::size_type hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::size_type;
+</code></pre>
+<hr>
+
+<h3 id="typedef-value_type">typedef value_type</h3>
+<pre><code class="language-C++">typedef pair&lt;M_CONST Key, T&gt; hash_map&lt; Key, T, HashFunction, KeyEqual &gt;::value_type;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-begin-12">function begin [1/2]</h3>
+<pre><code class="language-C++">inline iterator hash_map::begin () 
+</code></pre>
+<hr>
+
+<h3 id="function-begin-22">function begin [2/2]</h3>
+<pre><code class="language-C++">inline const_iterator hash_map::begin () const
+</code></pre>
+<hr>
+
+<h3 id="function-clear">function clear</h3>
+<pre><code class="language-C++">inline void hash_map::clear () 
+</code></pre>
+<hr>
+
+<h3 id="function-count">function count</h3>
+<pre><code class="language-C++">inline size_type hash_map::count (
+    const key_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-empty">function empty</h3>
+<pre><code class="language-C++">inline bool hash_map::empty () const
+</code></pre>
+<hr>
+
+<h3 id="function-end-12">function end [1/2]</h3>
+<pre><code class="language-C++">inline iterator hash_map::end () 
+</code></pre>
+<hr>
+
+<h3 id="function-end-22">function end [2/2]</h3>
+<pre><code class="language-C++">inline const_iterator hash_map::end () const
+</code></pre>
+<hr>
+
+<h3 id="function-equal_range-12">function equal_range [1/2]</h3>
+<pre><code class="language-C++">inline pair_iterator_iterator hash_map::equal_range (
+    const key_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-equal_range-22">function equal_range [2/2]</h3>
+<pre><code class="language-C++">inline pair_citerator_citerator hash_map::equal_range (
+    const key_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-erase-13">function erase [1/3]</h3>
+<pre><code class="language-C++">inline void hash_map::erase (
+    iterator position
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-erase-23">function erase [2/3]</h3>
+<pre><code class="language-C++">inline size_type hash_map::erase (
+    const key_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-erase-33">function erase [3/3]</h3>
+<pre><code class="language-C++">inline void hash_map::erase (
+    iterator beg_,
+    iterator end_
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-find-12">function find [1/2]</h3>
+<pre><code class="language-C++">inline iterator hash_map::find (
+    const key_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-find-22">function find [2/2]</h3>
+<pre><code class="language-C++">inline const_iterator hash_map::find (
+    const key_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-hash_funct">function hash_funct</h3>
+<pre><code class="language-C++">inline hash_function hash_map::hash_funct () const
+</code></pre>
+<hr>
+
+<h3 id="function-hash_map-13">function hash_map [1/3]</h3>
+<pre><code class="language-C++">inline hash_map::hash_map (
+    size_type initSize=10007,
+    const HashFunction &amp; hf=HashFunction(),
+    const KeyEqual &amp; equal=KeyEqual()
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-hash_map-23">function hash_map [2/3]</h3>
+<pre><code class="language-C++">inline hash_map::hash_map (
+    const value_type * first,
+    const value_type * last,
+    size_type initSize=10007,
+    const HashFunction &amp; hf=HashFunction(),
+    const KeyEqual &amp; equal=KeyEqual()
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-hash_map-33">function hash_map [3/3]</h3>
+<pre><code class="language-C++">inline hash_map::hash_map (
+    const hash_map &lt; Key, T , HashFunction, KeyEqual &gt; &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-insert-13">function insert [1/3]</h3>
+<pre><code class="language-C++">inline pair_iterator_bool hash_map::insert (
+    const value_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-insert-23">function insert [2/3]</h3>
+<pre><code class="language-C++">inline void hash_map::insert (
+    const_iterator first,
+    const_iterator last
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-insert-33">function insert [3/3]</h3>
+<pre><code class="language-C++">inline void hash_map::insert (
+    const value_type * first,
+    const value_type * last
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-key_comp">function key_comp</h3>
+<pre><code class="language-C++">inline key_equal hash_map::key_comp () const
+</code></pre>
+<hr>
+
+<h3 id="function-lower_bound-12">function lower_bound [1/2]</h3>
+<pre><code class="language-C++">inline iterator hash_map::lower_bound (
+    const key_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lower_bound-22">function lower_bound [2/2]</h3>
+<pre><code class="language-C++">inline const_iterator hash_map::lower_bound (
+    const key_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-max_size">function max_size</h3>
+<pre><code class="language-C++">inline size_type hash_map::max_size () const
+</code></pre>
+<hr>
+
+<h3 id="function-operator">function operator=</h3>
+<pre><code class="language-C++">inline hash_map &lt; Key, T , HashFunction, KeyEqual &gt; &amp; hash_map::operator= (
+    const hash_map &lt; Key, T , HashFunction, KeyEqual &gt; &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-operator_1">function operator[]</h3>
+<pre><code class="language-C++">inline allocator&lt; T &gt; ::reference hash_map::operator[] (
+    const key_type &amp; k
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-size">function size</h3>
+<pre><code class="language-C++">inline size_type hash_map::size () const
+</code></pre>
+<hr>
+
+<h3 id="function-swap">function swap</h3>
+<pre><code class="language-C++">inline void hash_map::swap (
+    hash_map &lt; Key, T , HashFunction, KeyEqual &gt; &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-upper_bound-12">function upper_bound [1/2]</h3>
+<pre><code class="language-C++">inline iterator hash_map::upper_bound (
+    const key_type &amp; x
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-upper_bound-22">function upper_bound [2/2]</h3>
+<pre><code class="language-C++">inline const_iterator hash_map::upper_bound (
+    const key_type &amp; x
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-value_comp">function value_comp</h3>
+<pre><code class="language-C++">inline value_compare hash_map::value_comp () const
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/hashmap.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

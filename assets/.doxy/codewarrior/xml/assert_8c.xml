@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="assert_8c" kind="file" language="C++">
+    <compoundname>assert.c</compoundname>
+    <includes refid="ansi__parms_8h" local="no">ansi_parms.h</includes>
+    <includes local="no">WINDEF.H</includes>
+    <includes local="no">WINNT.H</includes>
+    <includes local="no">WINBASE.H</includes>
+    <includes local="no">WINUSER.H</includes>
+    <includes refid="assert_8h" local="no">assert.h</includes>
+    <includes refid="stdio_8h" local="no">stdio.h</includes>
+    <includes refid="stdlib_8h" local="no">stdlib.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>assert.h</label>
+        <link refid="assert_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>cassert</label>
+        <link refid="cassert"/>
+      </node>
+      <node id="12">
+        <label>cstdio</label>
+        <link refid="cstdio"/>
+      </node>
+      <node id="14">
+        <label>cstdlib</label>
+        <link refid="cstdlib"/>
+      </node>
+      <node id="3">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>stdio.h</label>
+        <link refid="stdio_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>stdlib.h</label>
+        <link refid="stdlib_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>assert.c</label>
+        <link refid="assert_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>WINBASE.H</label>
+      </node>
+      <node id="5">
+        <label>WINDEF.H</label>
+      </node>
+      <node id="6">
+        <label>WINNT.H</label>
+      </node>
+      <node id="8">
+        <label>WINUSER.H</label>
+      </node>
+      <node id="4">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="assert_8c_1ab64ab22604a6e73a10bf3622cb74de29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __assertion_failed</definition>
+        <argsstring>(char const *condition, char const *filename, int lineno)</argsstring>
+        <name>__assertion_failed</name>
+        <param>
+          <type>char const *</type>
+          <declname>condition</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lineno</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/assert.c" line="66" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/assert.c" bodystart="66" bodyend="85"/>
+        <references refid="abort__exit_8c_1a8dec7c95227ff149687066cf04029191" compoundref="abort__exit_8c" startline="120" endline="132">abort</references>
+        <references refid="printf_8c_1ae41ff60ab072068a0f730c6da6cf1ce9" compoundref="printf_8c" startline="1511" endline="1528">fprintf</references>
+        <references refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="null_8h" startline="19">NULL</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/07/30<sp/>00:58:41<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.7.4.1<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>assert.c</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>Routines</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>--------</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__assertion_failed</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ansi__parms_8h" kindref="compound">ansi_parms.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/><sp/>||<sp/>__dest_os<sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment">hh<sp/>980122<sp/>Replaced<sp/>&lt;windows.h&gt;<sp/>with<sp/>the<sp/>following<sp/>four<sp/>includes<sp/>because<sp/>it<sp/>is<sp/>seriously</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>broken.<sp/><sp/>The<sp/>following<sp/>4<sp/>includes<sp/>must<sp/>be<sp/>carefully<sp/>ordered<sp/>as<sp/>shown,<sp/>because</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>they<sp/>are<sp/>broken<sp/>too.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">#include<sp/>&lt;windows.h&gt;</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;WINDEF.H&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;WINNT.H&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;WINBASE.H&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;WINUSER.H&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="assert_8h" kindref="compound">assert.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stdio_8h" kindref="compound">stdio.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stdlib_8h" kindref="compound">stdlib.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#if(defined(UNICODE))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>__wchar_assertion_failed(TCHAR<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*condition,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*filename,<sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990419<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lineno)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>BUFFSIZE<sp/>1024</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>TCHAR<sp/>buf[2*BUFFSIZE];</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>need<sp/>to<sp/>convert<sp/>filename<sp/>into<sp/>a<sp/>L<sp/>string<sp/>literal<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">wchar_t</highlight><highlight class="normal"><sp/><ref refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" kindref="member">tmpfile</ref>[BUFFSIZE];</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*<sp/>p=filename;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990419<sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(*p<sp/>!=<sp/>0x00<sp/>&amp;&amp;<sp/>i<sp/>&lt;<sp/>(BUFFSIZE-1))<sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" kindref="member">tmpfile</ref>[i]<sp/>=<sp/>(<ref refid="wchar__t_8h_1a9026fbe0621f8d881c7bc984a03c8b06" kindref="member">wchar_t</ref>)*(p++);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i++;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" kindref="member">tmpfile</ref>[i]=0;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="wprintf_8h_1a32d4873df2bc1169e58cf5f0bfbaedab" kindref="member">swprintf</ref>(buf,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buf)<sp/>+<sp/>1,L</highlight><highlight class="stringliteral">&quot;Assertion<sp/>(%s)<sp/>failed<sp/>in<sp/>\&quot;%s\&quot;<sp/>on<sp/>line<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>condition,<sp/><ref refid="file__io_8c_1a23bda9b63cbe1f3d86aaff779b2b9f10" kindref="member">tmpfile</ref>,<sp/>lineno);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>MessageBox(<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,buf,L</highlight><highlight class="stringliteral">&quot;Assertion<sp/>Failure&quot;</highlight><highlight class="normal">,MB_OK);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a8dec7c95227ff149687066cf04029191" kindref="member">abort</ref>();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#if(__dest_os<sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/>#error<sp/>&quot;the<sp/>macro<sp/>UNICODE<sp/>must<sp/>be<sp/>defined<sp/>when<sp/>compiling<sp/>MSL<sp/>C<sp/>for<sp/>Windows<sp/>CE&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="assert_8c_1ab64ab22604a6e73a10bf3622cb74de29" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="assert_8c_1ab64ab22604a6e73a10bf3622cb74de29" kindref="member">__assertion_failed</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*condition,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*filename,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lineno)<sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990419<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__win32_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buf[4096];</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf(buf,</highlight><highlight class="stringliteral">&quot;Assertion<sp/>(%s)<sp/>failed<sp/>in<sp/>\&quot;%s\&quot;<sp/>on<sp/>line<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>condition,<sp/>filename,<sp/>lineno);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>MessageBox(<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,buf,</highlight><highlight class="stringliteral">&quot;Assertion<sp/>Failure&quot;</highlight><highlight class="normal">,MB_OK);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="printf_8c_1ae41ff60ab072068a0f730c6da6cf1ce9" kindref="member">fprintf</ref>(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Assertion<sp/>(%s)<sp/>failed<sp/>in<sp/>\&quot;%s\&quot;<sp/>on<sp/>line<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>condition,<sp/>filename,<sp/>lineno);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>_WINSIOUX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981109<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>WinSIOUXAbort();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981109<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#else<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981109<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a8dec7c95227ff149687066cf04029191" kindref="member">abort</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="comment">/*<sp/>_WINSIOUX<sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981109<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/><sp/>UNICODE<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*<sp/><sp/>12-Jun-95<sp/>JFH<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/><sp/>16-Jun-95<sp/><sp/>MM<sp/><sp/>Added<sp/>include<sp/>of<sp/>signal.h<sp/>and<sp/>code<sp/>to<sp/>replace<sp/>abort()</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>JFH<sp/><sp/>!!<sp/>I<sp/>consider<sp/>this<sp/>a<sp/>temporary<sp/>change<sp/>to<sp/>ease<sp/>Michael&apos;s<sp/>testing<sp/>!!</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/><sp/>18-Sep-95<sp/>JFH<sp/><sp/>Undid<sp/>previous<sp/>change.<sp/>abort()<sp/>should<sp/>behave<sp/>properly<sp/>now.</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/><sp/>26-Apr-96<sp/>JFH<sp/><sp/>Merged<sp/>Win32<sp/>changes<sp/>in.</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTV</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>hh<sp/>980122<sp/>Replaced<sp/>&lt;windows.h&gt;<sp/>with<sp/>the<sp/>following<sp/>four<sp/>includes<sp/>because<sp/>it<sp/>is<sp/>seriously</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>broken.<sp/><sp/>The<sp/>following<sp/>4<sp/>includes<sp/>must<sp/>be<sp/>carefully<sp/>ordered<sp/>as<sp/>shown,<sp/>because</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>they<sp/>are<sp/>broken<sp/>too.</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/>*<sp/>mf<sp/>980428<sp/>added<sp/>support<sp/>for<sp/>windows<sp/>ce--<sp/>do<sp/>not<sp/>need<sp/>to<sp/>explicitly<sp/>include<sp/>x86_prefix.h</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>since<sp/>it<sp/>is<sp/>included<sp/>by<sp/>ansi_parms.h</highlight></codeline>
+<codeline lineno="100"><highlight class="comment">*<sp/>mf<sp/><sp/>980510<sp/>added<sp/>new<sp/>function<sp/>__whar_assertion_failed<sp/>to<sp/>support<sp/>unicode.<sp/><sp/>This<sp/>was<sp/>due<sp/>to</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>microsoft&apos;s<sp/>version<sp/>of<sp/>swprintf<sp/>not<sp/>being<sp/>standard.<sp/>the<sp/>ms<sp/>implementation<sp/>of<sp/>tchar</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>maps<sp/>tsprintf<sp/>into<sp/>the<sp/>ms<sp/>implementation<sp/>of<sp/>swprintf<sp/>if<sp/>UNICODE<sp/>is<sp/>defined.<sp/>our<sp/>implementation</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>is<sp/>different(takes<sp/>an<sp/>int<sp/>arg<sp/>to<sp/>limit<sp/>size<sp/>of<sp/>string<sp/>as<sp/>specified<sp/>in<sp/>the<sp/>standard.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="comment">*<sp/>mf<sp/><sp/>980512<sp/><sp/><sp/><sp/><sp/><sp/><sp/>wince<sp/>changes<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="comment">*<sp/>mf<sp/><sp/>980515<sp/>needed<sp/>windows<sp/>headers<sp/>before<sp/>standard<sp/>headers<sp/>and<sp/>therefore<sp/>needed<sp/>to<sp/>also</highlight></codeline>
+<codeline lineno="106"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>put<sp/>include<sp/>of<sp/>ansi_parms<sp/>first<sp/>so<sp/>that<sp/>WIN32<sp/>env.<sp/>is<sp/>defined<sp/>before<sp/>prototype</highlight></codeline>
+<codeline lineno="107"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>of<sp/>MessageBox<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="comment">*<sp/>mm<sp/>981109<sp/><sp/>Changed<sp/>__assertion_failed<sp/>so<sp/>that<sp/>when<sp/>__WINSIOUX<sp/>defined,<sp/>responding<sp/>to<sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assertion<sp/>failure<sp/>box<sp/>does<sp/>not<sp/>terminate<sp/>WinSIOUX.</highlight></codeline>
+<codeline lineno="110"><highlight class="comment">*<sp/>mm<sp/>990419<sp/><sp/>Changes<sp/>to<sp/>avoid<sp/>messages<sp/>when<sp/>warnings<sp/>when<sp/>#pragma<sp/>const_strings<sp/>on<sp/>in<sp/>force<sp/>IL9903-1579<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/assert.c"/>
+  </compounddef>
+</doxygen>

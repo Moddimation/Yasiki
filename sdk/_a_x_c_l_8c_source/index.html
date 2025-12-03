@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File AXCL.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-axclc">File AXCL.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_284807f63fc993a939ff676a07eb86c2/"><strong>ax</strong></a> <strong>&gt;</strong> <a href="../_a_x_c_l_8c/"><strong>AXCL.c</strong></a></p>
+<p><a href="../_a_x_c_l_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;AXPrivate.h&quot;
+
+static u16 __AXHRTFHistory[128];
+static u16 __AXCommandList[2][384];
+
+static u32  __AXCommandListPosition;
+static u16* __AXClWrite;
+static u32  __AXCommandListCycles;
+u32         __AXClMode;
+
+u32
+__AXGetCommandListCycles (void)
+{
+    return __AXCommandListCycles;
+}
+
+u32
+__AXGetCommandListAddress (void)
+{
+    u32 address;
+
+    address = (u32)&amp;__AXCommandList[__AXCommandListPosition][0];
+    __AXCommandListPosition += 1;
+    __AXCommandListPosition &amp;= 1;
+    __AXClWrite = (void*)&amp;__AXCommandList[__AXCommandListPosition][0];
+    return address;
+}
+
+void
+__AXWriteToCommandList (u16 data)
+{
+    *__AXClWrite = data;
+    __AXClWrite++;
+}
+
+void
+__AXNextFrame (void* sbuffer, void* buffer)
+{
+    u32  data;
+    u16* pCommandList;
+
+    __AXCommandListCycles = 0x1A9;
+    pCommandList = __AXClWrite;
+    data = __AXGetStudio();
+    __AXWriteToCommandList (0);
+    __AXWriteToCommandList ((u16)(data &gt;&gt; 0x10U));
+    __AXWriteToCommandList ((u16)(data));
+    __AXCommandListCycles += 0x2E44;
+    switch (__AXClMode)
+    {
+        case 1:
+            __AXWriteToCommandList (8);
+            __AXWriteToCommandList ((u16)((u32)&amp;__AXHRTFHistory &gt;&gt; 0x10U));
+            __AXWriteToCommandList ((u16)&amp;__AXHRTFHistory);
+            __AXWriteToCommandList ((u16)((u32)sbuffer &gt;&gt; 0x10U));
+            __AXWriteToCommandList ((u32)sbuffer);
+            __AXCommandListCycles += 0xAFC8;
+            break;
+        case 0:
+        case 3:
+        case 4:
+            __AXWriteToCommandList (7);
+            __AXWriteToCommandList ((u16)((u32)sbuffer &gt;&gt; 0x10U));
+            __AXWriteToCommandList ((u32)sbuffer);
+            __AXCommandListCycles += 0x5E6;
+            break;
+        default:
+            ASSERTLINE (0x96, 0);
+    }
+    data = (u32)__AXGetPBs();
+    __AXWriteToCommandList (2U);
+    __AXWriteToCommandList ((u16)(data &gt;&gt; 0x10U));
+    __AXWriteToCommandList ((u16)data);
+    __AXWriteToCommandList (3U);
+    __AXGetAuxAInput (&amp;data);
+    if (data != 0)
+    {
+        __AXWriteToCommandList (4U);
+        __AXWriteToCommandList ((u16)(data &gt;&gt; 0x10U));
+        __AXWriteToCommandList ((u16)data);
+        __AXGetAuxAOutput (&amp;data);
+        __AXWriteToCommandList ((u16)(data &gt;&gt; 0x10U));
+        __AXWriteToCommandList ((u16)data);
+        __AXCommandListCycles += 0xDED;
+    }
+    __AXGetAuxBInput (&amp;data);
+    if (data != 0)
+    {
+        if ((u32)__AXClMode == 4U)
+        {
+            __AXWriteToCommandList (0x10U);
+            __AXCommandListCycles += 0xDED;
+        }
+        else
+        {
+            __AXWriteToCommandList (5U);
+            __AXCommandListCycles += 0xDED;
+        }
+        __AXWriteToCommandList ((u16)(data &gt;&gt; 0x10U));
+        __AXWriteToCommandList ((u16)data);
+        __AXGetAuxBOutput (&amp;data);
+        __AXWriteToCommandList ((u16)(data &gt;&gt; 0x10U));
+        __AXWriteToCommandList ((u16)data);
+    }
+    __AXWriteToCommandList (0xEU);
+    __AXWriteToCommandList ((u16)((u32)sbuffer &gt;&gt; 0x10U));
+    __AXWriteToCommandList ((u32)sbuffer);
+    __AXWriteToCommandList ((u16)((u32)buffer &gt;&gt; 0x10U));
+    __AXWriteToCommandList ((u32)buffer);
+    __AXCommandListCycles += 0x2710;
+    __AXWriteToCommandList (0xFU);
+    __AXCommandListCycles += 2;
+    DCFlushRange (pCommandList, 0x300);
+}
+
+void
+__AXClInit (void)
+{
+#ifdef DEBUG
+    OSReport (&quot;Initializing AXCL code module¥n&quot;);
+#endif
+    ASSERTLINE (0xF2, ((u32)&amp;__AXCommandList[0][0] &amp; 0x1F) == 0);
+    ASSERTLINE (0xF3, ((u32)&amp;__AXCommandList[1][0] &amp; 0x1F) == 0);
+    __AXClMode = 0;
+    __AXCommandListPosition = 0;
+    __AXClWrite = (void*)&amp;__AXCommandList;
+}
+
+void
+__AXClQuit (void)
+{
+#ifdef DEBUG
+    OSReport (&quot;Shutting down AXCL code module¥n&quot;);
+#endif
+}
+
+void
+AXSetMode (u32 mode)
+{
+    if (__AXClMode != mode)
+    {
+        if (mode == 1)
+        {
+            memset (&amp;__AXHRTFHistory, 0, 0x100);
+        }
+        __AXClMode = mode;
+    }
+}
+
+u32
+AXGetMode (void)
+{
+    return __AXClMode;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

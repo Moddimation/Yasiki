@@ -1,0 +1,435 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="file__io_8stub_8c" kind="file" language="C++">
+    <compoundname>file_io.stub.c</compoundname>
+    <includes refid="file__io_8h" local="yes">file_io.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstdio</label>
+        <link refid="cstdio"/>
+      </node>
+      <node id="2">
+        <label>file_io.h</label>
+        <link refid="file__io_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>file_io.stub.c</label>
+        <link refid="file__io_8stub_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structtemp__file__info" prot="public">temp_file_info</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="file__io_8stub_8c_1a513ccdb23ae88de205f6a0ccb501ae3a" prot="public" static="yes" mutable="no">
+        <type><ref refid="structtemp__file__info" kindref="compound">temp_file_info</ref></type>
+        <definition>temp_file_info temp_info[FOPEN_MAX]</definition>
+        <argsstring>[FOPEN_MAX]</argsstring>
+        <name>temp_info</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="43" column="22" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="43" bodyend="-1"/>
+        <referencedby refid="file__io_8stub_8c_1a6ae558a123f7c8fac9837f775688ae61" compoundref="file__io_8stub_8c" startline="45" endline="55">find_temp_info</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="file__io_8stub_8c_1a6ae558a123f7c8fac9837f775688ae61" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtemp__file__info" kindref="compound">temp_file_info</ref> *</type>
+        <definition>static temp_file_info * find_temp_info</definition>
+        <argsstring>(short refnum)</argsstring>
+        <name>find_temp_info</name>
+        <param>
+          <type>short</type>
+          <declname>refnum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="45" column="24" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="45" bodyend="55"/>
+        <references refid="structtemp__file__info_1aeebbabc000faa7cc1cecaad7e1408a49" compoundref="file__io_8stub_8c" startline="39">temp_file_info::refnum</references>
+        <references refid="file__io_8stub_8c_1a513ccdb23ae88de205f6a0ccb501ae3a" compoundref="file__io_8stub_8c" startline="43">temp_info</references>
+        <referencedby refid="file__io_8stub_8c_1af28176b7eba40905f0380a43d54b1da5" compoundref="file__io_8stub_8c" startline="64" endline="85">__open_temp_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1a107c7d0ed520d779b0b4d5d5faf3ccd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __open_file</definition>
+        <argsstring>(const char *name, __file_modes mode, __file_handle *handle)</argsstring>
+        <name>__open_file</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>__file_modes</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>__file_handle *</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="58" column="4" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="58" bodyend="62"/>
+        <referencedby refid="file__io_8stub_8c_1af28176b7eba40905f0380a43d54b1da5" compoundref="file__io_8stub_8c" startline="64" endline="85">__open_temp_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1af28176b7eba40905f0380a43d54b1da5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __open_temp_file</definition>
+        <argsstring>(__file_handle *handle)</argsstring>
+        <name>__open_temp_file</name>
+        <param>
+          <type>__file_handle *</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="64" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="64" bodyend="85"/>
+        <references refid="file__io_8stub_8c_1a107c7d0ed520d779b0b4d5d5faf3ccd0" compoundref="file__io_8stub_8c" startline="58" endline="62">__open_file</references>
+        <references refid="file__io_8c_1a2befc01d3813d616edd387d8bf2a33aa" compoundref="file__io_8c" startline="46" endline="48">__temp_file_mode</references>
+        <references refid="file__io_8stub_8c_1aaac0a2042899e49ec3423bc0818316bd" compoundref="file__io_8stub_8c" startline="112" endline="116">__temp_file_name</references>
+        <references refid="file__io_8stub_8c_1a6ae558a123f7c8fac9837f775688ae61" compoundref="file__io_8stub_8c" startline="45" endline="55">find_temp_info</references>
+        <references refid="structtemp__file__info_1aeebbabc000faa7cc1cecaad7e1408a49" compoundref="file__io_8stub_8c" startline="39">temp_file_info::refnum</references>
+        <references refid="structtemp__file__info_1a9af88fa4c5b663ab8c3c066d8778d43a" compoundref="file__io_8stub_8c" startline="40">temp_file_info::spec</references>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1a504dba5da3002ee39363636f14c9a4b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __read_file</definition>
+        <argsstring>(__file_handle handle, unsigned char *buffer, size_t *count, __idle_proc idle_proc)</argsstring>
+        <name>__read_file</name>
+        <param>
+          <type>__file_handle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>__idle_proc</type>
+          <declname>idle_proc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="87" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="87" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1ac1e23b94f49442ffb2e5c69b9e1b608b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __write_file</definition>
+        <argsstring>(__file_handle handle, unsigned char *buffer, size_t *count, __idle_proc idle_proc)</argsstring>
+        <name>__write_file</name>
+        <param>
+          <type>__file_handle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>__idle_proc</type>
+          <declname>idle_proc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="93" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="93" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1a7ec60cc298ca883fe64bd92b2c9c77c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __position_file</definition>
+        <argsstring>(__file_handle handle, fpos_t *position, int mode, __idle_proc idle_proc)</argsstring>
+        <name>__position_file</name>
+        <param>
+          <type>__file_handle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>fpos_t *</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>__idle_proc</type>
+          <declname>idle_proc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="99" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="99" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1a3d62ccd548ac56a699971cf50b3a97c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __close_file</definition>
+        <argsstring>(__file_handle handle)</argsstring>
+        <name>__close_file</name>
+        <param>
+          <type>__file_handle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="106" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="106" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1aaac0a2042899e49ec3423bc0818316bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __temp_file_name</definition>
+        <argsstring>(char *name_str, void *filespec)</argsstring>
+        <name>__temp_file_name</name>
+        <param>
+          <type>char *</type>
+          <declname>name_str</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>filespec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="112" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="112" bodyend="116"/>
+        <referencedby refid="file__io_8stub_8c_1af28176b7eba40905f0380a43d54b1da5" compoundref="file__io_8stub_8c" startline="64" endline="85">__open_temp_file</referencedby>
+        <referencedby refid="file__io_8c_1a0efedc832bf3605509df4bb7084f1187" compoundref="file__io_8c" startline="66" endline="86">tmpnam</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1a4d2d7288afe0ee16cfacf47411a0993f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __delete_file</definition>
+        <argsstring>(const char *name)</argsstring>
+        <name>__delete_file</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="118" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="118" bodyend="122"/>
+        <referencedby refid="file__io_8c_1a4dec9ff1b41a23f58ed31179c4cb92f6" compoundref="file__io_8c" startline="53" endline="56">remove</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="file__io_8stub_8c_1a9ff66a62ffbf413c64849ec57da6f452" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __rename_file</definition>
+        <argsstring>(const char *old_name, const char *new_name)</argsstring>
+        <name>__rename_file</name>
+        <param>
+          <type>const char *</type>
+          <declname>old_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>new_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" line="124" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c" bodystart="124" bodyend="128"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>Version<sp/>2.1.2<sp/><sp/>1997<sp/>May<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>file_io.mac.c</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1997<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/>Routines</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/>--------</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__open_file</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__open_temp_file</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__read_file</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__write_file</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__position_file</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__flush_file</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__close_file</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__temp_file_name</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__delete_file</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__rename_file</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__handle_open</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__handle_reopen</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__set_idle_proc</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Include<sp/>your<sp/>OS<sp/>dependent<sp/>include<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="file__io_8h" kindref="compound">file_io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_No_Disk_File_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#error<sp/>file_io.stub.c<sp/>can&apos;t<sp/>be<sp/>in<sp/>your<sp/>project<sp/>if<sp/>_No_Disk_File_OS_Support<sp/>is<sp/>defined.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="structtemp__file__info" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>change<sp/>these<sp/>members<sp/>to<sp/>whatever<sp/>is<sp/>appropriate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="structtemp__file__info_1aeebbabc000faa7cc1cecaad7e1408a49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structtemp__file__info_1aeebbabc000faa7cc1cecaad7e1408a49" kindref="member">refnum</ref>;</highlight></codeline>
+<codeline lineno="40" refid="structtemp__file__info_1a9af88fa4c5b663ab8c3c066d8778d43a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><sp/><ref refid="structtemp__file__info_1a9af88fa4c5b663ab8c3c066d8778d43a" kindref="member">spec</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}<sp/><ref refid="structtemp__file__info" kindref="compound">temp_file_info</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="file__io_8stub_8c_1a513ccdb23ae88de205f6a0ccb501ae3a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structtemp__file__info" kindref="compound">temp_file_info</ref><sp/><sp/><sp/><ref refid="file__io_8stub_8c_1a513ccdb23ae88de205f6a0ccb501ae3a" kindref="member">temp_info</ref>[FOPEN_MAX];</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="file__io_8stub_8c_1a6ae558a123f7c8fac9837f775688ae61" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structtemp__file__info" kindref="compound">temp_file_info</ref><sp/>*<sp/><ref refid="file__io_8stub_8c_1a6ae558a123f7c8fac9837f775688ae61" kindref="member">find_temp_info</ref>(</highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>refnum)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtemp__file__info" kindref="compound">temp_file_info</ref><sp/>*<sp/><sp/><sp/><sp/>p;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0,<sp/>p<sp/>=<sp/><ref refid="file__io_8stub_8c_1a513ccdb23ae88de205f6a0ccb501ae3a" kindref="member">temp_info</ref>;<sp/>i<sp/>&lt;<sp/>FOPEN_MAX;<sp/>i++,<sp/>p++)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p-&gt;<ref refid="structtemp__file__info_1aeebbabc000faa7cc1cecaad7e1408a49" kindref="member">refnum</ref><sp/>==<sp/>refnum)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(p);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="file__io_8stub_8c_1a107c7d0ed520d779b0b4d5d5faf3ccd0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1a107c7d0ed520d779b0b4d5d5faf3ccd0" kindref="member">__open_file</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>name,<sp/>__file_modes<sp/>mode,<sp/>__file_handle<sp/>*<sp/>handle)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">{<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);<sp/><sp/></highlight><highlight class="comment">//<sp/>Replace<sp/>this<sp/>with<sp/>an<sp/>OS<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>that<sp/>opens<sp/>the<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="file__io_8stub_8c_1af28176b7eba40905f0380a43d54b1da5" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1af28176b7eba40905f0380a43d54b1da5" kindref="member">__open_temp_file</ref>(__file_handle<sp/>*<sp/>handle)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp_name[L_tmpnam];</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtemp__file__info" kindref="compound">temp_file_info</ref><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>spec;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ioresult;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="file__io_8stub_8c_1aaac0a2042899e49ec3423bc0818316bd" kindref="member">__temp_file_name</ref>(temp_name,<sp/>&amp;spec);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!(info<sp/>=<sp/><ref refid="file__io_8stub_8c_1a6ae558a123f7c8fac9837f775688ae61" kindref="member">find_temp_info</ref>(0)))</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__io_error);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>ioresult<sp/>=<sp/><ref refid="file__io_8stub_8c_1a107c7d0ed520d779b0b4d5d5faf3ccd0" kindref="member">__open_file</ref>(temp_name,<sp/><ref refid="file__io_8c_1a2befc01d3813d616edd387d8bf2a33aa" kindref="member">__temp_file_mode</ref>,<sp/>handle);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ioresult<sp/>==<sp/>__no_io_error)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;<ref refid="structtemp__file__info_1aeebbabc000faa7cc1cecaad7e1408a49" kindref="member">refnum</ref><sp/>=<sp/>*handle;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;<ref refid="structtemp__file__info_1a9af88fa4c5b663ab8c3c066d8778d43a" kindref="member">spec</ref><sp/><sp/><sp/>=<sp/>spec;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(ioresult);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="file__io_8stub_8c_1a504dba5da3002ee39363636f14c9a4b8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1a504dba5da3002ee39363636f14c9a4b8" kindref="member">__read_file</ref>(__file_handle<sp/>handle,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*<sp/><ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref>,<sp/>__idle_proc<sp/>idle_proc)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);<sp/><sp/></highlight><highlight class="comment">//<sp/>Replace<sp/>this<sp/>with<sp/>an<sp/>OS<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>that<sp/>reads<sp/>from<sp/>the<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="file__io_8stub_8c_1ac1e23b94f49442ffb2e5c69b9e1b608b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1ac1e23b94f49442ffb2e5c69b9e1b608b" kindref="member">__write_file</ref>(__file_handle<sp/>handle,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*<sp/><ref refid="targimpl_8c_1ac74ae34e9c58234aacabb6867b245c58" kindref="member">count</ref>,<sp/>__idle_proc<sp/>idle_proc)</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);<sp/><sp/></highlight><highlight class="comment">//<sp/>Replace<sp/>this<sp/>with<sp/>an<sp/>OS<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>that<sp/>writes<sp/>to<sp/>the<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="file__io_8stub_8c_1a7ec60cc298ca883fe64bd92b2c9c77c9" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1a7ec60cc298ca883fe64bd92b2c9c77c9" kindref="member">__position_file</ref>(__file_handle<sp/>handle,<sp/>fpos_t<sp/>*<sp/>position,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mode,<sp/>__idle_proc<sp/>idle_proc)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);<sp/><sp/></highlight><highlight class="comment">//<sp/>Replace<sp/>this<sp/>with<sp/>an<sp/>OS<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>that<sp/>sets<sp/>the<sp/>current<sp/>position</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>in<sp/>the<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="file__io_8stub_8c_1a3d62ccd548ac56a699971cf50b3a97c2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1a3d62ccd548ac56a699971cf50b3a97c2" kindref="member">__close_file</ref>(__file_handle<sp/>handle)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);<sp/><sp/></highlight><highlight class="comment">//<sp/>Replace<sp/>this<sp/>with<sp/>an<sp/>OS<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>that<sp/>closes<sp/>the<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="file__io_8h_1a15f7d6e00de7402cdf54b3693814a4c7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1aaac0a2042899e49ec3423bc0818316bd" kindref="member">__temp_file_name</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>name_str,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>filespec)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>copy<sp/>the<sp/>temp<sp/>file&apos;s<sp/>name<sp/>into<sp/>name_str<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>file<sp/>specification<sp/>structure<sp/>into<sp/>filespec</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="file__io_8h_1a4d2d7288afe0ee16cfacf47411a0993f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1a4d2d7288afe0ee16cfacf47411a0993f" kindref="member">__delete_file</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>name)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);<sp/><sp/></highlight><highlight class="comment">//<sp/>Replace<sp/>this<sp/>with<sp/>an<sp/>OS<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>that<sp/>deletes<sp/>the<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="file__io_8h_1a9ff66a62ffbf413c64849ec57da6f452" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="file__io_8stub_8c_1a9ff66a62ffbf413c64849ec57da6f452" kindref="member">__rename_file</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>old_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>new_name)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);<sp/><sp/></highlight><highlight class="comment">//<sp/>Replace<sp/>this<sp/>with<sp/>an<sp/>OS<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>that<sp/>renames<sp/>the<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Change<sp/>record</highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/>*<sp/><sp/>20-Jul-97<sp/>MEA<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline lineno="132"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/file_io.stub.c"/>
+  </compounddef>
+</doxygen>

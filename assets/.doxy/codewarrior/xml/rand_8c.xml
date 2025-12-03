@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="rand_8c" kind="file" language="C++">
+    <compoundname>rand.c</compoundname>
+    <includes refid="stdlib_8h" local="no">stdlib.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>cstdlib</label>
+        <link refid="cstdlib"/>
+      </node>
+      <node id="2">
+        <label>stdlib.h</label>
+        <link refid="stdlib_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>rand.c</label>
+        <link refid="rand_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" prot="public" static="yes" mutable="no">
+        <type><ref refid="ansi__parms_8h_1aed1b906c27f00d650f7d3f5e31c70a27" kindref="member">__tls</ref> unsigned long int</type>
+        <definition>__tls unsigned long int next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c" line="34" column="32" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c" bodystart="34" bodyend="-1"/>
+        <referencedby refid="classhash__table_1a995b0fd9bcbf964d6b450a377c6fc7db" compoundref="hashtbl_8h" startline="329" endline="352">hash_table::clear</referencedby>
+        <referencedby refid="classhash__table_1af1fe1d15c087057042d404527fa6cb07" compoundref="hashtbl_8h" startline="223" endline="251">hash_table::copy_from</referencedby>
+        <referencedby refid="classhash__table_1adc921f55d84f4559b5701a5c3ec45fa8" compoundref="hashtbl_8h" startline="253" endline="270">hash_table::erase_bucket</referencedby>
+        <referencedby refid="classhash__table_1aebba8b1dcc64a3524aecec121243d600" compoundref="hashtbl_8h" startline="272" endline="283">hash_table::erase_bucket</referencedby>
+        <referencedby refid="rand_8c_1ae23144bcbb8e3742b00eb687c36654d1" compoundref="rand_8c" startline="38" endline="48">rand</referencedby>
+        <referencedby refid="rand_8c_1a83a727cc697aea22e24cad5f39198dd2" compoundref="rand_8c" startline="50" endline="57">srand</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="rand_8c_1ae23144bcbb8e3742b00eb687c36654d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int rand</definition>
+        <argsstring>(void)</argsstring>
+        <name>rand</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c" line="38" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c" bodystart="38" bodyend="48"/>
+        <references refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" compoundref="rand_8c" startline="34">next</references>
+      </memberdef>
+      <memberdef kind="function" id="rand_8c_1a83a727cc697aea22e24cad5f39198dd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void srand</definition>
+        <argsstring>(unsigned int seed)</argsstring>
+        <name>srand</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c" line="50" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c" bodystart="50" bodyend="57"/>
+        <references refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" compoundref="rand_8c" startline="34">next</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/03/09<sp/>17:42:15<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.10<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>rand.c</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>Routines</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>--------</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>rand</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>srand</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/>Note</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/>----</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>This<sp/>is<sp/>exactly<sp/>the<sp/>function<sp/>described<sp/>in<sp/>the<sp/>standard,<sp/>including<sp/>the</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>assumption<sp/>that<sp/>RAND_MAX<sp/>==<sp/>32767.</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stdlib_8h" kindref="compound">stdlib.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>_MWMT<sp/>&amp;&amp;<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/>||<sp/>__dest_os<sp/><sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;ThreadLocalData.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ansi__parms_8h_1aed1b906c27f00d650f7d3f5e31c70a27" kindref="member">__tls</ref><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" kindref="member">next</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="rand_8c_1ae23144bcbb8e3742b00eb687c36654d1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rand_8c_1ae23144bcbb8e3742b00eb687c36654d1" kindref="member">rand</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>_MWMT<sp/>&amp;&amp;<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/>||<sp/>__dest_os<sp/><sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>_GetThreadLocalData()-&gt;random_next<sp/>=</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_GetThreadLocalData()-&gt;random_next<sp/>*<sp/>1103515245<sp/>+<sp/>12345;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((_GetThreadLocalData()-&gt;random_next<sp/>&gt;&gt;<sp/>16)<sp/>&amp;<sp/>0x7FFF);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" kindref="member">next</ref><sp/>=<sp/><ref refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" kindref="member">next</ref><sp/>*<sp/>1103515245<sp/>+<sp/>12345;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((<ref refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" kindref="member">next</ref><sp/>&gt;&gt;<sp/>16)<sp/>&amp;<sp/>0x7FFF);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="rand_8c_1a83a727cc697aea22e24cad5f39198dd2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="rand_8c_1a83a727cc697aea22e24cad5f39198dd2" kindref="member">srand</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>seed)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>_MWMT<sp/>&amp;&amp;<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/>||<sp/>__dest_os<sp/><sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>_GetThreadLocalData()-&gt;random_next<sp/>=<sp/>seed;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="rand_8c_1ac83f3ae216599e04d345f5c2879f116b" kindref="member">next</ref><sp/>=<sp/>seed;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Change<sp/>Record</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/><sp/>07-Jun-95<sp/>JFH<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/><sp/>29-Apr-96<sp/>JFH<sp/><sp/>Merged<sp/>Win32<sp/>changes<sp/>in.</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTV</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/><sp/>19-Dec-96<sp/><sp/><sp/>KO<sp/><sp/><sp/><sp/><sp/><sp/>Changed<sp/>this<sp/>file<sp/>to<sp/>use<sp/>the<sp/>thread<sp/>local<sp/>data<sp/>structure<sp/>instead</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>of<sp/>a<sp/>global.</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>mf<sp/><sp/>980512<sp/><sp/><sp/><sp/><sp/><sp/><sp/>wince<sp/>changes</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>mf<sp/><sp/>990309<sp/><sp/><sp/><sp/><sp/><sp/><sp/>use<sp/>_MWMT<sp/>instead<sp/>of<sp/>_MT<sp/>for<sp/>single<sp/>threaded<sp/>lib</highlight></codeline>
+<codeline lineno="67"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c"/>
+  </compounddef>
+</doxygen>

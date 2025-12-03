@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File cctype - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cctype">File cctype</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_27c31b18688c2d3b7fe1d239b44a1620/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../cctype/"><strong>cctype</strong></a></p>
+<p><a href="../cctype/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/04 00:02:01 $
+ *  $Revision: 1.7.4.2.2.1 $
+ *  $NoKeywords: $
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  cctype             hh  971206 filename used to be ctype.h
+ */
+
+#ifndef __cctype__
+#define __cctype__
+
+#include &lt;ansi_parms.h&gt;          /* hh  971206 this header comes first*/
+#include &lt;cstdio&gt; /* mm 970918*/ /* hh  971206 changed from stdio.h*/
+
+#ifndef RC_INVOKED               /* hh 971230 */
+
+#pragma options align = native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+#pragma import on
+#endif
+
+#ifdef __cplusplus               /* hh  971206 */
+#ifdef _MSL_USING_NAMESPACE
+namespace std
+{
+#endif
+extern &quot;C&quot;
+{
+#endif
+
+/* rjk 980313 add the _MSL_DLLDATA */
+extern _MSL_DLLDATA const unsigned char __ctype_map[];
+extern _MSL_DLLDATA const unsigned char __lower_map[];
+extern _MSL_DLLDATA const unsigned char __upper_map[];
+
+#define __control_char 0x01
+#define __motion_char  0x02
+#define __space_char   0x04
+#define __punctuation  0x08
+#define __digit        0x10
+#define __hex_digit    0x20
+#define __lower_case   0x40
+#define __upper_case   0x80
+
+#define __letter       (__lower_case | __upper_case)
+#define __alphanumeric (__letter | __digit)
+#define __graphic      (__alphanumeric | __punctuation)
+#define __printable    (__graphic | __space_char)
+#define __whitespace   (__motion_char | __space_char)
+#define __control      (__motion_char | __control_char)
+#define __zero_fill(c) ((int)(unsigned char)(c))
+
+#ifdef __cplusplus
+}
+
+inline int
+isalnum (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __alphanumeric;
+}
+
+inline int
+isalpha (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __letter;
+}
+
+inline int
+iscntrl (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __control;
+}
+
+inline int
+isdigit (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __digit;
+}
+
+inline int
+isgraph (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __graphic;
+}
+
+inline int
+islower (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __lower_case;
+}
+
+inline int
+isprint (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __printable;
+}
+
+inline int
+ispunct (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __punctuation;
+}
+
+inline int
+isspace (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __whitespace;
+}
+
+inline int
+isupper (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __upper_case;
+}
+
+inline int
+isxdigit (int c)
+{
+    return __ctype_map[__zero_fill (c)] &amp; __hex_digit;
+}
+
+/* begin mm 970918 */
+inline int
+tolower (int c)
+{
+    return ((c == EOF) ? EOF : ((int)__lower_map[__zero_fill (c)]));
+}
+
+inline int
+toupper (int c)
+{
+    return ((c == EOF) ? EOF : ((int)__upper_map[__zero_fill (c)]));
+}
+
+/* end mm 970918 */
+inline int
+iswblank (int c)
+{
+    return ((c == (int)L' ') || (c == (int)L'\t'));
+} /* mm 980626 */
+
+extern &quot;C&quot;
+{
+#else
+
+int isalnum (int);
+int isalpha (int);
+int iscntrl (int);
+int isdigit (int);
+int isgraph (int);
+int islower (int);
+int isprint (int);
+int ispunct (int);
+int isspace (int);
+int isupper (int);
+int isxdigit (int);
+int tolower (int);
+int toupper (int);
+int iswblank (int); /* mm 980626 */
+
+#define isalnum(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __alphanumeric))
+#define isalpha(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __letter))
+#define iscntrl(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __control))
+#define isdigit(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __digit))
+#define isgraph(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __graphic))
+#define islower(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __lower_case))
+#define isprint(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __printable))
+#define ispunct(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __punctuation))
+#define isspace(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __whitespace))
+#define isupper(c)  ((int)(__ctype_map[__zero_fill (c)] &amp; __upper_case))
+#define isxdigit(c) ((int)(__ctype_map[__zero_fill (c)] &amp; __hex_digit))
+#define iswblank(c) ((c == (int)L' ') || (c == (int)L'\t')) /* mm 980626 */
+
+#endif
+
+#ifdef __cplusplus                                          /* hh  971206 */
+}
+#ifdef _MSL_USING_NAMESPACE
+}
+#endif
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+#pragma import reset
+#endif
+#pragma options align = reset
+
+#endif                                                      /* RC_INVOKED */
+
+#endif                                                      /* __cctype__ */
+/*     Change record
+ * 961221 bkoz line 21-23 added extern keyword (mmoss)
+ * mm 970918  Change to ensure that toupper(EOF) and tolower(EOF) == EOF
+ * mm 970925  Deleted defines for toupper and tolower and inserted them into ctype.c
+ * hh  971206 Changed filename from ctype.h to cctype and added namespace support
+ * hh 971230 added RC_INVOKED wrapper
+ * rjk 980313 added _MSL_DLLDATA
+ * mm 980626  added iswblank---see C9x 7.18.2.1.3
+ */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

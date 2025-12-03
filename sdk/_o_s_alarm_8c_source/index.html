@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSAlarm.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osalarmc">File OSAlarm.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="../_o_s_alarm_8c/"><strong>OSAlarm.c</strong></a></p>
+<p><a href="../_o_s_alarm_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+// internal header
+#include &quot;OSPrivate.h&quot;
+
+typedef struct OSAlarmQueue
+{
+    OSAlarm* head; 
+    OSAlarm* tail; 
+} OSAlarmQueue;
+
+static OSAlarmQueue AlarmQueue;
+
+// functions
+static void SetTimer (OSAlarm* alarm);
+static void InsertAlarm (OSAlarm* alarm, OSTime fire, OSAlarmHandler handler);
+static void DecrementerExceptionCallback (register __OSException exception,
+                                          register OSContext*    context);
+static void DecrementerExceptionHandler (__OSException exception, OSContext* context);
+
+#define ASSERTREPORT(line, cond)                                                               \
+    if (!(cond))                                                                               \
+    {                                                                                          \
+        OSReport (&quot;OSCheckAlarmQueue: Failed &quot; #cond &quot; in %d&quot;, line);                          \
+        return 0;                                                                              \
+    }
+
+BOOL
+OSCheckAlarmQueue (void)
+{
+    OSAlarm* alarm;
+
+    ASSERTREPORT (0x70,
+                  AlarmQueue.head == NULL &amp;&amp; AlarmQueue.tail == NULL ||
+                      AlarmQueue.head != NULL &amp;&amp; AlarmQueue.tail != NULL);
+    ASSERTREPORT (0x71, AlarmQueue.head == NULL || AlarmQueue.head-&gt;prev == NULL);
+    ASSERTREPORT (0x72, AlarmQueue.tail == NULL || AlarmQueue.tail-&gt;next == NULL);
+
+    for (alarm = AlarmQueue.head; alarm; alarm = alarm-&gt;next)
+    {
+        ASSERTREPORT (0x75, alarm-&gt;next == NULL || alarm-&gt;next-&gt;prev == alarm);
+        ASSERTREPORT (0x76, alarm-&gt;next != NULL || AlarmQueue.tail == alarm);
+    }
+    return TRUE;
+}
+
+static void
+SetTimer (OSAlarm* alarm)
+{
+    OSTime delta = alarm-&gt;fire - OSGetTime();
+
+    if (delta &lt; 0)
+    {
+        PPCMtdec (0);
+    }
+    else if (delta &lt; 0x80000000)
+    {
+        PPCMtdec ((u32)delta);
+    }
+    else
+    {
+        PPCMtdec (0x7fffffff);
+    }
+}
+
+void
+OSInitAlarm (void)
+{
+    if (__OSGetExceptionHandler (8) != DecrementerExceptionHandler)
+    {
+        AlarmQueue.head = AlarmQueue.tail = NULL;
+        __OSSetExceptionHandler (8, DecrementerExceptionHandler);
+    }
+}
+
+void
+OSCreateAlarm (OSAlarm* alarm)
+{
+    alarm-&gt;handler = 0;
+}
+
+static void
+InsertAlarm (OSAlarm* alarm, OSTime fire, OSAlarmHandler handler)
+{
+    OSAlarm* next;
+    OSAlarm* prev;
+
+    if (0 &lt; alarm-&gt;period)
+    {
+        OSTime time = OSGetTime();
+
+        fire = alarm-&gt;start;
+        if (alarm-&gt;start &lt; time)
+        {
+            fire += alarm-&gt;period * ((time - alarm-&gt;start) / alarm-&gt;period + 1);
+        }
+    }
+
+    ASSERTLINE (0xD6, alarm-&gt;handler == 0);
+
+    alarm-&gt;handler = handler;
+    alarm-&gt;fire = fire;
+
+    for (next = AlarmQueue.head; next; next = next-&gt;next)
+    {
+        if (next-&gt;fire &lt;= fire)
+        {
+            continue;
+        }
+
+        alarm-&gt;prev = next-&gt;prev;
+        next-&gt;prev = alarm;
+        alarm-&gt;next = next;
+        prev = alarm-&gt;prev;
+
+        if (prev)
+        {
+            prev-&gt;next = alarm;
+        }
+        else
+        {
+            AlarmQueue.head = alarm;
+            SetTimer (alarm);
+        }
+
+        return;
+    }
+
+    ASSERTLINE (0xF3, next == 0);
+
+    alarm-&gt;next = 0;
+    prev = AlarmQueue.tail;
+    AlarmQueue.tail = alarm;
+    alarm-&gt;prev = prev;
+
+    if (prev)
+    {
+        prev-&gt;next = alarm;
+    }
+    else
+    {
+        AlarmQueue.head = AlarmQueue.tail = alarm;
+        SetTimer (alarm);
+    }
+}
+
+void
+OSSetAlarm (OSAlarm* alarm, OSTime tick, OSAlarmHandler handler)
+{
+    BOOL enabled;
+    ASSERTMSGLINE (0x114, tick &gt; 0, &quot;OSSetAlarm(): tick was less than zero.&quot;);
+    ASSERTMSGLINE (0x115, handler, &quot;OSSetAlarm(): null handler was specified.&quot;);
+    enabled = OSDisableInterrupts();
+    alarm-&gt;period = 0;
+    InsertAlarm (alarm, OSGetTime() + tick, handler);
+    ASSERTLINE (0x11C, OSCheckAlarmQueue());
+    OSRestoreInterrupts (enabled);
+}
+
+void
+OSSetAbsAlarm (OSAlarm* alarm, s64 time, void (*handler) (OSAlarm*, OSContext*))
+{
+    int enabled;
+
+    ASSERTMSGLINE (0x130, handler, &quot;OSSetAbsAlarm(): null handler was specified.&quot;);
+    enabled = OSDisableInterrupts();
+    alarm-&gt;period = 0;
+    InsertAlarm (alarm, time, handler);
+    ASSERTLINE (0x137, OSCheckAlarmQueue());
+    OSRestoreInterrupts (enabled);
+}
+
+void
+OSSetPeriodicAlarm (OSAlarm* alarm, OSTime start, OSTime period, OSAlarmHandler handler)
+{
+    BOOL enabled;
+    ASSERTMSGLINE (0x14D, period &gt; 0, &quot;OSSetPeriodicAlarm(): period was less than zero.&quot;);
+    ASSERTMSGLINE (0x14E, handler, &quot;OSSetPeriodicAlarm(): null handler was specified.&quot;);
+    enabled = OSDisableInterrupts();
+    alarm-&gt;period = period;
+    alarm-&gt;start = start;
+    InsertAlarm (alarm, 0, handler);
+    ASSERTLINE (0x156, OSCheckAlarmQueue());
+    OSRestoreInterrupts (enabled);
+}
+
+void
+OSCancelAlarm (OSAlarm* alarm)
+{
+    OSAlarm* next;
+    BOOL     enabled;
+
+    enabled = OSDisableInterrupts();
+
+    if (alarm-&gt;handler == 0)
+    {
+        OSRestoreInterrupts (enabled);
+        return;
+    }
+
+    next = alarm-&gt;next;
+    if (next == 0)
+    {
+        AlarmQueue.tail = alarm-&gt;prev;
+    }
+    else
+    {
+        next-&gt;prev = alarm-&gt;prev;
+    }
+    if (alarm-&gt;prev)
+    {
+        alarm-&gt;prev-&gt;next = next;
+    }
+    else
+    {
+        AlarmQueue.head = next;
+        if (next)
+        {
+            SetTimer (next);
+        }
+    }
+    alarm-&gt;handler = 0;
+    ASSERTLINE (0x189, OSCheckAlarmQueue());
+    OSRestoreInterrupts (enabled);
+}
+
+static void
+DecrementerExceptionCallback (register __OSException exception, register OSContext* context)
+{
+#pragma unused(exception)
+
+    OSAlarm*       alarm;
+    OSAlarm*       next;
+    OSAlarmHandler handler;
+    OSTime         time;
+
+    time = OSGetTime();
+    alarm = AlarmQueue.head;
+    if (alarm == 0)
+    {
+        OSLoadContext (context);
+    }
+
+    if (time &lt; alarm-&gt;fire)
+    {
+        SetTimer (alarm);
+        OSLoadContext (context);
+    }
+
+    next = alarm-&gt;next;
+    AlarmQueue.head = next;
+    if (next == 0)
+    {
+        AlarmQueue.tail = 0;
+    }
+    else
+    {
+        next-&gt;prev = 0;
+    }
+    ASSERTLINE (0x1C2, OSCheckAlarmQueue());
+    handler = alarm-&gt;handler;
+    alarm-&gt;handler = 0;
+    if (0 &lt; alarm-&gt;period)
+    {
+        InsertAlarm (alarm, 0, handler);
+        ASSERTLINE (0x1CC, OSCheckAlarmQueue());
+    }
+
+    if (AlarmQueue.head)
+    {
+        SetTimer (AlarmQueue.head);
+    }
+
+    OSDisableScheduler();
+    handler (alarm, context);
+    OSEnableScheduler();
+    __OSReschedule();
+    OSLoadContext (context);
+}
+
+static asm void
+DecrementerExceptionHandler (register __OSException exception, register OSContext* context)
+{
+#pragma unused(exception)
+
+#ifdef __MWERKS__
+    nofralloc;
+    OS_EXCEPTION_SAVE_GPRS (context);
+    b DecrementerExceptionCallback;
+#endif
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

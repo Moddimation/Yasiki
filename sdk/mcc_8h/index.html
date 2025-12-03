@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File mcc.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-mcch">File mcc.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>mcc.h</strong></a></p>
+<p><a href="../mcc_8h_source/">Go to the source code of this file</a></p>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_f_i_o___date/"><strong>FIO_Date</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_f_i_o___daytime/"><strong>FIO_Daytime</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_f_i_o___finddata/"><strong>FIO_Finddata</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_f_i_o___stat/"><strong>FIO_Stat</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_f_i_o___timestamp/"><strong>FIO_Timestamp</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_m_c_c___channel_info/"><strong>MCC_ChannelInfo</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_m_c_c___hdr/"><strong>MCC_Hdr</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_m_c_c___hdr_fio/"><strong>MCC_HdrFio</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_m_c_c___info/"><strong>MCC_Info</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-fio_async_state"><strong>FIO_ASYNC_STATE</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-mcc_cbenumdevices"><strong>MCC_CBEnumDevices</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-mcc_cbevent"><strong>MCC_CBEvent</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-mcc_cbsysevent"><strong>MCC_CBSysEvent</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-mcc_connect"><strong>MCC_CONNECT</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-mcc_exi"><strong>MCC_EXI</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-mcc_mode"><strong>MCC_MODE</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-mcc_sync_state"><strong>MCC_SYNC_STATE</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-mcc_sysevent"><strong>MCC_SYSEVENT</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiocheckasyncdone"><strong>FIOCheckAsyncDone</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * result) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-fioexit"><strong>FIOExit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofclose"><strong>FIOFclose</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fioferror"><strong>FIOFerror</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofflush"><strong>FIOFflush</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofindfirst"><strong>FIOFindFirst</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * filename, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_f_i_o___finddata/"><strong>FIO_Finddata</strong></a> * finddata) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofindnext"><strong>FIOFindNext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_f_i_o___finddata/"><strong>FIO_Finddata</strong></a> * finddata) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofopen"><strong>FIOFopen</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * filename, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofprintf"><strong>FIOFprintf</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * format, ...) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofread"><strong>FIOFread</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofreadasync"><strong>FIOFreadAsync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofseek"><strong>FIOFseek</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> offset, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofstat"><strong>FIOFstat</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_f_i_o___stat/"><strong>FIO_Stat</strong></a> * stat) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofwrite"><strong>FIOFwrite</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiofwriteasync"><strong>FIOFwriteAsync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> handle, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiogetasyncbuffersize"><strong>FIOGetAsyncBufferSize</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-fiogetlasterror"><strong>FIOGetLastError</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fioinit"><strong>FIOInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_exi"><strong>MCC_EXI</strong></a> exiChannel, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> blockSize) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-fioquery"><strong>FIOQuery</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mcccheckasyncdone"><strong>MCCCheckAsyncDone</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccclose"><strong>MCCClose</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccenumdevices"><strong>MCCEnumDevices</strong></a> (<a href="./#typedef-mcc_cbenumdevices"><strong>MCC_CBEnumDevices</strong></a> callbackEnumDevices) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccexit"><strong>MCCExit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccgetchannelinfo"><strong>MCCGetChannelInfo</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../struct_m_c_c___info/"><strong>MCC_Info</strong></a> * info) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccgetconnectionstatus"><strong>MCCGetConnectionStatus</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_connect"><strong>MCC_CONNECT</strong></a> * connect) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccgetfreeblocks"><strong>MCCGetFreeBlocks</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_mode"><strong>MCC_MODE</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccgetlasterror"><strong>MCCGetLastError</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccinit"><strong>MCCInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_exi"><strong>MCC_EXI</strong></a> exiChannel, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> timeout, <a href="./#typedef-mcc_cbsysevent"><strong>MCC_CBSysEvent</strong></a> callbackSysEvent) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mcclock"><strong>MCCLock</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccnotify"><strong>MCCNotify</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> notify) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccopen"><strong>MCCOpen</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> blockSize, <a href="./#typedef-mcc_cbevent"><strong>MCC_CBEvent</strong></a> callbackEvent) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccping"><strong>MCCPing</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccread"><strong>MCCRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> size, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_sync_state"><strong>MCC_SYNC_STATE</strong></a> async) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccsetchanneleventmask"><strong>MCCSetChannelEventMask</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> event) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccstreamclose"><strong>MCCStreamClose</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccstreamopen"><strong>MCCStreamOpen</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> blockSize) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccstreamread"><strong>MCCStreamRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccstreamwrite"><strong>MCCStreamWrite</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dataBlockSize) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccunlock"><strong>MCCUnlock</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccwrite"><strong>MCCWrite</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> size, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="./#enum-mcc_sync_state"><strong>MCC_SYNC_STATE</strong></a> async) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="enum-fio_async_state">enum FIO_ASYNC_STATE</h3>
+<pre><code class="language-C++">enum FIO_ASYNC_STATE {
+    FIO_ASYNC_STATE_IDOL = 0,
+    FIO_ASYNC_STATE_BUSY = 1,
+    FIO_ASYNC_STATE_DONE = 2
+};
+</code></pre>
+<hr>
+
+<h3 id="typedef-mcc_cbenumdevices">typedef MCC_CBEnumDevices</h3>
+<pre><code class="language-C++">typedef int(* MCC_CBEnumDevices) (s32);
+</code></pre>
+<hr>
+
+<h3 id="typedef-mcc_cbevent">typedef MCC_CBEvent</h3>
+<pre><code class="language-C++">typedef void(* MCC_CBEvent) (enum MCC_CHANNEL channel, u32, u32);
+</code></pre>
+<hr>
+
+<h3 id="typedef-mcc_cbsysevent">typedef MCC_CBSysEvent</h3>
+<pre><code class="language-C++">typedef void(* MCC_CBSysEvent) (enum MCC_SYSEVENT sysEvent);
+</code></pre>
+<hr>
+
+<h3 id="enum-mcc_channel">enum MCC_CHANNEL</h3>
+<pre><code class="language-C++">enum MCC_CHANNEL {
+    MCC_CHANNEL_SYSTEM = 0,
+    MCC_CHANNEL_1 = 1,
+    MCC_CHANNEL_2 = 2,
+    MCC_CHANNEL_3 = 3,
+    MCC_CHANNEL_4 = 4,
+    MCC_CHANNEL_5 = 5,
+    MCC_CHANNEL_6 = 6,
+    MCC_CHANNEL_7 = 7,
+    MCC_CHANNEL_8 = 8,
+    MCC_CHANNEL_9 = 9,
+    MCC_CHANNEL_10 = 10,
+    MCC_CHANNEL_11 = 11,
+    MCC_CHANNEL_12 = 12,
+    MCC_CHANNEL_13 = 13,
+    MCC_CHANNEL_14 = 14,
+    MCC_CHANNEL_15 = 15
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-mcc_connect">enum MCC_CONNECT</h3>
+<pre><code class="language-C++">enum MCC_CONNECT {
+    MCC_CONNECT_DISCONNECT = 0,
+    MCC_CONNECT_HOST_OPEN = 1,
+    MCC_CONNECT_TARGET_OPEN = 2,
+    MCC_CONNECT_CONNECTED = 3
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-mcc_exi">enum MCC_EXI</h3>
+<pre><code class="language-C++">enum MCC_EXI {
+    MCC_EXI_0 = 0,
+    MCC_EXI_1 = 1,
+    MCC_EXI_2 = 2
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-mcc_mode">enum MCC_MODE</h3>
+<pre><code class="language-C++">enum MCC_MODE {
+    MCC_MODE_MIN = 0,
+    MCC_MODE_MAX = 1,
+    MCC_MODE_ALL = 2
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-mcc_sync_state">enum MCC_SYNC_STATE</h3>
+<pre><code class="language-C++">enum MCC_SYNC_STATE {
+    MCC_SYNC = 0,
+    MCC_ASYNC = 1
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-mcc_sysevent">enum MCC_SYSEVENT</h3>
+<pre><code class="language-C++">enum MCC_SYSEVENT {
+    MCC_SYSEVENT_UNKNOWN = 0,
+    MCC_SYSEVENT_REBOOT = 1,
+    MCC_SYSEVENT_INITIALIZED = 2,
+    MCC_SYSEVENT_PING = 3,
+    MCC_SYSEVENT_PING_RESULT = 4,
+    MCC_SYSEVENT_FLUSH = 5
+};
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-fiocheckasyncdone">function FIOCheckAsyncDone</h3>
+<pre><code class="language-C++">int FIOCheckAsyncDone (
+    u32 * result
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fioexit">function FIOExit</h3>
+<pre><code class="language-C++">void FIOExit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofclose">function FIOFclose</h3>
+<pre><code class="language-C++">int FIOFclose (
+    int handle
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fioferror">function FIOFerror</h3>
+<pre><code class="language-C++">int FIOFerror (
+    int handle
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofflush">function FIOFflush</h3>
+<pre><code class="language-C++">int FIOFflush (
+    int handle
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofindfirst">function FIOFindFirst</h3>
+<pre><code class="language-C++">int FIOFindFirst (
+    const  char * filename,
+    struct  FIO_Finddata * finddata
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofindnext">function FIOFindNext</h3>
+<pre><code class="language-C++">int FIOFindNext (
+    struct  FIO_Finddata * finddata
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofopen">function FIOFopen</h3>
+<pre><code class="language-C++">int FIOFopen (
+    const  char * filename,
+    u32 mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofprintf">function FIOFprintf</h3>
+<pre><code class="language-C++">int FIOFprintf (
+    int handle,
+    const  char * format,
+    ...
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofread">function FIOFread</h3>
+<pre><code class="language-C++">u32 FIOFread (
+    int handle,
+    void * data,
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofreadasync">function FIOFreadAsync</h3>
+<pre><code class="language-C++">int FIOFreadAsync (
+    int handle,
+    void * data,
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofseek">function FIOFseek</h3>
+<pre><code class="language-C++">u32 FIOFseek (
+    int handle,
+    s32 offset,
+    u32 mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofstat">function FIOFstat</h3>
+<pre><code class="language-C++">int FIOFstat (
+    int handle,
+    struct  FIO_Stat * stat
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofwrite">function FIOFwrite</h3>
+<pre><code class="language-C++">u32 FIOFwrite (
+    int handle,
+    void * data,
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiofwriteasync">function FIOFwriteAsync</h3>
+<pre><code class="language-C++">int FIOFwriteAsync (
+    int handle,
+    void * data,
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiogetasyncbuffersize">function FIOGetAsyncBufferSize</h3>
+<pre><code class="language-C++">u32 FIOGetAsyncBufferSize (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fiogetlasterror">function FIOGetLastError</h3>
+<pre><code class="language-C++">u8 FIOGetLastError () 
+</code></pre>
+<hr>
+
+<h3 id="function-fioinit">function FIOInit</h3>
+<pre><code class="language-C++">int FIOInit (
+    enum  MCC_EXI exiChannel,
+    enum  MCC_CHANNEL chID,
+    u8 blockSize
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-fioquery">function FIOQuery</h3>
+<pre><code class="language-C++">int FIOQuery (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mcccheckasyncdone">function MCCCheckAsyncDone</h3>
+<pre><code class="language-C++">int MCCCheckAsyncDone () 
+</code></pre>
+<hr>
+
+<h3 id="function-mccclose">function MCCClose</h3>
+<pre><code class="language-C++">int MCCClose (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccenumdevices">function MCCEnumDevices</h3>
+<pre><code class="language-C++">int MCCEnumDevices (
+    MCC_CBEnumDevices callbackEnumDevices
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccexit">function MCCExit</h3>
+<pre><code class="language-C++">void MCCExit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccgetchannelinfo">function MCCGetChannelInfo</h3>
+<pre><code class="language-C++">int MCCGetChannelInfo (
+    enum  MCC_CHANNEL chID,
+    MCC_Info * info
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccgetconnectionstatus">function MCCGetConnectionStatus</h3>
+<pre><code class="language-C++">int MCCGetConnectionStatus (
+    enum  MCC_CHANNEL chID,
+    enum  MCC_CONNECT * connect
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccgetfreeblocks">function MCCGetFreeBlocks</h3>
+<pre><code class="language-C++">u8 MCCGetFreeBlocks (
+    enum  MCC_MODE mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccgetlasterror">function MCCGetLastError</h3>
+<pre><code class="language-C++">u8 MCCGetLastError (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccinit">function MCCInit</h3>
+<pre><code class="language-C++">int MCCInit (
+    enum  MCC_EXI exiChannel,
+    u8 timeout,
+    MCC_CBSysEvent callbackSysEvent
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mcclock">function MCCLock</h3>
+<pre><code class="language-C++">int MCCLock (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccnotify">function MCCNotify</h3>
+<pre><code class="language-C++">int MCCNotify (
+    enum  MCC_CHANNEL chID,
+    u32 notify
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccopen">function MCCOpen</h3>
+<pre><code class="language-C++">int MCCOpen (
+    enum  MCC_CHANNEL chID,
+    u8 blockSize,
+    MCC_CBEvent callbackEvent
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccping">function MCCPing</h3>
+<pre><code class="language-C++">int MCCPing (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccread">function MCCRead</h3>
+<pre><code class="language-C++">int MCCRead (
+    enum  MCC_CHANNEL chID,
+    u32 offset,
+    void * data,
+    s32 size,
+    enum  MCC_SYNC_STATE async
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccsetchanneleventmask">function MCCSetChannelEventMask</h3>
+<pre><code class="language-C++">u32 MCCSetChannelEventMask (
+    enum  MCC_CHANNEL chID,
+    u32 event
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccstreamclose">function MCCStreamClose</h3>
+<pre><code class="language-C++">int MCCStreamClose (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccstreamopen">function MCCStreamOpen</h3>
+<pre><code class="language-C++">int MCCStreamOpen (
+    enum  MCC_CHANNEL chID,
+    u8 blockSize
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccstreamread">function MCCStreamRead</h3>
+<pre><code class="language-C++">u32 MCCStreamRead (
+    enum  MCC_CHANNEL chID,
+    void * data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccstreamwrite">function MCCStreamWrite</h3>
+<pre><code class="language-C++">int MCCStreamWrite (
+    enum  MCC_CHANNEL chID,
+    void * data,
+    u32 dataBlockSize
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccunlock">function MCCUnlock</h3>
+<pre><code class="language-C++">int MCCUnlock (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccwrite">function MCCWrite</h3>
+<pre><code class="language-C++">int MCCWrite (
+    enum  MCC_CHANNEL chID,
+    u32 offset,
+    void * data,
+    s32 size,
+    enum  MCC_SYNC_STATE async
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/mcc.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

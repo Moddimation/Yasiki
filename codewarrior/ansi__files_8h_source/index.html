@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File ansi_files.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-ansi_filesh">File ansi_files.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_27c31b18688c2d3b7fe1d239b44a1620/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../ansi__files_8h/"><strong>ansi_files.h</strong></a></p>
+<p><a href="../ansi__files_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/03/08 17:32:44 $ 
+ *  $Revision: 1.8 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  ansi_files.h
+ */
+
+#ifndef __ansi_files__
+#define __ansi_files__
+
+#include &lt;ansi_parms.h&gt;            /*hh 971206  this header must come first*/
+#include &lt;cstdio&gt;                  /*hh 971206  namespace support*/
+
+#define set_eof(file)                       \
+    do                                      \
+    {                                       \
+        (file)-&gt;state.io_state = __neutral; \
+        (file)-&gt;state.eof = 1;              \
+        (file)-&gt;buffer_len = 0;             \
+    }                                       \
+    while (0)
+
+#define set_error(file)             \
+    do                              \
+    {                               \
+        (file)-&gt;state.error = 1;    \
+        (file)-&gt;buffer_len = 0;     \
+    }                               \
+    while (0)
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifdef __cplusplus                  /*hh 971206  namespace support*/
+    extern &quot;C&quot; {
+#endif
+
+__std(FILE) *   __find_unopened_file(void); /* 990121 fixed __std 6 places */
+void        __init_file(__std(FILE) * file, __std(__file_modes) mode, char * buff, __std(size_t) size);
+void        __close_all(void);
+int         __flush_all(void);
+
+/*  mm 981015 If these routines are really needed, they need updating to account for dynamically */
+/*  allocated file structures  You can look on this as like the cheshire cat's smile, remaining   */
+/*  after the cat has disappeared                                                                 */
+/*int           __file_to_num(__std(FILE) * file);
+__std(FILE) *   __num_to_file(int file_num);*/
+int __flush_line_buffered_output_files(void);
+
+#ifdef __cplusplus                  /*hh 971206  expanded _extern macro*/
+    }
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+
+#endif
+/*     Change record
+ * hh 971206  namespace support
+ * mm 981015  Commented out __file_to_num and __num_to_file while investigating whether they are really needed.
+ * 990121 fixed __std 6 places
+ * 990308 blc  fixed tabbing on macro definitions
+*/
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="msg_8h" kind="file" language="C++">
+    <compoundname>msg.h</compoundname>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <includes local="yes">dolphin/types.h</includes>
+    <includedby refid="msg_8c" local="yes">msg.c</includedby>
+    <includedby refid="msghndlr_8c" local="yes">msghndlr.c</includedby>
+    <includedby refid="support_8c" local="yes">support.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>msg.c</label>
+        <link refid="msg_8c"/>
+      </node>
+      <node id="3">
+        <label>msghndlr.c</label>
+        <link refid="msghndlr_8c"/>
+      </node>
+      <node id="4">
+        <label>support.c</label>
+        <link refid="support_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct___t_r_k___msg" prot="public">_TRK_Msg</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="msg_8h_1ace8d2628c07b01b974f0123ffa3d29d5" prot="public" static="no">
+        <type>struct <ref refid="struct___t_r_k___msg" kindref="compound">_TRK_Msg</ref></type>
+        <definition>typedef struct _TRK_Msg TRK_Msg</definition>
+        <argsstring></argsstring>
+        <name>TRK_Msg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/msg.h" line="12" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKMessageSend</definition>
+        <argsstring>(TRK_Msg *msg)</argsstring>
+        <name>TRKMessageSend</name>
+        <param>
+          <type><ref refid="msg_8h_1ace8d2628c07b01b974f0123ffa3d29d5" kindref="member">TRK_Msg</ref> *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/msg.h" line="18" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/msg.c" bodystart="5" bodyend="9" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/msg.h" declline="18" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="struct___t_r_k___msg_1a7eb46377141aea2e512f5635e832561e" compoundref="msg_8h" startline="11">_TRK_Msg::m_msg</references>
+        <references refid="struct___t_r_k___msg_1a3dfde36b24337d44e0b28598540d6afa" compoundref="msg_8h" startline="9">_TRK_Msg::m_msgLength</references>
+        <references refid="dolphin__trk__glue_8h_1ae1f3633c297b6864b7e495f2fdcfb232" compoundref="dolphin__trk__glue_8c" startline="106" endline="110">TRKWriteUARTN</references>
+        <referencedby refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" compoundref="support_8c" startline="105" endline="177">TRKRequestSend</referencedby>
+        <referencedby refid="msghndlr_8c_1ab0b8ff950fd0676ea933645dfe5d9a71" compoundref="msghndlr_8c" startline="18" endline="30">TRKSendACK</referencedby>
+        <referencedby refid="support_8h_1a854fab9a6aa5fb8a16021f32df8b68f5" compoundref="support_8c" startline="9" endline="103">TRKSuppAccessFile</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>METROTRK_PORTABLE_MSG_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>METROTRK_PORTABLE_MSG_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dolphin/types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="struct___t_r_k___msg" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct___t_r_k___msg" kindref="compound">_TRK_Msg</ref><sp/>{</highlight></codeline>
+<codeline lineno="8" refid="struct___t_r_k___msg_1a99d7b6910f91952a2bf76c9dec2d8a63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="struct___t_r_k___msg_1a99d7b6910f91952a2bf76c9dec2d8a63" kindref="member">_00</ref>[8];</highlight></codeline>
+<codeline lineno="9" refid="struct___t_r_k___msg_1a3dfde36b24337d44e0b28598540d6afa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct___t_r_k___msg_1a3dfde36b24337d44e0b28598540d6afa" kindref="member">m_msgLength</ref>;</highlight></codeline>
+<codeline lineno="10" refid="struct___t_r_k___msg_1acf09c8e390e11846f72d69e5432a8426" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct___t_r_k___msg_1acf09c8e390e11846f72d69e5432a8426" kindref="member">_0C</ref>;</highlight></codeline>
+<codeline lineno="11" refid="struct___t_r_k___msg_1a7eb46377141aea2e512f5635e832561e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="struct___t_r_k___msg_1a7eb46377141aea2e512f5635e832561e" kindref="member">m_msg</ref>;</highlight></codeline>
+<codeline lineno="12" refid="msg_8h_1ace8d2628c07b01b974f0123ffa3d29d5" refkind="member"><highlight class="normal">}<sp/><ref refid="msg_8h_1ace8d2628c07b01b974f0123ffa3d29d5" kindref="member">TRK_Msg</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="msg_8h_1a203bf9c50b4319005a017bd85031a0b0" kindref="member">TRKMessageSend</ref>(<ref refid="struct___t_r_k___msg" kindref="compound">TRK_Msg</ref>*<sp/>msg);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METROTRK_PORTABLE_MSG_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/msg.h"/>
+  </compounddef>
+</doxygen>

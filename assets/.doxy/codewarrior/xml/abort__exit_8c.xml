@@ -1,0 +1,982 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="abort__exit_8c" kind="file" language="C++">
+    <compoundname>abort_exit.c</compoundname>
+    <includes refid="abort__exit_8h" local="yes">abort_exit.h</includes>
+    <includes refid="critical__regions_8h" local="yes">critical_regions.h</includes>
+    <includes refid="misc__io_8h" local="yes">misc_io.h</includes>
+    <includes refid="signal_8h" local="no">signal.h</includes>
+    <includes refid="setjmp_8h" local="no">setjmp.h</includes>
+    <includes refid="cstdlib" local="no">cstdlib</includes>
+    <includes refid="stdio_8h" local="no">stdio.h</includes>
+    <includes refid="pool__alloc_8h" local="no">pool_alloc.h</includes>
+    <includes local="no">console.h</includes>
+    <includes local="no">SegLoad.h</includes>
+    <includes local="no">Processes.h</includes>
+    <includes local="no">WINDEF.H</includes>
+    <includes local="no">WINBASE.H</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>abort_exit.h</label>
+        <link refid="abort__exit_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>critical_regions.h</label>
+        <link refid="critical__regions_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>csetjmp</label>
+        <link refid="csetjmp"/>
+      </node>
+      <node id="9">
+        <label>csignal</label>
+        <link refid="csignal"/>
+      </node>
+      <node id="14">
+        <label>cstdio</label>
+        <link refid="cstdio"/>
+      </node>
+      <node id="12">
+        <label>cstdlib</label>
+        <link refid="cstdlib"/>
+      </node>
+      <node id="7">
+        <label>misc_io.h</label>
+        <link refid="misc__io_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>pool_alloc.h</label>
+        <link refid="pool__alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>setjmp.h</label>
+        <link refid="setjmp_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>signal.h</label>
+        <link refid="signal_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>size_t.h</label>
+        <link refid="size__t_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>stdio.h</label>
+        <link refid="stdio_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>abort_exit.c</label>
+        <link refid="abort__exit_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Processes.h</label>
+      </node>
+      <node id="18">
+        <label>SegLoad.h</label>
+      </node>
+      <node id="21">
+        <label>WINBASE.H</label>
+      </node>
+      <node id="20">
+        <label>WINDEF.H</label>
+      </node>
+      <node id="17">
+        <label>console.h</label>
+      </node>
+      <node id="5">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="abort__exit_8c_1a5587ab61f1e328178e81170b700bef44" prot="public" static="no">
+        <name>max_funcs</name>
+        <initializer>64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="61" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="61" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="abort__exit_8c_1a66cf921a942abd8bc7f3a1b7907623c3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int __aborting</definition>
+        <argsstring></argsstring>
+        <name>__aborting</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="73" column="4" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="73" bodyend="-1"/>
+        <referencedby refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" compoundref="abort__exit_8c" startline="204" endline="254">_libc_exit_</referencedby>
+        <referencedby refid="abort__exit_8c_1a8dec7c95227ff149687066cf04029191" compoundref="abort__exit_8c" startline="120" endline="132">abort</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" prot="public" static="yes" mutable="no">
+        <type>void(*</type>
+        <definition>void(* atexit_funcs[max_funcs])(void)</definition>
+        <argsstring>[max_funcs])(void)</argsstring>
+        <name>atexit_funcs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="75" column="8" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="75" bodyend="-1"/>
+        <referencedby refid="abort__exit_8h_1abf637c452b7d3a3afc3a5afe705a08a3" compoundref="abort__exit_8c" startline="327" endline="362">_CleanUpMSL</referencedby>
+        <referencedby refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" compoundref="abort__exit_8c" startline="204" endline="254">_libc_exit_</referencedby>
+        <referencedby refid="abort__exit_8c_1a7fd89c82095df80e5e12d6b2834a2acc" compoundref="abort__exit_8c" startline="134" endline="149">atexit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" prot="public" static="yes" mutable="no">
+        <type>long</type>
+        <definition>long atexit_curr_func</definition>
+        <argsstring></argsstring>
+        <name>atexit_curr_func</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="76" column="12" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="76" bodyend="-1"/>
+        <referencedby refid="abort__exit_8h_1abf637c452b7d3a3afc3a5afe705a08a3" compoundref="abort__exit_8c" startline="327" endline="362">_CleanUpMSL</referencedby>
+        <referencedby refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" compoundref="abort__exit_8c" startline="204" endline="254">_libc_exit_</referencedby>
+        <referencedby refid="abort__exit_8c_1a7fd89c82095df80e5e12d6b2834a2acc" compoundref="abort__exit_8c" startline="134" endline="149">atexit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1a3d038a74a166036c7c3c77148e25a564" prot="public" static="yes" mutable="no">
+        <type>void(*</type>
+        <definition>void(* __atexit_funcs[max_funcs])(void)</definition>
+        <argsstring>[max_funcs])(void)</argsstring>
+        <name>__atexit_funcs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="78" column="8" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="78" bodyend="-1"/>
+        <referencedby refid="abort__exit_8h_1a50f375f4a5eeeee9c01e46bfca9c5cea" compoundref="abort__exit_8c" startline="151" endline="166">__atexit</referencedby>
+        <referencedby refid="abort__exit_8h_1a1b1d3b3a531a287b1e61061a1e5eca16" compoundref="abort__exit_8c" startline="265" endline="310">__exit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" prot="public" static="yes" mutable="no">
+        <type>long</type>
+        <definition>long __atexit_curr_func</definition>
+        <argsstring></argsstring>
+        <name>__atexit_curr_func</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="79" column="12" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="79" bodyend="-1"/>
+        <referencedby refid="abort__exit_8h_1a50f375f4a5eeeee9c01e46bfca9c5cea" compoundref="abort__exit_8c" startline="151" endline="166">__atexit</referencedby>
+        <referencedby refid="abort__exit_8h_1a1b1d3b3a531a287b1e61061a1e5eca16" compoundref="abort__exit_8c" startline="265" endline="310">__exit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1ae86c76c90188895d5562851442f20aaa" prot="public" static="no" mutable="no">
+        <type>void(*</type>
+        <definition>void(* __stdio_exit) (void)=0</definition>
+        <argsstring>)(void)=0</argsstring>
+        <name>__stdio_exit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="81" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="81" bodyend="-1"/>
+        <referencedby refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" compoundref="misc__io_8c" startline="63" endline="74">__stdio_atexit</referencedby>
+        <referencedby refid="abort__exit_8h_1abf637c452b7d3a3afc3a5afe705a08a3" compoundref="abort__exit_8c" startline="327" endline="362">_CleanUpMSL</referencedby>
+        <referencedby refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" compoundref="abort__exit_8c" startline="204" endline="254">_libc_exit_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1aad113499266691d7224931924ee44a03" prot="public" static="no" mutable="no">
+        <type>void(*</type>
+        <definition>void(* __console_exit) (void)=0</definition>
+        <argsstring>)(void)=0</argsstring>
+        <name>__console_exit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="82" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="82" bodyend="-1"/>
+        <referencedby refid="abort__exit_8h_1a1b1d3b3a531a287b1e61061a1e5eca16" compoundref="abort__exit_8c" startline="265" endline="310">__exit</referencedby>
+        <referencedby refid="abort__exit_8h_1abf637c452b7d3a3afc3a5afe705a08a3" compoundref="abort__exit_8c" startline="327" endline="362">_CleanUpMSL</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1afd43c499d51daf8084276bc7c61b2461" prot="public" static="no" extern="yes" mutable="no">
+        <type>void(*</type>
+        <definition>void(* __atexit_hook) (void)</definition>
+        <argsstring>)(void)</argsstring>
+        <name>__atexit_hook</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="90" column="8" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" declline="90" declcolumn="8"/>
+        <referencedby refid="abort__exit_8h_1a2928d5c77c24d23af71ecc0c2eab33ad" compoundref="abort__exit_8c" startline="107" endline="116">__setup_exit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1a97fafaff8aba7f668071bb0d280e9cdc" prot="public" static="no" extern="yes" mutable="no">
+        <type>void(*</type>
+        <definition>void(* ___atexit_hook) (void)</definition>
+        <argsstring>)(void)</argsstring>
+        <name>___atexit_hook</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="91" column="8" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" declline="91" declcolumn="8"/>
+        <referencedby refid="abort__exit_8h_1a2928d5c77c24d23af71ecc0c2eab33ad" compoundref="abort__exit_8c" startline="107" endline="116">__setup_exit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="abort__exit_8c_1a33c79915aa752cbd06f3d906fe93e0ab" prot="public" static="yes" mutable="no">
+        <type>short</type>
+        <definition>short exitSetup</definition>
+        <argsstring></argsstring>
+        <name>exitSetup</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="95" column="14" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="95" bodyend="-1"/>
+        <referencedby refid="abort__exit_8h_1a2928d5c77c24d23af71ecc0c2eab33ad" compoundref="abort__exit_8c" startline="107" endline="116">__setup_exit</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="abort__exit_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __destroy_global_chain</definition>
+        <argsstring>(void)</argsstring>
+        <name>__destroy_global_chain</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="67" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c" bodystart="61" bodyend="70" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" declline="67" declcolumn="13"/>
+        <references refid="global__destructor__chain_8c_1adcda40838abcde863d67edde5acb6767" compoundref="global__destructor__chain_8c" startline="35">__global_destructor_chain</references>
+        <references refid="struct_destructor_chain_1a80660a2505445d58ad4e561fdd543c5f" compoundref="_n_m_w_exception_8h" startline="29">DestructorChain::destructor</references>
+        <references refid="_m_w_c_plus_lib_8h_1ae4104a73d99126d2aa8f0d534292c6bd" compoundref="_m_w_c_plus_lib_8h" startline="86" endline="87">DTORCALL_COMPLETE</references>
+        <references refid="struct_destructor_chain_1a766d473a707bd7b0f3d2c3258238a9b6" compoundref="_n_m_w_exception_8h" startline="28">DestructorChain::next</references>
+        <references refid="struct_destructor_chain_1add7d77c8737fc1ae476cadf9a3030131" compoundref="_n_m_w_exception_8h" startline="30">DestructorChain::object</references>
+        <referencedby refid="abort__exit_8h_1abf637c452b7d3a3afc3a5afe705a08a3" compoundref="abort__exit_8c" startline="327" endline="362">_CleanUpMSL</referencedby>
+        <referencedby refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" compoundref="abort__exit_8c" startline="204" endline="254">_libc_exit_</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1aa7f506141dc5be135d9d298218948477" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ___teardown_be</definition>
+        <argsstring>(int)</argsstring>
+        <name>___teardown_be</name>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="93" column="13" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" declline="93" declcolumn="13"/>
+        <referencedby refid="abort__exit_8h_1a1b1d3b3a531a287b1e61061a1e5eca16" compoundref="abort__exit_8c" startline="265" endline="310">__exit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1ae0aa439e2a041dd5169403fb8ec71ea1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ANSI_Exit</definition>
+        <argsstring>(void)</argsstring>
+        <name>ANSI_Exit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="97" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="97" bodyend="100"/>
+        <references refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3">exit</references>
+        <referencedby refid="abort__exit_8h_1a2928d5c77c24d23af71ecc0c2eab33ad" compoundref="abort__exit_8c" startline="107" endline="116">__setup_exit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1adc33b20ed8514f94121586979a29e838" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ANSI__Exit</definition>
+        <argsstring>(void)</argsstring>
+        <name>ANSI__Exit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="102" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="102" bodyend="105"/>
+        <references refid="abort__exit_8c_1a1b1d3b3a531a287b1e61061a1e5eca16" compoundref="abort__exit_8c" startline="265" endline="310">__exit</references>
+        <referencedby refid="abort__exit_8h_1a2928d5c77c24d23af71ecc0c2eab33ad" compoundref="abort__exit_8c" startline="107" endline="116">__setup_exit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1a2928d5c77c24d23af71ecc0c2eab33ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __setup_exit</definition>
+        <argsstring>(void)</argsstring>
+        <name>__setup_exit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="107" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="107" bodyend="116"/>
+        <references refid="abort__exit_8c_1a97fafaff8aba7f668071bb0d280e9cdc">___atexit_hook</references>
+        <references refid="abort__exit_8c_1afd43c499d51daf8084276bc7c61b2461">__atexit_hook</references>
+        <references refid="abort__exit_8c_1adc33b20ed8514f94121586979a29e838" compoundref="abort__exit_8c" startline="102" endline="105">ANSI__Exit</references>
+        <references refid="abort__exit_8c_1ae0aa439e2a041dd5169403fb8ec71ea1" compoundref="abort__exit_8c" startline="97" endline="100">ANSI_Exit</references>
+        <references refid="abort__exit_8c_1a33c79915aa752cbd06f3d906fe93e0ab" compoundref="abort__exit_8c" startline="95">exitSetup</references>
+        <referencedby refid="abort__exit_8h_1a50f375f4a5eeeee9c01e46bfca9c5cea" compoundref="abort__exit_8c" startline="151" endline="166">__atexit</referencedby>
+        <referencedby refid="misc__io_8h_1a2d5ac5ed17a0437c1b9305d4c0088e69" compoundref="misc__io_8c" startline="63" endline="74">__stdio_atexit</referencedby>
+        <referencedby refid="abort__exit_8c_1a7fd89c82095df80e5e12d6b2834a2acc" compoundref="abort__exit_8c" startline="134" endline="149">atexit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1a8dec7c95227ff149687066cf04029191" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void abort</definition>
+        <argsstring>(void)</argsstring>
+        <name>abort</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="120" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="120" bodyend="132"/>
+        <references refid="abort__exit_8c_1a66cf921a942abd8bc7f3a1b7907623c3" compoundref="abort__exit_8c" startline="73">__aborting</references>
+        <references refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3">exit</references>
+        <references refid="signal_8c_1a196abd7ec6555d116be95a6921353058" compoundref="signal_8c" startline="50" endline="75">raise</references>
+        <referencedby refid="assert_8c_1ab64ab22604a6e73a10bf3622cb74de29" compoundref="assert_8c" startline="66" endline="85">__assertion_failed</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1a7fd89c82095df80e5e12d6b2834a2acc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int atexit</definition>
+        <argsstring>(void(*func)(void))</argsstring>
+        <name>atexit</name>
+        <param>
+          <type>void(*)(void)</type>
+          <declname>func</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="134" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="134" bodyend="149"/>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="abort__exit_8c_1a2928d5c77c24d23af71ecc0c2eab33ad" compoundref="abort__exit_8c" startline="107" endline="116">__setup_exit</references>
+        <references refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" compoundref="abort__exit_8c" startline="76">atexit_curr_func</references>
+        <references refid="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" compoundref="abort__exit_8c" startline="75">atexit_funcs</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" compoundref="critical__regions_8h" startline="46">atexit_funcs_access</references>
+        <references refid="abort__exit_8c_1a5587ab61f1e328178e81170b700bef44" compoundref="abort__exit_8c" startline="61">max_funcs</references>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1a50f375f4a5eeeee9c01e46bfca9c5cea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __atexit</definition>
+        <argsstring>(void(*func)(void))</argsstring>
+        <name>__atexit</name>
+        <param>
+          <type>void(*)(void)</type>
+          <declname>func</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="151" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="151" bodyend="166"/>
+        <references refid="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" compoundref="abort__exit_8c" startline="79">__atexit_curr_func</references>
+        <references refid="abort__exit_8c_1a3d038a74a166036c7c3c77148e25a564" compoundref="abort__exit_8c" startline="78">__atexit_funcs</references>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="abort__exit_8c_1a2928d5c77c24d23af71ecc0c2eab33ad" compoundref="abort__exit_8c" startline="107" endline="116">__setup_exit</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" compoundref="critical__regions_8h" startline="46">atexit_funcs_access</references>
+        <references refid="abort__exit_8c_1a5587ab61f1e328178e81170b700bef44" compoundref="abort__exit_8c" startline="61">max_funcs</references>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _libc_exit_</definition>
+        <argsstring>(int status)</argsstring>
+        <name>_libc_exit_</name>
+        <param>
+          <type>int</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="204" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="204" bodyend="254"/>
+        <references refid="abort__exit_8c_1a66cf921a942abd8bc7f3a1b7907623c3" compoundref="abort__exit_8c" startline="73">__aborting</references>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="abort__exit_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" compoundref="global__destructor__chain_8c" startline="61" endline="70">__destroy_global_chain</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="abort__exit_8c_1a1b1d3b3a531a287b1e61061a1e5eca16" compoundref="abort__exit_8c" startline="265" endline="310">__exit</references>
+        <references refid="abort__exit_8c_1ae86c76c90188895d5562851442f20aaa" compoundref="abort__exit_8c" startline="81">__stdio_exit</references>
+        <references refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" compoundref="abort__exit_8c" startline="76">atexit_curr_func</references>
+        <references refid="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" compoundref="abort__exit_8c" startline="75">atexit_funcs</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" compoundref="critical__regions_8h" startline="46">atexit_funcs_access</references>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1a1b1d3b3a531a287b1e61061a1e5eca16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __exit</definition>
+        <argsstring>(int status)</argsstring>
+        <name>__exit</name>
+        <param>
+          <type>int</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="265" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="265" bodyend="310"/>
+        <references refid="abort__exit_8c_1aa7f506141dc5be135d9d298218948477">___teardown_be</references>
+        <references refid="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" compoundref="abort__exit_8c" startline="79">__atexit_curr_func</references>
+        <references refid="abort__exit_8c_1a3d038a74a166036c7c3c77148e25a564" compoundref="abort__exit_8c" startline="78">__atexit_funcs</references>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="abort__exit_8c_1aad113499266691d7224931924ee44a03" compoundref="abort__exit_8c" startline="82">__console_exit</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="critical__regions_8h_1a2fb667521e9014bb6eac858b483fa422" compoundref="critical__regions_8ppc__eabi_8c" startline="33" endline="35">__kill_critical_regions</references>
+        <references refid="abort__exit_8h_1aa9c237990ae8c96886fa276a80956c61">_ExitProcess</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" compoundref="critical__regions_8h" startline="46">atexit_funcs_access</references>
+        <referencedby refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" compoundref="abort__exit_8c" startline="204" endline="254">_libc_exit_</referencedby>
+        <referencedby refid="abort__exit_8c_1adc33b20ed8514f94121586979a29e838" compoundref="abort__exit_8c" startline="102" endline="105">ANSI__Exit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="abort__exit_8c_1abf637c452b7d3a3afc3a5afe705a08a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _CleanUpMSL</definition>
+        <argsstring>()</argsstring>
+        <name>_CleanUpMSL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" line="327" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c" bodystart="327" bodyend="362"/>
+        <references refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" compoundref="critical__regions_8h" startline="61">__begin_critical_region</references>
+        <references refid="abort__exit_8c_1aad113499266691d7224931924ee44a03" compoundref="abort__exit_8c" startline="82">__console_exit</references>
+        <references refid="abort__exit_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" compoundref="global__destructor__chain_8c" startline="61" endline="70">__destroy_global_chain</references>
+        <references refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" compoundref="critical__regions_8h" startline="62">__end_critical_region</references>
+        <references refid="critical__regions_8h_1a2fb667521e9014bb6eac858b483fa422" compoundref="critical__regions_8ppc__eabi_8c" startline="33" endline="35">__kill_critical_regions</references>
+        <references refid="pool__alloc_8h_1aef60da33268dd65eaecd1fed441af591">__pool_free_all</references>
+        <references refid="abort__exit_8c_1ae86c76c90188895d5562851442f20aaa" compoundref="abort__exit_8c" startline="81">__stdio_exit</references>
+        <references refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" compoundref="abort__exit_8c" startline="76">atexit_curr_func</references>
+        <references refid="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" compoundref="abort__exit_8c" startline="75">atexit_funcs</references>
+        <references refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" compoundref="critical__regions_8h" startline="46">atexit_funcs_access</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>2000/10/30<sp/>22:24:16<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.11.4.2.4.1<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>abort_exit.c</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>Routines</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>--------</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>abort</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>atexit</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>exit</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__atexit</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__exit</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__setup_exit</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="abort__exit_8h" kindref="compound">abort_exit.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="critical__regions_8h" kindref="compound">critical_regions.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="misc__io_8h" kindref="compound">misc_io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="signal_8h" kindref="compound">signal.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="setjmp_8h" kindref="compound">setjmp.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="cstdlib" kindref="compound">cstdlib</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stdio_8h" kindref="compound">stdio.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="pool__alloc_8h" kindref="compound">pool_alloc.h</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>mf<sp/>980825<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>macintosh<sp/>&amp;&amp;<sp/>!defined(__dest_os)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*MW-mm<sp/>960927a*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#define<sp/>__dest_os<sp/>__mac_os<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*MW-mm<sp/>960927a*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*MW-mm<sp/>960927a*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__undef_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#error<sp/>__dest_os<sp/>undefined</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__mac_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;console.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;SegLoad.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Processes.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__win32_os<sp/>||<sp/>__dest_os<sp/>==<sp/>__wince_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>#include<sp/>&lt;Windows.h&gt;<sp/>hh<sp/>980122<sp/>commented<sp/>out.<sp/><sp/>A<sp/>real<sp/>problem<sp/>child.</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>next<sp/>two<sp/>includes<sp/>do<sp/>the<sp/>job<sp/>right.</highlight></codeline>
+<codeline lineno="56"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;WINDEF.H&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;WINBASE.H&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="abort__exit_8c_1a5587ab61f1e328178e81170b700bef44" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>max_funcs<sp/><sp/><sp/>64</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" kindref="member">__destroy_global_chain</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="abort__exit_8h_1a66cf921a942abd8bc7f3a1b7907623c3" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1a66cf921a942abd8bc7f3a1b7907623c3" kindref="member">__aborting</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>hh<sp/>971206<sp/><sp/>just<sp/>moved<sp/>from<sp/>below<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>void<sp/>(*<ref refid="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" kindref="member">atexit_funcs</ref>[<ref refid="abort__exit_8c_1a5587ab61f1e328178e81170b700bef44" kindref="member">max_funcs</ref>])(void);</highlight></codeline>
+<codeline lineno="76" refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" kindref="member">atexit_curr_func</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="abort__exit_8c_1a3d038a74a166036c7c3c77148e25a564" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>void<sp/>(*<ref refid="abort__exit_8c_1a3d038a74a166036c7c3c77148e25a564" kindref="member">__atexit_funcs</ref>[<ref refid="abort__exit_8c_1a5587ab61f1e328178e81170b700bef44" kindref="member">max_funcs</ref>])(void);</highlight></codeline>
+<codeline lineno="79" refid="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" kindref="member">__atexit_curr_func</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="abort__exit_8h_1a99117c2c18e6d7ddd3e230907208129b" refkind="member"><highlight class="normal">void<sp/>(*<sp/><ref refid="abort__exit_8c_1ae86c76c90188895d5562851442f20aaa" kindref="member">__stdio_exit</ref>)<sp/><sp/>(void)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="82" refid="abort__exit_8h_1a21afe9d81a07f49e0ba91c0910ef87a4" refkind="member"><highlight class="normal">void<sp/>(*<sp/><ref refid="abort__exit_8c_1aad113499266691d7224931924ee44a03" kindref="member">__console_exit</ref>)(void)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__win32_os)<sp/>&amp;&amp;<sp/>(STOP_PROGRAM_BEFORE_EXIT==1)<sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>__StopProgramBeforeExit();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__be_os<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ELR<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>void<sp/>(*<ref refid="abort__exit_8c_1afd43c499d51daf8084276bc7c61b2461" kindref="member">__atexit_hook</ref>)(void);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>void<sp/>(*<ref refid="abort__exit_8c_1a97fafaff8aba7f668071bb0d280e9cdc" kindref="member">___atexit_hook</ref>)(void);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="abort__exit_8c_1aa7f506141dc5be135d9d298218948477" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1aa7f506141dc5be135d9d298218948477" kindref="member">___teardown_be</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="abort__exit_8c_1a33c79915aa752cbd06f3d906fe93e0ab" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1a33c79915aa752cbd06f3d906fe93e0ab" kindref="member">exitSetup</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="abort__exit_8c_1ae0aa439e2a041dd5169403fb8ec71ea1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1ae0aa439e2a041dd5169403fb8ec71ea1" kindref="member">ANSI_Exit</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3" kindref="member">exit</ref>(0);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="abort__exit_8c_1adc33b20ed8514f94121586979a29e838" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1adc33b20ed8514f94121586979a29e838" kindref="member">ANSI__Exit</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a1b1d3b3a531a287b1e61061a1e5eca16" kindref="member">__exit</ref>(0);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="abort__exit_8h_1a2928d5c77c24d23af71ecc0c2eab33ad" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1a2928d5c77c24d23af71ecc0c2eab33ad" kindref="member">__setup_exit</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="abort__exit_8c_1a33c79915aa752cbd06f3d906fe93e0ab" kindref="member">exitSetup</ref>)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1afd43c499d51daf8084276bc7c61b2461" kindref="member">__atexit_hook</ref><sp/><sp/><sp/><sp/>=<sp/><ref refid="abort__exit_8c_1ae0aa439e2a041dd5169403fb8ec71ea1" kindref="member">ANSI_Exit</ref>;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a97fafaff8aba7f668071bb0d280e9cdc" kindref="member">___atexit_hook</ref><sp/>=<sp/><ref refid="abort__exit_8c_1adc33b20ed8514f94121586979a29e838" kindref="member">ANSI__Exit</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a33c79915aa752cbd06f3d906fe93e0ab" kindref="member">exitSetup</ref>++;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="abort__exit_8c_1a8dec7c95227ff149687066cf04029191" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a8dec7c95227ff149687066cf04029191" kindref="member">abort</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__win32_os)<sp/>&amp;&amp;<sp/>(_WINSIOUX==1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>WinSIOUXAbort();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>(__dest_os<sp/>==<sp/>__win32_os)<sp/>&amp;&amp;<sp/>(STOP_PROGRAM_BEFORE_EXIT==1)<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>__StopProgramBeforeExit();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="signal_8c_1a196abd7ec6555d116be95a6921353058" kindref="member">raise</ref>(SIGABRT);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a66cf921a942abd8bc7f3a1b7907623c3" kindref="member">__aborting</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3" kindref="member">exit</ref>(EXIT_FAILURE);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="abort__exit_8c_1a7fd89c82095df80e5e12d6b2834a2acc" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1a7fd89c82095df80e5e12d6b2834a2acc" kindref="member">atexit</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>(*func)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">{<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" kindref="member">atexit_curr_func</ref><sp/>==<sp/><ref refid="abort__exit_8c_1a5587ab61f1e328178e81170b700bef44" kindref="member">max_funcs</ref>)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" kindref="member">__begin_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>961218<sp/>KO<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a2928d5c77c24d23af71ecc0c2eab33ad" kindref="member">__setup_exit</ref>();</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" kindref="member">atexit_funcs</ref>[<ref refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" kindref="member">atexit_curr_func</ref>++]<sp/>=<sp/>func;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" kindref="member">__end_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="abort__exit_8h_1a50f375f4a5eeeee9c01e46bfca9c5cea" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1a50f375f4a5eeeee9c01e46bfca9c5cea" kindref="member">__atexit</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>(*func)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">{<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" kindref="member">__atexit_curr_func</ref><sp/>==<sp/><ref refid="abort__exit_8c_1a5587ab61f1e328178e81170b700bef44" kindref="member">max_funcs</ref>)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" kindref="member">__begin_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>961218<sp/>KO<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a2928d5c77c24d23af71ecc0c2eab33ad" kindref="member">__setup_exit</ref>();</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a3d038a74a166036c7c3c77148e25a564" kindref="member">__atexit_funcs</ref>[<ref refid="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" kindref="member">__atexit_curr_func</ref>++]<sp/>=<sp/>func;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" kindref="member">__end_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>mdf<sp/><sp/>971021<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__win32_os)<sp/>&amp;&amp;<sp/>(STOP_PROGRAM_BEFORE_EXIT==1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>__StopProgramBeforeExit()</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>DWORD<sp/>read;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>HANDLE<sp/>h;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>SECURITY_ATTRIBUTES<sp/>sa={</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(SECURITY_ATTRIBUTES),<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,TRUE};</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf=</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(GetFileType(GetStdHandle(STD_OUTPUT_HANDLE))==FILE_TYPE_CHAR)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n<sp/>\n<sp/>Press<sp/>Enter<sp/>to<sp/>continue<sp/>\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>fflush(stdin);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remove<sp/>line<sp/><sp/>mdf<sp/><sp/>971119<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>971019<sp/><sp/>mdf<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>h=CreateFile(</highlight><highlight class="stringliteral">&quot;CONIN$&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GENERIC_READ<sp/>|<sp/>GENERIC_WRITE,</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FILE_SHARE_READ<sp/>|<sp/>FILE_SHARE_WRITE,</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;sa,</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPEN_EXISTING,<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>,<ref refid="null_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!ReadFile(h,<sp/>&amp;buf,<sp/>1,<sp/>&amp;read,0))</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>read=GetLastError();</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;exit<sp/>routine<sp/>error<sp/>GetLastError=%i<sp/>\n&quot;</highlight><highlight class="normal">,read);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>971019<sp/><sp/>end<sp/>insert<sp/>code<sp/><sp/>mdf<sp/><sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__m56800__<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981015<sp/>*/</highlight><highlight class="preprocessor"><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981029<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__be_os<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ELR<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204" refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1ad519058cb91c4055da4e73a08f6b2f4e" kindref="member">_libc_exit_</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status)</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3" kindref="member">exit</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status)</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="abort__exit_8c_1a66cf921a942abd8bc7f3a1b7907623c3" kindref="member">__aborting</ref>)</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" kindref="member">__begin_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" kindref="member">atexit_curr_func</ref><sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<ref refid="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" kindref="member">atexit_funcs</ref>[--<ref refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" kindref="member">atexit_curr_func</ref>])();</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__win32_os)<sp/>&amp;&amp;<sp/>(_WINSIOUX==1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990122<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WinSIOUXAbort();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>990122<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>(__dest_os<sp/>==<sp/>__win32_os)<sp/>&amp;&amp;<sp/>(STOP_PROGRAM_BEFORE_EXIT==1)</highlight><highlight class="comment">/*<sp/>mm<sp/>990122<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__StopProgramBeforeExit();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981227<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" kindref="member">__end_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="224"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>970218<sp/>bkoz</highlight></codeline>
+<codeline lineno="225"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>need<sp/>to<sp/>move<sp/>destroy<sp/>global<sp/>chain<sp/>above<sp/>__stdio_exit<sp/>as</highlight></codeline>
+<codeline lineno="226"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>some<sp/>static<sp/>objects<sp/>may<sp/>have<sp/>destructors<sp/>that<sp/>flush<sp/>streams</highlight></codeline>
+<codeline lineno="227"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>#if<sp/>!__INTEL__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>#if<sp/><sp/>__MIPS__<sp/>||<sp/>__POWERPC__<sp/>||<sp/>__CFM68K__<sp/>||<sp/>(__MC68K__<sp/>&amp;&amp;<sp/>__A5__)<sp/>||<sp/>(__dest_os<sp/>==<sp/>__be_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" kindref="member">__destroy_global_chain</ref>();</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>#if<sp/><sp/>__PPC_EABI__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>void<sp/>(*voidfunctionptr)<sp/>(void);<sp/></highlight><highlight class="comment">/*<sp/>ptr<sp/>to<sp/>function<sp/>returning<sp/>void<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>voidfunctionptr<sp/>_dtors[];</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>voidfunctionptr<sp/>*destructor;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="238"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>call<sp/>other<sp/>destructors</highlight></codeline>
+<codeline lineno="239"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(destructor<sp/>=<sp/>_dtors;<sp/>*destructor;<sp/>destructor++)<sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*destructor)();</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1ae86c76c90188895d5562851442f20aaa" kindref="member">__stdio_exit</ref>)</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*__stdio_exit)();</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1ae86c76c90188895d5562851442f20aaa" kindref="member">__stdio_exit</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1a1b1d3b3a531a287b1e61061a1e5eca16" kindref="member">__exit</ref>(status);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight><highlight class="preprocessor">#else<sp/></highlight><highlight class="comment">/*<sp/>__m56800__<sp/>defined<sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981015<sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981029<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>exit_dsp568();</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="____start__for__spuce_8c_1a6f255d924f7a6bb2c4be0c8c2f2d9ce3" kindref="member">exit</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status)</highlight></codeline>
+<codeline lineno="259"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>exit_dsp568();</highlight></codeline>
+<codeline lineno="261"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>__m56800__<sp/>not<sp/>defined<sp/>*/</highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981015<sp/>*/</highlight><highlight class="preprocessor"><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>981029<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265" refid="abort__exit_8h_1a1b1d3b3a531a287b1e61061a1e5eca16" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1a1b1d3b3a531a287b1e61061a1e5eca16" kindref="member">__exit</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>status)</highlight></codeline>
+<codeline lineno="266"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>!=<sp/>__be_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>unused(status)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" kindref="member">__begin_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" kindref="member">__atexit_curr_func</ref><sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<ref refid="abort__exit_8c_1a3d038a74a166036c7c3c77148e25a564" kindref="member">__atexit_funcs</ref>[--<ref refid="abort__exit_8c_1a7b975fd530f0357db6dd5d77efc9ac82" kindref="member">__atexit_curr_func</ref>])();</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" kindref="member">__end_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!__MIPS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a2fb667521e9014bb6eac858b483fa422" kindref="member">__kill_critical_regions</ref>();</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1aad113499266691d7224931924ee44a03" kindref="member">__console_exit</ref>)</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*__console_exit)();</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1aad113499266691d7224931924ee44a03" kindref="member">__console_exit</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__mac_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>ExitToShell();</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>__dest_os<sp/>==<sp/>__be_os<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ELR<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1aa7f506141dc5be135d9d298218948477" kindref="member">___teardown_be</ref>(status);</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>__dest_os<sp/>==<sp/>__win32_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>ExitProcess(status);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>__dest_os<sp/>==<sp/>__wince_os<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal">TerminateProcess(GetCurrentProcess(),status);<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight><highlight class="comment">/*CE<sp/>doesn&apos;t<sp/>have<sp/>ExitProcess<sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>__dest_os<sp/>==<sp/>__ppc_eabi<sp/>||<sp/>__dest_os<sp/>==<sp/>__nec_eabi<sp/>||<sp/>__dest_os<sp/>==<sp/>__mips_bare<sp/>||<sp/>__dest_os<sp/>==<sp/>__dolphin_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8h_1aa9c237990ae8c96886fa276a80956c61" kindref="member">_ExitProcess</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>hh<sp/>980122<sp/>#include<sp/>&quot;critical_regions.h&quot;<sp/>doesn&apos;t<sp/>belong<sp/>here</highlight></codeline>
+<codeline lineno="313"><highlight class="comment"></highlight></codeline>
+<codeline lineno="314"><highlight class="comment">#include<sp/>&quot;critical_regions.h&quot;</highlight></codeline>
+<codeline lineno="315"><highlight class="comment"></highlight></codeline>
+<codeline lineno="316"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/><sp/>||<sp/>__dest_os<sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>function<sp/>should<sp/>be<sp/>equivalent<sp/>to<sp/>the<sp/>ANSI<sp/>&quot;exit&quot;<sp/>without<sp/>the<sp/>ExitProcess</highlight></codeline>
+<codeline lineno="320"><highlight class="comment"><sp/>*<sp/>call.<sp/>This<sp/>function<sp/>is<sp/>needed<sp/>so<sp/>that<sp/>a<sp/>DLL<sp/>can<sp/>clean<sp/>up<sp/>itself<sp/>and<sp/>return</highlight></codeline>
+<codeline lineno="321"><highlight class="comment"><sp/>*<sp/>to<sp/>Windows<sp/>which<sp/>finishes<sp/>cleaning<sp/>up<sp/>the<sp/>process<sp/>(other<sp/>DLLs<sp/>and<sp/>the<sp/>main</highlight></codeline>
+<codeline lineno="322"><highlight class="comment"><sp/>*<sp/>application<sp/>might<sp/>not<sp/>have<sp/>destructed<sp/>yet).</highlight></codeline>
+<codeline lineno="323"><highlight class="comment"><sp/>*<sp/>I<sp/>would<sp/>have<sp/>just<sp/>separated<sp/>this<sp/>code<sp/>out<sp/>of<sp/>exit<sp/>but<sp/>that<sp/>code<sp/>is<sp/>already<sp/>too</highlight></codeline>
+<codeline lineno="324"><highlight class="comment"><sp/>*<sp/>separated...</highlight></codeline>
+<codeline lineno="325"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327" refid="abort__exit_8h_1abf637c452b7d3a3afc3a5afe705a08a3" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="abort__exit_8c_1abf637c452b7d3a3afc3a5afe705a08a3" kindref="member">_CleanUpMSL</ref>()</highlight></codeline>
+<codeline lineno="328"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*__get_MSL_init_count(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(--(*__get_MSL_init_count())<sp/>&gt;<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>blc<sp/>980812<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a9fd4534caa56bef22a94b31f5729ea24" kindref="member">__begin_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" kindref="member">atexit_curr_func</ref><sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<ref refid="abort__exit_8c_1a85668d6141ca41a221ab76c7a860c5d1" kindref="member">atexit_funcs</ref>[--<ref refid="abort__exit_8c_1a29261c9307803807e6dff6e74f2c6341" kindref="member">atexit_curr_func</ref>])();</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1abe0a8af32f594ce133ebf36d88b6b3cd" kindref="member">__end_critical_region</ref>(<ref refid="critical__regions_8h_1a5290a6b007b7076f8d1cfad8349535f0ad136d4ec978f5e6ddffc241bf6404605" kindref="member">atexit_funcs_access</ref>);</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1ae86c76c90188895d5562851442f20aaa" kindref="member">__stdio_exit</ref>)</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*__stdio_exit)();</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1ae86c76c90188895d5562851442f20aaa" kindref="member">__stdio_exit</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1ae7326dd5e3a5a5fe3a47481b228ab022" kindref="member">__destroy_global_chain</ref>();</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="critical__regions_8h_1a2fb667521e9014bb6eac858b483fa422" kindref="member">__kill_critical_regions</ref>();</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="abort__exit_8c_1aad113499266691d7224931924ee44a03" kindref="member">__console_exit</ref>)</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*__console_exit)();</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="abort__exit_8c_1aad113499266691d7224931924ee44a03" kindref="member">__console_exit</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_MSL_PRO4_MALLOC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pool__alloc_8h_1aef60da33268dd65eaecd1fed441af591" kindref="member">__pool_free_all</ref>();<sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>mf<sp/><sp/>980825,<sp/>hh<sp/>990227<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pool__alloc_8h_1aef60da33268dd65eaecd1fed441af591" kindref="member">__pool_free_all</ref>(&amp;__malloc_pool);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>mf<sp/><sp/>980825<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="360"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"></highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/></highlight><highlight class="comment">/*<sp/>__dest_os<sp/>==<sp/>win32<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline lineno="367"><highlight class="comment"><sp/>*<sp/><sp/>14-Sep-95<sp/>JFH<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline lineno="368"><highlight class="comment"><sp/>*<sp/><sp/>12-Oct-95<sp/>JFH<sp/><sp/>Added<sp/>#include<sp/>of<sp/>&lt;SegLoad.h&gt;<sp/>for<sp/>ExitToShell()<sp/>(in<sp/>case</highlight></codeline>
+<codeline lineno="369"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MacHeaders<sp/>not<sp/>included).</highlight></codeline>
+<codeline lineno="370"><highlight class="comment"><sp/>*<sp/><sp/>31-Oct-95<sp/>JFH<sp/><sp/>Fixed<sp/>exit()<sp/>to<sp/>longjmp(__program_exit,1)<sp/>instead<sp/>of<sp/>call<sp/>_exit<sp/>on<sp/>PPC</highlight></codeline>
+<codeline lineno="371"><highlight class="comment"><sp/>*<sp/><sp/>15-Dec-95<sp/>JFH<sp/><sp/>Reworked<sp/>abort/exit<sp/>handling<sp/>to<sp/>conform<sp/>to<sp/>new<sp/>runtime<sp/>architecture.</highlight></codeline>
+<codeline lineno="372"><highlight class="comment"><sp/>*<sp/><sp/>20-Dec-95<sp/>JFH<sp/><sp/>Renamed<sp/>_atexit/_exit<sp/>to<sp/>__atexit/__exit<sp/>for<sp/>ANSI<sp/>naming<sp/>conformance</highlight></codeline>
+<codeline lineno="373"><highlight class="comment"><sp/>*<sp/><sp/>27-Dec-95<sp/>JFH<sp/><sp/>Pulled<sp/>guts<sp/>out<sp/>of<sp/>__setup_exit<sp/>for<sp/>new<sp/>runtime.<sp/>Tossed<sp/>__program_exit</highlight></codeline>
+<codeline lineno="374"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>and<sp/>added<sp/>__aborting<sp/>for<sp/>PPC<sp/>and<sp/>CFM68K<sp/>projects.</highlight></codeline>
+<codeline lineno="375"><highlight class="comment"><sp/>*<sp/><sp/>12-Feb-96<sp/>JFH<sp/><sp/>Tossed<sp/>__setup_exit,<sp/>which<sp/>had<sp/>become<sp/>a<sp/>NOP.</highlight></codeline>
+<codeline lineno="376"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1-Mar-96<sp/>JFH<sp/><sp/>Merged<sp/>Be<sp/>code<sp/>into<sp/>source.<sp/>For<sp/>the<sp/>moment<sp/>that<sp/>means:<sp/>__setup_exit(),</highlight></codeline>
+<codeline lineno="377"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it&apos;s<sp/>baaack!</highlight></codeline>
+<codeline lineno="378"><highlight class="comment"><sp/>*<sp/><sp/>26-Apr-96<sp/>JFH<sp/><sp/>Merged<sp/>Win32<sp/>changes<sp/>in.</highlight></codeline>
+<codeline lineno="379"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTV</highlight></codeline>
+<codeline lineno="380"><highlight class="comment"><sp/>*<sp/>MW-mm<sp/>960927a<sp/><sp/><sp/>Made<sp/>sure<sp/>dest_os<sp/>set<sp/>for<sp/>Macintosh</highlight></codeline>
+<codeline lineno="381"><highlight class="comment"><sp/>*<sp/><sp/>18-Dec-96<sp/>KO<sp/><sp/><sp/>Moved<sp/>the<sp/>begin_critical_region<sp/>call<sp/>after<sp/>the<sp/>error<sp/>check.<sp/>Before,<sp/>if</highlight></codeline>
+<codeline lineno="382"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>there<sp/>was<sp/>an<sp/>error,<sp/>the<sp/>critical<sp/>section<sp/>would<sp/>be<sp/>entered<sp/>and<sp/>never<sp/>left.</highlight></codeline>
+<codeline lineno="383"><highlight class="comment"><sp/>*<sp/><sp/>19-Dec-96<sp/>KO<sp/><sp/><sp/>Added<sp/>CleanUpMSL.</highlight></codeline>
+<codeline lineno="384"><highlight class="comment"><sp/>*<sp/><sp/>18-feb-97<sp/>bkoz<sp/>line<sp/>154<sp/>moved<sp/>call<sp/>of<sp/>__destroy_global_chain()<sp/>up<sp/>to<sp/></highlight></codeline>
+<codeline lineno="385"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit()<sp/>before<sp/>stdio<sp/>closed</highlight></codeline>
+<codeline lineno="386"><highlight class="comment"><sp/>*<sp/><sp/>20-Jul-97<sp/>MEA<sp/><sp/>Changed<sp/>__ppc_eabi_bare<sp/>to<sp/>__ppc_eabi.</highlight></codeline>
+<codeline lineno="387"><highlight class="comment"><sp/>*<sp/><sp/>21-Aug-97<sp/>mdf<sp/><sp/>added<sp/>printf/scanf<sp/>to<sp/>exit<sp/>for<sp/>win32<sp/>to<sp/>allow<sp/>control<sp/>of</highlight></codeline>
+<codeline lineno="388"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>console<sp/>apps<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="389"><highlight class="comment"><sp/>*<sp/><sp/>30-Sept-97<sp/>mdf<sp/>wrapped<sp/>immediately<sp/>above<sp/>change<sp/>in<sp/>GetFileType<sp/>to<sp/>prevent<sp/>app<sp/>from</highlight></codeline>
+<codeline lineno="390"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stopping<sp/>when<sp/>output<sp/>is<sp/>redirected<sp/>to<sp/>a<sp/>file.</highlight></codeline>
+<codeline lineno="391"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Also<sp/>add<sp/>fflush<sp/>so<sp/>getc<sp/>will<sp/>have<sp/>an<sp/>empty<sp/>stream</highlight></codeline>
+<codeline lineno="392"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>when<sp/>called<sp/>in<sp/>the<sp/>exit<sp/>routine<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="393"><highlight class="comment"><sp/>*<sp/><sp/>21-Oct-97<sp/><sp/><sp/>mdf<sp/>fixed<sp/>exiting<sp/>for<sp/>windows<sp/>console<sp/>apps<sp/>in<sp/>cases<sp/>where</highlight></codeline>
+<codeline lineno="394"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>app<sp/>explicitly<sp/>closes<sp/>stdin<sp/>before<sp/>exit<sp/>is<sp/>reached.</highlight></codeline>
+<codeline lineno="395"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this<sp/>can<sp/>be<sp/>done<sp/>with<sp/>fclose<sp/>or<sp/>freopen<sp/>and<sp/>then<sp/>close<sp/>on</highlight></codeline>
+<codeline lineno="396"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>file<sp/>associated<sp/>with<sp/>the<sp/>stdin<sp/>stream.<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="397"><highlight class="comment"><sp/>*<sp/><sp/>19-Nov-97<sp/><sp/>mdf<sp/><sp/>Removed<sp/>fflush<sp/>on<sp/>stdin<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="398"><highlight class="comment"><sp/>*<sp/>hh<sp/>980122<sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&quot;critical_regions.h&quot;<sp/>doesn&apos;t<sp/>belong<sp/>here</highlight></codeline>
+<codeline lineno="399"><highlight class="comment"><sp/>*<sp/>#include<sp/>&lt;Windows.h&gt;<sp/>hh<sp/>980122<sp/>commented<sp/>out.<sp/><sp/>A<sp/>real<sp/>problem<sp/>child.</highlight></codeline>
+<codeline lineno="400"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>next<sp/>two<sp/>includes<sp/>do<sp/>the<sp/>job<sp/>right.</highlight></codeline>
+<codeline lineno="401"><highlight class="comment"><sp/>*<sp/>mf<sp/>980512<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>changes<sp/>for<sp/>wince<sp/><sp/></highlight></codeline>
+<codeline lineno="402"><highlight class="comment"><sp/>*<sp/>mf/blc<sp/>98081098<sp/><sp/>fix<sp/>to<sp/>x86<sp/>runtime<sp/>dll<sp/>crash(when<sp/>&gt;<sp/>1<sp/>dll<sp/>is<sp/>attached<sp/>to<sp/>MSL)<sp/></highlight></codeline>
+<codeline lineno="403"><highlight class="comment"><sp/>*<sp/>mf<sp/><sp/>980825<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Deallocate<sp/>memory<sp/>pools<sp/>allocated<sp/>by<sp/>system<sp/>-<sp/>this<sp/>fixes<sp/>a</highlight></codeline>
+<codeline lineno="404"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>problem<sp/>with<sp/>memory<sp/>leaking<sp/>when<sp/>multiple<sp/>dll&apos;s<sp/>are<sp/>loaded<sp/>and</highlight></codeline>
+<codeline lineno="405"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unloaded.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="406"><highlight class="comment"><sp/>*<sp/>mm<sp/>981015<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Added<sp/>version<sp/>of<sp/>exit<sp/>for<sp/>__DSP568</highlight></codeline>
+<codeline lineno="407"><highlight class="comment"><sp/>*<sp/>mea<sp/>981022<sp/><sp/><sp/><sp/><sp/><sp/><sp/>added<sp/>calls<sp/>to<sp/>destructors<sp/><sp/></highlight></codeline>
+<codeline lineno="408"><highlight class="comment"><sp/>*<sp/>mm<sp/>981029<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Changed<sp/>__DSP568<sp/>to<sp/>__m56800__</highlight></codeline>
+<codeline lineno="409"><highlight class="comment"><sp/>*<sp/>mm<sp/>981227<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Avoided<sp/>closing<sp/>console<sp/>windows<sp/>during<sp/>abort.<sp/>WB1-1897</highlight></codeline>
+<codeline lineno="410"><highlight class="comment"><sp/>*<sp/>mm<sp/>990122<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Avoided<sp/>closing<sp/>console<sp/>windows<sp/>during<sp/>exit.</highlight></codeline>
+<codeline lineno="411"><highlight class="comment"><sp/>*<sp/>hh<sp/>990227<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Interface<sp/>to<sp/>__pool_free_all<sp/>changed</highlight></codeline>
+<codeline lineno="412"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File s_rint.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-s_rintc">File s_rint.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_4aa136d99b9df2fc861ef3e829b58508/"><strong>Double_precision</strong></a> <strong>&gt;</strong> <a href="../s__rint_8c/"><strong>s_rint.c</strong></a></p>
+<p><a href="../s__rint_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+#ifndef _No_Floating_Point  
+/* @(#)s_rint.c 1.2 95/01/04 */
+/* $Id: s_rint.c,v 1.2.4.1 1999/12/06 19:47:32 fassiott Exp $ */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
+ */
+
+/*
+ * rint(x)
+ * Return x rounded to integral value according to the prevailing
+ * rounding mode.
+ * Method:
+ *  Using floating addition.
+ * Exception:
+ *  Inexact flag raised if x not equal to rint(x).
+ */
+
+#include &quot;fdlibm.h&quot;
+
+#ifdef __STDC__
+static const double
+#else
+static double 
+#endif
+TWO52[2]={
+  4.50359962737049600000e+15, /* 0x43300000, 0x00000000 */
+ -4.50359962737049600000e+15, /* 0xC3300000, 0x00000000 */
+};
+
+#ifdef __STDC__
+    double rint(double x)
+#else
+    double rint(x)
+    double x;
+#endif
+{
+    int i0,j0,sx;
+    unsigned i,i1;
+    double w,t;
+    i0 =  __HI(x);
+    sx = (i0&gt;&gt;31)&amp;1;
+    i1 =  __LO(x);
+    j0 = ((i0&gt;&gt;20)&amp;0x7ff)-0x3ff;
+    if(j0&lt;20) {
+        if(j0&lt;0) {  
+        if(((i0&amp;0x7fffffff)|i1)==0) return x;
+        i1 |= (i0&amp;0x0fffff);
+        i0 &amp;= 0xfffe0000;
+        i0 |= ((i1|-i1)&gt;&gt;12)&amp;0x80000;
+        __HI(x)=i0;
+            w = TWO52[sx]+x;
+            t =  w-TWO52[sx];
+            i0 = __HI(t);
+            __HI(t) = (i0&amp;0x7fffffff)|(sx&lt;&lt;31);
+            return t;
+        } else {
+        i = (0x000fffff)&gt;&gt;j0;
+        if(((i0&amp;i)|i1)==0) return x; /* x is integral */
+        i&gt;&gt;=1;
+        if(((i0&amp;i)|i1)!=0) {
+            if(j0==19) i1 = 0x40000000; else
+            i0 = (i0&amp;(~i))|((0x20000)&gt;&gt;j0);
+        }
+        }
+    } else if (j0&gt;51) {
+        if(j0==0x400) return x+x;   /* inf or NaN */
+        else return x;      /* x is integral */
+    } else {
+        i = ((unsigned)(0xffffffff))&gt;&gt;(j0-20);
+        if((i1&amp;i)==0) return x; /* x is integral */
+        i&gt;&gt;=1;
+        if((i1&amp;i)!=0) i1 = (i1&amp;(~i))|((0x40000000)&gt;&gt;(j0-20));
+    }
+    __HI(x) = i0;
+    __LO(x) = i1;
+    w = TWO52[sx]+x;
+    return w-TWO52[sx];
+}
+#endif /* _No_Floating_Point  */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

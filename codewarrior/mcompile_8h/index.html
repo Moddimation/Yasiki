@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File mcompile.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-mcompileh">File mcompile.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="./"><strong>mcompile.h</strong></a></p>
+<p><a href="../mcompile_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;mslconfig&gt;</code></li>
+</ul>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-alloc_bind"><strong>ALLOC_BIND</strong></a> (type) <code>typename Allocator::rebind&amp;lt;type&amp;gt;::other</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dec_mutex"><strong>DEC_MUTEX</strong></a> (obj) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dec_mutex_arith"><strong>DEC_MUTEX_ARITH</strong></a> (size_t, mutex, obj) <code>[**size\_t**](size__t_8h.md#typedef-size_t) obj;</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dec_obj_lock"><strong>DEC_OBJ_LOCK</strong></a> (obj) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dec_static_mutex_p"><strong>DEC_STATIC_MUTEX_P</strong></a> (obj) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-deftemparg"><strong>DEFTEMPARG</strong></a> (i, j) <code>i = j</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-lock"><strong>LOCK</strong></a> (bl_mut, mut) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-lock_p"><strong>LOCK_P</strong></a> (bl_mut, mut) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mod_c_include"><strong>MOD_C_INCLUDE</strong></a> (str) <code>[**MOD\_INCLUDE**](mcompile_8h.md#define-mod_include)(c##str)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mod_include"><strong>MOD_INCLUDE</strong></a> (str) <code>&amp;lt;str##.h&amp;gt;</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msiplstd"><strong>MSIPLSTD</strong></a>  <code>::std</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_ansi_header"><strong>MSIPL_ANSI_HEADER</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_assert"><strong>MSIPL_ASSERT</strong></a> (x) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_bool_builtin"><strong>MSIPL_BOOL_BUILTIN</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_catch"><strong>MSIPL_CATCH</strong></a>  <code>catch(...)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_const_template_arg"><strong>MSIPL_CONST_TEMPLATE_ARG</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_default_template_arg"><strong>MSIPL_DEFAULT_TEMPLATE_ARG</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_except"><strong>MSIPL_EXCEPT</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_explicit"><strong>MSIPL_EXPLICIT</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_explicit_func_template_arg"><strong>MSIPL_EXPLICIT_FUNC_TEMPLATE_ARG</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_explicit_spl_spec"><strong>MSIPL_EXPLICIT_SPL_SPEC</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_header_extn_h"><strong>MSIPL_HEADER_EXTN_H</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_member_template"><strong>MSIPL_MEMBER_TEMPLATE</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_non_type_temparg"><strong>MSIPL_NON_TYPE_TEMPARG</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_partial_specialization"><strong>MSIPL_PARTIAL_SPECIALIZATION</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_static_const_init"><strong>MSIPL_STATIC_CONST_INIT</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_std_begin"><strong>MSIPL_STD_BEGIN</strong></a>  <code>namespace std {</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_std_end"><strong>MSIPL_STD_END</strong></a>  <code>}</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_throw"><strong>MSIPL_THROW</strong></a>  <code>throw()</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_throw_bad_cast"><strong>MSIPL_THROW_BAD_CAST</strong></a> (str) <code>throw bad\_cast();</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_throw_me"><strong>MSIPL_THROW_ME</strong></a> (type, str) <code>throw type##(##str##);</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_throw_specs"><strong>MSIPL_THROW_SPECS</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_try"><strong>MSIPL_TRY</strong></a>  <code>try</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_typename"><strong>MSIPL_TYPENAME</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_use_external_mathlib"><strong>MSIPL_USE_EXTERNAL_MATHLIB</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_using_namespace"><strong>MSIPL_USING_NAMESPACE</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_using_std"><strong>MSIPL_USING_STD</strong></a>  <code>using namespace std;</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msipl_wchart"><strong>MSIPL_WCHART</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-m_const"><strong>M_CONST</strong></a>  <code>const</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-rd_lock"><strong>RD_LOCK</strong></a>  <code>1</code><br><a href="./"><em><strong>mcompile.h</strong></em></a> __</td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-read_lock"><strong>READ_LOCK</strong></a> (mut) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-remove"><strong>REMOVE</strong></a> (mut) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-remove_p"><strong>REMOVE_P</strong></a> (mut) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-srd_lock"><strong>SRD_LOCK</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-sread_lock"><strong>SREAD_LOCK</strong></a> (mut) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-swrite_lock"><strong>SWRITE_LOCK</strong></a> (mut) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-swr_lock"><strong>SWR_LOCK</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-throw_bad_alloc"><strong>THROW_BAD_ALLOC</strong></a>  <code>throw bad\_alloc ();</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-write_lock"><strong>WRITE_LOCK</strong></a> (mut) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-wr_lock"><strong>WR_LOCK</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-null_template"><strong>null_template</strong></a>  <code>template&amp;lt;&amp;gt;</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-alloc_bind">define ALLOC_BIND</h3>
+<pre><code class="language-C++">#define ALLOC_BIND (
+    type
+) `typename Allocator::rebind&lt;type&gt;::other`
+</code></pre>
+<hr>
+
+<h3 id="define-dec_mutex">define DEC_MUTEX</h3>
+<pre><code class="language-C++">#define DEC_MUTEX (
+    obj
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-dec_mutex_arith">define DEC_MUTEX_ARITH</h3>
+<pre><code class="language-C++">#define DEC_MUTEX_ARITH (
+    size_t,
+    mutex,
+    obj
+) `size_t obj;`
+</code></pre>
+<hr>
+
+<h3 id="define-dec_obj_lock">define DEC_OBJ_LOCK</h3>
+<pre><code class="language-C++">#define DEC_OBJ_LOCK (
+    obj
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-dec_static_mutex_p">define DEC_STATIC_MUTEX_P</h3>
+<pre><code class="language-C++">#define DEC_STATIC_MUTEX_P (
+    obj
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-deftemparg">define DEFTEMPARG</h3>
+<pre><code class="language-C++">#define DEFTEMPARG (
+    i,
+    j
+) `i = j`
+</code></pre>
+<hr>
+
+<h3 id="define-lock">define LOCK</h3>
+<pre><code class="language-C++">#define LOCK (
+    bl_mut,
+    mut
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-lock_p">define LOCK_P</h3>
+<pre><code class="language-C++">#define LOCK_P (
+    bl_mut,
+    mut
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-mod_c_include">define MOD_C_INCLUDE</h3>
+<pre><code class="language-C++">#define MOD_C_INCLUDE (
+    str
+) `MOD_INCLUDE (c##str)`
+</code></pre>
+<hr>
+
+<h3 id="define-mod_include">define MOD_INCLUDE</h3>
+<pre><code class="language-C++">#define MOD_INCLUDE (
+    str
+) `&lt;str##.h&gt;`
+</code></pre>
+<hr>
+
+<h3 id="define-msiplstd">define MSIPLSTD</h3>
+<pre><code class="language-C++">#define MSIPLSTD `::std`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_ansi_header">define MSIPL_ANSI_HEADER</h3>
+<pre><code class="language-C++">#define MSIPL_ANSI_HEADER 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_assert">define MSIPL_ASSERT</h3>
+<pre><code class="language-C++">#define MSIPL_ASSERT (
+    x
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_bool_builtin">define MSIPL_BOOL_BUILTIN</h3>
+<pre><code class="language-C++">#define MSIPL_BOOL_BUILTIN 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_catch">define MSIPL_CATCH</h3>
+<pre><code class="language-C++">#define MSIPL_CATCH `catch(...)`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_const_template_arg">define MSIPL_CONST_TEMPLATE_ARG</h3>
+<pre><code class="language-C++">#define MSIPL_CONST_TEMPLATE_ARG 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_default_template_arg">define MSIPL_DEFAULT_TEMPLATE_ARG</h3>
+<pre><code class="language-C++">#define MSIPL_DEFAULT_TEMPLATE_ARG 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_except">define MSIPL_EXCEPT</h3>
+<pre><code class="language-C++">#define MSIPL_EXCEPT 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_explicit">define MSIPL_EXPLICIT</h3>
+<pre><code class="language-C++">#define MSIPL_EXPLICIT 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_explicit_func_template_arg">define MSIPL_EXPLICIT_FUNC_TEMPLATE_ARG</h3>
+<pre><code class="language-C++">#define MSIPL_EXPLICIT_FUNC_TEMPLATE_ARG 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_explicit_spl_spec">define MSIPL_EXPLICIT_SPL_SPEC</h3>
+<pre><code class="language-C++">#define MSIPL_EXPLICIT_SPL_SPEC 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_header_extn_h">define MSIPL_HEADER_EXTN_H</h3>
+<pre><code class="language-C++">#define MSIPL_HEADER_EXTN_H 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_member_template">define MSIPL_MEMBER_TEMPLATE</h3>
+<pre><code class="language-C++">#define MSIPL_MEMBER_TEMPLATE 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_non_type_temparg">define MSIPL_NON_TYPE_TEMPARG</h3>
+<pre><code class="language-C++">#define MSIPL_NON_TYPE_TEMPARG 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_partial_specialization">define MSIPL_PARTIAL_SPECIALIZATION</h3>
+<pre><code class="language-C++">#define MSIPL_PARTIAL_SPECIALIZATION 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_static_const_init">define MSIPL_STATIC_CONST_INIT</h3>
+<pre><code class="language-C++">#define MSIPL_STATIC_CONST_INIT 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_std_begin">define MSIPL_STD_BEGIN</h3>
+<pre><code class="language-C++">#define MSIPL_STD_BEGIN `namespace std {`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_std_end">define MSIPL_STD_END</h3>
+<pre><code class="language-C++">#define MSIPL_STD_END `}`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_throw">define MSIPL_THROW</h3>
+<pre><code class="language-C++">#define MSIPL_THROW `throw()`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_throw_bad_cast">define MSIPL_THROW_BAD_CAST</h3>
+<pre><code class="language-C++">#define MSIPL_THROW_BAD_CAST (
+    str
+) `throw bad_cast();`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_throw_me">define MSIPL_THROW_ME</h3>
+<pre><code class="language-C++">#define MSIPL_THROW_ME (
+    type,
+    str
+) `throw type##(##str##);`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_throw_specs">define MSIPL_THROW_SPECS</h3>
+<pre><code class="language-C++">#define MSIPL_THROW_SPECS 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_try">define MSIPL_TRY</h3>
+<pre><code class="language-C++">#define MSIPL_TRY `try`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_typename">define MSIPL_TYPENAME</h3>
+<pre><code class="language-C++">#define MSIPL_TYPENAME 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_use_external_mathlib">define MSIPL_USE_EXTERNAL_MATHLIB</h3>
+<pre><code class="language-C++">#define MSIPL_USE_EXTERNAL_MATHLIB 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_using_namespace">define MSIPL_USING_NAMESPACE</h3>
+<pre><code class="language-C++">#define MSIPL_USING_NAMESPACE 
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_using_std">define MSIPL_USING_STD</h3>
+<pre><code class="language-C++">#define MSIPL_USING_STD `using namespace std;`
+</code></pre>
+<hr>
+
+<h3 id="define-msipl_wchart">define MSIPL_WCHART</h3>
+<pre><code class="language-C++">#define MSIPL_WCHART 
+</code></pre>
+<hr>
+
+<h3 id="define-m_const">define M_CONST</h3>
+<pre><code class="language-C++">#define M_CONST `const`
+</code></pre>
+<hr>
+
+<h3 id="define-rd_lock">define RD_LOCK</h3>
+<p><a href="./"><em><strong>mcompile.h</strong></em></a> __</p>
+<pre><code class="language-C++">#define RD_LOCK `1`
+</code></pre>
+<p>Lib++ : The Modena C++ Standard Library, Version 2.4, October 1997</p>
+<p>Copyright (c) 1995-1997 Modena Software Inc. </p>
+<hr>
+
+<h3 id="define-read_lock">define READ_LOCK</h3>
+<pre><code class="language-C++">#define READ_LOCK (
+    mut
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-remove">define REMOVE</h3>
+<pre><code class="language-C++">#define REMOVE (
+    mut
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-remove_p">define REMOVE_P</h3>
+<pre><code class="language-C++">#define REMOVE_P (
+    mut
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-srd_lock">define SRD_LOCK</h3>
+<pre><code class="language-C++">#define SRD_LOCK `3`
+</code></pre>
+<hr>
+
+<h3 id="define-sread_lock">define SREAD_LOCK</h3>
+<pre><code class="language-C++">#define SREAD_LOCK (
+    mut
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-swrite_lock">define SWRITE_LOCK</h3>
+<pre><code class="language-C++">#define SWRITE_LOCK (
+    mut
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-swr_lock">define SWR_LOCK</h3>
+<pre><code class="language-C++">#define SWR_LOCK `4`
+</code></pre>
+<hr>
+
+<h3 id="define-throw_bad_alloc">define THROW_BAD_ALLOC</h3>
+<pre><code class="language-C++">#define THROW_BAD_ALLOC `throw bad_alloc ();`
+</code></pre>
+<hr>
+
+<h3 id="define-write_lock">define WRITE_LOCK</h3>
+<pre><code class="language-C++">#define WRITE_LOCK (
+    mut
+) 
+</code></pre>
+<hr>
+
+<h3 id="define-wr_lock">define WR_LOCK</h3>
+<pre><code class="language-C++">#define WR_LOCK `2`
+</code></pre>
+<hr>
+
+<h3 id="define-null_template">define null_template</h3>
+<pre><code class="language-C++">#define null_template `template&lt;&gt;`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/mcompile.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

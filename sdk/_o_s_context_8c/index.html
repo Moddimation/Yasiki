@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSContext.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-oscontextc">File OSContext.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSContext.c</strong></a></p>
+<p><a href="../_o_s_context_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include "OSPrivate.h"</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> *<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__OSCurrentContext</strong></a></td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (<a href="../os_8h/#define-os_base_cached"><strong>OS_BASE_CACHED</strong></a>| 0x00D4) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbprintf"><strong>DBPrintf</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * str, ...) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osclearcontext"><strong>OSClearContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdumpcontext"><strong>OSDumpContext</strong></a> (<a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osfillfpucontext"><strong>OSFillFPUContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_context/"><strong>OSContext</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osgetcurrentcontext"><strong>OSGetCurrentContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetstackpointer"><strong>OSGetStackPointer</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osinitcontext"><strong>OSInitContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> pc, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newsp) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osloadcontext"><strong>OSLoadContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osloadfpucontext"><strong>OSLoadFPUContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * fpuContext) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossavecontext"><strong>OSSaveContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossavefpucontext"><strong>OSSaveFPUContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * fpuContext) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetcurrentcontext"><strong>OSSetCurrentContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-osswitchfiber"><strong>OSSwitchFiber</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> pc, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newsp) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osswitchstack"><strong>OSSwitchStack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newsp) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__oscontextinit"><strong>__OSContextInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ras_osdisableinterrupts_begin"><strong>__RAS_OSDisableInterrupts_begin</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ras_osdisableinterrupts_end"><strong>__RAS_OSDisableInterrupts_end</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osswitchfpucontext"><strong>OSSwitchFPUContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_o_s_exception_8h/#typedef-__osexception"><strong>__OSException</strong></a> exception, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osloadfpucontext"><strong>__OSLoadFPUContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> p0, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * fpuContext) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossavefpucontext"><strong>__OSSaveFPUContext</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> p0, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> p1, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * fpuContext) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-hid2"><strong>HID2</strong></a>  <code>920</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-at_address">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  OSContext * __OSCurrentContext AT_ADDRESS (
+    OS_BASE_CACHED | 0x00D4
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbprintf">function DBPrintf</h3>
+<pre><code class="language-C++">void DBPrintf (
+    char * str,
+    ...
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osclearcontext">function OSClearContext</h3>
+<pre><code class="language-C++">void OSClearContext (
+    register  OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osdumpcontext">function OSDumpContext</h3>
+<pre><code class="language-C++">void OSDumpContext (
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osfillfpucontext">function OSFillFPUContext</h3>
+<pre><code class="language-C++">asm  void OSFillFPUContext (
+    register  OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetcurrentcontext">function OSGetCurrentContext</h3>
+<pre><code class="language-C++">OSContext * OSGetCurrentContext (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetstackpointer">function OSGetStackPointer</h3>
+<pre><code class="language-C++">asm  u32 OSGetStackPointer () 
+</code></pre>
+<hr>
+
+<h3 id="function-osinitcontext">function OSInitContext</h3>
+<pre><code class="language-C++">asm  void OSInitContext (
+    register  OSContext * context,
+    register  u32 pc,
+    register  u32 newsp
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osloadcontext">function OSLoadContext</h3>
+<pre><code class="language-C++">asm  void OSLoadContext (
+    register  OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osloadfpucontext">function OSLoadFPUContext</h3>
+<pre><code class="language-C++">asm  void OSLoadFPUContext (
+    register  OSContext * fpuContext
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossavecontext">function OSSaveContext</h3>
+<pre><code class="language-C++">asm  u32 OSSaveContext (
+    register  OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossavefpucontext">function OSSaveFPUContext</h3>
+<pre><code class="language-C++">asm  void OSSaveFPUContext (
+    register  OSContext * fpuContext
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetcurrentcontext">function OSSetCurrentContext</h3>
+<pre><code class="language-C++">asm  void OSSetCurrentContext (
+    register  OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osswitchfiber">function OSSwitchFiber</h3>
+<pre><code class="language-C++">asm  int OSSwitchFiber (
+    register  u32 pc,
+    register  u32 newsp
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osswitchstack">function OSSwitchStack</h3>
+<pre><code class="language-C++">asm  u32 OSSwitchStack (
+    register  u32 newsp
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__oscontextinit">function __OSContextInit</h3>
+<pre><code class="language-C++">void __OSContextInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ras_osdisableinterrupts_begin">function __RAS_OSDisableInterrupts_begin</h3>
+<pre><code class="language-C++">void __RAS_OSDisableInterrupts_begin () 
+</code></pre>
+<hr>
+
+<h3 id="function-__ras_osdisableinterrupts_end">function __RAS_OSDisableInterrupts_end</h3>
+<pre><code class="language-C++">void __RAS_OSDisableInterrupts_end () 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-osswitchfpucontext">function OSSwitchFPUContext</h3>
+<pre><code class="language-C++">static asm  void OSSwitchFPUContext (
+    register  __OSException exception,
+    register  OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osloadfpucontext">function __OSLoadFPUContext</h3>
+<pre><code class="language-C++">static asm  void __OSLoadFPUContext (
+    register  u32 p0,
+    register  OSContext * fpuContext
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossavefpucontext">function __OSSaveFPUContext</h3>
+<pre><code class="language-C++">static asm  void __OSSaveFPUContext (
+    register  u32 p0,
+    register  u32 p1,
+    register  OSContext * fpuContext
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-hid2">define HID2</h3>
+<pre><code class="language-C++">#define HID2 `920`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/os/OSContext.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File tty.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-ttyc">File tty.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_09af956a0e77733960814cc502aa891a/"><strong>mcc</strong></a> <strong>&gt;</strong> <a href="../tty_8c/"><strong>tty.c</strong></a></p>
+<p><a href="../tty_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/mcc.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+// .bss
+volatile static u8 gBuf[8192]; // size: 0x2000, address: 0x0
+
+// .sbss
+static u32                       gOldEvent;
+volatile static enum MCC_CHANNEL gChID;
+volatile static int              gQuery;
+volatile static u32              gReadDone; // size: 0x4, address: 0xC
+volatile static u32              gPrintfID; // size: 0x4, address: 0x10
+volatile static u32              gBufHead;  // size: 0x4, address: 0x14
+volatile static u32              gBufTail;  // size: 0x4, address: 0x18
+
+// functions
+static int  ttyIsInitialized ();
+void        ShowChannelInfo (enum MCC_CHANNEL chID);
+static void ttyMccChannelEvent (enum MCC_CHANNEL chID, u32 event, u32 value);
+int         TTYInit (enum MCC_EXI exiChannel, enum MCC_CHANNEL chID);
+void        TTYExit (void);
+int         TTYQuery (void);
+int         TTYPrintf (const char* format, ...);
+int         TTYFlush (void);
+static void ttyClearProperty (enum MCC_CHANNEL chID);
+static int  ttyWaiting (int timeout, volatile int* flag);
+static int  ttyWrite (u32 offset, void* data, s32 size);
+static int  ttyFlush (u32 msgID, int waitResult);
+
+static int
+ttyIsInitialized ()
+{
+    int bResult = (gChID != 0);
+
+    return bResult;
+}
+
+static void
+ShowChannelInfo (enum MCC_CHANNEL chID)
+{
+    MCC_Info info;
+
+    MCCGetChannelInfo (chID, &amp;info);
+    OSReport (&quot;%2d: FirstBlock:%02d,BlockLength:%02d,Connect:%s,Lock:%s.\n&quot;,
+              chID,
+              info.firstBlock,
+              info.blockLength,
+              (info.connect == 0)   ? &quot;DISCONNECT&quot;
+              : (info.connect == 1) ? &quot;HOST_OPEN&quot;
+              : (info.connect == 2) ? &quot;TARGET_OPEN&quot;
+              : (info.connect == 3) ? &quot;CONNECTED&quot;
+                                    : &quot;UNKNOWN&quot;,
+              (info.isLocked == 0)   ? &quot;UNLOCKED&quot;
+              : (info.isLocked == 1) ? &quot;LOCKED&quot;
+                                     : &quot;UNKNOWN&quot;);
+}
+
+static void
+ttyMccChannelEvent (enum MCC_CHANNEL chID, u32 event, u32 value)
+{
+    u32 notify;
+    u32 size;
+    u32 msgID;
+
+    switch (event)
+    {
+        case 1:
+            gChID = chID;
+            return;
+        case 2:
+            gChID = 0;
+            return;
+        case 0x100:
+            notify = (value &amp; (0xF00000));
+            switch (notify)
+            {
+                case 0x200000:
+                    if ((u16)value == 0x210)
+                    {
+                        gQuery = 1;
+                    }
+                    return;
+                case 0x400000:
+                    size = (value &gt;&gt; 8) &amp; 0xFF;
+                    msgID = (value) &amp; 0xFF;
+                    if ((gBufTail - gBufHead) &gt;= 0x2000)
+                    {
+                        gBufHead = ((u32)gBufHead &lt; 0x2000U) ? gBufHead : gBufHead - 0x2000;
+                        gBufTail = ((u32)gBufTail &lt; 0x2000U) ? gBufTail : gBufTail - 0x2000;
+                    }
+                    if ((u32)gBufHead &gt;= 0x2000U)
+                    {
+                        gBufHead -= 0x2000;
+                        gBufTail -= 0x2000;
+                    }
+                    if (size == 0)
+                    {
+                        gBufHead += size &lt;&lt; 5;
+                        gReadDone = (u32)msgID;
+                        return;
+                    }
+                    gBufHead += size &lt;&lt; 5;
+                    gReadDone = (u32)msgID;
+            }
+    }
+}
+
+int
+TTYInit (enum MCC_EXI exiChannel, enum MCC_CHANNEL chID)
+{
+    if (ttyIsInitialized())
+    {
+        return 0;
+    }
+    if ((MCCInit (exiChannel, 5, 0)) &amp;&amp; (MCCOpen (chID, 1, ttyMccChannelEvent)))
+    {
+        gOldEvent = MCCSetChannelEventMask (chID, 0x30);
+        ttyClearProperty (chID);
+        return 1;
+    }
+    return 0;
+}
+
+void
+TTYExit (void)
+{
+    if (ttyIsInitialized() != 0)
+    {
+        MCCSetChannelEventMask (gChID, gOldEvent);
+        if (MCCClose (gChID) != 0)
+        {
+            ttyClearProperty (0);
+        }
+    }
+}
+
+int
+TTYQuery (void)
+{
+    u32 tick;
+
+    if (ttyIsInitialized())
+    {
+        gQuery = 0;
+        if (MCCNotify (gChID, 0x100210))
+        {
+            return ttyWaiting (5, &amp;gQuery);
+        }
+    }
+    tick = OSGetTick();
+    do {
+    }
+    while (OSTicksToSeconds (OSGetTick() - tick) &lt; 5);
+    return 0;
+}
+
+int
+TTYPrintf (const char* format, ...)
+{
+    if (ttyIsInitialized() &amp;&amp; (format != NULL))
+    {
+        MCC_Hdr* hdr;
+        u32*     id;
+        char*    str;
+        u32      maxDataSize;
+        u32      formatLength;
+        u32      dataSize;
+        int      err;
+        char*    eof;
+        va_list  argptr;
+        u32      prosecced;
+
+        hdr = (void*)&amp;gBuf;
+        id = (u32*)(hdr + 1);
+        str = (char*)(id + 1);
+        maxDataSize = 8179;
+        formatLength = strlen (format);
+        if (formatLength &gt; maxDataSize)
+        {
+            eof = (void*)((-1 + maxDataSize + (u32)format));
+            *(eof) = 0;
+        }
+        va_start (argptr, format);
+        err = vsprintf (str, format, argptr);
+        if (strlen (str) &lt; maxDataSize)
+        {
+            str[strlen (str)] = 0;
+        }
+        else
+        {
+            err = -1;
+        }
+        if (err &lt; 0)
+        {
+            return 0;
+        }
+        hdr-&gt;length = strlen (str) + 0xD;
+        hdr-&gt;rsvd = 0;
+        hdr-&gt;protocol = 0x210;
+        dataSize = OSRoundUp32B (hdr-&gt;length) &amp; ~1;
+        if ((0x2000 - (gBufTail - gBufHead)) &lt;= dataSize)
+        {
+            ttyFlush (gPrintfID, 1);
+        }
+        gPrintfID += 1;
+        gPrintfID = (u8)gPrintfID;
+        *id = gPrintfID;
+        if ((0x2000 - (gBufTail &amp; 0x1FFF)) &lt; dataSize)
+        {
+            prosecced = 0x2000 - (gBufTail &amp; 0x1FFF);
+            ttyWrite (gBufTail &amp; 0x1FFF, (char*)&amp;gBuf, prosecced);
+            ttyWrite (0, (char*)&amp;gBuf + prosecced, dataSize - prosecced);
+        }
+        else
+        {
+            ttyWrite (gBufTail &amp; 0x1FFF, (char*)&amp;gBuf, dataSize);
+        }
+        gBufTail += dataSize;
+        if (strchr (str, '\n') != 0U)
+        {
+            ttyFlush (gPrintfID, 1);
+        }
+        else if (gPrintfID == 0xFF)
+        {
+            ttyFlush (gPrintfID, 1);
+        }
+        va_end (format);
+        return 1;
+    }
+    return 0;
+}
+
+int
+TTYFlush (void)
+{
+    if (ttyIsInitialized() == 0)
+    {
+        return 0;
+    }
+    return ttyFlush (gPrintfID, 1);
+}
+
+static void
+ttyClearProperty (enum MCC_CHANNEL chID)
+{
+    gChID = chID;
+    gQuery = 0;
+    gReadDone = 0;
+    gPrintfID = 0;
+    gBufHead = 0;
+    gBufTail = 0;
+}
+
+static int
+ttyWaiting (int timeout, volatile int* flag)
+{
+    u32 tickStart;
+    u32 tickDist;
+
+    tickStart = OSGetTick();
+    timeout = OSSecondsToTicks (timeout);
+    while (*flag == 0)
+    {
+        tickDist = OSGetTick() - tickStart;
+        tickDist = (tickDist &amp; 0x80000000) ? (0x80000000 - tickStart) + OSGetTick() : tickDist;
+        if (OSTicksToSeconds (tickDist) &gt;= timeout)
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+static int
+ttyWrite (u32 offset, void* data, s32 size)
+{
+    if (MCCWrite (gChID, offset, data, size, 0))
+    {
+        return 1;
+    }
+    return 0;
+}
+
+static int
+ttyFlush (u32 msgID, int waitResult)
+{
+    u32 notify;
+
+    notify = msgID | 0x300000;
+
+    if ((gBufTail - gBufHead) == 0)
+    {
+        return 1;
+    }
+    if (MCCNotify (gChID, notify) == 0)
+    {
+        while (1);
+    }
+    if (waitResult != 0)
+    {
+        do {
+        }
+        while (gReadDone != msgID);
+    }
+    return 1;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

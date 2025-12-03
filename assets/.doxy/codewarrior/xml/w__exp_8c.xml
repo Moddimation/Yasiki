@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="w__exp_8c" kind="file" language="C++">
+    <compoundname>w_exp.c</compoundname>
+    <includes refid="fdlibm_8h" local="yes">fdlibm.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>w_exp.c</label>
+        <link refid="w__exp_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fdlibm.h</label>
+        <link refid="fdlibm_8h"/>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="w__exp_8c_1a347e88b81164bb40a4d3e25b12a43fb0" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double o_threshold</definition>
+        <argsstring></argsstring>
+        <name>o_threshold</name>
+        <initializer>=  7.09782712893383973096e+02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c" line="27" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c" bodystart="27" bodyend="-1"/>
+        <referencedby refid="w__exp_8c_1ae09128febbbe6372cde4fa0c65608a42" compoundref="w__exp_8c" startline="33" endline="51">exp</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="w__exp_8c_1a9ce5c6027c87c0ff76aeec309d1b2942" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double u_threshold</definition>
+        <argsstring></argsstring>
+        <name>u_threshold</name>
+        <initializer>= -7.45133219101941108420e+02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c" line="28" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c" bodystart="28" bodyend="-1"/>
+        <referencedby refid="w__exp_8c_1ae09128febbbe6372cde4fa0c65608a42" compoundref="w__exp_8c" startline="33" endline="51">exp</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="w__exp_8c_1ae09128febbbe6372cde4fa0c65608a42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double exp</definition>
+        <argsstring>(double x)</argsstring>
+        <name>exp</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c" line="33" column="8" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c" bodystart="33" bodyend="51"/>
+        <references refid="e__exp_8c_1ae4113c60058c25635c5b37ed37669268" compoundref="e__exp_8c" startline="107" endline="159">__ieee754_exp</references>
+        <references refid="k__standard_8c_1aaa2b2c25f94d1826d2b501dd16794bf4" compoundref="k__standard_8c" startline="82" endline="738">__kernel_standard</references>
+        <references refid="fdlibm_8h_1acfb34cc518c74d2587d4f993e1a7c59e" compoundref="fdlibm_8h" startline="57">_IEEE_</references>
+        <references refid="fdlibm_8h_1aa94e52d4217308ddf36a693641b4ee25" compoundref="fdlibm_8h" startline="46">_LIB_VERSION</references>
+        <references refid="w__exp_8c_1a347e88b81164bb40a4d3e25b12a43fb0" compoundref="w__exp_8c" startline="27">o_threshold</references>
+        <references refid="w__exp_8c_1a9ce5c6027c87c0ff76aeec309d1b2942" compoundref="w__exp_8c" startline="28">u_threshold</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Floating_Point<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>@(#)w_exp.c<sp/>1.2<sp/>95/01/04<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>$Id:<sp/>w_exp.c,v<sp/>1.2.4.1<sp/>1999/12/06<sp/>19:47:32<sp/>fassiott<sp/>Exp<sp/>$<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>====================================================</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>1993<sp/>by<sp/>Sun<sp/>Microsystems,<sp/>Inc.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Developed<sp/>at<sp/>SunPro,<sp/>a<sp/>Sun<sp/>Microsystems,<sp/>Inc.<sp/>business.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and<sp/>distribute<sp/>this</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>software<sp/>is<sp/>freely<sp/>granted,<sp/>provided<sp/>that<sp/>this<sp/>notice<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>is<sp/>preserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>====================================================</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>wrapper<sp/>exp(x)</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fdlibm_8h" kindref="compound">fdlibm.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__STDC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="w__exp_8c_1a347e88b81164bb40a4d3e25b12a43fb0" refkind="member"><highlight class="normal"><ref refid="w__exp_8c_1a347e88b81164bb40a4d3e25b12a43fb0" kindref="member">o_threshold</ref>=<sp/><sp/>7.09782712893383973096e+02,<sp/><sp/></highlight><highlight class="comment">/*<sp/>0x40862E42,<sp/>0xFEFA39EF<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="w__exp_8c_1a9ce5c6027c87c0ff76aeec309d1b2942" refkind="member"><highlight class="normal"><ref refid="w__exp_8c_1a9ce5c6027c87c0ff76aeec309d1b2942" kindref="member">u_threshold</ref>=<sp/>-7.45133219101941108420e+02;<sp/><sp/></highlight><highlight class="comment">/*<sp/>0xc0874910,<sp/>0xD52D3051<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__STDC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="w__exp_8c_1ae09128febbbe6372cde4fa0c65608a42" kindref="member">exp</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x)<sp/></highlight><highlight class="comment">/*<sp/>wrapper<sp/>pow<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="w__exp_8c_1ae09128febbbe6372cde4fa0c65608a42" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="w__exp_8c_1ae09128febbbe6372cde4fa0c65608a42" kindref="member">exp</ref>(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>wrapper<sp/>exp<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_IEEE_LIBM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="e__exp_8c_1ae4113c60058c25635c5b37ed37669268" kindref="member">__ieee754_exp</ref>(x);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>z;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>z<sp/>=<sp/><ref refid="e__exp_8c_1ae4113c60058c25635c5b37ed37669268" kindref="member">__ieee754_exp</ref>(x);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="fdlibm_8h_1aa94e52d4217308ddf36a693641b4ee25" kindref="member">_LIB_VERSION</ref><sp/>==<sp/><ref refid="fdlibm_8h_1acfb34cc518c74d2587d4f993e1a7c59e" kindref="member">_IEEE_</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>z;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(isfinite(x))<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(x&gt;<ref refid="w__exp_8c_1a347e88b81164bb40a4d3e25b12a43fb0" kindref="member">o_threshold</ref>)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="k__standard_8c_1aaa2b2c25f94d1826d2b501dd16794bf4" kindref="member">__kernel_standard</ref>(x,x,6);<sp/></highlight><highlight class="comment">/*<sp/>exp<sp/>overflow<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(x&lt;<ref refid="w__exp_8c_1a9ce5c6027c87c0ff76aeec309d1b2942" kindref="member">u_threshold</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="k__standard_8c_1aaa2b2c25f94d1826d2b501dd16794bf4" kindref="member">__kernel_standard</ref>(x,x,7);<sp/></highlight><highlight class="comment">/*<sp/>exp<sp/>underflow<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>z;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>_No_Floating_Point<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c"/>
+  </compounddef>
+</doxygen>

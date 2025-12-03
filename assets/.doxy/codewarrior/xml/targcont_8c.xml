@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="targcont_8c" kind="file" language="C++">
+    <compoundname>targcont.c</compoundname>
+    <includes refid="targcont_8h" local="yes">Os/dolphin/targcont.h</includes>
+    <includes refid="dolphin__trk__glue_8h" local="yes">Os/dolphin/dolphin_trk_glue.h</includes>
+    <includes refid="targimpl_8h" local="yes">Processor/ppc/Generic/targimpl.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>Os/dolphin/dolphin_trk_glue.h</label>
+        <link refid="dolphin__trk__glue_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Os/dolphin/targcont.h</label>
+        <link refid="targcont_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Portable/nubevent.h</label>
+        <link refid="nubevent_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Processor/ppc/Generic/targimpl.h</label>
+        <link refid="targimpl_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>targcont.c</label>
+        <link refid="targcont_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="7">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os.h</label>
+      </node>
+      <node id="4">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="targcont_8c_1ac43e4bc7dad4852948fa6967c2e73fdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTargetContinue</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKTargetContinue</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/targcont.c" line="5" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/targcont.c" bodystart="5" bodyend="12"/>
+        <references refid="dolphin__trk__glue_8h_1af747d9e6af2577295e74cee108a3728f" compoundref="dolphin__trk__glue_8c" startline="112" endline="112">ReserveEXI2Port</references>
+        <references refid="targimpl_8h_1a2d4bf41a0ccd928790a518840f5a5676" compoundref="targimpl_8c" startline="728" endline="783">TRKSwapAndGo</references>
+        <references refid="targimpl_8h_1aa49f1d6946b42a48d3d594b604e7c2ec" compoundref="targimpl_8c" startline="1015" endline="1018">TRKTargetSetStopped</references>
+        <references refid="dolphin__trk__glue_8h_1ae403d9818a932b884dee1229d6a8d1d9" compoundref="dolphin__trk__glue_8c" startline="114" endline="114">UnreserveEXI2Port</references>
+        <referencedby refid="msghndlr_8h_1ad1159136e96ee776a183c0236adfced2" compoundref="msghndlr_8c" startline="563" endline="578">TRKDoContinue</referencedby>
+        <referencedby refid="mainloop_8c_1aa6834a4dd56511a0f3d687fe1b541fbd" compoundref="mainloop_8c" startline="15" endline="20">TRKIdle</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="targcont_8h" kindref="compound">Os/dolphin/targcont.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dolphin__trk__glue_8h" kindref="compound">Os/dolphin/dolphin_trk_glue.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="targimpl_8h" kindref="compound">Processor/ppc/Generic/targimpl.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="targcont_8h_1ac43e4bc7dad4852948fa6967c2e73fdf" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="targcont_8c_1ac43e4bc7dad4852948fa6967c2e73fdf" kindref="member">TRKTargetContinue</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="targimpl_8h_1aa49f1d6946b42a48d3d594b604e7c2ec" kindref="member">TRKTargetSetStopped</ref>(0);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8h_1ae403d9818a932b884dee1229d6a8d1d9" kindref="member">UnreserveEXI2Port</ref>();</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="targimpl_8h_1a2d4bf41a0ccd928790a518840f5a5676" kindref="member">TRKSwapAndGo</ref>();</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dolphin__trk__glue_8h_1af747d9e6af2577295e74cee108a3728f" kindref="member">ReserveEXI2Port</ref>();</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Os/dolphin/targcont.c"/>
+  </compounddef>
+</doxygen>

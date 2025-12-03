@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File DEMOWin.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-demowinc">File DEMOWin.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_12b9b9f3614a19f67fa121459aa56b48/"><strong>demo</strong></a> <strong>&gt;</strong> <a href="../_d_e_m_o_win_8c/"><strong>DEMOWin.c</strong></a></p>
+<p><a href="../_d_e_m_o_win_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/demo.h&gt;
+#include &lt;dolphin/gx.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+// .sdata
+static u32 __DEMOWIN_PAD_repeat_threshold = 0x0000000F;
+static u32 __DEMOWIN_PAD_repeat_rate = 0x00000002;
+
+struct STRUCT_DEMOWIN*   __first_node;
+struct STRUCT_DEMOWIN*   __last_node;
+struct STRUCT_DEMOWIN*   __curr_node;
+struct _GXRenderModeObj* __rmp;
+
+s32 fontShift = 0;
+
+// functions
+static void __DEMOWin_add_node (struct STRUCT_DEMOWIN* handle);
+static void __DEMOWin_delete_node (struct STRUCT_DEMOWIN* handle);
+static void __DEMOWin_puts_n (s16 x, s16 y, s16 z, u16 n, char* string);
+static void __DEMOWinMenu_refesh_menu (struct STRUCT_DEMOWIN* w);
+static u16  __DEMOWinMenu_get_user_input (DEMOWinPadInfo* p);
+static void __DEMOWinList_refresh_list (struct STRUCT_DEMOWIN* w);
+
+void
+DEMOWinInit ()
+{
+    __first_node = NULL;
+    __last_node = NULL;
+    __curr_node = NULL;
+    __rmp = DEMOGetRenderModeObj();
+    GXSetCopyClear ((GXColor) { 0, 0, 0, 0 }, 0xFFFFFF);
+}
+
+struct STRUCT_DEMOWIN*
+DEMOWinCreateWindow (s32 x1, s32 y1, s32 x2, s32 y2, char* caption, u16 scroll, void* func)
+{
+    struct STRUCT_DEMOWIN* handle;
+
+    ASSERTMSGLINE (0xB1, x1 &lt; x2, &quot;DEMOWIN: Illegal X coords for window\n&quot;);
+    ASSERTMSGLINE (0xB2, y1 &lt; y2, &quot;DEMOWIN: Illegal y coords for window\n&quot;);
+    handle = (void*)OSAllocFromHeap (__OSCurrHeap, sizeof (struct STRUCT_DEMOWIN));
+    ASSERTMSGLINE (0xB6, handle, &quot;DEMOWIN: FAILED TO ALLOCATE WINDOW!\n&quot;);
+    handle-&gt;x1 = x1;
+    handle-&gt;y1 = y1;
+    handle-&gt;x2 = x2;
+    handle-&gt;y2 = y2;
+    handle-&gt;pixel_width = (x2 - x1) + 1;
+    handle-&gt;pixel_height = (y2 - y1) + 1;
+    handle-&gt;caption = caption;
+    handle-&gt;char_width = (handle-&gt;pixel_width / 8) - 1;
+    handle-&gt;char_height = (handle-&gt;pixel_height / 8) - 2;
+    handle-&gt;x_cal = (((handle-&gt;pixel_width - (handle-&gt;char_width * 8)) + 1) / 2);
+    handle-&gt;y_cal = (((handle-&gt;pixel_height - 7) - (handle-&gt;char_height * 8)) / 2);
+    handle-&gt;num_scroll_lines = scroll;
+    handle-&gt;total_lines = handle-&gt;char_height + handle-&gt;num_scroll_lines;
+    handle-&gt;curr_output_line = 0;
+    handle-&gt;curr_output_col = 0;
+    handle-&gt;curr_view_line = 0;
+    handle-&gt;refresh = func;
+    handle-&gt;flags = 0;
+    handle-&gt;priority = 0;
+    handle-&gt;buffer =
+        (void*)OSAllocFromHeap (__OSCurrHeap, handle-&gt;total_lines * handle-&gt;char_width);
+    ASSERTMSGLINE (0xEE, handle-&gt;buffer, &quot;DEMOWinCreateWindow(): Unable to allocation buffer!\n&quot;);
+    memset (handle-&gt;buffer,
+            ' ',
+            handle-&gt;total_lines * handle-&gt;char_width); // set to all empty spaces
+    DEMOWinSetWindowColor (handle, 3, 0, 0, 0, 0);
+    handle-&gt;cursor_line = -1;
+    handle-&gt;parent = 0;
+    __DEMOWin_add_node (handle);
+    return handle;
+}
+
+void
+DEMOWinDestroyWindow (struct STRUCT_DEMOWIN* handle)
+{
+    int old;
+
+    ASSERTMSGLINE (0x114, handle, &quot;DEMOWinDestroyWindow(): NULL handle!\n&quot;);
+    old = OSDisableInterrupts();
+    __DEMOWin_delete_node (handle);
+    OSFreeToHeap (__OSCurrHeap, handle-&gt;buffer);
+    OSFreeToHeap (__OSCurrHeap, handle);
+    OSRestoreInterrupts (old);
+}
+
+void
+DEMOWinOpenWindow (struct STRUCT_DEMOWIN* handle)
+{
+    ASSERTMSGLINE (0x136, handle, &quot;DEMOWinOpenWindow(): NULL handle!\n&quot;);
+    handle-&gt;flags |= DEMOWIN_FLAGS_OPENED;
+}
+
+void
+DEMOWinCloseWindow (struct STRUCT_DEMOWIN* handle)
+{
+    ASSERTMSGLINE (0x146, handle, &quot;DEMOWinCloseWindow(): NULL handle!\n&quot;);
+    handle-&gt;flags &amp;= ~(DEMOWIN_FLAGS_OPENED);
+}
+
+void
+DEMOWinSetWindowColor (struct STRUCT_DEMOWIN* handle, enum DEMOWinItem item, u8 r, u8 g, u8 b, u8 a)
+{
+    ASSERTMSGLINE (0x158, handle, &quot;DEMOWinSetWinColor(): NULL window handle\n&quot;);
+    switch (item)
+    {
+        case DEMOWIN_ITEM_CAP:                         // set cap
+            handle-&gt;cap.r = r;
+            handle-&gt;cap.g = g;
+            handle-&gt;cap.b = b;
+            handle-&gt;cap.a = a;
+            return;
+        case DEMOWIN_ITEM_BORDER:                      // set border
+            handle-&gt;border.r = r;
+            handle-&gt;border.g = g;
+            handle-&gt;border.b = b;
+            handle-&gt;border.a = a;
+            return;
+        case DEMOWIN_ITEM_BKGND:                       // set background
+            handle-&gt;bkgnd.r = r;
+            handle-&gt;bkgnd.g = g;
+            handle-&gt;bkgnd.b = b;
+            handle-&gt;bkgnd.a = a;
+            return;
+        case DEMOWIN_ITEM_DEFAULT:                     // default window colors
+            // RGB 26, 31, 33; Cinder (grey)
+            handle-&gt;bkgnd.r = 26;
+            handle-&gt;bkgnd.g = 31;
+            handle-&gt;bkgnd.b = 33;
+            handle-&gt;bkgnd.a = 255;
+            // RGB 85, 31, 31; Burnt Crimson (red)
+            handle-&gt;cap.r = 85;
+            handle-&gt;cap.g = 31;
+            handle-&gt;cap.b = 31;
+            handle-&gt;cap.a = 255;
+            // RGB 69, 37, 37; Bulgarian Rose (red)
+            handle-&gt;border.r = 69;
+            handle-&gt;border.g = 37;
+            handle-&gt;border.b = 37;
+            handle-&gt;border.a = 255;
+            return;
+        default:
+            ASSERTMSGLINE (0x183, FALSE, &quot;DEMOWinSetWinColor(): Unknown item\n&quot;);
+            return;
+    }
+}
+
+void
+DEMOWinLogPrintf (struct STRUCT_DEMOWIN* handle, char* fmt, ...)
+{
+    va_list vlist;
+    s8      buffer[128];
+    u16     len;
+    u16     i;
+    int     old;
+    u16     index;
+
+    va_start (vlist, fmt);
+    vsprintf (buffer, fmt, vlist);
+
+    old = OSDisableInterrupts();
+    len = strlen (buffer);
+    for (i = 0; i &lt; len; i++)
+    {
+        if (buffer[i] == 0xA)
+        {
+            handle-&gt;curr_output_line = (handle-&gt;curr_output_line + 1) % handle-&gt;total_lines;
+            handle-&gt;curr_view_line = (handle-&gt;curr_view_line + 1) % handle-&gt;total_lines;
+            handle-&gt;curr_output_col = 0;
+            index = handle-&gt;curr_output_col + (handle-&gt;curr_output_line * handle-&gt;char_width);
+            memset (&amp;handle-&gt;buffer[index], ' ', handle-&gt;char_width);
+        }
+        else
+        {
+            index = handle-&gt;curr_output_col + (handle-&gt;curr_output_line * handle-&gt;char_width);
+            handle-&gt;buffer[index] = buffer[i];
+            handle-&gt;curr_output_col++;
+        }
+        if (handle-&gt;curr_output_col &gt;= handle-&gt;char_width)
+        {
+            handle-&gt;curr_output_col = 0;
+            handle-&gt;curr_output_line = (handle-&gt;curr_output_line + 1) % handle-&gt;total_lines;
+            handle-&gt;curr_view_line = (handle-&gt;curr_view_line + 1) % handle-&gt;total_lines;
+            index = handle-&gt;curr_output_col + (handle-&gt;curr_output_line * handle-&gt;char_width);
+            memset (&amp;handle-&gt;buffer[index], ' ', handle-&gt;char_width);
+        }
+    }
+    OSRestoreInterrupts (old);
+    va_end (vlist);
+}
+
+void
+DEMOWinPrintfXY (struct STRUCT_DEMOWIN* handle, u16 col, u16 row, char* fmt, ...)
+{
+    int     old;
+    va_list vlist;
+    s8      string[128];
+    u16     buffer_row;
+    u16     i;
+    u16     index;
+
+    if (row &gt;= handle-&gt;char_height || col &gt;= handle-&gt;char_width)
+    {
+        return;
+    }
+    old = OSDisableInterrupts();
+    va_start (vlist, fmt);
+    vsprintf (string, fmt, vlist);
+    buffer_row = ((handle-&gt;curr_view_line + handle-&gt;total_lines) - (handle-&gt;char_height - 1)) %
+                 handle-&gt;total_lines;
+    buffer_row = (((buffer_row) + row) % handle-&gt;total_lines);
+    string[handle-&gt;char_width - col] = 0;
+    index = (col + buffer_row * handle-&gt;char_width);
+    for (i = 0; i &lt; strlen (string); i++)
+    {
+        handle-&gt;buffer[index + i] = string[i];
+    }
+    OSRestoreInterrupts (old);
+}
+
+void
+DEMOWinScrollWindow (struct STRUCT_DEMOWIN* handle, u32 dir)
+{
+    int old;
+    u16 n;
+    u16 v_start;
+
+    ASSERTMSGLINE (0x21B, handle, &quot;DEMOWinScrollWindow(): NULL handle!\n&quot;);
+    ASSERTMSGLINE (0x21C,
+                   handle-&gt;num_scroll_lines,
+                   &quot;DEMOWinScrollWindow(): No scrollback buffer!\n&quot;);
+
+    switch (dir)
+    {
+        case 1:
+            old = OSDisableInterrupts();
+            n = (handle-&gt;curr_view_line + handle-&gt;total_lines - 1) % handle-&gt;total_lines;
+            v_start = ((n + handle-&gt;total_lines) - handle-&gt;char_height + 1) % handle-&gt;total_lines;
+            if (v_start != handle-&gt;curr_output_line)
+            {
+                handle-&gt;curr_view_line = n;
+            }
+            OSRestoreInterrupts (old);
+            return;
+        case 2:
+            old = OSDisableInterrupts();
+            if (handle-&gt;curr_view_line != handle-&gt;curr_output_line)
+            {
+                handle-&gt;curr_view_line = (handle-&gt;curr_view_line + 1) % handle-&gt;total_lines;
+            }
+            OSRestoreInterrupts (old);
+            return;
+        case 0:
+            old = OSDisableInterrupts();
+            handle-&gt;curr_view_line = handle-&gt;curr_output_line;
+            OSRestoreInterrupts (old);
+            return;
+        default:
+            ASSERTMSGLINE (0x23F, FALSE, &quot;DEMOWinScrollWindow(): Unknown token\n&quot;);
+            return;
+    }
+}
+
+void
+DEMOWinBringToFront (struct STRUCT_DEMOWIN* handle)
+{
+    struct STRUCT_DEMOWIN* ptr;
+
+    ASSERTMSGLINE (0x256, __first_node, &quot;DEMOWinBringToFront(): Window list is empty!\n&quot;);
+    ASSERTMSGLINE (0x257, handle, &quot;DEMOWinBringToFront(): NULL handle!\n&quot;);
+    if (handle-&gt;priority)
+    {
+        for (ptr = __first_node; ptr; ptr = ptr-&gt;next)
+        {
+            ptr-&gt;priority = 1;
+        }
+        handle-&gt;priority = 0;
+    }
+}
+
+void
+DEMOWinSendToBack (struct STRUCT_DEMOWIN* handle)
+{
+    ASSERTMSGLINE (0x27A, handle, &quot;DEMOWinSendToBack(): NULL handle!\n&quot;);
+    handle-&gt;priority = 1;
+}
+
+void
+DEMOWinClearRow (struct STRUCT_DEMOWIN* handle, u16 row)
+{
+    u16 buffer_row;
+    u16 index;
+    u16 i;
+    int old;
+
+    ASSERTMSGLINE (0x292, handle, &quot;DEMOWinClearRow(): NULL handle!\n&quot;);
+    if (row &lt; handle-&gt;char_height)
+    {
+        old = OSDisableInterrupts();
+        buffer_row = (((handle-&gt;curr_view_line + handle-&gt;total_lines) - (handle-&gt;char_height - 1)) %
+                      handle-&gt;total_lines);
+        buffer_row = (((buffer_row + row) % handle-&gt;total_lines));
+        index = (buffer_row * handle-&gt;char_width);
+        for (i = 0; i &lt; handle-&gt;char_width; i++)
+        {
+            handle-&gt;buffer[index + i] = ' ';
+        }
+        OSRestoreInterrupts (old);
+    }
+}
+
+void
+DEMOWinClearWindow (struct STRUCT_DEMOWIN* handle)
+{
+    u16 buffer_row;
+    u16 index;
+    u16 i;
+    int old;
+
+    ASSERTMSGLINE (0x2C3, handle, &quot;DEMOWinClearWindow(): NULL handle!\n&quot;);
+
+    old = OSDisableInterrupts();
+    buffer_row = ((handle-&gt;curr_view_line + handle-&gt;total_lines) - (handle-&gt;char_height - 1)) %
+                 handle-&gt;total_lines;
+    for (i = 0; i &lt; handle-&gt;char_height; i++)
+    {
+        index = buffer_row * handle-&gt;char_width;
+        memset (&amp;handle-&gt;buffer[index], ' ', handle-&gt;char_width);
+        buffer_row = (buffer_row + 1) % handle-&gt;total_lines;
+    }
+    OSRestoreInterrupts (old);
+}
+
+void
+DEMOWinClearBuffer (struct STRUCT_DEMOWIN* handle)
+{
+    int old;
+
+    ASSERTMSGLINE (0x2E5, handle, &quot;DEMOWinClearBuffer(): NULL handle!\n&quot;);
+    old = OSDisableInterrupts();
+    memset (handle-&gt;buffer, ' ', handle-&gt;total_lines * handle-&gt;char_width);
+    OSRestoreInterrupts (old);
+}
+
+void
+DEMOWinRefresh ()
+{
+    struct STRUCT_DEMOWIN* ptr;
+    u16                    i;
+    u16                    index;
+    u16                    n;
+    u16                    y;
+    int                    old;
+
+    ASSERTMSGLINE (0x30D, __first_node, &quot;DEMOWinRefresh(): Windowlist is empty!\n&quot;);
+    for (ptr = __first_node; ptr; ptr = ptr-&gt;next)
+    {
+        if (ptr-&gt;flags &amp; DEMOWIN_FLAGS_OPENED)
+        {
+            GXSetZMode (1, 3, 1);
+            GXSetBlendMode (1, 1, 0, 0);
+            GXClearVtxDesc();
+            GXSetVtxDesc (9, 1);
+            GXSetVtxDesc (0xB, 1);
+            GXSetVtxAttrFmt (0, 9, 1, 4, 0);
+            GXSetVtxAttrFmt (0, 0xB, 1, 5, 0);
+            GXSetNumChans (1);
+            GXSetChanCtrl (4, 0, 1, 1, 0, 0, 2);
+            GXSetTevOrder (0, 0xFF, 0xFF, 4);
+            GXSetTevOp (0, 4);
+            GXSetNumTexGens (0);
+            GXSetNumTevStages (1);
+            GXSetLineWidth (6, 0);
+            GXBegin (0x80, 0, 4);
+            GXPosition3f32 (ptr-&gt;x1, ptr-&gt;y1, ptr-&gt;priority);
+            GXColor4u8 (ptr-&gt;bkgnd.r, ptr-&gt;bkgnd.g, ptr-&gt;bkgnd.b, ptr-&gt;bkgnd.a);
+            GXPosition3f32 (ptr-&gt;x2, ptr-&gt;y1, ptr-&gt;priority);
+            GXColor4u8 (ptr-&gt;bkgnd.r, ptr-&gt;bkgnd.g, ptr-&gt;bkgnd.b, ptr-&gt;bkgnd.a);
+            GXPosition3f32 (ptr-&gt;x2, ptr-&gt;y2, ptr-&gt;priority);
+            GXColor4u8 (ptr-&gt;bkgnd.r, ptr-&gt;bkgnd.g, ptr-&gt;bkgnd.b, ptr-&gt;bkgnd.a);
+            GXPosition3f32 (ptr-&gt;x1, ptr-&gt;y2, ptr-&gt;priority);
+            GXColor4u8 (ptr-&gt;bkgnd.r, ptr-&gt;bkgnd.g, ptr-&gt;bkgnd.b, ptr-&gt;bkgnd.a);
+            GXEnd();
+            GXSetBlendMode (1, 1, 1, 0);
+            GXBegin (0x80, 0, 4);
+            GXPosition3f32 (ptr-&gt;x1, ptr-&gt;y1, ptr-&gt;priority);
+            GXColor4u8 (ptr-&gt;cap.r, ptr-&gt;cap.g, ptr-&gt;cap.b, 255);
+            GXPosition3f32 (ptr-&gt;x2, ptr-&gt;y1, ptr-&gt;priority);
+            GXColor4u8 (0U, 0U, 0U, 0x40U);
+            GXPosition3f32 (ptr-&gt;x2, ptr-&gt;y1 + 0xA, ptr-&gt;priority);
+            GXColor4u8 (0U, 0U, 0U, 0x40U);
+            GXPosition3f32 (ptr-&gt;x1, ptr-&gt;y1 + 0xA, ptr-&gt;priority);
+            GXColor4u8 (ptr-&gt;cap.r, ptr-&gt;cap.g, ptr-&gt;cap.b, 255);
+            GXEnd();
+            GXSetBlendMode (1, 1, 0, 0);
+
+            // macro?
+            do {
+                // would initialize on init, but DWARF order for 2nd macro suggests
+                // they didnt init on same declare.
+                u16 r1;
+                u16 g1;
+                u16 b1;
+                u16 r2;
+                u16 g2;
+                u16 b2;
+                u16 a;
+
+                r1 = 1.3 * (f32)ptr-&gt;border.r;
+                g1 = 1.3 * (f32)ptr-&gt;border.g;
+                b1 = 1.3 * (f32)ptr-&gt;border.b;
+                r2 = 0.4 * (f32)ptr-&gt;border.r;
+                g2 = 0.4 * (f32)ptr-&gt;border.g;
+                b2 = 0.4 * (f32)ptr-&gt;border.b;
+                a = 64;
+
+                GXSetLineWidth (6, 0);
+                GXBegin (0xB0, 0, 7);
+                GXPosition3f32 (ptr-&gt;x1, ptr-&gt;y1, ptr-&gt;priority);
+                GXColor4u8 (r1, g1, b1, a);
+                GXPosition3f32 (ptr-&gt;x2, ptr-&gt;y1, ptr-&gt;priority);
+                GXColor4u8 (r1, g1, b1, a);
+                GXPosition3f32 (ptr-&gt;x2, ptr-&gt;y1, ptr-&gt;priority);
+                GXColor4u8 (r2, g2, b2, a);
+                GXPosition3f32 (ptr-&gt;x2, ptr-&gt;y2, ptr-&gt;priority);
+                GXColor4u8 (r2, g2, b2, a);
+                GXPosition3f32 (ptr-&gt;x1, ptr-&gt;y2, ptr-&gt;priority);
+                GXColor4u8 (r2, g2, b2, a);
+                GXPosition3f32 (ptr-&gt;x1, ptr-&gt;y2, ptr-&gt;priority);
+                GXColor4u8 (r1, g1, b1, a);
+                GXPosition3f32 (ptr-&gt;x1, ptr-&gt;y1, ptr-&gt;priority);
+                GXColor4u8 (r1, g1, b1, a);
+                GXEnd();
+            }
+            while (0);
+
+            if (ptr-&gt;refresh)
+            {
+                ptr-&gt;refresh (ptr);
+            }
+            DEMOInitCaption (2, __rmp-&gt;fbWidth, __rmp-&gt;efbHeight);
+            GXSetZMode (1, 3, 1);
+            old = OSDisableInterrupts();
+            y = (ptr-&gt;y2 - 8) - ptr-&gt;y_cal;
+            n = ptr-&gt;curr_view_line;
+            index = n * ptr-&gt;char_width;
+            for (i = 0; i &lt; ptr-&gt;char_height; i++)
+            {
+                __DEMOWin_puts_n (ptr-&gt;x1 + ptr-&gt;x_cal,
+                                  y,
+                                  ptr-&gt;priority,
+                                  ptr-&gt;char_width,
+                                  (void*)&amp;ptr-&gt;buffer[index]);
+                y = y - 8;
+                n = (n + (ptr-&gt;total_lines) - 1) % ptr-&gt;total_lines;
+                index = n * ptr-&gt;char_width;
+            }
+            DEMOPrintf (ptr-&gt;x1 + 2, ptr-&gt;y1, ptr-&gt;priority, &quot;%s&quot;, ptr-&gt;caption);
+            if (ptr-&gt;cursor_line &gt;= 0)
+            {
+                GXSetLineWidth (6, 0);
+                GXSetZMode (1, 3, 1);
+                GXSetBlendMode (1, 1, 1, 0);
+                GXClearVtxDesc();
+                GXSetVtxDesc (9, 1);
+                GXSetVtxDesc (0xB, 1);
+                GXSetVtxAttrFmt (0, 9, 1, 4, 0);
+                GXSetVtxAttrFmt (0, 0xB, 1, 5, 0);
+                GXSetNumChans (1);
+                GXSetChanCtrl (4, 0, 1, 1, 0, 0, 2);
+                GXSetTevOrder (0, 0xFF, 0xFF, 4);
+                GXSetTevOp (0, 4);
+                GXSetNumTexGens (0);
+                GXSetNumTevStages (1);
+                GXSetLineWidth (6, 0);
+
+                // macro?
+                do {
+                    u16 r;
+                    u16 g;
+                    u16 b;
+                    u16 a;
+                    s32 curr_y;
+
+                    curr_y = (ptr-&gt;y2 - 8) - ptr-&gt;y_cal;
+                    curr_y -= ((ptr-&gt;char_height - 1) * 8) - ptr-&gt;cursor_line * 8;
+                    r = 1.9 * (f32)ptr-&gt;bkgnd.r;
+                    g = 1.9 * (f32)ptr-&gt;bkgnd.g;
+                    b = 1.9 * (f32)ptr-&gt;bkgnd.b;
+
+                    a = 100;
+                    GXBegin (0x80, 0, 4);
+                    GXPosition3f32 (ptr-&gt;x1, curr_y, ptr-&gt;priority);
+                    GXColor4u8 (r, g, b, a);
+                    GXPosition3f32 (ptr-&gt;x2, curr_y, ptr-&gt;priority);
+                    GXColor4u8 (r, g, b, a);
+                    GXPosition3f32 (ptr-&gt;x2, (f32)(curr_y + 8), ptr-&gt;priority);
+                    GXColor4u8 (r, g, b, a);
+                    GXPosition3f32 (ptr-&gt;x1, (f32)(curr_y + 8), ptr-&gt;priority);
+                    GXColor4u8 (r, g, b, a);
+                    GXEnd();
+                }
+                while (0);
+            }
+            OSRestoreInterrupts (old);
+        }
+    }
+}
+
+static void
+__DEMOWin_add_node (struct STRUCT_DEMOWIN* handle)
+{
+    ASSERTMSGLINE (0x3FD, handle, &quot;__add_node(): you're adding a NULL node!\n&quot;);
+
+    // WHY. why it backwards. who writes like this?
+    if (NULL == __last_node)
+    {
+        __curr_node = handle;
+        __last_node = handle;
+        __first_node = handle;
+        handle-&gt;next = 0;
+        handle-&gt;prev = 0;
+        ASSERTMSGLINE (0x407, __first_node, &quot;  &gt; __first_node: NULL HANDLE!\n&quot;);
+    }
+    else
+    {
+        __last_node-&gt;next = handle;
+        handle-&gt;next = 0;
+        handle-&gt;prev = __last_node;
+        __last_node = handle;
+    }
+    handle-&gt;flags |= DEMOWIN_FLAGS_INIT;
+}
+
+static void
+__DEMOWin_delete_node (struct STRUCT_DEMOWIN* handle)
+{
+    static u16 old;
+    ASSERTMSGLINE (0x424, handle, &quot;__delete_node(): you're deleting a NULL node!\n&quot;);
+
+    if (__first_node == handle)
+    {
+        if (handle-&gt;next)
+        {
+            __first_node = handle-&gt;next;
+            handle-&gt;next-&gt;prev = NULL;
+        }
+        else
+        {
+            __first_node = __last_node = NULL;
+        }
+    }
+    else if (__last_node == handle)
+    {
+        if (handle-&gt;prev)
+        {
+            __last_node = handle-&gt;prev;
+            handle-&gt;prev-&gt;next = NULL;
+        }
+        else
+        {
+            __first_node = __last_node = NULL;
+        }
+    }
+    else
+    {
+        handle-&gt;prev-&gt;next = handle-&gt;next;
+        handle-&gt;next-&gt;prev = handle-&gt;prev;
+    }
+    handle-&gt;flags &amp;= ~(DEMOWIN_FLAGS_INIT);
+}
+
+static void
+__DEMOWin_puts_n (s16 x, signed s16 y, signed short z, u16 n, char* string)
+{
+    s32 s;
+    s32 t;
+    s32 w;
+    s32 len;
+    s32 i;
+
+    GXClearVtxDesc();
+    GXSetVtxDesc (9, 1);
+    GXSetVtxDesc (0xD, 1);
+    GXSetVtxAttrFmt (0, 9, 1, 3, 0);
+    GXSetVtxAttrFmt (0, 0xD, 1, 3, 1);
+    len = n;
+    if (len &gt; 0)
+    {
+        GXBegin (0x80, 0, len * 4);
+        for (i = 0; i &lt; len; i++)
+        {
+            w = string[i] - 0x20;
+            s = fontShift + (((w) % 8) * 0x10);
+            t = fontShift + (((w) / 8) * 0x10);
+            GXPosition3s16 (x + (i * 8), y, z);
+            GXTexCoord2s16 (s, t);
+            GXPosition3s16 (x + (i * 8) + 8, y, z);
+            GXTexCoord2s16 (s + 0x10, t);
+            GXPosition3s16 (x + (i * 8) + 8, y + 8, z);
+            GXTexCoord2s16 (s + 0x10, t + 0x10);
+            GXPosition3s16 (x + (i * 8), y + 8, z);
+            GXTexCoord2s16 (s, t + 0x10);
+        }
+        GXEnd();
+    }
+}
+
+struct STRUCT_MENU*
+DEMOWinCreateMenuWindow (struct STRUCT_MENU* menu, u16 x, u16 y)
+{
+    struct STRUCT_MENU_ITEM* ptr;
+
+    ptr = menu-&gt;items;
+    menu-&gt;max_str_len = strlen (menu-&gt;title);
+    menu-&gt;num_items = 0;
+    while (!(ptr-&gt;flags &amp; 0x80000000))
+    {
+        if (strlen (ptr-&gt;name) &gt; menu-&gt;max_str_len)
+        {
+            menu-&gt;max_str_len = strlen (ptr-&gt;name);
+        }
+        menu-&gt;num_items++;
+        ptr++;
+    }
+    if (menu-&gt;num_items &gt; menu-&gt;max_display_items)
+    {
+        menu-&gt;num_display_items = menu-&gt;max_display_items;
+    }
+    else
+    {
+        menu-&gt;num_display_items = menu-&gt;num_items;
+    }
+    menu-&gt;handle = DEMOWinCreateWindow ((s16)x,
+                                        (s16)y,
+                                        (s16)(((menu-&gt;max_str_len + 7) * 8) + 4 + x),
+                                        (s16)(((menu-&gt;num_display_items + 2) * 8) + 4 + y),
+                                        menu-&gt;title,
+                                        0,
+                                        __DEMOWinMenu_refesh_menu);
+    menu-&gt;handle-&gt;parent = menu;
+    if (menu-&gt;num_items)
+    {
+        return menu;
+    }
+    return NULL;
+}
+
+void
+DEMOWinDestroyMenuWindow (struct STRUCT_MENU* menu)
+{
+    if (menu-&gt;handle)
+    {
+        DEMOWinCloseWindow (menu-&gt;handle);
+        DEMOWinDestroyWindow (menu-&gt;handle);
+    }
+}
+
+u32
+DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
+{
+    DEMOWinPadInfo         pad;
+    struct STRUCT_DEMOWIN* handle;
+    u16                    user_input;
+    int                    exit_flag;
+    u32                    result;
+
+    exit_flag = 0;
+    result = 0;
+    handle = menu-&gt;handle;
+    DEMOWinOpenWindow (handle);
+    DEMOWinBringToFront (handle);
+    menu-&gt;curr_pos = 0;
+    menu-&gt;display_pos = 0;
+    if (menu-&gt;cb_open)
+    {
+        menu-&gt;cb_open (menu, menu-&gt;curr_pos);
+    }
+    DEMOWinPadInit (&amp;pad);
+    DEMOBeforeRender();
+    DEMOWinRefresh();
+    DEMODoneRender();
+    DEMOWinPadRead (&amp;pad);
+    DEMOBeforeRender();
+    DEMOWinRefresh();
+    DEMODoneRender();
+    while (!exit_flag)
+    {
+        user_input = __DEMOWinMenu_get_user_input (&amp;pad);
+        switch (user_input)
+        {
+            case 1:
+                menu-&gt;curr_pos =
+                    ((menu-&gt;curr_pos - 1 + menu-&gt;num_items) % menu-&gt;num_items) &amp; 0xFFFF;
+                while (menu-&gt;items[menu-&gt;curr_pos].flags &amp; 9)
+                {
+                    menu-&gt;curr_pos =
+                        ((menu-&gt;curr_pos - 1 + menu-&gt;num_items) % menu-&gt;num_items) &amp; 0xFFFF;
+                }
+                if (menu-&gt;cb_move)
+                {
+                    menu-&gt;cb_move (menu, menu-&gt;curr_pos);
+                }
+                break;
+            case 2:
+                menu-&gt;curr_pos = ((menu-&gt;curr_pos + 1) % menu-&gt;num_items) &amp; 0xFFFF;
+                while (menu-&gt;items[menu-&gt;curr_pos].flags &amp; 9)
+                {
+                    menu-&gt;curr_pos = ((menu-&gt;curr_pos + 1) % menu-&gt;num_items) &amp; 0xFFFF;
+                }
+                if (menu-&gt;cb_move)
+                {
+                    menu-&gt;cb_move (menu, menu-&gt;curr_pos);
+                }
+                break;
+            case 3:
+                if (child_flag == 1)
+                {
+                    exit_flag = 1;
+                    if (menu-&gt;cb_cancel)
+                    {
+                        menu-&gt;cb_cancel (menu, menu-&gt;curr_pos);
+                    }
+                }
+                break;
+            case 4:
+                if (menu-&gt;cb_move)
+                {
+                    menu-&gt;cb_move (menu, menu-&gt;curr_pos);
+                }
+                if (menu-&gt;items[menu-&gt;curr_pos].link)
+                {
+                    if (menu-&gt;items[menu-&gt;curr_pos].link-&gt;handle)
+                    {
+                        menu-&gt;items[menu-&gt;curr_pos].link-&gt;handle-&gt;x1 = (handle-&gt;x1 + 0x14) &amp; 0xFFFF;
+                        menu-&gt;items[menu-&gt;curr_pos].link-&gt;handle-&gt;y1 = (handle-&gt;y1 + 0x14) &amp; 0xFFFF;
+                        result = DEMOWinMenuChild (menu-&gt;items[menu-&gt;curr_pos].link, 1);
+                        if (menu-&gt;items[menu-&gt;curr_pos].link-&gt;flags &amp; 1)
+                        {
+                            exit_flag = 1;
+                        }
+                    }
+                    else
+                    {
+                        DEMOWinCreateMenuWindow (menu-&gt;items[menu-&gt;curr_pos].link,
+                                                 (handle-&gt;x1 + 0x14),
+                                                 (handle-&gt;y1 + 0x14));
+                        result = DEMOWinMenuChild (menu-&gt;items[menu-&gt;curr_pos].link, 1);
+                        if (menu-&gt;items[menu-&gt;curr_pos].link-&gt;flags &amp; 1)
+                        {
+                            exit_flag = 1;
+                        }
+                        DEMOWinDestroyMenuWindow (menu-&gt;items[menu-&gt;curr_pos].link);
+                    }
+                    VIWaitForRetrace();
+                    DEMOWinPadRead (&amp;pad);
+                }
+                break;
+            case 5:
+                if (menu-&gt;cb_select)
+                {
+                    menu-&gt;cb_select (menu, menu-&gt;curr_pos);
+                }
+                if (menu-&gt;items[menu-&gt;curr_pos].link)
+                {
+                    if (menu-&gt;items[menu-&gt;curr_pos].link-&gt;handle)
+                    {
+                        menu-&gt;items[menu-&gt;curr_pos].link-&gt;handle-&gt;x1 = (handle-&gt;x1 + 0x14) &amp; 0xFFFF;
+                        menu-&gt;items[menu-&gt;curr_pos].link-&gt;handle-&gt;y1 = (handle-&gt;y1 + 0x14) &amp; 0xFFFF;
+                        result = DEMOWinMenuChild (menu-&gt;items[menu-&gt;curr_pos].link, 1);
+                        if (menu-&gt;items[menu-&gt;curr_pos].link-&gt;flags &amp; 1)
+                        {
+                            exit_flag = 1;
+                        }
+                    }
+                    else
+                    {
+                        DEMOWinCreateMenuWindow (menu-&gt;items[menu-&gt;curr_pos].link,
+                                                 (handle-&gt;x1 + 0x14),
+                                                 (handle-&gt;y1 + 0x14));
+                        result = DEMOWinMenuChild (menu-&gt;items[menu-&gt;curr_pos].link, 1);
+                        if (menu-&gt;items[menu-&gt;curr_pos].link-&gt;flags &amp; 1)
+                        {
+                            exit_flag = 1;
+                        }
+                        DEMOWinDestroyMenuWindow (menu-&gt;items[menu-&gt;curr_pos].link);
+                    }
+                    VIWaitForRetrace();
+                    DEMOWinPadRead (&amp;pad);
+                }
+                else if (menu-&gt;items[menu-&gt;curr_pos].function)
+                {
+                    menu-&gt;items[menu-&gt;curr_pos].function (menu, menu-&gt;curr_pos, &amp;result);
+                    if (menu-&gt;items[menu-&gt;curr_pos].flags &amp; 0x10)
+                    {
+                        exit_flag = 1;
+                    }
+                    VIWaitForRetrace();
+                    DEMOWinPadRead (&amp;pad);
+                }
+                break;
+            case 6:
+                if (menu-&gt;cb_cancel)
+                {
+                    menu-&gt;cb_cancel (menu, menu-&gt;curr_pos);
+                }
+                exit_flag = 1;
+                break;
+        }
+        if (menu-&gt;curr_pos &gt; (menu-&gt;display_pos + menu-&gt;num_display_items - 1))
+        {
+            menu-&gt;display_pos = (menu-&gt;curr_pos - menu-&gt;num_display_items) + 1;
+        }
+        else if (menu-&gt;curr_pos &lt; menu-&gt;display_pos)
+        {
+            menu-&gt;display_pos = menu-&gt;curr_pos;
+        }
+        if (menu-&gt;display_pos &gt; menu-&gt;curr_pos)
+        {
+            handle-&gt;cursor_line = (menu-&gt;display_pos - menu-&gt;curr_pos);
+        }
+        else
+        {
+            handle-&gt;cursor_line = (menu-&gt;curr_pos - menu-&gt;display_pos);
+        }
+        DEMOBeforeRender();
+        DEMOWinRefresh();
+        DEMODoneRender();
+    }
+    DEMOWinCloseWindow (handle);
+    DEMOBeforeRender();
+    DEMOWinRefresh();
+    DEMODoneRender();
+    return result;
+}
+
+static void
+__DEMOWinMenu_refesh_menu (struct STRUCT_DEMOWIN* w)
+{
+    struct STRUCT_MENU* m;
+    s32                 i;
+    s32                 j;
+    s8                  check;
+    s8                  para_start;
+    s8                  para_end;
+    s8                  link;
+
+    DEMOWinClearWindow (w);
+    m = w-&gt;parent;
+    j = m-&gt;display_pos;
+    for (i = 0; i &lt; m-&gt;num_display_items; j++, i++)
+    {
+        if (m-&gt;items[j].flags &amp; 8)
+        {
+            if (strlen (m-&gt;items[j &amp; 0xFFFF].name))
+            {
+                DEMOWinPrintfXY (w, 0, i, &quot;   %s     &quot;, m-&gt;items[j &amp; 0xFFFF].name);
+            }
+        }
+        else
+        {
+            check = (s8)((m-&gt;items[j].flags &amp; 4) ? 'X' : ' ');
+            para_start = (s8)((m-&gt;items[j].flags &amp; 1) ? '(' : ' ');
+            para_end = (s8)((m-&gt;items[j].flags &amp; 1) ? ')' : ' ');
+            link = (s8)((NULL != m-&gt;items[j].link) ? '&gt;' : ' ');
+            DEMOWinPrintfXY (w,
+                             0,
+                             i,
+                             &quot;%c %c%s%c %c&quot;,
+                             check,
+                             para_start,
+                             m-&gt;items[j &amp; 0xFFFF].name,
+                             para_end,
+                             link);
+        }
+    }
+}
+
+void
+DEMOWinPadInit (DEMOWinPadInfo* p)
+{
+    u16 i;
+
+    for (i = 0; i &lt; 4; i++)
+    {
+        p-&gt;old_button[i] = 0;
+        p-&gt;changed_button[i] = 0;
+        p-&gt;repeat_button[i] = 0;
+        p-&gt;repeat_ctr[i] = 0;
+    }
+}
+
+void
+DEMOWinPadRead (DEMOWinPadInfo* p)
+{
+    PADStatus* pad;
+    u16        index;
+    u32        curr;
+    u32        old;
+    u32        repeat;
+
+    PADRead (p-&gt;pads);
+
+    for (index = 0; index &lt; 4; index++)
+    {
+        old = p-&gt;old_button[index];
+        pad = &amp;p-&gt;pads[index];
+
+        curr =
+            ((pad-&gt;stickX &gt; 0x40 ? 0x00040000 : 0) | (pad-&gt;stickX &lt; -0x40 ? 0x00080000 : 0) |
+             (pad-&gt;stickY &gt; 0x40 ? 0x00010000 : 0) | (pad-&gt;stickY &lt; -0x40 ? 0x00020000 : 0) |
+             (pad-&gt;substickX &gt; +0x40 ? 0x00400000 : 0) | (pad-&gt;substickX &lt; -0x40 ? 0x00800000 : 0) |
+             (pad-&gt;substickY &gt; +0x40 ? 0x00100000 : 0) | (pad-&gt;substickY &lt; -0x40 ? 0x00200000 : 0) |
+             (pad-&gt;triggerLeft &gt; +0x80 ? 0x02000000 : 0) |
+             (pad-&gt;triggerRight &gt; +0x80 ? 0x01000000 : 0) | pad-&gt;button);
+
+        p-&gt;changed_button[index] = (curr &amp; (old ^ curr));
+        if (curr)
+        {
+            if (old == curr)
+            {
+                p-&gt;repeat_ctr[index]++;
+            }
+            else
+            {
+                p-&gt;repeat_ctr[index] = 1;
+            }
+        }
+        else
+        {
+            p-&gt;repeat_ctr[index] = 0;
+        }
+        repeat = p-&gt;repeat_ctr[index];
+        if (repeat == 1)
+        {
+            p-&gt;repeat_button[index] = curr;
+        }
+        else if (repeat &gt; __DEMOWIN_PAD_repeat_threshold)
+        {
+            if (((repeat - __DEMOWIN_PAD_repeat_threshold) % __DEMOWIN_PAD_repeat_rate) == 0)
+            {
+                p-&gt;repeat_button[index] = curr;
+            }
+            else
+            {
+                p-&gt;repeat_button[index] = 0;
+            }
+        }
+        else
+        {
+            p-&gt;repeat_button[index] = 0;
+        }
+        p-&gt;old_button[index] = curr;
+    }
+}
+
+static u16
+__DEMOWinMenu_get_user_input (DEMOWinPadInfo* p)
+{
+    u16 user_input;
+
+    DEMOWinPadRead (p);
+    if (p-&gt;repeat_button[0] &amp; 0x00010008)
+    {
+        user_input = 1;
+    }
+    else if (p-&gt;repeat_button[0] &amp; 0x00020004)
+    {
+        user_input = 2;
+    }
+    else if (p-&gt;repeat_button[0] &amp; 0x00080001)
+    {
+        user_input = 3;
+    }
+    else if (p-&gt;repeat_button[0] &amp; 0x00040002)
+    {
+        user_input = 4;
+    }
+    else if (p-&gt;changed_button[0] &amp; 0x00000100)
+    {
+        user_input = 5;
+    }
+    else if (p-&gt;changed_button[0] &amp; 0x00000200)
+    {
+        user_input = 6;
+    }
+    else
+    {
+        user_input = 0;
+    }
+    return user_input;
+}
+
+void
+DEMOWinSetRepeat (u32 threshold, u32 rate)
+{
+    __DEMOWIN_PAD_repeat_rate = rate;
+    __DEMOWIN_PAD_repeat_threshold = threshold;
+}
+
+void
+DEMOWinResetRepeat ()
+{
+    __DEMOWIN_PAD_repeat_threshold = 0xF;
+    __DEMOWIN_PAD_repeat_rate = 2;
+}
+
+struct STRUCT_LISTBOX*
+DEMOWinCreateListWindow (struct STRUCT_LISTBOX* list, u16 x, u16 y)
+{
+    struct STRUCT_LISTBOX_ITEM* ptr;
+
+    ASSERTMSGLINE (0x72A, list, &quot;DEMOWinCreateListWindow(): List is NULL!\n&quot;);
+    ptr = list-&gt;items;
+    list-&gt;max_str_len = strlen (list-&gt;title);
+    list-&gt;num_items = 0;
+    while (!(ptr-&gt;flags &amp; 0x80000000))
+    {
+        if (strlen (ptr-&gt;name) &gt; list-&gt;max_str_len)
+        {
+            list-&gt;max_str_len = strlen (ptr-&gt;name);
+        }
+        list-&gt;num_items++;
+        ptr++;
+    }
+    if (list-&gt;num_items &gt; list-&gt;max_display_items)
+    {
+        list-&gt;num_display_items = list-&gt;max_display_items;
+    }
+    else
+    {
+        list-&gt;num_display_items = list-&gt;num_items;
+    }
+    list-&gt;handle = DEMOWinCreateWindow ((s16)x,
+                                        (s16)y,
+                                        (s16)((list-&gt;max_str_len + 7) * 8 + 4 + x),
+                                        (s16)((list-&gt;num_display_items + 2) * 8 + 4 + y),
+                                        list-&gt;title,
+                                        0,
+                                        __DEMOWinList_refresh_list);
+    list-&gt;handle-&gt;parent = list;
+    if (list-&gt;num_items)
+    {
+        return list;
+    }
+    return NULL;
+}
+
+void
+DEMOWinDestroyListWindow (struct STRUCT_LISTBOX* list)
+{
+    if (list-&gt;handle)
+    {
+        DEMOWinCloseWindow (list-&gt;handle);
+        DEMOWinDestroyWindow (list-&gt;handle);
+    }
+}
+
+static void
+__DEMOWinList_refresh_list (struct STRUCT_DEMOWIN* w)
+{
+    struct STRUCT_LISTBOX* l;
+    s32                    i;
+    s32                    j;
+
+    l = w-&gt;parent;
+    l-&gt;curr_pos = (l-&gt;curr_pos % l-&gt;num_items);
+    if (l-&gt;curr_pos &gt; (l-&gt;display_pos + l-&gt;num_display_items - 1))
+    {
+        l-&gt;display_pos = (l-&gt;curr_pos - l-&gt;num_display_items + 1);
+    }
+    else if (l-&gt;curr_pos &lt; l-&gt;display_pos)
+    {
+        l-&gt;display_pos = l-&gt;curr_pos;
+    }
+    if (l-&gt;cursor_state != 0)
+    {
+        if (l-&gt;display_pos &gt; l-&gt;curr_pos)
+        {
+            w-&gt;cursor_line = (l-&gt;display_pos - l-&gt;curr_pos);
+        }
+        else
+        {
+            w-&gt;cursor_line = (l-&gt;curr_pos - l-&gt;display_pos);
+        }
+    }
+    else
+    {
+        w-&gt;cursor_line = -1;
+    }
+    DEMOWinClearWindow (w);
+    j = l-&gt;display_pos;
+    for (i = 0; i &lt; l-&gt;num_display_items; i++)
+    {
+        if (!(l-&gt;items[j].flags &amp; 0x8))
+        {
+            DEMOWinPrintfXY (w, 0, i, &quot; %s &quot;, l-&gt;items[j &amp; 0xFFFF].name);
+        }
+        j++;
+    }
+}
+
+void
+DEMOWinListSetCursor (struct STRUCT_LISTBOX* list, int x)
+{
+    list-&gt;cursor_state = x;
+}
+
+s32
+DEMOWinListScrollList (struct STRUCT_LISTBOX* list, u32 dir)
+{
+    ASSERTMSGLINE (0x7E2, list, &quot;DEMOWinListScrollList(): NULL handle!\n&quot;);
+    switch (dir)
+    {
+        case 1:
+            if (list-&gt;display_pos)
+            {
+                list-&gt;display_pos =
+                    (u16)((list-&gt;display_pos - 1 + list-&gt;num_items) % list-&gt;num_items);
+            }
+            break;
+        case 2:
+            if (list-&gt;display_pos &lt; (list-&gt;num_items - list-&gt;num_display_items))
+            {
+                list-&gt;display_pos = (u16)((list-&gt;display_pos + 1) % list-&gt;num_items);
+            }
+            break;
+        case 0:
+            list-&gt;display_pos = 0;
+            break;
+        default:
+            ASSERTMSGLINE (0x7FB, FALSE, &quot;DEMOWinListScrollList(): Invalid dimension!\n&quot;);
+            break;
+    }
+    if (list-&gt;curr_pos &gt; (list-&gt;display_pos + list-&gt;num_display_items - 1))
+    {
+        list-&gt;curr_pos = (list-&gt;display_pos + list-&gt;num_display_items - 1);
+    }
+    else if (list-&gt;curr_pos &lt; list-&gt;display_pos)
+    {
+        list-&gt;curr_pos = list-&gt;display_pos;
+    }
+    return list-&gt;display_pos;
+}
+
+s32
+DEMOWinListMoveCursor (struct STRUCT_LISTBOX* list, u32 dir)
+{
+    ASSERTMSGLINE (0x81E, list, &quot;DEMOWinListScrollList(): NULL handle!\n&quot;);
+    switch (dir)
+    {
+        case 1:
+            list-&gt;curr_pos = (list-&gt;curr_pos + list-&gt;num_items - 1) % list-&gt;num_items;
+            break;
+        case 2:
+            list-&gt;curr_pos = (list-&gt;curr_pos + 1) % list-&gt;num_items;
+            break;
+        default:
+            ASSERTMSGLINE (0x82B, FALSE, &quot;DEMOWinListMoveCursor(): Invalid dimension!\n&quot;);
+            break;
+    }
+    return list-&gt;curr_pos;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

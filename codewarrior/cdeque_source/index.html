@@ -1,0 +1,4221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File cdeque - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cdeque">File cdeque</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../cdeque/"><strong>cdeque</strong></a></p>
+<p><a href="../cdeque/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:58:47 $ 
+ *  $Revision: 1.8.4.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1998-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  cdeque
+ **/
+
+// WARNING
+//
+// cdeque is a non-standard, non-portable header and container.
+//
+// WARNING
+//
+// It's purpose here is to aid in the implementation of deque.
+// cdeque is very similar to deque except that it has capacity
+// and reserve methods like vector.  It guarantees amoritized
+// constant time push_front and push_back, but it may invalidate
+// references (when capacity is increased) during these operations.
+//
+// cdeque is short for &quot;circular deque&quot;.  It is implemented with
+// a contiguous chunk of memory like vector.  vector elements always
+// start at the low memory address, and there is an uninitialized chunk
+// of reserve memory at the high end to grow into.  In contrast, cdeque
+// maps the memory into a circular path.  The first element can start
+// anywhere on the circle, and the reserve memory extends from beyond
+// the last element up to the first element.  That is:
+// In use     : [first, last)
+// In reserve : [last, first)
+//
+
+#ifndef _CDEQUE
+#define _CDEQUE
+
+#include &lt;mslconfig&gt;
+
+#include &lt;climits&gt;
+#include &lt;algorithm&gt;
+#include &lt;iterator&gt;
+#include &lt;limits&gt;
+#include &lt;memory&gt;
+#include &lt;new&gt;
+#include &lt;stdexcept&gt;
+#include &lt;string&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+template &lt;class T, class Allocator = allocator&lt;T&gt; &gt;
+class __cdeque
+{
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;bool b&gt; struct chooser {};
+    #endif
+public:
+    // types:
+    typedef typename Allocator::reference         reference;
+    typedef typename Allocator::const_reference   const_reference;
+    class                                         iterator;
+    class                                         const_iterator;
+    typedef typename Allocator::size_type         size_type;
+    typedef typename Allocator::difference_type   difference_type;
+    typedef T                                     value_type;
+    typedef Allocator                             allocator_type;
+    typedef typename Allocator::pointer           pointer;
+    typedef typename Allocator::const_pointer     const_pointer;
+    typedef _STD::reverse_iterator&lt;iterator&gt;       reverse_iterator;
+    typedef _STD::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
+
+    friend class iterator;
+    class iterator
+        : public _STD::iterator&lt;random_access_iterator_tag, value_type,
+            difference_type, pointer, reference&gt;
+    {
+    public:
+        iterator() {}
+        reference operator * () const {return *ptr_;}
+        pointer operator -&gt; () const {return ptr_;}
+        iterator&amp; operator ++ ()
+        {
+            ++pos_;
+            if (++ptr_ == cdeq_-&gt;data_ + cdeq_-&gt;alloc_.m_)
+                ptr_ = cdeq_-&gt;data_;
+            return *this;
+        }
+        iterator operator ++ (int) {iterator tmp(*this); ++(*this); return tmp;}
+        iterator&amp; operator -- ()
+        {
+            --pos_;
+            if (ptr_ == cdeq_-&gt;data_)
+                ptr_ = cdeq_-&gt;data_ + cdeq_-&gt;alloc_.m_;
+            --ptr_;
+            return *this;
+        }
+        iterator operator -- (int) {iterator tmp(*this); --(*this); return tmp;}
+        iterator&amp; operator += (difference_type n)
+        {
+            if (n &lt; 0)
+                return (*this) -= -n;
+            size_type sz = cdeq_-&gt;alloc_.m_;
+            size_type off = cdeq_-&gt;start_ + pos_ + n;
+            if (off &lt; sz)
+                ptr_ += n;
+            else
+                ptr_ = cdeq_-&gt;data_ + (off - sz);
+            pos_ += n;
+            return *this;
+        }
+        iterator operator + (difference_type n) const {return iterator(*this) += n;}
+        iterator&amp; operator -= (difference_type n)
+        {
+            if (n &lt; 0)
+                return (*this) += -n;
+            if (n &lt;= cdeq_-&gt;start_ + pos_)
+                ptr_ -= n;
+            else
+                ptr_ = cdeq_-&gt;data_ + (cdeq_-&gt;alloc_.m_ - n);
+            pos_ -= n;
+            return *this;
+        }
+        iterator operator - (difference_type n) const {return iterator(*this) -= n;}
+        difference_type operator - (const iterator&amp; rhs) const {return difference_type(pos_ - rhs.pos_);}
+        reference operator [] (difference_type i) const {iterator tmp(*this); tmp += i; return *tmp;}
+        friend bool operator ==(const iterator&amp; x, const iterator&amp; y) {return x.pos_ == y.pos_;}  // hh 990720
+        friend bool operator !=(const iterator&amp; x, const iterator&amp; y) {return x.pos_ != y.pos_;}
+        friend bool operator &lt; (const iterator&amp; x, const iterator&amp; y) {return x.pos_ &lt;  y.pos_;}
+        friend bool operator &lt;=(const iterator&amp; x, const iterator&amp; y) {return x.pos_ &lt;= y.pos_;}
+        friend bool operator &gt; (const iterator&amp; x, const iterator&amp; y) {return x.pos_ &gt;  y.pos_;}
+        friend bool operator &gt;=(const iterator&amp; x, const iterator&amp; y) {return x.pos_ &gt;= y.pos_;}
+        friend iterator operator + (difference_type n, const iterator&amp; rhs)
+            {return iterator(rhs) += n;}
+    private:
+        __cdeque* cdeq_;
+        size_type pos_;
+        pointer ptr_;
+
+        iterator(__cdeque* cdeq, size_type pos, pointer ptr)
+            : cdeq_(cdeq),
+              pos_(pos),
+              ptr_(ptr)
+        {}
+
+        friend class __cdeque;
+        friend class __cdeque::const_iterator;
+    };
+
+    friend class const_iterator;
+    class const_iterator
+        : public _STD::iterator&lt;random_access_iterator_tag, value_type,
+            difference_type, const_pointer, const_reference&gt;
+    {
+    public:
+        const_iterator() {}
+        const_iterator(const __cdeque::iterator&amp; rhs) : cdeq_(rhs.cdeq_), pos_(rhs.pos_), ptr_(rhs.ptr_) {}
+        const_reference operator * () const {return *ptr_;}
+        const_pointer operator -&gt; () const {return ptr_;}
+        const_iterator&amp; operator ++ ()
+        {
+            ++pos_;
+            if (++ptr_ == cdeq_-&gt;data_ + cdeq_-&gt;alloc_.m_)
+                ptr_ = cdeq_-&gt;data_;
+            return *this;
+        }
+        const_iterator operator ++ (int) {const_iterator tmp(*this); ++(*this); return tmp;}
+        const_iterator&amp; operator -- ()
+        {
+            --pos_;
+            if (ptr_ == cdeq_-&gt;data_)
+                ptr_ = cdeq_-&gt;data_ + cdeq_-&gt;alloc_.m_;
+            --ptr_;
+            return *this;
+        }
+        const_iterator operator -- (int) {const_iterator tmp(*this); --(*this); return tmp;}
+        const_iterator&amp; operator += (difference_type n)
+        {
+            if (n &lt; 0)
+                return (*this) -= -n;
+            size_type sz = cdeq_-&gt;alloc_.m_;
+            size_type off = cdeq_-&gt;start_ + pos_ + n;
+            if (off &lt; sz)
+                ptr_ += n;
+            else
+                ptr_ = cdeq_-&gt;data_ + (off - sz);
+            pos_ += n;
+            return *this;
+        }
+        const_iterator operator + (difference_type n) const {return const_iterator(*this) += n;}
+        const_iterator&amp; operator -= (difference_type n)
+        {
+            if (n &lt; 0)
+                return (*this) += -n;
+            if (n &lt;= cdeq_-&gt;start_ + pos_)
+                ptr_ -= n;
+            else
+                ptr_ = cdeq_-&gt;data_ + (cdeq_-&gt;alloc_.m_ - n);
+            pos_ -= n;
+            return *this;
+        }
+        const_iterator operator - (difference_type n) const {return const_iterator(*this) -= n;}
+        difference_type operator - (const const_iterator&amp; rhs) const {return difference_type(pos_ - rhs.pos_);}
+        const_reference operator [] (difference_type i) const {const_iterator tmp(*this); tmp += i; return *tmp;}
+        friend bool operator ==(const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ == y.pos_;}  // hh 990720
+        friend bool operator !=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ != y.pos_;}
+        friend bool operator &lt; (const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ &lt;  y.pos_;}
+        friend bool operator &lt;=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ &lt;= y.pos_;}
+        friend bool operator &gt; (const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ &gt;  y.pos_;}
+        friend bool operator &gt;=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ &gt;= y.pos_;}
+        friend const_iterator operator + (difference_type n, const const_iterator&amp; rhs)
+            {return const_iterator(rhs) += n;}
+    private:
+        const __cdeque* cdeq_;
+        size_type pos_;
+        const_pointer ptr_;
+
+        const_iterator(const __cdeque* cdeq, size_type pos, const_pointer ptr)
+            : cdeq_(cdeq),
+              pos_(pos),
+              ptr_(ptr)
+        {}
+
+        friend class __cdeque;
+    };
+
+    // cdeque.cons_ construct/copy/destroy:
+    explicit __cdeque(const Allocator&amp; = Allocator());
+    explicit __cdeque(size_type n, const T&amp; value = T(), const Allocator&amp; = Allocator());
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            __cdeque(InputIterator first, InputIterator last, const Allocator&amp; a = Allocator());
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            __cdeque(InputIterator first, InputIterator last, const Allocator&amp; a = Allocator())
+                : alloc_(a),
+                  size_(0),
+                  start_(0),
+                  data_(0)
+            {
+                choose_init(first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+            }
+    #endif
+#else
+    __cdeque(const_iterator first, const_iterator last, const Allocator&amp; = Allocator());
+#endif
+    __cdeque(const __cdeque&lt;T,Allocator&gt;&amp; x);
+    ~__cdeque();
+    __cdeque&lt;T,Allocator&gt;&amp; operator=(const __cdeque&lt;T,Allocator&gt;&amp; x);
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt; void assign(InputIterator first, InputIterator last);
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            assign(InputIterator first, InputIterator last)
+            {
+                choose_assign(first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+            }
+    #endif
+#else
+    void assign(const_iterator first, const_iterator last);
+#endif
+    void assign(size_type n, const T&amp; u);
+    allocator_type get_allocator() const;
+    // iterators:
+    iterator               begin();
+    const_iterator         begin() const;
+    iterator               end();
+    const_iterator         end() const;
+    reverse_iterator       rbegin();
+    const_reverse_iterator rbegin() const;
+    reverse_iterator       rend();
+    const_reverse_iterator rend() const;
+    // cdeque.capacity_ capacity:
+    size_type size() const;
+    size_type max_size() const;
+    void      resize(size_type sz, T c = T());
+    size_type capacity() const;
+    bool      empty() const;
+    void      reserve(size_type n);
+
+    // element access:
+    reference       operator[](size_type n);
+    const_reference operator[](size_type n) const;
+    const_reference at(size_type n) const;
+    reference       at(size_type n);
+    reference       front();
+    const_reference front() const;
+    reference       back();
+    const_reference back() const;
+    // cdeque.modifiers_ modifiers:
+    void push_front(const T&amp; x);
+    void push_back(const T&amp; x);
+    void pop_front();
+    void pop_back();
+    iterator insert(iterator position, const T&amp; x);
+    void     insert(iterator position, size_type n, const T&amp; x);
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            void insert(iterator position, InputIterator first, InputIterator last);
+    #else
+        template &lt;class InputIterator&gt;
+        inline
+        void
+        insert(iterator position, InputIterator first, InputIterator last)
+        {
+            choose_insert(position, first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+        }
+    #endif
+#else
+    void insert(iterator position, const_iterator first, const_iterator last);
+#endif
+    iterator erase(iterator position);
+    iterator erase(iterator first, iterator last);
+    void     swap(__cdeque&lt;T,Allocator&gt;&amp;);
+    void     clear();
+private:
+    _EmptyMemberOpt&lt;Allocator, size_type&gt; alloc_;  // m_ is capacity
+    size_type size_;
+    size_type start_;
+    pointer data_;
+
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            void choose_init(InputIterator first, InputIterator last, chooser&lt;true&gt;);
+        template &lt;class InputIterator&gt;
+            void choose_init(InputIterator first, InputIterator last, chooser&lt;false&gt;);
+        template &lt;class InputIterator&gt;
+            void init(InputIterator first, InputIterator last, input_iterator_tag);
+        template &lt;class ForwardIterator&gt;
+            void init(ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+        template &lt;class InputIterator&gt;
+            void choose_assign(InputIterator first, InputIterator last, chooser&lt;true&gt;);
+        template &lt;class InputIterator&gt;
+            void choose_assign(InputIterator first, InputIterator last, chooser&lt;false&gt;);
+        template &lt;class InputIterator&gt;
+            void do_assign(InputIterator first, InputIterator last, input_iterator_tag);
+        template &lt;class ForwardIterator&gt;
+            void do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+        template &lt;class InputIterator&gt;
+            void choose_insert(iterator position, InputIterator first, InputIterator last, chooser&lt;true&gt;);
+        template &lt;class InputIterator&gt;
+            void choose_insert(iterator position, InputIterator first, InputIterator last, chooser&lt;false&gt;);
+        template &lt;class InputIterator&gt;
+            void do_insert(iterator position, InputIterator first, InputIterator last, input_iterator_tag);
+        template &lt;class ForwardIterator&gt;
+            void do_insert(iterator position, ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_init(InputIterator first, InputIterator last, chooser&lt;true&gt;)
+            {
+                init(static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_init(InputIterator first, InputIterator last, chooser&lt;false&gt;)
+            {
+                init(first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+            }
+
+        template &lt;class InputIterator&gt;
+            void
+            init(InputIterator first, InputIterator last, input_iterator_tag)
+            {
+                #ifndef _MSL_NO_EXCEPTIONS
+                try
+                {
+                #endif
+                    for (; first != last; ++first)
+                        push_back(*first);
+                #ifndef _MSL_NO_EXCEPTIONS
+                }
+                catch (...)
+                {
+                    tear_down();
+                    throw;
+                }
+                #endif
+            }
+
+        template &lt;class ForwardIterator&gt;
+            void
+            init(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+            {
+                size_ = alloc_.m_ = (size_type)distance(first, last);
+                if (size_ &gt; max_size())
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw length_error(&quot;cdeque::construction length error&quot;);
+                    #else
+                        __msl_error(&quot;cdeque::construction length error\n&quot;);
+                    #endif
+                if (alloc_.m_ &gt; 0)
+                {
+                    data_ = alloc_.allocate(alloc_.m_);
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    try
+                    {
+                    #endif
+                        uninitialized_copy(first, last, data_);
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    }
+                    catch (...)
+                    {
+                        alloc_.deallocate(data_, alloc_.m_);
+                        throw;
+                    }
+                    #endif
+                }
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_assign(InputIterator first, InputIterator last, chooser&lt;true&gt;)
+            {
+                assign(static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_assign(InputIterator first, InputIterator last, chooser&lt;false&gt;)
+            {
+                do_assign(first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+            }
+
+        template &lt;class InputIterator&gt;
+            void
+            do_assign(InputIterator first, InputIterator last, input_iterator_tag)
+            {
+                __cdeque temp(first, last, get_allocator());
+                const __cdeque&amp; tempr = temp;
+                do_assign(tempr.begin(), tempr.end(), random_access_iterator_tag());
+            }
+
+        template &lt;class ForwardIterator&gt;
+            void
+            do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+            {
+                size_type n = (size_type)distance(first, last);
+                if (n &gt; max_size())
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw length_error(&quot;cdeque::assign length error&quot;);
+                    #else
+                        __msl_error(&quot;cdeque::assign length error\n&quot;);
+                    #endif
+                if (n &lt;= capacity())
+                {
+                    difference_type n1 = (difference_type)min(n, size_);
+                    iterator i = begin();
+                    iterator e = i + n1;
+                    for (; i &lt; e; ++i, ++first)
+                        *i = *first;
+                    if (n &lt; size_)
+                        destroy(i, end());
+                    else if (size_ &lt; n)
+                        uninitialized_copy(first, last, i);
+                    size_ = n;
+                }
+                else
+                {
+                    pointer newdata = alloc_.allocate(n);
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    try
+                    {
+                    #endif
+                        uninitialized_copy(first, last, newdata);
+                        tear_down();
+                        data_ = newdata;
+                        size_ = alloc_.m_ = n;
+                        start_ = 0;
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    }
+                    catch (...)
+                    {
+                        alloc_.deallocate(newdata, n);
+                        throw;
+                    }
+                    #endif
+                }
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_insert(iterator position, InputIterator first, InputIterator last, chooser&lt;true&gt;)
+            {
+                insert(position, static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_insert(iterator position, InputIterator first, InputIterator last, chooser&lt;false&gt;)
+            {
+                do_insert(position, first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+            }
+
+        template &lt;class InputIterator&gt;
+            void
+            do_insert(iterator position, InputIterator first, InputIterator last, input_iterator_tag)
+            {
+                __cdeque temp(first, last, get_allocator());
+                const __cdeque&amp; tempr = temp;
+                do_insert(position, tempr.begin(), tempr.end(), random_access_iterator_tag());
+            }
+
+        template &lt;class ForwardIterator&gt;
+            void
+            do_insert(iterator position, ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+            {
+                size_type n = (size_type)distance(first, last);
+                if (n == 0)
+                    return;
+                size_type ms = max_size();
+                if (n &gt; ms || size_ &gt; ms - n)
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw length_error(&quot;cdeque::insert length error&quot;);
+                    #else
+                        __msl_error(&quot;cdeque::insert length error\n&quot;);
+                    #endif
+                if (size_ + n &lt;= capacity())
+                {
+                    size_type pb = size_type(position - begin());
+                    size_type pe = size_type(end() - position);
+                    if (pb &lt; pe)
+                    {
+                        size_type oldstart = start_;
+                        if (start_ &gt;= n)
+                            start_ -= n;
+                        else
+                            start_ = alloc_.m_ - (n - start_);
+                        size_type done = 0;
+                        iterator beg = begin();
+                        #ifndef _MSL_NO_EXCEPTIONS
+                        try
+                        {
+                        #endif
+                            if (pb == 0) // insert at begin()
+                                uninitialized_copy(first, last, beg);
+                            else // pos in [1, size_ / 2)
+                            {
+                                iterator b_n = beg + difference_type(n);
+                                iterator b_n_pb = b_n + difference_type(pb);
+                                iterator b_pb = pb == n ? b_n : beg + difference_type(pb);
+                                iterator t;
+                                if (pb &gt; n)
+                                    t = beg + difference_type(2*n);
+                                else
+                                    t = b_n_pb;
+                                uninitialized_copy(b_n, t, beg);
+                                ForwardIterator i = first;
+                                if (pb &gt; n)
+                                {
+                                    done = n;
+                                    copy(t, b_n_pb, b_n);
+                                    t = b_pb;
+                                }
+                                else if (pb &lt; n)
+                                {
+                                    done = pb;
+                                    advance(i, difference_type(n - pb));
+                                    uninitialized_copy(first, i, b_pb);
+                                    done = n;
+                                    t = b_n;
+                                }
+                                else
+                                {
+                                    done = n;
+                                    t = b_n;
+                                }
+                                copy(i, last, t);
+                            }
+                            size_ += n;
+                        #ifndef _MSL_NO_EXCEPTIONS
+                        }
+                        catch (...)
+                        {
+                            destroy(beg, beg + difference_type(done));
+                            start_ = oldstart;
+                            throw;
+                        }
+                        #endif
+                    }
+                    else // pos &gt;= size_ / 2
+                    {
+                        if (pe == 0) // insert at end()
+                            uninitialized_copy(first, last, end());
+                        else // pos in [size_ / 2, size_)
+                        {
+                            iterator ei = end();
+                            iterator e_n = ei - difference_type(n);
+                            iterator e_pe = pe == n ? e_n : ei - difference_type(pe);
+                            iterator t1, t2;
+                            if (pe &gt;= n)
+                            {
+                                t1 = e_n;
+                                t2 = ei;
+                            }
+                            else
+                            {
+                                t1 = e_pe;
+                                t2 = ei + difference_type(n - pe);
+                            }
+                            uninitialized_copy(t1, ei, t2);
+                            #ifndef _MSL_NO_EXCEPTIONS
+                            try
+                            {
+                            #endif
+                                if (pe &gt;= n)
+                                {
+                                    if (pe &gt; n)
+                                        copy_backward(e_pe, e_n, ei);
+                                    copy(first, last, e_pe);
+                                }
+                                else if (n &gt; pe)
+                                {
+                                    ForwardIterator i = first;
+                                    advance(i, difference_type(pe));
+                                    copy(first, i, e_pe);
+                                    uninitialized_copy(i, last, ei);
+                                }
+                            #ifndef _MSL_NO_EXCEPTIONS
+                            }
+                            catch (...)
+                            {
+                                destroy(t2, ei + difference_type(n));
+                                throw;
+                            }
+                            #endif
+                        }
+                        size_ += n;
+                    }
+                }
+                else // size_ + n &gt; capacity()
+                {
+                    size_type newsize = size_ + n;
+                    size_type newcap = max(alloc_.m_, size_type(1));
+                    while (newsize &gt; newcap)
+                        newcap *= 2;
+                    size_type pos = size_type(position - begin());
+                    pointer newdata = alloc_.allocate(newcap);
+                    size_type done = 0;
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    try
+                    {
+                    #endif
+                        if (pos &gt; 0)
+                        {
+                            uninitialized_copy(begin(), position, newdata);
+                            done = pos;
+                        }
+                        uninitialized_copy(first, last, newdata + pos);
+                        done += n;
+                        if (pos &lt; size_)
+                            uninitialized_copy(position, end(), newdata + pos + n);
+                        tear_down();
+                        data_ = newdata;
+                        size_ = newsize;
+                        alloc_.m_ = newcap;
+                        start_ = 0;
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    }
+                    catch (...)
+                    {
+                        _STD::__destroy(newdata, newdata + done);
+                        alloc_.deallocate(newdata, newcap);
+                        throw;
+                    }
+                    #endif
+                }
+            }
+
+    #endif
+#endif
+
+    void init(size_type n, const T&amp; value);
+    void tear_down();
+    void destroy(iterator first, iterator last);
+};
+
+template &lt;class T, class Allocator&gt;
+bool
+operator==(const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y);
+
+template &lt;class T, class Allocator&gt;
+bool
+operator!=(const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y);
+
+template &lt;class T, class Allocator&gt;
+bool
+operator&lt; (const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y);
+
+template &lt;class T, class Allocator&gt;
+bool
+operator&gt; (const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y);
+
+template &lt;class T, class Allocator&gt;
+bool
+operator&gt;=(const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y);
+
+template &lt;class T, class Allocator&gt;
+bool
+operator&lt;=(const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y);
+
+// specialized algorithms:
+template &lt;class T, class Allocator&gt;
+void
+swap(__cdeque&lt;T,Allocator&gt;&amp; x, __cdeque&lt;T,Allocator&gt;&amp; y);
+
+// Implementation __cdeque
+
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;T, Allocator&gt;::choose_init(InputIterator first, InputIterator last, chooser&lt;true&gt;)
+    {
+        init(static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;T, Allocator&gt;::choose_init(InputIterator first, InputIterator last, chooser&lt;false&gt;)
+    {
+        init(first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    void
+    __cdeque&lt;T, Allocator&gt;::init(InputIterator first, InputIterator last, input_iterator_tag)
+    {
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            for (; first != last; ++first)
+                push_back(*first);
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            tear_down();
+            throw;
+        }
+        #endif
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class ForwardIterator&gt;
+    void
+    __cdeque&lt;T, Allocator&gt;::init(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+    {
+        size_ = alloc_.m_ = (size_type)distance(first, last);
+        if (size_ &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::construction length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::construction length error\n&quot;);
+            #endif
+        if (alloc_.m_ &gt; 0)
+        {
+            data_ = alloc_.allocate(alloc_.m_);
+            #ifndef _MSL_NO_EXCEPTIONS
+            try
+            {
+            #endif
+                uninitialized_copy(first, last, data_);
+            #ifndef _MSL_NO_EXCEPTIONS
+            }
+            catch (...)
+            {
+                alloc_.deallocate(data_, alloc_.m_);
+                throw;
+            }
+            #endif
+        }
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;T, Allocator&gt;::choose_assign(InputIterator first, InputIterator last, chooser&lt;true&gt;)
+    {
+        assign(static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;T, Allocator&gt;::choose_assign(InputIterator first, InputIterator last, chooser&lt;false&gt;)
+    {
+        do_assign(first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    void
+    __cdeque&lt;T, Allocator&gt;::do_assign(InputIterator first, InputIterator last, input_iterator_tag)
+    {
+        __cdeque temp(first, last, get_allocator());
+        const __cdeque&amp; tempr = temp;
+        do_assign(tempr.begin(), tempr.end(), random_access_iterator_tag());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class ForwardIterator&gt;
+    void
+    __cdeque&lt;T, Allocator&gt;::do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+    {
+        size_type n = (size_type)distance(first, last);
+        if (n &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::assign length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::assign length error\n&quot;);
+            #endif
+        if (n &lt;= capacity())
+        {
+            difference_type n1 = (difference_type)min(n, size_);
+            iterator i = begin();
+            iterator e = i + n1;
+            for (; i &lt; e; ++i, ++first)
+                *i = *first;
+            if (n &lt; size_)
+                destroy(i, end());
+            else if (size_ &lt; n)
+                uninitialized_copy(first, last, i);
+            size_ = n;
+        }
+        else
+        {
+            pointer newdata = alloc_.allocate(n);
+            #ifndef _MSL_NO_EXCEPTIONS
+            try
+            {
+            #endif
+                uninitialized_copy(first, last, newdata);
+                tear_down();
+                data_ = newdata;
+                size_ = alloc_.m_ = n;
+                start_ = 0;
+            #ifndef _MSL_NO_EXCEPTIONS
+            }
+            catch (...)
+            {
+                alloc_.deallocate(newdata, n);
+                throw;
+            }
+            #endif
+        }
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;T, Allocator&gt;::choose_insert(iterator position, InputIterator first, InputIterator last,
+        chooser&lt;true&gt;)
+    {
+        insert(position, static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;T, Allocator&gt;::choose_insert(iterator position, InputIterator first, InputIterator last, chooser&lt;false&gt;)
+    {
+        do_insert(position, first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    void
+    __cdeque&lt;T, Allocator&gt;::do_insert(iterator position, InputIterator first, InputIterator last, input_iterator_tag)
+    {
+        __cdeque temp(first, last, get_allocator());
+        const __cdeque&amp; tempr = temp;
+        do_insert(position, tempr.begin(), tempr.end(), random_access_iterator_tag());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class ForwardIterator&gt;
+    void
+    __cdeque&lt;T, Allocator&gt;::do_insert(iterator position, ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+    {
+        size_type n = (size_type)distance(first, last);
+        if (n == 0)
+            return;
+        size_type ms = max_size();
+        if (n &gt; ms || size_ &gt; ms - n)
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::insert length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::insert length error\n&quot;);
+            #endif
+        if (size_ + n &lt;= capacity())
+        {
+            size_type pb = size_type(position - begin());
+            size_type pe = size_type(end() - position);
+            if (pb &lt; pe)
+            {
+                size_type oldstart = start_;
+                if (start_ &gt;= n)
+                    start_ -= n;
+                else
+                    start_ = alloc_.m_ - (n - start_);
+                size_type done = 0;
+                iterator beg = begin();
+                #ifndef _MSL_NO_EXCEPTIONS
+                try
+                {
+                #endif
+                    if (pb == 0) // insert at begin()
+                        uninitialized_copy(first, last, beg);
+                    else // pos in [1, size_ / 2)
+                    {
+                        iterator b_n = beg + difference_type(n);
+                        iterator b_n_pb = b_n + difference_type(pb);
+                        iterator b_pb = pb == n ? b_n : beg + difference_type(pb);
+                        iterator t;
+                        if (pb &gt; n)
+                            t = beg + difference_type(2*n);
+                        else
+                            t = b_n_pb;
+                        uninitialized_copy(b_n, t, beg);
+                        ForwardIterator i = first;
+                        if (pb &gt; n)
+                        {
+                            done = n;
+                            copy(t, b_n_pb, b_n);
+                            t = b_pb;
+                        }
+                        else if (pb &lt; n)
+                        {
+                            done = pb;
+                            advance(i, difference_type(n - pb));
+                            uninitialized_copy(first, i, b_pb);
+                            done = n;
+                            t = b_n;
+                        }
+                        else
+                        {
+                            done = n;
+                            t = b_n;
+                        }
+                        copy(i, last, t);
+                    }
+                    size_ += n;
+                #ifndef _MSL_NO_EXCEPTIONS
+                }
+                catch (...)
+                {
+                    destroy(beg, beg + difference_type(done));
+                    start_ = oldstart;
+                    throw;
+                }
+                #endif
+            }
+            else // pos &gt;= size_ / 2
+            {
+                if (pe == 0) // insert at end()
+                    uninitialized_copy(first, last, end());
+                else // pos in [size_ / 2, size_)
+                {
+                    iterator ei = end();
+                    iterator e_n = ei - difference_type(n);
+                    iterator e_pe = pe == n ? e_n : ei - difference_type(pe);
+                    iterator t1, t2;
+                    if (pe &gt;= n)
+                    {
+                        t1 = e_n;
+                        t2 = ei;
+                    }
+                    else
+                    {
+                        t1 = e_pe;
+                        t2 = ei + difference_type(n - pe);
+                    }
+                    uninitialized_copy(t1, ei, t2);
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    try
+                    {
+                    #endif
+                        if (pe &gt;= n)
+                        {
+                            if (pe &gt; n)
+                                copy_backward(e_pe, e_n, ei);
+                            copy(first, last, e_pe);
+                        }
+                        else if (n &gt; pe)
+                        {
+                            ForwardIterator i = first;
+                            advance(i, difference_type(pe));
+                            copy(first, i, e_pe);
+                            uninitialized_copy(i, last, ei);
+                        }
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    }
+                    catch (...)
+                    {
+                        destroy(t2, ei + difference_type(n));
+                        throw;
+                    }
+                    #endif
+                }
+                size_ += n;
+            }
+        }
+        else // size_ + n &gt; capacity()
+        {
+            size_type newsize = size_ + n;
+            size_type newcap = max(alloc_.m_, size_type(1));
+            while (newsize &gt; newcap)
+                newcap *= 2;
+            size_type pos = size_type(position - begin());
+            pointer newdata = alloc_.allocate(newcap);
+            size_type done = 0;
+            #ifndef _MSL_NO_EXCEPTIONS
+            try
+            {
+            #endif
+                if (pos &gt; 0)
+                {
+                    uninitialized_copy(begin(), position, newdata);
+                    done = pos;
+                }
+                uninitialized_copy(first, last, newdata + pos);
+                done += n;
+                if (pos &lt; size_)
+                    uninitialized_copy(position, end(), newdata + pos + n);
+                tear_down();
+                data_ = newdata;
+                size_ = newsize;
+                alloc_.m_ = newcap;
+                start_ = 0;
+            #ifndef _MSL_NO_EXCEPTIONS
+            }
+            catch (...)
+            {
+                _STD::__destroy(newdata, newdata + done);
+                alloc_.deallocate(newdata, newcap);
+                throw;
+            }
+            #endif
+        }
+    }
+
+#endif
+#endif
+
+
+template &lt;class T, class Allocator&gt;
+inline
+__cdeque&lt;T, Allocator&gt;::__cdeque(const Allocator&amp; a)
+    : alloc_(a),
+      size_(0),
+      start_(0),
+      data_(0)
+{
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+__cdeque&lt;T, Allocator&gt;::__cdeque(size_type n, const T&amp; value, const Allocator&amp; a)
+    : alloc_(a),
+      size_(0),
+      start_(0),
+      data_(0)
+{
+    init(n, value);
+}     
+
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+        template &lt;class T, class Allocator&gt;
+        template &lt;class InputIterator&gt;
+        inline
+        __cdeque&lt;T, Allocator&gt;::__cdeque(InputIterator first, InputIterator last, const Allocator&amp; a)
+            : alloc_(a),
+              size_(0),
+              start_(0),
+              data_(0)
+        {
+            choose_init(first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+        }
+
+    #endif
+#else
+
+    template &lt;class T, class Allocator&gt;
+    __cdeque&lt;T, Allocator&gt;::__cdeque(const_iterator first, const_iterator last, const Allocator&amp; a)
+        : alloc_(a, size_type(last - first)),
+          size_(alloc_.m_),
+          start_(0),
+          data_(0)
+    {
+        if (alloc_.m_ &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::construction length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::construction length error\n&quot;);
+            #endif
+        if (alloc_.m_ &gt; 0)
+        {
+            data_ = alloc_.allocate(alloc_.m_);
+            #ifndef _MSL_NO_EXCEPTIONS
+            try
+            {
+            #endif
+                uninitialized_copy(first, last, data_);
+            #ifndef _MSL_NO_EXCEPTIONS
+            }
+            catch (...)
+            {
+                alloc_.deallocate(data_, alloc_.m_);
+                throw;
+            }
+            #endif
+        }
+    }
+
+#endif
+
+template &lt;class T, class Allocator&gt;
+__cdeque&lt;T, Allocator&gt;::__cdeque(const __cdeque&lt;T,Allocator&gt;&amp; x)
+    : alloc_(x.alloc_, x.size_),
+      size_(x.size_),
+      start_(0),
+      data_(0)
+{
+    if (alloc_.m_ &gt; 0)
+    {
+        data_ = alloc_.allocate(alloc_.m_);
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            uninitialized_copy(x.begin(), x.end(), data_);
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            alloc_.deallocate(data_, alloc_.m_);
+            throw;
+        }
+        #endif
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::init(size_type n, const T&amp; value)
+{
+    if (n &gt; max_size())
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw length_error(&quot;cdeque::construction length error&quot;);
+        #else
+            __msl_error(&quot;cdeque::construction length error\n&quot;);
+        #endif
+    if (n &gt; 0)
+    {
+        size_ = alloc_.m_ = n;
+        data_ = alloc_.allocate(n);
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            uninitialized_fill_n(data_, size_, value);
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            alloc_.deallocate(data_, n);
+            throw;
+        }
+        #endif
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+__cdeque&lt;T, Allocator&gt;::~__cdeque()
+{
+    tear_down();
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::tear_down()
+{
+    if (data_ != 0)
+    {
+        destroy(begin(), end());
+        alloc_.deallocate(data_, alloc_.m_);
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::destroy(iterator first, iterator last)
+{
+    if (first != last)
+    {
+        size_type diff = size_type(last - first);
+        size_type e = start_ + diff;
+        if (e &gt; alloc_.m_)
+        {
+            e = alloc_.m_;
+            _STD::__destroy(data_ + start_, data_ + e);
+            e = start_ + diff - alloc_.m_;
+            _STD::__destroy(data_, data_ + e);
+        }
+        else
+            _STD::__destroy(data_ + start_, data_ + e);
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+__cdeque&lt;T, Allocator&gt;&amp;
+__cdeque&lt;T, Allocator&gt;::operator=(const __cdeque&lt;T,Allocator&gt;&amp; x)
+{
+    if (this != &amp;x)
+        assign(x.begin(), x.end());
+    return *this;
+}
+
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+        template &lt;class T, class Allocator&gt;
+        template &lt;class InputIterator&gt;
+        inline
+        void
+        __cdeque&lt;T, Allocator&gt;::assign(InputIterator first, InputIterator last)
+        {
+            choose_assign(first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+        }
+
+    #endif
+#else
+
+    template &lt;class T, class Allocator&gt;
+    void
+    __cdeque&lt;T, Allocator&gt;::assign(const_iterator first, const_iterator last)
+    {
+        size_type n = (size_type)distance(first, last);
+        if (n &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::assign length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::assign length error\n&quot;);
+            #endif
+        if (n &lt;= capacity())
+        {
+            size_type n1 = min(n, size_);
+            iterator i = begin();
+            iterator e = i + n1;
+            for (; i &lt; e; ++i, ++first)
+                *i = *first;
+            if (n &lt; size_)
+                destroy(i, end());
+            else if (size_ &lt; n)
+                uninitialized_copy(first, last, i);
+            size_ = n;
+        }
+        else
+        {
+            pointer newdata = alloc_.allocate(n);
+            #ifndef _MSL_NO_EXCEPTIONS
+            try
+            {
+            #endif
+                uninitialized_copy(first, last, newdata);
+                tear_down();
+                data_ = newdata;
+                size_ = alloc_.m_ = n;
+                start_ = 0;
+            #ifndef _MSL_NO_EXCEPTIONS
+            }
+            catch (...)
+            {
+                alloc_.deallocate(newdata, n);
+                throw;
+            }
+            #endif
+        }
+    }
+
+#endif
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::assign(size_type n, const T&amp; u)
+{
+    if (n &gt; max_size())
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw length_error(&quot;cdeque::assign length error&quot;);
+        #else
+            __msl_error(&quot;cdeque::assign length error\n&quot;);
+        #endif
+    if (n &lt;= capacity())
+    {
+        difference_type n1 = (difference_type)min(n, size_);
+        iterator i = begin();
+        iterator e = i + n1;
+        for (; i &lt; e; ++i)
+            *i = u;
+        if (n &lt; size_)
+            destroy(i, end());
+        else if (size_ &lt; n)
+            uninitialized_fill(i, begin() + difference_type(n), u);
+        size_ = n;
+    }
+    else
+    {
+        pointer newdata = alloc_.allocate(n);
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            uninitialized_fill_n(newdata, n, u);
+            tear_down();
+            data_ = newdata;
+            size_ = alloc_.m_ = n;
+            start_ = 0;
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            alloc_.deallocate(newdata, n);
+            throw;
+        }
+        #endif
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::allocator_type
+__cdeque&lt;T, Allocator&gt;::get_allocator() const
+{
+    return alloc_;
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::iterator
+__cdeque&lt;T, Allocator&gt;::begin()
+{
+    return iterator(this, 0, data_ + start_);
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::const_iterator
+__cdeque&lt;T, Allocator&gt;::begin() const
+{
+    return const_iterator(this, 0, data_ + start_);
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::iterator
+__cdeque&lt;T, Allocator&gt;::end()
+{
+    size_type off = start_ + size_;
+    if (off &lt; alloc_.m_)
+        return iterator(this, size_, data_ + off);
+    return iterator(this, size_, data_ + (off - alloc_.m_));
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::const_iterator
+__cdeque&lt;T, Allocator&gt;::end() const
+{
+    size_type off = start_ + size_;
+    if (off &lt; alloc_.m_)
+        return const_iterator(this, size_, data_ + off);
+    return const_iterator(this, size_, data_ + (off - alloc_.m_));
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::reverse_iterator
+__cdeque&lt;T, Allocator&gt;::rbegin()
+{
+    return reverse_iterator(end());
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::const_reverse_iterator
+__cdeque&lt;T, Allocator&gt;::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::reverse_iterator
+__cdeque&lt;T, Allocator&gt;::rend()
+{
+    return reverse_iterator(begin());
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::const_reverse_iterator
+__cdeque&lt;T, Allocator&gt;::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::size_type
+__cdeque&lt;T, Allocator&gt;::size() const
+{
+    return size_;
+}
+
+template &lt;class T, class Allocator&gt;
+typename __cdeque&lt;T, Allocator&gt;::size_type
+__cdeque&lt;T, Allocator&gt;::max_size() const
+{
+    size_type ma = alloc_.max_size();
+    size_type mx = numeric_limits&lt;size_type&gt;::max() / 2;
+    return min(ma, mx);
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::resize(size_type sz, T c)
+{
+    if (sz &gt; size())
+        insert(end(), sz-size(), c);
+    else if (sz &lt; size())
+        erase(begin() + difference_type(sz), end());
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::size_type
+__cdeque&lt;T, Allocator&gt;::capacity() const
+{
+    return alloc_.m_;
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+bool
+__cdeque&lt;T, Allocator&gt;::empty() const
+{
+    return size_ == 0;
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::reserve(size_type n)
+{
+    if (n &gt; max_size())
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw length_error(&quot;cdeque::reserve length error&quot;);
+        #else
+            __msl_error(&quot;cdeque::reserve length error\n&quot;);
+        #endif
+    if (n &gt; capacity())
+    {
+        pointer newdata = alloc_.allocate(n);
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            if (data_ != 0)
+            {
+                uninitialized_copy(begin(), end(), newdata);
+                tear_down();
+            }
+            alloc_.m_ = n;
+            data_ = newdata;
+            start_ = 0;
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            alloc_.deallocate(newdata, n);
+            throw;
+        }
+        #endif
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+typename __cdeque&lt;T, Allocator&gt;::reference
+__cdeque&lt;T, Allocator&gt;::operator[](size_type n)
+{
+    n += start_;
+    if (n &gt;= alloc_.m_)
+        n -= alloc_.m_;
+    return *(data_ + n);
+}
+
+template &lt;class T, class Allocator&gt;
+typename __cdeque&lt;T, Allocator&gt;::const_reference
+__cdeque&lt;T, Allocator&gt;::operator[](size_type n) const
+{
+    n += start_;
+    if (n &gt;= alloc_.m_)
+        n -= alloc_.m_;
+    return *(data_ + n);
+}
+
+template &lt;class T, class Allocator&gt;
+typename __cdeque&lt;T, Allocator&gt;::const_reference
+__cdeque&lt;T, Allocator&gt;::at(size_type n) const
+{
+    if (n &gt;= size_)
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw out_of_range(&quot;__cdeque::at index out of range&quot;);
+        #else
+            __msl_error(&quot;__cdeque::at index out of range&quot;);
+        #endif
+    n += start_;
+    if (n &gt;= alloc_.m_)
+        n -= alloc_.m_;
+    return *(data_ + n);
+}
+
+template &lt;class T, class Allocator&gt;
+typename __cdeque&lt;T, Allocator&gt;::reference
+__cdeque&lt;T, Allocator&gt;::at(size_type n)
+{
+    if (n &gt;= size_)
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw out_of_range(&quot;__cdeque::at index out of range&quot;);
+        #else
+            __msl_error(&quot;__cdeque::at index out of range&quot;);
+        #endif
+    n += start_;
+    if (n &gt;= alloc_.m_)
+        n -= alloc_.m_;
+    return *(data_ + n);
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::reference
+__cdeque&lt;T, Allocator&gt;::front()
+{
+    return *(data_ + start_);
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::const_reference
+__cdeque&lt;T, Allocator&gt;::front() const
+{
+    return *(data_ + start_);
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::reference
+__cdeque&lt;T, Allocator&gt;::back()
+{
+    return (*this)[size_ - 1];
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::const_reference
+__cdeque&lt;T, Allocator&gt;::back() const
+{
+    return (*this)[size_ - 1];
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::push_front(const T&amp; x)
+{
+    if (size_ == max_size())
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw length_error(&quot;cdeque::push_front length error&quot;);
+        #else
+            __msl_error(&quot;cdeque::push_front length error\n&quot;);
+        #endif
+    if (size_ &lt; capacity())
+    {
+        size_type oldstart = start_;
+        if (start_ &gt; 0)
+            --start_;
+        else
+            start_ = alloc_.m_ - 1;
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            new (data_ + start_) value_type(x);
+            ++size_;
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            start_ = oldstart;
+            throw;
+        }
+        #endif
+    }
+    else // size_ + n &gt; capacity()
+    {
+        size_type newsize = size_ + 1;
+        size_type newcap = max(alloc_.m_, size_type(1));
+        if (newsize &gt; newcap)
+            newcap *= 2;
+        pointer newdata = alloc_.allocate(newcap);
+        size_type done = 0;
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            new (newdata) value_type(x);
+            ++done;
+            if (size_ &gt; 0)
+                uninitialized_copy(begin(), end(), newdata + 1);
+            tear_down();
+            data_ = newdata;
+            ++size_;
+            alloc_.m_ = newcap;
+            start_ = 0;
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            if (done)
+                _STD::__destroy(newdata);
+            alloc_.deallocate(newdata, newcap);
+            throw;
+        }
+        #endif
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::push_back(const T&amp; x)
+{
+    if (size_ == max_size())
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw length_error(&quot;cdeque::push_back length error&quot;);
+        #else
+            __msl_error(&quot;cdeque::push_back length error\n&quot;);
+        #endif
+    if (size_ &lt; capacity())
+    {
+        new (&amp;(*this)[size_]) value_type(x);
+        ++size_;
+    }
+    else // size_ + n &gt; capacity()
+    {
+        size_type newsize = size_ + 1;
+        size_type newcap = max(alloc_.m_, size_type(1));
+        if (newsize &gt; newcap)
+            newcap *= 2;
+        size_type pos = size_;
+        pointer newdata = alloc_.allocate(newcap);
+        size_type done = 0;
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            new (newdata + size_) value_type(x);
+            ++done;
+            if (size_ &gt; 0)
+                uninitialized_copy(begin(), end(), newdata);
+            tear_down();
+            data_ = newdata;
+            ++size_;
+            alloc_.m_ = newcap;
+            start_ = 0;
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            if (done)
+                _STD::__destroy(newdata + size_);
+            alloc_.deallocate(newdata, newcap);
+            throw;
+        }
+        #endif
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::pop_front()
+{   
+    alloc_.destroy(data_ + start_);
+    --size_;
+    ++start_;
+    if (start_ &gt;= alloc_.m_)
+        start_ -= alloc_.m_;
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::pop_back()
+{   
+    alloc_.destroy(&amp;*(end() - 1));
+    --size_;
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::iterator
+__cdeque&lt;T, Allocator&gt;::insert(iterator position, const T&amp; x)
+{
+    difference_type pos = position - begin();
+    insert(position, 1, x);
+    return begin() + pos;
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::insert(iterator position, size_type n, const T&amp; x)
+{
+    if (n == 0)
+        return;
+    size_type ms = max_size();
+    if (n &gt; ms || size_ &gt; ms - n)
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw length_error(&quot;cdeque::insert length error&quot;);
+        #else
+            __msl_error(&quot;cdeque::insert length error\n&quot;);
+        #endif
+    if (size_ + n &lt;= capacity())
+    {
+        size_type pb = size_type(position - begin());
+        size_type pe = size_type(end() - position);
+        if (pb &lt; pe)
+        {
+            size_type oldstart = start_;
+            if (start_ &gt;= n)
+                start_ -= n;
+            else
+                start_ = alloc_.m_ - (n - start_);
+            size_type done = 0;
+            iterator beg = begin();
+            #ifndef _MSL_NO_EXCEPTIONS
+            try
+            {
+            #endif
+                if (pb == 0) // insert at begin()
+                    uninitialized_fill_n(beg, n, x);
+                else // pos in [1, size_ / 2)
+                {
+                    iterator b_n = beg + difference_type(n);
+                    iterator b_n_pb = b_n + difference_type(pb);
+                    iterator b_pb = pb == n ? b_n : beg + difference_type(pb);
+                    iterator t;
+                    if (pb &gt; n)
+                        t = beg + difference_type(2*n);
+                    else
+                        t = b_n_pb;
+                    uninitialized_copy(b_n, t, beg);
+                    if (pb &gt; n)
+                    {
+                        done = n;
+                        copy(t, b_n_pb, b_n);
+                        t = b_pb;
+                    }
+                    else if (pb &lt; n)
+                    {
+                        done = pb;
+                        uninitialized_fill(b_pb, b_n, x);
+                        done = n;
+                        t = b_n;
+                    }
+                    else
+                    {
+                        done = n;
+                        t = b_n;
+                    }
+                    fill(t, b_n_pb, x);
+                }
+                size_ += n;
+            #ifndef _MSL_NO_EXCEPTIONS
+            }
+            catch (...)
+            {
+                destroy(beg, beg + difference_type(done));
+                start_ = oldstart;
+                throw;
+            }
+            #endif
+        }
+        else // pos &gt;= size_ / 2
+        {
+            if (pe == 0) // insert at end()
+                uninitialized_fill_n(end(), n, x);
+            else // pos in [size_ / 2, size_)
+            {
+                iterator ei = end();
+                iterator e_n = ei - difference_type(n);
+                iterator e_pe = pe == n ? e_n : ei - difference_type(pe);
+                iterator t1, t2;
+                if (pe &gt;= n)
+                {
+                    t1 = e_n;
+                    t2 = ei;
+                }
+                else
+                {
+                    t1 = e_pe;
+                    t2 = ei + difference_type(n - pe);
+                }
+                uninitialized_copy(t1, ei, t2);
+                #ifndef _MSL_NO_EXCEPTIONS
+                try
+                {
+                #endif
+                    if (pe &gt;= n)
+                    {
+                        if (pe &gt; n)
+                            copy_backward(e_pe, e_n, ei);
+                        t1 = pe == n ? ei : ei - difference_type(pe - n);
+                        fill(e_pe, t1, x);
+                    }
+                    else if (n &gt; pe)
+                    {
+                        fill(e_pe, ei, x);
+                        uninitialized_fill(ei, t2, x);
+                    }
+                #ifndef _MSL_NO_EXCEPTIONS
+                }
+                catch (...)
+                {
+                    destroy(t2, ei + difference_type(n));
+                    throw;
+                }
+                #endif
+            }
+            size_ += n;
+        }
+    }
+    else // size_ + n &gt; capacity()
+    {
+        size_type newsize = size_ + n;
+        size_type newcap = max(alloc_.m_, size_type(1));
+        while (newsize &gt; newcap)
+            newcap *= 2;
+        size_type pos = size_type(position - begin());
+        pointer newdata = alloc_.allocate(newcap);
+        size_type done = 0;
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            if (pos &gt; 0)
+            {
+                uninitialized_copy(begin(), position, newdata);
+                done = pos;
+            }
+            uninitialized_fill_n(newdata + pos, n, x);
+            done += n;
+            if (pos &lt; size_)
+                uninitialized_copy(position, end(), newdata + pos + n);
+            tear_down();
+            data_ = newdata;
+            size_ = newsize;
+            alloc_.m_ = newcap;
+            start_ = 0;
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            _STD::__destroy(newdata, newdata + done);
+            alloc_.deallocate(newdata, newcap);
+            throw;
+        }
+        #endif
+    }
+}
+
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+        template &lt;class T, class Allocator&gt;
+        template &lt;class InputIterator&gt;
+        inline
+        void
+        __cdeque&lt;T, Allocator&gt;::insert(iterator position, InputIterator first, InputIterator last)
+        {
+            choose_insert(position, first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+        }
+
+    #endif
+#else
+
+    template &lt;class T, class Allocator&gt;
+    void
+    __cdeque&lt;T, Allocator&gt;::insert(iterator position, const_iterator first, const_iterator last)
+    {
+        size_type n = (size_type)distance(first, last);
+        if (n == 0)
+            return;
+        size_type ms = max_size();
+        if (n &gt; ms || size_ &gt; ms - n)
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::insert length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::insert length error\n&quot;);
+            #endif
+        if (size_ + n &lt;= capacity())
+        {
+            size_type pb = size_type(position - begin());
+            size_type pe = size_type(end() - position);
+            if (pb &lt; pe)
+            {
+                size_type oldstart = start_;
+                if (start_ &gt;= n)
+                    start_ -= n;
+                else
+                    start_ = alloc_.m_ - (n - start_);
+                size_type done = 0;
+                iterator beg = begin();
+                #ifndef _MSL_NO_EXCEPTIONS
+                try
+                {
+                #endif
+                    if (pb == 0) // insert at begin()
+                        uninitialized_fill_n(beg, n, x);
+                    else // pos in [1, size_ / 2)
+                    {
+                        iterator b_n = beg + difference_type(n);
+                        iterator b_n_pb = b_n + difference_type(pb);
+                        iterator b_pb = pb == n ? b_n : beg + difference_type(pb);
+                        iterator t;
+                        if (pb &gt; n)
+                            t = beg + difference_type(2*n);
+                        else
+                            t = b_n_pb;
+                        uninitialized_copy(b_n, t, beg);
+                        if (pb &gt; n)
+                        {
+                            done = n;
+                            copy(t, b_n_pb, b_n);
+                            t = b_pb;
+                        }
+                        else if (pb &lt; n)
+                        {
+                            done = pb;
+                            uninitialized_fill(b_pb, b_n, x);
+                            done = n;
+                            t = b_n;
+                        }
+                        else
+                        {
+                            done = n;
+                            t = b_n;
+                        }
+                        fill(t, b_n_pb, x);
+                    }
+                    size_ += n;
+                #ifndef _MSL_NO_EXCEPTIONS
+                }
+                catch (...)
+                {
+                    destroy(beg, beg + difference_type(done));
+                    start_ = oldstart;
+                    throw;
+                }
+                #endif
+            }
+            else // pos &gt;= size_ / 2
+            {
+                if (pe == 0) // insert at end()
+                    uninitialized_fill_n(end(), n, x);
+                else // pos in [size_ / 2, size_)
+                {
+                    iterator ei = end();
+                    iterator e_n = ei - difference_type(n);
+                    iterator e_pe = pe == n ? e_n : ei - difference_type(pe);
+                    iterator t1, t2;
+                    if (pe &gt;= n)
+                    {
+                        t1 = e_n;
+                        t2 = ei;
+                    }
+                    else
+                    {
+                        t1 = e_pe;
+                        t2 = ei + difference_type(n - pe);
+                    }
+                    uninitialized_copy(t1, ei, t2);
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    try
+                    {
+                    #endif
+                        if (pe &gt;= n)
+                        {
+                            if (pe &gt; n)
+                                copy_backward(e_pe, e_n, ei);
+                            t1 = pe == n ? ei : ei - difference_type(pe - n);
+                            fill(e_pe, t1, x);
+                        }
+                        else if (n &gt; pe)
+                        {
+                            fill(e_pe, ei, x);
+                            uninitialized_fill(ei, t2, x);
+                        }
+                    #ifndef _MSL_NO_EXCEPTIONS
+                    }
+                    catch (...)
+                    {
+                        destroy(t2, ei + difference_type(n));
+                        throw;
+                    }
+                    #endif
+                }
+                size_ += n;
+            }
+        }
+        else // size_ + n &gt; capacity()
+        {
+            size_type newsize = size_ + n;
+            size_type newcap = max(alloc_.m_, 1);
+            while (newsize &gt; newcap)
+                newcap *= 2;
+            size_type pos = size_type(position - data_);
+            pointer newdata = alloc_.allocate(newcap);
+            size_type done = 0;
+            #ifndef _MSL_NO_EXCEPTIONS
+            try
+            {
+            #endif
+                if (pos &gt; 0)
+                {
+                    uninitialized_copy(begin(), position, newdata);
+                    done = pos;
+                }
+                uninitialized_copy(first, last, newdata + pos);
+                done += n;
+                if (pos &lt; size_)
+                    uninitialized_copy(position, end(), newdata + pos + n);
+                tear_down();
+                data_ = newdata;
+                size_ = newsize;
+                alloc_.m_ = newcap;
+                start_ = 0;
+            #ifndef _MSL_NO_EXCEPTIONS
+            }
+            catch (...)
+            {
+                destroy(newdata, newdata + done);
+                alloc_.deallocate(newdata, newcap);
+                throw;
+            }
+            #endif
+        }
+    }
+
+#endif
+
+template &lt;class T, class Allocator&gt;
+inline
+typename __cdeque&lt;T, Allocator&gt;::iterator
+__cdeque&lt;T, Allocator&gt;::erase(iterator position)
+{
+    return erase(position, position + 1);
+}
+
+template &lt;class T, class Allocator&gt;
+typename __cdeque&lt;T, Allocator&gt;::iterator
+__cdeque&lt;T, Allocator&gt;::erase(iterator first, iterator last)
+{
+    if (first == last)
+        return first;
+    size_type pb = size_type(first - begin());
+    size_type pe = size_type(end() - last);
+    size_type diff = size_type(last - first);
+    if (pb &lt; pe)
+    {
+        if (pb == 0)  // erase from beginning, no copying necessary
+            destroy(first, last);
+        else  // erase from beginning, needs copying
+        {
+            copy_backward(begin(), first, last);
+            destroy(begin(), begin() + difference_type(diff));
+        }
+        start_ += diff;
+        if (start_ &gt;= alloc_.m_)
+            start_ -= alloc_.m_;
+    }
+    else  // pb &gt;= pe - erase from end
+    {
+        if (pe == 0)  // erase from end, no copying necessary
+            destroy(first, last);
+        else  // erase from end, needs copying
+        {
+            copy(last, end(), first);
+            destroy(first + difference_type(pe), end());
+        }
+    }
+    size_ -= diff;
+    return first;
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::swap(__cdeque&lt;T,Allocator&gt;&amp; x)
+{
+    if (this != &amp;x)
+    {
+        _STD::swap(alloc_, x.alloc_);
+        _STD::swap(size_, x.size_);
+        _STD::swap(start_, x.start_);
+        _STD::swap(data_, x.data_);
+    }
+}
+
+template &lt;class T, class Allocator&gt;
+void
+__cdeque&lt;T, Allocator&gt;::clear()
+{
+    destroy(begin(), end());
+    size_ = start_ = 0;
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+bool
+operator==(const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y)
+{
+    return x.size() == y.size() &amp;&amp; equal(x.begin(), x.end(), y.begin());
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+bool
+operator!=(const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y)
+{
+    return !(x == y);
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+bool
+operator&lt; (const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y)
+{
+    return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+bool
+operator&gt; (const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y)
+{
+    return y &lt; x;
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+bool
+operator&gt;=(const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y)
+{
+    return !(x &lt; y);
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+bool
+operator&lt;=(const __cdeque&lt;T,Allocator&gt;&amp; x, const __cdeque&lt;T,Allocator&gt;&amp; y)
+{
+    return !(y &lt; x);
+}
+
+template &lt;class T, class Allocator&gt;
+inline
+void
+swap(__cdeque&lt;T,Allocator&gt;&amp; x, __cdeque&lt;T,Allocator&gt;&amp; y)
+{
+    x.swap(y);
+}
+
+#if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) &amp;&amp; !defined(_MSL_NO_MEMBER_TEMPLATE) &amp;&amp; !defined(_Inhibit_Container_Optimization)
+
+    // Specialize for T* to save on code bloat
+
+    // void*
+
+    template &lt;class Allocator&gt;
+    class __cdeque&lt;void*, Allocator&gt;
+    {
+        template &lt;bool b&gt; struct chooser {};
+    public:
+        // types:
+        typedef Allocator::reference                  reference;
+        typedef Allocator::const_reference            const_reference;
+        class                                         iterator;
+        class                                         const_iterator;
+        typedef typename Allocator::size_type         size_type;
+        typedef typename Allocator::difference_type   difference_type;
+        typedef void*                                 value_type;
+        typedef Allocator                             allocator_type;
+        typedef typename Allocator::pointer           pointer;
+        typedef typename Allocator::const_pointer     const_pointer;
+        typedef _STD::reverse_iterator&lt;iterator&gt;       reverse_iterator;
+        typedef _STD::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
+
+        friend class iterator;
+        class iterator
+            : public _STD::iterator&lt;random_access_iterator_tag, value_type,
+                difference_type, pointer, reference&gt;
+        {
+        public:
+            iterator() {}
+            reference operator * () const {return *ptr_;}
+            pointer operator -&gt; () const {return ptr_;}
+            iterator&amp; operator ++ ()
+            {
+                ++pos_;
+                if (++ptr_ == cdeq_-&gt;data_ + cdeq_-&gt;alloc_.m_)
+                    ptr_ = cdeq_-&gt;data_;
+                return *this;
+            }
+            iterator operator ++ (int) {iterator tmp(*this); ++(*this); return tmp;}
+            iterator&amp; operator -- ()
+            {
+                --pos_;
+                if (ptr_ == cdeq_-&gt;data_)
+                    ptr_ = cdeq_-&gt;data_ + cdeq_-&gt;alloc_.m_;
+                --ptr_;
+                return *this;
+            }
+            iterator operator -- (int) {iterator tmp(*this); --(*this); return tmp;}
+            iterator&amp; operator += (difference_type n)
+            {
+                if (n &lt; 0)
+                    return (*this) -= -n;
+                size_type sz = cdeq_-&gt;alloc_.m_;
+                size_type off = cdeq_-&gt;start_ + pos_ + n;
+                if (off &lt; sz)
+                    ptr_ += n;
+                else
+                    ptr_ = cdeq_-&gt;data_ + (off - sz);
+                pos_ += n;
+                return *this;
+            }
+            iterator operator + (difference_type n) const {return iterator(*this) += n;}
+            iterator&amp; operator -= (difference_type n)
+            {
+                if (n &lt; 0)
+                    return (*this) += -n;
+                if (n &lt;= cdeq_-&gt;start_ + pos_)
+                    ptr_ -= n;
+                else
+                    ptr_ = cdeq_-&gt;data_ + (cdeq_-&gt;alloc_.m_ - n);
+                pos_ -= n;
+                return *this;
+            }
+            iterator operator - (difference_type n) const {return iterator(*this) -= n;}
+            difference_type operator - (const iterator&amp; rhs) const {return difference_type(pos_ - rhs.pos_);}
+            reference operator [] (difference_type i) const {iterator tmp(*this); tmp += i; return *tmp;}
+            friend bool operator ==(const iterator&amp; x, const iterator&amp; y) {return x.pos_ == y.pos_;}  // hh 990720
+            friend bool operator !=(const iterator&amp; x, const iterator&amp; y) {return x.pos_ != y.pos_;}
+            friend bool operator &lt; (const iterator&amp; x, const iterator&amp; y) {return x.pos_ &lt;  y.pos_;}
+            friend bool operator &lt;=(const iterator&amp; x, const iterator&amp; y) {return x.pos_ &lt;= y.pos_;}
+            friend bool operator &gt; (const iterator&amp; x, const iterator&amp; y) {return x.pos_ &gt;  y.pos_;}
+            friend bool operator &gt;=(const iterator&amp; x, const iterator&amp; y) {return x.pos_ &gt;= y.pos_;}
+            friend iterator operator + (difference_type n, const iterator&amp; rhs)
+                {return iterator(rhs) += n;}
+        private:
+            __cdeque* cdeq_;
+            size_type pos_;
+            pointer ptr_;
+
+            iterator(__cdeque* cdeq, size_type pos, pointer ptr)
+                : cdeq_(cdeq),
+                  pos_(pos),
+                  ptr_(ptr)
+            {}
+
+            friend class __cdeque;
+            friend class __cdeque::const_iterator;
+        };
+
+        friend class const_iterator;
+        class const_iterator
+            : public _STD::iterator&lt;random_access_iterator_tag, value_type,
+                difference_type, const_pointer, const_reference&gt;
+        {
+        public:
+            const_iterator() {}
+            const_iterator(const __cdeque::iterator&amp; rhs) : cdeq_(rhs.cdeq_), pos_(rhs.pos_), ptr_(rhs.ptr_) {}
+            const_reference operator * () const {return *ptr_;}
+            const_pointer operator -&gt; () const {return ptr_;}
+            const_iterator&amp; operator ++ ()
+            {
+                ++pos_;
+                if (++ptr_ == cdeq_-&gt;data_ + cdeq_-&gt;alloc_.m_)
+                    ptr_ = cdeq_-&gt;data_;
+                return *this;
+            }
+            const_iterator operator ++ (int) {const_iterator tmp(*this); ++(*this); return tmp;}
+            const_iterator&amp; operator -- ()
+            {
+                --pos_;
+                if (ptr_ == cdeq_-&gt;data_)
+                    ptr_ = cdeq_-&gt;data_ + cdeq_-&gt;alloc_.m_;
+                --ptr_;
+                return *this;
+            }
+            const_iterator operator -- (int) {const_iterator tmp(*this); --(*this); return tmp;}
+            const_iterator&amp; operator += (difference_type n)
+            {
+                if (n &lt; 0)
+                    return (*this) -= -n;
+                size_type sz = cdeq_-&gt;alloc_.m_;
+                size_type off = cdeq_-&gt;start_ + pos_ + n;
+                if (off &lt; sz)
+                    ptr_ += n;
+                else
+                    ptr_ = cdeq_-&gt;data_ + (off - sz);
+                pos_ += n;
+                return *this;
+            }
+            const_iterator operator + (difference_type n) const {return const_iterator(*this) += n;}
+            const_iterator&amp; operator -= (difference_type n)
+            {
+                if (n &lt; 0)
+                    return (*this) += -n;
+                if (n &lt;= cdeq_-&gt;start_ + pos_)
+                    ptr_ -= n;
+                else
+                    ptr_ = cdeq_-&gt;data_ + (cdeq_-&gt;alloc_.m_ - n);
+                pos_ -= n;
+                return *this;
+            }
+            const_iterator operator - (difference_type n) const {return const_iterator(*this) -= n;}
+            difference_type operator - (const const_iterator&amp; rhs) const {return difference_type(pos_ - rhs.pos_);}
+            const_reference operator [] (difference_type i) const {const_iterator tmp(*this); tmp += i; return *tmp;}
+            friend bool operator ==(const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ == y.pos_;}  // hh 990720
+            friend bool operator !=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ != y.pos_;}
+            friend bool operator &lt; (const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ &lt;  y.pos_;}
+            friend bool operator &lt;=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ &lt;= y.pos_;}
+            friend bool operator &gt; (const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ &gt;  y.pos_;}
+            friend bool operator &gt;=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.pos_ &gt;= y.pos_;}
+            friend const_iterator operator + (difference_type n, const const_iterator&amp; rhs)
+                {return const_iterator(rhs) += n;}
+        private:
+            const __cdeque* cdeq_;
+            size_type pos_;
+            const_pointer ptr_;
+
+            const_iterator(const __cdeque* cdeq, size_type pos, const_pointer ptr)
+                : cdeq_(cdeq),
+                  pos_(pos),
+                  ptr_(ptr)
+            {}
+
+            friend class __cdeque;
+        };
+
+        // cdeque.cons_ construct/copy/destroy:
+        explicit __cdeque(const Allocator&amp; = Allocator());
+        explicit __cdeque(size_type n, const value_type&amp; value = 0, const Allocator&amp; = Allocator());
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            __cdeque(InputIterator first, InputIterator last, const Allocator&amp; a = Allocator());
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            __cdeque(InputIterator first, InputIterator last, const Allocator&amp; a = Allocator())
+                : alloc_(a),
+                  size_(0),
+                  start_(0),
+                  data_(0)
+            {
+                choose_init(first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+            }
+    #endif
+        __cdeque(const __cdeque&amp; x);
+        ~__cdeque();
+        __cdeque&amp; operator=(const __cdeque&amp; x);
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt; void assign(InputIterator first, InputIterator last);
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            assign(InputIterator first, InputIterator last)
+            {
+                choose_assign(first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+            }
+    #endif
+        void assign(size_type n, const value_type&amp; u);
+        allocator_type get_allocator() const;
+        // iterators:
+        iterator               begin();
+        const_iterator         begin() const;
+        iterator               end();
+        const_iterator         end() const;
+        reverse_iterator       rbegin();
+        const_reverse_iterator rbegin() const;
+        reverse_iterator       rend();
+        const_reverse_iterator rend() const;
+        // cdeque.capacity_ capacity:
+        size_type size() const;
+        size_type max_size() const;
+        void      resize(size_type sz, value_type c = 0);
+        size_type capacity() const;
+        bool      empty() const;
+        void      reserve(size_type n);
+
+        // element access:
+        reference       operator[](size_type n);
+        const_reference operator[](size_type n) const;
+        const_reference at(size_type n) const;
+        reference       at(size_type n);
+        reference       front();
+        const_reference front() const;
+        reference       back();
+        const_reference back() const;
+        // cdeque.modifiers_ modifiers:
+        void push_front(const value_type&amp; x);
+        void push_back(const value_type&amp; x);
+        void pop_front();
+        void pop_back();
+        iterator insert(iterator position, const value_type&amp; x);
+        void     insert(iterator position, size_type n, const value_type&amp; x);
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt; void insert(iterator position, InputIterator first, InputIterator last);
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            insert(iterator position, InputIterator first, InputIterator last)
+            {
+                choose_insert(position, first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+            }
+    #endif
+        iterator erase(iterator position);
+        iterator erase(iterator first, iterator last);
+        void     swap(__cdeque&amp;);
+        void     clear();
+    private:
+        _EmptyMemberOpt&lt;Allocator, size_type&gt; alloc_;  // m_ is capacity
+        size_type size_;
+        size_type start_;
+        pointer data_;
+
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            void choose_init(InputIterator first, InputIterator last, chooser&lt;true&gt;);
+        template &lt;class InputIterator&gt;
+            void choose_init(InputIterator first, InputIterator last, chooser&lt;false&gt;);
+        template &lt;class InputIterator&gt;
+            void init(InputIterator first, InputIterator last, input_iterator_tag);
+        template &lt;class ForwardIterator&gt;
+            void init(ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+        template &lt;class InputIterator&gt;
+            void choose_assign(InputIterator first, InputIterator last, chooser&lt;true&gt;);
+        template &lt;class InputIterator&gt;
+            void choose_assign(InputIterator first, InputIterator last, chooser&lt;false&gt;);
+        template &lt;class InputIterator&gt;
+            void do_assign(InputIterator first, InputIterator last, input_iterator_tag);
+        template &lt;class ForwardIterator&gt;
+            void do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+        template &lt;class InputIterator&gt;
+            void choose_insert(iterator position, InputIterator first, InputIterator last, chooser&lt;true&gt;);
+        template &lt;class InputIterator&gt;
+            void choose_insert(iterator position, InputIterator first, InputIterator last, chooser&lt;false&gt;);
+        template &lt;class InputIterator&gt;
+            void do_insert(iterator position, InputIterator first, InputIterator last, input_iterator_tag);
+        template &lt;class ForwardIterator&gt;
+            void do_insert(iterator position, ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_init(InputIterator first, InputIterator last, chooser&lt;true&gt;)
+            {
+                init(static_cast&lt;size_type&gt;(first), reinterpret_cast&lt;value_type&gt;(last));  // hh 981208
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_init(InputIterator first, InputIterator last, chooser&lt;false&gt;)
+            {
+                init(first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+            }
+
+        template &lt;class InputIterator&gt;
+            void
+            init(InputIterator first, InputIterator last, input_iterator_tag)
+            {
+                #ifndef _MSL_NO_EXCEPTIONS
+                try
+                {
+                #endif
+                    for (; first != last; ++first)
+                        push_back(*first);
+                #ifndef _MSL_NO_EXCEPTIONS
+                }
+                catch (...)
+                {
+                    tear_down();
+                    throw;
+                }
+                #endif
+            }
+
+        template &lt;class ForwardIterator&gt;
+            void
+            init(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+            {
+                size_ = alloc_.m_ = (size_type)distance(first, last);
+                if (size_ &gt; max_size())
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw length_error(&quot;cdeque::construction length error&quot;);
+                    #else
+                        __msl_error(&quot;cdeque::construction length error\n&quot;);
+                    #endif
+                if (alloc_.m_ &gt; 0)
+                {
+                    data_ = alloc_.allocate(alloc_.m_);
+                    copy(first, last, data_);
+                }
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_assign(InputIterator first, InputIterator last, chooser&lt;true&gt;)
+            {
+                assign(static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_assign(InputIterator first, InputIterator last, chooser&lt;false&gt;)
+            {
+                do_assign(first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+            }
+
+        template &lt;class InputIterator&gt;
+            void
+            do_assign(InputIterator first, InputIterator last, input_iterator_tag)
+            {
+                __cdeque temp(first, last, get_allocator());
+                const __cdeque&amp; tempr = temp;
+                do_assign(tempr.begin(), tempr.end(), random_access_iterator_tag());
+            }
+
+        template &lt;class ForwardIterator&gt;
+            void
+            do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+            {
+                size_type n = (size_type)distance(first, last);
+                if (n &gt; max_size())
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw length_error(&quot;cdeque::assign length error&quot;);
+                    #else
+                        __msl_error(&quot;cdeque::assign length error\n&quot;);
+                    #endif
+                if (n &lt;= capacity())
+                {
+                    copy(first, last, data_);
+                    start_ = 0;
+                    size_ = n;
+                }
+                else
+                {
+                    pointer olddata = data_;
+                    data_ = alloc_.allocate(n);
+                    copy(first, last, data_);
+                    if (olddata != 0)
+                        alloc_.deallocate(olddata, alloc_.m_);
+                    size_ = alloc_.m_ = n;
+                    start_ = 0;
+                }
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_insert(iterator position, InputIterator first, InputIterator last,
+                chooser&lt;true&gt;)
+            {
+                insert(position, static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+            }
+
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            choose_insert(iterator position, InputIterator first, InputIterator last,
+                chooser&lt;false&gt;)
+            {
+                do_insert(position, first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+            }
+
+        template &lt;class InputIterator&gt;
+            void
+            do_insert(iterator position, InputIterator first, InputIterator last,
+                input_iterator_tag)
+            {
+                __cdeque temp(first, last, get_allocator());
+                const __cdeque&amp; tempr = temp;
+                do_insert(position, tempr.begin(), tempr.end(), random_access_iterator_tag());
+            }
+
+        template &lt;class ForwardIterator&gt;
+            void
+            do_insert(iterator position, ForwardIterator first, ForwardIterator last,
+                forward_iterator_tag)
+            {
+                size_type n = (size_type)distance(first, last);
+                if (n == 0)
+                    return;
+                size_type ms = max_size();
+                if (n &gt; ms || size_ &gt; ms - n)
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw length_error(&quot;cdeque::insert length error&quot;);
+                    #else
+                        __msl_error(&quot;cdeque::insert length error\n&quot;);
+                    #endif
+                if (size_ + n &lt;= capacity())
+                {
+                    size_type pb = size_type(position - begin());
+                    size_type pe = size_type(end() - position);
+                    if (pb &lt; pe)
+                    {
+                        if (start_ &gt;= n)
+                            start_ -= n;
+                        else
+                            start_ = alloc_.m_ - (n - start_);
+                        if (pb == 0) // insert at begin()
+                            copy(first, last, begin());
+                        else // pos in [1, size_ / 2)
+                        {
+                            iterator beg = begin();
+                            copy(beg + difference_type(n),
+                                beg + difference_type(n + pb), beg);
+                            copy(first, last, beg + difference_type(pb));
+                        }
+                    }
+                    else // pos &gt;= size_ / 2
+                    {
+                        if (pe == 0) // insert at end()
+                            copy(first, last, end());
+                        else // pos in [size_ / 2, size_)
+                        {
+                            iterator ei = end();
+                            iterator e_pe = ei - difference_type(pe);
+                            copy_backward(e_pe, ei, ei + difference_type(n));
+                            copy(first, last, e_pe);
+                        }
+                    }
+                    size_ += n;
+                }
+                else // size_ + n &gt; capacity()
+                {
+                    size_type newsize = size_ + n;
+                    size_type newcap = max(alloc_.m_, size_type(1));
+                    while (newsize &gt; newcap)
+                        newcap *= 2;
+                    size_type pos = size_type(position - begin());
+                    pointer newdata = alloc_.allocate(newcap);
+                    if (pos &gt; 0)
+                        copy(begin(), position, newdata);
+                    copy(first, last, newdata + pos);
+                    if (pos &lt; size_)
+                        copy(position, end(), newdata + pos + n);
+                    tear_down();
+                    data_ = newdata;
+                    size_ = newsize;
+                    alloc_.m_ = newcap;
+                    start_ = 0;
+                }
+            }
+    #endif
+
+        void init(size_type n, const value_type&amp; value);
+        void tear_down();
+    };
+
+    // Implementation __cdeque&lt;void*&gt;
+
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::choose_init(InputIterator first, InputIterator last, chooser&lt;true&gt;)
+    {
+        init(static_cast&lt;size_type&gt;(first), reinterpret_cast&lt;value_type&gt;(last));  // hh 981208
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::choose_init(InputIterator first, InputIterator last, chooser&lt;false&gt;)
+    {
+        init(first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::init(InputIterator first, InputIterator last, input_iterator_tag)
+    {
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            for (; first != last; ++first)
+                push_back(*first);
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            tear_down();
+            throw;
+        }
+        #endif
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class ForwardIterator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::init(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+    {
+        size_ = alloc_.m_ = (size_type)distance(first, last);
+        if (size_ &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::construction length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::construction length error\n&quot;);
+            #endif
+        if (alloc_.m_ &gt; 0)
+        {
+            data_ = alloc_.allocate(alloc_.m_);
+            copy(first, last, data_);
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::choose_assign(InputIterator first, InputIterator last, chooser&lt;true&gt;)
+    {
+        assign(static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::choose_assign(InputIterator first, InputIterator last, chooser&lt;false&gt;)
+    {
+        do_assign(first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::do_assign(InputIterator first, InputIterator last, input_iterator_tag)
+    {
+        __cdeque temp(first, last, get_allocator());
+        const __cdeque&amp; tempr = temp;
+        do_assign(tempr.begin(), tempr.end(), random_access_iterator_tag());
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class ForwardIterator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+    {
+        size_type n = (size_type)distance(first, last);
+        if (n &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::assign length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::assign length error\n&quot;);
+            #endif
+        if (n &lt;= capacity())
+        {
+            copy(first, last, data_);
+            start_ = 0;
+            size_ = n;
+        }
+        else
+        {
+            pointer olddata = data_;
+            data_ = alloc_.allocate(n);
+            copy(first, last, data_);
+            if (olddata != 0)
+                alloc_.deallocate(olddata, alloc_.m_);
+            size_ = alloc_.m_ = n;
+            start_ = 0;
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::choose_insert(iterator position, InputIterator first, InputIterator last,
+        chooser&lt;true&gt;)
+    {
+        insert(position, static_cast&lt;size_type&gt;(first), static_cast&lt;value_type&gt;(last));
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::choose_insert(iterator position, InputIterator first, InputIterator last,
+        chooser&lt;false&gt;)
+    {
+        do_insert(position, first, last, iterator_traits&lt;InputIterator&gt;::iterator_category());
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::do_insert(iterator position, InputIterator first, InputIterator last,
+        input_iterator_tag)
+    {
+        __cdeque temp(first, last, get_allocator());
+        const __cdeque&amp; tempr = temp;
+        do_insert(position, tempr.begin(), tempr.end(), random_access_iterator_tag());
+    }
+
+    template &lt;class Allocator&gt;
+    template &lt;class ForwardIterator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::do_insert(iterator position, ForwardIterator first, ForwardIterator last,
+        forward_iterator_tag)
+    {
+        size_type n = (size_type)distance(first, last);
+        if (n == 0)
+            return;
+        size_type ms = max_size();
+        if (n &gt; ms || size_ &gt; ms - n)
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::insert length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::insert length error\n&quot;);
+            #endif
+        if (size_ + n &lt;= capacity())
+        {
+            size_type pb = size_type(position - begin());
+            size_type pe = size_type(end() - position);
+            if (pb &lt; pe)
+            {
+                if (start_ &gt;= n)
+                    start_ -= n;
+                else
+                    start_ = alloc_.m_ - (n - start_);
+                if (pb == 0) // insert at begin()
+                    copy(first, last, begin());
+                else // pos in [1, size_ / 2)
+                {
+                    iterator beg = begin();
+                    copy(beg + difference_type(n),
+                        beg + difference_type(n + pb), beg);
+                    copy(first, last, beg + difference_type(pb));
+                }
+            }
+            else // pos &gt;= size_ / 2
+            {
+                if (pe == 0) // insert at end()
+                    copy(first, last, end());
+                else // pos in [size_ / 2, size_)
+                {
+                    iterator ei = end();
+                    iterator e_pe = ei - difference_type(pe);
+                    copy_backward(e_pe, ei, ei + difference_type(n));
+                    copy(first, last, e_pe);
+                }
+            }
+            size_ += n;
+        }
+        else // size_ + n &gt; capacity()
+        {
+            size_type newsize = size_ + n;
+            size_type newcap = max(alloc_.m_, size_type(1));
+            while (newsize &gt; newcap)
+                newcap *= 2;
+            size_type pos = size_type(position - begin());
+            pointer newdata = alloc_.allocate(newcap);
+            if (pos &gt; 0)
+                copy(begin(), position, newdata);
+            copy(first, last, newdata + pos);
+            if (pos &lt; size_)
+                copy(position, end(), newdata + pos + n);
+            tear_down();
+            data_ = newdata;
+            size_ = newsize;
+            alloc_.m_ = newcap;
+            start_ = 0;
+        }
+    }
+
+#endif
+
+    template &lt;class Allocator&gt;
+    inline
+    __cdeque&lt;void*, Allocator&gt;::__cdeque(const Allocator&amp; a)
+        : alloc_(a),
+          size_(0),
+          start_(0),
+          data_(0)
+    {
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    __cdeque&lt;void*, Allocator&gt;::__cdeque(size_type n, const value_type&amp; value, const Allocator&amp; a)
+        : alloc_(a),
+          size_(0),
+          start_(0),
+          data_(0)
+    {
+        init(n, value);
+    }     
+
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    __cdeque&lt;void*, Allocator&gt;::__cdeque(InputIterator first, InputIterator last, const Allocator&amp; a)
+        : alloc_(a),
+          size_(0),
+          start_(0),
+          data_(0)
+    {
+        choose_init(first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+    }
+
+#endif
+
+    template &lt;class Allocator&gt;
+    __cdeque&lt;void*, Allocator&gt;::__cdeque(const __cdeque&amp; x)
+        : alloc_(x.alloc_, x.size_),
+          size_(x.size_),
+          start_(0),
+          data_(0)
+    {
+        if (alloc_.m_ &gt; 0)
+        {
+            data_ = alloc_.allocate(alloc_.m_);
+            copy(x.begin(), x.end(), data_);
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::init(size_type n, const value_type&amp; value)
+    {
+        if (n &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::construction length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::construction length error\n&quot;);
+            #endif
+        if (n &gt; 0)
+        {
+            size_ = alloc_.m_ = n;
+            data_ = alloc_.allocate(n);
+            fill_n(data_, n, value);
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    __cdeque&lt;void*, Allocator&gt;::~__cdeque()
+    {
+        tear_down();
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::tear_down()
+    {
+        if (data_ != 0)
+            alloc_.deallocate(data_, alloc_.m_);
+    }
+
+    template &lt;class Allocator&gt;
+    __cdeque&lt;void*, Allocator&gt;&amp;
+    __cdeque&lt;void*, Allocator&gt;::operator=(const __cdeque&amp; x)
+    {
+        if (this != &amp;x)
+            assign(x.begin(), x.end());
+        return *this;
+    }
+
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::assign(InputIterator first, InputIterator last)
+    {
+        choose_assign(first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+    }
+
+#endif
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::assign(size_type n, const value_type&amp; u)
+    {
+        if (n &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::assign length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::assign length error\n&quot;);
+            #endif
+        if (n &lt;= capacity())
+        {
+            fill_n(data_, n, u);
+            size_ = n;
+            start_ = 0;
+        }
+        else
+        {
+            pointer olddata = data_;
+            data_ = alloc_.allocate(n);
+            fill_n(data_, n, u);
+            if (olddata != 0)
+                alloc_.deallocate(olddata, alloc_.m_);
+            size_ = alloc_.m_ = n;
+            start_ = 0;
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::allocator_type
+    __cdeque&lt;void*, Allocator&gt;::get_allocator() const
+    {
+        return alloc_;
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::iterator
+    __cdeque&lt;void*, Allocator&gt;::begin()
+    {
+        return iterator(this, 0, data_ + start_);
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::const_iterator
+    __cdeque&lt;void*, Allocator&gt;::begin() const
+    {
+        return const_iterator(this, 0, data_ + start_);
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::iterator
+    __cdeque&lt;void*, Allocator&gt;::end()
+    {
+        size_type off = start_ + size_;
+        if (off &lt; alloc_.m_)
+            return iterator(this, size_, data_ + off);
+        return iterator(this, size_, data_ + (off - alloc_.m_));
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::const_iterator
+    __cdeque&lt;void*, Allocator&gt;::end() const
+    {
+        size_type off = start_ + size_;
+        if (off &lt; alloc_.m_)
+            return const_iterator(this, size_, data_ + off);
+        return const_iterator(this, size_, data_ + (off - alloc_.m_));
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::reverse_iterator
+    __cdeque&lt;void*, Allocator&gt;::rbegin()
+    {
+        return reverse_iterator(end());
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::const_reverse_iterator
+    __cdeque&lt;void*, Allocator&gt;::rbegin() const
+    {
+        return const_reverse_iterator(end());
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::reverse_iterator
+    __cdeque&lt;void*, Allocator&gt;::rend()
+    {
+        return reverse_iterator(begin());
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::const_reverse_iterator
+    __cdeque&lt;void*, Allocator&gt;::rend() const
+    {
+        return const_reverse_iterator(begin());
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::size_type
+    __cdeque&lt;void*, Allocator&gt;::size() const
+    {
+        return size_;
+    }
+
+    template &lt;class Allocator&gt;
+    typename __cdeque&lt;void*, Allocator&gt;::size_type
+    __cdeque&lt;void*, Allocator&gt;::max_size() const
+    {
+        size_type ma = alloc_.max_size();
+        size_type mx = numeric_limits&lt;size_type&gt;::max() / 2;
+        return min(ma, mx);
+    }
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::resize(size_type sz, value_type c)
+    {
+        if (sz &gt; size())
+            insert(end(), sz-size(), c);
+        else if (sz &lt; size())
+            erase(begin() + difference_type(sz), end());
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::size_type
+    __cdeque&lt;void*, Allocator&gt;::capacity() const
+    {
+        return alloc_.m_;
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    bool
+    __cdeque&lt;void*, Allocator&gt;::empty() const
+    {
+        return size_ == 0;
+    }
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::reserve(size_type n)
+    {
+        if (n &gt; max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::reserve length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::reserve length error\n&quot;);
+            #endif
+        if (n &gt; capacity())
+        {
+            pointer newdata = alloc_.allocate(n);
+            if (data_ != 0)
+            {
+                copy(begin(), end(), newdata);
+                tear_down();
+            }
+            alloc_.m_ = n;
+            data_ = newdata;
+            start_ = 0;
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    typename __cdeque&lt;void*, Allocator&gt;::reference
+    __cdeque&lt;void*, Allocator&gt;::operator[](size_type n)
+    {
+        n += start_;
+        if (n &gt;= alloc_.m_)
+            n -= alloc_.m_;
+        return *(data_ + n);
+    }
+
+    template &lt;class Allocator&gt;
+    typename __cdeque&lt;void*, Allocator&gt;::const_reference
+    __cdeque&lt;void*, Allocator&gt;::operator[](size_type n) const
+    {
+        n += start_;
+        if (n &gt;= alloc_.m_)
+            n -= alloc_.m_;
+        return *(data_ + n);
+    }
+
+    template &lt;class Allocator&gt;
+    typename __cdeque&lt;void*, Allocator&gt;::const_reference
+    __cdeque&lt;void*, Allocator&gt;::at(size_type n) const
+    {
+        if (n &gt;= size_)
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw out_of_range(&quot;__cdeque::at index out of range&quot;);
+            #else
+                __msl_error(&quot;__cdeque::at index out of range&quot;);
+            #endif
+        n += start_;
+        if (n &gt;= alloc_.m_)
+            n -= alloc_.m_;
+        return *(data_ + n);
+    }
+
+    template &lt;class Allocator&gt;
+    typename __cdeque&lt;void*, Allocator&gt;::reference
+    __cdeque&lt;void*, Allocator&gt;::at(size_type n)
+    {
+        if (n &gt;= size_)
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw out_of_range(&quot;__cdeque::at index out of range&quot;);
+            #else
+                __msl_error(&quot;__cdeque::at index out of range&quot;);
+            #endif
+        n += start_;
+        if (n &gt;= alloc_.m_)
+            n -= alloc_.m_;
+        return *(data_ + n);
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::reference
+    __cdeque&lt;void*, Allocator&gt;::front()
+    {
+        return *(data_ + start_);
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::const_reference
+    __cdeque&lt;void*, Allocator&gt;::front() const
+    {
+        return *(data_ + start_);
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::reference
+    __cdeque&lt;void*, Allocator&gt;::back()
+    {
+        return (*this)[size_ - 1];
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::const_reference
+    __cdeque&lt;void*, Allocator&gt;::back() const
+    {
+        return (*this)[size_ - 1];
+    }
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::push_front(const value_type&amp; x)
+    {
+        if (size_ == max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::push_front length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::push_front length error\n&quot;);
+            #endif
+        if (size_ &lt; capacity())
+        {
+            size_type oldstart = start_;
+            if (start_ &gt; 0)
+                --start_;
+            else
+                start_ = alloc_.m_ - 1;
+            *(data_ + start_) = x;
+            ++size_;
+        }
+        else // size_ + n &gt; capacity()
+        {
+            size_type newsize = size_ + 1;
+            size_type newcap = max(alloc_.m_, size_type(1));
+            if (newsize &gt; newcap)
+                newcap *= 2;
+            pointer newdata = alloc_.allocate(newcap);
+            size_type done = 0;
+            *newdata = x;
+            ++done;
+            if (size_ &gt; 0)
+                copy(begin(), end(), newdata + 1);
+            tear_down();
+            data_ = newdata;
+            ++size_;
+            alloc_.m_ = newcap;
+            start_ = 0;
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::push_back(const value_type&amp; x)
+    {
+        if (size_ == max_size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::push_back length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::push_back length error\n&quot;);
+            #endif
+        if (size_ &lt; capacity())
+        {
+            (*this)[size_] = x;
+            ++size_;
+        }
+        else // size_ + n &gt; capacity()
+        {
+            size_type newsize = size_ + 1;
+            size_type newcap = max(alloc_.m_, size_type(1));
+            if (newsize &gt; newcap)
+                newcap *= 2;
+            size_type pos = size_;
+            pointer newdata = alloc_.allocate(newcap);
+            *(newdata + size_) = x;
+            if (size_ &gt; 0)
+                copy(begin(), end(), newdata);
+            tear_down();
+            data_ = newdata;
+            ++size_;
+            alloc_.m_ = newcap;
+            start_ = 0;
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::pop_front()
+    {   
+        --size_;
+        ++start_;
+        if (start_ &gt;= alloc_.m_)
+            start_ -= alloc_.m_;
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::pop_back()
+    {   
+        --size_;
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::iterator
+    __cdeque&lt;void*, Allocator&gt;::insert(iterator position, const value_type&amp; x)
+    {
+        size_type pos = size_type(position - begin());
+        insert(position, 1, x);
+        return begin() + difference_type(pos);
+    }
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::insert(iterator position, size_type n, const value_type&amp; x)
+    {
+        if (n == 0)
+            return;
+        size_type ms = max_size();
+        if (n &gt; ms || size_ &gt; ms - n)
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw length_error(&quot;cdeque::insert length error&quot;);
+            #else
+                __msl_error(&quot;cdeque::insert length error\n&quot;);
+            #endif
+        if (size_ + n &lt;= capacity())
+        {
+            size_type pb = size_type(position - begin());
+            size_type pe = size_type(end() - position);
+            if (pb &lt; pe)
+            {
+                if (start_ &gt;= n)
+                    start_ -= n;
+                else
+                    start_ = alloc_.m_ - (n - start_);
+                if (pb == 0) // insert at begin()
+                    fill_n(begin(), n, x);
+                else // pos in [1, size_ / 2)
+                {
+                    iterator beg = begin();
+                    copy(beg + difference_type(n),
+                        beg + difference_type(n + pb), beg);
+                    fill_n(beg + difference_type(pb), n, x);
+                }
+            }
+            else // pos &gt;= size_ / 2
+            {
+                if (pe == 0) // insert at end()
+                    fill_n(end(), n, x);
+                else // pos in [size_ / 2, size_)
+                {
+                    copy_backward(position, end(), end() + difference_type(n));
+                    fill_n(position, n, x);
+                }
+            }
+            size_ += n;
+        }
+        else // size_ + n &gt; capacity()
+        {
+            size_type newsize = size_ + n;
+            size_type newcap = max(alloc_.m_, size_type(1));
+            while (newsize &gt; newcap)
+                newcap *= 2;
+            size_type pos = size_type(position - begin());
+            pointer newdata = alloc_.allocate(newcap);
+            if (pos &gt; 0)
+                copy(begin(), position, newdata);
+            fill_n(newdata + pos, n, x);
+            if (pos &lt; size_)
+                copy(position, end(), newdata + pos + n);
+            tear_down();
+            data_ = newdata;
+            size_ = newsize;
+            alloc_.m_ = newcap;
+            start_ = 0;
+        }
+    }
+
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+    template &lt;class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::insert(iterator position, InputIterator first, InputIterator last)
+    {
+        choose_insert(position, first, last, chooser&lt;numeric_limits&lt;InputIterator&gt;::is_integer&gt;());
+    }
+
+#endif
+
+    template &lt;class Allocator&gt;
+    inline
+    typename __cdeque&lt;void*, Allocator&gt;::iterator
+    __cdeque&lt;void*, Allocator&gt;::erase(iterator position)
+    {
+        return erase(position, position + 1);
+    }
+
+    template &lt;class Allocator&gt;
+    typename __cdeque&lt;void*, Allocator&gt;::iterator
+    __cdeque&lt;void*, Allocator&gt;::erase(iterator first, iterator last)
+    {
+        if (first == last)
+            return first;
+        size_type pb = size_type(first - begin());
+        size_type pe = size_type(end() - last);
+        size_type diff = size_type(last - first);
+        if (pb &lt; pe)
+        {
+            if (pb != 0)  // erase from beginning, needs copying
+                copy_backward(begin(), first, last);
+            start_ += diff;
+            if (start_ &gt;= alloc_.m_)
+                start_ -= alloc_.m_;
+        }
+        else if (pe != 0)  // erase from end, needs copying
+            copy(last, end(), first);
+        size_ -= diff;
+        return first;
+    }
+
+    template &lt;class Allocator&gt;
+    void
+    __cdeque&lt;void*, Allocator&gt;::swap(__cdeque&amp; x)
+    {
+        if (this != &amp;x)
+        {
+            _STD::swap(alloc_, x.alloc_);
+            _STD::swap(size_, x.size_);
+            _STD::swap(start_, x.start_);
+            _STD::swap(data_, x.data_);
+        }
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;void*, Allocator&gt;::clear()
+    {
+        size_ = start_ = 0;
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    bool
+    operator==(const __cdeque&lt;void*, Allocator&gt;&amp; x, const __cdeque&lt;void*, Allocator&gt;&amp; y)
+    {
+        return x.size() == y.size() &amp;&amp; equal(x.begin(), x.end(), y.begin());
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    bool
+    operator!=(const __cdeque&lt;void*, Allocator&gt;&amp; x, const __cdeque&lt;void*, Allocator&gt;&amp; y)
+    {
+        return !(x == y);
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    bool
+    operator&lt; (const __cdeque&lt;void*,Allocator&gt;&amp; x, const __cdeque&lt;void*,Allocator&gt;&amp; y)
+    {
+        return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    bool
+    operator&gt; (const __cdeque&lt;void*,Allocator&gt;&amp; x, const __cdeque&lt;void*,Allocator&gt;&amp; y)
+    {
+        return y &lt; x;
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    bool
+    operator&gt;=(const __cdeque&lt;void*,Allocator&gt;&amp; x, const __cdeque&lt;void*,Allocator&gt;&amp; y)
+    {
+        return !(x &lt; y);
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    bool
+    operator&lt;=(const __cdeque&lt;void*,Allocator&gt;&amp; x, const __cdeque&lt;void*,Allocator&gt;&amp; y)
+    {
+        return !(y &lt; x);
+    }
+
+    template &lt;class Allocator&gt;
+    inline
+    void
+    swap(__cdeque&lt;void*,Allocator&gt;&amp; x, __cdeque&lt;void*,Allocator&gt;&amp; y)
+    {
+        x.swap(y);
+    }
+
+    // T*
+
+    template &lt;class T, class Allocator&gt;
+    class __cdeque&lt;T*, Allocator&gt;
+        : private __cdeque&lt;void*, Allocator::rebind&lt;void*&gt;::other&gt;
+    {
+        typedef __cdeque&lt;void*, Allocator::rebind&lt;void*&gt;::other&gt; base;
+        typedef base::allocator_type base_allocator;
+    public:
+        // types:
+        typedef typename Allocator::reference         reference;
+        typedef typename Allocator::const_reference   const_reference;
+        class                                         iterator;
+        class                                         const_iterator;
+        typedef typename Allocator::size_type         size_type;
+        typedef typename Allocator::difference_type   difference_type;
+        typedef T*                                    value_type;
+        typedef Allocator                             allocator_type;
+        typedef typename Allocator::pointer           pointer;
+        typedef typename Allocator::const_pointer     const_pointer;
+        typedef _STD::reverse_iterator&lt;iterator&gt;       reverse_iterator;
+        typedef _STD::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
+
+        class iterator
+            : public _STD::iterator&lt;random_access_iterator_tag, value_type,
+                difference_type, pointer, reference&gt;
+        {
+        public:
+            iterator() {}
+            explicit iterator(const base::iterator&amp; i) : i_(i) {}
+            operator base::iterator() const {return i_;}
+            reference operator * () const {return reference(*i_);}
+            pointer operator -&gt; () const {return pointer(i_.operator-&gt;());}
+            iterator&amp; operator ++ () {++i_; return *this;}
+            iterator operator ++ (int) {iterator tmp(*this); ++i_; return tmp;}
+            iterator&amp; operator -- () {--i_; return *this;}
+            iterator operator -- (int) {iterator tmp(*this); --i_; return tmp;}
+            iterator&amp; operator += (difference_type n) {i_ += n; return *this;}
+            iterator operator + (difference_type n) const {return iterator(*this) += n;}
+            iterator&amp; operator -= (difference_type n) {i_ -= n; return *this;}
+            iterator operator - (difference_type n) const {return iterator(*this) -= n;}
+            difference_type operator - (const iterator&amp; rhs) const {return i_ - rhs.i_;}
+            reference operator [] (difference_type i) const {return reference(i_[i]);}
+            friend bool operator ==(const iterator&amp; x, const iterator&amp; y) {return x.i_ == y.i_;}  // hh 990720
+            friend bool operator !=(const iterator&amp; x, const iterator&amp; y) {return x.i_ != y.i_;}
+            friend bool operator &lt; (const iterator&amp; x, const iterator&amp; y) {return x.i_ &lt;  y.i_;}
+            friend bool operator &lt;=(const iterator&amp; x, const iterator&amp; y) {return x.i_ &lt;= y.i_;}
+            friend bool operator &gt; (const iterator&amp; x, const iterator&amp; y) {return x.i_ &gt;  y.i_;}
+            friend bool operator &gt;=(const iterator&amp; x, const iterator&amp; y) {return x.i_ &gt;= y.i_;}
+            friend iterator operator + (difference_type n, const iterator&amp; rhs)
+                {return iterator(rhs) += n;}
+        private:
+            base::iterator i_;
+
+            friend class __cdeque::const_iterator;
+        };
+
+        class const_iterator
+            : public _STD::iterator&lt;random_access_iterator_tag, value_type,
+                difference_type, const_pointer, const_reference&gt;
+        {
+        public:
+            const_iterator() {}
+            const_iterator(const __cdeque::iterator&amp; rhs) : i_(rhs.i_) {}
+            explicit const_iterator(const base::const_iterator&amp; i) : i_(i) {}
+            operator base::const_iterator() const {return i_;}
+            const_reference operator * () const {return const_reference(*i_);}
+            const_pointer operator -&gt; () const {return const_pointer(i_.operator-&gt;());}
+            const_iterator&amp; operator ++ () {++i_; return *this;}
+            const_iterator operator ++ (int) {const_iterator tmp(*this); ++i_; return tmp;}
+            const_iterator&amp; operator -- () {--i_; return *this;}
+            const_iterator operator -- (int) {const_iterator tmp(*this); --i_; return tmp;}
+            const_iterator&amp; operator += (difference_type n) {i_ += n; return *this;}
+            const_iterator operator + (difference_type n) const {return const_iterator(*this) += n;}
+            const_iterator&amp; operator -= (difference_type n) {i_ -= n; return *this;}
+            const_iterator operator - (difference_type n) const {return const_iterator(*this) -= n;}
+            difference_type operator - (const const_iterator&amp; rhs) const {return i_ - rhs.i_;}
+            const_reference operator [] (difference_type i) const {return const_reference(i_[i]);}
+            friend bool operator ==(const const_iterator&amp; x, const const_iterator&amp; y) {return x.i_ == y.i_;}  // hh 990720
+            friend bool operator !=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.i_ != y.i_;}
+            friend bool operator &lt; (const const_iterator&amp; x, const const_iterator&amp; y) {return x.i_ &lt;  y.i_;}
+            friend bool operator &lt;=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.i_ &lt;= y.i_;}
+            friend bool operator &gt; (const const_iterator&amp; x, const const_iterator&amp; y) {return x.i_ &gt;  y.i_;}
+            friend bool operator &gt;=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.i_ &gt;= y.i_;}
+            friend const_iterator operator + (difference_type n, const const_iterator&amp; rhs)
+                {return const_iterator(rhs) += n;}
+        private:
+            base::const_iterator i_;
+        };
+
+        // cdeque.cons_ construct/copy/destroy:
+        explicit __cdeque(const Allocator&amp; = Allocator());
+        explicit __cdeque(size_type n, const value_type&amp; value = 0, const Allocator&amp; = Allocator());
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            __cdeque(InputIterator first, InputIterator last, const Allocator&amp; a = Allocator());
+        template &lt;class InputIterator&gt; void assign(InputIterator first, InputIterator last);
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            __cdeque(InputIterator first, InputIterator last, const Allocator&amp; a = Allocator())
+                : base(first, last, base_allocator(a))
+            {
+            }
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            assign(InputIterator first, InputIterator last)
+            {
+                base::assign(first, last);
+            }
+    #endif
+        void assign(size_type n, const value_type&amp; u);
+        allocator_type get_allocator() const;
+        // iterators:
+        iterator               begin();
+        const_iterator         begin() const;
+        iterator               end();
+        const_iterator         end() const;
+        reverse_iterator       rbegin();
+        const_reverse_iterator rbegin() const;
+        reverse_iterator       rend();
+        const_reverse_iterator rend() const;
+        // cdeque.capacity_ capacity:
+        size_type size() const;
+        size_type max_size() const;
+        void      resize(size_type sz, value_type c = 0);
+        size_type capacity() const;
+        bool      empty() const;
+        void      reserve(size_type n);
+
+        // element access:
+        reference       operator[](size_type n);
+        const_reference operator[](size_type n) const;
+        const_reference at(size_type n) const;
+        reference       at(size_type n);
+        reference       front();
+        const_reference front() const;
+        reference       back();
+        const_reference back() const;
+        // cdeque.modifiers_ modifiers:
+        void push_front(const value_type&amp; x);
+        void push_back(const value_type&amp; x);
+        void pop_front();
+        void pop_back();
+        iterator insert(iterator position, const value_type&amp; x);
+        void     insert(iterator position, size_type n, const value_type&amp; x);
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            void insert(iterator position, InputIterator first, InputIterator last);
+    #else
+        template &lt;class InputIterator&gt;
+            inline
+            void
+            insert(iterator position, InputIterator first, InputIterator last)
+            {
+                base::insert(position, first, last);
+            }
+    #endif
+        iterator erase(iterator position);
+        iterator erase(iterator first, iterator last);
+        void     swap(__cdeque&amp;);
+        void     clear();
+    };
+
+    // Implementation __cdeque&lt;T*&gt;
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    __cdeque&lt;T*, Allocator&gt;::__cdeque(const Allocator&amp; a)
+        : base(base_allocator(a))
+    {
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    __cdeque&lt;T*, Allocator&gt;::__cdeque(size_type n, const value_type&amp; value, const Allocator&amp; a)
+        : base(n, value, base_allocator(a))
+    {
+    }
+
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    __cdeque&lt;T*, Allocator&gt;::__cdeque(InputIterator first, InputIterator last, const Allocator&amp; a)
+        : base(first, last, base_allocator(a))
+    {
+    }
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::assign(InputIterator first, InputIterator last)
+    {
+        base::assign(first, last);
+    }
+
+#endif
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::assign(size_type n, const value_type&amp; u)
+    {
+        base::assign(n, u);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::allocator_type
+    __cdeque&lt;T*, Allocator&gt;::get_allocator() const
+    {
+        return base::get_allocator();
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::iterator
+    __cdeque&lt;T*, Allocator&gt;::begin()
+    {
+        return iterator(base::begin());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::const_iterator
+    __cdeque&lt;T*, Allocator&gt;::begin() const
+    {
+        return const_iterator(base::begin());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::iterator
+    __cdeque&lt;T*, Allocator&gt;::end()
+    {
+        return iterator(base::end());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::const_iterator
+    __cdeque&lt;T*, Allocator&gt;::end() const
+    {
+        return const_iterator(base::end());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::reverse_iterator
+    __cdeque&lt;T*, Allocator&gt;::rbegin()
+    {
+        return reverse_iterator(end());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::const_reverse_iterator
+    __cdeque&lt;T*, Allocator&gt;::rbegin() const
+    {
+        return const_reverse_iterator(end());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::reverse_iterator
+    __cdeque&lt;T*, Allocator&gt;::rend()
+    {
+        return reverse_iterator(begin());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::const_reverse_iterator
+    __cdeque&lt;T*, Allocator&gt;::rend() const
+    {
+        return const_reverse_iterator(begin());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::size_type
+    __cdeque&lt;T*, Allocator&gt;::size() const
+    {
+        return base::size();
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::size_type
+    __cdeque&lt;T*, Allocator&gt;::max_size() const
+    {
+        return base::max_size();
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::resize(size_type sz, value_type c)
+    {
+        base::resize(sz, c);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::size_type
+    __cdeque&lt;T*, Allocator&gt;::capacity() const
+    {
+        return base::capacity();
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    bool
+    __cdeque&lt;T*, Allocator&gt;::empty() const
+    {
+        return base::empty();
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::reserve(size_type n)
+    {
+        base::reserve(n);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::reference
+    __cdeque&lt;T*, Allocator&gt;::operator[](size_type n)
+    {
+        return reference(base::operator[](n));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::const_reference
+    __cdeque&lt;T*, Allocator&gt;::operator[](size_type n) const
+    {
+        return const_reference(base::operator[](n));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::const_reference
+    __cdeque&lt;T*, Allocator&gt;::at(size_type n) const
+    {
+        return const_reference(base::at(n));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::reference
+    __cdeque&lt;T*, Allocator&gt;::at(size_type n)
+    {
+        return reference(base::at(n));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::reference
+    __cdeque&lt;T*, Allocator&gt;::front()
+    {
+        return reference(base::front());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::const_reference
+    __cdeque&lt;T*, Allocator&gt;::front() const
+    {
+        return const_reference(base::front());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::reference
+    __cdeque&lt;T*, Allocator&gt;::back()
+    {
+        return reference(base::back());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::const_reference
+    __cdeque&lt;T*, Allocator&gt;::back() const
+    {
+        return const_reference(base::back());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::push_front(const value_type&amp; x)
+    {
+        base::push_front(x);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::push_back(const value_type&amp; x)
+    {
+        base::push_back(x);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::pop_front()
+    {
+        base::pop_front();
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::pop_back()
+    {
+        base::pop_back();
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::iterator
+    __cdeque&lt;T*, Allocator&gt;::insert(iterator position, const value_type&amp; x)
+    {
+        return iterator(base::insert(position, x));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::insert(iterator position, size_type n, const value_type&amp; x)
+    {
+        base::insert(position, n, x);
+    }
+
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+    template &lt;class T, class Allocator&gt;
+    template &lt;class InputIterator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::insert(iterator position, InputIterator first, InputIterator last)
+    {
+        base::insert(position, first, last);
+    }
+
+#endif
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::iterator
+    __cdeque&lt;T*, Allocator&gt;::erase(iterator position)
+    {
+        return iterator(base::erase(position));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    typename __cdeque&lt;T*, Allocator&gt;::iterator
+    __cdeque&lt;T*, Allocator&gt;::erase(iterator first, iterator last)
+    {
+        return iterator(base::erase(first, last));
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::swap(__cdeque&amp; rhs)
+    {
+        base::swap((base&amp;)rhs);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    __cdeque&lt;T*, Allocator&gt;::clear()
+    {
+        base::clear();
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    bool
+    operator==(const __cdeque&lt;T*, Allocator&gt;&amp; x, const __cdeque&lt;T*, Allocator&gt;&amp; y)
+    {
+        return x.size() == y.size() &amp;&amp; equal(x.begin(), x.end(), y.begin());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    bool
+    operator!=(const __cdeque&lt;T*, Allocator&gt;&amp; x, const __cdeque&lt;T*, Allocator&gt;&amp; y)
+    {
+        return !(x == y);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    bool
+    operator&lt; (const __cdeque&lt;T*,Allocator&gt;&amp; x, const __cdeque&lt;T*,Allocator&gt;&amp; y)
+    {
+        return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    bool
+    operator&gt; (const __cdeque&lt;T*,Allocator&gt;&amp; x, const __cdeque&lt;T*,Allocator&gt;&amp; y)
+    {
+        return y &lt; x;
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    bool
+    operator&gt;=(const __cdeque&lt;T*,Allocator&gt;&amp; x, const __cdeque&lt;T*,Allocator&gt;&amp; y)
+    {
+        return !(x &lt; y);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    bool
+    operator&lt;=(const __cdeque&lt;T*,Allocator&gt;&amp; x, const __cdeque&lt;T*,Allocator&gt;&amp; y)
+    {
+        return !(y &lt; x);
+    }
+
+    template &lt;class T, class Allocator&gt;
+    inline
+    void
+    swap(__cdeque&lt;T*,Allocator&gt;&amp; x, __cdeque&lt;T*,Allocator&gt;&amp; y)
+    {
+        x.swap(y);
+    }
+
+#endif // !defined(_MSL_NO_PARTIAL_SPECIALIZATION) &amp;&amp; !defined(_MSL_NO_MEMBER_TEMPLATE) &amp;&amp; !defined(_Inhibit_Container_Optimization)
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std 
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _CDEQUE
+
+// hh 981005 rewrote
+// hh 981208 changed static_cast to reinterpret_cast on the value_type (pointer specialization only)
+// hh 981220 Rewrote iterators to gain higher performance
+// hh 981220 Added typename to appropriate return types
+// hh 981220 Modifed some method signitures to simplified syntax
+// hh 981220 Added class modifier to several friend declarations
+// hh 990120 changed names of MSIPL flags.
+// hh 990720 Made iterator comparison functions global friends
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

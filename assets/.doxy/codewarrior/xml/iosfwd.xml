@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="iosfwd" kind="file" language="C++">
+    <compoundname>iosfwd</compoundname>
+    <includedby refid="hashtbl_8h" local="no">hashtbl.h</includedby>
+    <includedby refid="iosfwd_8h" local="no">iosfwd.h</includedby>
+    <invincdepgraph>
+      <node id="3">
+        <label>hashmap.h</label>
+        <link refid="hashmap_8h"/>
+      </node>
+      <node id="4">
+        <label>hashmmap.h</label>
+        <link refid="hashmmap_8h"/>
+      </node>
+      <node id="5">
+        <label>hashmset.h</label>
+        <link refid="hashmset_8h"/>
+      </node>
+      <node id="6">
+        <label>hashset.h</label>
+        <link refid="hashset_8h"/>
+      </node>
+      <node id="2">
+        <label>hashtbl.h</label>
+        <link refid="hashtbl_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>iosfwd</label>
+        <link refid="iosfwd"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>iosfwd.h</label>
+        <link refid="iosfwd_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:58:50<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>iosfwd</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_IOSFWD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>hh<sp/>971222<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_IOSFWD</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#include<sp/>&lt;cwchar&gt;<sp/><sp/>//<sp/>hh<sp/>980908<sp/>for<sp/>mbstate_t</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>int<sp/>mbstate_t;</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED<sp/>//<sp/>hh<sp/>971230</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>charT&gt;<sp/>struct<sp/>char_traits;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template&lt;class<sp/>T&gt;<sp/>class<sp/>allocator;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ios;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_streambuf;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_istream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ostream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_iostream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;,<sp/>class<sp/>Allocator<sp/>=<sp/>allocator&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_stringbuf;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;,<sp/>class<sp/>Allocator<sp/>=<sp/>allocator&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_istringstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;,<sp/>class<sp/>Allocator<sp/>=<sp/>allocator&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ostringstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;,<sp/>class<sp/>Allocator<sp/>=<sp/>allocator&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_stringstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_filebuf;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ifstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_ofstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>basic_fstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>istreambuf_iterator;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>charT,<sp/>class<sp/>traits<sp/>=<sp/>char_traits&lt;charT&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>ostreambuf_iterator;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;&gt;<sp/>struct<sp/>char_traits&lt;char&gt;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_ios&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/>ios;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_streambuf&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/>streambuf;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_istream&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/><sp/><sp/>istream;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_ostream&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/><sp/><sp/>ostream;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_iostream&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/><sp/>iostream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_stringbuf&lt;char,<sp/>char_traits&lt;char&gt;,<sp/>allocator&lt;char&gt;<sp/>&gt;<sp/><sp/><sp/><sp/><sp/>stringbuf;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_istringstream&lt;char,<sp/>char_traits&lt;char&gt;,<sp/>allocator&lt;char&gt;<sp/>&gt;<sp/>istringstream;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_ostringstream&lt;char,<sp/>char_traits&lt;char&gt;,<sp/>allocator&lt;char&gt;<sp/>&gt;<sp/>ostringstream;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_stringstream&lt;char,<sp/>char_traits&lt;char&gt;,<sp/>allocator&lt;char&gt;<sp/>&gt;<sp/><sp/>stringstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_filebuf&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/><sp/>filebuf;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_ifstream&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/>ifstream;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_ofstream&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/>ofstream;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>basic_fstream&lt;char,<sp/>char_traits&lt;char&gt;<sp/>&gt;<sp/><sp/>fstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;&gt;<sp/>struct<sp/>char_traits&lt;wchar_t&gt;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_ios&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/>wios;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_streambuf&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/>wstreambuf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_istream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/><sp/><sp/>wistream;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_ostream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/><sp/><sp/>wostream;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_iostream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/><sp/>wiostream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_stringbuf&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;,<sp/>allocator&lt;wchar_t&gt;<sp/>&gt;<sp/><sp/><sp/><sp/><sp/>wstringbuf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_istringstream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;,<sp/>allocator&lt;wchar_t&gt;<sp/>&gt;<sp/>wistringstream;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_ostringstream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;,<sp/>allocator&lt;wchar_t&gt;<sp/>&gt;<sp/>wostringstream;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_stringstream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;,<sp/>allocator&lt;wchar_t&gt;<sp/>&gt;<sp/><sp/>wstringstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_filebuf&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/><sp/>wfilebuf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_ifstream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/>wifstream;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_ofstream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/>wofstream;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>basic_fstream&lt;wchar_t,<sp/>char_traits&lt;wchar_t&gt;<sp/>&gt;<sp/><sp/>wfstream;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_NO_WCHART</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MSL_NO_IO</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>state&gt;<sp/>class<sp/>fpos;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980908<sp/>added</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>fpos&lt;mbstate_t&gt;<sp/>streampos;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>fpos&lt;mbstate_t&gt;<sp/>wstreampos;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">typedef<sp/>long<sp/>streamoff;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_IOSFWD</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/><sp/>971222<sp/>added<sp/>alignment<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/><sp/>971222<sp/>Changed<sp/>filename<sp/>from<sp/>iosfwd.h<sp/>to<sp/>iosfwd</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/><sp/>971222<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/><sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>blc<sp/>980313<sp/>fixed<sp/>char_traits<sp/>structness</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981027<sp/>wrapped<sp/>#include<sp/>&lt;cwchar&gt;<sp/>up<sp/>in<sp/>MSIPL_WCHART</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990102<sp/>fixed<sp/>names<sp/>of<sp/>stream<sp/>iterator<sp/>forward<sp/>declarations</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>990120<sp/>changed<sp/>name<sp/>of<sp/>MSIPL<sp/>flags</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/iosfwd"/>
+  </compounddef>
+</doxygen>

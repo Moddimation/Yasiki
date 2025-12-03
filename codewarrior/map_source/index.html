@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File map - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-map">File map</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../map/"><strong>map</strong></a></p>
+<p><a href="../map/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:59:43 $ 
+ *  $Revision: 1.9.6.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  map
+ **/
+
+#ifndef _MAP
+#define _MAP
+
+#include &lt;mslconfig&gt;
+#include &lt;tree.h&gt;
+#include &lt;functional&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+// map
+
+template &lt;class Key, class T, class Compare = less&lt;Key&gt;,
+          class Allocator = allocator&lt;pair&lt;const Key, T&gt; &gt; &gt;
+class map
+{
+public:
+//  types:
+    typedef Key                                   key_type;
+    typedef T                                     mapped_type;
+    typedef pair&lt;const Key, T&gt;                    value_type;
+    typedef Compare                               key_compare;
+    typedef Allocator                             allocator_type;
+    typedef typename Allocator::reference         reference;
+    typedef typename Allocator::const_reference   const_reference;
+    typedef typename Allocator::size_type         size_type;
+    typedef typename Allocator::difference_type   difference_type;
+    typedef typename Allocator::pointer           pointer;
+    typedef typename Allocator::const_pointer     const_pointer;
+
+    struct debug_view
+    {
+        debug_view* left_;
+        debug_view* right_;
+        debug_view* parent_;
+        value_type data_;
+    };
+
+    class value_compare
+        : public binary_function&lt;value_type, value_type, bool&gt;
+    {
+    public:
+        bool operator()(const value_type&amp; x, const value_type&amp; y) const
+        {
+            return comp(x.first, y.first);
+        }
+    protected:
+        Compare comp;
+
+        value_compare(Compare c) : comp(c) {}
+
+        friend class map;
+    };
+
+private:
+    typedef __tree&lt;value_type, value_compare, allocator_type&gt; tree_type;
+public:
+    typedef typename tree_type::iterator       iterator;
+    typedef typename tree_type::const_iterator const_iterator;
+    typedef _STD::reverse_iterator&lt;iterator&gt;       reverse_iterator;
+    typedef _STD::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
+
+    //  lib.map.cons construct/copy/destroy:
+    explicit map(const Compare&amp; comp = Compare(), const Allocator&amp; = Allocator());
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            inline
+            map(InputIterator first, InputIterator last, const Compare&amp; comp = Compare(),
+                const Allocator&amp; a = Allocator())
+                : tree_(first, last, false, value_compare(comp), a)
+            {
+            }
+    #else
+        map(const_iterator first, const_iterator last, const Compare&amp; comp = Compare(),
+                const Allocator&amp; a = Allocator());
+        map(const value_type* first, const value_type* last, const Compare&amp; comp = Compare(),
+                const Allocator&amp; a = Allocator());
+    #endif
+
+    allocator_type get_allocator() const;
+
+    //  iterators:
+    iterator               begin();
+    const_iterator         begin() const;
+    iterator               end();
+    const_iterator         end() const;
+    reverse_iterator       rbegin();
+    const_reverse_iterator rbegin() const;
+    reverse_iterator       rend();
+    const_reverse_iterator rend() const;
+
+    //  capacity:
+    bool      empty() const;
+    size_type size() const;
+    size_type max_size() const;
+
+    //  lib.map.access element access:
+    T&amp; operator[](const key_type&amp; x);
+
+    //  modifiers:
+    pair&lt;iterator, bool&gt; insert(const value_type&amp; x);
+    iterator             insert(iterator position, const value_type&amp; x);
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            inline
+            void insert(InputIterator first, InputIterator last)
+            {
+                tree_.insert_one(first, last);
+            }
+    #else
+        void insert(const_iterator first, const_iterator last);
+        void insert(const value_type* first, const value_type* last);
+    #endif
+
+    void      erase(iterator position);
+    size_type erase(const key_type&amp; x);
+    void      erase(iterator first, iterator last);
+    void swap(map&lt;Key,T,Compare,Allocator&gt;&amp; x);
+    void clear();
+
+    //  observers:
+    key_compare   key_comp() const;
+    value_compare value_comp() const;
+
+    //  lib.map.ops map operations:
+    iterator       find(const key_type&amp; x);
+    const_iterator find(const key_type&amp; x) const;
+    size_type      count(const key_type&amp; x) const;
+
+    iterator       lower_bound(const key_type&amp; x);
+    const_iterator lower_bound(const key_type&amp; x) const;
+    iterator       upper_bound(const key_type&amp; x);
+    const_iterator upper_bound(const key_type&amp; x) const;
+
+    pair&lt;iterator,iterator&gt; equal_range(const key_type&amp; x);
+    pair&lt;const_iterator,const_iterator&gt; equal_range(const key_type&amp; x) const;
+private:
+    tree_type tree_;
+};
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator==(const map&lt;Key,T,Compare,Allocator&gt;&amp; x, const map&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator&lt; (const map&lt;Key,T,Compare,Allocator&gt;&amp; x, const map&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator!=(const map&lt;Key,T,Compare,Allocator&gt;&amp; x, const map&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator&gt; (const map&lt;Key,T,Compare,Allocator&gt;&amp; x, const map&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator&gt;=(const map&lt;Key,T,Compare,Allocator&gt;&amp; x, const map&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator&lt;=(const map&lt;Key,T,Compare,Allocator&gt;&amp; x, const map&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+//  specialized algorithms:
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+void
+swap(map&lt;Key,T,Compare,Allocator&gt;&amp; x, map&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+// multimap
+
+template &lt;class Key, class T, class Compare = less&lt;Key&gt;,
+          class Allocator = allocator&lt;pair&lt;const Key, T&gt; &gt; &gt;
+class multimap
+{
+public:
+    //  types:
+    typedef Key                                   key_type;
+    typedef T                                     mapped_type;
+    typedef pair&lt;const Key,T&gt;                     value_type;
+    typedef Compare                               key_compare;
+    typedef Allocator                             allocator_type;
+    typedef typename Allocator::reference         reference;
+    typedef typename Allocator::const_reference   const_reference;
+    typedef typename Allocator::size_type         size_type;
+    typedef typename Allocator::difference_type   difference_type;
+    typedef typename Allocator::pointer           pointer;
+    typedef typename Allocator::const_pointer     const_pointer;
+
+    struct debug_view
+    {
+        debug_view* left_;
+        debug_view* right_;
+        debug_view* parent_;
+        value_type data_;
+    };
+
+    class value_compare
+        : public binary_function&lt;value_type,value_type,bool&gt;
+    {
+    public:
+        bool operator()(const value_type&amp; x, const value_type&amp; y) const
+        {
+            return comp(x.first, y.first);
+        }
+    protected:
+        Compare comp;
+
+        value_compare(Compare c) : comp(c) {}
+
+        friend class multimap;
+    };
+
+private:
+    typedef __tree&lt;value_type, value_compare, allocator_type&gt; tree_type;
+public:
+    typedef typename tree_type::iterator       iterator;
+    typedef typename tree_type::const_iterator const_iterator;
+    typedef _STD::reverse_iterator&lt;iterator&gt;       reverse_iterator;
+    typedef _STD::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
+
+    //  construct/copy/destroy:
+    explicit multimap(const Compare&amp; comp = Compare(), const Allocator&amp; = Allocator());
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            inline
+            multimap(InputIterator first, InputIterator last, const Compare&amp; comp = Compare(),
+                const Allocator&amp; a = Allocator())
+                : tree_(first, last, true, value_compare(comp), a)
+            {
+            }
+    #else
+        multimap(const_iterator first, const_iterator last, const Compare&amp; comp = Compare(),
+                const Allocator&amp; a = Allocator());
+        multimap(const value_type* first, const value_type* last, const Compare&amp; comp = Compare(),
+                const Allocator&amp; a = Allocator());
+    #endif
+    allocator_type get_allocator() const;
+
+    //  iterators:
+    iterator               begin();
+    const_iterator         begin() const;
+    iterator               end();
+    const_iterator         end() const;
+    reverse_iterator       rbegin();
+    const_reverse_iterator rbegin() const;
+    reverse_iterator       rend();
+    const_reverse_iterator rend() const;
+
+    //  capacity:
+    bool           empty() const;
+    size_type      size() const;
+    size_type      max_size() const;
+
+    //  modifiers:
+    iterator insert(const value_type&amp; x);
+    iterator insert(iterator position, const value_type&amp; x);
+    #ifndef _MSL_NO_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            inline
+            void insert(InputIterator first, InputIterator last)
+            {
+                tree_.insert_multi(first, last);
+            }
+    #else
+        void insert(const_iterator first, const_iterator last);
+        void insert(const value_type* first, const value_type* last);
+    #endif
+
+    void      erase(iterator position);
+    size_type erase(const key_type&amp; x);
+    void      erase(iterator first, iterator last);
+    void swap(multimap&lt;Key,T,Compare,Allocator&gt;&amp; x);
+    void clear();
+
+    //  observers:
+    key_compare    key_comp() const;
+    value_compare  value_comp() const;
+
+    //  map operations:
+    iterator       find(const key_type&amp; x);
+    const_iterator find(const key_type&amp; x) const;
+    size_type      count(const key_type&amp; x) const;
+
+    iterator       lower_bound(const key_type&amp; x);
+    const_iterator lower_bound(const key_type&amp; x) const;
+    iterator       upper_bound(const key_type&amp; x);
+    const_iterator upper_bound(const key_type&amp; x) const;
+
+    pair&lt;iterator,iterator&gt; equal_range(const key_type&amp; x);
+    pair&lt;const_iterator,const_iterator&gt; equal_range(const key_type&amp; x) const;
+private:
+    tree_type tree_;
+};
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator==(const multimap&lt;Key,T,Compare,Allocator&gt;&amp; x, const multimap&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator&lt; (const multimap&lt;Key,T,Compare,Allocator&gt;&amp; x, const multimap&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator!=(const multimap&lt;Key,T,Compare,Allocator&gt;&amp; x, const multimap&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator&gt; (const multimap&lt;Key,T,Compare,Allocator&gt;&amp; x, const multimap&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator&gt;=(const multimap&lt;Key,T,Compare,Allocator&gt;&amp; x, const multimap&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+bool
+operator&lt;=(const multimap&lt;Key,T,Compare,Allocator&gt;&amp; x, const multimap&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+//  specialized algorithms:
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+void
+swap(multimap&lt;Key,T,Compare,Allocator&gt;&amp; x, multimap&lt;Key,T,Compare,Allocator&gt;&amp; y);
+
+// map implementation
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+map&lt;Key, T, Compare, Allocator&gt;::map(const Compare&amp; comp, const Allocator&amp; a)
+    : tree_(value_compare(comp), a)
+{
+}
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+
+    template &lt;class Key, class T, class Compare, class Allocator&gt;
+    inline
+    map&lt;Key, T, Compare, Allocator&gt;::map(const_iterator first, const_iterator last,
+        const Compare&amp; comp, const Allocator&amp; a)
+        : tree_(first, last, false, value_compare(comp), a)
+    {
+    }
+
+    template &lt;class Key, class T, class Compare, class Allocator&gt;
+    inline
+    map&lt;Key, T, Compare, Allocator&gt;::map(const value_type* first, const value_type* last,
+        const Compare&amp; comp, const Allocator&amp; a)
+        : tree_(first, last, false, value_compare(comp), a)
+    {
+    }
+
+#endif
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::allocator_type
+map&lt;Key, T, Compare, Allocator&gt;::get_allocator() const
+{
+    return tree_.get_allocator();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::iterator
+map&lt;Key, T, Compare, Allocator&gt;::begin()
+{
+    return tree_.begin();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::const_iterator
+map&lt;Key, T, Compare, Allocator&gt;::begin() const
+{
+    return tree_.begin();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::iterator
+map&lt;Key, T, Compare, Allocator&gt;::end()
+{
+    return tree_.end();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::const_iterator
+map&lt;Key, T, Compare, Allocator&gt;::end() const
+{
+    return tree_.end();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::reverse_iterator
+map&lt;Key, T, Compare, Allocator&gt;::rbegin()
+{
+    return reverse_iterator(end());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::const_reverse_iterator
+map&lt;Key, T, Compare, Allocator&gt;::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::reverse_iterator
+map&lt;Key, T, Compare, Allocator&gt;::rend()
+{
+    return reverse_iterator(begin());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::const_reverse_iterator
+map&lt;Key, T, Compare, Allocator&gt;::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+map&lt;Key, T, Compare, Allocator&gt;::empty() const
+{
+    return tree_.empty();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::size_type
+map&lt;Key, T, Compare, Allocator&gt;::size() const
+{
+    return tree_.size();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::size_type
+map&lt;Key, T, Compare, Allocator&gt;::max_size() const
+{
+    return tree_.max_size();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+T&amp;
+map&lt;Key, T, Compare, Allocator&gt;::operator[](const key_type&amp; x)
+{
+    return insert(pair&lt;const Key, T&gt;(x, T())).first-&gt;second;
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+pair&lt;map&lt;Key, T, Compare, Allocator&gt;::iterator, bool&gt;
+map&lt;Key, T, Compare, Allocator&gt;::insert(const value_type&amp; x)
+{
+    return tree_.insert_one(x);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::iterator
+map&lt;Key, T, Compare, Allocator&gt;::insert(iterator position, const value_type&amp; x)
+{
+    return tree_.insert_one(position, x);
+}
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+
+    template &lt;class Key, class T, class Compare, class Allocator&gt;
+    inline
+    void
+    map&lt;Key, T, Compare, Allocator&gt;::insert(const_iterator first, const_iterator last)
+    {
+        tree_.insert_one(first, last);
+    }
+
+    template &lt;class Key, class T, class Compare, class Allocator&gt;
+    inline
+    void
+    map&lt;Key, T, Compare, Allocator&gt;::insert(const value_type* first, const value_type* last)
+    {
+        tree_.insert_one(first, last);
+    }
+
+#endif
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+map&lt;Key, T, Compare, Allocator&gt;::erase(iterator position)
+{
+    tree_.erase(position);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::size_type
+map&lt;Key, T, Compare, Allocator&gt;::erase(const key_type&amp; x)
+{
+    return tree_.erase_one((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+map&lt;Key, T, Compare, Allocator&gt;::erase(iterator first, iterator last)
+{
+    tree_.erase(first, last);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+map&lt;Key, T, Compare, Allocator&gt;::swap(map&lt;Key,T,Compare,Allocator&gt;&amp; x)
+{
+    tree_.swap(x.tree_);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+map&lt;Key, T, Compare, Allocator&gt;::clear()
+{
+    tree_.clear();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::key_compare
+map&lt;Key, T, Compare, Allocator&gt;::key_comp() const
+{
+    return tree_.value_comp().comp;
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::value_compare
+map&lt;Key, T, Compare, Allocator&gt;::value_comp() const
+{
+    return tree_.value_comp();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::iterator
+map&lt;Key, T, Compare, Allocator&gt;::find(const key_type&amp; x)
+{
+    return tree_.find((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::const_iterator
+map&lt;Key, T, Compare, Allocator&gt;::find(const key_type&amp; x) const
+{
+    return tree_.find((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::size_type
+map&lt;Key, T, Compare, Allocator&gt;::count(const key_type&amp; x) const
+{
+    return tree_.count_one((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::iterator
+map&lt;Key, T, Compare, Allocator&gt;::lower_bound(const key_type&amp; x)
+{
+    return tree_.lower_bound((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::const_iterator
+map&lt;Key, T, Compare, Allocator&gt;::lower_bound(const key_type&amp; x) const
+{
+    return tree_.lower_bound((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::iterator
+map&lt;Key, T, Compare, Allocator&gt;::upper_bound(const key_type&amp; x)
+{
+    return tree_.upper_bound((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename map&lt;Key, T, Compare, Allocator&gt;::const_iterator
+map&lt;Key, T, Compare, Allocator&gt;::upper_bound(const key_type&amp; x) const
+{
+    return tree_.upper_bound((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+pair&lt;map&lt;Key, T, Compare, Allocator&gt;::iterator, map&lt;Key, T, Compare, Allocator&gt;::iterator&gt;
+map&lt;Key, T, Compare, Allocator&gt;::equal_range(const key_type&amp; x)
+{
+    return tree_.equal_range((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+pair&lt;map&lt;Key, T, Compare, Allocator&gt;::const_iterator, map&lt;Key, T, Compare, Allocator&gt;::const_iterator&gt;
+map&lt;Key, T, Compare, Allocator&gt;::equal_range(const key_type&amp; x) const
+{
+    return tree_.equal_range((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator==(const map&lt;Key, T, Compare, Allocator&gt;&amp; x, const map&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return x.size() == y.size() &amp;&amp; equal(x.begin(), x.end(), y.begin());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator!=(const map&lt;Key, T, Compare, Allocator&gt;&amp; x, const map&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return !(x == y);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator&lt; (const map&lt;Key, T, Compare, Allocator&gt;&amp; x, const map&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator&gt; (const map&lt;Key, T, Compare, Allocator&gt;&amp; x, const map&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return y &lt; x;
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator&gt;=(const map&lt;Key, T, Compare, Allocator&gt;&amp; x, const map&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return !(x &lt; y);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator&lt;=(const map&lt;Key, T, Compare, Allocator&gt;&amp; x, const map&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return !(y &lt; x);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+swap(map&lt;Key, T, Compare, Allocator&gt;&amp; x, map&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    x.swap(y);
+}
+
+// multimap implementation
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+multimap&lt;Key, T, Compare, Allocator&gt;::multimap(const Compare&amp; comp, const Allocator&amp; a)
+    : tree_(value_compare(comp), a)
+{
+}
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+
+    template &lt;class Key, class T, class Compare, class Allocator&gt;
+    inline
+    multimap&lt;Key, T, Compare, Allocator&gt;::multimap(const_iterator first, const_iterator last,
+        const Compare&amp; comp, const Allocator&amp; a)
+        : tree_(first, last, true, value_compare(comp), a)
+    {
+    }
+
+    template &lt;class Key, class T, class Compare, class Allocator&gt;
+    inline
+    multimap&lt;Key, T, Compare, Allocator&gt;::multimap(const value_type* first, const value_type* last,
+        const Compare&amp; comp, const Allocator&amp; a)
+        : tree_(first, last, true, value_compare(comp), a)
+    {
+    }
+
+#endif
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::allocator_type
+multimap&lt;Key, T, Compare, Allocator&gt;::get_allocator() const
+{
+    return tree_.get_allocator();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::begin()
+{
+    return tree_.begin();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::const_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::begin() const
+{
+    return tree_.begin();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::end()
+{
+    return tree_.end();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::const_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::end() const
+{
+    return tree_.end();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::reverse_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::rbegin()
+{
+    return reverse_iterator(end());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::const_reverse_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::reverse_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::rend()
+{
+    return reverse_iterator(begin());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::const_reverse_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+multimap&lt;Key, T, Compare, Allocator&gt;::empty() const
+{
+    return tree_.empty();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::size_type
+multimap&lt;Key, T, Compare, Allocator&gt;::size() const
+{
+    return tree_.size();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::size_type
+multimap&lt;Key, T, Compare, Allocator&gt;::max_size() const
+{
+    return tree_.max_size();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::insert(const value_type&amp; x)
+{
+    return tree_.insert_multi(x);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::insert(iterator position, const value_type&amp; x)
+{
+    return tree_.insert_multi(position, x);
+}
+
+#ifdef _MSL_NO_MEMBER_TEMPLATE
+
+    template &lt;class Key, class T, class Compare, class Allocator&gt;
+    inline
+    void
+    multimap&lt;Key, T, Compare, Allocator&gt;::insert(const_iterator first, const_iterator last)
+    {
+        tree_.insert_multi(first, last);
+    }
+
+    template &lt;class Key, class T, class Compare, class Allocator&gt;
+    inline
+    void
+    multimap&lt;Key, T, Compare, Allocator&gt;::insert(const value_type* first, const value_type* last)
+    {
+        tree_.insert_multi(first, last);
+    }
+
+#endif
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+multimap&lt;Key, T, Compare, Allocator&gt;::erase(iterator position)
+{
+    tree_.erase(position);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::size_type
+multimap&lt;Key, T, Compare, Allocator&gt;::erase(const key_type&amp; x)
+{
+    return tree_.erase_multi((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+multimap&lt;Key, T, Compare, Allocator&gt;::erase(iterator first, iterator last)
+{
+    tree_.erase(first, last);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+multimap&lt;Key, T, Compare, Allocator&gt;::swap(multimap&lt;Key,T,Compare,Allocator&gt;&amp; x)
+{
+    tree_.swap(x.tree_);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+multimap&lt;Key, T, Compare, Allocator&gt;::clear()
+{
+    tree_.clear();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::key_compare
+multimap&lt;Key, T, Compare, Allocator&gt;::key_comp() const
+{
+    return tree_.value_comp().comp;
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::value_compare
+multimap&lt;Key, T, Compare, Allocator&gt;::value_comp() const
+{
+    return tree_.value_comp();
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::find(const key_type&amp; x)
+{
+    return tree_.find((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::const_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::find(const key_type&amp; x) const
+{
+    return tree_.find((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::size_type
+multimap&lt;Key, T, Compare, Allocator&gt;::count(const key_type&amp; x) const
+{
+    return tree_.count_multi((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::lower_bound(const key_type&amp; x)
+{
+    return tree_.lower_bound((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::const_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::lower_bound(const key_type&amp; x) const
+{
+    return tree_.lower_bound((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::upper_bound(const key_type&amp; x)
+{
+    return tree_.upper_bound((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+typename multimap&lt;Key, T, Compare, Allocator&gt;::const_iterator
+multimap&lt;Key, T, Compare, Allocator&gt;::upper_bound(const key_type&amp; x) const
+{
+    return tree_.upper_bound((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+pair&lt;multimap&lt;Key, T, Compare, Allocator&gt;::iterator, multimap&lt;Key, T, Compare, Allocator&gt;::iterator&gt;
+multimap&lt;Key, T, Compare, Allocator&gt;::equal_range(const key_type&amp; x)
+{
+    return tree_.equal_range((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+pair&lt;multimap&lt;Key, T, Compare, Allocator&gt;::const_iterator, multimap&lt;Key, T, Compare, Allocator&gt;::const_iterator&gt;
+multimap&lt;Key, T, Compare, Allocator&gt;::equal_range(const key_type&amp; x) const
+{
+    return tree_.equal_range((const value_type&amp;)pair&lt;const Key, int&gt;(x, 0));
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator==(const multimap&lt;Key, T, Compare, Allocator&gt;&amp; x, const multimap&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return x.size() == y.size() &amp;&amp; equal(x.begin(), x.end(), y.begin());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator!=(const multimap&lt;Key, T, Compare, Allocator&gt;&amp; x, const multimap&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return !(x == y);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator&lt; (const multimap&lt;Key, T, Compare, Allocator&gt;&amp; x, const multimap&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator&gt; (const multimap&lt;Key, T, Compare, Allocator&gt;&amp; x, const multimap&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return y &lt; x;
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator&gt;=(const multimap&lt;Key, T, Compare, Allocator&gt;&amp; x, const multimap&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return !(x &lt; y);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+bool
+operator&lt;=(const multimap&lt;Key, T, Compare, Allocator&gt;&amp; x, const multimap&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    return !(y &lt; x);
+}
+
+template &lt;class Key, class T, class Compare, class Allocator&gt;
+inline
+void
+swap(multimap&lt;Key, T, Compare, Allocator&gt;&amp; x, multimap&lt;Key, T, Compare, Allocator&gt;&amp; y)
+{
+    x.swap(y);
+}
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif // _MAP
+
+// hh 971220 fixed MOD_INCLUDE
+// hh 971222 added alignment wrapper
+// hh 971222 Changed filename from map.h to map
+// hh 971222 Made include guards standard
+// hh 971230 added RC_INVOKED wrapper
+// hh 980805 changed default allocator
+// hh 981130 rewrote
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CARDCreate.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardcreatec">File CARDCreate.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_2dfa3b55db09c289c0394a464581d568/"><strong>card</strong></a> <strong>&gt;</strong> <a href="../_c_a_r_d_create_8c/"><strong>CARDCreate.c</strong></a></p>
+<p><a href="../_c_a_r_d_create_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/card.h&gt;
+
+#include &lt;string.h&gt;
+
+#include &quot;CARDPrivate.h&quot;
+
+static void CreateCallbackFat (s32 chan, long result);
+
+static void
+CreateCallbackFat (s32 chan, long result)
+{
+    struct CARDControl* card;
+    struct CARDDir*     dir;
+    struct CARDDir*     ent;
+    void                (*callback) (s32, long);
+
+    card = &amp;__CARDBlock[chan];
+    callback = card-&gt;apiCallback;
+    card-&gt;apiCallback = NULL;
+
+    if (result &gt;= 0)
+    {
+        dir = __CARDGetDirBlock (card);
+        ent = &amp;dir[card-&gt;freeNo];
+        memcpy (ent-&gt;gameName, __CARDDiskID-&gt;gameName, sizeof (ent-&gt;gameName));
+        memcpy (ent-&gt;company, __CARDDiskID-&gt;company, sizeof (ent-&gt;company));
+        ent-&gt;permission = 4;
+        ent-&gt;copyTimes = 0;
+        ASSERTLINE (0x66, CARDIsValidBlockNo (card, card-&gt;startBlock));
+        ent-&gt;startBlock = (u16)card-&gt;startBlock;
+        ent-&gt;bannerFormat = 0;
+        ent-&gt;iconAddr = (u32)-1;
+        ent-&gt;iconFormat = 0;
+        ent-&gt;iconSpeed = 0;
+        ent-&gt;commentAddr = (u32)-1;
+        CARDSetIconSpeed (ent, 0, CARD_STAT_SPEED_FAST);
+        card-&gt;fileInfo-&gt;offset = 0;
+        card-&gt;fileInfo-&gt;iBlock = ent-&gt;startBlock;
+        ent-&gt;time = (u32)OSTicksToSeconds (OSGetTime());
+        result = __CARDUpdateDir (chan, callback);
+        if (result &lt; 0)
+        {
+            goto after;
+        }
+    }
+    else
+    {
+    after:;
+        __CARDPutControlBlock (card, result);
+        if (callback)
+        {
+            callback (chan, result);
+        }
+    }
+}
+
+s32
+CARDCreateAsync (s32           chan,
+                 char*         fileName,
+                 u32           size,
+                 CARDFileInfo* fileInfo,
+                 CARDCallback  callback)
+{
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
+    u16          fileNo;
+    u16          freeNo;
+    u16*         fat;
+    s32          result;
+
+    ASSERTLINE (0xA4, 0 &lt;= chan &amp;&amp; chan &lt; 2);
+    ASSERTLINE (0xA5, strlen (fileName) &lt;= CARD_FILENAME_MAX);
+
+    if (strlen (fileName) &gt; (u32)CARD_FILENAME_MAX)
+    {
+        return CARD_RESULT_NAMETOOLONG;
+    }
+
+    result = __CARDGetControlBlock (chan, &amp;card);
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    ASSERTLINE (0xB1, 0 &lt; size &amp;&amp; (size % card-&gt;sectorSize) == 0);
+
+    if (size &lt;= 0 || (size % card-&gt;sectorSize) != 0)
+    {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+
+    freeNo = (u16)-1;
+    dir = __CARDGetDirBlock (card);
+    for (fileNo = 0; fileNo &lt; CARD_MAX_FILE; fileNo++)
+    {
+        ent = &amp;dir[fileNo];
+        if (ent-&gt;gameName[0] == 0xff)
+        {
+            if (freeNo == (u16)-1)
+            {
+                freeNo = fileNo;
+            }
+        }
+        else if (memcmp (ent-&gt;gameName, __CARDDiskID-&gt;gameName, sizeof (ent-&gt;gameName)) == 0 &amp;&amp;
+                 memcmp (ent-&gt;company, __CARDDiskID-&gt;company, sizeof (ent-&gt;company)) == 0 &amp;&amp;
+                 __CARDCompareFileName (ent, fileName))
+        {
+            return __CARDPutControlBlock (card, CARD_RESULT_EXIST);
+        }
+    }
+    if (freeNo == (u16)-1)
+    {
+        return __CARDPutControlBlock (card, CARD_RESULT_NOENT);
+    }
+
+    fat = __CARDGetFatBlock (card);
+    if (card-&gt;sectorSize * fat[CARD_FAT_FREEBLOCKS] &lt; size)
+    {
+        return __CARDPutControlBlock (card, CARD_RESULT_INSSPACE);
+    }
+
+    card-&gt;apiCallback = callback ? callback : __CARDDefaultApiCallback;
+    card-&gt;freeNo = freeNo;
+    ent = &amp;dir[freeNo];
+    ent-&gt;length = (u16)(size / card-&gt;sectorSize);
+    strncpy ((char*)ent-&gt;fileName, fileName, CARD_FILENAME_MAX);
+
+    card-&gt;fileInfo = fileInfo;
+    fileInfo-&gt;chan = chan;
+    fileInfo-&gt;fileNo = freeNo;
+
+    result = __CARDAllocBlock (chan, size / card-&gt;sectorSize, CreateCallbackFat);
+    if (result &lt; 0)
+    {
+        return __CARDPutControlBlock (card, result);
+    }
+    return result;
+}
+
+s32
+CARDCreate (s32 chan, char* fileName, u32 size, struct CARDFileInfo* fileInfo)
+{
+    s32 result = CARDCreateAsync (chan, fileName, size, fileInfo, __CARDSyncCallback);
+
+    if (result &lt; 0)
+    {
+        return result;
+    }
+    return __CARDSync (chan);
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

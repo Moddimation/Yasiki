@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="csetjmp" kind="file" language="C++">
+    <compoundname>csetjmp</compoundname>
+    <includedby refid="setjmp_8h" local="no">setjmp.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>csetjmp</label>
+        <link refid="csetjmp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>setjmp.h</label>
+        <link refid="setjmp_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>abort_exit.c</label>
+        <link refid="abort__exit_8c"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/07/30<sp/>18:07:48<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.4.3<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>File:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>csetjmp<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hh<sp/><sp/>971206<sp/><sp/>filename<sp/>used<sp/>to<sp/>be<sp/>setjmp.h</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>Content:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Interface<sp/>to<sp/>setjmp/longjmp<sp/>ANSI<sp/>functions<sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__csetjmp__</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__csetjmp__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ansi_parms.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED<sp/><sp/><sp/>/*<sp/>hh<sp/>971230<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>#pragma<sp/>direct_destruction<sp/>off<sp/>*/<sp/><sp/>/*<sp/><sp/>980807<sp/>vss<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>hh<sp/><sp/>971206<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>_MSL_USING_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>extern<sp/>&quot;C&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__POWERPC__<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#if<sp/>__VEC__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>__vector<sp/>unsigned<sp/>long<sp/>jmp_buf[29];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>setjmp(jmp_buf)<sp/>__std(__vec_setjmp(jmp_buf))<sp/><sp/>/*<sp/>hh<sp/>990521<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>*jmp_buf[70];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>setjmp(jmp_buf)<sp/>__std(__setjmp(jmp_buf))<sp/><sp/>/*<sp/>hh<sp/>990521<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#elif<sp/>__MIPS__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#include<sp/>&lt;__config.h&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>struct<sp/>__jmp_buf<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_REG_TYPE<sp/><sp/><sp/>GPR[11];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#if<sp/>__fpu__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_FREG_TYPE<sp/><sp/>FPR[12];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>__jmp_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>struct<sp/>__jmp_buf<sp/>jmp_buf;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>__longjmp(register<sp/>__jmp_buf*<sp/>env,<sp/>int<sp/>val);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/><sp/>__setjmp<sp/>(register<sp/>__jmp_buf*<sp/>env);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>setjmp(jmp_buf)<sp/>__std(__setjmp(&amp;jmp_buf))<sp/><sp/>/*<sp/>hh<sp/>990521<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>longjmp(env,<sp/>val)<sp/>__longjmp(&amp;env,val)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#elif<sp/><sp/><sp/>__INTEL__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>int<sp/>jmp_buf[10];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>setjmp(jmp_buf)<sp/>__std(_Setjmp(jmp_buf))<sp/><sp/>/*<sp/>hh<sp/>990521<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>_Setjmp(jmp_buf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>*jmp_buf[13];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/><sp/>D3-D7,PC,A2-A6,SP,__local_destructor_chain<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__POWERPC__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__SETJMP_NOT_INTERNAL__</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>internal<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__VEC__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/>__vec_setjmp(jmp_buf);</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/>__setjmp(jmp_buf);</highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__SETJMP_NOT_INTERNAL__</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>internal<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__VEC__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#define<sp/>longjmp(jmp_buf,<sp/>val)<sp/>__vec_longjmp(jmp_buf,<sp/>val)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/>__vec_longjmp(jmp_buf,<sp/>int);</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/>longjmp<sp/>(jmp_buf,int);</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#elif<sp/>__CFM68K__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>#ifndef<sp/>__SETJMP_NOT_INTERNAL__</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#pragma<sp/>internal<sp/>on</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/>setjmp(jmp_buf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>#ifndef<sp/>__SETJMP_NOT_INTERNAL__</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#pragma<sp/>internal<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal"><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/>longjmp(jmp_buf,int);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>__MIPS__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/>setjmp<sp/>(jmp_buf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/>longjmp(jmp_buf,int);</highlight></codeline>
+<codeline><highlight class="normal">#endif<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>__longjmp_ldestr(jmp_buf,int);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>__dest_os<sp/>==<sp/>__be_os</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>long<sp/>*sigjmp_buf[(sizeof(jmp_buf)/sizeof(int))<sp/>+<sp/>(32*4)];<sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>970708<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/><sp/>sigsetjmp(sigjmp_buf<sp/>jmp,<sp/>int<sp/>savemask);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>970708<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>siglongjmp(sigjmp_buf<sp/>jmp,<sp/>int<sp/>val);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>mm<sp/>970708<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>__cplusplus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/*<sp/>hh<sp/><sp/>971206<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>_MSL_USING_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/>#pragma<sp/>direct_destruction<sp/>reset<sp/>*/<sp/><sp/>/*<sp/>vss<sp/>980807<sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>RC_INVOKED<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/><sp/><sp/><sp/>Change<sp/>record</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>960829<sp/>bkoz<sp/>added<sp/>l.you&apos;s<sp/>changes<sp/>for<sp/>powerTV</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>960917<sp/>KO:<sp/>Moved<sp/>the<sp/>__extern_c<sp/>block<sp/>up<sp/>here<sp/>so<sp/>it<sp/>now<sp/>encloses</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>Intel<sp/>function<sp/>declaration.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>mm<sp/>970708<sp/><sp/>Inserted<sp/>Be<sp/>changes</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>hh<sp/><sp/>971206<sp/>Changed<sp/>filename<sp/>from<sp/>setjmp.h<sp/>to<sp/>csetjmp<sp/>and<sp/>added<sp/>namespace<sp/>support.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>vss<sp/>980807<sp/>remove<sp/>pragma<sp/><sp/>-<sp/>no<sp/>longer<sp/>supported<sp/>by<sp/>compiler</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>vss<sp/>990115<sp/>removed<sp/>powerTV<sp/>wrappers</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>bdd<sp/>00-2-3<sp/>Add<sp/>AltiVec<sp/>changes<sp/>(contributed)</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>hh<sp/>990521<sp/>added<sp/>__std()<sp/>qualifier<sp/>to<sp/>setjmp<sp/>macro,<sp/>4<sp/>places</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/csetjmp"/>
+  </compounddef>
+</doxygen>

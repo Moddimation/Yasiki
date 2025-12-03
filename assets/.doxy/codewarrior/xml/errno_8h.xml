@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="errno_8h" kind="file" language="C++">
+    <compoundname>errno.h</compoundname>
+    <includes refid="cerrno" local="no">cerrno</includes>
+    <includedby refid="ansi__fp_8c" local="no">ansi_fp.c</includedby>
+    <includedby refid="errno_8c" local="no">errno.c</includedby>
+    <includedby refid="file__pos_8c" local="no">file_pos.c</includedby>
+    <includedby refid="k__standard_8c" local="no">k_standard.c</includedby>
+    <includedby refid="misc__io_8c" local="no">misc_io.c</includedby>
+    <includedby refid="s__ldexp_8c" local="no">s_ldexp.c</includedby>
+    <includedby refid="scanf_8c" local="no">scanf.c</includedby>
+    <includedby refid="signal_8c" local="no">signal.c</includedby>
+    <includedby refid="string_8c" local="no">string.c</includedby>
+    <includedby refid="strtold_8c" local="no">strtold.c</includedby>
+    <includedby refid="strtoul_8c" local="no">strtoul.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>cerrno</label>
+        <link refid="cerrno"/>
+      </node>
+      <node id="1">
+        <label>errno.h</label>
+        <link refid="errno_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>errno.h</label>
+        <link refid="errno_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>errno.c</label>
+        <link refid="errno_8c"/>
+      </node>
+      <node id="4">
+        <label>file_pos.c</label>
+        <link refid="file__pos_8c"/>
+      </node>
+      <node id="6">
+        <label>misc_io.c</label>
+        <link refid="misc__io_8c"/>
+      </node>
+      <node id="8">
+        <label>scanf.c</label>
+        <link refid="scanf_8c"/>
+      </node>
+      <node id="9">
+        <label>signal.c</label>
+        <link refid="signal_8c"/>
+      </node>
+      <node id="10">
+        <label>string.c</label>
+        <link refid="string_8c"/>
+      </node>
+      <node id="11">
+        <label>strtold.c</label>
+        <link refid="strtold_8c"/>
+      </node>
+      <node id="12">
+        <label>strtoul.c</label>
+        <link refid="strtoul_8c"/>
+      </node>
+      <node id="5">
+        <label>k_standard.c</label>
+        <link refid="k__standard_8c"/>
+      </node>
+      <node id="7">
+        <label>s_ldexp.c</label>
+        <link refid="s__ldexp_8c"/>
+      </node>
+      <node id="2">
+        <label>ansi_fp.c</label>
+        <link refid="ansi__fp_8c"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/03/01<sp/>18:17:12<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.8<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>errno.h</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_ERRNO_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_ERRNO_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="cerrno" kindref="compound">cerrno</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment">#if<sp/>defined(__cplusplus)<sp/>&amp;&amp;<sp/>defined(_MSL_USING_NAMESPACE)</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/><sp/><sp/><sp/>using<sp/>namespace<sp/>std;</highlight></codeline>
+<codeline lineno="22"><highlight class="comment">#endif</highlight></codeline>
+<codeline lineno="23"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>Change<sp/>record</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>hh<sp/>971206<sp/>Created.</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>mf<sp/>990301<sp/><sp/>errno<sp/>is<sp/>a<sp/>utility<sp/>and<sp/>is<sp/>no<sp/>longer<sp/>in<sp/>std.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Include/errno.h"/>
+  </compounddef>
+</doxygen>

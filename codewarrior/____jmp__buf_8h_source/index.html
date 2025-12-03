@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File __jmp_buf.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-__jmp_bufh">File __jmp_buf.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_192ee455ef94b5a11e62d491224058e4/"><strong>Inc</strong></a> <strong>&gt;</strong> <a href="../____jmp__buf_8h/"><strong>__jmp_buf.h</strong></a></p>
+<p><a href="../____jmp__buf_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef __jmp_buf_h
+#define __jmp_buf_h
+
+/*  __jmp_buf.h is a private runtime file which declares the structure __jmp_buf */
+
+/*
+ *  Private Types
+ */
+
+typedef struct __jmp_buf {
+    unsigned long   pc;         /*  0: saved PC         */
+    unsigned long   cr;         /*  4: saved CR         */
+    unsigned long   sp;         /*  8: saved SP         */
+    unsigned long   rtoc;       /* 12: saved RTOC       */
+
+#if __VEC__ /* true if altivec model is true */
+    unsigned long   vrsave;     /* 16: old vrsave       */
+#else
+    unsigned long   reserved;   /* 16: not used         */
+#endif
+
+    unsigned long   gprs[19];   /* 20: saved R13-R31    */
+#ifndef _No_Floating_Point_Regs
+    double          fp14;       /* 96: saved FP14-FP31  */
+    double          fp15;
+    double          fp16;
+    double          fp17;
+    double          fp18;
+    double          fp19;
+    double          fp20;
+    double          fp21;
+    double          fp22;
+    double          fp23;
+    double          fp24;
+    double          fp25;
+    double          fp26;
+    double          fp27;
+    double          fp28;
+    double          fp29;
+    double          fp30;
+    double          fp31;
+    double          fpscr;      /* 240: saved FPSCR     */
+#endif /* ndef _No_Floating_Point_Regs */
+#if __VEC__
+    unsigned long           reserved_2; /* 248          */
+    unsigned long           reserved_3; /* 252          */
+    __vector signed long    vr20;       /* 256          */
+    __vector signed long    vr21;
+    __vector signed long    vr22;
+    __vector signed long    vr23;
+    __vector signed long    vr24;
+    __vector signed long    vr25;
+    __vector signed long    vr26;
+    __vector signed long    vr27;
+    __vector signed long    vr28;
+    __vector signed long    vr29;
+    __vector signed long    vr30;
+    __vector signed long    vr31;
+    unsigned long           reserved_4;
+    unsigned long           reserved_5;
+    unsigned long           reserved_6;
+    unsigned long           vscr;       /* 16-byte align VSCR   */
+#endif
+} __jmp_buf;
+
+#endif /* __jmp_buf_h */
+
+/*
+    Change Record
+
+    990723 MEA created from setjmp.c 
+*/
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File reverb_hi.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-reverb_hic">File reverb_hi.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_2bd0f0afbf5da90c596578eb9887bbaf/"><strong>axfx</strong></a> <strong>&gt;</strong> <a href="./"><strong>reverb_hi.c</strong></a></p>
+<p><a href="../reverb__hi_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/ax.h&gt;</code></li>
+<li><code>#include &lt;dolphin/axfx.h&gt;</code></li>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+<li><code>#include "fake_tgmath.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>double</strong></a></td>
+<td style="text-align: left;"><a href="#variable-i2fmagic"><strong>i2fMagic</strong></a>   = <code>4503601774854144.0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a></td>
+<td style="text-align: left;"><a href="#variable-value0_3"><strong>value0_3</strong></a>   = <code>0.3f</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a></td>
+<td style="text-align: left;"><a href="#variable-value0_6"><strong>value0_6</strong></a>   = <code>0.6f</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxreverbhicallback"><strong>AXFXReverbHiCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e/"><strong>AXFX_BUFFERUPDATE</strong></a> * bufferUpdate, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_e_r_b_h_i/"><strong>AXFX_REVERBHI</strong></a> * reverb) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxreverbhiinit"><strong>AXFXReverbHiInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_e_r_b_h_i/"><strong>AXFX_REVERBHI</strong></a> * rev) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxreverbhisettings"><strong>AXFXReverbHiSettings</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_e_r_b_h_i/"><strong>AXFX_REVERBHI</strong></a> * rev) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfxreverbhishutdown"><strong>AXFXReverbHiShutdown</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_e_r_b_h_i/"><strong>AXFX_REVERBHI</strong></a> * rev) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dlcreate"><strong>DLcreate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e/"><strong>AXFX_REVHI_DELAYLINE</strong></a> * dl, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> max_length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dldelete"><strong>DLdelete</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e/"><strong>AXFX_REVHI_DELAYLINE</strong></a> * dl) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dlsetdelay"><strong>DLsetdelay</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e/"><strong>AXFX_REVHI_DELAYLINE</strong></a> * dl, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> lag) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-docrosstalk"><strong>DoCrossTalk</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * l, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> * r, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> cross, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> invcross) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-handlereverb"><strong>HandleReverb</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * sptr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___w_o_r_k/"><strong>AXFX_REVHI_WORK</strong></a> * rv, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> k) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-handlereverb"><strong>HandleReverb</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * sptr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___w_o_r_k/"><strong>AXFX_REVHI_WORK</strong></a> * rv, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> k) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-reverbhicallback"><strong>ReverbHICallback</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * left, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> * right, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> * surround, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___w_o_r_k/"><strong>AXFX_REVHI_WORK</strong></a> * rv) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-reverbhicreate"><strong>ReverbHICreate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___w_o_r_k/"><strong>AXFX_REVHI_WORK</strong></a> * rv, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> coloration, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> time, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> mix, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> damping, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> preDelay, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> crosstalk) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-reverbhifree"><strong>ReverbHIFree</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___w_o_r_k/"><strong>AXFX_REVHI_WORK</strong></a> * rv) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-reverbhimodify"><strong>ReverbHIModify</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_a_x_f_x___r_e_v_h_i___w_o_r_k/"><strong>AXFX_REVHI_WORK</strong></a> * rv, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> coloration, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> time, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> mix, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> damping, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> preDelay, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>float</strong></a> crosstalk) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-i2fmagic">variable i2fMagic</h3>
+<pre><code class="language-C++">const double i2fMagic;
+</code></pre>
+<hr>
+
+<h3 id="variable-value0_3">variable value0_3</h3>
+<pre><code class="language-C++">const float value0_3;
+</code></pre>
+<hr>
+
+<h3 id="variable-value0_6">variable value0_6</h3>
+<pre><code class="language-C++">const float value0_6;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-axfxreverbhicallback">function AXFXReverbHiCallback</h3>
+<pre><code class="language-C++">void AXFXReverbHiCallback (
+    struct  AXFX_BUFFERUPDATE * bufferUpdate,
+    struct  AXFX_REVERBHI * reverb
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxreverbhiinit">function AXFXReverbHiInit</h3>
+<pre><code class="language-C++">int AXFXReverbHiInit (
+    struct  AXFX_REVERBHI * rev
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxreverbhisettings">function AXFXReverbHiSettings</h3>
+<pre><code class="language-C++">int AXFXReverbHiSettings (
+    struct  AXFX_REVERBHI * rev
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfxreverbhishutdown">function AXFXReverbHiShutdown</h3>
+<pre><code class="language-C++">int AXFXReverbHiShutdown (
+    struct  AXFX_REVERBHI * rev
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-dlcreate">function DLcreate</h3>
+<pre><code class="language-C++">static void DLcreate (
+    struct  AXFX_REVHI_DELAYLINE * dl,
+    s32 max_length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dldelete">function DLdelete</h3>
+<pre><code class="language-C++">static void DLdelete (
+    struct  AXFX_REVHI_DELAYLINE * dl
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dlsetdelay">function DLsetdelay</h3>
+<pre><code class="language-C++">static void DLsetdelay (
+    struct  AXFX_REVHI_DELAYLINE * dl,
+    s32 lag
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-docrosstalk">function DoCrossTalk</h3>
+<pre><code class="language-C++">static asm  void DoCrossTalk (
+    register  s32 * l,
+    register  long * r,
+    register  float cross,
+    register  float invcross
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-handlereverb">function HandleReverb</h3>
+<pre><code class="language-C++">static void HandleReverb (
+    s32 * sptr,
+    struct  AXFX_REVHI_WORK * rv,
+    long k
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-handlereverb_1">function HandleReverb</h3>
+<pre><code class="language-C++">static asm  void HandleReverb (
+    register  s32 * sptr,
+    register  struct  AXFX_REVHI_WORK * rv,
+    register  long k
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-reverbhicallback">function ReverbHICallback</h3>
+<pre><code class="language-C++">static void ReverbHICallback (
+    s32 * left,
+    long * right,
+    long * surround,
+    struct  AXFX_REVHI_WORK * rv
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-reverbhicreate">function ReverbHICreate</h3>
+<pre><code class="language-C++">static int ReverbHICreate (
+    struct  AXFX_REVHI_WORK * rv,
+    float coloration,
+    float time,
+    float mix,
+    float damping,
+    float preDelay,
+    float crosstalk
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-reverbhifree">function ReverbHIFree</h3>
+<pre><code class="language-C++">static void ReverbHIFree (
+    struct  AXFX_REVHI_WORK * rv
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-reverbhimodify">function ReverbHIModify</h3>
+<pre><code class="language-C++">static int ReverbHIModify (
+    struct  AXFX_REVHI_WORK * rv,
+    float coloration,
+    float time,
+    float mix,
+    float damping,
+    float preDelay,
+    float crosstalk
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/axfx/reverb_hi.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

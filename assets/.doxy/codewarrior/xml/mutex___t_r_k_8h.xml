@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mutex___t_r_k_8h" kind="file" language="C++">
+    <compoundname>mutex_TRK.h</compoundname>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <includedby refid="msgbuf_8c" local="yes">msgbuf.c</includedby>
+    <includedby refid="mutex___t_r_k_8c" local="yes">mutex_TRK.c</includedby>
+    <includedby refid="nubevent_8c" local="yes">nubevent.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>mutex_TRK.h</label>
+        <link refid="mutex___t_r_k_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>mutex_TRK.h</label>
+        <link refid="mutex___t_r_k_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>msgbuf.c</label>
+        <link refid="msgbuf_8c"/>
+      </node>
+      <node id="3">
+        <label>mutex_TRK.c</label>
+        <link refid="mutex___t_r_k_8c"/>
+      </node>
+      <node id="4">
+        <label>nubevent.c</label>
+        <link refid="nubevent_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="mutex___t_r_k_8h_1ade29be8f64dd1bc57b9cca351615326d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKInitializeMutex</definition>
+        <argsstring>(void *)</argsstring>
+        <name>TRKInitializeMutex</name>
+        <param>
+          <type>void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mutex_TRK.h" line="6" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mutex_TRK.c" bodystart="3" bodyend="3" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mutex_TRK.h" declline="6" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <referencedby refid="nubevent_8h_1a73051b5b79fc24cd999a1172efb67e78" compoundref="nubevent_8c" startline="8" endline="17">TRKInitializeEventQueue</referencedby>
+        <referencedby refid="msgbuf_8h_1a8604cc3345500bf32d75346833e5545c" compoundref="msgbuf_8c" startline="11" endline="22">TRKInitializeMessageBuffers</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mutex___t_r_k_8h_1a544668a3cd0213671479f981989544f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKAcquireMutex</definition>
+        <argsstring>(void *)</argsstring>
+        <name>TRKAcquireMutex</name>
+        <param>
+          <type>void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mutex_TRK.h" line="7" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mutex_TRK.c" bodystart="5" bodyend="5" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mutex_TRK.h" declline="7" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <referencedby refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" compoundref="msgbuf_8c" startline="24" endline="48">TRKGetFreeBuffer</referencedby>
+        <referencedby refid="nubevent_8h_1a5d975b17017b89a5908d96313dca92f8" compoundref="nubevent_8c" startline="24" endline="39">TRKGetNextEvent</referencedby>
+        <referencedby refid="nubevent_8h_1a73051b5b79fc24cd999a1172efb67e78" compoundref="nubevent_8c" startline="8" endline="17">TRKInitializeEventQueue</referencedby>
+        <referencedby refid="msgbuf_8h_1a8604cc3345500bf32d75346833e5545c" compoundref="msgbuf_8c" startline="11" endline="22">TRKInitializeMessageBuffers</referencedby>
+        <referencedby refid="nubevent_8h_1a8e164da33d9c9fd1e4b2f2054314dc66" compoundref="nubevent_8c" startline="41" endline="63">TRKPostEvent</referencedby>
+        <referencedby refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mutex___t_r_k_8h_1aa7e209741d6104d0e29a96c871fde901" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKReleaseMutex</definition>
+        <argsstring>(void *)</argsstring>
+        <name>TRKReleaseMutex</name>
+        <param>
+          <type>void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mutex_TRK.h" line="8" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/mutex_TRK.c" bodystart="7" bodyend="7" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mutex_TRK.h" declline="8" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <referencedby refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" compoundref="msgbuf_8c" startline="24" endline="48">TRKGetFreeBuffer</referencedby>
+        <referencedby refid="nubevent_8h_1a5d975b17017b89a5908d96313dca92f8" compoundref="nubevent_8c" startline="24" endline="39">TRKGetNextEvent</referencedby>
+        <referencedby refid="nubevent_8h_1a73051b5b79fc24cd999a1172efb67e78" compoundref="nubevent_8c" startline="8" endline="17">TRKInitializeEventQueue</referencedby>
+        <referencedby refid="msgbuf_8h_1a8604cc3345500bf32d75346833e5545c" compoundref="msgbuf_8c" startline="11" endline="22">TRKInitializeMessageBuffers</referencedby>
+        <referencedby refid="nubevent_8h_1a8e164da33d9c9fd1e4b2f2054314dc66" compoundref="nubevent_8c" startline="41" endline="63">TRKPostEvent</referencedby>
+        <referencedby refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>METROTRK_PORTABLE_MUTEX_TRK_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>METROTRK_PORTABLE_MUTEX_TRK_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="mutex___t_r_k_8h_1ade29be8f64dd1bc57b9cca351615326d" kindref="member">TRKInitializeMutex</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="mutex___t_r_k_8h_1a544668a3cd0213671479f981989544f0" kindref="member">TRKAcquireMutex</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="mutex___t_r_k_8h_1aa7e209741d6104d0e29a96c871fde901" kindref="member">TRKReleaseMutex</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METROTRK_PORTABLE_MUTEX_TRK_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/mutex_TRK.h"/>
+  </compounddef>
+</doxygen>

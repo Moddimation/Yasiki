@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="notify_8c" kind="file" language="C++">
+    <compoundname>notify.c</compoundname>
+    <includes refid="notify_8h" local="yes">Portable/notify.h</includes>
+    <includes refid="msgbuf_8h" local="yes">Portable/msgbuf.h</includes>
+    <includes refid="support_8h" local="yes">Portable/support.h</includes>
+    <includes refid="targimpl_8h" local="yes">Processor/ppc/Generic/targimpl.h</includes>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>Portable/msgbuf.h</label>
+        <link refid="msgbuf_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Portable/notify.h</label>
+        <link refid="notify_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Portable/nubevent.h</label>
+        <link refid="nubevent_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Portable/support.h</label>
+        <link refid="support_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Processor/ppc/Generic/targimpl.h</label>
+        <link refid="targimpl_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>notify.c</label>
+        <link refid="notify_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="notify_8c_1a568b242b6bffbf5d5c5e8867832c8dfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKDoNotifyStopped</definition>
+        <argsstring>(MessageCommandID cmd)</argsstring>
+        <name>TRKDoNotifyStopped</name>
+        <param>
+          <type><ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bf" kindref="member">MessageCommandID</ref></type>
+          <declname>cmd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/notify.c" line="7" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/notify.c" bodystart="7" bodyend="40"/>
+        <references refid="struct_t_r_k_buffer_1a90a2062daa68abca2ff1cbf3cbee361c" compoundref="trk_8h" startline="210">TRKBuffer::data</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba075db8392a28f8777627f709d656517c" compoundref="trk_8h" startline="27">DS_MessageBufferOverflow</references>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfaa1c9338b9a6928a005cf7f22c38ac08b" compoundref="trk_8h" startline="80">DSMSG_NotifyStopped</references>
+        <references refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" compoundref="trk_8h" startline="208">TRKBuffer::length</references>
+        <references refid="struct_t_r_k_buffer_1a9a9f46519a8ce5141bb4cd621a5a9267" compoundref="trk_8h" startline="209">TRKBuffer::position</references>
+        <references refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" compoundref="msgbuf_8c" startline="24" endline="48">TRKGetFreeBuffer</references>
+        <references refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</references>
+        <references refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" compoundref="support_8c" startline="105" endline="177">TRKRequestSend</references>
+        <references refid="targimpl_8h_1a08578a67c09219154d9787b6c463b6e3" compoundref="targimpl_8c" startline="848" endline="867">TRKTargetAddExceptionInfo</references>
+        <references refid="targimpl_8h_1abdb4c8fec113f38cd6cab73438d3aa6c" compoundref="targimpl_8c" startline="831" endline="846">TRKTargetAddStopInfo</references>
+        <referencedby refid="targimpl_8h_1a8ed359d07fddc63055f82f800dc5fb3e" compoundref="targimpl_8c" startline="813" endline="829">TRKTargetInterrupt</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="notify_8h" kindref="compound">Portable/notify.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msgbuf_8h" kindref="compound">Portable/msgbuf.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="support_8h" kindref="compound">Portable/support.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="targimpl_8h" kindref="compound">Processor/ppc/Generic/targimpl.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="notify_8h_1a568b242b6bffbf5d5c5e8867832c8dfb" refkind="member"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="notify_8c_1a568b242b6bffbf5d5c5e8867832c8dfb" kindref="member">TRKDoNotifyStopped</ref>(<ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bf" kindref="member">MessageCommandID</ref><sp/>cmd)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/>err;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>reqIdx;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufIdx;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_t_r_k_buffer" kindref="compound">TRKBuffer</ref>*<sp/>msg;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>err<sp/>=<sp/><ref refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" kindref="member">TRKGetFreeBuffer</ref>(&amp;bufIdx,<sp/>&amp;msg);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(err<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg-&gt;<ref refid="struct_t_r_k_buffer_1a9a9f46519a8ce5141bb4cd621a5a9267" kindref="member">position</ref><sp/>&gt;=<sp/>0x880)<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>err<sp/>=<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba075db8392a28f8777627f709d656517c" kindref="member">DS_MessageBufferOverflow</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>msg-&gt;<ref refid="struct_t_r_k_buffer_1a90a2062daa68abca2ff1cbf3cbee361c" kindref="member">data</ref>[msg-&gt;<ref refid="struct_t_r_k_buffer_1a9a9f46519a8ce5141bb4cd621a5a9267" kindref="member">position</ref>++]<sp/>=<sp/>cmd;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++msg-&gt;<ref refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" kindref="member">length</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>err<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(err<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cmd<sp/>==<sp/><ref refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfaa1c9338b9a6928a005cf7f22c38ac08b" kindref="member">DSMSG_NotifyStopped</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="targimpl_8h_1abdb4c8fec113f38cd6cab73438d3aa6c" kindref="member">TRKTargetAddStopInfo</ref>(msg);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="targimpl_8h_1a08578a67c09219154d9787b6c463b6e3" kindref="member">TRKTargetAddExceptionInfo</ref>(msg);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>err<sp/>=<sp/><ref refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" kindref="member">TRKRequestSend</ref>(msg,<sp/>&amp;reqIdx,<sp/>2,<sp/>3,<sp/>1);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(err<sp/>==<sp/><ref refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" kindref="member">DS_NoError</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" kindref="member">TRKReleaseBuffer</ref>(reqIdx);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" kindref="member">TRKReleaseBuffer</ref>(bufIdx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>err;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/notify.c"/>
+  </compounddef>
+</doxygen>

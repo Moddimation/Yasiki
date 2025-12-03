@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_init__5xx__phytec_8asm" kind="file" language="C++">
+    <compoundname>Init_5xx_phytec.asm</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>Phytec<sp/>PPC<sp/>505<sp/>initialization<sp/>code.<sp/></highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.globl<sp/><sp/><sp/><sp/><sp/><sp/>usr_init</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.section<sp/><sp/><sp/>.init,4,1,6</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</highlight></codeline>
+<codeline><highlight class="normal">;;</highlight></codeline>
+<codeline><highlight class="normal">;;<sp/><sp/>usr_init</highlight></codeline>
+<codeline><highlight class="normal">;;</highlight></codeline>
+<codeline><highlight class="normal">;;<sp/><sp/>Performs<sp/>board-specific<sp/>initializations.</highlight></codeline>
+<codeline><highlight class="normal">;;</highlight></codeline>
+<codeline><highlight class="normal">;;</highlight></codeline>
+<codeline><highlight class="normal">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">usr_init:</highlight></codeline>
+<codeline><highlight class="normal">;<sp/>Disable<sp/>watchdog</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r4,<sp/>0x8007</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>0xEFC4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">;<sp/>UART<sp/>(CS3)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x0010</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r4,<sp/>0x8007</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>0xFDD0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x9084</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0xC001</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r4,<sp/>0x8007</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>0xFDD4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">;<sp/>second<sp/>SRAM<sp/>(CS2)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x0004</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r4,<sp/>0x8007</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>0xFDD8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x7003</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0xC005</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r4,<sp/>0x8007</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>0xFDDC</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">;<sp/>first<sp/>SRAM<sp/>(CS1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r4,<sp/>0x8007</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>0xFDE0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x7003</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0xC005</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r4,<sp/>0x8007</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>0xFDE4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0(r4)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">;<sp/>SCCR<sp/>setup</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r4,<sp/>0x8007</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>0xFC50</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stw<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0(r4)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">;<sp/><sp/>MSR<sp/>setup</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>lis<sp/><sp/><sp/><sp/><sp/>r3,<sp/>0x0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0x3002</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtmsr<sp/><sp/><sp/>r3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>blr</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/Init_5xx_phytec.asm"/>
+  </compounddef>
+</doxygen>

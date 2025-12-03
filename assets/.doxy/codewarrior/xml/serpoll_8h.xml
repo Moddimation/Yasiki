@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="serpoll_8h" kind="file" language="C++">
+    <compoundname>serpoll.h</compoundname>
+    <includes refid="trk_8h" local="yes">trk.h</includes>
+    <includedby refid="mainloop_8c" local="yes">mainloop.c</includedby>
+    <includedby refid="nubinit_8c" local="yes">nubinit.c</includedby>
+    <includedby refid="serpoll_8c" local="yes">serpoll.c</includedby>
+    <includedby refid="support_8c" local="yes">support.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>serpoll.h</label>
+        <link refid="serpoll_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>trk.h</label>
+        <link refid="trk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>serpoll.h</label>
+        <link refid="serpoll_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mainloop.c</label>
+        <link refid="mainloop_8c"/>
+      </node>
+      <node id="3">
+        <label>nubinit.c</label>
+        <link refid="nubinit_8c"/>
+      </node>
+      <node id="4">
+        <label>serpoll.c</label>
+        <link refid="serpoll_8c"/>
+      </node>
+      <node id="5">
+        <label>support.c</label>
+        <link refid="support_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="serpoll_8h_1ae109e4378b14752efd522823436116ae" prot="public" static="no" extern="yes" mutable="no">
+        <type>void *</type>
+        <definition>void* gTRKInputPendingPtr</definition>
+        <argsstring></argsstring>
+        <name>gTRKInputPendingPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" line="17" column="13" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/serpoll.c" bodystart="10" bodyend="-1" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" declline="17" declcolumn="13"/>
+        <referencedby refid="nubinit_8h_1af78b850dea3b4c5446dc83345be3e5b0" compoundref="nubinit_8c" startline="16" endline="47">TRKInitializeNub</referencedby>
+        <referencedby refid="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" compoundref="mainloop_8c" startline="22" endline="70">TRKNubMainLoop</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="serpoll_8h_1a3ad1455fe7e26be04def4f461b98526e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKInitializeSerialHandler</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKInitializeSerialHandler</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" line="10" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/serpoll.c" bodystart="73" bodyend="80" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" declline="10" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <references refid="trk_8h_1a48ff129248fb802ab462a75ce847c119ae89c3b3c9e10781ee557c231d8358da7" compoundref="trk_8h" startline="135">DSRECV_Wait</references>
+        <references refid="serpoll_8c_1ad26ff182f8738ee2add7c90ac82d34cd" compoundref="serpoll_8c" startline="8">gTRKFramingState</references>
+        <references refid="struct_t_r_k_framing_state_1ac50d91e497d455e9a2e40b5f33a3cb70" compoundref="trk_8h" startline="217">TRKFramingState::isEscape</references>
+        <references refid="struct_t_r_k_framing_state_1a211509751a571df55d391a626ee97479" compoundref="trk_8h" startline="214">TRKFramingState::msgBufID</references>
+        <references refid="struct_t_r_k_framing_state_1a948612c9a7056b3fc3cc882ca4c3d606" compoundref="trk_8h" startline="216">TRKFramingState::receiveState</references>
+        <referencedby refid="nubinit_8h_1af78b850dea3b4c5446dc83345be3e5b0" compoundref="nubinit_8c" startline="16" endline="47">TRKInitializeNub</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="serpoll_8h_1a36abbdfe594dec458cd62d8ed2cdac21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref></type>
+        <definition>DSError TRKTerminateSerialHandler</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKTerminateSerialHandler</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" line="11" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/serpoll.c" bodystart="82" bodyend="82" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" declline="11" declcolumn="9"/>
+        <references refid="trk_8h_1a06fc87d81c62e9abb8790b6e5713c55ba126018271a566021ff0e273aaf7bc81c" compoundref="trk_8h" startline="20">DS_NoError</references>
+        <referencedby refid="nubinit_8h_1a9ca3937cf50bfbd0e724bdc4ccd7d266" compoundref="nubinit_8c" startline="49" endline="53">TRKTerminateNub</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="serpoll_8h_1aab6da4f57ef633a2abe4cb390fb0a892" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKGetInput</definition>
+        <argsstring>(void)</argsstring>
+        <name>TRKGetInput</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" line="13" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/serpoll.c" bodystart="43" bodyend="61" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" declline="13" declcolumn="6"/>
+        <references refid="trk_8h_1abc50af22b0472f3196fc32f7e85958bfa7d848956e52c016356e74f1155417426" compoundref="trk_8h" startline="78">DSMSG_ReplyACK</references>
+        <references refid="msgbuf_8h_1a24521974c5955810ea2455aee0dd338d" compoundref="msgbuf_8c" startline="50" endline="58">TRKGetBuffer</references>
+        <references refid="serpoll_8c_1a1fefa327b68ac9b923df22fbecadf89d" compoundref="serpoll_8c" startline="63" endline="71">TRKProcessInput</references>
+        <references refid="msgbuf_8h_1a36ecd629b45b5878b7a71ee3ab798bcd" compoundref="msgbuf_8c" startline="246" endline="249">TRKReadBuffer1_ui8</references>
+        <references refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</references>
+        <references refid="msgbuf_8h_1a274b82695266680ecfcd06227405ecc6" compoundref="msgbuf_8c" startline="81" endline="97">TRKSetBufferPosition</references>
+        <references refid="serpoll_8c_1af64c66110bd037b1a16f7a5bcc80f3d6" compoundref="serpoll_8c" startline="12" endline="41">TRKTestForPacket</references>
+        <referencedby refid="mainloop_8h_1aaa62953a8415458781de6741f5fa8e3b" compoundref="mainloop_8c" startline="22" endline="70">TRKNubMainLoop</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="serpoll_8h_1af64c66110bd037b1a16f7a5bcc80f3d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="trk_8h_1aa4a440a620f8e1d4ec05d1084d98ef0a" kindref="member">MessageBufferID</ref></type>
+        <definition>MessageBufferID TRKTestForPacket</definition>
+        <argsstring>()</argsstring>
+        <name>TRKTestForPacket</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" line="14" column="17" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/serpoll.c" bodystart="12" bodyend="41" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" declline="14" declcolumn="17"/>
+        <references refid="struct_t_r_k_buffer_1a90a2062daa68abca2ff1cbf3cbee361c" compoundref="trk_8h" startline="210">TRKBuffer::data</references>
+        <references refid="struct_t_r_k_buffer_1a636451d15b425d9ad84e5bc2fa6cfb95" compoundref="trk_8h" startline="208">TRKBuffer::length</references>
+        <references refid="msgbuf_8h_1a5b0e1419d5586aa18d580081bab30aa0" compoundref="msgbuf_8c" startline="24" endline="48">TRKGetFreeBuffer</references>
+        <references refid="trk_8h_1a802a5a5dcebd62d1817581ad032269c4" compoundref="trk_8h" startline="203">TRKMSGBUF_SIZE</references>
+        <references refid="dolphin__trk__glue_8h_1a812abd7f696ef7465d6cf68c40c0a0fb" compoundref="dolphin__trk__glue_8c" startline="98" endline="98">TRKPollUART</references>
+        <references refid="dolphin__trk__glue_8h_1a32822833340c71ac78934d6356190390" compoundref="dolphin__trk__glue_8c" startline="100" endline="104">TRKReadUARTN</references>
+        <references refid="msgbuf_8h_1aeac3d714b97389af3807900a32cccd2c" compoundref="msgbuf_8c" startline="60" endline="69">TRKReleaseBuffer</references>
+        <references refid="msghndlr_8h_1ad6180461b3b6d6000fd8d96eed9d4992" compoundref="msghndlr_8c" startline="32" endline="38">TRKStandardACK</references>
+        <referencedby refid="serpoll_8h_1aab6da4f57ef633a2abe4cb390fb0a892" compoundref="serpoll_8c" startline="43" endline="61">TRKGetInput</referencedby>
+        <referencedby refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" compoundref="support_8c" startline="105" endline="177">TRKRequestSend</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="serpoll_8h_1a1fefa327b68ac9b923df22fbecadf89d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRKProcessInput</definition>
+        <argsstring>(int bufferIdx)</argsstring>
+        <name>TRKProcessInput</name>
+        <param>
+          <type>int</type>
+          <declname>bufferIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" line="15" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Src/Portable/serpoll.c" bodystart="63" bodyend="71" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h" declline="15" declcolumn="6"/>
+        <references refid="serpoll_8c_1ad26ff182f8738ee2add7c90ac82d34cd" compoundref="serpoll_8c" startline="8">gTRKFramingState</references>
+        <references refid="struct_t_r_k_framing_state_1a211509751a571df55d391a626ee97479" compoundref="trk_8h" startline="214">TRKFramingState::msgBufID</references>
+        <references refid="trk_8h_1a377fbf6a54d6c3797c7e8b7d13f64127acd386a53a984fdc0d65e02f71f31743e" compoundref="trk_8h" startline="154">NUBEVENT_Request</references>
+        <references refid="nubevent_8h_1a1fcd345d0adc775a3b2c2d12a604f6ce" compoundref="nubevent_8c" startline="65" endline="70">TRKConstructEvent</references>
+        <references refid="nubevent_8h_1a8e164da33d9c9fd1e4b2f2054314dc66" compoundref="nubevent_8c" startline="41" endline="63">TRKPostEvent</references>
+        <referencedby refid="serpoll_8h_1aab6da4f57ef633a2abe4cb390fb0a892" compoundref="serpoll_8c" startline="43" endline="61">TRKGetInput</referencedby>
+        <referencedby refid="support_8h_1af9c283ab3b5d7f2ff2fc875d02c9f84f" compoundref="support_8c" startline="105" endline="177">TRKRequestSend</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>METROTRK_PORTABLE_SERPOLL_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>METROTRK_PORTABLE_SERPOLL_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trk_8h" kindref="compound">trk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="serpoll_8h_1a3ad1455fe7e26be04def4f461b98526e" kindref="member">TRKInitializeSerialHandler</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><ref refid="trk_8h_1ac94196fd581f98b8ad9513f99621b699" kindref="member">DSError</ref><sp/><ref refid="serpoll_8h_1a36abbdfe594dec458cd62d8ed2cdac21" kindref="member">TRKTerminateSerialHandler</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="serpoll_8h_1aab6da4f57ef633a2abe4cb390fb0a892" kindref="member">TRKGetInput</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="trk_8h_1aa4a440a620f8e1d4ec05d1084d98ef0a" kindref="member">MessageBufferID</ref><sp/><ref refid="serpoll_8h_1af64c66110bd037b1a16f7a5bcc80f3d6" kindref="member">TRKTestForPacket</ref>();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="serpoll_8h_1a1fefa327b68ac9b923df22fbecadf89d" kindref="member">TRKProcessInput</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufferIdx);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="serpoll_8h_1ae109e4378b14752efd522823436116ae" kindref="member">gTRKInputPendingPtr</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>METROTRK_PORTABLE_SERPOLL_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK/Priv/Portable/serpoll.h"/>
+  </compounddef>
+</doxygen>

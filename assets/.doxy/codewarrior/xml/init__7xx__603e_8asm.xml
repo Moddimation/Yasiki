@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="init__7xx__603e_8asm" kind="file" language="C++">
+    <compoundname>init_7xx_603e.asm</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.globl<sp/><sp/><sp/><sp/><sp/><sp/>usr_init<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.extern<sp/><sp/><sp/><sp/><sp/>init_board</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">MMCR0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>952</highlight></codeline>
+<codeline><highlight class="normal">MMCR1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>956</highlight></codeline>
+<codeline><highlight class="normal">ICTC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1019</highlight></codeline>
+<codeline><highlight class="normal">THRM1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1020</highlight></codeline>
+<codeline><highlight class="normal">THRM2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1021</highlight></codeline>
+<codeline><highlight class="normal">THRM3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1022</highlight></codeline>
+<codeline><highlight class="normal">L2CR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1017</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_7XX_VERSION<sp/><sp/><sp/><sp/>.equ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0008<sp/><sp/><sp/><sp/><sp/><sp/>;;<sp/>bits<sp/>0..15<sp/>of<sp/>PVR<sp/>on<sp/>7xx</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.section<sp/><sp/><sp/>.init,4,1,6</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>.align<sp/><sp/><sp/><sp/><sp/>2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>align<sp/>on<sp/>word<sp/>boundary</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</highlight></codeline>
+<codeline><highlight class="normal">;;</highlight></codeline>
+<codeline><highlight class="normal">;;<sp/><sp/>usr_init</highlight></codeline>
+<codeline><highlight class="normal">;;</highlight></codeline>
+<codeline><highlight class="normal">;;<sp/><sp/>Initializes<sp/>the<sp/>7xx<sp/>or<sp/>603e<sp/>processor<sp/>to<sp/>provide<sp/>a<sp/>reasonable</highlight></codeline>
+<codeline><highlight class="normal">;;<sp/><sp/>initial<sp/>state.</highlight></codeline>
+<codeline><highlight class="normal">;;</highlight></codeline>
+<codeline><highlight class="normal">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">usr_init:<sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Initialize<sp/>MSR:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>Reserved[0..12]<sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>POW[13]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(power<sp/>mgmt<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>TGPR[14]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(no<sp/>temporary<sp/>TGPR<sp/>remapping<sp/>(603e))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>ILE[15]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(big-endian<sp/>exception<sp/>context)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>EE[16]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(external<sp/>interrupts<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PR[17]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(supervisor<sp/>level)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>FP[18]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(floating<sp/>point<sp/>available)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>ME[19]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(machine<sp/>check<sp/>exceptions<sp/>enabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>FE0[20]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(w/FE1<sp/>-&gt;<sp/>floating<sp/>pt<sp/>exceptions<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>SE[21]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(single-step<sp/>trace<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>BE[22]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(branch<sp/>trace<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>FE1[23]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(w/FE0<sp/>-&gt;<sp/>floating<sp/>pt<sp/>exceptions<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>Reserved[24]<sp/><sp/><sp/><sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>IP[25]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(exception<sp/>handler<sp/>table<sp/>at<sp/>0xfff00000)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>IR[26]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(instruction<sp/>address<sp/>xlation<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DR[27]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(data<sp/>address<sp/>xlation<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>Reserved[28]<sp/><sp/><sp/><sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PM[29]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(not<sp/>marked<sp/>for<sp/>performance<sp/>monitor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>RI[30]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(exception<sp/>state<sp/>is<sp/>not<sp/>recoverable)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>LE[31]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(big-endian)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addi<sp/><sp/><sp/><sp/>r3,<sp/>r0,<sp/>0x3040</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtmsr<sp/><sp/><sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Initialize<sp/>HID0:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>EMCP[0]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(allow<sp/>MCP&apos;<sp/>to<sp/>cause<sp/>checkstop/machine<sp/>check)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DBP[1]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(disable<sp/>bus<sp/>parity<sp/>generation<sp/>(7xx))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>EBA[2]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(prevent<sp/>address<sp/>parity<sp/>checking)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>EBD[3]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(prevent<sp/>data<sp/>parity<sp/>checking)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>BCLK[4]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(w/ECLK=1<sp/>-&gt;<sp/>CLK_OUT<sp/>=<sp/>Bus<sp/>clock)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>EICE[5]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(disable<sp/>ICE<sp/>outputs<sp/>(603e))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>ECLK[6]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(w/BCLK=1<sp/>-&gt;<sp/>CLK_OUT<sp/>=<sp/>Bus<sp/>clock)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PAR[7]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(enable<sp/>precharge<sp/>of<sp/>ARTRY&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DOZE[8]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(doze<sp/>mode<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>NAP[9]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(nap<sp/>mode<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>SLEEP[10]<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(sleep<sp/>mode<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DPM[11]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(dynamic<sp/>power<sp/>mgmt<sp/>enabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>RISEG[12]<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(&lt;reserved<sp/>for<sp/>test&gt;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>Not_used[13..14]=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>NHR[15]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(not<sp/>hard<sp/>reset<sp/>-<sp/>should<sp/>init<sp/>to<sp/>1<sp/>(7xx))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>ICE[16]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(disable<sp/>instruction<sp/>cache)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DCE[17]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(disable<sp/>data<sp/>cache)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>ILOCK[18]<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(instruction<sp/>cache<sp/>not<sp/>locked)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DLOCK[19]<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(data<sp/>cache<sp/>not<sp/>locked)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>ICFI[20]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(instruction<sp/>cache<sp/>flush<sp/>invalidate)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DCFI[21]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(data<sp/>cache<sp/>flush<sp/>invalidate)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>SPD[22]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(enable<sp/>speculative<sp/>cache<sp/>access<sp/>(7xx))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>IFEM[23]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(enable<sp/>M<sp/>bit<sp/>for<sp/>instruction<sp/>fetches<sp/>(7xx))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>SGE[24]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(enable<sp/>store<sp/>gathering<sp/>(7xx<sp/>-<sp/>on<sp/>603e<sp/>bit<sp/>24<sp/>is<sp/>IFEM))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DCFA[25]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(disable<sp/>data<sp/>cache<sp/>flush<sp/>assist<sp/>(7xx))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>BTIC[26]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(enable<sp/>branch<sp/>instruction<sp/>cache<sp/>(7xx))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>FBIOB[27]<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(don&apos;t<sp/>force<sp/>branch<sp/>indirect<sp/>on<sp/>bus<sp/>(603e))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>ABE[28]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(don&apos;t<sp/>broadcase<sp/>address-only<sp/>operations)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>BHT[29]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(enable<sp/>branch<sp/>history<sp/>table<sp/>(7xx))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>Not_used[30]<sp/><sp/><sp/><sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>NOOPTI[31]<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(enable<sp/>dcbt<sp/>and<sp/>dcbtst<sp/>instructions)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r3,<sp/>r0,<sp/>0x8a11</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ori<sp/><sp/><sp/><sp/><sp/>r3,<sp/>r3,<sp/>0x0d84</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>HID0,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>andi.<sp/><sp/><sp/>r3,<sp/>r3,<sp/>0xf3ff<sp/><sp/>;;<sp/>clear<sp/>ICFI<sp/>and<sp/>DCFI<sp/>bits<sp/>(for<sp/>603e)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>HID0,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Clear<sp/>IABR<sp/>(disable<sp/>instruction<sp/>address<sp/>breakpoint)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r3,<sp/>r0,<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>IABR,<sp/>r3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Check<sp/>the<sp/>PVR<sp/>and<sp/>perform<sp/>initializations<sp/>which<sp/>are</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>specific<sp/>to<sp/>either<sp/>the<sp/>603e<sp/>or<sp/>the<sp/>7xx<sp/>processors.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mfspr<sp/><sp/><sp/>r4,<sp/>PVR</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r3,<sp/>r0,<sp/>0xffff</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>and<sp/><sp/><sp/><sp/><sp/>r4,<sp/>r4,<sp/>r3<sp/><sp/><sp/><sp/><sp/><sp/>;;<sp/>get<sp/>just<sp/>the<sp/>version<sp/>number</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r3,<sp/>r0,<sp/>_7XX_VERSION</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cmp<sp/><sp/><sp/><sp/><sp/>cr0,<sp/>0,<sp/>r3,<sp/>r4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bne<sp/><sp/><sp/><sp/><sp/>cr0,<sp/>__603e_specific_init<sp/><sp/><sp/>;;<sp/>if<sp/>not<sp/>7xx,<sp/>assume<sp/>603e</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">__7xx_specific_init:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Initialize<sp/>MMCR0:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DIS[0]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1<sp/>(PMCn<sp/>counters<sp/>do<sp/>not<sp/>change)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DP[1]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(counters<sp/>can<sp/>operate<sp/>in<sp/>supervisor<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DU[2]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(counters<sp/>can<sp/>operate<sp/>in<sp/>user<sp/>mode)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DMS[3]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(counters<sp/>can<sp/>operate<sp/>when<sp/>MSR[PM]=1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DMR[4]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(counters<sp/>can<sp/>operate<sp/>when<sp/>MSR[PM]=0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>ENINT[5]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(perf<sp/>monitor<sp/>int<sp/>signalling<sp/>disabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>DISCOUNT[6]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(perf<sp/>mon<sp/>int<sp/>does<sp/>not<sp/>affect<sp/>counting)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>RTCSELECT[7..8]<sp/><sp/><sp/><sp/><sp/>=<sp/>00<sp/>(count<sp/>time<sp/>base<sp/>bit<sp/>63)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>INTONBITTRANS[9]<sp/><sp/><sp/><sp/>=<sp/>0<sp/>(don&apos;t<sp/>interrupt<sp/>on<sp/>bit<sp/>transition)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>THRESHOLD[10..15]<sp/><sp/><sp/>=<sp/>000000<sp/>(0<sp/>threshold<sp/>value)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PMC1INTCONTROL[16]<sp/><sp/>=<sp/>0<sp/>(don&apos;t<sp/>interrupt<sp/>on<sp/>PMC1<sp/>overflow)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PMCINTCONTROL[17]<sp/><sp/><sp/>=<sp/>0<sp/>(don&apos;t<sp/>interrupt<sp/>on<sp/>PMC2..4<sp/>overflow)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PMCTRIGGER[18]<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0<sp/>(enable<sp/>PMC2..4<sp/>counting<sp/>after<sp/>PMC1<sp/>overflow)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PMC1SELECT[19..25]<sp/><sp/>=<sp/>0000000<sp/>(event<sp/>=<sp/>reg<sp/>holds<sp/>current<sp/>val)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PMC2SELECT[26..31]<sp/><sp/>=<sp/>000000<sp/>(event<sp/>=<sp/>reg<sp/>holds<sp/>current<sp/>val)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Initialize<sp/>MMCR1:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PMC3SELECT[0..4]<sp/><sp/><sp/><sp/>=<sp/>00000<sp/>(event<sp/>=<sp/>reg<sp/>holds<sp/>current<sp/>val)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>PMC4SELECT[5..9]<sp/><sp/><sp/><sp/>=<sp/>00000<sp/>(event<sp/>=<sp/>reg<sp/>holds<sp/>current<sp/>val)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/>Reserved[10..31]<sp/><sp/><sp/><sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r3,<sp/>r0,<sp/>0x8000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>MMCR0,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r3,<sp/>r0,<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>MMCR1,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Clear<sp/>ICTC<sp/>(full<sp/>speed)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Clear<sp/>IABR<sp/>(disable<sp/>instruction<sp/>address<sp/>breakpoint)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Clear<sp/>DABR<sp/>(disable<sp/>data<sp/>address<sp/>breakpoint)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Clear<sp/>THRM1,<sp/>THRM2,<sp/>THRM3<sp/>(disable<sp/>thermal<sp/>management)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Clear<sp/>L2CR<sp/>(disable<sp/>L2<sp/>cache)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r3,<sp/>r0,<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>ICTC,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>DABR,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>THRM1,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>THRM2,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>THRM3,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtspr<sp/><sp/><sp/>L2CR,<sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/><sp/><sp/><sp/><sp/><sp/><sp/>__end_specific_init</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">__603e_specific_init:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Nothing<sp/>specific<sp/>is<sp/>needed<sp/>for<sp/>the<sp/>603e.<sp/><sp/>The<sp/>common<sp/>init</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>takes<sp/>care<sp/>of<sp/>everything.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">__end_specific_init:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Invalidate<sp/>the<sp/>TLB</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r3,<sp/>r0,<sp/>0<sp/><sp/><sp/>;;<sp/>set<sp/>up<sp/>counter<sp/>at<sp/>0x00000000<sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addis<sp/><sp/><sp/>r5,<sp/>r0,<sp/>0x4<sp/>;;<sp/>set<sp/>up<sp/>high<sp/>bound<sp/>of<sp/>0x00040000<sp/>for<sp/>603e/7xx<sp/>;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">tlblp:<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tlbie<sp/><sp/><sp/>r3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sync</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>addi<sp/><sp/><sp/><sp/>r3,r3,0x1000</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cmp<sp/><sp/><sp/><sp/><sp/>cr0,0,r3,r5<sp/>;;<sp/>check<sp/>if<sp/>all<sp/>32(603)<sp/>or<sp/>64(740)<sp/>TLB&apos;s<sp/>invalidated<sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>blt<sp/>tlblp</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;<sp/>Call<sp/>any<sp/>board-specific<sp/>initialization<sp/>required.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mflr<sp/><sp/><sp/><sp/>r30<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;;<sp/>save<sp/>link<sp/>register<sp/>in<sp/>a<sp/>NV<sp/>register<sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bl<sp/><sp/><sp/><sp/><sp/><sp/>init_board</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mtlr<sp/><sp/><sp/><sp/>r30<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;;<sp/>restore<sp/>saved<sp/>link<sp/>register<sp/>;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>blr</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/init_7xx_603e.asm"/>
+  </compounddef>
+</doxygen>

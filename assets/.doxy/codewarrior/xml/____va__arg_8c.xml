@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="____va__arg_8c" kind="file" language="C++">
+    <compoundname>__va_arg.c</compoundname>
+    <innerclass refid="structva__list" prot="public">va_list</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="____va__arg_8c_1a85a3bc177c208916291289946b004f45" prot="public" static="no">
+        <name>MAX_SAVED_REGS</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" line="29" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="____va__arg_8c_1aa1fa4eaf082b4c9746a60cbf32bc19dc" prot="public" static="no">
+        <name>SIZEOF_GPR</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" line="30" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="____va__arg_8c_1a0596eb859ae1af38ef301d973f0a461a" prot="public" static="no">
+        <name>SIZEOF_FPR</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" line="31" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="____va__arg_8c_1adece786ac463da64d84e94989bdd144b" prot="public" static="no">
+        <name>SIZEOF_DWRD</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" line="32" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="____va__arg_8c_1aadacb4de0cb09337df929c4744a6adca" prot="public" static="no">
+        <name>SIZEOF_VECTOR</name>
+        <initializer>16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" line="33" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="____va__arg_8c_1a41c8c8af3452a83eb27b01225d166414" prot="public" static="no">
+        <name>ALIGN</name>
+        <param><defname>addr</defname></param>
+        <param><defname>amount</defname></param>
+        <initializer>(((unsigned int)(addr)+((amount)-1))&amp;~((amount)-1))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" line="34" column="9" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090c" prot="public" static="no" strong="no">
+        <type></type>
+        <name>_va_arg_type</name>
+        <enumvalue id="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090cac607d85bb01ff61ab79c043d45fc2b51" prot="public">
+          <name>arg_ARGPOINTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca0f7149a7e7627c12d02d4ebcefabb056" prot="public">
+          <name>arg_WORD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca4a17f6176f76cb38cc4b9d7e4ade8b9d" prot="public">
+          <name>arg_DOUBLEWORD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca95e466ea547d8ab220c0267c9cd7ab7a" prot="public">
+          <name>arg_REAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca1b18a2457e70872eabdfef8b0785a2af" prot="public">
+          <name>arg_VECTOR</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" line="18" column="1" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" bodystart="18" bodyend="27"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="____va__arg_8c_1a030aaa75d06ba774cb24cebefa6e778c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * __va_arg</definition>
+        <argsstring>(va_list ap, _va_arg_type type)</argsstring>
+        <name>__va_arg</name>
+        <param>
+          <type><ref refid="structva__list" kindref="compound">va_list</ref></type>
+          <declname>ap</declname>
+        </param>
+        <param>
+          <type><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090c" kindref="member">_va_arg_type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" line="37" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" bodystart="37" bodyend="93" declfile="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c" declline="36" declcolumn="6"/>
+        <references refid="____va__arg_8c_1a41c8c8af3452a83eb27b01225d166414" compoundref="____va__arg_8c" startline="34">ALIGN</references>
+        <references refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090cac607d85bb01ff61ab79c043d45fc2b51" compoundref="____va__arg_8c" startline="19">arg_ARGPOINTER</references>
+        <references refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca4a17f6176f76cb38cc4b9d7e4ade8b9d" compoundref="____va__arg_8c" startline="21">arg_DOUBLEWORD</references>
+        <references refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca95e466ea547d8ab220c0267c9cd7ab7a" compoundref="____va__arg_8c" startline="22">arg_REAL</references>
+        <references refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca1b18a2457e70872eabdfef8b0785a2af" compoundref="____va__arg_8c" startline="23">arg_VECTOR</references>
+        <references refid="structva__list_1aa4c907335e7c8920592248f4c99654a8" compoundref="____va__arg_8c" startline="12">va_list::fpr</references>
+        <references refid="structva__list_1a0426a66112df9dbf1a95b1e614fee8d6" compoundref="____va__arg_8c" startline="11">va_list::gpr</references>
+        <references refid="structva__list_1ac0efcde27ccb714efd0fbfaaf8184515" compoundref="____va__arg_8c" startline="14">va_list::input_arg_area</references>
+        <references refid="____va__arg_8c_1a85a3bc177c208916291289946b004f45" compoundref="____va__arg_8c" startline="29">MAX_SAVED_REGS</references>
+        <references refid="structva__list_1a36b45f69b2ca7a572af5e7820e11c9c1" compoundref="____va__arg_8c" startline="15">va_list::reg_save_area</references>
+        <references refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" compoundref="____ppc__eabi__init_8h" startline="47">size</references>
+        <references refid="____va__arg_8c_1adece786ac463da64d84e94989bdd144b" compoundref="____va__arg_8c" startline="32">SIZEOF_DWRD</references>
+        <references refid="____va__arg_8c_1a0596eb859ae1af38ef301d973f0a461a" compoundref="____va__arg_8c" startline="31">SIZEOF_FPR</references>
+        <references refid="____va__arg_8c_1aa1fa4eaf082b4c9746a60cbf32bc19dc" compoundref="____va__arg_8c" startline="30">SIZEOF_GPR</references>
+        <references refid="____va__arg_8c_1aadacb4de0cb09337df929c4744a6adca" compoundref="____va__arg_8c" startline="33">SIZEOF_VECTOR</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Project...:<sp/>Metrowerks<sp/>Standard<sp/>C<sp/>Library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Name......:<sp/>__va_arg.c<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Purpose...:<sp/>support<sp/>function<sp/>for<sp/>va_arg<sp/>macro<sp/>with<sp/>PPC<sp/>EABI<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Design<sp/>from<sp/>&apos;Workplace<sp/>Application<sp/>Binary<sp/>Interface<sp/>for<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>PowerPC&apos;.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Copyright.:<sp/>竭クopyright<sp/>1993-1997<sp/>by<sp/>metrowerks<sp/>inc.<sp/>All<sp/>rights<sp/>reserved.*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="structva__list" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11" refid="structva__list_1a0426a66112df9dbf1a95b1e614fee8d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structva__list_1a0426a66112df9dbf1a95b1e614fee8d6" kindref="member">gpr</ref>;</highlight></codeline>
+<codeline lineno="12" refid="structva__list_1aa4c907335e7c8920592248f4c99654a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structva__list_1aa4c907335e7c8920592248f4c99654a8" kindref="member">fpr</ref>;</highlight></codeline>
+<codeline lineno="13" refid="structva__list_1a0293dcc567714b580d5a0c0b88c52e2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>reserved[2];</highlight></codeline>
+<codeline lineno="14" refid="structva__list_1ac0efcde27ccb714efd0fbfaaf8184515" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structva__list_1ac0efcde27ccb714efd0fbfaaf8184515" kindref="member">input_arg_area</ref>;</highlight></codeline>
+<codeline lineno="15" refid="structva__list_1a36b45f69b2ca7a572af5e7820e11c9c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structva__list_1a36b45f69b2ca7a572af5e7820e11c9c1" kindref="member">reg_save_area</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">}<sp/><ref refid="structva__list" kindref="compound">va_list</ref>[1];</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="19" refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090cac607d85bb01ff61ab79c043d45fc2b51" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090cac607d85bb01ff61ab79c043d45fc2b51" kindref="member">arg_ARGPOINTER</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>a<sp/>pointer<sp/>to<sp/>the<sp/>real<sp/>&apos;parameter<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca0f7149a7e7627c12d02d4ebcefabb056" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca0f7149a7e7627c12d02d4ebcefabb056" kindref="member">arg_WORD</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>a<sp/>4<sp/>byte<sp/>fixed<sp/>point<sp/>number<sp/>or<sp/>pointer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca4a17f6176f76cb38cc4b9d7e4ade8b9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca4a17f6176f76cb38cc4b9d7e4ade8b9d" kindref="member">arg_DOUBLEWORD</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>long<sp/>long<sp/>and<sp/>SW<sp/>doubles<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca95e466ea547d8ab220c0267c9cd7ab7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca95e466ea547d8ab220c0267c9cd7ab7a" kindref="member">arg_REAL</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>8<sp/>byte<sp/>floating<sp/>point<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca1b18a2457e70872eabdfef8b0785a2af" kindref="member">arg_VECTOR</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>AltiVec<sp/>vector<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__option(incompatible_sfpe_double_params)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>,arg_SFPEDOUBLE<sp/>=<sp/>10<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>not<sp/>treated<sp/>like<sp/>a<sp/>arg_DOUBLEWORD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca1b18a2457e70872eabdfef8b0785a2af" refkind="member"><highlight class="normal">}<sp/><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090c" kindref="member">_va_arg_type</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="____va__arg_8c_1a85a3bc177c208916291289946b004f45" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_SAVED_REGS<sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="____va__arg_8c_1aa1fa4eaf082b4c9746a60cbf32bc19dc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SIZEOF_GPR<sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="____va__arg_8c_1a0596eb859ae1af38ef301d973f0a461a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SIZEOF_FPR<sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="____va__arg_8c_1adece786ac463da64d84e94989bdd144b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SIZEOF_DWRD<sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="____va__arg_8c_1aadacb4de0cb09337df929c4744a6adca" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SIZEOF_VECTOR<sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="____va__arg_8c_1a41c8c8af3452a83eb27b01225d166414" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ALIGN(addr,amount)<sp/><sp/>(((unsigned<sp/>int)(addr)+((amount)-1))&amp;~((amount)-1))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="____va__arg_8c_1a030aaa75d06ba774cb24cebefa6e778c" kindref="member">__va_arg</ref>(<ref refid="structva__list" kindref="compound">va_list</ref><sp/>ap,<sp/><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090c" kindref="member">_va_arg_type</ref><sp/>type);</highlight></codeline>
+<codeline lineno="37" refid="____va__arg_8c_1a030aaa75d06ba774cb24cebefa6e778c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="____va__arg_8c_1a030aaa75d06ba774cb24cebefa6e778c" kindref="member">__va_arg</ref>(<ref refid="structva__list" kindref="compound">va_list</ref><sp/>ap,<sp/><ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090c" kindref="member">_va_arg_type</ref><sp/>type)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*addr;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>return<sp/>value<sp/>-<sp/>the<sp/>address<sp/>of<sp/>the<sp/>next<sp/>&apos;parameter&apos;<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*r<sp/>=<sp/>&amp;(ap-&gt;<ref refid="structva__list_1a0426a66112df9dbf1a95b1e614fee8d6" kindref="member">gpr</ref>);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>address<sp/>of<sp/>current<sp/>register<sp/>number<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>rr<sp/>=<sp/>ap-&gt;<ref refid="structva__list_1a0426a66112df9dbf1a95b1e614fee8d6" kindref="member">gpr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>current<sp/>register<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>max<sp/>=<sp/><ref refid="____va__arg_8c_1a85a3bc177c208916291289946b004f45" kindref="member">MAX_SAVED_REGS</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>maximum<sp/>number<sp/>of<sp/>registers<sp/>saved<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref><sp/>=<sp/><ref refid="____va__arg_8c_1aa1fa4eaf082b4c9746a60cbf32bc19dc" kindref="member">SIZEOF_GPR</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>size<sp/>of<sp/>&apos;type&apos;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>inc<sp/>=<sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>num<sp/>of<sp/>registers<sp/>to<sp/>increment<sp/>per<sp/>type<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>even<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>do<sp/>we<sp/>have<sp/>a<sp/>type<sp/>that<sp/>takes<sp/>2<sp/>registers?<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>fpr_offset<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>where<sp/>do<sp/>the<sp/>floating<sp/>point<sp/>registers<sp/>live<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>size_reg<sp/>=<sp/><ref refid="____va__arg_8c_1aa1fa4eaf082b4c9746a60cbf32bc19dc" kindref="member">SIZEOF_GPR</ref>;<sp/><sp/></highlight><highlight class="comment">/*<sp/>what<sp/>is<sp/>the<sp/>size<sp/>of<sp/>this<sp/>type&apos;s<sp/>register<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__ALTIVEC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type==<ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca1b18a2457e70872eabdfef8b0785a2af" kindref="member">arg_VECTOR</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref><sp/>=<sp/><ref refid="____va__arg_8c_1aadacb4de0cb09337df929c4744a6adca" kindref="member">SIZEOF_VECTOR</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr<sp/>=<sp/>ap-&gt;<ref refid="structva__list_1ac0efcde27ccb714efd0fbfaaf8184515" kindref="member">input_arg_area</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)<ref refid="____va__arg_8c_1a41c8c8af3452a83eb27b01225d166414" kindref="member">ALIGN</ref>(addr,<ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ap-&gt;<ref refid="structva__list_1ac0efcde27ccb714efd0fbfaaf8184515" kindref="member">input_arg_area</ref><sp/>=<sp/>addr<sp/>+<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>addr;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type==<ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca95e466ea547d8ab220c0267c9cd7ab7a" kindref="member">arg_REAL</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r<sp/>=<sp/>&amp;(ap-&gt;<ref refid="structva__list_1aa4c907335e7c8920592248f4c99654a8" kindref="member">fpr</ref>);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rr<sp/>=<sp/>ap-&gt;<ref refid="structva__list_1aa4c907335e7c8920592248f4c99654a8" kindref="member">fpr</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref><sp/>=<sp/><ref refid="____va__arg_8c_1a0596eb859ae1af38ef301d973f0a461a" kindref="member">SIZEOF_FPR</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fpr_offset<sp/>=<sp/><ref refid="____va__arg_8c_1a85a3bc177c208916291289946b004f45" kindref="member">MAX_SAVED_REGS</ref>*<ref refid="____va__arg_8c_1aa1fa4eaf082b4c9746a60cbf32bc19dc" kindref="member">SIZEOF_GPR</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_reg<sp/>=<sp/><ref refid="____va__arg_8c_1a0596eb859ae1af38ef301d973f0a461a" kindref="member">SIZEOF_FPR</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type==<ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090ca4a17f6176f76cb38cc4b9d7e4ade8b9d" kindref="member">arg_DOUBLEWORD</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref><sp/>=<sp/><ref refid="____va__arg_8c_1adece786ac463da64d84e94989bdd144b" kindref="member">SIZEOF_DWRD</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max<sp/>=<sp/>max-1;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rr<sp/>&amp;<sp/>1)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>even<sp/>=<sp/>1;<sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inc<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__option(incompatible_sfpe_double_params)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type==arg_SFPEDOUBLE)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref><sp/>=<sp/><ref refid="____va__arg_8c_1adece786ac463da64d84e94989bdd144b" kindref="member">SIZEOF_DWRD</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max<sp/>=<sp/>max-1;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inc<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rr<sp/>&lt;<sp/>max)<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rr<sp/>+=<sp/>even;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr<sp/>=<sp/>ap-&gt;<ref refid="structva__list_1a36b45f69b2ca7a572af5e7820e11c9c1" kindref="member">reg_save_area</ref><sp/>+<sp/>fpr_offset<sp/>+<sp/>(rr*size_reg);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*r<sp/>=<sp/>rr<sp/>+<sp/>inc;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*r<sp/>=<sp/><ref refid="____va__arg_8c_1a85a3bc177c208916291289946b004f45" kindref="member">MAX_SAVED_REGS</ref>;<sp/></highlight><highlight class="comment">/*<sp/>if<sp/>arg_DOUBLEWORD,<sp/>make<sp/>sure<sp/>that<sp/>gprs<sp/>won&apos;t<sp/>be<sp/>used<sp/>again<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr<sp/>=<sp/>ap-&gt;<ref refid="structva__list_1ac0efcde27ccb714efd0fbfaaf8184515" kindref="member">input_arg_area</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)<ref refid="____va__arg_8c_1a41c8c8af3452a83eb27b01225d166414" kindref="member">ALIGN</ref>(addr,<ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ap-&gt;<ref refid="structva__list_1ac0efcde27ccb714efd0fbfaaf8184515" kindref="member">input_arg_area</ref><sp/>=<sp/>addr<sp/>+<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type==<ref refid="____va__arg_8c_1a77c1500386d31e1944d7f71346f1090cac607d85bb01ff61ab79c043d45fc2b51" kindref="member">arg_ARGPOINTER</ref>)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr<sp/>=<sp/>*((</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**)addr);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>addr;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c"/>
+  </compounddef>
+</doxygen>

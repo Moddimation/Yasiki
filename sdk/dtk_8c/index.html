@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dtk.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dtkc">File dtk.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_1d471b1f96371d391f50bf9f8bbe7b25/"><strong>dtk</strong></a> <strong>&gt;</strong> <a href="./"><strong>dtk.c</strong></a></p>
+<p><a href="../dtk_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;macros.h&gt;</code></li>
+<li><code>#include &lt;dolphin/ai.h&gt;</code></li>
+<li><code>#include &lt;dolphin/dtk.h&gt;</code></li>
+<li><code>#include &lt;dolphin/dvd.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__dtkcurrenttrack"><strong>__DTKCurrentTrack</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../dtk_8h/#typedef-dtkflushcallback"><strong>DTKFlushCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtkflushcallback"><strong>__DTKFlushCallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtkinterruptfrequency"><strong>__DTKInterruptFrequency</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__dtkplaylisthead"><strong>__DTKPlayListHead</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__dtkplaylisttail"><strong>__DTKPlayListTail</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtkposition"><strong>__DTKPosition</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtkrepeatmode"><strong>__DTKRepeatMode</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtkshutdownflag"><strong>__DTKShutdownFlag</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtkstate"><strong>__DTKState</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtktempstate"><strong>__DTKTempState</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtktrackended"><strong>__DTKTrackEnded</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtkvolumel"><strong>__DTKVolumeL</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__dtkvolumer"><strong>__DTKVolumeR</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_ais_isr"><strong>__block_for_ais_isr</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_flushtracks"><strong>__block_for_flushtracks</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_next_track"><strong>__block_for_next_track</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_prep_callback"><strong>__block_for_prep_callback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_prev_track"><strong>__block_for_prev_track</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_repeatmode"><strong>__block_for_repeatmode</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_run_callback"><strong>__block_for_run_callback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_set_state"><strong>__block_for_set_state</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__block_for_stream_status"><strong>__block_for_stream_status</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkflushtracks"><strong>DTKFlushTracks</strong></a> (<a href="../dtk_8h/#typedef-dtkflushcallback"><strong>DTKFlushCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-dtkgetcurrenttrack"><strong>DTKGetCurrentTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetinterruptfrequency"><strong>DTKGetInterruptFrequency</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetposition"><strong>DTKGetPosition</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetrepeatmode"><strong>DTKGetRepeatMode</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetsamplerate"><strong>DTKGetSampleRate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetstate"><strong>DTKGetState</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkgetvolume"><strong>DTKGetVolume</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkinit"><strong>DTKInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtknexttrack"><strong>DTKNextTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkprevtrack"><strong>DTKPrevTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkqueuetrack"><strong>DTKQueueTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * fileName, <a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> * track, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> eventMask, <a href="../dtk_8h/#typedef-dtkcallback"><strong>DTKCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkremovetrack"><strong>DTKRemoveTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> * track) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetinterruptfrequency"><strong>DTKSetInterruptFrequency</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> samples) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetrepeatmode"><strong>DTKSetRepeatMode</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> repeat) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetsamplerate"><strong>DTKSetSampleRate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> samplerate) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetstate"><strong>DTKSetState</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> state) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtksetvolume"><strong>DTKSetVolume</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> left, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> right) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dtkshutdown"><strong>DTKShutdown</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkbackward"><strong>__DTKBackward</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackforaiinterrupt"><strong>__DTKCallbackForAIInterrupt</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackforflush"><strong>__DTKCallbackForFlush</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackfornexttrack"><strong>__DTKCallbackForNextTrack</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackforplaylist"><strong>__DTKCallbackForPlaylist</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackforpreparepaused"><strong>__DTKCallbackForPreparePaused</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_file_info/"><strong>DVDFileInfo</strong></a> * fileInfo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackforprevtrack"><strong>__DTKCallbackForPrevTrack</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackforrun"><strong>__DTKCallbackForRun</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_file_info/"><strong>DVDFileInfo</strong></a> * fileInfo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackforstop"><strong>__DTKCallbackForStop</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcallbackforstreamstatus"><strong>__DTKCallbackForStreamStatus</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkcheckusercallback"><strong>__DTKCheckUserCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_d_t_k_track/"><strong>DTKTrack</strong></a> * track, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> event) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkforward"><strong>__DTKForward</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkpreparecurrenttrack"><strong>__DTKPrepareCurrentTrack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkpreparecurrenttrackpaused"><strong>__DTKPrepareCurrentTrackPaused</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkstartai"><strong>__DTKStartAi</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dtkstopai"><strong>__DTKStopAi</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-__dtkcurrenttrack">variable __DTKCurrentTrack</h3>
+<pre><code class="language-C++">DTKTrack* __DTKCurrentTrack;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkflushcallback">variable __DTKFlushCallback</h3>
+<pre><code class="language-C++">DTKFlushCallback __DTKFlushCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkinterruptfrequency">variable __DTKInterruptFrequency</h3>
+<pre><code class="language-C++">volatile u32 __DTKInterruptFrequency;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkplaylisthead">variable __DTKPlayListHead</h3>
+<pre><code class="language-C++">DTKTrack* __DTKPlayListHead;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkplaylisttail">variable __DTKPlayListTail</h3>
+<pre><code class="language-C++">DTKTrack* __DTKPlayListTail;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkposition">variable __DTKPosition</h3>
+<pre><code class="language-C++">volatile u32 __DTKPosition;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkrepeatmode">variable __DTKRepeatMode</h3>
+<pre><code class="language-C++">volatile u32 __DTKRepeatMode;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkshutdownflag">variable __DTKShutdownFlag</h3>
+<pre><code class="language-C++">volatile u32 __DTKShutdownFlag;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkstate">variable __DTKState</h3>
+<pre><code class="language-C++">volatile u32 __DTKState;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtktempstate">variable __DTKTempState</h3>
+<pre><code class="language-C++">volatile u32 __DTKTempState;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtktrackended">variable __DTKTrackEnded</h3>
+<pre><code class="language-C++">volatile u32 __DTKTrackEnded;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkvolumel">variable __DTKVolumeL</h3>
+<pre><code class="language-C++">volatile u8 __DTKVolumeL;
+</code></pre>
+<hr>
+
+<h3 id="variable-__dtkvolumer">variable __DTKVolumeR</h3>
+<pre><code class="language-C++">volatile u8 __DTKVolumeR;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_ais_isr">variable __block_for_ais_isr</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_ais_isr;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_flushtracks">variable __block_for_flushtracks</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_flushtracks;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_next_track">variable __block_for_next_track</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_next_track;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_prep_callback">variable __block_for_prep_callback</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_prep_callback;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_prev_track">variable __block_for_prev_track</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_prev_track;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_repeatmode">variable __block_for_repeatmode</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_repeatmode;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_run_callback">variable __block_for_run_callback</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_run_callback;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_set_state">variable __block_for_set_state</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_set_state;
+</code></pre>
+<hr>
+
+<h3 id="variable-__block_for_stream_status">variable __block_for_stream_status</h3>
+<pre><code class="language-C++">DVDCommandBlock __block_for_stream_status;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-dtkflushtracks">function DTKFlushTracks</h3>
+<pre><code class="language-C++">void DTKFlushTracks (
+    DTKFlushCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetcurrenttrack">function DTKGetCurrentTrack</h3>
+<pre><code class="language-C++">DTKTrack * DTKGetCurrentTrack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetinterruptfrequency">function DTKGetInterruptFrequency</h3>
+<pre><code class="language-C++">u32 DTKGetInterruptFrequency (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetposition">function DTKGetPosition</h3>
+<pre><code class="language-C++">u32 DTKGetPosition (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetrepeatmode">function DTKGetRepeatMode</h3>
+<pre><code class="language-C++">u32 DTKGetRepeatMode (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetsamplerate">function DTKGetSampleRate</h3>
+<pre><code class="language-C++">u32 DTKGetSampleRate (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetstate">function DTKGetState</h3>
+<pre><code class="language-C++">u32 DTKGetState (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkgetvolume">function DTKGetVolume</h3>
+<pre><code class="language-C++">u16 DTKGetVolume (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkinit">function DTKInit</h3>
+<pre><code class="language-C++">void DTKInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtknexttrack">function DTKNextTrack</h3>
+<pre><code class="language-C++">void DTKNextTrack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkprevtrack">function DTKPrevTrack</h3>
+<pre><code class="language-C++">void DTKPrevTrack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkqueuetrack">function DTKQueueTrack</h3>
+<pre><code class="language-C++">u32 DTKQueueTrack (
+    char * fileName,
+    DTKTrack * track,
+    u32 eventMask,
+    DTKCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkremovetrack">function DTKRemoveTrack</h3>
+<pre><code class="language-C++">u32 DTKRemoveTrack (
+    struct  DTKTrack * track
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetinterruptfrequency">function DTKSetInterruptFrequency</h3>
+<pre><code class="language-C++">void DTKSetInterruptFrequency (
+    u32 samples
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetrepeatmode">function DTKSetRepeatMode</h3>
+<pre><code class="language-C++">void DTKSetRepeatMode (
+    u32 repeat
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetsamplerate">function DTKSetSampleRate</h3>
+<pre><code class="language-C++">void DTKSetSampleRate (
+    u32 samplerate
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetstate">function DTKSetState</h3>
+<pre><code class="language-C++">void DTKSetState (
+    u32 state
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtksetvolume">function DTKSetVolume</h3>
+<pre><code class="language-C++">void DTKSetVolume (
+    u8 left,
+    u8 right
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dtkshutdown">function DTKShutdown</h3>
+<pre><code class="language-C++">void DTKShutdown (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-__dtkbackward">function __DTKBackward</h3>
+<pre><code class="language-C++">static void __DTKBackward (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackforaiinterrupt">function __DTKCallbackForAIInterrupt</h3>
+<pre><code class="language-C++">static void __DTKCallbackForAIInterrupt (
+    u32 count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackforflush">function __DTKCallbackForFlush</h3>
+<pre><code class="language-C++">static void __DTKCallbackForFlush (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackfornexttrack">function __DTKCallbackForNextTrack</h3>
+<pre><code class="language-C++">static void __DTKCallbackForNextTrack (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackforplaylist">function __DTKCallbackForPlaylist</h3>
+<pre><code class="language-C++">static void __DTKCallbackForPlaylist (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackforpreparepaused">function __DTKCallbackForPreparePaused</h3>
+<pre><code class="language-C++">static void __DTKCallbackForPreparePaused (
+    s32 result,
+    DVDFileInfo * fileInfo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackforprevtrack">function __DTKCallbackForPrevTrack</h3>
+<pre><code class="language-C++">static void __DTKCallbackForPrevTrack (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackforrun">function __DTKCallbackForRun</h3>
+<pre><code class="language-C++">static void __DTKCallbackForRun (
+    s32 result,
+    DVDFileInfo * fileInfo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackforstop">function __DTKCallbackForStop</h3>
+<pre><code class="language-C++">static void __DTKCallbackForStop (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcallbackforstreamstatus">function __DTKCallbackForStreamStatus</h3>
+<pre><code class="language-C++">static void __DTKCallbackForStreamStatus (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkcheckusercallback">function __DTKCheckUserCallback</h3>
+<pre><code class="language-C++">static void __DTKCheckUserCallback (
+    struct  DTKTrack * track,
+    u32 event
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkforward">function __DTKForward</h3>
+<pre><code class="language-C++">static void __DTKForward (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkpreparecurrenttrack">function __DTKPrepareCurrentTrack</h3>
+<pre><code class="language-C++">static void __DTKPrepareCurrentTrack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkpreparecurrenttrackpaused">function __DTKPrepareCurrentTrackPaused</h3>
+<pre><code class="language-C++">static void __DTKPrepareCurrentTrackPaused (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkstartai">function __DTKStartAi</h3>
+<pre><code class="language-C++">static void __DTKStartAi (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dtkstopai">function __DTKStopAi</h3>
+<pre><code class="language-C++">static void __DTKStopAi (
+    void
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/dtk/dtk.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

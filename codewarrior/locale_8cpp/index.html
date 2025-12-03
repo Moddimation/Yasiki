@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File locale.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-localecpp">File locale.cpp</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_5dfda252c22d458fde1d653b341676b1/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>locale.cpp</strong></a></p>
+<p><a href="../locale_8cpp_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;locale&gt;</code></li>
+<li><code>#include &lt;ios&gt;</code></li>
+<li><code>#include &lt;streambuf&gt;</code></li>
+<li><code>#include &lt;stdexcept&gt;</code></li>
+<li><code>#include &lt;typeinfo&gt;</code></li>
+</ul>
+<h2 id="namespaces">Namespaces</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">namespace</td>
+<td style="text-align: left;"><a href="../namespacestd/"><strong>std</strong></a> <br><a href="../mutex_8h/"><em><strong>mutex.h</strong></em></a> __</td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__ct"><strong>__ct</strong></a>  <code>ctype\_base::mask(0x01)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__hd"><strong>__hd</strong></a>  <code>ctype\_base::mask(0x30)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__hl"><strong>__hl</strong></a>  <code>ctype\_base::mask(0x60)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__hu"><strong>__hu</strong></a>  <code>ctype\_base::mask(0xA0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__lw"><strong>__lw</strong></a>  <code>ctype\_base::mask(0x40)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__mt"><strong>__mt</strong></a>  <code>ctype\_base::mask(0x02)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__pt"><strong>__pt</strong></a>  <code>ctype\_base::mask(0x08)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__sp"><strong>__sp</strong></a>  <code>ctype\_base::mask(0x04)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__up"><strong>__up</strong></a>  <code>ctype\_base::mask(0x80)</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-__ct">define __ct</h3>
+<pre><code class="language-C++">#define __ct `ctype_base::mask(0x01)`
+</code></pre>
+<hr>
+
+<h3 id="define-__hd">define __hd</h3>
+<pre><code class="language-C++">#define __hd `ctype_base::mask(0x30)`
+</code></pre>
+<hr>
+
+<h3 id="define-__hl">define __hl</h3>
+<pre><code class="language-C++">#define __hl `ctype_base::mask(0x60)`
+</code></pre>
+<hr>
+
+<h3 id="define-__hu">define __hu</h3>
+<pre><code class="language-C++">#define __hu `ctype_base::mask(0xA0)`
+</code></pre>
+<hr>
+
+<h3 id="define-__lw">define __lw</h3>
+<pre><code class="language-C++">#define __lw `ctype_base::mask(0x40)`
+</code></pre>
+<hr>
+
+<h3 id="define-__mt">define __mt</h3>
+<pre><code class="language-C++">#define __mt `ctype_base::mask(0x02)`
+</code></pre>
+<hr>
+
+<h3 id="define-__pt">define __pt</h3>
+<pre><code class="language-C++">#define __pt `ctype_base::mask(0x08)`
+</code></pre>
+<hr>
+
+<h3 id="define-__sp">define __sp</h3>
+<pre><code class="language-C++">#define __sp `ctype_base::mask(0x04)`
+</code></pre>
+<hr>
+
+<h3 id="define-__up">define __up</h3>
+<pre><code class="language-C++">#define __up `ctype_base::mask(0x80)`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Src/locale.cpp</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

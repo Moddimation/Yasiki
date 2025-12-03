@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File __va_arg.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-__va_argc">File __va_arg.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_1789e36d750963f536ec280b459db2bf/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="./"><strong>__va_arg.c</strong></a></p>
+<p><a href="../____va__arg_8c_source/">Go to the source code of this file</a></p>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structva__list/"><strong>va_list</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-_va_arg_type"><strong>_va_arg_type</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-__va_arg"><strong>__va_arg</strong></a> (<a href="../structva__list/"><strong>va_list</strong></a> ap, <a href="./#enum-_va_arg_type"><strong>_va_arg_type</strong></a> type) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-align"><strong>ALIGN</strong></a> (addr, amount) <code>(((unsigned int)(addr)+((amount)-1))&amp;~((amount)-1))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max_saved_regs"><strong>MAX_SAVED_REGS</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-sizeof_dwrd"><strong>SIZEOF_DWRD</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-sizeof_fpr"><strong>SIZEOF_FPR</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-sizeof_gpr"><strong>SIZEOF_GPR</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-sizeof_vector"><strong>SIZEOF_VECTOR</strong></a>  <code>16</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="enum-_va_arg_type">enum _va_arg_type</h3>
+<pre><code class="language-C++">enum _va_arg_type {
+    arg_ARGPOINTER,
+    arg_WORD,
+    arg_DOUBLEWORD,
+    arg_REAL,
+    arg_VECTOR
+};
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-__va_arg">function __va_arg</h3>
+<pre><code class="language-C++">void * __va_arg (
+    va_list ap,
+    _va_arg_type type
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-align">define ALIGN</h3>
+<pre><code class="language-C++">#define ALIGN (
+    addr,
+    amount
+) `(((unsigned int)(addr)+((amount)-1))&amp;~((amount)-1))`
+</code></pre>
+<hr>
+
+<h3 id="define-max_saved_regs">define MAX_SAVED_REGS</h3>
+<pre><code class="language-C++">#define MAX_SAVED_REGS `8`
+</code></pre>
+<hr>
+
+<h3 id="define-sizeof_dwrd">define SIZEOF_DWRD</h3>
+<pre><code class="language-C++">#define SIZEOF_DWRD `8`
+</code></pre>
+<hr>
+
+<h3 id="define-sizeof_fpr">define SIZEOF_FPR</h3>
+<pre><code class="language-C++">#define SIZEOF_FPR `8`
+</code></pre>
+<hr>
+
+<h3 id="define-sizeof_gpr">define SIZEOF_GPR</h3>
+<pre><code class="language-C++">#define SIZEOF_GPR `4`
+</code></pre>
+<hr>
+
+<h3 id="define-sizeof_vector">define SIZEOF_VECTOR</h3>
+<pre><code class="language-C++">#define SIZEOF_VECTOR `16`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/CodeWarrior/PowerPC_EABI_Support/Runtime/Src/__va_arg.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

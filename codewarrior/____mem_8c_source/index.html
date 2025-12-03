@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File __mem.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-__memc">File __mem.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_1789e36d750963f536ec280b459db2bf/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../____mem_8c/"><strong>__mem.c</strong></a></p>
+<p><a href="../____mem_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/****************************************************************************/
+/*
+
+FILE
+    __mem.c
+
+DESCRIPTION
+
+    Standalone Standard C Library Implementation for memory operations.
+    This is a target-specific implementation for PowerPC.  It will
+    probably work for other target processors as well, but this one
+    has been improved specifically for PowerPC.
+
+    memcpy and memset are  put into the .init section so that they will
+    be available for use in copying sections (e.g. .text) from rom into ram.
+
+    Derived from MSL C (CodeWarrior 10).
+
+    memcpy
+    memset
+    strlen
+
+COPYRIGHT
+
+    (c) 1996-7 Metrowerks Corporation
+    All rights reserved.
+
+*/
+/****************************************************************************/
+
+#if __MWERKS__
+#pragma ANSI_strict off
+#endif
+
+#include &lt;__mem.h&gt;
+#include &lt;string.h&gt;
+
+void * memcpy(void * dst, const void * src, size_t n)
+{
+    const   char * p;
+                char * q;
+                int      rev = ((unsigned long) src &lt; (unsigned long) dst);
+
+    if (!rev)
+    {
+
+        for (p = (const char *) src - 1, q = (char *) dst - 1, n++; --n;)
+            *++q = *++p;
+
+    }
+    else
+    {
+        for (p = (const char *) src + n, q = (char *) dst + n, n++; --n;)
+            *--q = *--p;
+    }
+    return(dst);
+}
+
+
+/*
+    mem_funcs.c
+*/
+
+#define cps ((unsigned char *) src)
+#define cpd ((unsigned char *) dst)
+#define lps ((unsigned long *) src)
+#define lpd ((unsigned long *) dst)
+#define deref_auto_inc(p)   *++(p)
+
+void __fill_mem(void * dst, int val, unsigned long n)
+{
+    unsigned long           v = (unsigned char) val;
+    unsigned long           i;
+
+    cpd = ((unsigned char *) dst) - 1;
+
+    if (n &gt;= 32)
+    {
+        i = (~ (unsigned long) dst) &amp; 3;
+
+        if (i)
+        {
+            n -= i;
+
+            do
+                deref_auto_inc(cpd) = v;
+            while (--i);
+        }
+
+        if (v)
+            v |= v &lt;&lt; 24 | v &lt;&lt; 16 | v &lt;&lt;  8;
+
+        lpd = ((unsigned long *) (cpd + 1)) - 1;
+
+        i = n &gt;&gt; 5;
+
+        if (i)
+            do
+            {
+                deref_auto_inc(lpd) = v;
+                deref_auto_inc(lpd) = v;
+                deref_auto_inc(lpd) = v;
+                deref_auto_inc(lpd) = v;
+                deref_auto_inc(lpd) = v;
+                deref_auto_inc(lpd) = v;
+                deref_auto_inc(lpd) = v;
+                deref_auto_inc(lpd) = v;
+            }
+            while (--i);
+
+        i = (n &amp; 31) &gt;&gt; 2;
+
+        if (i)
+            do
+                deref_auto_inc(lpd) = v;
+            while (--i);
+
+        cpd = ((unsigned char *) (lpd + 1)) - 1;
+
+        n &amp;= 3;
+    }
+
+    if (n)
+        do
+            deref_auto_inc(cpd) = v;
+        while (--n);
+
+    return;
+}
+
+void * memset(void * dst, int val, size_t n)
+{
+    __fill_mem(dst, val, n);
+
+    return(dst);
+}
+
+#if !__MC68K__ || _No_String_Inlines || !defined(__cplusplus)
+
+#pragma overload size_t (strlen)(const char * str);
+size_t (strlen)(const char * str)
+{
+    size_t  len = -1;
+
+    unsigned char * p = (unsigned char *) str - 1;
+
+    do
+        len++;
+    while (*++p);
+
+    return(len);
+}
+
+#endif /* !__MC68K__ || _No_String_Inlines || !defined(__cplusplus) */
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

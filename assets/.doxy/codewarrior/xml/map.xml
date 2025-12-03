@@ -1,0 +1,1090 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="map" kind="file" language="C++">
+    <compoundname>map</compoundname>
+    <includedby refid="map_8h" local="no">map.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>map</label>
+        <link refid="map"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>map.h</label>
+        <link refid="map_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:59:43<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$Revision:<sp/>1.9.6.1<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Portions<sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**<sp/><sp/>map</highlight></codeline>
+<codeline><highlight class="normal"><sp/>**/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MAP</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>_MAP</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mslconfig&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;tree.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;functional&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=native</highlight></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>namespace<sp/>std<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>map</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare<sp/>=<sp/>less&lt;Key&gt;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>class<sp/>Allocator<sp/>=<sp/>allocator&lt;pair&lt;const<sp/>Key,<sp/>T&gt;<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>map</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>types:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Key<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>key_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mapped_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>pair&lt;const<sp/>Key,<sp/>T&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Compare<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>key_compare;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Allocator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>allocator_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::reference<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::const_reference<sp/><sp/><sp/>const_reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::size_type<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::difference_type<sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::pointer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::const_pointer<sp/><sp/><sp/><sp/><sp/>const_pointer;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>debug_view</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debug_view*<sp/>left_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debug_view*<sp/>right_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debug_view*<sp/>parent_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type<sp/>data_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>value_compare</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>public<sp/>binary_function&lt;value_type,<sp/>value_type,<sp/>bool&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bool<sp/>operator()(const<sp/>value_type&amp;<sp/>x,<sp/>const<sp/>value_type&amp;<sp/>y)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>comp(x.first,<sp/>y.first);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Compare<sp/>comp;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_compare(Compare<sp/>c)<sp/>:<sp/>comp(c)<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>class<sp/>map;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>__tree&lt;value_type,<sp/>value_compare,<sp/>allocator_type&gt;<sp/>tree_type;</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>tree_type::iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>tree_type::const_iterator<sp/>const_iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>_STD::reverse_iterator&lt;iterator&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>reverse_iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>_STD::reverse_iterator&lt;const_iterator&gt;<sp/>const_reverse_iterator;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.map.cons<sp/>construct/copy/destroy:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>map(const<sp/>Compare&amp;<sp/>comp<sp/>=<sp/>Compare(),<sp/>const<sp/>Allocator&amp;<sp/>=<sp/>Allocator());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>InputIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>map(InputIterator<sp/>first,<sp/>InputIterator<sp/>last,<sp/>const<sp/>Compare&amp;<sp/>comp<sp/>=<sp/>Compare(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Allocator&amp;<sp/>a<sp/>=<sp/>Allocator())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>tree_(first,<sp/>last,<sp/>false,<sp/>value_compare(comp),<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>map(const_iterator<sp/>first,<sp/>const_iterator<sp/>last,<sp/>const<sp/>Compare&amp;<sp/>comp<sp/>=<sp/>Compare(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Allocator&amp;<sp/>a<sp/>=<sp/>Allocator());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>map(const<sp/>value_type*<sp/>first,<sp/>const<sp/>value_type*<sp/>last,<sp/>const<sp/>Compare&amp;<sp/>comp<sp/>=<sp/>Compare(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Allocator&amp;<sp/>a<sp/>=<sp/>Allocator());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>allocator_type<sp/>get_allocator()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>iterators:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>begin();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>begin()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>rbegin();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_reverse_iterator<sp/>rbegin()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>rend();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_reverse_iterator<sp/>rend()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>capacity:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/><sp/><sp/><sp/><sp/><sp/>empty()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/>size()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/>max_size()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.map.access<sp/>element<sp/>access:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>T&amp;<sp/>operator[](const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>modifiers:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pair&lt;iterator,<sp/>bool&gt;<sp/>insert(const<sp/>value_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>insert(iterator<sp/>position,<sp/>const<sp/>value_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>InputIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>insert(InputIterator<sp/>first,<sp/>InputIterator<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tree_.insert_one(first,<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>insert(const_iterator<sp/>first,<sp/>const_iterator<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>insert(const<sp/>value_type*<sp/>first,<sp/>const<sp/>value_type*<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/><sp/><sp/>erase(iterator<sp/>position);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/>erase(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/><sp/><sp/>erase(iterator<sp/>first,<sp/>iterator<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>swap(map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>clear();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>observers:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>key_compare<sp/><sp/><sp/>key_comp()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>value_compare<sp/>value_comp()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>lib.map.ops<sp/>map<sp/>operations:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>find(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/>find(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><sp/><sp/><sp/><sp/><sp/>count(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>lower_bound(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/>lower_bound(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>upper_bound(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/>upper_bound(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pair&lt;iterator,iterator&gt;<sp/>equal_range(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pair&lt;const_iterator,const_iterator&gt;<sp/>equal_range(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_type<sp/>tree_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;<sp/>(const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;<sp/>(const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;=(const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;=(const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>specialized<sp/>algorithms:</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">swap(map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>multimap</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare<sp/>=<sp/>less&lt;Key&gt;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>class<sp/>Allocator<sp/>=<sp/>allocator&lt;pair&lt;const<sp/>Key,<sp/>T&gt;<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>multimap</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>types:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Key<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>key_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>T<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mapped_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>pair&lt;const<sp/>Key,T&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Compare<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>key_compare;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>Allocator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>allocator_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::reference<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::const_reference<sp/><sp/><sp/>const_reference;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::size_type<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::difference_type<sp/><sp/><sp/>difference_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::pointer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pointer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>Allocator::const_pointer<sp/><sp/><sp/><sp/><sp/>const_pointer;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>debug_view</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debug_view*<sp/>left_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debug_view*<sp/>right_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>debug_view*<sp/>parent_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_type<sp/>data_;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>value_compare</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>public<sp/>binary_function&lt;value_type,value_type,bool&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bool<sp/>operator()(const<sp/>value_type&amp;<sp/>x,<sp/>const<sp/>value_type&amp;<sp/>y)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>comp(x.first,<sp/>y.first);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Compare<sp/>comp;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_compare(Compare<sp/>c)<sp/>:<sp/>comp(c)<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>friend<sp/>class<sp/>multimap;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>__tree&lt;value_type,<sp/>value_compare,<sp/>allocator_type&gt;<sp/>tree_type;</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>tree_type::iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>typename<sp/>tree_type::const_iterator<sp/>const_iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>_STD::reverse_iterator&lt;iterator&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>reverse_iterator;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>_STD::reverse_iterator&lt;const_iterator&gt;<sp/>const_reverse_iterator;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>construct/copy/destroy:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>explicit<sp/>multimap(const<sp/>Compare&amp;<sp/>comp<sp/>=<sp/>Compare(),<sp/>const<sp/>Allocator&amp;<sp/>=<sp/>Allocator());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>InputIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>multimap(InputIterator<sp/>first,<sp/>InputIterator<sp/>last,<sp/>const<sp/>Compare&amp;<sp/>comp<sp/>=<sp/>Compare(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Allocator&amp;<sp/>a<sp/>=<sp/>Allocator())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>tree_(first,<sp/>last,<sp/>true,<sp/>value_compare(comp),<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>multimap(const_iterator<sp/>first,<sp/>const_iterator<sp/>last,<sp/>const<sp/>Compare&amp;<sp/>comp<sp/>=<sp/>Compare(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Allocator&amp;<sp/>a<sp/>=<sp/>Allocator());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>multimap(const<sp/>value_type*<sp/>first,<sp/>const<sp/>value_type*<sp/>last,<sp/>const<sp/>Compare&amp;<sp/>comp<sp/>=<sp/>Compare(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Allocator&amp;<sp/>a<sp/>=<sp/>Allocator());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>allocator_type<sp/>get_allocator()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>iterators:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>begin();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>begin()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>rbegin();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_reverse_iterator<sp/>rbegin()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>reverse_iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>rend();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_reverse_iterator<sp/>rend()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>capacity:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>empty()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><sp/><sp/><sp/><sp/><sp/>size()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><sp/><sp/><sp/><sp/><sp/>max_size()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>modifiers:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>insert(const<sp/>value_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/>insert(iterator<sp/>position,<sp/>const<sp/>value_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>InputIterator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>insert(InputIterator<sp/>first,<sp/>InputIterator<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tree_.insert_multi(first,<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>insert(const_iterator<sp/>first,<sp/>const_iterator<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>insert(const<sp/>value_type*<sp/>first,<sp/>const<sp/>value_type*<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/><sp/><sp/>erase(iterator<sp/>position);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/>erase(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/><sp/><sp/><sp/><sp/><sp/>erase(iterator<sp/>first,<sp/>iterator<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>swap(multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>clear();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>observers:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>key_compare<sp/><sp/><sp/><sp/>key_comp()<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>value_compare<sp/><sp/>value_comp()<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/>map<sp/>operations:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>find(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/>find(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size_type<sp/><sp/><sp/><sp/><sp/><sp/>count(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>lower_bound(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/>lower_bound(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iterator<sp/><sp/><sp/><sp/><sp/><sp/><sp/>upper_bound(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const_iterator<sp/>upper_bound(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pair&lt;iterator,iterator&gt;<sp/>equal_range(const<sp/>key_type&amp;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pair&lt;const_iterator,const_iterator&gt;<sp/>equal_range(const<sp/>key_type&amp;<sp/>x)<sp/>const;</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_type<sp/>tree_;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;<sp/>(const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;<sp/>(const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;=(const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;=(const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/><sp/>specialized<sp/>algorithms:</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">swap(multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x,<sp/>multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>y);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>map<sp/>implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::map(const<sp/>Compare&amp;<sp/>comp,<sp/>const<sp/>Allocator&amp;<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>tree_(value_compare(comp),<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::map(const_iterator<sp/>first,<sp/>const_iterator<sp/>last,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Compare&amp;<sp/>comp,<sp/>const<sp/>Allocator&amp;<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>tree_(first,<sp/>last,<sp/>false,<sp/>value_compare(comp),<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::map(const<sp/>value_type*<sp/>first,<sp/>const<sp/>value_type*<sp/>last,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Compare&amp;<sp/>comp,<sp/>const<sp/>Allocator&amp;<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>tree_(first,<sp/>last,<sp/>false,<sp/>value_compare(comp),<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::allocator_type</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::get_allocator()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.get_allocator();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::begin()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.begin();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::begin()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.begin();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::end()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.end();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::end()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.end();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::rbegin()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>reverse_iterator(end());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::rbegin()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_reverse_iterator(end());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::rend()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>reverse_iterator(begin());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::rend()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_reverse_iterator(begin());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::empty()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.empty();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.size();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::max_size()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.max_size();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">T&amp;</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::operator[](const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>insert(pair&lt;const<sp/>Key,<sp/>T&gt;(x,<sp/>T())).first-&gt;second;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">pair&lt;map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator,<sp/>bool&gt;</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::insert(const<sp/>value_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.insert_one(x);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::insert(iterator<sp/>position,<sp/>const<sp/>value_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.insert_one(position,<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::insert(const_iterator<sp/>first,<sp/>const_iterator<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tree_.insert_one(first,<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::insert(const<sp/>value_type*<sp/>first,<sp/>const<sp/>value_type*<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tree_.insert_one(first,<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::erase(iterator<sp/>position)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_.erase(position);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::erase(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.erase_one((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::erase(iterator<sp/>first,<sp/>iterator<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_.erase(first,<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::swap(map&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_.swap(x.tree_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::clear()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_.clear();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::key_compare</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::key_comp()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.value_comp().comp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::value_compare</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::value_comp()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.value_comp();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::find(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.find((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::find(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.find((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::count(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.count_one((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::lower_bound(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.lower_bound((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::lower_bound(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.lower_bound((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::upper_bound(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.upper_bound((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::upper_bound(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.upper_bound((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">pair&lt;map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator,<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::equal_range(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.equal_range((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">pair&lt;map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator,<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::equal_range(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.equal_range((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x.size()<sp/>==<sp/>y.size()<sp/>&amp;&amp;<sp/>equal(x.begin(),<sp/>x.end(),<sp/>y.begin());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>!(x<sp/>==<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;<sp/>(const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>lexicographical_compare(x.begin(),<sp/>x.end(),<sp/>y.begin(),<sp/>y.end());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;<sp/>(const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>y<sp/>&lt;<sp/>x;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;=(const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>!(x<sp/>&lt;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;=(const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>!(y<sp/>&lt;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">swap(map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>map&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>x.swap(y);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>multimap<sp/>implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::multimap(const<sp/>Compare&amp;<sp/>comp,<sp/>const<sp/>Allocator&amp;<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>tree_(value_compare(comp),<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::multimap(const_iterator<sp/>first,<sp/>const_iterator<sp/>last,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Compare&amp;<sp/>comp,<sp/>const<sp/>Allocator&amp;<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>tree_(first,<sp/>last,<sp/>true,<sp/>value_compare(comp),<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::multimap(const<sp/>value_type*<sp/>first,<sp/>const<sp/>value_type*<sp/>last,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Compare&amp;<sp/>comp,<sp/>const<sp/>Allocator&amp;<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>tree_(first,<sp/>last,<sp/>true,<sp/>value_compare(comp),<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::allocator_type</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::get_allocator()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.get_allocator();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::begin()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.begin();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::begin()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.begin();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::end()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.end();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::end()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.end();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::rbegin()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>reverse_iterator(end());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::rbegin()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_reverse_iterator(end());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::rend()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>reverse_iterator(begin());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_reverse_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::rend()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>const_reverse_iterator(begin());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::empty()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.empty();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.size();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::max_size()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.max_size();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::insert(const<sp/>value_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.insert_multi(x);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::insert(iterator<sp/>position,<sp/>const<sp/>value_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.insert_multi(position,<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>_MSL_NO_MEMBER_TEMPLATE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::insert(const_iterator<sp/>first,<sp/>const_iterator<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tree_.insert_multi(first,<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inline</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::insert(const<sp/>value_type*<sp/>first,<sp/>const<sp/>value_type*<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tree_.insert_multi(first,<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::erase(iterator<sp/>position)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_.erase(position);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::erase(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.erase_multi((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::erase(iterator<sp/>first,<sp/>iterator<sp/>last)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_.erase(first,<sp/>last);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::swap(multimap&lt;Key,T,Compare,Allocator&gt;&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_.swap(x.tree_);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::clear()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tree_.clear();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::key_compare</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::key_comp()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.value_comp().comp;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::value_compare</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::value_comp()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.value_comp();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::find(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.find((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::find(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.find((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::size_type</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::count(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.count_multi((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::lower_bound(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.lower_bound((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::lower_bound(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.lower_bound((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::upper_bound(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.upper_bound((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">typename<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::upper_bound(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.upper_bound((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">pair&lt;multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator,<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::iterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::equal_range(const<sp/>key_type&amp;<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.equal_range((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">pair&lt;multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator,<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::const_iterator&gt;</highlight></codeline>
+<codeline><highlight class="normal">multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;::equal_range(const<sp/>key_type&amp;<sp/>x)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>tree_.equal_range((const<sp/>value_type&amp;)pair&lt;const<sp/>Key,<sp/>int&gt;(x,<sp/>0));</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator==(const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>x.size()<sp/>==<sp/>y.size()<sp/>&amp;&amp;<sp/>equal(x.begin(),<sp/>x.end(),<sp/>y.begin());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator!=(const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>!(x<sp/>==<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;<sp/>(const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>lexicographical_compare(x.begin(),<sp/>x.end(),<sp/>y.begin(),<sp/>y.end());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;<sp/>(const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>y<sp/>&lt;<sp/>x;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&gt;=(const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>!(x<sp/>&lt;<sp/>y);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">bool</highlight></codeline>
+<codeline><highlight class="normal">operator&lt;=(const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>const<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>!(y<sp/>&lt;<sp/>x);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Key,<sp/>class<sp/>T,<sp/>class<sp/>Compare,<sp/>class<sp/>Allocator&gt;</highlight></codeline>
+<codeline><highlight class="normal">inline</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">swap(multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>x,<sp/>multimap&lt;Key,<sp/>T,<sp/>Compare,<sp/>Allocator&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>x.swap(y);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>//<sp/>namespace<sp/>std</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">#pragma<sp/>options<sp/>align=reset</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>RC_INVOKED</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>//<sp/>_MAP</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971220<sp/>fixed<sp/>MOD_INCLUDE</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>added<sp/>alignment<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Changed<sp/>filename<sp/>from<sp/>map.h<sp/>to<sp/>map</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971222<sp/>Made<sp/>include<sp/>guards<sp/>standard</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>971230<sp/>added<sp/>RC_INVOKED<sp/>wrapper</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>980805<sp/>changed<sp/>default<sp/>allocator</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>hh<sp/>981130<sp/>rewrote</highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/map"/>
+  </compounddef>
+</doxygen>

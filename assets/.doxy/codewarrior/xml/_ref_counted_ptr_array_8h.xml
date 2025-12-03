@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_ref_counted_ptr_array_8h" kind="file" language="C++">
+    <compoundname>RefCountedPtrArray.h</compoundname>
+    <includes refid="mslconfig" local="no">mslconfig</includes>
+    <includes refid="new" local="no">new</includes>
+    <includedby refid="_m_s_lstring_8h" local="no">MSLstring.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>RefCountedPtrArray.h</label>
+        <link refid="_ref_counted_ptr_array_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mslconfig</label>
+        <link refid="mslconfig"/>
+      </node>
+      <node id="3">
+        <label>new</label>
+        <link refid="new"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>MSLstring.h</label>
+        <link refid="_m_s_lstring_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>RefCountedPtrArray.h</label>
+        <link refid="_ref_counted_ptr_array_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MSLstring.cpp</label>
+        <link refid="_m_s_lstring_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structstd_1_1___single" prot="public">std::_Single</innerclass>
+    <innerclass refid="structstd_1_1___array" prot="public">std::_Array</innerclass>
+    <innerclass refid="classstd_1_1___ref_counted_ptr" prot="public">std::_RefCountedPtr</innerclass>
+    <innernamespace refid="namespacestd">std</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>Version<sp/>4.0<sp/><sp/>1998<sp/>August<sp/>10<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/12/09<sp/>17:59:45<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.10.6.1<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>RefCountedPtr.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_REFCOUNTEDPTR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_REFCOUNTEDPTR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/><sp/><sp/><sp/>WARNING:<sp/><sp/>This<sp/>is<sp/>a<sp/>non-standard<sp/>header<sp/>and<sp/>class.</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/><sp/><sp/><sp/>A<sp/>reference<sp/>counting<sp/>handle<sp/>class.</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/><sp/><sp/><sp/>This<sp/>is<sp/>to<sp/>be<sp/>used<sp/>as<sp/>a<sp/>pointer<sp/>to<sp/>class<sp/>T.<sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/><sp/><sp/><sp/>This<sp/>will<sp/>feel<sp/>and<sp/>smell<sp/>just<sp/>like<sp/>a<sp/>built-in<sp/>pointer<sp/>except:</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/><sp/><sp/><sp/>1.<sp/><sp/>There<sp/>is<sp/>no<sp/>need<sp/>to<sp/>call<sp/>delete<sp/>on<sp/>the<sp/>pointer.</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/><sp/><sp/><sp/>2.<sp/><sp/>The<sp/>default<sp/>copy<sp/>constructor<sp/>and<sp/>assignment<sp/>implement<sp/>ref-counting.</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/><sp/><sp/><sp/>3.<sp/><sp/>The<sp/>user<sp/>may<sp/>call<sp/>isNonUnique<sp/>to<sp/>determine<sp/>if<sp/>this<sp/>pointer<sp/>is</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>only<sp/>pointer<sp/>to<sp/>the<sp/>data.<sp/><sp/>This<sp/>can<sp/>be<sp/>used<sp/>to<sp/>hide<sp/>the</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref-counting<sp/>behavior<sp/>of<sp/>a<sp/>class.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/><sp/><sp/><sp/>4.<sp/><sp/>There<sp/>are<sp/>two<sp/>&quot;traits&quot;<sp/>classes<sp/>which<sp/>specify<sp/>whether<sp/>the<sp/>single<sp/>object</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>form<sp/>of<sp/>delete<sp/>should<sp/>be<sp/>used,<sp/>or<sp/>the<sp/>array<sp/>form.<sp/><sp/>The<sp/>default<sp/>is<sp/>single.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="mslconfig" kindref="compound">mslconfig</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="new" kindref="compound">new</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RC_INVOKED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=native</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="47" refid="structstd_1_1___single" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstd_1_1___single" kindref="compound">_Single</ref></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49" refid="structstd_1_1___single_1a125cf8e5e1f652eebd5c15260d0f1a1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structstd_1_1___single_1a125cf8e5e1f652eebd5c15260d0f1a1c" kindref="member">destroy</ref>(<ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/><ref refid="classstd_1_1allocator" kindref="compound">ptr</ref>)<sp/>{</highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="classstd_1_1allocator" kindref="compound">ptr</ref>;}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="53" refid="structstd_1_1___array" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstd_1_1___array" kindref="compound">_Array</ref></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55" refid="structstd_1_1___array_1a22a743fa6acc353f5e69382cdd3714ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structstd_1_1___array_1a22a743fa6acc353f5e69382cdd3714ad" kindref="member">destroy</ref>(<ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/><ref refid="classstd_1_1allocator" kindref="compound">ptr</ref>)<sp/>{</highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>[]<sp/><ref refid="classstd_1_1allocator" kindref="compound">ptr</ref>;}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits<sp/>=<sp/>_Single&lt;T&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="59" refid="classstd_1_1___ref_counted_ptr" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr" kindref="compound">_RefCountedPtr</ref></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62" refid="classstd_1_1___ref_counted_ptr_1a769d06db62471e43071788e099f219b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classstd_1_1___ref_counted_ptr_1a769d06db62471e43071788e099f219b9" kindref="member">_RefCountedPtr</ref>(<ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/><ref refid="classstd_1_1allocator" kindref="compound">ptr</ref><sp/>=<sp/>0);<sp/><sp/></highlight><highlight class="comment">//<sp/>Accepts<sp/>responsibility<sp/>for<sp/>ptr</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="classstd_1_1___ref_counted_ptr_1a18cf2ab956dc5cbb50d48c52324fb93e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classstd_1_1___ref_counted_ptr_1a18cf2ab956dc5cbb50d48c52324fb93e" kindref="member">_RefCountedPtr</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classstd_1_1allocator" kindref="compound">_RefCountedPtr&lt;T, traits&gt;</ref>&amp;<sp/><ref refid="classstd_1_1allocator" kindref="compound">other</ref>);</highlight></codeline>
+<codeline lineno="64" refid="classstd_1_1___ref_counted_ptr_1af8945a02f9371dde67ecd518f88af38c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classstd_1_1___ref_counted_ptr_1af8945a02f9371dde67ecd518f88af38c" kindref="member">~_RefCountedPtr</ref>();</highlight></codeline>
+<codeline lineno="65" refid="classstd_1_1___ref_counted_ptr_1a406398217264ba25034681b62f2503a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classstd_1_1allocator" kindref="compound">_RefCountedPtr&lt;T, traits&gt;</ref>&amp;<sp/><ref refid="classstd_1_1___ref_counted_ptr_1a406398217264ba25034681b62f2503a9" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classstd_1_1allocator" kindref="compound">_RefCountedPtr&lt;T, traits&gt;</ref>&amp;<sp/><ref refid="classstd_1_1allocator" kindref="compound">rhs</ref>);</highlight></codeline>
+<codeline lineno="66" refid="classstd_1_1___ref_counted_ptr_1afba8835a376f9852f703fbcb96fd3148" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/><ref refid="classstd_1_1___ref_counted_ptr_1afba8835a376f9852f703fbcb96fd3148" kindref="member">operator-&gt;</ref>();</highlight></codeline>
+<codeline lineno="67" refid="classstd_1_1___ref_counted_ptr_1a7c7edeeff2de443e105d19f8c9149682" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/><ref refid="classstd_1_1___ref_counted_ptr_1a7c7edeeff2de443e105d19f8c9149682" kindref="member">operator-&gt;</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68" refid="classstd_1_1___ref_counted_ptr_1ab75a6b8d0f643122bf83d566e75d879e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>&amp;<sp/><ref refid="classstd_1_1___ref_counted_ptr_1ab75a6b8d0f643122bf83d566e75d879e" kindref="member">operator*</ref>();</highlight></codeline>
+<codeline lineno="69" refid="classstd_1_1___ref_counted_ptr_1a36472ad0c3ba3349c45f8cfe22c13f69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>&amp;<sp/><ref refid="classstd_1_1___ref_counted_ptr_1a36472ad0c3ba3349c45f8cfe22c13f69" kindref="member">operator*</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70" refid="classstd_1_1___ref_counted_ptr_1a04fd0cf84f9b05eb3f868e5e1a38e990" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71" refid="classstd_1_1___ref_counted_ptr_1a0f08435c212c324be2bd3d85bed24d4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classstd_1_1___ref_counted_ptr_1a0f08435c212c324be2bd3d85bed24d4a" kindref="member">isNonUnique</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="73" refid="classstd_1_1___ref_counted_ptr_1aaf612e87f89bb521a6b5b69905b001ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/><ref refid="classstd_1_1___ref_counted_ptr_1aaf612e87f89bb521a6b5b69905b001ca" kindref="member">ptr_</ref>;</highlight></codeline>
+<codeline lineno="74" refid="classstd_1_1___ref_counted_ptr_1a1c5738aa8da62c4b94c98712489a46a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/><ref refid="classstd_1_1___ref_counted_ptr_1a1c5738aa8da62c4b94c98712489a46a4" kindref="member">refCount_</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="79" refid="classstd_1_1___ref_counted_ptr_1a769d06db62471e43071788e099f219b9" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1a769d06db62471e43071788e099f219b9" kindref="member">_RefCountedPtr&lt;T, traits&gt;::_RefCountedPtr</ref>(<ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/><ref refid="classstd_1_1allocator" kindref="compound">ptr</ref>)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>ptr_(<ref refid="classstd_1_1allocator" kindref="compound">ptr</ref>),</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>refCount_(0)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classstd_1_1___ref_counted_ptr_1aaf612e87f89bb521a6b5b69905b001ca" kindref="member">ptr_</ref><sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classstd_1_1___ref_counted_ptr_1a1c5738aa8da62c4b94c98712489a46a4" kindref="member">refCount_</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classstd_1_1allocator" kindref="compound">int</ref>(1);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifndef<sp/>_MSL_NO_EXCEPTIONS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(...)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::destroy(<ref refid="classstd_1_1___ref_counted_ptr_1aaf612e87f89bb521a6b5b69905b001ca" kindref="member">ptr_</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classstd_1_1___ref_counted_ptr_1a1c5738aa8da62c4b94c98712489a46a4" kindref="member">refCount_</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::destroy(<ref refid="classstd_1_1___ref_counted_ptr_1aaf612e87f89bb521a6b5b69905b001ca" kindref="member">ptr_</ref>);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classstd_1_1allocator" kindref="compound">__msl_error</ref>(</highlight><highlight class="stringliteral">&quot;_RefCountedPtr<sp/>out<sp/>of<sp/>memory&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="106" refid="classstd_1_1___ref_counted_ptr_1a18cf2ab956dc5cbb50d48c52324fb93e" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1a769d06db62471e43071788e099f219b9" kindref="member">_RefCountedPtr&lt;T, traits&gt;::_RefCountedPtr</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classstd_1_1allocator" kindref="compound">_RefCountedPtr&lt;T, traits&gt;</ref>&amp;<sp/><ref refid="classstd_1_1allocator" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>ptr_(<ref refid="classstd_1_1allocator" kindref="compound">other</ref>.ptr_),</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>refCount_(<ref refid="classstd_1_1allocator" kindref="compound">other</ref>.refCount_)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classstd_1_1___ref_counted_ptr_1a1c5738aa8da62c4b94c98712489a46a4" kindref="member">refCount_</ref><sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++(*refCount_);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="115" refid="classstd_1_1___ref_counted_ptr_1af8945a02f9371dde67ecd518f88af38c" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1af8945a02f9371dde67ecd518f88af38c" kindref="member">_RefCountedPtr&lt;T, traits&gt;::~_RefCountedPtr</ref>()</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(refCount_<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>--(*refCount_)<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::destroy(ptr_);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>refCount_;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><ref refid="classstd_1_1allocator" kindref="compound">_RefCountedPtr&lt;T, traits&gt;</ref>&amp;</highlight></codeline>
+<codeline lineno="126" refid="classstd_1_1___ref_counted_ptr_1a406398217264ba25034681b62f2503a9" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1a406398217264ba25034681b62f2503a9" kindref="member">_RefCountedPtr&lt;T, traits&gt;::operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classstd_1_1allocator" kindref="compound">_RefCountedPtr&lt;T, traits&gt;</ref>&amp;<sp/><ref refid="classstd_1_1allocator" kindref="compound">rhs</ref>)</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ptr_<sp/>!=<sp/><ref refid="classstd_1_1allocator" kindref="compound">rhs</ref>.ptr_)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(refCount_<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>--(*refCount_)<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>traits::destroy(ptr_);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>refCount_;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr_<sp/>=<sp/><ref refid="classstd_1_1allocator" kindref="compound">rhs</ref>.ptr_;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refCount_<sp/>=<sp/><ref refid="classstd_1_1allocator" kindref="compound">rhs</ref>.refCount_;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(refCount_<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++(*refCount_);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*</highlight></codeline>
+<codeline lineno="146" refid="classstd_1_1___ref_counted_ptr_1afba8835a376f9852f703fbcb96fd3148" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1afba8835a376f9852f703fbcb96fd3148" kindref="member">_RefCountedPtr&lt;T, traits&gt;::operator-&gt;</ref>()</highlight></codeline>
+<codeline lineno="147"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr_;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*</highlight></codeline>
+<codeline lineno="154" refid="classstd_1_1___ref_counted_ptr_1a7c7edeeff2de443e105d19f8c9149682" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1afba8835a376f9852f703fbcb96fd3148" kindref="member">_RefCountedPtr&lt;T, traits&gt;::operator-&gt;</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="155"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr_;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>&amp;</highlight></codeline>
+<codeline lineno="162" refid="classstd_1_1___ref_counted_ptr_1ab75a6b8d0f643122bf83d566e75d879e" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1ab75a6b8d0f643122bf83d566e75d879e" kindref="member">_RefCountedPtr&lt;T, traits&gt;::operator*</ref>()</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*ptr_;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>&amp;</highlight></codeline>
+<codeline lineno="170" refid="classstd_1_1___ref_counted_ptr_1a36472ad0c3ba3349c45f8cfe22c13f69" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1ab75a6b8d0f643122bf83d566e75d879e" kindref="member">_RefCountedPtr&lt;T, traits&gt;::operator*</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="171"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*ptr_;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="classstd_1_1___ref_counted_ptr_1a04fd0cf84f9b05eb3f868e5e1a38e990" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr" kindref="compound">_RefCountedPtr&lt;T, traits&gt;::operator</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="k__tan_8c_1a9f5212e2bd9ed6ae4a7aac34a16d89af" kindref="member">T</ref>*<sp/>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr_;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>traits&gt;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185" refid="classstd_1_1___ref_counted_ptr_1a0f08435c212c324be2bd3d85bed24d4a" refkind="member"><highlight class="normal"><ref refid="classstd_1_1___ref_counted_ptr_1a0f08435c212c324be2bd3d85bed24d4a" kindref="member">_RefCountedPtr&lt;T, traits&gt;::isNonUnique</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="186"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(refCount_<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*refCount_<sp/>!=<sp/>1;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_MSL_NO_CPP_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>std</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__CFM68K__)<sp/>&amp;&amp;<sp/>!defined(__USING_STATIC_LIBS__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#pragma<sp/>import<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>options<sp/>align=reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>RC_INVOKED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_REFCOUNTEDPTR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight><highlight class="comment">//<sp/>hh<sp/>980804<sp/>changed<sp/>__std()<sp/>to<sp/>_STD::</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight><highlight class="comment">//<sp/>hh<sp/>990120<sp/>changed<sp/>name<sp/>of<sp/>MSIPL<sp/>flags</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C++/MSL_Common/Include/RefCountedPtrArray.h"/>
+  </compounddef>
+</doxygen>

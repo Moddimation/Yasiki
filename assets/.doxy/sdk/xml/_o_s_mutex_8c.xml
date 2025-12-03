@@ -1,0 +1,1005 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_o_s_mutex_8c" kind="file" language="C++">
+    <compoundname>OSMutex.c</compoundname>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <includes refid="_o_s_private_8h" local="yes">OSPrivate.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>OSMutex.c</label>
+        <link refid="_o_s_mutex_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>OSPrivate.h</label>
+        <link refid="_o_s_private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_o_s_mutex_8c_1a72a0f6f04bebaed602f9a1d2cfdb7dbb" prot="public" static="no">
+        <name>ENQUEUE_MUTEX</name>
+        <param><defname>mutex</defname></param>
+        <param><defname>queue</defname></param>
+        <param><defname>link</defname></param>
+        <initializer>    <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">do</ref> {                                                                                       \
+        <ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>* <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref> = (queue)-&gt;tail;                                                       \
+        <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">if</ref> (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref> == <ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)                                                                    \
+        {                                                                                      \
+            (queue)-&gt;head = (mutex);                                                           \
+        }                                                                                      \
+        <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">else</ref>                                                                                   \
+        {                                                                                      \
+            <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref>-&gt;<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">link.next</ref> = (mutex);                                                       \
+        }                                                                                      \
+        (mutex)-&gt;<ref refid="dvdqueue_8c_1a0bf1c02a85121fc941973f58413e13f9" kindref="member">link.prev</ref> = <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref>;                                                           \
+        (mutex)-&gt;<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">link.next</ref> = 0;                                                                \
+        (queue)-&gt;tail = (mutex);                                                               \
+    }                                                                                          \
+    <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">while</ref> (0);</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="5" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="5" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="define" id="_o_s_mutex_8c_1a32998ef06d6c336475fd282694f67d4c" prot="public" static="no">
+        <name>DEQUEUE_MUTEX</name>
+        <param><defname>mutex</defname></param>
+        <param><defname>queue</defname></param>
+        <param><defname>link</defname></param>
+        <initializer>    <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">do</ref> {                                                                                       \
+        <ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>* <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref> = (mutex)-&gt;<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">link.next</ref>;                                                  \
+        <ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>* <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref> = (mutex)-&gt;<ref refid="dvdqueue_8c_1a0bf1c02a85121fc941973f58413e13f9" kindref="member">link.prev</ref>;                                                  \
+        <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">if</ref> (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref> == <ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)                                                                    \
+        {                                                                                      \
+            (queue)-&gt;tail = <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref>;                                                            \
+        }                                                                                      \
+        <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">else</ref>                                                                                   \
+        {                                                                                      \
+            <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref>-&gt;<ref refid="dvdqueue_8c_1a0bf1c02a85121fc941973f58413e13f9" kindref="member">link.prev</ref> = <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref>;                                                        \
+        }                                                                                      \
+        <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">if</ref> (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref> == <ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)                                                                    \
+        {                                                                                      \
+            (queue)-&gt;head = <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref>;                                                            \
+        }                                                                                      \
+        <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">else</ref>                                                                                   \
+        {                                                                                      \
+            <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__prev</ref>-&gt;<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">link.next</ref> = <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref>;                                                        \
+        }                                                                                      \
+    }                                                                                          \
+    <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">while</ref> (0);</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="22" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="22" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="define" id="_o_s_mutex_8c_1a690f602e8c866e2f3f23a06a51962289" prot="public" static="no">
+        <name>DEQUEUE_HEAD</name>
+        <param><defname>mutex</defname></param>
+        <param><defname>queue</defname></param>
+        <param><defname>link</defname></param>
+        <initializer>    <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">do</ref> {                                                                                       \
+        <ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>* <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref> = mutex-&gt;<ref refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" kindref="member">link.next</ref>;                                                    \
+        <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">if</ref> (<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref> == <ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)                                                                    \
+        {                                                                                      \
+            (queue)-&gt;tail = 0;                                                                 \
+        }                                                                                      \
+        <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">else</ref>                                                                                   \
+        {                                                                                      \
+            <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref>-&gt;<ref refid="dvdqueue_8c_1a0bf1c02a85121fc941973f58413e13f9" kindref="member">link.prev</ref> = 0;                                                             \
+        }                                                                                      \
+        (queue)-&gt;head = <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">__next</ref>;                                                                \
+    }                                                                                          \
+    <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">while</ref> (0);</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="45" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="45" bodyend="58"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_o_s_mutex_8c_1a49ad28989551033add64113ae4c55534" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>static BOOL IsMember</definition>
+        <argsstring>(OSMutexQueue *queue, OSMutex *mutex)</argsstring>
+        <name>IsMember</name>
+        <param>
+          <type><ref refid="struct_o_s_mutex_queue" kindref="compound">OSMutexQueue</ref> *</type>
+          <declname>queue</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref> *</type>
+          <declname>mutex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="245" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="245" bodyend="259" declfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" declline="60" declcolumn="13"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="struct_o_s_mutex_queue_1a923346e7484b6437fa253fa35259f6e3" compoundref="_o_s_thread_8h" startline="37">OSMutexQueue::head</references>
+        <references refid="struct_o_s_mutex_1a81716a34bc8d9003ebb5ada22bb975ea" compoundref="_o_s_mutex_8h" startline="15">OSMutex::link</references>
+        <references refid="struct_o_s_mutex_link_1a2d983b1d25f99ad459cfa6fb2d461dce" compoundref="_o_s_thread_8h" startline="43">OSMutexLink::next</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>BOOL __OSCheckMutex</definition>
+        <argsstring>(OSMutex *mutex)</argsstring>
+        <name>__OSCheckMutex</name>
+        <param>
+          <type><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref> *</type>
+          <declname>mutex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="262" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="262" bodyend="314" declfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" declline="61" declcolumn="13"/>
+        <references refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" compoundref="_o_s_mutex_8h" startline="14">OSMutex::count</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="struct_o_s_thread_queue_1a9dcfa887620d198475239631eb15fbba" compoundref="_o_s_thread_8h" startline="25">OSThreadQueue::head</references>
+        <references refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" compoundref="_o_s_thread_8h" startline="59">OSThread::link</references>
+        <references refid="struct_o_s_thread_link_1aa088858c70226173056897f3086ddd0b" compoundref="_o_s_thread_8h" startline="31">OSThreadLink::next</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_o_s_thread_link_1a8910e3f5a1f99cc783f3a2e490eb1125" compoundref="_o_s_thread_8h" startline="32">OSThreadLink::prev</references>
+        <references refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" compoundref="_o_s_thread_8h" startline="54">OSThread::priority</references>
+        <references refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" compoundref="_o_s_mutex_8h" startline="12">OSMutex::queue</references>
+        <references refid="struct_o_s_thread_1a16ac1f5159a0135c7ff65684998fbe64" compoundref="_o_s_thread_8h" startline="51">OSThread::state</references>
+        <references refid="struct_o_s_thread_queue_1a2f44b18bfdce683ecf686c103d57ad77" compoundref="_o_s_thread_8h" startline="26">OSThreadQueue::tail</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_o_s_mutex_8c_1af756730c8323a5b414eac45cd13aeb48" compoundref="_o_s_mutex_8c" startline="334" endline="352">__OSCheckMutexes</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1a44139aecb52285e28ee357e6fb07e9df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>BOOL __OSCheckDeadLock</definition>
+        <argsstring>(OSThread *thread)</argsstring>
+        <name>__OSCheckDeadLock</name>
+        <param>
+          <type><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref> *</type>
+          <declname>thread</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="317" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="317" bodyend="331" declfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" declline="62" declcolumn="13"/>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="struct_o_s_thread_1a3e0d8b8f33e95c09dce31b0205d87a1b" compoundref="_o_s_thread_8h" startline="63">OSThread::mutex</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+        <referencedby refid="_o_s_mutex_8h_1ac540b8ab45b64548e31395f193f0fc49" compoundref="_o_s_mutex_8c" startline="74" endline="113">OSLockMutex</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1af756730c8323a5b414eac45cd13aeb48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>BOOL __OSCheckMutexes</definition>
+        <argsstring>(OSThread *thread)</argsstring>
+        <name>__OSCheckMutexes</name>
+        <param>
+          <type><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref> *</type>
+          <declname>thread</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="334" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="334" bodyend="352" declfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" declline="63" declcolumn="13"/>
+        <references refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" compoundref="_o_s_mutex_8c" startline="262" endline="314">__OSCheckMutex</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="struct_o_s_mutex_queue_1a923346e7484b6437fa253fa35259f6e3" compoundref="_o_s_thread_8h" startline="37">OSMutexQueue::head</references>
+        <references refid="struct_o_s_mutex_1a81716a34bc8d9003ebb5ada22bb975ea" compoundref="_o_s_mutex_8h" startline="15">OSMutex::link</references>
+        <references refid="struct_o_s_mutex_link_1a2d983b1d25f99ad459cfa6fb2d461dce" compoundref="_o_s_thread_8h" startline="43">OSMutexLink::next</references>
+        <references refid="struct_o_s_thread_1a5b7c70a4a77604d3092c9143e3ecadee" compoundref="_o_s_thread_8h" startline="64">OSThread::queueMutex</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1a03d1b0af602295a14f6df01d5a0aa12e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSInitMutex</definition>
+        <argsstring>(OSMutex *mutex)</argsstring>
+        <name>OSInitMutex</name>
+        <param>
+          <type><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref> *</type>
+          <declname>mutex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="66" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="66" bodyend="71"/>
+        <references refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" compoundref="_o_s_mutex_8h" startline="14">OSMutex::count</references>
+        <references refid="_o_s_thread_8h_1a9e24384a0b5c23564ecc3bd579b36c72" compoundref="_o_s_thread_8c" startline="165" endline="168">OSInitThreadQueue</references>
+        <references refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" compoundref="_o_s_mutex_8h" startline="12">OSMutex::queue</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1ac540b8ab45b64548e31395f193f0fc49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSLockMutex</definition>
+        <argsstring>(OSMutex *mutex)</argsstring>
+        <name>OSLockMutex</name>
+        <param>
+          <type><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref> *</type>
+          <declname>mutex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="74" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="74" bodyend="113"/>
+        <references refid="_o_s_mutex_8c_1a44139aecb52285e28ee357e6fb07e9df" compoundref="_o_s_mutex_8c" startline="317" endline="331">__OSCheckDeadLock</references>
+        <references refid="_o_s_private_8h_1a7273bdc1fd7324c51fed91595266a7d0" compoundref="_o_s_thread_8c" startline="365" endline="379">__OSPromoteThread</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" compoundref="_o_s_mutex_8h" startline="14">OSMutex::count</references>
+        <references refid="_o_s_mutex_8c_1a72a0f6f04bebaed602f9a1d2cfdb7dbb" compoundref="_o_s_mutex_8c" startline="5" endline="20">ENQUEUE_MUTEX</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="_o_s_thread_8h_1a31f38285bb86d3dee8ae11a66fb9e057" compoundref="_o_s_thread_8c" startline="171" endline="174">OSGetCurrentThread</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_thread_8h_1a40601ddddabf312483c9a3da0a924fa6" compoundref="_o_s_thread_8c" startline="776" endline="802">OSSleepThread</references>
+        <references refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" compoundref="_o_s_thread_8h" startline="54">OSThread::priority</references>
+        <references refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" compoundref="_o_s_mutex_8h" startline="12">OSMutex::queue</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+        <referencedby refid="_o_s_mutex_8h_1ae1e07e157d68fb2149cc5ac69628640f" compoundref="_o_s_mutex_8c" startline="203" endline="236">OSWaitCond</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1abdcea1245d3bf588114b33e213892d6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSUnlockMutex</definition>
+        <argsstring>(OSMutex *mutex)</argsstring>
+        <name>OSUnlockMutex</name>
+        <param>
+          <type><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref> *</type>
+          <declname>mutex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="116" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="116" bodyend="146"/>
+        <references refid="_o_s_private_8h_1aeec7b3d334173acfa47f9e8fa69390cd" compoundref="_o_s_thread_8c" startline="290" endline="305">__OSGetEffectivePriority</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" compoundref="_o_s_mutex_8h" startline="14">OSMutex::count</references>
+        <references refid="_o_s_mutex_8c_1a32998ef06d6c336475fd282694f67d4c" compoundref="_o_s_mutex_8c" startline="22" endline="43">DEQUEUE_MUTEX</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="_o_s_thread_8h_1a31f38285bb86d3dee8ae11a66fb9e057" compoundref="_o_s_thread_8c" startline="171" endline="174">OSGetCurrentThread</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" compoundref="_o_s_thread_8c" startline="805" endline="827">OSWakeupThread</references>
+        <references refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" compoundref="_o_s_thread_8h" startline="54">OSThread::priority</references>
+        <references refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" compoundref="_o_s_mutex_8h" startline="12">OSMutex::queue</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1a1aa6bb203afd1d6771603ffdf5dcb882" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __OSUnlockAllMutex</definition>
+        <argsstring>(OSThread *thread)</argsstring>
+        <name>__OSUnlockAllMutex</name>
+        <param>
+          <type><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref> *</type>
+          <declname>thread</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="149" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="149" bodyend="162"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" compoundref="_o_s_mutex_8h" startline="14">OSMutex::count</references>
+        <references refid="_o_s_mutex_8c_1a690f602e8c866e2f3f23a06a51962289" compoundref="_o_s_mutex_8c" startline="45" endline="58">DEQUEUE_HEAD</references>
+        <references refid="struct_o_s_mutex_queue_1a923346e7484b6437fa253fa35259f6e3" compoundref="_o_s_thread_8h" startline="37">OSMutexQueue::head</references>
+        <references refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" compoundref="_o_s_thread_8c" startline="805" endline="827">OSWakeupThread</references>
+        <references refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" compoundref="_o_s_mutex_8h" startline="12">OSMutex::queue</references>
+        <references refid="struct_o_s_thread_1a5b7c70a4a77604d3092c9143e3ecadee" compoundref="_o_s_thread_8h" startline="64">OSThread::queueMutex</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+        <referencedby refid="_o_s_thread_8h_1a4dc00e8b9758c58fbdbb73350637f805" compoundref="_o_s_thread_8c" startline="581" endline="628">OSCancelThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a151e0732df7d0827032f5df28bd61a57" compoundref="_o_s_thread_8c" startline="542" endline="578">OSExitThread</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1a5892ff24353a07eaec68242ef44998d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL OSTryLockMutex</definition>
+        <argsstring>(OSMutex *mutex)</argsstring>
+        <name>OSTryLockMutex</name>
+        <param>
+          <type><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref> *</type>
+          <declname>mutex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="165" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="165" bodyend="194"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" compoundref="_o_s_mutex_8h" startline="14">OSMutex::count</references>
+        <references refid="_o_s_mutex_8c_1a72a0f6f04bebaed602f9a1d2cfdb7dbb" compoundref="_o_s_mutex_8c" startline="5" endline="20">ENQUEUE_MUTEX</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="_o_s_thread_8h_1a31f38285bb86d3dee8ae11a66fb9e057" compoundref="_o_s_thread_8c" startline="171" endline="174">OSGetCurrentThread</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1a2b4f423221a0f3bff5b68efd1c8524e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSInitCond</definition>
+        <argsstring>(OSCond *cond)</argsstring>
+        <name>OSInitCond</name>
+        <param>
+          <type><ref refid="struct_o_s_cond" kindref="compound">OSCond</ref> *</type>
+          <declname>cond</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="197" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="197" bodyend="200"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_thread_8h_1a9e24384a0b5c23564ecc3bd579b36c72" compoundref="_o_s_thread_8c" startline="165" endline="168">OSInitThreadQueue</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1a7172aefdb664fa1dbc3fb666fae2c157" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSWaitCond</definition>
+        <argsstring>(OSCond *cond, OSMutex *mutex)</argsstring>
+        <name>OSWaitCond</name>
+        <param>
+          <type><ref refid="struct_o_s_cond" kindref="compound">OSCond</ref> *</type>
+          <declname>cond</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref> *</type>
+          <declname>mutex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="203" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="203" bodyend="236"/>
+        <references refid="_o_s_private_8h_1aeec7b3d334173acfa47f9e8fa69390cd" compoundref="_o_s_thread_8c" startline="290" endline="305">__OSGetEffectivePriority</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" compoundref="_o_s_mutex_8h" startline="14">OSMutex::count</references>
+        <references refid="_o_s_mutex_8c_1a32998ef06d6c336475fd282694f67d4c" compoundref="_o_s_mutex_8c" startline="22" endline="43">DEQUEUE_MUTEX</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="_o_s_thread_8h_1a752b274f811983ec5ee60d31811b353a" compoundref="_o_s_thread_8c" startline="223" endline="234">OSDisableScheduler</references>
+        <references refid="_o_s_thread_8h_1abf32afaa4671b213795faf2d299b00c7" compoundref="_o_s_thread_8c" startline="237" endline="248">OSEnableScheduler</references>
+        <references refid="_o_s_thread_8h_1a31f38285bb86d3dee8ae11a66fb9e057" compoundref="_o_s_thread_8c" startline="171" endline="174">OSGetCurrentThread</references>
+        <references refid="_o_s_mutex_8c_1ac540b8ab45b64548e31395f193f0fc49" compoundref="_o_s_mutex_8c" startline="74" endline="113">OSLockMutex</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_thread_8h_1a40601ddddabf312483c9a3da0a924fa6" compoundref="_o_s_thread_8c" startline="776" endline="802">OSSleepThread</references>
+        <references refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" compoundref="_o_s_thread_8c" startline="805" endline="827">OSWakeupThread</references>
+        <references refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" compoundref="_o_s_thread_8h" startline="54">OSThread::priority</references>
+        <references refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" compoundref="_o_s_mutex_8h" startline="12">OSMutex::queue</references>
+        <references refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" compoundref="_o_s_mutex_8h" startline="13">OSMutex::thread</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_mutex_8c_1a37c4c1ef690ba151a41271f31e5f8039" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSSignalCond</definition>
+        <argsstring>(OSCond *cond)</argsstring>
+        <name>OSSignalCond</name>
+        <param>
+          <type><ref refid="struct_o_s_cond" kindref="compound">OSCond</ref> *</type>
+          <declname>cond</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" line="239" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSMutex.c" bodystart="239" bodyend="242"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" compoundref="_o_s_thread_8c" startline="805" endline="827">OSWakeupThread</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_o_s_private_8h" kindref="compound">OSPrivate.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="_o_s_mutex_8c_1a72a0f6f04bebaed602f9a1d2cfdb7dbb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENQUEUE_MUTEX(mutex,<sp/>queue,<sp/>link)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>do<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OSMutex*<sp/>__prev<sp/>=<sp/>(queue)-&gt;tail;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="8"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(__prev<sp/>==<sp/>NULL)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(queue)-&gt;head<sp/>=<sp/>(mutex);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="13"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__prev-&gt;link.next<sp/>=<sp/>(mutex);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="15"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(mutex)-&gt;link.prev<sp/>=<sp/>__prev;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="17"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(mutex)-&gt;link.next<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="18"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(queue)-&gt;tail<sp/>=<sp/>(mutex);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>while<sp/>(0);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="_o_s_mutex_8c_1a32998ef06d6c336475fd282694f67d4c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEQUEUE_MUTEX(mutex,<sp/>queue,<sp/>link)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="23"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>do<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="24"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OSMutex*<sp/>__next<sp/>=<sp/>(mutex)-&gt;link.next;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="25"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OSMutex*<sp/>__prev<sp/>=<sp/>(mutex)-&gt;link.prev;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="26"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(__next<sp/>==<sp/>NULL)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="27"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="28"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(queue)-&gt;tail<sp/>=<sp/>__prev;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="30"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="31"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="32"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__next-&gt;link.prev<sp/>=<sp/>__prev;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="33"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="34"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(__prev<sp/>==<sp/>NULL)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(queue)-&gt;head<sp/>=<sp/>__next;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="37"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="38"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="39"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="40"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__prev-&gt;link.next<sp/>=<sp/>__next;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="41"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="42"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="43"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>while<sp/>(0);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="_o_s_mutex_8c_1a690f602e8c866e2f3f23a06a51962289" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEQUEUE_HEAD(mutex,<sp/>queue,<sp/>link)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="46"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>do<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="47"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OSMutex*<sp/>__next<sp/>=<sp/>mutex-&gt;link.next;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="48"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(__next<sp/>==<sp/>NULL)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="49"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="50"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(queue)-&gt;tail<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="51"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="52"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="53"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="54"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__next-&gt;link.prev<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="55"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="56"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(queue)-&gt;head<sp/>=<sp/>__next;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="57"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="58"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>while<sp/>(0);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="_o_s_mutex_8c_1a49ad28989551033add64113ae4c55534" kindref="member">IsMember</ref><sp/>(<ref refid="struct_o_s_mutex_queue" kindref="compound">OSMutexQueue</ref>*<sp/>queue,<sp/><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" kindref="member">__OSCheckMutex</ref><sp/>(<ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1a44139aecb52285e28ee357e6fb07e9df" kindref="member">__OSCheckDeadLock</ref><sp/>(<ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/>thread);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1af756730c8323a5b414eac45cd13aeb48" kindref="member">__OSCheckMutexes</ref><sp/>(<ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/>thread);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="_o_s_mutex_8h_1a03d1b0af602295a14f6df01d5a0aa12e" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1a03d1b0af602295a14f6df01d5a0aa12e" kindref="member">OSInitMutex</ref><sp/>(<ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a9e24384a0b5c23564ecc3bd579b36c72" kindref="member">OSInitThreadQueue</ref><sp/>(&amp;mutex-&gt;<ref refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" kindref="member">queue</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="_o_s_mutex_8h_1ac540b8ab45b64548e31395f193f0fc49" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1ac540b8ab45b64548e31395f193f0fc49" kindref="member">OSLockMutex</ref><sp/>(<ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>enabled<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref><sp/>=<sp/><ref refid="_o_s_thread_8h_1a31f38285bb86d3dee8ae11a66fb9e057" kindref="member">OSGetCurrentThread</ref>();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x8C,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,<sp/></highlight><highlight class="stringliteral">&quot;OSLockMutex():<sp/>current<sp/>thread<sp/>does<sp/>not<sp/>exist.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x8E,</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;state<sp/>==<sp/>2,</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSLockMutex():<sp/>current<sp/>thread<sp/>is<sp/>not<sp/>running.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(1)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ownerThread</ref><sp/>=<sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ownerThread</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref>++;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1a72a0f6f04bebaed602f9a1d2cfdb7dbb" kindref="member">ENQUEUE_MUTEX</ref><sp/>(mutex,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;queueMutex,<sp/>link);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ownerThread</ref><sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref>++;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;mutex<sp/>=<sp/>mutex;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_private_8h_1a7273bdc1fd7324c51fed91595266a7d0" kindref="member">__OSPromoteThread</ref><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;<ref refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" kindref="member">priority</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSG2LINE</ref><sp/>(0xA4,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1a44139aecb52285e28ee357e6fb07e9df" kindref="member">__OSCheckDeadLock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>)<sp/>==<sp/>0,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSLockMutex():<sp/>detected<sp/>deadlock:<sp/>current<sp/>thread<sp/>%p,<sp/>mutex<sp/>%p.&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a40601ddddabf312483c9a3da0a924fa6" kindref="member">OSSleepThread</ref><sp/>(&amp;mutex-&gt;<ref refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" kindref="member">queue</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;mutex<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(enabled);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="_o_s_mutex_8h_1abdcea1245d3bf588114b33e213892d6f" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1abdcea1245d3bf588114b33e213892d6f" kindref="member">OSUnlockMutex</ref><sp/>(<ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>enabled<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref><sp/>=<sp/><ref refid="_o_s_thread_8h_1a31f38285bb86d3dee8ae11a66fb9e057" kindref="member">OSGetCurrentThread</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xBD,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,<sp/></highlight><highlight class="stringliteral">&quot;OSUnlockMutex():<sp/>current<sp/>thread<sp/>does<sp/>not<sp/>exist.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xBF,</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;state<sp/>==<sp/>2,</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSUnlockMutex():<sp/>current<sp/>thread<sp/>is<sp/>not<sp/>running.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSG2LINE</ref><sp/>(0xC2,</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSUnlockMutex():<sp/>current<sp/>thread<sp/>%p<sp/>is<sp/>not<sp/>the<sp/>owner<sp/>of<sp/>mutex<sp/>%p.&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!--mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref>)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1a32998ef06d6c336475fd282694f67d4c" kindref="member">DEQUEUE_MUTEX</ref><sp/>(mutex,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;queueMutex,<sp/>link);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;priority<sp/>&lt;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;base)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;<ref refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" kindref="member">priority</ref><sp/>=<sp/><ref refid="_o_s_private_8h_1aeec7b3d334173acfa47f9e8fa69390cd" kindref="member">__OSGetEffectivePriority</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" kindref="member">OSWakeupThread</ref><sp/>(&amp;mutex-&gt;<ref refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" kindref="member">queue</ref>);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(enabled);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="_o_s_mutex_8c_1a1aa6bb203afd1d6771603ffdf5dcb882" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1a1aa6bb203afd1d6771603ffdf5dcb882" kindref="member">__OSUnlockAllMutex</ref><sp/>(<ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/>thread)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(thread-&gt;<ref refid="struct_o_s_thread_1a5b7c70a4a77604d3092c9143e3ecadee" kindref="member">queueMutex</ref>.<ref refid="struct_o_s_mutex_queue_1a923346e7484b6437fa253fa35259f6e3" kindref="member">head</ref>)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex<sp/>=<sp/>thread-&gt;<ref refid="struct_o_s_thread_1a5b7c70a4a77604d3092c9143e3ecadee" kindref="member">queueMutex</ref>.<ref refid="struct_o_s_mutex_queue_1a923346e7484b6437fa253fa35259f6e3" kindref="member">head</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1a690f602e8c866e2f3f23a06a51962289" kindref="member">DEQUEUE_HEAD</ref><sp/>(mutex,<sp/>&amp;thread-&gt;<ref refid="struct_o_s_thread_1a5b7c70a4a77604d3092c9143e3ecadee" kindref="member">queueMutex</ref>,<sp/>link);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0xE5,<sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>==<sp/>thread);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" kindref="member">OSWakeupThread</ref><sp/>(&amp;mutex-&gt;<ref refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" kindref="member">queue</ref>);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></highlight></codeline>
+<codeline lineno="165" refid="_o_s_mutex_8h_1a5892ff24353a07eaec68242ef44998d2" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1a5892ff24353a07eaec68242ef44998d2" kindref="member">OSTryLockMutex</ref><sp/>(<ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex)</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>enabled<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref><sp/>=<sp/><ref refid="_o_s_thread_8h_1a31f38285bb86d3dee8ae11a66fb9e057" kindref="member">OSGetCurrentThread</ref>();</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>locked;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xFF,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,<sp/></highlight><highlight class="stringliteral">&quot;OSTryLockMutex():<sp/>current<sp/>thread<sp/>does<sp/>not<sp/>exist.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x101,</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;state<sp/>==<sp/>2,</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSTryLockMutex():<sp/>current<sp/>thread<sp/>is<sp/>not<sp/>running.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref>)</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref>++;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1a72a0f6f04bebaed602f9a1d2cfdb7dbb" kindref="member">ENQUEUE_MUTEX</ref><sp/>(mutex,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;queueMutex,<sp/>link);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>locked<sp/>=<sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>)</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref>++;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>locked<sp/>=<sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>locked<sp/>=<sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(enabled);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>locked;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197" refid="_o_s_mutex_8h_1a6d1d351e169abfa71f23df1c5739e19a" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1a2b4f423221a0f3bff5b68efd1c8524e6" kindref="member">OSInitCond</ref><sp/>(<ref refid="struct_o_s_cond" kindref="compound">OSCond</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cond</ref>)</highlight></codeline>
+<codeline lineno="198"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a9e24384a0b5c23564ecc3bd579b36c72" kindref="member">OSInitThreadQueue</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cond</ref>-&gt;queue);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="_o_s_mutex_8h_1ae1e07e157d68fb2149cc5ac69628640f" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1a7172aefdb664fa1dbc3fb666fae2c157" kindref="member">OSWaitCond</ref><sp/>(<ref refid="struct_o_s_cond" kindref="compound">OSCond</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cond</ref>,<sp/><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>enabled<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref><sp/>=<sp/><ref refid="_o_s_thread_8h_1a31f38285bb86d3dee8ae11a66fb9e057" kindref="member">OSGetCurrentThread</ref>();</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x139,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,<sp/></highlight><highlight class="stringliteral">&quot;OSWaitCond():<sp/>current<sp/>thread<sp/>does<sp/>not<sp/>exist.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x13B,</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;state<sp/>==<sp/>2,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSWaitCond():<sp/>current<sp/>thread<sp/>is<sp/>not<sp/>running.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSG2LINE</ref><sp/>(0x13E,</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;OSWaitCond():<sp/>current<sp/>thread<sp/>%p<sp/>is<sp/>not<sp/>the<sp/>owner<sp/>of<sp/>mutex<sp/>%p.&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>,</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>)</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>count<sp/>=<sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref>;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1a32998ef06d6c336475fd282694f67d4c" kindref="member">DEQUEUE_MUTEX</ref><sp/>(mutex,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;queueMutex,<sp/>link);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;priority<sp/>&lt;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;base)</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>-&gt;<ref refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" kindref="member">priority</ref><sp/>=<sp/><ref refid="_o_s_private_8h_1aeec7b3d334173acfa47f9e8fa69390cd" kindref="member">__OSGetEffectivePriority</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">currentThread</ref>);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a752b274f811983ec5ee60d31811b353a" kindref="member">OSDisableScheduler</ref>();</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" kindref="member">OSWakeupThread</ref><sp/>(&amp;mutex-&gt;<ref refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" kindref="member">queue</ref>);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1abf32afaa4671b213795faf2d299b00c7" kindref="member">OSEnableScheduler</ref>();</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a40601ddddabf312483c9a3da0a924fa6" kindref="member">OSSleepThread</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cond</ref>-&gt;queue);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_mutex_8c_1ac540b8ab45b64548e31395f193f0fc49" kindref="member">OSLockMutex</ref><sp/>(mutex);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref><sp/>=<sp/>count;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(enabled);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239" refid="_o_s_mutex_8h_1a18a688708cb7bc9b776948fd67294131" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1a37c4c1ef690ba151a41271f31e5f8039" kindref="member">OSSignalCond</ref><sp/>(<ref refid="struct_o_s_cond" kindref="compound">OSCond</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cond</ref>)</highlight></codeline>
+<codeline lineno="240"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" kindref="member">OSWakeupThread</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cond</ref>-&gt;queue);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></highlight></codeline>
+<codeline lineno="245" refid="_o_s_mutex_8c_1a49ad28989551033add64113ae4c55534" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1a49ad28989551033add64113ae4c55534" kindref="member">IsMember</ref><sp/>(<ref refid="struct_o_s_mutex_queue" kindref="compound">OSMutexQueue</ref>*<sp/>queue,<sp/><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex)</highlight></codeline>
+<codeline lineno="246"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">member</ref><sp/>=<sp/>queue-&gt;<ref refid="struct_o_s_mutex_queue_1a923346e7484b6437fa253fa35259f6e3" kindref="member">head</ref>;</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">member</ref>)</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex<sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">member</ref>)</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">member</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">member</ref>-&gt;<ref refid="struct_o_s_mutex_1a81716a34bc8d9003ebb5ada22bb975ea" kindref="member">link</ref>.<ref refid="struct_o_s_mutex_link_1a2d983b1d25f99ad459cfa6fb2d461dce" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></highlight></codeline>
+<codeline lineno="262" refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" kindref="member">__OSCheckMutex</ref><sp/>(<ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex)</highlight></codeline>
+<codeline lineno="263"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/><sp/><sp/><sp/><sp/><sp/>thread;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_thread_queue" kindref="compound">OSThreadQueue</ref>*<sp/>queue;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>priority;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>priority<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>queue<sp/>=<sp/>&amp;mutex-&gt;<ref refid="struct_o_s_mutex_1a94e38e16ab262180416736b11921867b" kindref="member">queue</ref>;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(queue-&gt;<ref refid="struct_o_s_thread_queue_1a9dcfa887620d198475239631eb15fbba" kindref="member">head</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref><sp/>&amp;&amp;<sp/>queue-&gt;<ref refid="struct_o_s_thread_queue_1a9dcfa887620d198475239631eb15fbba" kindref="member">head</ref>-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1a8910e3f5a1f99cc783f3a2e490eb1125" kindref="member">prev</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(queue-&gt;<ref refid="struct_o_s_thread_queue_1a2f44b18bfdce683ecf686c103d57ad77" kindref="member">tail</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref><sp/>&amp;&amp;<sp/>queue-&gt;<ref refid="struct_o_s_thread_queue_1a2f44b18bfdce683ecf686c103d57ad77" kindref="member">tail</ref>-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1aa088858c70226173056897f3086ddd0b" kindref="member">next</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>thread<sp/>=<sp/>queue-&gt;<ref refid="struct_o_s_thread_queue_1a9dcfa887620d198475239631eb15fbba" kindref="member">head</ref>;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(thread)</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(thread-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1aa088858c70226173056897f3086ddd0b" kindref="member">next</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref><sp/>&amp;&amp;<sp/>(thread<sp/>!=<sp/>thread-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1aa088858c70226173056897f3086ddd0b" kindref="member">next</ref>-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1a8910e3f5a1f99cc783f3a2e490eb1125" kindref="member">prev</ref>))</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(thread-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1a8910e3f5a1f99cc783f3a2e490eb1125" kindref="member">prev</ref><sp/>!=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref><sp/>&amp;&amp;<sp/>(thread<sp/>!=<sp/>thread-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1a8910e3f5a1f99cc783f3a2e490eb1125" kindref="member">prev</ref>-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1aa088858c70226173056897f3086ddd0b" kindref="member">next</ref>))</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(thread-&gt;<ref refid="struct_o_s_thread_1a16ac1f5159a0135c7ff65684998fbe64" kindref="member">state</ref><sp/>!=<sp/>4)</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(thread-&gt;<ref refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" kindref="member">priority</ref><sp/>&lt;<sp/>priority)</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>priority<sp/>=<sp/>thread-&gt;<ref refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" kindref="member">priority</ref>;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>thread<sp/>=<sp/>thread-&gt;<ref refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" kindref="member">link</ref>.<ref refid="struct_o_s_thread_link_1aa088858c70226173056897f3086ddd0b" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref>)</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref><sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1afc77eff74479893289968af3511e1e65" kindref="member">count</ref><sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></highlight></codeline>
+<codeline lineno="317" refid="_o_s_mutex_8c_1a44139aecb52285e28ee357e6fb07e9df" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1a44139aecb52285e28ee357e6fb07e9df" kindref="member">__OSCheckDeadLock</ref><sp/>(<ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/>thread)</highlight></codeline>
+<codeline lineno="318"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex<sp/>=<sp/>thread-&gt;<ref refid="struct_o_s_thread_1a3e0d8b8f33e95c09dce31b0205d87a1b" kindref="member">mutex</ref>;</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(mutex<sp/>&amp;&amp;<sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref>)</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>==<sp/>thread)</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex<sp/>=<sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref>-&gt;<ref refid="struct_o_s_thread_1a3e0d8b8f33e95c09dce31b0205d87a1b" kindref="member">mutex</ref>;</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></highlight></codeline>
+<codeline lineno="334" refid="_o_s_mutex_8c_1af756730c8323a5b414eac45cd13aeb48" refkind="member"><highlight class="normal"><ref refid="_o_s_mutex_8c_1af756730c8323a5b414eac45cd13aeb48" kindref="member">__OSCheckMutexes</ref><sp/>(<ref refid="struct_o_s_thread" kindref="compound">OSThread</ref>*<sp/>thread)</highlight></codeline>
+<codeline lineno="335"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_mutex" kindref="compound">OSMutex</ref>*<sp/>mutex<sp/>=<sp/>thread-&gt;<ref refid="struct_o_s_thread_1a5b7c70a4a77604d3092c9143e3ecadee" kindref="member">queueMutex</ref>.<ref refid="struct_o_s_mutex_queue_1a923346e7484b6437fa253fa35259f6e3" kindref="member">head</ref>;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(mutex)</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mutex-&gt;<ref refid="struct_o_s_mutex_1a308a9aac123f914abd84ea15a72169f4" kindref="member">thread</ref><sp/>!=<sp/>thread)</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" kindref="member">__OSCheckMutex</ref><sp/>(mutex)<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mutex<sp/>=<sp/>mutex-&gt;<ref refid="struct_o_s_mutex_1a81716a34bc8d9003ebb5ada22bb975ea" kindref="member">link</ref>.<ref refid="struct_o_s_mutex_link_1a2d983b1d25f99ad459cfa6fb2d461dce" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="352"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/os/OSMutex.c"/>
+  </compounddef>
+</doxygen>

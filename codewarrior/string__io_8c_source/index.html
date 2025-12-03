@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File string_io.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-string_ioc">File string_io.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_5ff331ae3d8ec7992933a87ab898fc05/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_296ea1c022f8cfa02577b9a5b06211f5/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../string__io_8c/"><strong>string_io.c</strong></a></p>
+<p><a href="../string__io_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/01/22 23:40:33 $ 
+ *  $Revision: 1.7 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  string_io.c
+ *  
+ *  Routines
+ *  --------
+ *      __open_string_file
+ *
+ *      __read_string
+ *      __write_string
+ *      __close_string
+ *
+ *
+ */
+
+#include &quot;ansi_files.h&quot;
+#include &quot;buffer_io.h&quot;
+#include &lt;limits.h&gt;
+#include &quot;string_io.h&quot;
+
+int __open_string_file(FILE * file, char * str, size_t n, int io_state)
+{
+#ifndef __NO_WIDE_CHAR              /* mm 980204 */
+    static const __file_modes   mode = {__must_exist, __read_write, _IOFBF, __string_file, __unoriented,  1};
+                                                /* file orientation */
+#else
+    static const __file_modes   mode = {__must_exist, __read_write, _IOFBF, __string_file, 1};
+#endif /* not __NO_WIDE_CHAR */     /* mm 980204 */
+
+    __init_file(file, mode, str, n);
+
+    file-&gt;state.io_state = io_state;
+
+    __prep_buffer(file);
+
+    return(__no_io_error);
+}
+
+int __read_string(__file_handle handle, unsigned char * buffer, size_t * count, __idle_proc idle_proc)
+{
+#pragma unused(handle,buffer,count,idle_proc)
+
+    return(__io_EOF);     /* mm 961031 */
+}
+
+int __write_string(__file_handle handle, unsigned char * buffer, size_t * count, __idle_proc idle_proc)
+{
+#pragma unused(handle,buffer,count,idle_proc)
+
+    return(__no_io_error);
+}
+
+int __close_string(__file_handle handle)
+{
+#pragma unused(handle)
+
+    return(__no_io_error);
+}
+
+/*  Change Record
+ *  01-Sep-95 JFH  First code release.
+ *  mm 961031  Changes for Pascal
+ * mm 980204  Changes to file structure to support wide characters
+*/
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

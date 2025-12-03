@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File ai.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-aic">File ai.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_9c7bf49d352ec2e9a638c47299113ea5/"><strong>ai</strong></a> <strong>&gt;</strong> <a href="./"><strong>ai.c</strong></a></p>
+<p><a href="../ai_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/ai.h&gt;</code></li>
+<li><code>#include &lt;dolphin/gx.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include "../gx/GXPrivate.h"</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_s_t_r_u_c_t___t_i_m_e_l_o_g/"><strong>STRUCT_TIMELOG</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__ai_src_time_end"><strong>__ai_src_time_end</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__ai_src_time_start"><strong>__ai_src_time_start</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_s_t_r_u_c_t___t_i_m_e_l_o_g/"><strong>STRUCT_TIMELOG</strong></a></td>
+<td style="text-align: left;"><a href="#variable-profile"><strong>profile</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../ai_8h/#typedef-aidcallback"><strong>AIDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__aid_callback"><strong>__AID_Callback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ai_8h/#typedef-aiscallback"><strong>AISCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__ais_callback"><strong>__AIS_Callback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__ai_init_flag"><strong>__AI_init_flag</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__callbackstack"><strong>__CallbackStack</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__oldstack"><strong>__OldStack</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-bound_32khz"><strong>bound_32KHz</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-bound_48khz"><strong>bound_48KHz</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-buffer"><strong>buffer</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-max_wait"><strong>max_wait</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-min_wait"><strong>min_wait</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-aicheckinit"><strong>AICheckInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetdmabytesleft"><strong>AIGetDMABytesLeft</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetdmaenableflag"><strong>AIGetDMAEnableFlag</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetdmalength"><strong>AIGetDMALength</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetdmastartaddr"><strong>AIGetDMAStartAddr</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetdspsamplerate"><strong>AIGetDSPSampleRate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetstreamplaystate"><strong>AIGetStreamPlayState</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetstreamsamplecount"><strong>AIGetStreamSampleCount</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetstreamsamplerate"><strong>AIGetStreamSampleRate</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetstreamtrigger"><strong>AIGetStreamTrigger</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetstreamvolleft"><strong>AIGetStreamVolLeft</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-aigetstreamvolright"><strong>AIGetStreamVolRight</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aiinit"><strong>AIInit</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> * stack) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aiinitdma"><strong>AIInitDMA</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> start_addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ai_8h/#typedef-aidcallback"><strong>AIDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#function-airegisterdmacallback"><strong>AIRegisterDMACallback</strong></a> (<a href="../ai_8h/#typedef-aidcallback"><strong>AIDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ai_8h/#typedef-aiscallback"><strong>AISCallback</strong></a></td>
+<td style="text-align: left;"><a href="#function-airegisterstreamcallback"><strong>AIRegisterStreamCallback</strong></a> (<a href="../ai_8h/#typedef-aiscallback"><strong>AISCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aireset"><strong>AIReset</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-airesetstreamsamplecount"><strong>AIResetStreamSampleCount</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aisetdspsamplerate"><strong>AISetDSPSampleRate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> rate) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aisetstreamplaystate"><strong>AISetStreamPlayState</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> state) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aisetstreamsamplerate"><strong>AISetStreamSampleRate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> rate) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aisetstreamtrigger"><strong>AISetStreamTrigger</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> trigger) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aisetstreamvolleft"><strong>AISetStreamVolLeft</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> vol) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aisetstreamvolright"><strong>AISetStreamVolRight</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> vol) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aistartdma"><strong>AIStartDMA</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-aistopdma"><strong>AIStopDMA</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ai_debug_set_stream_sample_rate"><strong>__AI_DEBUG_set_stream_sample_rate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> rate) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_s_t_r_u_c_t___t_i_m_e_l_o_g/"><strong>STRUCT_TIMELOG</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__ai_src_get_time"><strong>__ai_src_get_time</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__aicallbackstackswitch"><strong>__AICallbackStackSwitch</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * cb) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__aicallbackstackswitch"><strong>__AICallbackStackSwitch</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * cb) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__aidhandler"><strong>__AIDHandler</strong></a> (<a href="../_o_s_interrupt_8h/#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a> interrupt, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__aishandler"><strong>__AISHandler</strong></a> (<a href="../_o_s_interrupt_8h/#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a> interrupt, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ai_src_init"><strong>__AI_SRC_INIT</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ai_set_stream_sample_rate"><strong>__AI_set_stream_sample_rate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> rate) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__ai_src_time_end">variable __ai_src_time_end</h3>
+<pre><code class="language-C++">OSTime __ai_src_time_end;
+</code></pre>
+<hr>
+
+<h3 id="variable-__ai_src_time_start">variable __ai_src_time_start</h3>
+<pre><code class="language-C++">OSTime __ai_src_time_start;
+</code></pre>
+<hr>
+
+<h3 id="variable-profile">variable profile</h3>
+<pre><code class="language-C++">struct STRUCT_TIMELOG profile;
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-__aid_callback">variable __AID_Callback</h3>
+<pre><code class="language-C++">AIDCallback __AID_Callback;
+</code></pre>
+<hr>
+
+<h3 id="variable-__ais_callback">variable __AIS_Callback</h3>
+<pre><code class="language-C++">AISCallback __AIS_Callback;
+</code></pre>
+<hr>
+
+<h3 id="variable-__ai_init_flag">variable __AI_init_flag</h3>
+<pre><code class="language-C++">BOOL __AI_init_flag;
+</code></pre>
+<hr>
+
+<h3 id="variable-__callbackstack">variable __CallbackStack</h3>
+<pre><code class="language-C++">u8* __CallbackStack;
+</code></pre>
+<hr>
+
+<h3 id="variable-__oldstack">variable __OldStack</h3>
+<pre><code class="language-C++">u8* __OldStack;
+</code></pre>
+<hr>
+
+<h3 id="variable-bound_32khz">variable bound_32KHz</h3>
+<pre><code class="language-C++">OSTime bound_32KHz;
+</code></pre>
+<hr>
+
+<h3 id="variable-bound_48khz">variable bound_48KHz</h3>
+<pre><code class="language-C++">OSTime bound_48KHz;
+</code></pre>
+<hr>
+
+<h3 id="variable-buffer">variable buffer</h3>
+<pre><code class="language-C++">OSTime buffer;
+</code></pre>
+<hr>
+
+<h3 id="variable-max_wait">variable max_wait</h3>
+<pre><code class="language-C++">OSTime max_wait;
+</code></pre>
+<hr>
+
+<h3 id="variable-min_wait">variable min_wait</h3>
+<pre><code class="language-C++">OSTime min_wait;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-aicheckinit">function AICheckInit</h3>
+<pre><code class="language-C++">BOOL AICheckInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetdmabytesleft">function AIGetDMABytesLeft</h3>
+<pre><code class="language-C++">u32 AIGetDMABytesLeft (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetdmaenableflag">function AIGetDMAEnableFlag</h3>
+<pre><code class="language-C++">BOOL AIGetDMAEnableFlag (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetdmalength">function AIGetDMALength</h3>
+<pre><code class="language-C++">u32 AIGetDMALength (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetdmastartaddr">function AIGetDMAStartAddr</h3>
+<pre><code class="language-C++">u32 AIGetDMAStartAddr (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetdspsamplerate">function AIGetDSPSampleRate</h3>
+<pre><code class="language-C++">u32 AIGetDSPSampleRate (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetstreamplaystate">function AIGetStreamPlayState</h3>
+<pre><code class="language-C++">u32 AIGetStreamPlayState (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetstreamsamplecount">function AIGetStreamSampleCount</h3>
+<pre><code class="language-C++">u32 AIGetStreamSampleCount (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetstreamsamplerate">function AIGetStreamSampleRate</h3>
+<pre><code class="language-C++">u32 AIGetStreamSampleRate (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetstreamtrigger">function AIGetStreamTrigger</h3>
+<pre><code class="language-C++">u32 AIGetStreamTrigger (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetstreamvolleft">function AIGetStreamVolLeft</h3>
+<pre><code class="language-C++">u8 AIGetStreamVolLeft (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aigetstreamvolright">function AIGetStreamVolRight</h3>
+<pre><code class="language-C++">u8 AIGetStreamVolRight (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aiinit">function AIInit</h3>
+<pre><code class="language-C++">void AIInit (
+    u8 * stack
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aiinitdma">function AIInitDMA</h3>
+<pre><code class="language-C++">void AIInitDMA (
+    u32 start_addr,
+    u32 length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-airegisterdmacallback">function AIRegisterDMACallback</h3>
+<pre><code class="language-C++">AIDCallback AIRegisterDMACallback (
+    AIDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-airegisterstreamcallback">function AIRegisterStreamCallback</h3>
+<pre><code class="language-C++">AISCallback AIRegisterStreamCallback (
+    AISCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aireset">function AIReset</h3>
+<pre><code class="language-C++">void AIReset (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-airesetstreamsamplecount">function AIResetStreamSampleCount</h3>
+<pre><code class="language-C++">void AIResetStreamSampleCount (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aisetdspsamplerate">function AISetDSPSampleRate</h3>
+<pre><code class="language-C++">void AISetDSPSampleRate (
+    u32 rate
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aisetstreamplaystate">function AISetStreamPlayState</h3>
+<pre><code class="language-C++">void AISetStreamPlayState (
+    u32 state
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aisetstreamsamplerate">function AISetStreamSampleRate</h3>
+<pre><code class="language-C++">void AISetStreamSampleRate (
+    u32 rate
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aisetstreamtrigger">function AISetStreamTrigger</h3>
+<pre><code class="language-C++">void AISetStreamTrigger (
+    u32 trigger
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aisetstreamvolleft">function AISetStreamVolLeft</h3>
+<pre><code class="language-C++">void AISetStreamVolLeft (
+    u8 vol
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aisetstreamvolright">function AISetStreamVolRight</h3>
+<pre><code class="language-C++">void AISetStreamVolRight (
+    u8 vol
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aistartdma">function AIStartDMA</h3>
+<pre><code class="language-C++">void AIStartDMA (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-aistopdma">function AIStopDMA</h3>
+<pre><code class="language-C++">void AIStopDMA (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ai_debug_set_stream_sample_rate">function __AI_DEBUG_set_stream_sample_rate</h3>
+<pre><code class="language-C++">void __AI_DEBUG_set_stream_sample_rate (
+    u32 rate
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ai_src_get_time">function __ai_src_get_time</h3>
+<pre><code class="language-C++">struct  STRUCT_TIMELOG * __ai_src_get_time (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-__aicallbackstackswitch">function __AICallbackStackSwitch</h3>
+<pre><code class="language-C++">static void __AICallbackStackSwitch (
+    void * cb
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__aicallbackstackswitch_1">function __AICallbackStackSwitch</h3>
+<pre><code class="language-C++">static asm  void __AICallbackStackSwitch (
+    register  void * cb
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__aidhandler">function __AIDHandler</h3>
+<pre><code class="language-C++">static void __AIDHandler (
+    __OSInterrupt interrupt,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__aishandler">function __AISHandler</h3>
+<pre><code class="language-C++">static void __AISHandler (
+    __OSInterrupt interrupt,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ai_src_init">function __AI_SRC_INIT</h3>
+<pre><code class="language-C++">static void __AI_SRC_INIT (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ai_set_stream_sample_rate">function __AI_set_stream_sample_rate</h3>
+<pre><code class="language-C++">static void __AI_set_stream_sample_rate (
+    u32 rate
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/ai/ai.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

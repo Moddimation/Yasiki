@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Struct PerfSample - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="struct-perfsample">Struct PerfSample</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>PerfSample</strong></a></p>
+<ul>
+<li><code>#include &lt;perf.h&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cachemisses"><strong>cacheMisses</strong></a>  <br><em>0x20</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cpreq"><strong>cpReq</strong></a>  <br><em>0x40</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cpurdreq"><strong>cpuRdReq</strong></a>  <br><em>0x50</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cputimestampend"><strong>cpuTimeStampEnd</strong></a>  <br><em>0x08</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cputimestampstart"><strong>cpuTimeStampStart</strong></a>  <br><em>0x04</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cpuwrreq"><strong>cpuWrReq</strong></a>  <br><em>0x58</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-dspreq"><strong>dspReq</strong></a>  <br><em>0x60</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-fireq"><strong>fiReq</strong></a>  <br><em>0x88</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gptimestampend"><strong>gpTimeStampEnd</strong></a>  <br><em>0x10</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gptimestampstart"><strong>gpTimeStampStart</strong></a>  <br><em>0x0C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#variable-id"><strong>id</strong></a>  <br><em>0x00</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-instructions"><strong>instructions</strong></a>  <br><em>0x30</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-interrupted"><strong>interrupted</strong></a>  <br><em>0x14</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-ioreq"><strong>ioReq</strong></a>  <br><em>0x68</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-origcpustart"><strong>origcpuStart</strong></a>  <br><em>0x18</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-origgpstart"><strong>origgpStart</strong></a>  <br><em>0x1C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-pereq"><strong>peReq</strong></a>  <br><em>0x78</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-rasbusy"><strong>rasBusy</strong></a>  <br><em>0xA0</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-rasclocks"><strong>rasClocks</strong></a>  <br><em>0xA8</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-rfreq"><strong>rfReq</strong></a>  <br><em>0x80</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-tcreq"><strong>tcReq</strong></a>  <br><em>0x48</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-vireq"><strong>viReq</strong></a>  <br><em>0x70</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-xfwaitin"><strong>xfWaitIn</strong></a>  <br><em>0x90</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-xfwaitout"><strong>xfWaitOut</strong></a>  <br><em>0x98</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-cachemisses">variable cacheMisses</h3>
+<p><em>0x20</em> </p>
+<pre><code class="language-C++">u32 PerfSample::cacheMisses[4];
+</code></pre>
+<hr>
+
+<h3 id="variable-cpreq">variable cpReq</h3>
+<p><em>0x40</em> </p>
+<pre><code class="language-C++">u32 PerfSample::cpReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-cpurdreq">variable cpuRdReq</h3>
+<p><em>0x50</em> </p>
+<pre><code class="language-C++">u32 PerfSample::cpuRdReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-cputimestampend">variable cpuTimeStampEnd</h3>
+<p><em>0x08</em> </p>
+<pre><code class="language-C++">u32 PerfSample::cpuTimeStampEnd;
+</code></pre>
+<hr>
+
+<h3 id="variable-cputimestampstart">variable cpuTimeStampStart</h3>
+<p><em>0x04</em> </p>
+<pre><code class="language-C++">u32 PerfSample::cpuTimeStampStart;
+</code></pre>
+<hr>
+
+<h3 id="variable-cpuwrreq">variable cpuWrReq</h3>
+<p><em>0x58</em> </p>
+<pre><code class="language-C++">u32 PerfSample::cpuWrReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-dspreq">variable dspReq</h3>
+<p><em>0x60</em> </p>
+<pre><code class="language-C++">u32 PerfSample::dspReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-fireq">variable fiReq</h3>
+<p><em>0x88</em> </p>
+<pre><code class="language-C++">u32 PerfSample::fiReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-gptimestampend">variable gpTimeStampEnd</h3>
+<p><em>0x10</em> </p>
+<pre><code class="language-C++">u32 PerfSample::gpTimeStampEnd;
+</code></pre>
+<hr>
+
+<h3 id="variable-gptimestampstart">variable gpTimeStampStart</h3>
+<p><em>0x0C</em> </p>
+<pre><code class="language-C++">u32 PerfSample::gpTimeStampStart;
+</code></pre>
+<hr>
+
+<h3 id="variable-id">variable id</h3>
+<p><em>0x00</em> </p>
+<pre><code class="language-C++">u8 PerfSample::id;
+</code></pre>
+<hr>
+
+<h3 id="variable-instructions">variable instructions</h3>
+<p><em>0x30</em> </p>
+<pre><code class="language-C++">u32 PerfSample::instructions[4];
+</code></pre>
+<hr>
+
+<h3 id="variable-interrupted">variable interrupted</h3>
+<p><em>0x14</em> </p>
+<pre><code class="language-C++">int PerfSample::interrupted;
+</code></pre>
+<hr>
+
+<h3 id="variable-ioreq">variable ioReq</h3>
+<p><em>0x68</em> </p>
+<pre><code class="language-C++">u32 PerfSample::ioReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-origcpustart">variable origcpuStart</h3>
+<p><em>0x18</em> </p>
+<pre><code class="language-C++">u32 PerfSample::origcpuStart;
+</code></pre>
+<hr>
+
+<h3 id="variable-origgpstart">variable origgpStart</h3>
+<p><em>0x1C</em> </p>
+<pre><code class="language-C++">u32 PerfSample::origgpStart;
+</code></pre>
+<hr>
+
+<h3 id="variable-pereq">variable peReq</h3>
+<p><em>0x78</em> </p>
+<pre><code class="language-C++">u32 PerfSample::peReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-rasbusy">variable rasBusy</h3>
+<p><em>0xA0</em> </p>
+<pre><code class="language-C++">u32 PerfSample::rasBusy[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-rasclocks">variable rasClocks</h3>
+<p><em>0xA8</em> </p>
+<pre><code class="language-C++">u32 PerfSample::rasClocks[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-rfreq">variable rfReq</h3>
+<p><em>0x80</em> </p>
+<pre><code class="language-C++">u32 PerfSample::rfReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-tcreq">variable tcReq</h3>
+<p><em>0x48</em> </p>
+<pre><code class="language-C++">u32 PerfSample::tcReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-vireq">variable viReq</h3>
+<p><em>0x70</em> </p>
+<pre><code class="language-C++">u32 PerfSample::viReq[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-xfwaitin">variable xfWaitIn</h3>
+<p><em>0x90</em> </p>
+<pre><code class="language-C++">u32 PerfSample::xfWaitIn[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-xfwaitout">variable xfWaitOut</h3>
+<p><em>0x98</em> </p>
+<pre><code class="language-C++">u32 PerfSample::xfWaitOut[2];
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/perf.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

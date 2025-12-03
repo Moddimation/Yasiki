@@ -1,0 +1,1029 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_s_y_n_private_8h" kind="file" language="C++">
+    <compoundname>SYNPrivate.h</compoundname>
+    <includes refid="syn_8h" local="no">dolphin/syn.h</includes>
+    <includedby refid="syn_8c" local="yes">syn.c</includedby>
+    <includedby refid="synctrl_8c" local="yes">synctrl.c</includedby>
+    <includedby refid="synenv_8c" local="yes">synenv.c</includedby>
+    <includedby refid="synlfo_8c" local="yes">synlfo.c</includedby>
+    <includedby refid="synmix_8c" local="yes">synmix.c</includedby>
+    <includedby refid="synpitch_8c" local="yes">synpitch.c</includedby>
+    <includedby refid="synsample_8c" local="yes">synsample.c</includedby>
+    <includedby refid="synvoice_8c" local="yes">synvoice.c</includedby>
+    <includedby refid="synwt_8c" local="yes">synwt.c</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>dolphin/ax.h</label>
+        <link refid="ax_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/syn.h</label>
+        <link refid="syn_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>SYNPrivate.h</label>
+        <link refid="_s_y_n_private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>SYNPrivate.h</label>
+        <link refid="_s_y_n_private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>syn.c</label>
+        <link refid="syn_8c"/>
+      </node>
+      <node id="3">
+        <label>synctrl.c</label>
+        <link refid="synctrl_8c"/>
+      </node>
+      <node id="4">
+        <label>synenv.c</label>
+        <link refid="synenv_8c"/>
+      </node>
+      <node id="5">
+        <label>synlfo.c</label>
+        <link refid="synlfo_8c"/>
+      </node>
+      <node id="6">
+        <label>synmix.c</label>
+        <link refid="synmix_8c"/>
+      </node>
+      <node id="7">
+        <label>synpitch.c</label>
+        <link refid="synpitch_8c"/>
+      </node>
+      <node id="8">
+        <label>synsample.c</label>
+        <link refid="synsample_8c"/>
+      </node>
+      <node id="9">
+        <label>synvoice.c</label>
+        <link refid="synvoice_8c"/>
+      </node>
+      <node id="10">
+        <label>synwt.c</label>
+        <link refid="synwt_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_s_y_n_private_8h_1a8cc2fe022fb04a6587c52dd3f7891607" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+        <definition>struct SYNSYNTH* __SYNSynthList</definition>
+        <argsstring></argsstring>
+        <name>__SYNSynthList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="7" column="23" bodyfile="decomp/DolphinSDK/src/dolphin/syn/syn.c" bodystart="12" bodyend="-1" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="7" declcolumn="23"/>
+        <referencedby refid="syn_8c_1af939070885bffedee6f5a8055682e7ce" compoundref="syn_8c" startline="19" endline="33">__SYNAddSynthToList</referencedby>
+        <referencedby refid="syn_8c_1a51f9e7ea18be149fe93953e8cf36f272" compoundref="syn_8c" startline="36" endline="62">__SYNRemoveSynthFromList</referencedby>
+        <referencedby refid="syn_8h_1a3109370aae355619e3622833a4c2e20e" compoundref="syn_8c" startline="65" endline="74">SYNInit</referencedby>
+        <referencedby refid="syn_8h_1a6a537bdc29c29806cf5677936de14194" compoundref="syn_8c" startline="83" endline="96">SYNRunAudioFrame</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_s_y_n_private_8h_1a79c9cd243ebad0f1d53dc5db4efd98e2" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">float</ref></type>
+        <definition>float __SYNn128[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>__SYNn128</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="10" column="14" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synctrl.c" bodystart="11" bodyend="28" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="10" declcolumn="14"/>
+        <referencedby refid="synenv_8c_1a99d4768c9ab7ed1b82a6d3e44f241eae" compoundref="synenv_8c" startline="11" endline="22">__SYNGetEnvelopeTime</referencedby>
+        <referencedby refid="synlfo_8c_1a92a62f928038cbb58929fbc05568d2cd" compoundref="synlfo_8c" startline="34" endline="52">__SYNRunLfo</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_s_y_n_private_8h_1a6e334398b054faded06f7dfdedfb5bf6" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 __SYNVolumeAttenuation[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>__SYNVolumeAttenuation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="31" column="12" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synmix.c" bodystart="11" bodyend="28" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="31" declcolumn="12"/>
+        <referencedby refid="synctrl_8c_1a0211df623a996d4533918a0bca2f33da" compoundref="synctrl_8c" startline="145" endline="209">__SYNSetController</referencedby>
+        <referencedby refid="synmix_8c_1a927c183f61a31d181cdff75d7ebf030d" compoundref="synmix_8c" startline="47" endline="51">__SYNSetupVolume</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_s_y_n_private_8h_1ac0a5c7364cbba9647ee00cf0d4e0fdbf" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 __SYNAttackAttnTable[100]</definition>
+        <argsstring>[100]</argsstring>
+        <name>__SYNAttackAttnTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="32" column="12" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synmix.c" bodystart="30" bodyend="44" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="32" declcolumn="12"/>
+        <referencedby refid="synenv_8c_1a01de8c047f959ced5c2503f86fe60cf2" compoundref="synenv_8c" startline="135" endline="178">__SYNRunVolumeEnvelope</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_s_y_n_private_8h_1a93df0d8dfa12d2c8d5ce010160197a80" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref></type>
+        <definition>struct SYNVOICE __SYNVoice[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>__SYNVoice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="50" column="22" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synvoice.c" bodystart="12" bodyend="-1" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="50" declcolumn="22"/>
+        <referencedby refid="_s_y_n_private_8h_1a7427007ef1558910e56533234bec8caa" compoundref="synvoice_8c" startline="15" endline="38">__SYNClearVoiceReferences</referencedby>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+        <referencedby refid="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" compoundref="synvoice_8c" startline="50" endline="89">__SYNServiceVoice</referencedby>
+        <referencedby refid="syn_8h_1a3109370aae355619e3622833a4c2e20e" compoundref="syn_8c" startline="65" endline="74">SYNInit</referencedby>
+        <referencedby refid="syn_8h_1a7a476d0a6824c6a1b463f501c9f7df0d" compoundref="syn_8c" startline="155" endline="177">SYNQuitSynth</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_s_y_n_private_8h_1ab417c379b409cfc1e0a012bc52f17014" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNClearAllNotes</definition>
+        <argsstring>(struct SYNSYNTH *synth)</argsstring>
+        <name>__SYNClearAllNotes</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="12" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synctrl.c" bodystart="133" bodyend="142" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="12" declcolumn="6"/>
+        <references refid="synctrl_8c_1a57ef4583169e49b9945201b8c449e4b5" compoundref="synctrl_8c" startline="114" endline="130">__SYNReleaseChannelNotes</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a0211df623a996d4533918a0bca2f33da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetController</definition>
+        <argsstring>(struct SYNSYNTH *synth, u8 midiChannel, u8 function, u8 value)</argsstring>
+        <name>__SYNSetController</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>midiChannel</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="13" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synctrl.c" bodystart="145" bodyend="209" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="13" declcolumn="6"/>
+        <references refid="synctrl_8c_1a57ef4583169e49b9945201b8c449e4b5" compoundref="synctrl_8c" startline="114" endline="130">__SYNReleaseChannelNotes</references>
+        <references refid="synctrl_8c_1a40ccb8c064b0345dc63be76de3fe3683" compoundref="synctrl_8c" startline="238" endline="255">__SYNResetController</references>
+        <references refid="synctrl_8c_1af42f2481100b314dadfa2dd78a7aee74" compoundref="synctrl_8c" startline="212" endline="235">__SYNResetController0</references>
+        <references refid="synctrl_8c_1a66a96c9f8a5b9fc061a71b8993cbdbee" compoundref="synctrl_8c" startline="41" endline="70">__SYNSetData</references>
+        <references refid="synctrl_8c_1a6f1db4efa16cf1dc378dc7f054b58bfb" compoundref="synctrl_8c" startline="73" endline="94">__SYNSetSustainPedal</references>
+        <references refid="synmix_8c_1a6e334398b054faded06f7dfdedfb5bf6" compoundref="synmix_8c" startline="11" endline="28">__SYNVolumeAttenuation</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ae07a9dd74fa0306265d74a6c66c177dc" compoundref="syn_8h" startline="94">SYNSYNTH::auxAAttn</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1acd3b29644afc7841c90c97ad35281643" compoundref="syn_8h" startline="95">SYNSYNTH::auxBAttn</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" compoundref="syn_8h" startline="87">SYNSYNTH::controller</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a4e654f329600fdb759d12b2d31f62400" compoundref="syn_8h" startline="93">SYNSYNTH::expAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1adf27002c82be016f76f4d3b099cdf690" compoundref="syn_8h" startline="88">SYNSYNTH::rpn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a0aa52b9e9f64e014a39b5e761f482438" compoundref="syn_8h" startline="92">SYNSYNTH::volAttn</references>
+        <referencedby refid="synctrl_8c_1a85948503ca6bace4e69d57cf0e40da89" compoundref="synctrl_8c" startline="399" endline="440">__SYNMidiIn</referencedby>
+        <referencedby refid="synctrl_8c_1a40ccb8c064b0345dc63be76de3fe3683" compoundref="synctrl_8c" startline="238" endline="255">__SYNResetController</referencedby>
+        <referencedby refid="synctrl_8c_1af42f2481100b314dadfa2dd78a7aee74" compoundref="synctrl_8c" startline="212" endline="235">__SYNResetController0</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1af42f2481100b314dadfa2dd78a7aee74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNResetController0</definition>
+        <argsstring>(struct SYNSYNTH *synth, u8 midiChannel)</argsstring>
+        <name>__SYNResetController0</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>midiChannel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="14" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synctrl.c" bodystart="212" bodyend="235" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="14" declcolumn="6"/>
+        <references refid="synctrl_8c_1a0211df623a996d4533918a0bca2f33da" compoundref="synctrl_8c" startline="145" endline="209">__SYNSetController</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" compoundref="syn_8h" startline="87">SYNSYNTH::controller</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1adc3adea1335e78949414dc481527b518" compoundref="syn_8h" startline="112">SYNVOICE::pan</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a15c46562ed3db830c272db0599cfdcdf" compoundref="syn_8h" startline="91">SYNSYNTH::pwCents</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ac7f314b6416e1262f8484e7a48905a00" compoundref="syn_8h" startline="90">SYNSYNTH::pwMaxCents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="synctrl_8c_1a0211df623a996d4533918a0bca2f33da" compoundref="synctrl_8c" startline="145" endline="209">__SYNSetController</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a40ccb8c064b0345dc63be76de3fe3683" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNResetController</definition>
+        <argsstring>(struct SYNSYNTH *synth, u8 midiChannel)</argsstring>
+        <name>__SYNResetController</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>midiChannel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="15" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synctrl.c" bodystart="238" bodyend="255" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="15" declcolumn="6"/>
+        <references refid="synctrl_8c_1a0211df623a996d4533918a0bca2f33da" compoundref="synctrl_8c" startline="145" endline="209">__SYNSetController</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" compoundref="syn_8h" startline="87">SYNSYNTH::controller</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a15c46562ed3db830c272db0599cfdcdf" compoundref="syn_8h" startline="91">SYNSYNTH::pwCents</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ac7f314b6416e1262f8484e7a48905a00" compoundref="syn_8h" startline="90">SYNSYNTH::pwMaxCents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="synctrl_8c_1a7ec0427a927747c206595e3718b3ab30" compoundref="synctrl_8c" startline="258" endline="269">__SYNResetAllControllers</referencedby>
+        <referencedby refid="synctrl_8c_1a0211df623a996d4533918a0bca2f33da" compoundref="synctrl_8c" startline="145" endline="209">__SYNSetController</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a7ec0427a927747c206595e3718b3ab30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNResetAllControllers</definition>
+        <argsstring>(struct SYNSYNTH *synth)</argsstring>
+        <name>__SYNResetAllControllers</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="16" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synctrl.c" bodystart="258" bodyend="269" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="16" declcolumn="6"/>
+        <references refid="synctrl_8c_1a3b93cd43fe6f9264d2943e48bf232a02" compoundref="synctrl_8c" startline="97" endline="111">__SYNProgramChange</references>
+        <references refid="synctrl_8c_1a40ccb8c064b0345dc63be76de3fe3683" compoundref="synctrl_8c" startline="238" endline="255">__SYNResetController</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="syn_8h_1a9f244787935ff0f7d212bf1c508be9e1" compoundref="syn_8c" startline="99" endline="152">SYNInitSynth</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a55b42c63e0fd763f67c6b978a870558e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNRunInputBufferEvents</definition>
+        <argsstring>(struct SYNSYNTH *synth)</argsstring>
+        <name>__SYNRunInputBufferEvents</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref> *</type>
+          <declname>synth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="17" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synctrl.c" bodystart="443" bodyend="453" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="17" declcolumn="6"/>
+        <references refid="synctrl_8c_1a85948503ca6bace4e69d57cf0e40da89" compoundref="synctrl_8c" startline="399" endline="440">__SYNMidiIn</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a5e0e5d31f5293f872e72353059df4b11" compoundref="syn_8h" startline="96">SYNSYNTH::input</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a2eae9833d32f3b2349f279396f361b2e" compoundref="syn_8h" startline="98">SYNSYNTH::inputCounter</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a739522a9cd85f58325309faedf4233eb" compoundref="syn_8h" startline="97">SYNSYNTH::inputPosition</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="syn_8h_1a6a537bdc29c29806cf5677936de14194" compoundref="syn_8c" startline="83" endline="96">SYNRunAudioFrame</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a99d4768c9ab7ed1b82a6d3e44f241eae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 __SYNGetEnvelopeTime</definition>
+        <argsstring>(s32 scale, s32 mod, u8 key)</argsstring>
+        <name>__SYNGetEnvelopeTime</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>scale</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>mod</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="20" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synenv.c" bodystart="11" bodyend="22" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="20" declcolumn="6"/>
+        <references refid="synctrl_8c_1a79c9cd243ebad0f1d53dc5db4efd98e2" compoundref="synctrl_8c" startline="11" endline="28">__SYNn128</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="synenv_8c_1a7c028552f9372241fdec55e5d8cd8488" compoundref="synenv_8c" startline="78" endline="132">__SYNSetupPitchEnvelope</referencedby>
+        <referencedby refid="synenv_8c_1afaeb3b6a3dbc292a669e81df8dadaf3f" compoundref="synenv_8c" startline="25" endline="75">__SYNSetupVolumeEnvelope</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1afaeb3b6a3dbc292a669e81df8dadaf3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetupVolumeEnvelope</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNSetupVolumeEnvelope</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="21" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synenv.c" bodystart="25" bodyend="75" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="21" declcolumn="6"/>
+        <references refid="synenv_8c_1a99d4768c9ab7ed1b82a6d3e44f241eae" compoundref="synenv_8c" startline="11" endline="22">__SYNGetEnvelopeTime</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a299928a50502b106477ded4667b22b06" compoundref="syn_8h" startline="115">SYNVOICE::art</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_w_t_a_r_t_1af3a862cd14bd79036d7b7848d0fb64fa" compoundref="syn_8h" startline="33">WTART::eg1Attack</references>
+        <references refid="struct_w_t_a_r_t_1ad615cfd2437d43f4dd5be08052be7a47" compoundref="syn_8h" startline="34">WTART::eg1Decay</references>
+        <references refid="struct_w_t_a_r_t_1ae3f11e0dcf1a64b54b9b8d06e7468206" compoundref="syn_8h" startline="38">WTART::eg1Key2Decay</references>
+        <references refid="struct_w_t_a_r_t_1a17274ec3a18a7e0d55a074174ed9a59a" compoundref="syn_8h" startline="36">WTART::eg1Release</references>
+        <references refid="struct_w_t_a_r_t_1a91e86028d923366f93e926b17e2b47fc" compoundref="syn_8h" startline="35">WTART::eg1Sustain</references>
+        <references refid="struct_w_t_a_r_t_1a36533e8d4679ba8946b642cc6473ed73" compoundref="syn_8h" startline="37">WTART::eg1Vel2Attack</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad5e3b2ad948d49207428e473d8e09df4" compoundref="syn_8h" startline="110">SYNVOICE::keyNum</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ac42d5c08b47b374f7eafb60c60ad352e" compoundref="syn_8h" startline="111">SYNVOICE::keyVel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a6d318b22bbb1775d0898ec3d8b677279" compoundref="syn_8h" startline="134">SYNVOICE::veAttack</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2df78cca89c8f4bea17998512c651c50" compoundref="syn_8h" startline="135">SYNVOICE::veAttackDelta</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1adc14a2d200a0707922694c67a9afa307" compoundref="syn_8h" startline="133">SYNVOICE::veAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2339ab4ca01f051aa9a0dbbfb054c3b8" compoundref="syn_8h" startline="136">SYNVOICE::veDecay</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a71c1243767cf036c50cbfc2c850b44a2" compoundref="syn_8h" startline="138">SYNVOICE::veRelease</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1afb4a36ebae10d9ebbfb5ec15bf1b12c4" compoundref="syn_8h" startline="132">SYNVOICE::veState</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a71ef131a2fe52778be24ee4c697d0e7a" compoundref="syn_8h" startline="137">SYNVOICE::veSustain</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a7c028552f9372241fdec55e5d8cd8488" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetupPitchEnvelope</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNSetupPitchEnvelope</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="22" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synenv.c" bodystart="78" bodyend="132" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="22" declcolumn="6"/>
+        <references refid="synenv_8c_1a99d4768c9ab7ed1b82a6d3e44f241eae" compoundref="synenv_8c" startline="11" endline="22">__SYNGetEnvelopeTime</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a299928a50502b106477ded4667b22b06" compoundref="syn_8h" startline="115">SYNVOICE::art</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_w_t_a_r_t_1ad0f41b7560f39721d1668207d0170454" compoundref="syn_8h" startline="39">WTART::eg2Attack</references>
+        <references refid="struct_w_t_a_r_t_1a33230f7758464df73ca59aa051896a0a" compoundref="syn_8h" startline="40">WTART::eg2Decay</references>
+        <references refid="struct_w_t_a_r_t_1aec2c2a61da07a841638debbe646e0dce" compoundref="syn_8h" startline="44">WTART::eg2Key2Decay</references>
+        <references refid="struct_w_t_a_r_t_1a7721b59ec87a60d864e7f45f98f9e14d" compoundref="syn_8h" startline="45">WTART::eg2Pitch</references>
+        <references refid="struct_w_t_a_r_t_1a66fa79f1018112e597373fbe9e8f1f44" compoundref="syn_8h" startline="42">WTART::eg2Release</references>
+        <references refid="struct_w_t_a_r_t_1ace56f4b4eb17c332986091861b4fe7eb" compoundref="syn_8h" startline="41">WTART::eg2Sustain</references>
+        <references refid="struct_w_t_a_r_t_1a97e14ca8f7aca6c0e63689099fe8ddbf" compoundref="syn_8h" startline="43">WTART::eg2Vel2Attack</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad5e3b2ad948d49207428e473d8e09df4" compoundref="syn_8h" startline="110">SYNVOICE::keyNum</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ac42d5c08b47b374f7eafb60c60ad352e" compoundref="syn_8h" startline="111">SYNVOICE::keyVel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a32ca349469ae72f409948f50dc2ae909" compoundref="syn_8h" startline="141">SYNVOICE::peAttack</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ae82dc0b37a19e009bc8405d21c8f5578" compoundref="syn_8h" startline="140">SYNVOICE::peCents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a080737341228f8af80728ee91d0db95c" compoundref="syn_8h" startline="142">SYNVOICE::peDecay</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a30f96ef94c45086b15c2f37b19a76b56" compoundref="syn_8h" startline="145">SYNVOICE::pePitch</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a5d144c90c1e99622fe166900cc7b6012" compoundref="syn_8h" startline="144">SYNVOICE::peRelease</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ac9fe463ae31f79ac3846a9dcb5df0a80" compoundref="syn_8h" startline="139">SYNVOICE::peState</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a0d522eae7dabfdb39787ae76f9921fd8" compoundref="syn_8h" startline="143">SYNVOICE::peSustain</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a01de8c047f959ced5c2503f86fe60cf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNRunVolumeEnvelope</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNRunVolumeEnvelope</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="23" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synenv.c" bodystart="135" bodyend="178" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="23" declcolumn="6"/>
+        <references refid="synmix_8c_1ac0a5c7364cbba9647ee00cf0d4e0fdbf" compoundref="synmix_8c" startline="30" endline="44">__SYNAttackAttnTable</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad5e3b2ad948d49207428e473d8e09df4" compoundref="syn_8h" startline="110">SYNVOICE::keyNum</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a6d318b22bbb1775d0898ec3d8b677279" compoundref="syn_8h" startline="134">SYNVOICE::veAttack</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2df78cca89c8f4bea17998512c651c50" compoundref="syn_8h" startline="135">SYNVOICE::veAttackDelta</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1adc14a2d200a0707922694c67a9afa307" compoundref="syn_8h" startline="133">SYNVOICE::veAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2339ab4ca01f051aa9a0dbbfb054c3b8" compoundref="syn_8h" startline="136">SYNVOICE::veDecay</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a71c1243767cf036c50cbfc2c850b44a2" compoundref="syn_8h" startline="138">SYNVOICE::veRelease</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1afb4a36ebae10d9ebbfb5ec15bf1b12c4" compoundref="syn_8h" startline="132">SYNVOICE::veState</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a71ef131a2fe52778be24ee4c697d0e7a" compoundref="syn_8h" startline="137">SYNVOICE::veSustain</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" compoundref="syn_8h" startline="101">SYNSYNTH::voice</references>
+        <referencedby refid="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" compoundref="synvoice_8c" startline="50" endline="89">__SYNServiceVoice</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a137d77c76a759e46390ee2539cf59174" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNRunPitchEnvelope</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNRunPitchEnvelope</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="24" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synenv.c" bodystart="181" bodyend="252" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="24" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a32ca349469ae72f409948f50dc2ae909" compoundref="syn_8h" startline="141">SYNVOICE::peAttack</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ae82dc0b37a19e009bc8405d21c8f5578" compoundref="syn_8h" startline="140">SYNVOICE::peCents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a080737341228f8af80728ee91d0db95c" compoundref="syn_8h" startline="142">SYNVOICE::peDecay</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a30f96ef94c45086b15c2f37b19a76b56" compoundref="syn_8h" startline="145">SYNVOICE::pePitch</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a5d144c90c1e99622fe166900cc7b6012" compoundref="syn_8h" startline="144">SYNVOICE::peRelease</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ac9fe463ae31f79ac3846a9dcb5df0a80" compoundref="syn_8h" startline="139">SYNVOICE::peState</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a0d522eae7dabfdb39787ae76f9921fd8" compoundref="syn_8h" startline="143">SYNVOICE::peSustain</references>
+        <referencedby refid="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" compoundref="synvoice_8c" startline="50" endline="89">__SYNServiceVoice</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a7331ec9624327abcf3956fd802c9bb2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetupLfo</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNSetupLfo</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="27" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synlfo.c" bodystart="21" bodyend="31" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="27" declcolumn="6"/>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a299928a50502b106477ded4667b22b06" compoundref="syn_8h" startline="115">SYNVOICE::art</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_w_t_a_r_t_1a33917c355b9c234dcdf2495d10962db8" compoundref="syn_8h" startline="29">WTART::lfoAtten</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2b540c5b722dece94f549a1ea92398bf" compoundref="syn_8h" startline="124">SYNVOICE::lfoAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a5d9d23575360a3c6a3e1a2c659a791b5" compoundref="syn_8h" startline="128">SYNVOICE::lfoAttn_</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2cf852540c1d7c2b4f571f74cb8a37cd" compoundref="syn_8h" startline="125">SYNVOICE::lfoCents</references>
+        <references refid="struct_w_t_a_r_t_1a5e7747a3a0e8ed8e6a941f39a67c5b11" compoundref="syn_8h" startline="28">WTART::lfoDelay</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a8235e7dfab90902b6ebd832ebd483914" compoundref="syn_8h" startline="127">SYNVOICE::lfoDelay</references>
+        <references refid="struct_w_t_a_r_t_1adb709a8c5841a1eba65f4d02c1680839" compoundref="syn_8h" startline="27">WTART::lfoFreq</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ac22bd6f800a687eaf5ccb9cb0cf1e37e" compoundref="syn_8h" startline="126">SYNVOICE::lfoFreq</references>
+        <references refid="struct_w_t_a_r_t_1a96066af52ac3bd77ea3d59c66f3b3125" compoundref="syn_8h" startline="31">WTART::lfoMod2Atten</references>
+        <references refid="struct_w_t_a_r_t_1a0e469020f4b77b393e5075b65176a893" compoundref="syn_8h" startline="32">WTART::lfoMod2Pitch</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a5316c4a85545a12aa857439aa5ae2d35" compoundref="syn_8h" startline="130">SYNVOICE::lfoModAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a0c079c1704432ea72876cd17668438af" compoundref="syn_8h" startline="131">SYNVOICE::lfoModCents</references>
+        <references refid="struct_w_t_a_r_t_1ad1fbe6be681621a1ac43b2979c1403ce" compoundref="syn_8h" startline="30">WTART::lfoPitch</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a7a4fc3de7296c8f0bd4198cc7d2f1315" compoundref="syn_8h" startline="123">SYNVOICE::lfoState</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a92a62f928038cbb58929fbc05568d2cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNRunLfo</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNRunLfo</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="28" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synlfo.c" bodystart="34" bodyend="52" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="28" declcolumn="6"/>
+        <references refid="synlfo_8c_1a63adfe88a86e0ba4238a5f6f4d6d1fd5" compoundref="synlfo_8c" startline="9" endline="18">__SYNLfo</references>
+        <references refid="synctrl_8c_1a79c9cd243ebad0f1d53dc5db4efd98e2" compoundref="synctrl_8c" startline="11" endline="28">__SYNn128</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" compoundref="syn_8h" startline="87">SYNSYNTH::controller</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2b540c5b722dece94f549a1ea92398bf" compoundref="syn_8h" startline="124">SYNVOICE::lfoAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a5d9d23575360a3c6a3e1a2c659a791b5" compoundref="syn_8h" startline="128">SYNVOICE::lfoAttn_</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2cf852540c1d7c2b4f571f74cb8a37cd" compoundref="syn_8h" startline="125">SYNVOICE::lfoCents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a9b0d9df9f6789bd368798f1470cbcd15" compoundref="syn_8h" startline="129">SYNVOICE::lfoCents_</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a8235e7dfab90902b6ebd832ebd483914" compoundref="syn_8h" startline="127">SYNVOICE::lfoDelay</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ac22bd6f800a687eaf5ccb9cb0cf1e37e" compoundref="syn_8h" startline="126">SYNVOICE::lfoFreq</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a5316c4a85545a12aa857439aa5ae2d35" compoundref="syn_8h" startline="130">SYNVOICE::lfoModAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a0c079c1704432ea72876cd17668438af" compoundref="syn_8h" startline="131">SYNVOICE::lfoModCents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a7a4fc3de7296c8f0bd4198cc7d2f1315" compoundref="syn_8h" startline="123">SYNVOICE::lfoState</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" compoundref="synvoice_8c" startline="50" endline="89">__SYNServiceVoice</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a927c183f61a31d181cdff75d7ebf030d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetupVolume</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNSetupVolume</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="34" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synmix.c" bodystart="47" bodyend="51" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="34" declcolumn="6"/>
+        <references refid="synmix_8c_1a6e334398b054faded06f7dfdedfb5bf6" compoundref="synmix_8c" startline="11" endline="28">__SYNVolumeAttenuation</references>
+        <references refid="struct_w_t_r_e_g_i_o_n_1ab1f84ae3162f48f2642debcdb0e238e2" compoundref="syn_8h" startline="18">WTREGION::attn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a419592f253decfe69e6fb4846b28f3f7" compoundref="syn_8h" startline="122">SYNVOICE::attn</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ac42d5c08b47b374f7eafb60c60ad352e" compoundref="syn_8h" startline="111">SYNVOICE::keyVel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1afeb83594f77b9a29e725e4af5cf430b7" compoundref="syn_8h" startline="114">SYNVOICE::region</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a2b07395e000faa5c19d520d7fbb6e2a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetupPan</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNSetupPan</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="35" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synmix.c" bodystart="54" bodyend="65" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="35" declcolumn="6"/>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a299928a50502b106477ded4667b22b06" compoundref="syn_8h" startline="115">SYNVOICE::art</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" compoundref="syn_8h" startline="87">SYNSYNTH::controller</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_w_t_a_r_t_1a87383a95d49b571b55d544c6baefd9dc" compoundref="syn_8h" startline="46">WTART::pan</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1adc3adea1335e78949414dc481527b518" compoundref="syn_8h" startline="112">SYNVOICE::pan</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a6d0d307cb926ea7fd4953ea02c461f30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 __SYNGetVoiceInput</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNGetVoiceInput</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="36" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synmix.c" bodystart="68" bodyend="71" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="36" declcolumn="6"/>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a419592f253decfe69e6fb4846b28f3f7" compoundref="syn_8h" startline="122">SYNVOICE::attn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2b540c5b722dece94f549a1ea92398bf" compoundref="syn_8h" startline="124">SYNVOICE::lfoAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1adc14a2d200a0707922694c67a9afa307" compoundref="syn_8h" startline="133">SYNVOICE::veAttn</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+        <referencedby refid="synmix_8c_1a72bd77ffbe6f422c134969d2eb3f4218" compoundref="synmix_8c" startline="82" endline="92">__SYNUpdateMix</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a723fe0c86da58ee541f0dcc3681c4f57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 __SYNGetVoiceFader</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNGetVoiceFader</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="37" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synmix.c" bodystart="74" bodyend="79" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="37" declcolumn="6"/>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a4e654f329600fdb759d12b2d31f62400" compoundref="syn_8h" startline="93">SYNSYNTH::expAttn</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ae07961e8427a1837a259b8eb88756821" compoundref="syn_8h" startline="86">SYNSYNTH::masterVolume</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a0aa52b9e9f64e014a39b5e761f482438" compoundref="syn_8h" startline="92">SYNSYNTH::volAttn</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+        <referencedby refid="synmix_8c_1a72bd77ffbe6f422c134969d2eb3f4218" compoundref="synmix_8c" startline="82" endline="92">__SYNUpdateMix</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a72bd77ffbe6f422c134969d2eb3f4218" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNUpdateMix</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNUpdateMix</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="38" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synmix.c" bodystart="82" bodyend="92" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="38" declcolumn="6"/>
+        <references refid="synmix_8c_1a723fe0c86da58ee541f0dcc3681c4f57" compoundref="synmix_8c" startline="74" endline="79">__SYNGetVoiceFader</references>
+        <references refid="synmix_8c_1a6d0d307cb926ea7fd4953ea02c461f30" compoundref="synmix_8c" startline="68" endline="71">__SYNGetVoiceInput</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ae07a9dd74fa0306265d74a6c66c177dc" compoundref="syn_8h" startline="94">SYNSYNTH::auxAAttn</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1acd3b29644afc7841c90c97ad35281643" compoundref="syn_8h" startline="95">SYNSYNTH::auxBAttn</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a11f4c746d8790b4090ffa2843672a1d7" compoundref="syn_8h" startline="107">SYNVOICE::axvpb</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a71a0f5b038c29739f4ad8f068cff3618" compoundref="syn_8h" startline="87">SYNSYNTH::controller</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="mix_8h_1af90c297e5a7654fc8f98bb171aea5bc1" compoundref="mix_8c" startline="416" endline="423">MIXSetAuxA</references>
+        <references refid="mix_8h_1aff2cfc1a1b571aee467d7036b67c8fcb" compoundref="mix_8c" startline="477" endline="484">MIXSetAuxB</references>
+        <references refid="mix_8h_1ae7d4cdbc11401478536cb0c8ffe8cb9f" compoundref="mix_8c" startline="600" endline="607">MIXSetFader</references>
+        <references refid="mix_8h_1a0665e3dfe77738912cdbf2366b0f00d2" compoundref="mix_8c" startline="355" endline="362">MIXSetInput</references>
+        <references refid="mix_8h_1a8b52e0b5cd00df5e3c29363130c0e0a1" compoundref="mix_8c" startline="506" endline="514">MIXSetPan</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" compoundref="synvoice_8c" startline="50" endline="89">__SYNServiceVoice</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a1bcd4e88c19934b8f8769f8f973ef83d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">float</ref></type>
+        <definition>float __SYNGetRelativePitch</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNGetRelativePitch</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="41" column="7" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synpitch.c" bodystart="54" bodyend="82" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="41" declcolumn="7"/>
+        <references refid="synpitch_8c_1a2100959c7e08f5ceb56cc4b34dd52c6a" compoundref="synpitch_8c" startline="8" endline="22">__SYNCentsTable</references>
+        <references refid="synpitch_8c_1ab37a2aca1b97fc3ad530468af423f432" compoundref="synpitch_8c" startline="24" endline="27">__SYNOctavesTableUp</references>
+        <references refid="synpitch_8c_1a898f56f40576875683df45b59bfcad52" compoundref="synpitch_8c" startline="34" endline="51">__SYNSemitonesTableDown</references>
+        <references refid="synpitch_8c_1aea7e844e9f9d6e7bf41d1ae420625375" compoundref="synpitch_8c" startline="29" endline="32">__SYNSemitonesTableUp</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a4fbcbe0e815c9073f638dfaf279b0e43" compoundref="syn_8h" startline="121">SYNVOICE::cents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a2cf852540c1d7c2b4f571f74cb8a37cd" compoundref="syn_8h" startline="125">SYNVOICE::lfoCents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ae82dc0b37a19e009bc8405d21c8f5578" compoundref="syn_8h" startline="140">SYNVOICE::peCents</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a15c46562ed3db830c272db0599cfdcdf" compoundref="syn_8h" startline="91">SYNSYNTH::pwCents</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <referencedby refid="synpitch_8c_1a0a2832f89c7469f72fcbe3cad247880f" compoundref="synpitch_8c" startline="94" endline="127">__SYNSetupSrc</referencedby>
+        <referencedby refid="synpitch_8c_1aab00ed63de94d43ecf55134adf8763bf" compoundref="synpitch_8c" startline="130" endline="140">__SYNUpdateSrc</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1ab9195ee6f3f3cd129c7f6d66e2c8d9b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetupPitch</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNSetupPitch</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="42" column="7" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synpitch.c" bodystart="85" bodyend="91" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="42" declcolumn="7"/>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a4fbcbe0e815c9073f638dfaf279b0e43" compoundref="syn_8h" startline="121">SYNVOICE::cents</references>
+        <references refid="struct_w_t_r_e_g_i_o_n_1a0e6729cca0c2fff6ed3c41ccc53a56be" compoundref="syn_8h" startline="17">WTREGION::fineTune</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad5e3b2ad948d49207428e473d8e09df4" compoundref="syn_8h" startline="110">SYNVOICE::keyNum</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1afeb83594f77b9a29e725e4af5cf430b7" compoundref="syn_8h" startline="114">SYNVOICE::region</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1aed4835d9a68eea2909a1e233402530c3" compoundref="syn_8h" startline="116">SYNVOICE::sample</references>
+        <references refid="struct_w_t_s_a_m_p_l_e_1a4479c64c655f01caf26ee100ad500a5c" compoundref="syn_8h" startline="52">WTSAMPLE::sampleRate</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a04ff122d3519ac1ed90f07111fa2a462" compoundref="syn_8h" startline="120">SYNVOICE::srcRatio</references>
+        <references refid="struct_w_t_r_e_g_i_o_n_1ae17bcbef554952b1c018dfbbbf5dcff3" compoundref="syn_8h" startline="15">WTREGION::unityNote</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a0a2832f89c7469f72fcbe3cad247880f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetupSrc</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNSetupSrc</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="43" column="7" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synpitch.c" bodystart="94" bodyend="127" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="43" declcolumn="7"/>
+        <references refid="synpitch_8c_1a1bcd4e88c19934b8f8769f8f973ef83d" compoundref="synpitch_8c" startline="54" endline="82">__SYNGetRelativePitch</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a11f4c746d8790b4090ffa2843672a1d7" compoundref="syn_8h" startline="107">SYNVOICE::axvpb</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct___a_x_v_p_b_1a694146d01cd8e99b6f4b8dd15db61845" compoundref="ax_8h" startline="149">_AXVPB::pb</references>
+        <references refid="struct___a_x_p_b_1ad6fbc97b0b9aa34d878e7e5f5803743b" compoundref="ax_8h" startline="127">_AXPB::src</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a04ff122d3519ac1ed90f07111fa2a462" compoundref="syn_8h" startline="120">SYNVOICE::srcRatio</references>
+        <references refid="struct___a_x_p_b_1a8d5299480242552e5b96663629e5bead" compoundref="ax_8h" startline="114">_AXPB::srcSelect</references>
+        <references refid="struct___a_x_v_p_b_1a8c6145ec098b16fb8dd672a1beaaf856" compoundref="ax_8h" startline="141">_AXVPB::sync</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1aab00ed63de94d43ecf55134adf8763bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNUpdateSrc</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNUpdateSrc</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="44" column="7" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synpitch.c" bodystart="130" bodyend="140" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="44" declcolumn="7"/>
+        <references refid="synpitch_8c_1a1bcd4e88c19934b8f8769f8f973ef83d" compoundref="synpitch_8c" startline="54" endline="82">__SYNGetRelativePitch</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a11f4c746d8790b4090ffa2843672a1d7" compoundref="syn_8h" startline="107">SYNVOICE::axvpb</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct___a_x_v_p_b_1a694146d01cd8e99b6f4b8dd15db61845" compoundref="ax_8h" startline="149">_AXVPB::pb</references>
+        <references refid="struct___a_x_p_b_s_r_c_1a5af8597a2f5ca23db2cf38ebd63eb08f" compoundref="ax_8h" startline="95">_AXPBSRC::ratioHi</references>
+        <references refid="struct___a_x_p_b_1ad6fbc97b0b9aa34d878e7e5f5803743b" compoundref="ax_8h" startline="127">_AXPB::src</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a04ff122d3519ac1ed90f07111fa2a462" compoundref="syn_8h" startline="120">SYNVOICE::srcRatio</references>
+        <references refid="struct___a_x_v_p_b_1a8c6145ec098b16fb8dd672a1beaaf856" compoundref="ax_8h" startline="141">_AXVPB::sync</references>
+        <referencedby refid="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" compoundref="synvoice_8c" startline="50" endline="89">__SYNServiceVoice</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1ada8c1d7c8ffc26ba66825cf7cbe9f40a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetupSample</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNSetupSample</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="47" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synsample.c" bodystart="323" bodyend="341" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="47" declcolumn="6"/>
+        <references refid="synsample_8c_1a64157577a6157cd13b0cca7d87207fa6" compoundref="synsample_8c" startline="26" endline="140">__SYNSetupAdpcm</references>
+        <references refid="synsample_8c_1a5d7293b742bfcb191314b99c13c83d6e" compoundref="synsample_8c" startline="143" endline="231">__SYNSetupPcm16</references>
+        <references refid="synsample_8c_1af322235f1cd52a5c190d51542899fdd6" compoundref="synsample_8c" startline="234" endline="320">__SYNSetupPcm8</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="struct_w_t_s_a_m_p_l_e_1a6c8328ad3a4e8a20c08e90f3ec97b17f" compoundref="syn_8h" startline="51">WTSAMPLE::format</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1aed4835d9a68eea2909a1e233402530c3" compoundref="syn_8h" startline="116">SYNVOICE::sample</references>
+        <references refid="syn_8h_1a3298d094c5201ae912f6234e331c14fb" compoundref="syn_8h" startline="149">SYN_SAMPLE_FORMAT_ADPCM</references>
+        <references refid="syn_8h_1a6ffa273eeca272e8aa79c0b73336545e" compoundref="syn_8h" startline="150">SYN_SAMPLE_FORMAT_PCM16</references>
+        <references refid="syn_8h_1acd1a42b7f26327233e9f4be349e13296" compoundref="syn_8h" startline="151">SYN_SAMPLE_FORMAT_PCM8</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a7427007ef1558910e56533234bec8caa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNClearVoiceReferences</definition>
+        <argsstring>(void *p)</argsstring>
+        <name>__SYNClearVoiceReferences</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="52" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synvoice.c" bodystart="15" bodyend="38" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="52" declcolumn="6"/>
+        <references refid="synvoice_8c_1a93df0d8dfa12d2c8d5ce010160197a80" compoundref="synvoice_8c" startline="12">__SYNVoice</references>
+        <references refid="synvoice_8c_1ac68dc98e4ecbc5a8c613f279c62cacd9" compoundref="synvoice_8c" startline="10">AX_MAX_VOICES</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a11f4c746d8790b4090ffa2843672a1d7" compoundref="syn_8h" startline="107">SYNVOICE::axvpb</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct___a_x_v_p_b_1a002df5b37dca02ce51e86665738d262e" compoundref="ax_8h" startline="140">_AXVPB::index</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1adfc75906db75d0ccbc7eb95e03e40c68" compoundref="syn_8h" startline="100">SYNSYNTH::keyGroup</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a26f362559a5350a96f9e7f49e4311399" compoundref="syn_8h" startline="113">SYNVOICE::keyGroup</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad5e3b2ad948d49207428e473d8e09df4" compoundref="syn_8h" startline="110">SYNVOICE::keyNum</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a48fa0487e4523b5e8eb1fb8da42459fa" compoundref="syn_8h" startline="109">SYNVOICE::midiChannel</references>
+        <references refid="mix_8h_1a7cc3de931ade943e8b29e76c1c3bdc60" compoundref="mix_8c" startline="342" endline="346">MIXReleaseChannel</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a83d50a549ccc93d703219229a0f49a57" compoundref="syn_8h" startline="99">SYNSYNTH::notes</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ad1e93689f2e9eac153c0f531efcdee85" compoundref="syn_8h" startline="108">SYNVOICE::synth</references>
+        <references refid="struct___a_x_v_p_b_1a20b870a7f51da1c9cc80cc68bd1a5de0" compoundref="ax_8h" startline="139">_AXVPB::userContext</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" compoundref="syn_8h" startline="101">SYNSYNTH::voice</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1acb34d682980877362239493369e876ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNSetVoiceToRelease</definition>
+        <argsstring>(struct SYNVOICE *voice, u32 priority)</argsstring>
+        <name>__SYNSetVoiceToRelease</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>priority</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="53" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synvoice.c" bodystart="41" bodyend="47" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="53" declcolumn="6"/>
+        <references refid="ax_8h_1a5b1932167d9bf9e7b23e6c864682a0bd" compoundref="_a_x_alloc_8c" startline="247" endline="258">AXSetVoicePriority</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1a11f4c746d8790b4090ffa2843672a1d7" compoundref="syn_8h" startline="107">SYNVOICE::axvpb</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1ac9fe463ae31f79ac3846a9dcb5df0a80" compoundref="syn_8h" startline="139">SYNVOICE::peState</references>
+        <references refid="struct_s_y_n_v_o_i_c_e_1afb4a36ebae10d9ebbfb5ec15bf1b12c4" compoundref="syn_8h" startline="132">SYNVOICE::veState</references>
+        <referencedby refid="synctrl_8c_1ad9e7b96579b1cba89710e0eca5ec242b" compoundref="synctrl_8c" startline="272" endline="290">__SYNNoteOff</referencedby>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+        <referencedby refid="synctrl_8c_1a57ef4583169e49b9945201b8c449e4b5" compoundref="synctrl_8c" startline="114" endline="130">__SYNReleaseChannelNotes</referencedby>
+        <referencedby refid="synctrl_8c_1a6f1db4efa16cf1dc378dc7f054b58bfb" compoundref="synctrl_8c" startline="73" endline="94">__SYNSetSustainPedal</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __SYNServiceVoice</definition>
+        <argsstring>(int i)</argsstring>
+        <name>__SYNServiceVoice</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="54" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synvoice.c" bodystart="50" bodyend="89" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="54" declcolumn="6"/>
+        <references refid="synlfo_8c_1a92a62f928038cbb58929fbc05568d2cd" compoundref="synlfo_8c" startline="34" endline="52">__SYNRunLfo</references>
+        <references refid="synenv_8c_1a137d77c76a759e46390ee2539cf59174" compoundref="synenv_8c" startline="181" endline="252">__SYNRunPitchEnvelope</references>
+        <references refid="synenv_8c_1a01de8c047f959ced5c2503f86fe60cf2" compoundref="synenv_8c" startline="135" endline="178">__SYNRunVolumeEnvelope</references>
+        <references refid="synmix_8c_1a72bd77ffbe6f422c134969d2eb3f4218" compoundref="synmix_8c" startline="82" endline="92">__SYNUpdateMix</references>
+        <references refid="synpitch_8c_1aab00ed63de94d43ecf55134adf8763bf" compoundref="synpitch_8c" startline="130" endline="140">__SYNUpdateSrc</references>
+        <references refid="synvoice_8c_1a93df0d8dfa12d2c8d5ce010160197a80" compoundref="synvoice_8c" startline="12">__SYNVoice</references>
+        <references refid="ax_8h_1af178ccff0e2677fbc8ba313e341024f3" compoundref="_a_x_alloc_8c" startline="188" endline="202">AXFreeVoice</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1adfc75906db75d0ccbc7eb95e03e40c68" compoundref="syn_8h" startline="100">SYNSYNTH::keyGroup</references>
+        <references refid="mix_8h_1a7cc3de931ade943e8b29e76c1c3bdc60" compoundref="mix_8c" startline="342" endline="346">MIXReleaseChannel</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a83d50a549ccc93d703219229a0f49a57" compoundref="syn_8h" startline="99">SYNSYNTH::notes</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" compoundref="syn_8h" startline="101">SYNSYNTH::voice</references>
+        <referencedby refid="syn_8h_1a6a537bdc29c29806cf5677936de14194" compoundref="syn_8c" startline="83" endline="96">SYNRunAudioFrame</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_s_y_n_private_8h_1ae819fd45e7af6f9422ee2203d22d7852" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int __SYNGetWavetableData</definition>
+        <argsstring>(struct SYNVOICE *voice)</argsstring>
+        <name>__SYNGetWavetableData</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref> *</type>
+          <declname>voice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" line="57" column="5" bodyfile="decomp/DolphinSDK/src/dolphin/syn/synwt.c" bodystart="9" bodyend="25" declfile="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h" declline="57" declcolumn="5"/>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a844eeda5ae559429fe8ba7a4a7216511" compoundref="syn_8h" startline="78">SYNSYNTH::adpcm</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1ad6a9f4dd2f8a7208bb621c304af8047e" compoundref="syn_8h" startline="76">SYNSYNTH::art</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1aefe2720a119ec1535225e428a1150ba8" compoundref="syn_8h" startline="85">SYNSYNTH::inst</references>
+        <references refid="struct_w_t_i_n_s_t_1afc5f406920ef2af0d0f261ea0571d4d2" compoundref="syn_8h" startline="10">WTINST::keyRegion</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a6676807232618abd2449b182787bf2c8" compoundref="syn_8h" startline="75">SYNSYNTH::region</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1a4a508942af4c982a8bf762bbd19935ff" compoundref="syn_8h" startline="77">SYNSYNTH::sample</references>
+        <references refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" compoundref="syn_8h" startline="101">SYNSYNTH::voice</references>
+        <referencedby refid="synctrl_8c_1aa86e790f129d9210a620257f0b83df8a" compoundref="synctrl_8c" startline="293" endline="383">__SYNNoteOn</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_SYN_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_SYN_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="syn_8h" kindref="compound">dolphin/syn.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>syn.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/><ref refid="_s_y_n_private_8h_1a8cc2fe022fb04a6587c52dd3f7891607" kindref="member">__SYNSynthList</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synctrl.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a79c9cd243ebad0f1d53dc5db4efd98e2" kindref="member">__SYNn128</ref>[128];</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1ab417c379b409cfc1e0a012bc52f17014" kindref="member">__SYNClearAllNotes</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a0211df623a996d4533918a0bca2f33da" kindref="member">__SYNSetController</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/>midiChannel,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/>function,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">value</ref>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1af42f2481100b314dadfa2dd78a7aee74" kindref="member">__SYNResetController0</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/>midiChannel);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a40ccb8c064b0345dc63be76de3fe3683" kindref="member">__SYNResetController</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/>midiChannel);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a7ec0427a927747c206595e3718b3ab30" kindref="member">__SYNResetAllControllers</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a55b42c63e0fd763f67c6b978a870558e" kindref="member">__SYNRunInputBufferEvents</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_s_y_n_t_h" kindref="compound">SYNSYNTH</ref>*<sp/>synth);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synenv.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><ref refid="_s_y_n_private_8h_1a99d4768c9ab7ed1b82a6d3e44f241eae" kindref="member">__SYNGetEnvelopeTime</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">scale</ref>,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mod</ref>,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">key</ref>);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1afaeb3b6a3dbc292a669e81df8dadaf3f" kindref="member">__SYNSetupVolumeEnvelope</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a7c028552f9372241fdec55e5d8cd8488" kindref="member">__SYNSetupPitchEnvelope</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a01de8c047f959ced5c2503f86fe60cf2" kindref="member">__SYNRunVolumeEnvelope</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a137d77c76a759e46390ee2539cf59174" kindref="member">__SYNRunPitchEnvelope</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synlfo.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a7331ec9624327abcf3956fd802c9bb2a" kindref="member">__SYNSetupLfo</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a92a62f928038cbb58929fbc05568d2cd" kindref="member">__SYNRunLfo</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synmix.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_s_y_n_private_8h_1a6e334398b054faded06f7dfdedfb5bf6" kindref="member">__SYNVolumeAttenuation</ref>[128];</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_s_y_n_private_8h_1ac0a5c7364cbba9647ee00cf0d4e0fdbf" kindref="member">__SYNAttackAttnTable</ref>[100];</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a927c183f61a31d181cdff75d7ebf030d" kindref="member">__SYNSetupVolume</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a2b07395e000faa5c19d520d7fbb6e2a6" kindref="member">__SYNSetupPan</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><ref refid="_s_y_n_private_8h_1a6d0d307cb926ea7fd4953ea02c461f30" kindref="member">__SYNGetVoiceInput</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><ref refid="_s_y_n_private_8h_1a723fe0c86da58ee541f0dcc3681c4f57" kindref="member">__SYNGetVoiceFader</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a72bd77ffbe6f422c134969d2eb3f4218" kindref="member">__SYNUpdateMix</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synpitch.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a1bcd4e88c19934b8f8769f8f973ef83d" kindref="member">__SYNGetRelativePitch</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="_s_y_n_private_8h_1ab9195ee6f3f3cd129c7f6d66e2c8d9b8" kindref="member">__SYNSetupPitch</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="_s_y_n_private_8h_1a0a2832f89c7469f72fcbe3cad247880f" kindref="member">__SYNSetupSrc</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="_s_y_n_private_8h_1aab00ed63de94d43ecf55134adf8763bf" kindref="member">__SYNUpdateSrc</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synsample.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1ada8c1d7c8ffc26ba66825cf7cbe9f40a" kindref="member">__SYNSetupSample</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/><ref refid="struct_s_y_n_s_y_n_t_h_1aeebd7fc792a8a4ce3c3ede935845f6f9" kindref="member">voice</ref>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synvoice.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref><sp/><ref refid="_s_y_n_private_8h_1a93df0d8dfa12d2c8d5ce010160197a80" kindref="member">__SYNVoice</ref>[64];</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a7427007ef1558910e56533234bec8caa" kindref="member">__SYNClearVoiceReferences</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">p</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1acb34d682980877362239493369e876ad" kindref="member">__SYNSetVoiceToRelease</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/>voice,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>priority);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1a9d0694b005c78db2a3b524854e4e756b" kindref="member">__SYNServiceVoice</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>synwt.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_s_y_n_private_8h_1ae819fd45e7af6f9422ee2203d22d7852" kindref="member">__SYNGetWavetableData</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_s_y_n_v_o_i_c_e" kindref="compound">SYNVOICE</ref>*<sp/>voice);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_DOLPHIN_SYN_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/syn/SYNPrivate.h"/>
+  </compounddef>
+</doxygen>

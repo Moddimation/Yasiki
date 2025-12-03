@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_o_s_mutex_link" kind="struct" language="C++" prot="public">
+    <compoundname>OSMutexLink</compoundname>
+    <includes refid="_o_s_thread_8h" local="no">OSThread.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_o_s_mutex_link_1a2d983b1d25f99ad459cfa6fb2d461dce" prot="public" static="no" mutable="no">
+        <type><ref refid="_o_s_thread_8h_1a42b7c5a07043d7f6c8324f51ac1747c8" kindref="member">OSMutex</ref> *</type>
+        <definition>OSMutex* OSMutexLink::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>OSMutexLink::next</qualifiedname>
+        <briefdescription>
+<para>0x00 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="43" column="13" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="43" bodyend="-1"/>
+        <referencedby refid="_o_s_mutex_8c_1af756730c8323a5b414eac45cd13aeb48" compoundref="_o_s_mutex_8c" startline="334" endline="352">__OSCheckMutexes</referencedby>
+        <referencedby refid="_o_s_private_8h_1aeec7b3d334173acfa47f9e8fa69390cd" compoundref="_o_s_thread_8c" startline="290" endline="305">__OSGetEffectivePriority</referencedby>
+        <referencedby refid="_o_s_mutex_8c_1a49ad28989551033add64113ae4c55534" compoundref="_o_s_mutex_8c" startline="245" endline="259">IsMember</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_mutex_link_1acacc5c293c160ce77244134395c9ab13" prot="public" static="no" mutable="no">
+        <type><ref refid="_o_s_thread_8h_1a42b7c5a07043d7f6c8324f51ac1747c8" kindref="member">OSMutex</ref> *</type>
+        <definition>OSMutex* OSMutexLink::prev</definition>
+        <argsstring></argsstring>
+        <name>prev</name>
+        <qualifiedname>OSMutexLink::prev</qualifiedname>
+        <briefdescription>
+<para>0x04 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="44" column="13" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>OSContext</label>
+        <link refid="struct_o_s_context"/>
+      </node>
+      <node id="2">
+        <label>OSMutex</label>
+        <link refid="struct_o_s_mutex"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>queue</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>thread</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>link</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OSMutexLink</label>
+        <link refid="struct_o_s_mutex_link"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OSMutexQueue</label>
+        <link refid="struct_o_s_mutex_queue"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>OSThread</label>
+        <link refid="struct_o_s_thread"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>context</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>queue</edgelabel>
+          <edgelabel>queueJoin</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>link</edgelabel>
+          <edgelabel>linkActive</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mutex</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>queueMutex</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OSThreadLink</label>
+        <link refid="struct_o_s_thread_link"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>OSThreadQueue</label>
+        <link refid="struct_o_s_thread_queue"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="41" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="42" bodyend="45"/>
+    <listofallmembers>
+      <member refid="struct_o_s_mutex_link_1a2d983b1d25f99ad459cfa6fb2d461dce" prot="public" virt="non-virtual"><scope>OSMutexLink</scope><name>next</name></member>
+      <member refid="struct_o_s_mutex_link_1acacc5c293c160ce77244134395c9ab13" prot="public" virt="non-virtual"><scope>OSMutexLink</scope><name>prev</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

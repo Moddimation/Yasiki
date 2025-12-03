@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSThread.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osthreadh">File OSThread.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_2e13e6cf1d2e2aa91cbc210fef9f68a3/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSThread.h</strong></a></p>
+<p><a href="../_o_s_thread_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/os/OSContext.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_o_s_mutex_link/"><strong>OSMutexLink</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_o_s_mutex_queue/"><strong>OSMutexQueue</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_o_s_thread/"><strong>OSThread</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_o_s_thread_link/"><strong>OSThreadLink</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_o_s_thread_queue/"><strong>OSThreadQueue</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_cond/"><strong>OSCond</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-oscond"><strong>OSCond</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-osidlefunction"><strong>OSIdleFunction</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_mutex/"><strong>OSMutex</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-osmutex"><strong>OSMutex</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_mutex_link/"><strong>OSMutexLink</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-osmutexlink"><strong>OSMutexLink</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_mutex_queue/"><strong>OSMutexQueue</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-osmutexqueue"><strong>OSMutexQueue</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ospriority"><strong>OSPriority</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_thread/"><strong>OSThread</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-osthread"><strong>OSThread</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_thread_link/"><strong>OSThreadLink</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-osthreadlink"><strong>OSThreadLink</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_o_s_thread_queue/"><strong>OSThreadQueue</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-osthreadqueue"><strong>OSThreadQueue</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-os_thread_state"><strong>OS_THREAD_STATE</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscancelthread"><strong>OSCancelThread</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscheckactivethreads"><strong>OSCheckActiveThreads</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscreatethread"><strong>OSCreateThread</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *) func, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * param, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * stack, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> stackSize, <a href="./#typedef-ospriority"><strong>OSPriority</strong></a> priority, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> attr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdetachthread"><strong>OSDetachThread</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdisablescheduler"><strong>OSDisableScheduler</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osenablescheduler"><strong>OSEnableScheduler</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osexitthread"><strong>OSExitThread</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * val) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_thread/"><strong>OSThread</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osgetcurrentthread"><strong>OSGetCurrentThread</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_thread/"><strong>OSThread</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osgetidlefunction"><strong>OSGetIdleFunction</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-ospriority"><strong>OSPriority</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetthreadpriority"><strong>OSGetThreadPriority</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osinitthreadqueue"><strong>OSInitThreadQueue</strong></a> (<a href="../struct_o_s_thread_queue/"><strong>OSThreadQueue</strong></a> * queue) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-osisthreadsuspended"><strong>OSIsThreadSuspended</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-osisthreadterminated"><strong>OSIsThreadTerminated</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-osjointhread"><strong>OSJoinThread</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> ** val) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osresumethread"><strong>OSResumeThread</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_thread/"><strong>OSThread</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-ossetidlefunction"><strong>OSSetIdleFunction</strong></a> (<a href="./#typedef-osidlefunction"><strong>OSIdleFunction</strong></a> idleFunction, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * param, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * stack, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> stackSize) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetthreadpriority"><strong>OSSetThreadPriority</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread, <a href="./#typedef-ospriority"><strong>OSPriority</strong></a> priority) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossleepthread"><strong>OSSleepThread</strong></a> (<a href="../struct_o_s_thread_queue/"><strong>OSThreadQueue</strong></a> * queue) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossuspendthread"><strong>OSSuspendThread</strong></a> (<a href="../struct_o_s_thread/"><strong>OSThread</strong></a> * thread) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-oswakeupthread"><strong>OSWakeupThread</strong></a> (<a href="../struct_o_s_thread_queue/"><strong>OSThreadQueue</strong></a> * queue) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osyieldthread"><strong>OSYieldThread</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_priority_idle"><strong>OS_PRIORITY_IDLE</strong></a>  <code>[**OS\_PRIORITY\_MAX**](_o_s_thread_8h.md#define-os_priority_max)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_priority_max"><strong>OS_PRIORITY_MAX</strong></a>  <code>31</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_priority_min"><strong>OS_PRIORITY_MIN</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_thread_attr_detach"><strong>OS_THREAD_ATTR_DETACH</strong></a>  <code>0x0001u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_thread_stack_magic"><strong>OS_THREAD_STACK_MAGIC</strong></a>  <code>0xDEADBABE</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-oscond">typedef OSCond</h3>
+<pre><code class="language-C++">typedef struct OSCond OSCond;
+</code></pre>
+<hr>
+
+<h3 id="typedef-osidlefunction">typedef OSIdleFunction</h3>
+<pre><code class="language-C++">typedef void(* OSIdleFunction) (void *param);
+</code></pre>
+<hr>
+
+<h3 id="typedef-osmutex">typedef OSMutex</h3>
+<pre><code class="language-C++">typedef struct OSMutex OSMutex;
+</code></pre>
+<hr>
+
+<h3 id="typedef-osmutexlink">typedef OSMutexLink</h3>
+<pre><code class="language-C++">typedef struct OSMutexLink OSMutexLink;
+</code></pre>
+<hr>
+
+<h3 id="typedef-osmutexqueue">typedef OSMutexQueue</h3>
+<pre><code class="language-C++">typedef struct OSMutexQueue OSMutexQueue;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ospriority">typedef OSPriority</h3>
+<pre><code class="language-C++">typedef s32 OSPriority;
+</code></pre>
+<hr>
+
+<h3 id="typedef-osthread">typedef OSThread</h3>
+<pre><code class="language-C++">typedef struct OSThread OSThread;
+</code></pre>
+<hr>
+
+<h3 id="typedef-osthreadlink">typedef OSThreadLink</h3>
+<pre><code class="language-C++">typedef struct OSThreadLink OSThreadLink;
+</code></pre>
+<hr>
+
+<h3 id="typedef-osthreadqueue">typedef OSThreadQueue</h3>
+<pre><code class="language-C++">typedef struct OSThreadQueue OSThreadQueue;
+</code></pre>
+<hr>
+
+<h3 id="enum-os_thread_state">enum OS_THREAD_STATE</h3>
+<pre><code class="language-C++">enum OS_THREAD_STATE {
+    OS_THREAD_STATE_READY = 1,
+    OS_THREAD_STATE_RUNNING = 2,
+    OS_THREAD_STATE_WAITING = 4,
+    OS_THREAD_STATE_MORIBUND = 8
+};
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-oscancelthread">function OSCancelThread</h3>
+<pre><code class="language-C++">void OSCancelThread (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oscheckactivethreads">function OSCheckActiveThreads</h3>
+<pre><code class="language-C++">s32 OSCheckActiveThreads (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oscreatethread">function OSCreateThread</h3>
+<pre><code class="language-C++">BOOL OSCreateThread (
+    OSThread * thread,
+    void *(*)( void *) func,
+    void * param,
+    void * stack,
+    u32 stackSize,
+    OSPriority priority,
+    u16 attr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osdetachthread">function OSDetachThread</h3>
+<pre><code class="language-C++">void OSDetachThread (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osdisablescheduler">function OSDisableScheduler</h3>
+<pre><code class="language-C++">s32 OSDisableScheduler (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osenablescheduler">function OSEnableScheduler</h3>
+<pre><code class="language-C++">s32 OSEnableScheduler (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osexitthread">function OSExitThread</h3>
+<pre><code class="language-C++">void OSExitThread (
+    void * val
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetcurrentthread">function OSGetCurrentThread</h3>
+<pre><code class="language-C++">OSThread * OSGetCurrentThread (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetidlefunction">function OSGetIdleFunction</h3>
+<pre><code class="language-C++">OSThread * OSGetIdleFunction (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgetthreadpriority">function OSGetThreadPriority</h3>
+<pre><code class="language-C++">OSPriority OSGetThreadPriority (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osinitthreadqueue">function OSInitThreadQueue</h3>
+<pre><code class="language-C++">void OSInitThreadQueue (
+    OSThreadQueue * queue
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osisthreadsuspended">function OSIsThreadSuspended</h3>
+<pre><code class="language-C++">BOOL OSIsThreadSuspended (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osisthreadterminated">function OSIsThreadTerminated</h3>
+<pre><code class="language-C++">BOOL OSIsThreadTerminated (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osjointhread">function OSJoinThread</h3>
+<pre><code class="language-C++">BOOL OSJoinThread (
+    OSThread * thread,
+    void ** val
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osresumethread">function OSResumeThread</h3>
+<pre><code class="language-C++">s32 OSResumeThread (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetidlefunction">function OSSetIdleFunction</h3>
+<pre><code class="language-C++">OSThread * OSSetIdleFunction (
+    OSIdleFunction idleFunction,
+    void * param,
+    void * stack,
+    u32 stackSize
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetthreadpriority">function OSSetThreadPriority</h3>
+<pre><code class="language-C++">BOOL OSSetThreadPriority (
+    OSThread * thread,
+    OSPriority priority
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossleepthread">function OSSleepThread</h3>
+<pre><code class="language-C++">void OSSleepThread (
+    OSThreadQueue * queue
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossuspendthread">function OSSuspendThread</h3>
+<pre><code class="language-C++">s32 OSSuspendThread (
+    OSThread * thread
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oswakeupthread">function OSWakeupThread</h3>
+<pre><code class="language-C++">void OSWakeupThread (
+    OSThreadQueue * queue
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osyieldthread">function OSYieldThread</h3>
+<pre><code class="language-C++">void OSYieldThread (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-os_priority_idle">define OS_PRIORITY_IDLE</h3>
+<pre><code class="language-C++">#define OS_PRIORITY_IDLE `OS_PRIORITY_MAX`
+</code></pre>
+<hr>
+
+<h3 id="define-os_priority_max">define OS_PRIORITY_MAX</h3>
+<pre><code class="language-C++">#define OS_PRIORITY_MAX `31`
+</code></pre>
+<hr>
+
+<h3 id="define-os_priority_min">define OS_PRIORITY_MIN</h3>
+<pre><code class="language-C++">#define OS_PRIORITY_MIN `0`
+</code></pre>
+<hr>
+
+<h3 id="define-os_thread_attr_detach">define OS_THREAD_ATTR_DETACH</h3>
+<pre><code class="language-C++">#define OS_THREAD_ATTR_DETACH `0x0001u`
+</code></pre>
+<hr>
+
+<h3 id="define-os_thread_stack_magic">define OS_THREAD_STACK_MAGIC</h3>
+<pre><code class="language-C++">#define OS_THREAD_STACK_MAGIC `0xDEADBABE`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/os/OSThread.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

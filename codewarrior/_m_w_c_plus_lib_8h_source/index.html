@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File MWCPlusLib.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-mwcpluslibh">File MWCPlusLib.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_e69745e3285a8d4f155d29d88e1a7b6b/"><strong>Runtime</strong></a> <strong>&gt;</strong> <a href="../dir_192ee455ef94b5a11e62d491224058e4/"><strong>Inc</strong></a> <strong>&gt;</strong> <a href="../_m_w_c_plus_lib_8h/"><strong>MWCPlusLib.h</strong></a></p>
+<p><a href="../_m_w_c_plus_lib_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/************************************************************************/
+/*  Project...: Standard C++ Library                                    */
+/*  Name......: CPlusLib.h                                              */
+/*  Purpose...: C++ specific runtime functions                          */
+/*  Copyright.: Copyright 1993-1997 Metrowerks, Inc.                    */
+/************************************************************************/
+
+#ifndef __CPLUSLIB__
+#define __CPLUSLIB__
+
+#include &lt;stddef.h&gt;
+
+/*
+ *  #define CABI_ZEROOFFSETVTABLE       1
+ *      
+ *  forces vtable pointer to point to the first virtual function pointer,
+ *  the RTTI header will be at offset -sizeof(RTTIVTableHeader)
+ *  This flag must be set in CABI.c and in MWRTTI.cp
+ */
+
+/* #define __INTEL__ 1 */ /*    define to 1 to test WIN_ABI */
+
+#ifdef __INTEL__
+
+#define CABI_ZEROOFFSETVTABLE       1
+
+#else
+
+#define CABI_ZEROOFFSETVTABLE       0
+
+#endif
+
+/*
+ *  invisible constructor/destructor argument handling
+ */
+
+#ifdef __INTEL__
+
+#define CTORARG_TYPE            int
+#define CTORARG_PARTIAL         (0)             /*  construct non-virtual bases */
+#define CTORARG_COMPLETE        (1)             /*  construct all bases         */
+
+#define CTORCALL_COMPLETE(ctor,objptr)\
+    (((void (*)(void *,CTORARG_TYPE))ctor)(objptr,CTORARG_COMPLETE))
+
+#define DTORARG_TYPE            int
+#define DTORARG_DELETEFLAG      0x0001          /*  delete after destruction    */
+#define DTORARG_VECTORFLAG      0x0002          /*  array destruction           */
+
+#define DTORCALL_COMPLETE(dtor,objptr)\
+    (((void (*)(void *,DTORARG_TYPE))dtor)(objptr,0))
+
+#define DTORCALL_PARTIAL(dtor,objptr)\
+    (((void (*)(void *))dtor)(objptr))
+
+#else
+
+#define CTORARG_TYPE            short
+#define CTORARG_PARTIAL         (0)             /*  construct non-virtual bases */
+#define CTORARG_COMPLETE        (1)             /*  construct all bases         */  
+
+#if __CFM68K__
+
+    long __getA7(void) = { 0x200F };
+    void __setA7(long a7:__d0) = { 0x2E40 };
+
+#define CTORCALL_COMPLETE(ctor,objptr)\
+    {\
+        long __savedA7 = __getA7();\
+        (((void (*)(void *,CTORARG_TYPE))ctor)(objptr,CTORARG_COMPLETE));\
+        __setA7(__savedA7);\
+    }
+
+#else
+
+#define CTORCALL_COMPLETE(ctor,objptr)\
+    (((void (*)(void *,CTORARG_TYPE))ctor)(objptr,CTORARG_COMPLETE))
+
+#endif
+
+#define DTORARG_TYPE            short
+#define DTORARG_PARTIAL         (0)             /*  destroy non-virtual bases           */  
+#define DTORARG_COMPLETE        (-1)            /*  destroy all bases                   */
+#define DTORARG_DELETE          (1)             /*  destroy all bases and delete object */
+
+#define DTORCALL_COMPLETE(dtor,objptr)\
+    (((void (*)(void *,DTORARG_TYPE))dtor)(objptr,DTORARG_COMPLETE))
+
+#define DTORCALL_PARTIAL(dtor,objptr)\
+    (((void (*)(void *,DTORARG_TYPE))dtor)(objptr,DTORARG_PARTIAL))
+
+#endif
+
+typedef void *ConstructorDestructor;    /*  constructor/destructor function pointer */
+
+typedef struct PTMF {
+    long    this_delta;                 /*  delta to this pointer                   */
+    long    vtbl_offset;                /*  offset of virtual function pointer in vtable (&lt;0: non-virtual function address) */
+    union {
+        void    *func_addr;             /*  non-virtual function address            */
+        long    ventry_offset;          /*  offset of vtable pointer in class       */
+    }   func_data;
+}   PTMF;
+
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+
+#ifdef __MC68K__
+extern long     __ptmf_test(const PTMF *ptmf);
+extern long     __ptmf_cmpr(const PTMF *ptmf1,const PTMF *ptmf2);
+extern void     __ptmf_call(...);
+extern void     __ptmf_scall(...);
+#endif
+
+extern PTMF     *__ptmf_cast(long offset,const PTMF *ptmfrom,PTMF *ptmto);
+
+extern void     *__copy(char *to,char *from,size_t size);
+extern void     *__new_hdl(size_t size);
+extern void     __del_hdl(void *hdl);
+extern void     *__init_arr(void *memptr,ConstructorDestructor constructor,size_t object_size,size_t nobjects);
+extern void     *__new_arr(ConstructorDestructor constructor,size_t object_size,size_t objects);
+extern void     __del_arr(void *memptr,ConstructorDestructor destructor);
+extern void     __dc_arr(void *mem,ConstructorDestructor con_des,short object_size,short objects);
+
+extern void     __construct_array(void *block,ConstructorDestructor ctor,ConstructorDestructor dtor,size_t size,size_t n);
+extern void     __destroy_arr(void *block,ConstructorDestructor dtor,size_t size,size_t n);
+extern void     *__construct_new_array(void *block,ConstructorDestructor ctor,ConstructorDestructor dtor,size_t size,size_t n);
+extern void     __destroy_new_array(void *block,ConstructorDestructor dtor);
+extern void     *__destroy_new_array2(void *block,ConstructorDestructor dtor);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

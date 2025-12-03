@@ -1,0 +1,70 @@
+
+
+# File types.h
+
+[**File List**](files.md) **>** [**decomp**](dir_0c56b33aa00ddb0e63af648508d6e3f4.md) **>** [**DolphinSDK**](dir_7403dcf2df2f5392613493bf2b736904.md) **>** [**include**](dir_9b186dc3f3e3b6d33b9081cb8e685142.md) **>** [**dolphin**](dir_47b271ade99b633966c54f819f725c3c.md) **>** [**types.h**](types_8h.md)
+
+[Go to the documentation of this file](types_8h.md)
+
+
+```C++
+#ifndef _DOLPHIN_TYPES_H_
+#define _DOLPHIN_TYPES_H_
+
+typedef signed char        s8;
+typedef signed short       s16;
+typedef signed long        s32;
+typedef signed long long   s64;
+typedef unsigned char      u8;
+typedef unsigned short     u16;
+typedef unsigned long      u32;
+typedef unsigned long long u64;
+
+typedef volatile u8  vu8;
+typedef volatile u16 vu16;
+typedef volatile u32 vu32;
+typedef volatile u64 vu64;
+typedef volatile s8  vs8;
+typedef volatile s16 vs16;
+typedef volatile s32 vs32;
+typedef volatile s64 vs64;
+
+typedef float        f32;
+typedef double       f64;
+typedef volatile f32 vf32;
+typedef volatile f64 vf64;
+
+typedef char* Ptr;
+
+#ifndef BOOL
+typedef int BOOL;
+#endif
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifndef NULL
+#ifdef __cplusplus
+#define NULL 0
+#else
+#define NULL ((void*)0)
+#endif
+#endif
+
+#if defined(__MWERKS__)
+#define AT_ADDRESS(addr) : (addr)
+#else
+#define AT_ADDRESS(addr)
+#endif
+
+#define ALIGN(num) __attribute__ ((aligned (num)))
+
+#endif
+```
+
+

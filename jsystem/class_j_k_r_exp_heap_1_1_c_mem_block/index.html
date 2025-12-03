@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Class JKRExpHeap::CMemBlock - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="class-jkrexpheapcmemblock">Class JKRExpHeap::CMemBlock</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../class_j_k_r_exp_heap/"><strong>JKRExpHeap</strong></a> <strong>&gt;</strong> <a href="./"><strong>CMemBlock</strong></a></p>
+<ul>
+<li><code>#include &lt;JKRExpHeap.h&gt;</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-_istempmemblock"><strong>_isTempMemBlock</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRExpHeap::CMemBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-allocback"><strong>allocBack</strong></a> (size_t size, u8 group_id_1, u8 align_1, u8 group_id_2, u8 align_2) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRExpHeap::CMemBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-allocfore"><strong>allocFore</strong></a> (size_t size, u8 group_id, u8 align_1, u8 group_id_2, u8 align_2) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-free"><strong>free</strong></a> (<a href="../class_j_k_r_exp_heap/"><strong>JKRExpHeap</strong></a> * heap) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-getalignment"><strong>getAlignment</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-getcontent"><strong>getContent</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u8</td>
+<td style="text-align: left;"><a href="#function-getgroupid"><strong>getGroupId</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>CMemBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-getnextblock"><strong>getNextBlock</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>CMemBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-getprevblock"><strong>getPrevBlock</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#function-getsize"><strong>getSize</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-initiate"><strong>initiate</strong></a> (<a href="./"><strong>CMemBlock</strong></a> * prev, <a href="./"><strong>CMemBlock</strong></a> * next, size_t size, u8 groupId, u8 align) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-isvalid"><strong>isValid</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-newgroupid"><strong>newGroupId</strong></a> (u8 group_id) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>CMemBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-getblock"><strong>getBlock</strong></a> (void * data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>CMemBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-getheapblock"><strong>getHeapBlock</strong></a> (void * obj) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-_istempmemblock">function _isTempMemBlock</h3>
+<pre><code class="language-C++">inline bool JKRExpHeap::CMemBlock::_isTempMemBlock () const
+</code></pre>
+<hr>
+
+<h3 id="function-allocback">function allocBack</h3>
+<pre><code class="language-C++">JKRExpHeap::CMemBlock * JKRExpHeap::CMemBlock::allocBack (
+    size_t size,
+    u8 group_id_1,
+    u8 align_1,
+    u8 group_id_2,
+    u8 align_2
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-allocfore">function allocFore</h3>
+<pre><code class="language-C++">JKRExpHeap::CMemBlock * JKRExpHeap::CMemBlock::allocFore (
+    size_t size,
+    u8 group_id,
+    u8 align_1,
+    u8 group_id_2,
+    u8 align_2
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-free">function free</h3>
+<pre><code class="language-C++">void * JKRExpHeap::CMemBlock::free (
+    JKRExpHeap * heap
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-getalignment">function getAlignment</h3>
+<pre><code class="language-C++">inline int JKRExpHeap::CMemBlock::getAlignment () const
+</code></pre>
+<hr>
+
+<h3 id="function-getcontent">function getContent</h3>
+<pre><code class="language-C++">inline void * JKRExpHeap::CMemBlock::getContent () const
+</code></pre>
+<hr>
+
+<h3 id="function-getgroupid">function getGroupId</h3>
+<pre><code class="language-C++">inline u8 JKRExpHeap::CMemBlock::getGroupId () const
+</code></pre>
+<hr>
+
+<h3 id="function-getnextblock">function getNextBlock</h3>
+<pre><code class="language-C++">inline CMemBlock * JKRExpHeap::CMemBlock::getNextBlock () const
+</code></pre>
+<hr>
+
+<h3 id="function-getprevblock">function getPrevBlock</h3>
+<pre><code class="language-C++">inline CMemBlock * JKRExpHeap::CMemBlock::getPrevBlock () const
+</code></pre>
+<hr>
+
+<h3 id="function-getsize">function getSize</h3>
+<pre><code class="language-C++">inline u32 JKRExpHeap::CMemBlock::getSize () const
+</code></pre>
+<hr>
+
+<h3 id="function-initiate">function initiate</h3>
+<pre><code class="language-C++">void JKRExpHeap::CMemBlock::initiate (
+    CMemBlock * prev,
+    CMemBlock * next,
+    size_t size,
+    u8 groupId,
+    u8 align
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isvalid">function isValid</h3>
+<pre><code class="language-C++">inline bool JKRExpHeap::CMemBlock::isValid () const
+</code></pre>
+<hr>
+
+<h3 id="function-newgroupid">function newGroupId</h3>
+<pre><code class="language-C++">inline void JKRExpHeap::CMemBlock::newGroupId (
+    u8 group_id
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-getblock">function getBlock</h3>
+<pre><code class="language-C++">static inline CMemBlock * JKRExpHeap::CMemBlock::getBlock (
+    void * data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-getheapblock">function getHeapBlock</h3>
+<pre><code class="language-C++">static CMemBlock * JKRExpHeap::CMemBlock::getHeapBlock (
+    void * obj
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/JSystem/System/JKernel/include/JKRExpHeap.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File log10f.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-log10fc">File log10f.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_30eb297d72d9bf6e37ae97b245365a16/"><strong>MSL_C</strong></a> <strong>&gt;</strong> <a href="../dir_862c03c3c35584d0a555c3abef6e72a9/"><strong>MSL_Common_Embedded</strong></a> <strong>&gt;</strong> <a href="../dir_12110d18fe016ada0ac20ca931a7efb5/"><strong>Math</strong></a> <strong>&gt;</strong> <a href="../dir_e8afb2b224d923f9df254cf5acbdc830/"><strong>Single_precision</strong></a> <strong>&gt;</strong> <a href="../log10f_8c/"><strong>log10f.c</strong></a></p>
+<p><a href="../log10f_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;math.h&gt;
+#  define  __ln2        0.69314718f
+#  define  __log10_2    0.301029995664f  
+#  define  __sqrt2_m1  .41421356237f                            
+
+static const float _log10_poly[] = 
+    {
+     0.868588961f,
+     0.289530878375f,
+     0.173569242f,
+     0.1307240643f
+    };
+
+
+float log10f( float x)
+ {
+  switch((*(_INT32*)&amp;x)&amp;0xff800000)
+  {
+   default:
+   {
+
+    float   __log10_sqrt2 = 0.150514997831990597606869447362247f;  
+    //poly 2302--misses double result by &gt; 1 ulp but &lt; 2 ulp .0034% 
+    float y,zsq;
+    _INT32 exp,tmp;
+    if((*(_INT32*)&amp;x)&amp;0x80000000)
+      return NAN;
+    exp = ((*(_UINT32*)&amp;x) &gt;&gt; 23) - 126; 
+    if((*(_INT32*)&amp;x)&amp;=0x007fffff)
+       (*(_INT32*)&amp;x)|= 0x3f000000;
+    else
+       return --exp* __log10_2;
+
+    if( (*(_INT32*)&amp;x) &lt; 0x3F3504F3)              
+        x+=__sqrt2_m1*x;
+    else
+       __log10_sqrt2=0.0f;    
+
+     x = 1.0f -(2.0f/(x + 1.0f));
+     zsq = x*x;
+     y=(((_log10_poly[3]*zsq + _log10_poly[2])*zsq + 
+          _log10_poly[1])*zsq + _log10_poly[0])*x;
+     tmp= y;         //truncated toward zero
+     y-=(float)tmp;
+     return (exp*__log10_2 + tmp) + (y - __log10_sqrt2);
+     break;
+    }
+  case 0x7f800000:
+  case 0xff800000:
+    if((*(_INT32*)&amp;x)&amp;0x007fffff) 
+     return x;
+    else 
+    {
+     if((*(_INT32*)&amp;x)&amp;0x80000000) 
+      return NAN;
+     else
+      return INFINITY;
+    }
+
+  case 0:  // will fix for denormals later
+  case 0x80000000:
+    return -INFINITY ;
+
+  }//end of switch
+ }
+
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

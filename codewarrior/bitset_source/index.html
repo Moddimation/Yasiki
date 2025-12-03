@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File bitset - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-bitset">File bitset</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../bitset/"><strong>bitset</strong></a></p>
+<p><a href="../bitset/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:58:47 $ 
+ *  $Revision: 1.8.6.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/**
+ **  bitset
+ **/
+
+#ifndef _BITSET
+#define _BITSET
+
+#include &lt;mslconfig&gt;  // hh 990120 new config file
+#include &lt;cstddef&gt;
+#include &lt;climits&gt;
+#include &lt;string&gt;
+#include &lt;stdexcept&gt;
+#include &lt;iosfwd&gt;
+
+#ifndef RC_INVOKED
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE  // hh 990120
+    namespace std {
+#endif
+
+template&lt;size_t N&gt;
+class bitset
+{
+public:
+    // bit reference:
+    class reference
+    {
+    public:
+        reference&amp; operator=(bool x) {v_.set(pos_, x); return *this;}
+        reference&amp; operator=(const reference&amp; rhs) {v_.set(pos_, rhs); return *this;}
+        bool operator~() const {return !v_.test(pos_);}
+        operator bool() const {return v_.test(pos_);}
+        reference&amp; flip() {v_.flip(pos_); return *this;}
+    private:
+        bitset&amp; v_;
+        size_t pos_;
+
+        reference(bitset&amp; v, size_t pos) : v_(v), pos_(pos) {}
+
+        friend class bitset;
+    };
+
+    // _lib.bitset.cons_ constructors:
+    bitset();
+    bitset(unsigned long val);
+
+    // hh 980805 reverting to pre-member template code.
+/*  #ifndef _MSL_NO_MEMBER_TEMPLATE  // hh 980713 Temporarily moved into class definition to support compiler
+        template&lt;class charT, class traits, class Allocator&gt;
+        bitset(const basic_string&lt;charT,traits,Allocator&gt;&amp; str,
+            typename basic_string&lt;charT,traits,Allocator&gt;::size_type pos = 0,
+            typename basic_string&lt;charT,traits,Allocator&gt;::size_type n = basic_string&lt;charT,traits,Allocator&gt;::npos)
+        {
+            if (pos &gt;= str.size())
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw out_of_range(&quot;pos out of range of str in bitset constructor&quot;);
+            #else
+                __msl_error(&quot;pos out of range of str in bitset constructor&quot;);
+            #endif
+            if (n &gt; str.size() - pos)
+                n = str.size() - pos;
+            if (n &gt; N)
+                n = N;
+            {  // hh 980816 ARM/Standard neutral for-scoping
+            for (size_t i = 0; i &lt; nwords_; ++i)
+                data_[i] = 0;
+            }
+            {  // hh 980816 ARM/Standard neutral for-scoping
+            for (size_t i = 0; i &lt; n; ++i)
+            {
+                char c = char(str[pos + n - 1 - i]);
+                switch (c)
+                {
+                case '0':
+                    break;
+                case '1':
+                    set(i);
+                    break;
+                default:
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw invalid_argument(&quot;str contains invalid characters in bitset constructor&quot;);
+                    #else
+                        __msl_error(&quot;str contains invalid characters in bitset constructor&quot;);
+                    #endif
+                }
+            }
+            }
+        }
+    #else */
+        bitset(const string&amp; str,
+            typename string::size_type pos = 0,
+            typename string::size_type n = string::npos)
+        {
+            if (pos &gt;= str.size())
+                #ifndef _MSL_NO_EXCEPTIONS
+                    throw out_of_range(&quot;pos out of range of str in bitset constructor&quot;);
+                #else
+                    __msl_error(&quot;pos out of range of str in bitset constructor&quot;);
+                #endif
+            if (n &gt; str.size() - pos)
+                n = str.size() - pos;
+            if (n &gt; N)
+                n = N;
+            {  // hh 980816 ARM/Standard neutral for-scoping
+            for (size_t i = 0; i &lt; nwords_; ++i)
+                data_[i] = 0;
+            }
+            {  // hh 980816 ARM/Standard neutral for-scoping
+            for (size_t i = 0; i &lt; n; ++i)
+            {
+                char c = char(str[pos + n - 1 - i]);
+                switch (c)
+                {
+                case '0':
+                    break;
+                case '1':
+                    set(i);
+                    break;
+                default:
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw invalid_argument(&quot;str contains invalid characters in bitset constructor&quot;);
+                    #else
+                        __msl_error(&quot;str contains invalid characters in bitset constructor&quot;);
+                    #endif
+                }
+            }
+            }
+        }
+//  #endif
+
+    // _lib.bitset.members_ bitset operations:
+    bitset&lt;N&gt;&amp; operator&amp;=(const bitset&lt;N&gt;&amp; rhs);
+    bitset&lt;N&gt;&amp; operator|=(const bitset&lt;N&gt;&amp; rhs);
+    bitset&lt;N&gt;&amp; operator^=(const bitset&lt;N&gt;&amp; rhs);
+    bitset&lt;N&gt;&amp; operator&lt;&lt;=(size_t pos);
+    bitset&lt;N&gt;&amp; operator&gt;&gt;=(size_t pos);
+    bitset&lt;N&gt;&amp; set();
+    bitset&lt;N&gt;&amp; set(size_t pos, int val = true);
+    bitset&lt;N&gt;&amp; reset();
+    bitset&lt;N&gt;&amp; reset(size_t pos);
+    bitset&lt;N&gt;  operator~() const;
+    bitset&lt;N&gt;&amp; flip();
+    bitset&lt;N&gt;&amp; flip(size_t pos);
+    // element access:
+    reference operator[](size_t pos);
+    unsigned long to_ulong() const;
+
+    // hh 980805 reverting to pre-member template code.
+/*  #ifndef _MSL_NO_MEMBER_TEMPLATE  // hh 980713 Temporarily moved into class definition to support compiler
+        template &lt;class charT, class traits, class Allocator&gt;
+        basic_string&lt;charT, traits, Allocator&gt;
+        to_string() const
+        {
+            basic_string&lt;charT, traits, Allocator&gt; result(N, charT('0'));
+            for (size_t = 0; i &lt; N; ++i)
+                if (test(i))
+                    result[N-i-1] = charT('1');
+            return result;
+        }
+    #else */
+        string
+        to_string() const
+        {
+            string result(N, '0');
+            for (size_t i = 0; i &lt; N; ++i)
+                if (test(i))
+                    result[N-i-1] = '1';
+            return result;
+        }
+//  #endif
+
+    size_t count() const;
+    size_t size()  const;
+    bool operator==(const bitset&lt;N&gt;&amp; rhs) const;
+    bool operator!=(const bitset&lt;N&gt;&amp; rhs) const;
+    bool test(size_t pos) const;
+    bool any() const;
+    bool none() const;
+    bitset&lt;N&gt; operator&lt;&lt;(size_t pos) const;
+    bitset&lt;N&gt; operator&gt;&gt;(size_t pos) const;
+private:
+    static const size_t num_bits_word = CHAR_BIT*sizeof(unsigned long);
+    static const size_t nwords_ = N == 0 ? 1 : (N-1) / num_bits_word + 1;
+    static const unsigned long mask = (unsigned long)(-1) &gt;&gt; (unsigned long)(num_bits_word - N % num_bits_word);
+    unsigned long data_[nwords_];
+
+    size_t count1char(unsigned char flag) const;
+    size_t count1long(unsigned long flag) const;
+};
+
+// _lib.bitset.operators_ bitset operations:
+
+template &lt;size_t N&gt;
+inline
+bitset&lt;N&gt;
+operator&amp;(const bitset&lt;N&gt;&amp; lhs, const bitset&lt;N&gt;&amp; rhs)
+{
+    return bitset&lt;N&gt;(lhs) &amp;= rhs;
+}
+
+template &lt;size_t N&gt;
+inline
+bitset&lt;N&gt;
+operator|(const bitset&lt;N&gt;&amp; lhs, const bitset&lt;N&gt;&amp; rhs)
+{
+    return bitset&lt;N&gt;(lhs) |= rhs;
+}
+
+template &lt;size_t N&gt;
+inline
+bitset&lt;N&gt;
+operator^(const bitset&lt;N&gt;&amp; lhs, const bitset&lt;N&gt;&amp; rhs)
+{
+    return bitset&lt;N&gt;(lhs) ^= rhs;
+}
+
+#ifndef _MSL_NO_IO
+
+template &lt;class charT, class traits, size_t N&gt;
+basic_istream&lt;charT, traits&gt;&amp;
+operator&gt;&gt;(basic_istream&lt;charT, traits&gt;&amp; is, bitset&lt;N&gt;&amp; rhs)
+{
+    istreambuf_iterator&lt;charT&gt; in(is);
+    istreambuf_iterator&lt;charT&gt; end;
+    int count = 0;
+    string str;
+    if (in != end)
+    {
+        while (count &lt; N)
+        {
+            char c = char(*in);
+            if (c == '0' || c == '1')
+            {
+                str += c;
+                ++count;
+                if (++in == end)
+                {
+                    is.setstate(ios_base::eofbit);
+                    break;
+                }
+            }
+            else
+                break;
+        }
+    }
+    if (count == 0)
+        is.setstate(ios_base::failbit);
+    else
+        rhs = bitset&lt;N&gt;(str);
+    return is;
+}
+
+template &lt;class charT, class traits, size_t N&gt;
+inline
+basic_ostream&lt;charT, traits&gt;&amp;
+operator&lt;&lt;(basic_ostream&lt;charT, traits&gt;&amp; os, const bitset&lt;N&gt;&amp; rhs)
+{
+    // hh 980805 reverting to pre-member template code.
+//  #ifndef _MSL_NO_MEMBER_TEMPLATE
+//      return os &lt;&lt; rhs.to_string&lt;charT, traits, allocator&lt;charT&gt; &gt;();
+//  #else
+        return os &lt;&lt; rhs.to_string();
+//  #endif
+}
+
+#endif // _MSL_NO_IO
+
+// Implementation
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;::bitset()
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        data_[i] = 0;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;::bitset(unsigned long val)
+{
+    if (N &lt; num_bits_word)
+        val &amp;= mask;
+    data_[0] = val;
+    for (size_t i = 1; i &lt; nwords_; ++i)
+        data_[i] = 0;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::operator&amp;=(const bitset&lt;N&gt;&amp; rhs)
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        data_[i] &amp;= rhs.data_[i];
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::operator|=(const bitset&lt;N&gt;&amp; rhs)
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        data_[i] |= rhs.data_[i];
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::operator^=(const bitset&lt;N&gt;&amp; rhs)
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        data_[i] ^= rhs.data_[i];
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::operator&lt;&lt;=(size_t pos)
+{
+    long offset = long(pos / num_bits_word);
+    if (offset &gt; 0)
+    {
+        long i = long(nwords_ - 1);
+        for (; i-offset &gt;= 0; --i)
+            data_[i] = data_[i-offset];
+        for (; i &gt;= 0; --i)
+            data_[i] = 0;
+    }
+    unsigned long rshift = num_bits_word - pos % num_bits_word;
+    unsigned long lshift = pos % num_bits_word;
+    for (size_t i = nwords_ - 1; i &gt; 0; --i)
+    {
+        data_[i] &lt;&lt;= lshift;
+        data_[i] |= data_[i-1] &gt;&gt; rshift;
+    }
+    data_[0] &lt;&lt;= lshift;
+    if (mask)
+        data_[nwords_-1] &amp;= mask;
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::operator&gt;&gt;=(size_t pos)
+{
+    long offset = long(pos / num_bits_word);
+    if (offset &gt; 0)
+    {
+        long i = 0;
+        for (; i+offset &lt; nwords_; ++i)
+            data_[i] = data_[i+offset];
+        for (; i &lt; nwords_; ++i)
+            data_[i] = 0;
+    }
+    unsigned long rshift = pos % num_bits_word;
+    unsigned long lshift = num_bits_word - pos % num_bits_word;
+    for (size_t i = 0; i &lt; nwords_-1; ++i)
+    {
+        data_[i] &gt;&gt;= rshift;
+        data_[i] |= data_[i+1] &lt;&lt; lshift;
+    }
+    data_[nwords_-1] &gt;&gt;= rshift;
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::set()
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        data_[i] = (unsigned long)(-1);
+    if (mask)
+        data_[nwords_-1] &amp;= mask;
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::set(size_t pos, int val)
+{
+    if (pos &gt;= N)
+    #ifndef _MSL_NO_EXCEPTIONS
+        throw out_of_range(&quot;index out of range of bitset::set&quot;);
+    #else
+        __msl_error(&quot;index out of range of bitset::set&quot;);
+    #endif
+    size_t word = pos / num_bits_word;
+    unsigned long bitmask = (unsigned long)1 &lt;&lt; pos % num_bits_word;
+    if (val)
+        data_[word] |= bitmask;
+    else
+        data_[word] &amp;= ~bitmask;
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::reset()
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        data_[i] = 0;
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::reset(size_t pos)
+{
+    if (pos &gt;= N)
+    #ifndef _MSL_NO_EXCEPTIONS
+        throw out_of_range(&quot;index out of range of bitset::reset&quot;);
+    #else
+        __msl_error(&quot;index out of range of bitset::reset&quot;);
+    #endif
+    size_t word = pos / num_bits_word;
+    unsigned long bitmask = (unsigned long)1 &lt;&lt; pos % num_bits_word;
+    data_[word] &amp;= ~bitmask;
+    return *this;
+}
+
+template&lt;size_t N&gt;
+inline
+bitset&lt;N&gt;
+bitset&lt;N&gt;::operator~() const
+{
+    return bitset&lt;N&gt;(*this).flip();
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::flip()
+{
+    for (int i = 0; i &lt; nwords_; ++i)
+        data_[i] = ~data_[i];
+    if (mask)
+        data_[nwords_-1] &amp;= mask;
+    return *this;
+}
+
+template&lt;size_t N&gt;
+bitset&lt;N&gt;&amp;
+bitset&lt;N&gt;::flip(size_t pos)
+{
+    if (pos &gt;= N)
+    #ifndef _MSL_NO_EXCEPTIONS
+        throw out_of_range(&quot;index out of range of bitset::flip&quot;);
+    #else
+        __msl_error(&quot;index out of range of bitset::flip&quot;);
+    #endif
+    size_t word = pos / num_bits_word;
+    unsigned long bitmask = (unsigned long)1 &lt;&lt; pos % num_bits_word;
+    unsigned long&amp; bits = data_[word];
+    if (bits &amp; bitmask)
+        bits &amp;= ~bitmask;
+    else
+        bits |= bitmask;
+    return *this;
+}
+
+template&lt;size_t N&gt;
+inline
+typename bitset&lt;N&gt;::reference
+bitset&lt;N&gt;::operator[](size_t pos)
+{
+    return reference(*this, pos);
+}
+
+template&lt;size_t N&gt;
+unsigned long
+bitset&lt;N&gt;::to_ulong() const
+{
+    for (size_t i = 1; i &lt; nwords_; ++i)
+        if (data_[i] != 0)
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw overflow_error(&quot;bitset::to_ulong overflow&quot;);
+        #else
+            __msl_error(&quot;bitset::to_ulong overflow&quot;);
+        #endif
+    return data_[0];
+}
+
+template&lt;size_t N&gt;
+size_t
+bitset&lt;N&gt;::count1char(unsigned char flag) const
+{
+    if (flag == 0)
+        return 0;
+    size_t count = 0;
+    unsigned char char_mask = 1;
+    for (int i = 0; i &lt; CHAR_BIT; ++i, char_mask &lt;&lt;= 1)
+        if (flag &amp; char_mask)
+            ++count;
+    return count;
+}
+
+template&lt;size_t N&gt;
+size_t
+bitset&lt;N&gt;::count1long(unsigned long flag) const
+{
+    if (flag == 0)
+        return 0;
+    size_t count = 0;
+    unsigned long char_mask = (unsigned long)(-1) &gt;&gt; (unsigned long)(num_bits_word - CHAR_BIT);
+    unsigned long shift = 0;
+    for (int i = 0; i &lt; sizeof(unsigned long); ++i)
+    {
+        count += count1char((unsigned char)((flag &amp; char_mask) &gt;&gt; shift));
+        char_mask &lt;&lt;= CHAR_BIT;
+        shift += CHAR_BIT;
+    }
+    return count;
+}
+
+template&lt;size_t N&gt;
+size_t
+bitset&lt;N&gt;::count() const
+{
+    size_t count = 0;
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        count += count1long(data_[i]);
+    return count;
+}
+
+template&lt;size_t N&gt;
+inline
+size_t
+bitset&lt;N&gt;::size() const
+{
+    return N;
+}
+
+template&lt;size_t N&gt;
+bool
+bitset&lt;N&gt;::operator==(const bitset&lt;N&gt;&amp; rhs) const
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        if (data_[i] != rhs.data_[i])
+            return false;
+    return true;
+}
+
+template&lt;size_t N&gt;
+bool
+bitset&lt;N&gt;::operator!=(const bitset&lt;N&gt;&amp; rhs) const
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        if (data_[i] != rhs.data_[i])
+            return true;
+    return false;
+}
+
+template&lt;size_t N&gt;
+bool
+bitset&lt;N&gt;::test(size_t pos) const
+{
+    if (pos &gt;= N)
+    #ifndef _MSL_NO_EXCEPTIONS
+        throw out_of_range(&quot;index out of range of bitset::test&quot;);
+    #else
+        __msl_error(&quot;index out of range of bitset::test&quot;);
+    #endif
+    size_t word = pos / num_bits_word;
+    unsigned long bitmask = (unsigned long)1 &lt;&lt; pos % num_bits_word;
+    return bool(data_[word] &amp; bitmask);
+}
+
+template&lt;size_t N&gt;
+bool
+bitset&lt;N&gt;::any() const
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        if (data_[i])
+            return true;
+    return false;
+}
+
+template&lt;size_t N&gt;
+bool
+bitset&lt;N&gt;::none() const
+{
+    for (size_t i = 0; i &lt; nwords_; ++i)
+        if (data_[i])
+            return false;
+    return true;
+}
+
+template&lt;size_t N&gt;
+inline
+bitset&lt;N&gt;
+bitset&lt;N&gt;::operator&lt;&lt;(size_t pos) const
+{
+    return bitset&lt;N&gt;(*this) &lt;&lt;= pos;
+}
+
+template&lt;size_t N&gt;
+inline
+bitset&lt;N&gt;
+bitset&lt;N&gt;::operator&gt;&gt;(size_t pos) const
+{
+    return bitset&lt;N&gt;(*this) &gt;&gt;= pos;
+}
+
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 990120
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // RC_INVOKED
+
+#endif
+
+// hh 980509 rewritten
+// hh 980713 Temporarily moved member templates into class definition to support compiler
+// hh 980805 reverting to pre-member template code.
+// hh 980816 ARM/Standard neutral for-scoping
+// hh 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT
+// hh 981220 Added typename to appropriate return types
+// hh 990120 config file is now &lt;mslconfig&gt;
+// hh 990120 changed name of namespace flag.
+// hh 990120 changed name of exception support flag.
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

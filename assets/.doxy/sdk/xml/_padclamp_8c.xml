@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_padclamp_8c" kind="file" language="C++">
+    <compoundname>Padclamp.c</compoundname>
+    <includes refid="pad_8h" local="no">dolphin/pad.h</includes>
+    <includes refid="types_8h" local="no">types.h</includes>
+    <includes local="no">math.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>dolphin/pad.h</label>
+        <link refid="pad_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>Padclamp.c</label>
+        <link refid="_padclamp_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>math.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_p_a_d_clamp_region" prot="public">PADClampRegion</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_padclamp_8c_1a3cb10ccc0d9af86a1b4f4c1029e64688" prot="public" static="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_p_a_d_clamp_region" kindref="compound">PADClampRegion</ref></type>
+        <definition>typedef struct PADClampRegion PADClampRegion</definition>
+        <argsstring></argsstring>
+        <name>PADClampRegion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" line="16" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" prot="public" static="yes" mutable="no">
+        <type><ref refid="struct_p_a_d_clamp_region" kindref="compound">PADClampRegion</ref></type>
+        <definition>PADClampRegion ClampRegion</definition>
+        <argsstring></argsstring>
+        <name>ClampRegion</name>
+        <initializer>= { 30, 180, 15, 72, 40, 15, 59, 31 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" line="18" column="23" bodyfile="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" bodystart="18" bodyend="18"/>
+        <referencedby refid="_padclamp_8c_1a7c941e0142d8e2b1822a55079b7ed80c" compoundref="_padclamp_8c" startline="102" endline="114">ClampTrigger</referencedby>
+        <referencedby refid="pad_8h_1abebde887f3eb6f0f6d68549267ef5768" compoundref="_padclamp_8c" startline="117" endline="139">PADClamp</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_padclamp_8c_1a24a073e7d36ad4ac4e98d7433dd79d49" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static void ClampStick</definition>
+        <argsstring>(s8 *px, s8 *py, s8 max, s8 xy, s8 min)</argsstring>
+        <name>ClampStick</name>
+        <param>
+          <type><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref> *</type>
+          <declname>px</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref> *</type>
+          <declname>py</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref></type>
+          <declname>max</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref></type>
+          <declname>xy</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref></type>
+          <declname>min</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" line="25" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" bodystart="25" bodyend="99" declfile="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" declline="21" declcolumn="13"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <referencedby refid="pad_8h_1abebde887f3eb6f0f6d68549267ef5768" compoundref="_padclamp_8c" startline="117" endline="139">PADClamp</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_padclamp_8c_1a7c941e0142d8e2b1822a55079b7ed80c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static void ClampTrigger</definition>
+        <argsstring>(u8 *trigger)</argsstring>
+        <name>ClampTrigger</name>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref> *</type>
+          <declname>trigger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" line="102" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" bodystart="102" bodyend="114" declfile="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" declline="22" declcolumn="13"/>
+        <references refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" compoundref="_padclamp_8c" startline="18" endline="18">ClampRegion</references>
+        <references refid="struct_p_a_d_clamp_region_1a386336bc4743f192a7bd124e53558bb4" compoundref="_padclamp_8c" startline="9">PADClampRegion::maxTrigger</references>
+        <references refid="struct_p_a_d_clamp_region_1ad5bfe68e80b53f5375c3db99dfe61c46" compoundref="_padclamp_8c" startline="8">PADClampRegion::minTrigger</references>
+        <referencedby refid="pad_8h_1abebde887f3eb6f0f6d68549267ef5768" compoundref="_padclamp_8c" startline="117" endline="139">PADClamp</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_padclamp_8c_1abebde887f3eb6f0f6d68549267ef5768" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void PADClamp</definition>
+        <argsstring>(PADStatus *status)</argsstring>
+        <name>PADClamp</name>
+        <param>
+          <type><ref refid="struct_p_a_d_status" kindref="compound">PADStatus</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" line="117" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c" bodystart="117" bodyend="139"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" compoundref="_padclamp_8c" startline="18" endline="18">ClampRegion</references>
+        <references refid="_padclamp_8c_1a24a073e7d36ad4ac4e98d7433dd79d49" compoundref="_padclamp_8c" startline="25" endline="99">ClampStick</references>
+        <references refid="_padclamp_8c_1a7c941e0142d8e2b1822a55079b7ed80c" compoundref="_padclamp_8c" startline="102" endline="114">ClampTrigger</references>
+        <references refid="struct_p_a_d_clamp_region_1ae940dc8df5e6df30f9ec2db057120418" compoundref="_padclamp_8c" startline="11">PADClampRegion::maxStick</references>
+        <references refid="struct_p_a_d_clamp_region_1afb534cce188ba749a37009e2b7a4a096" compoundref="_padclamp_8c" startline="14">PADClampRegion::maxSubstick</references>
+        <references refid="struct_p_a_d_clamp_region_1afd913f8d976427b3b5d3ad1d22d75f3c" compoundref="_padclamp_8c" startline="10">PADClampRegion::minStick</references>
+        <references refid="struct_p_a_d_clamp_region_1a78e1c5cb264690bcda30d815aea543af" compoundref="_padclamp_8c" startline="13">PADClampRegion::minSubstick</references>
+        <references refid="pad_8h_1ac729e0a00c531a7ae0219f024d1a35c9" compoundref="pad_8h" startline="35">PAD_ERR_NONE</references>
+        <references refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" compoundref="fstload_8c" startline="7">status</references>
+        <references refid="struct_p_a_d_clamp_region_1a4c3fa20d75dd5adc60a07a79832df3b6" compoundref="_padclamp_8c" startline="12">PADClampRegion::xyStick</references>
+        <references refid="struct_p_a_d_clamp_region_1abeefa9d6b8065dd4425d77be66f1dd22" compoundref="_padclamp_8c" startline="15">PADClampRegion::xySubstick</references>
+        <referencedby refid="_d_e_m_o_pad_8h_1ae5e573612001702cd637428ae7694582" compoundref="_d_e_m_o_pad_8c" startline="79" endline="107">DEMOPadRead</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="pad_8h" kindref="compound">dolphin/pad.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8h" kindref="compound">types.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="struct_p_a_d_clamp_region" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_p_a_d_clamp_region" kindref="compound">PADClampRegion</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8" refid="struct_p_a_d_clamp_region_1ad5bfe68e80b53f5375c3db99dfe61c46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_p_a_d_clamp_region_1ad5bfe68e80b53f5375c3db99dfe61c46" kindref="member">minTrigger</ref>;</highlight></codeline>
+<codeline lineno="9" refid="struct_p_a_d_clamp_region_1a386336bc4743f192a7bd124e53558bb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_p_a_d_clamp_region_1a386336bc4743f192a7bd124e53558bb4" kindref="member">maxTrigger</ref>;</highlight></codeline>
+<codeline lineno="10" refid="struct_p_a_d_clamp_region_1afd913f8d976427b3b5d3ad1d22d75f3c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><ref refid="struct_p_a_d_clamp_region_1afd913f8d976427b3b5d3ad1d22d75f3c" kindref="member">minStick</ref>;</highlight></codeline>
+<codeline lineno="11" refid="struct_p_a_d_clamp_region_1ae940dc8df5e6df30f9ec2db057120418" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><ref refid="struct_p_a_d_clamp_region_1ae940dc8df5e6df30f9ec2db057120418" kindref="member">maxStick</ref>;</highlight></codeline>
+<codeline lineno="12" refid="struct_p_a_d_clamp_region_1a4c3fa20d75dd5adc60a07a79832df3b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><ref refid="struct_p_a_d_clamp_region_1a4c3fa20d75dd5adc60a07a79832df3b6" kindref="member">xyStick</ref>;</highlight></codeline>
+<codeline lineno="13" refid="struct_p_a_d_clamp_region_1a78e1c5cb264690bcda30d815aea543af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><ref refid="struct_p_a_d_clamp_region_1a78e1c5cb264690bcda30d815aea543af" kindref="member">minSubstick</ref>;</highlight></codeline>
+<codeline lineno="14" refid="struct_p_a_d_clamp_region_1afb534cce188ba749a37009e2b7a4a096" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><ref refid="struct_p_a_d_clamp_region_1afb534cce188ba749a37009e2b7a4a096" kindref="member">maxSubstick</ref>;</highlight></codeline>
+<codeline lineno="15" refid="struct_p_a_d_clamp_region_1abeefa9d6b8065dd4425d77be66f1dd22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><ref refid="struct_p_a_d_clamp_region_1abeefa9d6b8065dd4425d77be66f1dd22" kindref="member">xySubstick</ref>;</highlight></codeline>
+<codeline lineno="16" refid="_padclamp_8c_1a3cb10ccc0d9af86a1b4f4c1029e64688" refkind="member"><highlight class="normal">}<sp/><ref refid="struct_p_a_d_clamp_region" kindref="compound">PADClampRegion</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_p_a_d_clamp_region" kindref="compound">PADClampRegion</ref><sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref><sp/>=<sp/>{<sp/>30,<sp/>180,<sp/>15,<sp/>72,<sp/>40,<sp/>15,<sp/>59,<sp/>31<sp/>};</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_padclamp_8c_1a24a073e7d36ad4ac4e98d7433dd79d49" kindref="member">ClampStick</ref><sp/>(<ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">px</ref>,<sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">py</ref>,<sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/>max,<sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref>,<sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/>min);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_padclamp_8c_1a7c941e0142d8e2b1822a55079b7ed80c" kindref="member">ClampTrigger</ref><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/>trigger);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="_padclamp_8c_1a24a073e7d36ad4ac4e98d7433dd79d49" refkind="member"><highlight class="normal"><ref refid="_padclamp_8c_1a24a073e7d36ad4ac4e98d7433dd79d49" kindref="member">ClampStick</ref><sp/>(<ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">px</ref>,<sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">py</ref>,<sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/>max,<sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref>,<sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/>min)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>x;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>y;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">signX</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">signY</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>x<sp/>=<sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">px</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>y<sp/>=<sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">py</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">signX</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">signX</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/><sp/><sp/><sp/><sp/>=<sp/>-x;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(y<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">signY</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">signY</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/><sp/><sp/><sp/><sp/>=<sp/>-y;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>&lt;=<sp/>min)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>=<sp/>x<sp/>-<sp/>min;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(y<sp/>&lt;=<sp/>min)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/>=<sp/>y<sp/>-<sp/>min;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>==<sp/>0<sp/>&amp;&amp;<sp/>y<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">px</ref><sp/>=<sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">py</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>y)<sp/>&lt;=<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>x))</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>x<sp/>+<sp/>y<sp/>*<sp/>(max<sp/>-<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>max<sp/>&lt;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref>)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>=<sp/>(<ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>)((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>max<sp/>*<sp/>x)<sp/>/<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/>=<sp/>(<ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>)((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>max<sp/>*<sp/>y)<sp/>/<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>y<sp/>+<sp/>x<sp/>*<sp/>(max<sp/>-<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>max<sp/>&lt;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref>)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>=<sp/>(<ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>)((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>max<sp/>*<sp/>x)<sp/>/<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref>);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/>=<sp/>(<ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>)((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xy</ref><sp/>*<sp/>max<sp/>*<sp/>y)<sp/>/<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">d</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">px</ref><sp/>=<sp/>(<ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">signX</ref><sp/>*<sp/>x);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">py</ref><sp/>=<sp/>(<ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">signY</ref><sp/>*<sp/>y);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="_padclamp_8c_1a7c941e0142d8e2b1822a55079b7ed80c" refkind="member"><highlight class="normal"><ref refid="_padclamp_8c_1a7c941e0142d8e2b1822a55079b7ed80c" kindref="member">ClampTrigger</ref><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref>*<sp/>trigger)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*trigger<sp/>&lt;=<sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1ad5bfe68e80b53f5375c3db99dfe61c46" kindref="member">minTrigger</ref>)</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*trigger<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1a386336bc4743f192a7bd124e53558bb4" kindref="member">maxTrigger</ref><sp/>&lt;<sp/>*trigger)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*trigger<sp/>=<sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1a386336bc4743f192a7bd124e53558bb4" kindref="member">maxTrigger</ref>;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>*trigger<sp/>-=<sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1ad5bfe68e80b53f5375c3db99dfe61c46" kindref="member">minTrigger</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="pad_8h_1abebde887f3eb6f0f6d68549267ef5768" refkind="member"><highlight class="normal"><ref refid="_padclamp_8c_1abebde887f3eb6f0f6d68549267ef5768" kindref="member">PADClamp</ref><sp/>(<ref refid="struct_p_a_d_status" kindref="compound">PADStatus</ref>*<sp/><ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref><sp/>=<sp/>0;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref><sp/>&lt;<sp/>4;<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">i</ref>++,<sp/><ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>++)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>-&gt;err<sp/>==<sp/><ref refid="pad_8h_1ac729e0a00c531a7ae0219f024d1a35c9" kindref="member">PAD_ERR_NONE</ref>)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a24a073e7d36ad4ac4e98d7433dd79d49" kindref="member">ClampStick</ref><sp/>(&amp;<ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>-&gt;stickX,</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>-&gt;stickY,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1ae940dc8df5e6df30f9ec2db057120418" kindref="member">maxStick</ref>,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1a4c3fa20d75dd5adc60a07a79832df3b6" kindref="member">xyStick</ref>,</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1afd913f8d976427b3b5d3ad1d22d75f3c" kindref="member">minStick</ref>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a24a073e7d36ad4ac4e98d7433dd79d49" kindref="member">ClampStick</ref><sp/>(&amp;<ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>-&gt;substickX,</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>-&gt;substickY,</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1afb534cce188ba749a37009e2b7a4a096" kindref="member">maxSubstick</ref>,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1abeefa9d6b8065dd4425d77be66f1dd22" kindref="member">xySubstick</ref>,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a89b8554727a6ea3c848ab88f8d31f440" kindref="member">ClampRegion</ref>.<ref refid="struct_p_a_d_clamp_region_1a78e1c5cb264690bcda30d815aea543af" kindref="member">minSubstick</ref>);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a7c941e0142d8e2b1822a55079b7ed80c" kindref="member">ClampTrigger</ref><sp/>(&amp;<ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>-&gt;triggerLeft);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_padclamp_8c_1a7c941e0142d8e2b1822a55079b7ed80c" kindref="member">ClampTrigger</ref><sp/>(&amp;<ref refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" kindref="member">status</ref>-&gt;triggerRight);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/pad/Padclamp.c"/>
+  </compounddef>
+</doxygen>

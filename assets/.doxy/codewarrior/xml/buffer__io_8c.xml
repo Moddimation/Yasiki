@@ -1,0 +1,597 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="buffer__io_8c" kind="file" language="C++">
+    <compoundname>buffer_io.c</compoundname>
+    <includes refid="stdlib_8h" local="no">stdlib.h</includes>
+    <includes refid="string_8h" local="no">string.h</includes>
+    <includes refid="stddef_8h" local="no">stddef.h</includes>
+    <includes refid="buffer__io_8h" local="yes">buffer_io.h</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>ansi_parms.h</label>
+        <link refid="ansi__parms_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>buffer_io.h</label>
+        <link refid="buffer__io_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstddef</label>
+        <link refid="cstddef"/>
+      </node>
+      <node id="12">
+        <label>cstdio</label>
+        <link refid="cstdio"/>
+      </node>
+      <node id="3">
+        <label>cstdlib</label>
+        <link refid="cstdlib"/>
+      </node>
+      <node id="5">
+        <label>cstring</label>
+        <link refid="cstring"/>
+      </node>
+      <node id="10">
+        <label>mslGlobals.h</label>
+        <link refid="msl_globals_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+        <link refid="stddef_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdlib.h</label>
+        <link refid="stdlib_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+        <link refid="string_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>buffer_io.c</label>
+        <link refid="buffer__io_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>macros.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="buffer__io_8c_1a17f2c777a3ff206142a590def3d734d2" prot="public" static="no">
+        <name>alignment_mask</name>
+        <initializer>(512L - 1L)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" line="273" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="buffer__io_8c_1a32142c6dbbe4e22f04e712ce24ed35fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __convert_from_newlines</definition>
+        <argsstring>(unsigned char *buf, size_t *n)</argsstring>
+        <name>__convert_from_newlines</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" line="98" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" bodystart="98" bodyend="108"/>
+        <referencedby refid="buffer__io_8c_1a92e8b20037cba45cbcb674edfa5a5920" compoundref="buffer__io_8c" startline="191" endline="219">__flush_buffer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="buffer__io_8c_1a44fd08382c3d773255e33f76ca7507bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __convert_to_newlines</definition>
+        <argsstring>(unsigned char *buf, size_t *n)</argsstring>
+        <name>__convert_to_newlines</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" line="110" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" bodystart="110" bodyend="120"/>
+        <referencedby refid="buffer__io_8c_1a85171d1664c3842971af28985f2476f3" compoundref="buffer__io_8c" startline="144" endline="189">__load_buffer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="buffer__io_8c_1aab32fd7aaa8ed81632b70aa8d30fa63f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void __prep_buffer</definition>
+        <argsstring>(FILE *file)</argsstring>
+        <name>__prep_buffer</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" line="136" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" bodystart="136" bodyend="142"/>
+        <referencedby refid="buffer__io_8c_1a92e8b20037cba45cbcb674edfa5a5920" compoundref="buffer__io_8c" startline="191" endline="219">__flush_buffer</referencedby>
+        <referencedby refid="buffer__io_8c_1a85171d1664c3842971af28985f2476f3" compoundref="buffer__io_8c" startline="144" endline="189">__load_buffer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="buffer__io_8c_1a85171d1664c3842971af28985f2476f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __load_buffer</definition>
+        <argsstring>(FILE *file, size_t *bytes_loaded, int alignment)</argsstring>
+        <name>__load_buffer</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>bytes_loaded</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>alignment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" line="144" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" bodystart="144" bodyend="189"/>
+        <references refid="buffer__io_8c_1a44fd08382c3d773255e33f76ca7507bc" compoundref="buffer__io_8c" startline="110" endline="120">__convert_to_newlines</references>
+        <references refid="buffer__io_8h_1a61dadd085c1777f559549e05962b2c9ea61886d6567565e55067b90df6f4b6c8d" compoundref="buffer__io_8h" startline="32">__dont_align_buffer</references>
+        <references refid="buffer__io_8c_1aab32fd7aaa8ed81632b70aa8d30fa63f" compoundref="buffer__io_8c" startline="136" endline="142">__prep_buffer</references>
+      </memberdef>
+      <memberdef kind="function" id="buffer__io_8c_1a92e8b20037cba45cbcb674edfa5a5920" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int __flush_buffer</definition>
+        <argsstring>(FILE *file, size_t *bytes_flushed)</argsstring>
+        <name>__flush_buffer</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref> *</type>
+          <declname>bytes_flushed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" line="191" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" bodystart="191" bodyend="219"/>
+        <references refid="buffer__io_8c_1a32142c6dbbe4e22f04e712ce24ed35fb" compoundref="buffer__io_8c" startline="98" endline="108">__convert_from_newlines</references>
+        <references refid="buffer__io_8c_1aab32fd7aaa8ed81632b70aa8d30fa63f" compoundref="buffer__io_8c" startline="136" endline="142">__prep_buffer</references>
+      </memberdef>
+      <memberdef kind="function" id="buffer__io_8c_1a8983a75e756d0028cfe7f1d59b88c8b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int setvbuf</definition>
+        <argsstring>(FILE *file, char *buff, int mode, size_t size)</argsstring>
+        <name>setvbuf</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buff</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="size__t_8h_1a7c94ea6f8948649f8d181ae55911eeaf" kindref="member">size_t</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" line="221" column="5" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" bodystart="221" bodyend="288"/>
+        <references refid="buffer__io_8c_1a17f2c777a3ff206142a590def3d734d2">alignment_mask</references>
+        <references refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" compoundref="file__io_8c" startline="141" endline="184">fflush</references>
+        <references refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" compoundref="____ppc__eabi__init_8h" startline="47">size</references>
+        <referencedby refid="ansi__files_8c_1ab9f97b969809880433c0a0840c732f9d" compoundref="ansi__files_8c" startline="288" endline="326">__init_file</referencedby>
+        <referencedby refid="buffer__io_8c_1ac18d49ddbd71c2d3b71b2de82c80183b" compoundref="buffer__io_8c" startline="290" endline="296">setbuf</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="buffer__io_8c_1ac18d49ddbd71c2d3b71b2de82c80183b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void setbuf</definition>
+        <argsstring>(FILE *file, char *buff)</argsstring>
+        <name>setbuf</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buff</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" line="290" column="6" bodyfile="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c" bodystart="290" bodyend="296"/>
+        <references refid="buffer__io_8c_1a8983a75e756d0028cfe7f1d59b88c8b8" compoundref="buffer__io_8c" startline="221" endline="288">setvbuf</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>Metrowerks<sp/>Standard<sp/>Library<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>$Date:<sp/>1999/08/03<sp/>11:55:09<sp/>$<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Revision:<sp/>1.7.4.3<sp/>$<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>$NoKeywords:<sp/>$<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>1995-1999<sp/>Metrowerks,<sp/>Inc.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>buffer_io.c</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>Routines</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/>--------</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>setvbuf</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>setbuf</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__convert_from_newlines</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__convert_to_newlines</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__prep_buffer</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__load_buffer</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__flush_buffer</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/><sp/>Implementation<sp/>Notes</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/><sp/>--------------------</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Technically,<sp/>there<sp/>is<sp/>no<sp/>such<sp/>thing<sp/>as<sp/>&quot;unbuffered<sp/>I/O&quot;<sp/>(_IONBF)<sp/>in<sp/>this</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>implementation.<sp/>With<sp/>two<sp/>exceptions<sp/>(noted<sp/>below)<sp/>all<sp/>I/O<sp/>passes<sp/>through<sp/>a</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>buffer.</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>_IONBF<sp/>forces<sp/>the<sp/>use<sp/>of<sp/>a<sp/>single-character<sp/>internal<sp/>buffer<sp/>that<sp/>is</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>associated<sp/>with<sp/>each<sp/>file<sp/>(whether<sp/>used<sp/>or<sp/>not).<sp/>Both<sp/>_IOLBF<sp/>and<sp/>_IOFBF</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>indicate<sp/>the<sp/>use<sp/>of<sp/>either<sp/>a<sp/>user-supplied<sp/>or<sp/>an<sp/>internally-allocated</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>buffer.<sp/>A<sp/>newly<sp/>opened<sp/>file<sp/>effectively<sp/>has<sp/>already<sp/>had<sp/>a</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>setvbuf(f,<sp/>NULL,<sp/>_IOFBF,<sp/>BUFSIZ)</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>done<sp/>for<sp/>it.<sp/>Any<sp/>subsequent<sp/>setbuf<sp/>or<sp/>setvbuf<sp/>disposes<sp/>of<sp/>this<sp/>buffer.</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Console<sp/>input<sp/>via<sp/>SIOUX<sp/>is<sp/>line<sp/>buffered<sp/>automatically;<sp/>there<sp/>is<sp/>no<sp/>way<sp/>to</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>force<sp/>it<sp/>to<sp/>do<sp/>anything<sp/>else.</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>fread()<sp/>and<sp/>fwrite()<sp/>will<sp/>bypass<sp/>buffers<sp/>for<sp/>binary<sp/>I/O<sp/>once<sp/>the<sp/>buffers</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>are<sp/>empty.<sp/>Thus,<sp/>if<sp/>you<sp/>are<sp/>*only*<sp/>doing<sp/>fread()<sp/>and/or<sp/>fwrite()<sp/>on<sp/>a<sp/>file</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>in<sp/>binary<sp/>mode,<sp/>then<sp/>perhaps<sp/>it<sp/>makes<sp/>sense<sp/>to<sp/>use<sp/>_IONBF<sp/>on<sp/>a<sp/>file;</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>otherwise,<sp/>using<sp/>_IONBF<sp/>will<sp/>result<sp/>in<sp/>rather<sp/>poor<sp/>performance.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>While<sp/>reading<sp/>from/writing<sp/>to<sp/>a<sp/>buffer,<sp/>buffer_ptr<sp/>points<sp/>to<sp/>the<sp/>next<sp/>byte</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>to<sp/>be<sp/>read<sp/>from/written<sp/>to.<sp/>buffer_pos<sp/>indicated<sp/>the<sp/>file_position<sp/>of<sp/>the</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>first<sp/>byte<sp/>in<sp/>the<sp/>buffer.<sp/>Thus,<sp/>the<sp/>current<sp/>file<sp/>position<sp/>can<sp/>be<sp/>inferred</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>from<sp/>buffer_pos<sp/>and<sp/>buffer_ptr<sp/>(as<sp/>well<sp/>as<sp/>the<sp/>base<sp/>address<sp/>of<sp/>the</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>buffer).<sp/>buffer_ptr<sp/>is<sp/>also<sp/>used,<sp/>when<sp/>writing,<sp/>to<sp/>infer<sp/>the<sp/>number<sp/>of</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>bytes<sp/>written.<sp/>buffer_size<sp/>is<sp/>the<sp/>number<sp/>of<sp/>bytes<sp/>available<sp/>in<sp/>the<sp/>buffer.</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>buffer_len<sp/>indicates<sp/>the<sp/>number<sp/>of<sp/>bytes<sp/>left<sp/>in<sp/>the<sp/>buffer<sp/>to<sp/>read<sp/>or<sp/>the</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>number<sp/>of<sp/>bytes<sp/>left<sp/>in<sp/>the<sp/>buffer<sp/>to<sp/>be<sp/>written<sp/>to.</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>getc/putc<sp/>macros<sp/>depend<sp/>on<sp/>buffer_len<sp/>being<sp/>zero<sp/>when<sp/>a<sp/>file&apos;s<sp/>buffer</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>is<sp/>empty/full.<sp/>This<sp/>forces<sp/>the<sp/>macros<sp/>to<sp/>call<sp/>the<sp/>internal<sp/>routines</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>__get_char/__put_char,<sp/>which<sp/>are<sp/>capable<sp/>of<sp/>much<sp/>more<sp/>sophisticated</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>handling.</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>buffer_len<sp/>is<sp/>also<sp/>set<sp/>to<sp/>zero<sp/>in<sp/>cases<sp/>where<sp/>it<sp/>is<sp/>necessary<sp/>to<sp/>bypass</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>macros:</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>o<sp/>When<sp/>calling<sp/>fseek,<sp/>fsetpos,<sp/>rewind,<sp/>and<sp/>fflush.<sp/>All<sp/>these<sp/>operations</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>force<sp/>the<sp/>buffer<sp/>to<sp/>flush<sp/>and<sp/>go<sp/>to<sp/>a<sp/>&quot;neutral&quot;<sp/>state<sp/>where<sp/>either</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reading<sp/>or<sp/>writing<sp/>is<sp/>permitted<sp/>next.<sp/>The<sp/>macros<sp/>are<sp/>thus<sp/>disabled<sp/>until</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>after<sp/>the<sp/>next<sp/>byte<sp/>is<sp/>read/written.<sp/>Note<sp/>that<sp/>it<sp/>is<sp/>safe<sp/>at<sp/>this<sp/>time</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>to<sp/>call<sp/>setbuf<sp/>or<sp/>setvbuf,<sp/>even<sp/>though<sp/>the<sp/>standard<sp/>says<sp/>you<sp/>can<sp/>only</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>do<sp/>it<sp/>before<sp/>the<sp/>first<sp/>I/O<sp/>operation.</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>o<sp/>Whenever<sp/>the<sp/>file&apos;s<sp/>error<sp/>flag<sp/>is<sp/>set.<sp/>Thus,<sp/>the<sp/>macros<sp/>are<sp/>disabled<sp/>and</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>all<sp/>the<sp/>I/O<sp/>routines<sp/>will<sp/>punt<sp/>until<sp/>explicit<sp/>action<sp/>is<sp/>taken<sp/>to<sp/>clear</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>error<sp/>flag.</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>o<sp/>At<sp/>all<sp/>times<sp/>when<sp/>writing<sp/>a<sp/>file<sp/>in<sp/>_IONBF<sp/>or<sp/>_IOLBF<sp/>buffer<sp/>mode:</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_IONBF<sp/>needs<sp/>to<sp/>flush<sp/>the<sp/>&quot;buffer&quot;<sp/>after<sp/>every<sp/>character.</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_IOLBF<sp/>needs<sp/>to<sp/>watch<sp/>for<sp/>and<sp/>flush<sp/>after<sp/>every<sp/>newline<sp/>character.</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stdlib_8h" kindref="compound">stdlib.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="string_8h" kindref="compound">string.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="stddef_8h" kindref="compound">stddef.h</ref>&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>971031<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="buffer__io_8h" kindref="compound">buffer_io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__undef_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#error<sp/>__dest_os<sp/>undefined</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__mac_os)<sp/>&amp;&amp;<sp/>\</highlight></codeline>
+<codeline lineno="96"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>!__option(mpwc_newline)<sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>vss<sp/>980825<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="buffer__io_8c_1a32142c6dbbe4e22f04e712ce24ed35fb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1a32142c6dbbe4e22f04e712ce24ed35fb" kindref="member">__convert_from_newlines</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>buf,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*<sp/>n)<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>p<sp/>=<sp/>buf;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/>*n;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i--)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*p==</highlight><highlight class="charliteral">&apos;\r&apos;</highlight><highlight class="normal">)<sp/>*p<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*p==</highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)<sp/>*p<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\r&apos;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p++;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="buffer__io_8c_1a44fd08382c3d773255e33f76ca7507bc" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1a44fd08382c3d773255e33f76ca7507bc" kindref="member">__convert_to_newlines</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>buf,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*<sp/>n)<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>p<sp/>=<sp/>buf;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/>*n;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i--)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*p==</highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)<sp/>*p<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\r&apos;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*p==</highlight><highlight class="charliteral">&apos;\r&apos;</highlight><highlight class="normal">)<sp/>*p<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p++;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970210*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1a32142c6dbbe4e22f04e712ce24ed35fb" kindref="member">__convert_from_newlines</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>p,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*<sp/>n)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>unused(p,n)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1a44fd08382c3d773255e33f76ca7507bc" kindref="member">__convert_to_newlines</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>p,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*<sp/>n)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>unused(p,n)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="buffer__io_8c_1aab32fd7aaa8ed81632b70aa8d30fa63f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1aab32fd7aaa8ed81632b70aa8d30fa63f" kindref="member">__prep_buffer</ref>(FILE<sp/>*<sp/>file)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_ptr<sp/><sp/><sp/><sp/>=<sp/>file-&gt;buffer;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_len<sp/><sp/><sp/><sp/>=<sp/>file-&gt;buffer_size;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_len<sp/><sp/><sp/>-=<sp/>file-&gt;position<sp/>&amp;<sp/>file-&gt;buffer_alignment;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_pos<sp/><sp/><sp/><sp/>=<sp/>file-&gt;position;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="buffer__io_8c_1a85171d1664c3842971af28985f2476f3" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1a85171d1664c3842971af28985f2476f3" kindref="member">__load_buffer</ref>(FILE<sp/>*<sp/>file,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*<sp/>bytes_loaded,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>alignment)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ioresult;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="buffer__io_8c_1aab32fd7aaa8ed81632b70aa8d30fa63f" kindref="member">__prep_buffer</ref>(file);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(alignment<sp/>==<sp/><ref refid="buffer__io_8h_1a61dadd085c1777f559549e05962b2c9ea61886d6567565e55067b90df6f4b6c8d" kindref="member">__dont_align_buffer</ref>)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;buffer_len<sp/>=<sp/>file-&gt;buffer_size;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>ioresult<sp/>=<sp/>(*file-&gt;read_proc)(file-&gt;handle,<sp/>file-&gt;buffer,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*)<sp/>&amp;file-&gt;buffer_len,<sp/>file-&gt;idle_proc);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ioresult<sp/>==<sp/>__io_EOF)<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>961031<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;buffer_len<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bytes_loaded)</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*bytes_loaded<sp/>=<sp/>file-&gt;buffer_len;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ioresult)</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(ioresult);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;position<sp/>+=<sp/>file-&gt;buffer_len;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__dest_os<sp/>==<sp/>__win32_os<sp/><sp/>||<sp/>__dest_os<sp/>==<sp/>__wince_os)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>beginning<sp/>mm<sp/>971031<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>In<sp/>Windows,<sp/>during<sp/>input,<sp/>CRLF<sp/>is<sp/>converted<sp/>to<sp/>\n,<sp/>i.e.<sp/>one</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>character<sp/>less,<sp/>and<sp/>buffer_len<sp/>is<sp/>adjusted<sp/>correspondingly.</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>However,<sp/>the<sp/>value<sp/>of<sp/>position<sp/>must<sp/>be<sp/>adjusted<sp/>so<sp/>that<sp/>it<sp/>is</highlight></codeline>
+<codeline lineno="170"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a<sp/>disk<sp/>file<sp/>position<sp/>and<sp/>not<sp/>a<sp/>buffer<sp/>position.<sp/><sp/>The<sp/>following</highlight></codeline>
+<codeline lineno="171"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>code<sp/>does<sp/>this.*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file-&gt;mode.binary_io)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptrdiff_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>=<sp/>file-&gt;buffer_len;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>p<sp/>=<sp/>file-&gt;buffer;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(n--)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>jz<sp/>971105<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*p++<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;position++;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Ending<sp/>mm<sp/>971031<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file-&gt;mode.binary_io)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="buffer__io_8c_1a44fd08382c3d773255e33f76ca7507bc" kindref="member">__convert_to_newlines</ref>(file-&gt;buffer,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*)<sp/>&amp;file-&gt;buffer_len);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="buffer__io_8c_1a92e8b20037cba45cbcb674edfa5a5920" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1a92e8b20037cba45cbcb674edfa5a5920" kindref="member">__flush_buffer</ref>(FILE<sp/>*<sp/>file,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*<sp/>bytes_flushed)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/>buffer_len;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ioresult;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer_len<sp/>=<sp/>file-&gt;buffer_ptr<sp/>-<sp/>file-&gt;buffer;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer_len)</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;buffer_len<sp/>=<sp/>buffer_len;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file-&gt;mode.binary_io)</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="buffer__io_8c_1a32142c6dbbe4e22f04e712ce24ed35fb" kindref="member">__convert_from_newlines</ref>(file-&gt;buffer,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*)<sp/>&amp;file-&gt;buffer_len);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ioresult<sp/>=<sp/>(*file-&gt;write_proc)(file-&gt;handle,<sp/>file-&gt;buffer,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*)<sp/>&amp;file-&gt;buffer_len,<sp/>file-&gt;idle_proc);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bytes_flushed)</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*bytes_flushed<sp/>=<sp/>file-&gt;buffer_len;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ioresult)</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(ioresult);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;position<sp/>+=<sp/>file-&gt;buffer_len;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="buffer__io_8c_1aab32fd7aaa8ed81632b70aa8d30fa63f" kindref="member">__prep_buffer</ref>(file);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(__no_io_error);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221" refid="buffer__io_8c_1a8983a75e756d0028cfe7f1d59b88c8b8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1a8983a75e756d0028cfe7f1d59b88c8b8" kindref="member">setvbuf</ref>(FILE<sp/>*<sp/>file,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>buff,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mode,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>)</highlight></codeline>
+<codeline lineno="222"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kind<sp/>=<sp/>file-&gt;mode.file_kind;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mode<sp/>==<sp/>_IONBF)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>970101<sp/>mani@be<sp/>*/</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>970708<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="file__io_8c_1ac3a65037e9b1d6f095b612d2798aa81a" kindref="member">fflush</ref>(file);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>970101<sp/>mani@be<sp/>*/</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>mm<sp/>970708<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;state.io_state<sp/>!=<sp/>__neutral<sp/>||<sp/>kind<sp/>==<sp/>__closed_file<sp/>)<sp/></highlight><highlight class="comment">/*970318<sp/>bkoz*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mode<sp/>!=<sp/>_IONBF<sp/>&amp;&amp;<sp/>mode<sp/>!=<sp/>_IOLBF<sp/>&amp;&amp;<sp/>mode<sp/>!=<sp/>_IOFBF)</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;buffer<sp/>&amp;&amp;<sp/>file-&gt;state.free_buffer)</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Disk_File_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(file-&gt;buffer);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;mode.buffer_mode<sp/><sp/>=<sp/>mode;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;state.free_buffer<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>&amp;file-&gt;char_buffer;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_ptr<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>&amp;file-&gt;char_buffer;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_size<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_len<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_alignment<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mode<sp/>==<sp/>_IONBF<sp/>||<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref><sp/>&lt;<sp/>1)</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(file-&gt;buffer_ptr)<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*mm<sp/>970306*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!buff)</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_No_Disk_File_OS_Support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!(buff<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>malloc(<ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>)))</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;state.free_buffer<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>buff;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_ptr<sp/><sp/>=<sp/>file-&gt;buffer;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_size<sp/>=<sp/><ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__dest_os<sp/>==<sp/>__mac_os<sp/>||<sp/>__dest_os<sp/>==<sp/>__be_os</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>alignment_mask<sp/><sp/>(512L<sp/>-<sp/>1L)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_alignment<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(file-&gt;mode.file_kind<sp/>==<sp/>__disk_file<sp/>&amp;&amp;<sp/>!(<ref refid="____ppc__eabi__init_8h_1aac913b3a1f6ef005d66bf7a84428773e" kindref="member">size</ref><sp/>&amp;<sp/><ref refid="buffer__io_8c_1a17f2c777a3ff206142a590def3d734d2" kindref="member">alignment_mask</ref>))</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file-&gt;buffer_alignment<sp/>=<sp/><ref refid="buffer__io_8c_1a17f2c777a3ff206142a590def3d734d2" kindref="member">alignment_mask</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>if<sp/>buffer<sp/>is<sp/>a<sp/>multiple<sp/>of<sp/>512,<sp/>take<sp/>steps<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>to<sp/>align<sp/>buffers<sp/>on<sp/>block<sp/>bounderies<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>(see<sp/>__prep_buffer)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>file-&gt;buffer_alignment<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="290" refid="buffer__io_8c_1ac18d49ddbd71c2d3b71b2de82c80183b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="buffer__io_8c_1ac18d49ddbd71c2d3b71b2de82c80183b" kindref="member">setbuf</ref>(FILE<sp/>*<sp/>file,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>buff)</highlight></codeline>
+<codeline lineno="291"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buff)</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="buffer__io_8c_1a8983a75e756d0028cfe7f1d59b88c8b8" kindref="member">setvbuf</ref>(file,<sp/>buff,<sp/>_IOFBF,<sp/>BUFSIZ);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="buffer__io_8c_1a8983a75e756d0028cfe7f1d59b88c8b8" kindref="member">setvbuf</ref>(file,<sp/>0,<sp/>_IONBF,<sp/>0);</highlight></codeline>
+<codeline lineno="296"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Change<sp/>Record</highlight></codeline>
+<codeline lineno="299"><highlight class="comment"><sp/>*<sp/><sp/>24-Aug-95<sp/>JFH<sp/><sp/>First<sp/>code<sp/>release.</highlight></codeline>
+<codeline lineno="300"><highlight class="comment"><sp/>*<sp/><sp/>08-Nov-95<sp/>JFH<sp/><sp/>Fixed<sp/>a<sp/>small<sp/>problem<sp/>in<sp/>setvbuf<sp/>where<sp/>passing<sp/>a<sp/>size<sp/>of<sp/>1<sp/>always</highlight></codeline>
+<codeline lineno="301"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>caused<sp/>_IONBF<sp/>behavior,<sp/>which<sp/>was<sp/>a<sp/>problem<sp/>for<sp/>sscanf<sp/>of<sp/>a<sp/>single-char</highlight></codeline>
+<codeline lineno="302"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string.</highlight></codeline>
+<codeline lineno="303"><highlight class="comment"><sp/>*<sp/><sp/>08-Jan-96<sp/>JFH<sp/><sp/>At<sp/>the<sp/>behest<sp/>of<sp/>Be,<sp/>I<sp/>put<sp/>in<sp/>real<sp/>output<sp/>line<sp/>buffering.</highlight></codeline>
+<codeline lineno="304"><highlight class="comment"><sp/>*<sp/><sp/>19-Jan-96<sp/>JFH<sp/><sp/>Removed<sp/>paranoid<sp/>(*pos_proc)()<sp/>calls<sp/>in<sp/>__load_buffer<sp/>and<sp/>__flush_buffer.</highlight></codeline>
+<codeline lineno="305"><highlight class="comment"><sp/>*<sp/><sp/>22-Jan-96<sp/>JFH<sp/><sp/>Added<sp/>casts<sp/>from<sp/>(void<sp/>*)<sp/>for<sp/>C++<sp/>compatibility.</highlight></codeline>
+<codeline lineno="306"><highlight class="comment"><sp/>*<sp/><sp/><sp/>4-Mar-96<sp/>JFH<sp/><sp/>Added<sp/>checking<sp/>to<sp/>the<sp/>&apos;mode&apos;<sp/>parameter<sp/>of<sp/>setvbuf.</highlight></codeline>
+<codeline lineno="307"><highlight class="comment"><sp/>*<sp/><sp/>26-Apr-96<sp/>JFH<sp/><sp/>Merged<sp/>Win32<sp/>changes<sp/>in.</highlight></codeline>
+<codeline lineno="308"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CTV</highlight></codeline>
+<codeline lineno="309"><highlight class="comment"><sp/>*<sp/><sp/>mm<sp/>961031<sp/><sp/>Changes<sp/>for<sp/>Pascal</highlight></codeline>
+<codeline lineno="310"><highlight class="comment"><sp/>*<sp/><sp/>961223<sp/>bkoz<sp/><sp/>line<sp/>89<sp/>changed<sp/>from<sp/>if<sp/>dest<sp/>os<sp/>==<sp/>mac<sp/>os</highlight></codeline>
+<codeline lineno="311"><highlight class="comment"><sp/>*<sp/><sp/>970101<sp/><sp/>mani@be<sp/>Make<sp/>unbuffered<sp/>output<sp/>really<sp/>unbuffered.</highlight></codeline>
+<codeline lineno="312"><highlight class="comment"><sp/>*<sp/><sp/>mm<sp/>970210<sp/><sp/>Straighten<sp/>out<sp/>the<sp/>\n<sp/>\r<sp/>schism</highlight></codeline>
+<codeline lineno="313"><highlight class="comment"><sp/>*<sp/><sp/>mm<sp/>970306<sp/><sp/>When<sp/>setting<sp/>a<sp/>v<sp/>buffer,<sp/>if<sp/>size<sp/>==<sp/>0,<sp/>then<sp/>set<sp/>value<sp/>of<sp/>1<sp/>char<sp/>buffer<sp/>to<sp/>&apos;\0&apos;</highlight></codeline>
+<codeline lineno="314"><highlight class="comment"><sp/>*<sp/><sp/>bkoz<sp/>970318<sp/>line<sp/>199<sp/>allow<sp/>setvbuf<sp/>to<sp/>work<sp/>on<sp/>console<sp/>files</highlight></codeline>
+<codeline lineno="315"><highlight class="comment"><sp/>*<sp/><sp/>FS<sp/>970612<sp/><sp/><sp/>Wrapped<sp/>_flush_buffer()<sp/>routine<sp/>with<sp/>#if<sp/>__dest_os<sp/>==<sp/>__ppc_eabi_bare</highlight></codeline>
+<codeline lineno="316"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>since<sp/>this<sp/>routine<sp/>is<sp/>os<sp/>dependent.</highlight></codeline>
+<codeline lineno="317"><highlight class="comment"><sp/>*<sp/><sp/>10-Jul-97<sp/>SCM<sp/><sp/><sp/>Unwrapped<sp/>_flush_buffer()<sp/>to<sp/>enable<sp/>serial<sp/>console<sp/>IO.</highlight></codeline>
+<codeline lineno="318"><highlight class="comment"><sp/>*<sp/><sp/>20-Jul-97<sp/>MEA<sp/><sp/><sp/>Changed<sp/>__no_os<sp/>to<sp/>_No_Disk_File_OS_Support.</highlight></codeline>
+<codeline lineno="319"><highlight class="comment"><sp/>*<sp/>mm<sp/>970708<sp/><sp/>Inserted<sp/>Be<sp/>changes</highlight></codeline>
+<codeline lineno="320"><highlight class="comment"><sp/>*<sp/><sp/>mm<sp/>971031<sp/><sp/>Adjustment<sp/>to<sp/>preserve<sp/>file-&gt;position<sp/>as<sp/>a<sp/>disk<sp/>position<sp/>in<sp/>Windows.</highlight></codeline>
+<codeline lineno="321"><highlight class="comment"><sp/>*<sp/><sp/>jz<sp/>971105<sp/><sp/>Fixes<sp/>one-off<sp/>bug,<sp/>from<sp/>Jay<sp/>Zipnick</highlight></codeline>
+<codeline lineno="322"><highlight class="comment"><sp/>*<sp/>vss<sp/>980825<sp/><sp/>Seemed<sp/>to<sp/>have<sp/>lost<sp/>the<sp/>logic<sp/>when<sp/>merging<sp/>these<sp/>sources<sp/>-<sp/>this<sp/>caused<sp/>a</highlight></codeline>
+<codeline lineno="323"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>problem<sp/>with<sp/>MPW&apos;s<sp/>newlines</highlight></codeline>
+<codeline lineno="324"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c"/>
+  </compounddef>
+</doxygen>

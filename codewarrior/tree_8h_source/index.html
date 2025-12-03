@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File tree.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-treeh">File tree.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_5331e34b666a7435d77010d6d501c7d4/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_5715a3597842aab210f9a54cf5907db0/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_f3cdfadcca1881c964e98cde56e67e68/"><strong>Msl</strong></a> <strong>&gt;</strong> <a href="../dir_1d8bcf55c9e1564519df8a05b1def2d1/"><strong>MSL_C++</strong></a> <strong>&gt;</strong> <a href="../dir_fc42de24ef3c14a5dea3aca327bd2ec9/"><strong>MSL_Common</strong></a> <strong>&gt;</strong> <a href="../dir_f262df31fb8e04d575b9a3aa2e30ecf8/"><strong>Include</strong></a> <strong>&gt;</strong> <a href="../tree_8h/"><strong>tree.h</strong></a></p>
+<p><a href="../tree_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/12/09 17:59:46 $ 
+ *  $Revision: 1.14.4.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Portions Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+#ifndef _TREE_H
+#define _TREE_H
+
+// WARNING
+//
+// tree.h is a non-standard, non-portable header and container.
+//
+// WARNING
+//
+//  __tree serves as the implementation of map, multimap, set and multiset.  The
+//  node insertion and removal routines are based on algorithms presented in
+//  Cormen, Leiserson, and Rivest, Introduction to Algorithms (MIT Press, 1990).
+//  Modifications to these algorithms include:
+//
+//  1.  Sentinel nodes are not used.  The algorithm has been modified to have
+//      Sentinel nodes modled by null pointers in the leaf nodes.  Nodes represented
+//      in this fashion have a color of black, and are never explicitly referenced.
+//
+//  2.  Point 1 is especially important in the balancing portion of the node delete
+//      routine.  Here a null node is required to know it's parent and whether it is
+//      a left child or right child.  This is fixed up by storing the parent of the
+//      null node (instead of the null node), and a bool representing whether it is
+//      a left child or right child.
+//
+//  3.  The orignal node delete routine called for copying one node into another.
+//      This would cause non-standard behavior, so instead pointers are fixed up
+//      to achieve the same effect.
+//
+//  4.  The &quot;RB-Delete&quot; and &quot;RB-Delete-Fixup&quot; routines are implemented as one
+//      routine here:  &quot;balance_erase&quot;.
+
+#include &lt;mslconfig&gt;
+#include &lt;memory&gt;
+#include &lt;stdexcept&gt;
+#include &lt;iterator&gt;
+#include &lt;string&gt;
+
+#ifdef _TREE_DEBUG
+    #include &lt;cassert&gt;
+#endif
+
+#pragma options align=native
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    namespace std {
+#endif
+
+// hh 981203 **** WARNING ****  __pointer_plus_bit is not standard.
+// It is used in the implementation of __tree.  It compacts a bool
+// and a pointer into the space of a pointer.  The pointer must refer
+// to memory with an alignment of 2 or more bytes.
+// Use of this optimization can be turned off in &lt;mslconfig&gt; with the
+// _Inhibit_Optimize_RB_bit flag.
+
+template &lt;class T&gt;
+class __pointer_plus_bit
+{
+public:
+    __pointer_plus_bit(T* ptr = 0);
+    __pointer_plus_bit&amp; operator = (const __pointer_plus_bit&amp; x);
+    __pointer_plus_bit&amp; operator = (T* x);
+    operator T* () const;
+    bool bit() const;
+    void bit(bool b);
+    T* operator -&gt; () const;
+private:
+    T* ptr_;
+
+    __pointer_plus_bit(const __pointer_plus_bit&amp;); // not defined
+};
+
+template &lt;class T&gt;
+inline
+__pointer_plus_bit&lt;T&gt;::__pointer_plus_bit(T* ptr)
+    : ptr_(ptr)
+{
+}
+
+template &lt;class T&gt;
+inline
+__pointer_plus_bit&lt;T&gt;&amp;
+__pointer_plus_bit&lt;T&gt;::operator = (const __pointer_plus_bit&amp; x)
+{
+    ptr_ = (T*)(((size_t)x.ptr_ &amp; ~1) | ((size_t)ptr_ &amp; 1));
+    return *this;
+}
+
+template &lt;class T&gt;
+inline
+__pointer_plus_bit&lt;T&gt;&amp;
+__pointer_plus_bit&lt;T&gt;::operator = (T* x)
+{
+    ptr_ = (T*)((size_t)x | ((size_t)ptr_ &amp; 1));
+    return *this;
+}
+
+template &lt;class T&gt;
+inline
+__pointer_plus_bit&lt;T&gt;::operator T* () const
+{
+    return (T*)((size_t)ptr_ &amp; ~1);
+}
+
+template &lt;class T&gt;
+inline
+bool
+__pointer_plus_bit&lt;T&gt;::bit() const
+{
+    return bool((size_t)ptr_ &amp; 1);
+}
+
+template &lt;class T&gt;
+inline
+void
+__pointer_plus_bit&lt;T&gt;::bit(bool b)
+{
+    if (b)
+        ptr_ = (T*)((size_t)ptr_ | 1);
+    else
+        ptr_ = (T*)((size_t)ptr_ &amp; ~1);
+}
+
+template &lt;class T&gt;
+inline
+T*
+__pointer_plus_bit&lt;T&gt;::operator -&gt; () const
+{
+    return (T*)((size_t)ptr_ &amp; ~1);
+}
+
+template &lt;bool b&gt;
+class __red_black_tree
+{
+protected:
+
+    enum Color {black, red};
+
+    struct node_base;
+
+    struct anchor
+    {
+        node_base* left_;
+
+        anchor(node_base* left = 0) : left_(left) {}
+    };
+
+    #ifndef _Inhibit_Optimize_RB_bit
+
+        struct node_base
+            : public anchor
+        {
+            node_base* right_;
+            __pointer_plus_bit&lt;node_base&gt; parent_;
+
+            node_base(node_base* left = 0, node_base* right = 0, node_base* parent = 0) : anchor(left), right_(right), parent_(parent) {}
+            Color color() const {return Color(parent_.bit());}
+            void set_color(Color c) {parent_.bit(bool(c));}
+        };
+
+    #else
+
+        struct node_base
+            : public anchor
+        {
+            node_base* right_;
+            node_base* parent_;
+            Color color_;
+
+            node_base(node_base* left = 0, node_base* right = 0, node_base* parent = 0) : anchor(left), right_(right), parent_(parent) {}
+            Color color() const {return color_;}
+            void set_color(Color c) {color_ = c;}
+        };
+
+    #endif
+
+    static node_base* leftmost(node_base* x);
+    static node_base* rightmost(node_base* x);
+    static void increment(const node_base*&amp; x);
+    static void decrement(const node_base*&amp; x);
+    static void balance_insert(node_base* x, node_base* root);
+    static void balance_erase(node_base* z, node_base* root);
+private:
+    static void rotate_left(node_base* x, node_base*&amp; root);
+    static void rotate_right(node_base* x, node_base*&amp; root);
+};
+
+template &lt;bool b&gt;
+inline
+typename __red_black_tree&lt;b&gt;::node_base*
+__red_black_tree&lt;b&gt;::leftmost(node_base* x)
+{
+    while (x-&gt;left_ != 0)
+        x = x-&gt;left_;
+    return x;
+}
+
+template &lt;bool b&gt;
+inline
+typename __red_black_tree&lt;b&gt;::node_base*
+__red_black_tree&lt;b&gt;::rightmost(node_base* x)
+{
+    while (x-&gt;right_ != 0)
+        x = x-&gt;right_;
+    return x;
+}
+
+template &lt;bool b&gt;
+void
+__red_black_tree&lt;b&gt;::increment(const node_base*&amp; x)
+{
+    if (x-&gt;right_ != 0)
+        x = leftmost(x-&gt;right_);
+    else
+    {
+        while (x != x-&gt;parent_-&gt;left_)
+            x = x-&gt;parent_;
+        x = x-&gt;parent_;
+    }
+}
+
+template &lt;bool b&gt;
+void
+__red_black_tree&lt;b&gt;::decrement(const node_base*&amp; x)
+{
+    if (x-&gt;left_ != 0)
+        x = rightmost(x-&gt;left_);
+    else
+    {
+        while (x == x-&gt;parent_-&gt;left_)
+            x = x-&gt;parent_;
+        x = x-&gt;parent_;
+    }
+}
+
+template &lt;bool b&gt;
+void
+__red_black_tree&lt;b&gt;::balance_insert(node_base* x, node_base* root)
+{
+    x-&gt;set_color(red);
+    while (x != root &amp;&amp; x-&gt;parent_-&gt;color() == red)
+    {
+        if (x-&gt;parent_ == x-&gt;parent_-&gt;parent_-&gt;left_)
+        {
+            node_base* y = x-&gt;parent_-&gt;parent_-&gt;right_;
+            if (y != 0 &amp;&amp; y-&gt;color() == red)
+            {
+                x-&gt;parent_-&gt;set_color(black);
+                y-&gt;set_color(black);
+                x = x-&gt;parent_-&gt;parent_;
+                x-&gt;set_color(red);
+            }
+            else
+            {
+                if (x == x-&gt;parent_-&gt;right_)
+                {
+                    x = x-&gt;parent_;
+                    rotate_left(x, root);
+                }
+                x-&gt;parent_-&gt;set_color(black);
+                x-&gt;parent_-&gt;parent_-&gt;set_color(red);
+                rotate_right(x-&gt;parent_-&gt;parent_, root);
+            }
+        }
+        else
+        {
+            node_base* y = x-&gt;parent_-&gt;parent_-&gt;left_;
+            if (y != 0 &amp;&amp; y-&gt;color() == red)
+            {
+                x-&gt;parent_-&gt;set_color(black);
+                y-&gt;set_color(black);
+                x = x-&gt;parent_-&gt;parent_;
+                x-&gt;set_color(red);
+            }
+            else
+            {
+                if (x == x-&gt;parent_-&gt;left_)
+                {
+                    x = x-&gt;parent_;
+                    rotate_right(x, root);
+                }
+                x-&gt;parent_-&gt;set_color(black);
+                x-&gt;parent_-&gt;parent_-&gt;set_color(red);
+                rotate_left(x-&gt;parent_-&gt;parent_, root);
+            }
+        }
+    }
+    root-&gt;set_color(black);
+}
+
+template &lt;bool b&gt;
+void
+__red_black_tree&lt;b&gt;::balance_erase(node_base* z, node_base* root)
+{
+    // Remove z from tree
+    node_base* y = z;
+    if (z-&gt;left_ != 0 &amp;&amp; z-&gt;right_ != 0)
+        increment(y);
+    node_base* x = y-&gt;left_ != 0 ? y-&gt;left_ : y-&gt;right_;
+    node_base* x_parent = y-&gt;parent_;
+    if (x != 0)
+        x-&gt;parent_ = x_parent;
+    bool x_is_left_child;
+    if (y == y-&gt;parent_-&gt;left_)
+    {
+        y-&gt;parent_-&gt;left_ = x;
+        x_is_left_child = true;
+    }
+    else
+    {
+        y-&gt;parent_-&gt;right_ = x;
+        x_is_left_child = false;
+    }
+    bool removed_black = y-&gt;color() == black;
+    if (y != z)
+    {   // Replace z with y
+        y-&gt;parent_ = z-&gt;parent_;
+        if (z == y-&gt;parent_-&gt;left_)
+            y-&gt;parent_-&gt;left_ = y;
+        else
+            y-&gt;parent_-&gt;right_ = y;
+        y-&gt;left_ = z-&gt;left_;
+        if (y-&gt;left_ != 0)
+            y-&gt;left_-&gt;parent_ = y;
+        else
+            x_parent = y;
+        y-&gt;right_ = z-&gt;right_;
+        if (y-&gt;right_ != 0)
+            y-&gt;right_-&gt;parent_ = y;
+        else
+            x_parent = y;
+        y-&gt;set_color(z-&gt;color());
+        if (root == z)
+            root = y;
+    }
+    else if (x == 0 &amp;&amp; z == root)
+        removed_black = false; // removing last node, don't balance
+    if (removed_black)
+    {   // Balance tree
+        while (x != root &amp;&amp; (x == 0 || x-&gt;color() == black))
+        {
+            if (x_is_left_child)
+            {
+                node_base* w = x_parent-&gt;right_;
+                if (w-&gt;color() == red)
+                {
+                    w-&gt;set_color(black);
+                    x_parent-&gt;set_color(red);
+                    rotate_left(x_parent, root);
+                    w = x_parent-&gt;right_;
+                }
+                if ((w-&gt;left_  == 0 || w-&gt;left_-&gt;color()  == black) &amp;&amp;
+                    (w-&gt;right_ == 0 || w-&gt;right_-&gt;color() == black))
+                {
+                    w-&gt;set_color(red);
+                    x = x_parent;
+                    x_parent = x-&gt;parent_;
+                    x_is_left_child = x == x_parent-&gt;left_;
+                }
+                else
+                {
+                    if (w-&gt;right_ == 0 || w-&gt;right_-&gt;color() == black)
+                    {
+                        w-&gt;left_-&gt;set_color(black);
+                        w-&gt;set_color(red);
+                        rotate_right(w, root);
+                        w = x_parent-&gt;right_;
+                    }
+                    w-&gt;set_color(x_parent-&gt;color());
+                    x_parent-&gt;set_color(black);
+                    w-&gt;right_-&gt;set_color(black);
+                    rotate_left(x_parent, root);
+                    x = root;
+                }
+            }
+            else
+            {
+                node_base* w = x_parent-&gt;left_;
+                if (w-&gt;color() == red)
+                {
+                    w-&gt;set_color(black);
+                    x_parent-&gt;set_color(red);
+                    rotate_right(x_parent, root);
+                    w = x_parent-&gt;left_;
+                }
+                if ((w-&gt;left_  == 0 || w-&gt;left_-&gt;color()  == black) &amp;&amp;
+                    (w-&gt;right_ == 0 || w-&gt;right_-&gt;color() == black))
+                {
+                    w-&gt;set_color(red);
+                    x = x_parent;
+                    x_parent = x-&gt;parent_;
+                    x_is_left_child = x == x_parent-&gt;left_;
+                }
+                else
+                {
+                    if (w-&gt;left_ == 0 || w-&gt;left_-&gt;color() == black)
+                    {
+                        w-&gt;right_-&gt;set_color(black);
+                        w-&gt;set_color(red);
+                        rotate_left(w, root);
+                        w = x_parent-&gt;left_;
+                    }
+                    w-&gt;set_color(x_parent-&gt;color());
+                    x_parent-&gt;set_color(black);
+                    w-&gt;left_-&gt;set_color(black);
+                    rotate_right(x_parent, root);
+                    x = root;
+                }
+            }
+        }
+        if (x != 0)
+            x-&gt;set_color(black);
+    }
+}
+
+template &lt;bool b&gt;
+void
+__red_black_tree&lt;b&gt;::rotate_left(node_base* x, node_base*&amp; root)
+{
+    node_base* y = x-&gt;right_;
+    if (root == x)
+        root = y;
+    x-&gt;right_ = y-&gt;left_;
+    if (y-&gt;left_ != 0)
+        y-&gt;left_-&gt;parent_ = x;
+    y-&gt;parent_ = x-&gt;parent_;
+    if (x == x-&gt;parent_-&gt;left_)
+        x-&gt;parent_-&gt;left_ = y;
+    else
+        x-&gt;parent_-&gt;right_ = y;
+    y-&gt;left_ = x;
+    x-&gt;parent_ = y;
+}
+
+template &lt;bool b&gt;
+void
+__red_black_tree&lt;b&gt;::rotate_right(node_base* x, node_base*&amp; root)
+{
+    node_base* y = x-&gt;left_;
+    if (root == x)
+        root = y;
+    x-&gt;left_ = y-&gt;right_;
+    if (y-&gt;right_ != 0)
+        y-&gt;right_-&gt;parent_ = x;
+    y-&gt;parent_ = x-&gt;parent_;
+    if (x == x-&gt;parent_-&gt;left_)
+        x-&gt;parent_-&gt;left_ = y;
+    else
+        x-&gt;parent_-&gt;right_ = y;
+    y-&gt;right_ = x;
+    x-&gt;parent_ = y;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+class __tree
+    : private __red_black_tree&lt;true&gt;
+{
+public:
+    //  types:
+    typedef T                                     value_type;
+    typedef Compare                               value_compare;
+    typedef Allocator                             allocator_type;
+    typedef typename Allocator::reference         reference;
+    typedef typename Allocator::const_reference   const_reference;
+    class                                         iterator;
+    class                                         const_iterator;
+    typedef typename Allocator::size_type         size_type;
+    typedef typename Allocator::difference_type   difference_type;
+    typedef typename Allocator::pointer           pointer;
+    typedef typename Allocator::const_pointer     const_pointer;
+    typedef _STD::reverse_iterator&lt;iterator&gt;       reverse_iterator;
+    typedef _STD::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator;
+
+private:
+
+    struct node
+        : public node_base
+    {
+        value_type data_;
+    };
+
+    typedef _MSL_REBIND (node)                     node_allocator_type;
+
+public:
+
+#ifdef _Inhibit_Optimize_RB_bit
+
+    struct debug_view
+    {
+        debug_view* left_;
+        debug_view* right_;
+        debug_view* parent_;
+        Color color_;
+        value_type data_;
+    };
+
+#else
+
+    struct debug_view
+    {
+        debug_view* left_;
+        debug_view* right_;
+        __pointer_plus_bit&lt;debug_view&gt; parent_;
+        value_type data_;
+    };
+
+#endif
+
+    friend class iterator;
+    class iterator
+        : public _STD::iterator&lt;bidirectional_iterator_tag, value_type, difference_type, pointer, reference&gt;
+    {
+    public:
+        iterator() {}
+        reference operator * () const {return ptr_-&gt;data_;}
+        pointer operator -&gt; () const {return &amp;ptr_-&gt;data_;}
+        iterator&amp; operator ++ () {increment(ptr_); return *this;}
+        iterator operator ++ (int) {iterator temp(*this); increment(ptr_); return temp;}
+        iterator&amp; operator -- () {decrement(ptr_); return *this;}
+        iterator operator -- (int) {iterator temp(*this); decrement(ptr_); return temp;}
+        friend bool operator ==(const iterator&amp; x, const iterator&amp; y) {return x.ptr_ == y.ptr_;}  // hh 990720
+        friend bool operator !=(const iterator&amp; x, const iterator&amp; y) {return x.ptr_ != y.ptr_;}
+    private:
+        node* ptr_;
+
+        iterator(node* ptr) : ptr_(ptr) {}
+
+        friend class __tree;
+        friend class __tree::const_iterator;
+    };
+
+    friend class const_iterator;
+    class const_iterator
+        : public _STD::iterator&lt;bidirectional_iterator_tag, value_type, difference_type, const_pointer, const_reference&gt;
+    {
+    public:
+        const_iterator() {}
+        const_iterator(const __tree::iterator&amp; i) : ptr_(i.ptr_) {}
+        const_reference operator * () const {return ptr_-&gt;data_;}
+        const_pointer operator -&gt; () const {return &amp;ptr_-&gt;data_;}
+        const_iterator&amp; operator ++ () {increment(ptr_); return *this;}
+        const_iterator operator ++ (int) {const_iterator temp(*this); increment(ptr_); return temp;}
+        const_iterator&amp; operator -- () {decrement(ptr_); return *this;}
+        const_iterator operator -- (int) {const_iterator temp(*this); decrement(ptr_); return temp;}
+        friend bool operator ==(const const_iterator&amp; x, const const_iterator&amp; y) {return x.ptr_ == y.ptr_;}  // hh 990720
+        friend bool operator !=(const const_iterator&amp; x, const const_iterator&amp; y) {return x.ptr_ != y.ptr_;}
+    private:
+        const node* ptr_;
+
+        const_iterator(const node* ptr) : ptr_(ptr) {}
+
+        friend class __tree;
+    };
+
+    //  lib.set.cons construct/copy/destroy:
+    explicit __tree(const Compare&amp; comp, const Allocator&amp; a);
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt;
+            __tree(InputIterator first, InputIterator last, bool multi,
+                const Compare&amp; comp, const Allocator&amp; a);
+    #else
+        template &lt;class InputIterator&gt;
+            __tree(InputIterator first, InputIterator last, bool multi,
+                const Compare&amp; comp, const Allocator&amp; a)
+                : alloc_(a, 0),
+                  node_alloc_(node_allocator_type(a)),
+                  comp_(comp)
+            {
+                #if defined(_TREE_DEBUG) &amp;&amp; !defined(_Inhibit_Optimize_RB_bit)
+                    if ((size_t)&amp;node_alloc_.m_ &amp; 1)
+                        #ifndef _MSL_NO_EXCEPTIONS
+                            throw invalid_argument(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment&quot;);
+                        #else
+                            __msl_error(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n&quot;);
+                        #endif  
+                #endif
+                front() = (node*)&amp;node_alloc_.m_;
+                #ifndef _MSL_NO_EXCEPTIONS
+                try
+                {
+                #endif
+                    if (multi)
+                        insert_multi(first, last);
+                    else
+                        insert_one(first, last);
+                #ifndef _MSL_NO_EXCEPTIONS
+                }
+                catch (...)
+                {
+                    if (root() != 0)
+                        destroy(root());
+                    throw;
+                }
+                #endif
+            }
+    #endif
+#else
+    __tree(const_iterator first, const_iterator last, bool multi,
+        const Compare&amp; comp, const Allocator&amp; a);
+    __tree(const value_type* first, const value_type* last, bool multi,
+        const Compare&amp; comp, const Allocator&amp; a);
+#endif
+    __tree(const __tree&amp; x);
+    ~__tree();
+    __tree&amp; operator = (const __tree&amp; x);
+    allocator_type get_allocator() const;
+
+    //  iterators:
+    iterator               begin();
+    const_iterator         begin() const;
+    iterator               end();
+    const_iterator         end() const;
+    reverse_iterator       rbegin();
+    const_reverse_iterator rbegin() const;
+    reverse_iterator       rend();
+    const_reverse_iterator rend() const;
+
+    //  capacity:
+    bool          empty() const;
+    size_type     size() const;
+    size_type     max_size() const;
+
+    //  modifiers:
+    pair&lt;iterator,bool&gt; insert_one(const value_type&amp; x);
+    iterator            insert_multi(const value_type&amp; x);
+    iterator            insert_one(iterator position, const value_type&amp; x);
+    iterator            insert_multi(iterator position, const value_type&amp; x);
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+        template &lt;class InputIterator&gt; void insert_one(InputIterator first, InputIterator last);
+        template &lt;class InputIterator&gt; void insert_multi(InputIterator first, InputIterator last);
+    #else
+
+        template &lt;class InputIterator&gt;
+        void
+        insert_one(InputIterator first, InputIterator last)
+        {
+            if (first == last)
+                return;
+            iterator p = insert_one(*first).first;
+            for (++first; first != last; ++first)
+                p = insert_one(p, *first);
+        }
+
+        template &lt;class InputIterator&gt;
+        void
+        insert_multi(InputIterator first, InputIterator last)
+        {
+            if (first == last)
+                return;
+            iterator p = insert_multi(*first);
+            for (++first; first != last; ++first)
+                p = insert_multi(p, *first);
+        }
+
+    #endif
+#else
+    void insert_one(const_iterator first, const_iterator last);
+    void insert_one(const value_type* first, const value_type* last);
+    void insert_multi(const_iterator first, const_iterator last);
+    void insert_multi(const value_type* first, const value_type* last);
+#endif
+
+    void      erase(iterator position);
+    size_type erase_one(const value_type&amp; x);
+    size_type erase_multi(const value_type&amp; x);
+    void      erase(iterator first, iterator last);
+    void swap(__tree&amp; x);
+    void clear();
+
+    //  observers:
+    value_compare value_comp() const;
+
+    //  set operations:
+    iterator       find(const value_type&amp; x);
+    const_iterator find(const value_type&amp; x) const;
+    size_type count_one(const value_type&amp; x) const;
+    size_type count_multi(const value_type&amp; x) const;
+
+    iterator       lower_bound(const value_type&amp; x);
+    const_iterator lower_bound(const value_type&amp; x) const;
+    iterator       upper_bound(const value_type&amp; x);
+    const_iterator upper_bound(const value_type&amp; x) const;
+    pair&lt;iterator, iterator&gt;             equal_range(const value_type&amp; x);
+    pair&lt;const_iterator, const_iterator&gt; equal_range(const value_type&amp; x) const;
+private:
+    _EmptyMemberOpt&lt;Allocator, size_type&gt; alloc_;  // alloc_.m_ is size_
+    _EmptyMemberOpt&lt;node_allocator_type, anchor&gt; node_alloc_;  // node_alloc_.m_ is tail pseudo node, node_alloc_.m_.left_ is root node
+    _EmptyMemberOpt&lt;Compare, node*&gt; comp_; // comp_.m_ is pointer to first node
+
+    node* root() const;
+    node*&amp; root();
+    void destroy(node* p);
+    node* copy(const node* x);
+    node* front() const;
+    node*&amp; front();
+    node* insert_node_at(node* p, bool leftchild, bool is_leftmost, const value_type&amp; x);
+#ifdef _TREE_DEBUG
+    bool ok() const;
+    int count_black(node_base* x) const;
+#endif
+};
+
+// Implementation
+
+template &lt;class T, class Compare, class Allocator&gt;
+__tree&lt;T, Compare, Allocator&gt;::__tree(const Compare&amp; comp, const Allocator&amp; a)
+    : alloc_(a, 0),
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+      node_alloc_(node_allocator_type(a)),
+#endif
+      comp_(comp)
+{
+    #if defined(_TREE_DEBUG) &amp;&amp; !defined(_Inhibit_Optimize_RB_bit)
+        if ((size_t)&amp;node_alloc_.m_ &amp; 1)
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw invalid_argument(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment&quot;);
+            #else
+                __msl_error(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n&quot;);
+            #endif  
+    #endif
+    front() = (node*)&amp;node_alloc_.m_;
+}
+
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+        template &lt;class T, class Compare, class Allocator&gt;
+        template &lt;class InputIterator&gt;
+        __tree&lt;T, Compare, Allocator&gt;::__tree(InputIterator first, InputIterator last, bool multi,
+            const Compare&amp; comp, const Allocator&amp; a)
+            : alloc_(a, 0),
+              node_alloc_(node_allocator_type(a)),
+              comp_(comp)
+        {
+            #if defined(_TREE_DEBUG) &amp;&amp; !defined(_Inhibit_Optimize_RB_bit)
+                if ((size_t)&amp;node_alloc_.m_ &amp; 1)
+                    #ifndef _MSL_NO_EXCEPTIONS
+                        throw invalid_argument(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment&quot;);
+                    #else
+                        __msl_error(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n&quot;);
+                    #endif  
+            #endif
+            front() = (node*)&amp;node_alloc_.m_;
+            #ifndef _MSL_NO_EXCEPTIONS
+            try
+            {
+            #endif
+                if (multi)
+                    insert_multi(first, last);
+                else
+                    insert_one(first, last);
+            #ifndef _MSL_NO_EXCEPTIONS
+            }
+            catch (...)
+            {
+                if (root() != 0)
+                    destroy(root());
+                throw;
+            }
+            #endif
+        }
+
+    #endif
+#else
+
+    template &lt;class T, class Compare, class Allocator&gt;
+    __tree&lt;T, Compare, Allocator&gt;::__tree(const_iterator first, const_iterator last,
+        bool multi, const Compare&amp; comp, const Allocator&amp; a)
+        : alloc_(a, 0),
+          comp_(comp)
+    {
+        #if defined(_TREE_DEBUG) &amp;&amp; !defined(_Inhibit_Optimize_RB_bit)
+            if ((size_t)&amp;node_alloc_.m_ &amp; 1)
+                #ifndef _MSL_NO_EXCEPTIONS
+                    throw invalid_argument(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment&quot;);
+                #else
+                    __msl_error(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n&quot;);
+                #endif  
+        #endif
+        front() = (node*)&amp;node_alloc_.m_;
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            if (multi)
+                insert_multi(first, last);
+            else
+                insert_one(first, last);
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            if (root() != 0)
+                destroy(root());
+            throw;
+        }
+        #endif
+    }
+
+    template &lt;class T, class Compare, class Allocator&gt;
+    __tree&lt;T, Compare, Allocator&gt;::__tree(const value_type* first, const value_type* last,
+        bool multi, const Compare&amp; comp, const Allocator&amp; a)
+        : alloc_(a, 0),
+          comp_(comp)
+    {
+        #if defined(_TREE_DEBUG) &amp;&amp; !defined(_Inhibit_Optimize_RB_bit)
+            if ((size_t)&amp;node_alloc_.m_ &amp; 1)
+                #ifndef _MSL_NO_EXCEPTIONS
+                    throw invalid_argument(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment&quot;);
+                #else
+                    __msl_error(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n&quot;);
+                #endif  
+        #endif
+        front() = (node*)&amp;node_alloc_.m_;
+        #ifndef _MSL_NO_EXCEPTIONS
+        try
+        {
+        #endif
+            if (multi)
+                insert_multi(first, last);
+            else
+                insert_one(first, last);
+        #ifndef _MSL_NO_EXCEPTIONS
+        }
+        catch (...)
+        {
+            if (root() != 0)
+                destroy(root());
+            throw;
+        }
+        #endif
+    }
+
+#endif
+
+template &lt;class T, class Compare, class Allocator&gt;
+__tree&lt;T, Compare, Allocator&gt;::__tree(const __tree&amp; x)
+    : alloc_(x.alloc_),
+      node_alloc_(x.node_alloc_),
+      comp_(x.comp_)
+{
+    #if defined(_TREE_DEBUG) &amp;&amp; !defined(_Inhibit_Optimize_RB_bit)
+        if ((size_t)&amp;node_alloc_.m_ &amp; 1)
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw invalid_argument(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment&quot;);
+            #else
+                __msl_error(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n&quot;);
+            #endif  
+    #endif
+    if (x.root() != 0)
+    {
+        root() = copy(x.root());
+        root()-&gt;parent_ = (node_base*)&amp;node_alloc_.m_;
+        front() = (node*)leftmost(root());
+    }
+    else
+        front() = (node*)&amp;node_alloc_.m_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+__tree&lt;T, Compare, Allocator&gt;::~__tree()
+{
+    if (root() != 0)
+        destroy(root());
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+__tree&lt;T, Compare, Allocator&gt;&amp;
+__tree&lt;T, Compare, Allocator&gt;::operator = (const __tree&amp; x)
+{
+    if (this == &amp;x)
+        return *this;
+    clear();
+    if (x.root() != 0)
+    {
+        root() = copy(x.root());
+        root()-&gt;parent_ = (node_base*)&amp;node_alloc_.m_;
+    }
+    alloc_.m_ = x.alloc_.m_;
+    comp_ = x.comp_;
+    if (root() != 0)
+        front() = (node*)leftmost(root());
+    else
+        front() = (node*)&amp;node_alloc_.m_;
+    return *this;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::allocator_type
+__tree&lt;T, Compare, Allocator&gt;::get_allocator() const
+{
+    return alloc_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::iterator
+__tree&lt;T, Compare, Allocator&gt;::begin()
+{
+    return front();
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::const_iterator
+__tree&lt;T, Compare, Allocator&gt;::begin() const
+{
+    return front();
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::iterator
+__tree&lt;T, Compare, Allocator&gt;::end()
+{
+    return (node*)&amp;node_alloc_.m_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::const_iterator
+__tree&lt;T, Compare, Allocator&gt;::end() const
+{
+    return (const node*)&amp;node_alloc_.m_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::reverse_iterator
+__tree&lt;T, Compare, Allocator&gt;::rbegin()
+{
+    return reverse_iterator(end());
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::const_reverse_iterator
+__tree&lt;T, Compare, Allocator&gt;::rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::reverse_iterator
+__tree&lt;T, Compare, Allocator&gt;::rend()
+{
+    return reverse_iterator(begin());
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::const_reverse_iterator
+__tree&lt;T, Compare, Allocator&gt;::rend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+bool
+__tree&lt;T, Compare, Allocator&gt;::empty() const
+{
+    return alloc_.m_ == 0;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::size_type
+__tree&lt;T, Compare, Allocator&gt;::size() const
+{
+    return alloc_.m_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::size_type
+__tree&lt;T, Compare, Allocator&gt;::max_size() const
+{
+    return numeric_limits&lt;size_type&gt;::max();
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+pair&lt;__tree&lt;T, Compare, Allocator&gt;::iterator, bool&gt;
+__tree&lt;T, Compare, Allocator&gt;::insert_one(const value_type&amp; x)
+{
+    node* prev = 0;
+    node* p = (node*)&amp;node_alloc_.m_;
+    node* n = root();
+    bool leftchild = true;
+    bool is_leftmost = true;
+    while (n != 0)
+    {
+        p = n;
+        if (comp_(x, n-&gt;data_))
+        {
+            n = (node*)n-&gt;left_;
+            leftchild = true;
+        }
+        else
+        {
+            prev = p;
+            n = (node*)n-&gt;right_;
+            leftchild = false;
+            is_leftmost = false;
+        }
+    }
+    if (prev == 0 || comp_(prev-&gt;data_, x))
+    {
+        n = insert_node_at(p, leftchild, is_leftmost, x);
+        return pair&lt;iterator, bool&gt;(n, true);
+    }
+    return pair&lt;iterator, bool&gt;(prev, false);
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::iterator
+__tree&lt;T, Compare, Allocator&gt;::insert_multi(const value_type&amp; x)
+{
+    node* p = (node*)&amp;node_alloc_.m_;
+    node* n = root();
+    bool leftchild = true;
+    bool is_leftmost = true;
+    while (n != 0)
+    {
+        p = n;
+        if (comp_(x, n-&gt;data_))
+        {
+            n = (node*)n-&gt;left_;
+            leftchild = true;
+        }
+        else
+        {
+            n = (node*)n-&gt;right_;
+            leftchild = false;
+            is_leftmost = false;
+        }
+    }
+    return insert_node_at(p, leftchild, is_leftmost, x);
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::iterator
+__tree&lt;T, Compare, Allocator&gt;::insert_one(iterator position, const value_type&amp; x)
+{
+    if (!empty())
+    {
+        if (position == end())
+        {
+            iterator before = end();
+            --before;
+            if (comp_(*before, x))
+                return insert_node_at(before.ptr_, false, false, x);
+        }
+        else if (comp_(*position, x))
+        {
+            iterator after = position;
+            ++after;
+            if (after == end() || comp_(x, *after))
+            {
+                node* p1 = position.ptr_;
+                node* p2 = after.ptr_;
+                if (p1-&gt;right_ == 0)
+                    return insert_node_at(p1, false, false, x);
+                return insert_node_at(p2, true, false, x);
+            }
+        }
+    }
+    return insert_one(x).first;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::iterator
+__tree&lt;T, Compare, Allocator&gt;::insert_multi(iterator position, const value_type&amp; x)
+{
+    if (!empty())
+    {
+        if (position == end())
+        {
+            iterator before = end();
+            --before;
+            if (!comp_(x, *before))
+                return insert_node_at(before.ptr_, false, false, x);
+        }
+        else if (!comp_(x, *position))
+        {
+            iterator after = position;
+            ++after;
+            if (after == end() || !comp_(*after, x))
+            {
+                node* p1 = position.ptr_;
+                node* p2 = after.ptr_;
+                if (p1-&gt;right_ == 0)
+                    return insert_node_at(p1, false, false, x);
+                return insert_node_at(p2, true, false, x);
+            }
+        }
+    }
+    return insert_multi(x);
+}
+
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+    #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+
+        template &lt;class T, class Compare, class Allocator&gt;
+        template &lt;class InputIterator&gt;
+        void
+        __tree&lt;T, Compare, Allocator&gt;::insert_one(InputIterator first, InputIterator last)
+        {
+            if (first == last)
+                return;
+            iterator p = insert_one(*first).first;
+            for (++first; first != last; ++first)
+                p = insert_one(p, *first);
+        }
+
+        template &lt;class T, class Compare, class Allocator&gt;
+        template &lt;class InputIterator&gt;
+        void
+        __tree&lt;T, Compare, Allocator&gt;::insert_multi(InputIterator first, InputIterator last)
+        {
+            if (first == last)
+                return;
+            iterator p = insert_multi(*first);
+            for (++first; first != last; ++first)
+                p = insert_multi(p, *first);
+        }
+
+    #endif
+#else
+
+    template &lt;class T, class Compare, class Allocator&gt;
+    void
+    __tree&lt;T, Compare, Allocator&gt;::insert_one(const_iterator first, const_iterator last)
+    {
+        if (first == last)
+            return;
+        iterator p = insert_one(*first).first;
+        for (++first; first != last; ++first)
+            p = insert_one(p, *first);
+    }
+
+    template &lt;class T, class Compare, class Allocator&gt;
+    void
+    __tree&lt;T, Compare, Allocator&gt;::insert_one(const value_type* first, const value_type* last)
+    {
+        if (first == last)
+            return;
+        iterator p = insert_one(*first).first;
+        for (++first; first != last; ++first)
+            p = insert_one(p, *first);
+    }
+
+    template &lt;class T, class Compare, class Allocator&gt;
+    void
+    __tree&lt;T, Compare, Allocator&gt;::insert_multi(const_iterator first, const_iterator last)
+    {
+        if (first == last)
+            return;
+        iterator p = insert_multi(*first);
+        for (++first; first != last; ++first)
+            p = insert_multi(p, *first);
+    }
+
+    template &lt;class T, class Compare, class Allocator&gt;
+    void
+    __tree&lt;T, Compare, Allocator&gt;::insert_multi(const value_type* first, const value_type* last)
+    {
+        if (first == last)
+            return;
+        iterator p = insert_multi(*first);
+        for (++first; first != last; ++first)
+            p = insert_multi(p, *first);
+    }
+
+#endif
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::node*
+__tree&lt;T, Compare, Allocator&gt;::insert_node_at(node* p, bool leftchild, bool is_leftmost,
+    const value_type&amp; x)
+{
+    if (size() &gt; max_size() - 1)
+        #ifndef _MSL_NO_EXCEPTIONS
+            throw length_error(&quot;tree::insert length error&quot;);
+        #else
+            __msl_error(&quot;tree::insert length error\n&quot;);
+        #endif
+    node* n = node_alloc_.allocate(1);
+    #if defined(_TREE_DEBUG) &amp;&amp; !defined(_Inhibit_Optimize_RB_bit)
+        if ((size_t)n &amp; 1)
+        {
+            node_alloc_.deallocate(n, 1);
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw invalid_argument(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment&quot;);
+            #else
+                __msl_error(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n&quot;);
+            #endif
+        }
+    #endif
+    #ifndef _MSL_NO_EXCEPTIONS
+    try
+    {
+    #endif
+        alloc_.construct(&amp;n-&gt;data_, x);
+    #ifndef _MSL_NO_EXCEPTIONS
+    }
+    catch (...)
+    {
+        node_alloc_.deallocate(n, 1);
+        throw;
+    }
+    #endif
+    n-&gt;left_ = n-&gt;right_ = 0;
+    n-&gt;parent_ = p;
+    if (leftchild)
+        p-&gt;left_ = n;
+    else
+        p-&gt;right_ = n;
+    ++alloc_.m_;
+    balance_insert(n, root());
+    if (is_leftmost)
+        front() = n;
+    return n;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+void
+__tree&lt;T, Compare, Allocator&gt;::erase(iterator position)
+{
+    node* z = position.ptr_;
+    if (position == begin())
+        front() = (++position).ptr_;
+    balance_erase(z, root());
+    alloc_.destroy(&amp;z-&gt;data_);
+    node_alloc_.deallocate(z, 1);
+    --alloc_.m_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::size_type
+__tree&lt;T, Compare, Allocator&gt;::erase_one(const value_type&amp; x)
+{
+    iterator i = find(x);
+    if (i == end())
+        return 0;
+    erase(i);
+    return 1;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::size_type
+__tree&lt;T, Compare, Allocator&gt;::erase_multi(const value_type&amp; x)
+{
+    pair&lt;iterator, iterator&gt; i = equal_range(x);
+    size_type result = (size_type)distance(i.first, i.second);
+    erase(i.first, i.second);
+    return result;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+void
+__tree&lt;T, Compare, Allocator&gt;::erase(iterator first, iterator last)
+{
+    while (first != last)
+        erase(first++);
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+void
+__tree&lt;T, Compare, Allocator&gt;::swap(__tree&amp; x)
+{
+    if (this != &amp;x)
+    {
+        _STD::swap(alloc_, x.alloc_);
+        _STD::swap(node_alloc_, x.node_alloc_);
+        _STD::swap(comp_, x.comp_);
+        if (root() != 0)
+            root()-&gt;parent_ = (node*)&amp;node_alloc_.m_;
+        else
+            front() = (node*)&amp;node_alloc_.m_;  // hh 990720
+        if (x.root() != 0)
+            x.root()-&gt;parent_ = (node*)&amp;x.node_alloc_.m_;
+        else
+            x.front() = (node*)&amp;x.node_alloc_.m_;
+    }
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+void
+__tree&lt;T, Compare, Allocator&gt;::clear()
+{
+    if (root() != 0)
+    {
+        destroy(root());
+        alloc_.m_ = 0;
+        root() = 0;
+        front() = (node*)&amp;node_alloc_.m_;
+    }
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::value_compare
+__tree&lt;T, Compare, Allocator&gt;::value_comp() const
+{
+    return comp_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::iterator
+__tree&lt;T, Compare, Allocator&gt;::find(const value_type&amp; x)
+{
+    node* prev = 0;
+    node* i = root();
+    while (i != 0)
+    {
+        if (comp_(x, i-&gt;data_))
+            i = (node*)i-&gt;left_;
+        else
+        {
+            prev = i;
+            i = (node*)i-&gt;right_;
+        }
+    }
+    if (prev == 0 || comp_(prev-&gt;data_, x))
+        return end();
+    return prev;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::const_iterator
+__tree&lt;T, Compare, Allocator&gt;::find(const value_type&amp; x) const
+{
+    const node* prev = 0;
+    const node* i = root();
+    while (i != 0)
+    {
+        if (comp_(x, i-&gt;data_))
+            i = (node*)i-&gt;left_;
+        else
+        {
+            prev = i;
+            i = (node*)i-&gt;right_;
+        }
+    }
+    if (prev == 0 || comp_(prev-&gt;data_, x))
+        return end();
+    return prev;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::size_type
+__tree&lt;T, Compare, Allocator&gt;::count_one(const value_type&amp; x) const
+{
+    return size_type(!(find(x) == end()));
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::size_type
+__tree&lt;T, Compare, Allocator&gt;::count_multi(const value_type&amp; x) const
+{
+    pair&lt;const_iterator, const_iterator&gt; i = equal_range(x);
+    return (size_type)distance(i.first, i.second);
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::iterator
+__tree&lt;T, Compare, Allocator&gt;::lower_bound(const value_type&amp; x)
+{
+    node* i = root();
+    node* j = (node*)&amp;node_alloc_.m_;
+    while (i != 0)
+    {
+        if (!comp_(i-&gt;data_, x))
+        {
+            j = i;
+            i = (node*)i-&gt;left_;
+        }
+        else
+            i = (node*)i-&gt;right_;
+    }
+    return j;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::const_iterator
+__tree&lt;T, Compare, Allocator&gt;::lower_bound(const value_type&amp; x) const
+{
+    const node* i = root();
+    const node* j = (const node*)&amp;node_alloc_.m_;
+    while (i != 0)
+    {
+        if (!comp_(i-&gt;data_, x))
+        {
+            j = i;
+            i = (const node*)i-&gt;left_;
+        }
+        else
+            i = (const node*)i-&gt;right_;
+    }
+    return j;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::iterator
+__tree&lt;T, Compare, Allocator&gt;::upper_bound(const value_type&amp; x)
+{
+    node* i = root();
+    node* j = (node*)&amp;node_alloc_.m_;
+    while (i != 0)
+    {
+        if (comp_(x, i-&gt;data_))
+        {
+            j = i;
+            i = (node*)i-&gt;left_;
+        }
+        else
+            i = (node*)i-&gt;right_;
+    }
+    return j;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::const_iterator
+__tree&lt;T, Compare, Allocator&gt;::upper_bound(const value_type&amp; x) const
+{
+    const node* i = root();
+    const node* j = (const node*)&amp;node_alloc_.m_;
+    while (i != 0)
+    {
+        if (comp_(x, i-&gt;data_))
+        {
+            j = i;
+            i = (const node*)i-&gt;left_;
+        }
+        else
+            i = (const node*)i-&gt;right_;
+    }
+    return j;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+pair&lt;__tree&lt;T, Compare, Allocator&gt;::const_iterator, __tree&lt;T, Compare, Allocator&gt;::const_iterator&gt;
+__tree&lt;T, Compare, Allocator&gt;::equal_range(const value_type&amp; x) const
+{
+    return make_pair(lower_bound(x), upper_bound(x));
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+pair&lt;__tree&lt;T, Compare, Allocator&gt;::iterator, __tree&lt;T, Compare, Allocator&gt;::iterator&gt;
+__tree&lt;T, Compare, Allocator&gt;::equal_range(const value_type&amp; x)
+{
+    return make_pair(lower_bound(x), upper_bound(x));
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+void
+__tree&lt;T, Compare, Allocator&gt;::destroy(node* p)
+{
+    if (p-&gt;left_ != 0)
+        destroy((node*)(p-&gt;left_));
+    if (p-&gt;right_ != 0)
+        destroy((node*)(p-&gt;right_));
+    alloc_.destroy(&amp;p-&gt;data_);
+    node_alloc_.deallocate(p, 1);
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+typename __tree&lt;T, Compare, Allocator&gt;::node*
+__tree&lt;T, Compare, Allocator&gt;::copy(const node* x)
+{
+    node* result = node_alloc_.allocate(1);
+    #if defined(_TREE_DEBUG) &amp;&amp; !defined(_Inhibit_Optimize_RB_bit)
+        if ((size_t)result &amp; 1)
+        {
+            node_alloc_.deallocate(result, 1);
+            #ifndef _MSL_NO_EXCEPTIONS
+                throw invalid_argument(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment&quot;);
+            #else
+                __msl_error(&quot;__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n&quot;);
+            #endif
+        }
+    #endif
+    result-&gt;left_ = result-&gt;right_ = 0;
+    #ifndef _MSL_NO_EXCEPTIONS
+    try
+    {
+    #endif
+        if (x-&gt;left_ != 0)
+        {
+            result-&gt;left_ = copy((node*)(x-&gt;left_));
+            result-&gt;left_-&gt;parent_ = result;
+        }
+        if (x-&gt;right_ != 0)
+        {
+            result-&gt;right_ = copy((node*)(x-&gt;right_));
+            result-&gt;right_-&gt;parent_ = result;
+        }
+        alloc_.construct(&amp;result-&gt;data_, x-&gt;data_);
+        result-&gt;set_color(x-&gt;color());
+    #ifndef _MSL_NO_EXCEPTIONS
+    }
+    catch (...)
+    {
+        if (result-&gt;left_ != 0)
+            destroy((node*)(result-&gt;left_));
+        if (result-&gt;right_ != 0)
+            destroy((node*)(result-&gt;right_));
+        node_alloc_.deallocate(result, 1);
+        throw;
+    }
+    #endif
+    return result;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::node*&amp;
+__tree&lt;T, Compare, Allocator&gt;::root()
+{
+    return (node*&amp;)node_alloc_.m_.left_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::node*
+__tree&lt;T, Compare, Allocator&gt;::root() const
+{
+    return (node*)node_alloc_.m_.left_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::node*
+__tree&lt;T, Compare, Allocator&gt;::front() const
+{
+    return (node*)comp_.m_;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+inline
+typename __tree&lt;T, Compare, Allocator&gt;::node*&amp;
+__tree&lt;T, Compare, Allocator&gt;::front()
+{
+    return (node*&amp;)comp_.m_;
+}
+
+#ifdef _TREE_DEBUG
+
+template &lt;class T, class Compare, class Allocator&gt;
+bool
+__tree&lt;T, Compare, Allocator&gt;::ok() const
+{
+    if (root() != 0)
+        assert(root()-&gt;color() == black);
+    if (root() != 0)
+        count_black(root());
+    assert(distance(begin(), end()) == size());
+    return true;
+}
+
+template &lt;class T, class Compare, class Allocator&gt;
+int
+__tree&lt;T, Compare, Allocator&gt;::count_black(node_base* x) const
+{
+    int cleft;
+    int cright;
+    if (x-&gt;left_ == 0)
+        cleft = 1;
+    else
+        cleft = count_black(x-&gt;left_);
+    if (x-&gt;right_ == 0)
+        cright = 1;
+    else
+        cright = count_black(x-&gt;right_);
+    assert(cleft == cright);
+    if (x-&gt;color() == black)
+        ++cleft;
+    return cleft;
+}
+
+#endif
+
+#ifndef _MSL_NO_CPP_NAMESPACE
+    } // namespace std
+#endif
+
+#if defined(__CFM68K__) &amp;&amp; !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif // _TREE_H
+
+// hh 971220 fixed MOD_INCLUDE
+// hh 971226 added alignment wrapper
+// hh 980105 changed pointer &amp; reference to const versions in const_iterator base class
+// hh 980105 Added qualified name to iterator
+// hh 980111 &lt;stdexcept&gt; commented out.  Not needed
+// hh 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT
+// hh 981130 Rewrote.
+// hh 990720 Put debugging code under #ifdef _TREE_DEBUG
+// hh 990720 Fixed bug in swap when trees are empty
+// hh 990720 Made iterator comparison functions global friends
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

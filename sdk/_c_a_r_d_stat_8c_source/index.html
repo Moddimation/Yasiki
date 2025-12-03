@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CARDStat.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardstatc">File CARDStat.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_2dfa3b55db09c289c0394a464581d568/"><strong>card</strong></a> <strong>&gt;</strong> <a href="../_c_a_r_d_stat_8c/"><strong>CARDStat.c</strong></a></p>
+<p><a href="../_c_a_r_d_stat_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/card.h&gt;
+#include &lt;dolphin/os.h&gt;
+
+#include &lt;string.h&gt;
+
+#include &quot;CARDPrivate.h&quot;
+
+static void
+UpdateIconOffsets (CARDDir* ent, CARDStat* stat)
+{
+    u32  offset;
+    BOOL iconTlut;
+    int  i;
+
+    offset = ent-&gt;iconAddr;
+    if (offset == 0xffffffff)
+    {
+        offset = 0;
+        stat-&gt;bannerFormat = 0;
+        stat-&gt;iconFormat = 0;
+        stat-&gt;iconSpeed = 0;
+    }
+
+    iconTlut = FALSE;
+    switch (CARDGetBannerFormat (ent))
+    {
+        case CARD_STAT_BANNER_C8:
+            stat-&gt;offsetBanner = offset;
+            offset += CARD_BANNER_WIDTH * CARD_BANNER_HEIGHT;
+            stat-&gt;offsetBannerTlut = offset;
+            offset += 2 * 256;
+            break;
+        case CARD_STAT_BANNER_RGB5A3:
+            stat-&gt;offsetBanner = offset;
+            offset += 2 * CARD_BANNER_WIDTH * CARD_BANNER_HEIGHT;
+            stat-&gt;offsetBannerTlut = 0xffffffff;
+            break;
+        default:
+            stat-&gt;offsetBanner = 0xffffffff;
+            stat-&gt;offsetBannerTlut = 0xffffffff;
+            break;
+    }
+    for (i = 0; i &lt; CARD_ICON_MAX; ++i)
+    {
+        switch (CARDGetIconFormat (ent, i))
+        {
+            case CARD_STAT_ICON_C8:
+                stat-&gt;offsetIcon[i] = offset;
+                offset += CARD_ICON_WIDTH * CARD_ICON_HEIGHT;
+                iconTlut = TRUE;
+                break;
+            case CARD_STAT_ICON_RGB5A3:
+                stat-&gt;offsetIcon[i] = offset;
+                offset += 2 * CARD_ICON_WIDTH * CARD_ICON_HEIGHT;
+                break;
+            default:
+                stat-&gt;offsetIcon[i] = 0xffffffff;
+                break;
+        }
+    }
+    if (iconTlut)
+    {
+        stat-&gt;offsetIconTlut = offset;
+        offset += 2 * 256;
+    }
+    else
+    {
+        stat-&gt;offsetIconTlut = 0xffffffff;
+    }
+    stat-&gt;offsetData = offset;
+}
+
+s32
+CARDGetStatus (s32 chan, s32 fileNo, CARDStat* stat)
+{
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
+    s32          result;
+
+    ASSERTLINE (0x97, 0 &lt;= chan &amp;&amp; chan &lt; 2);
+    ASSERTLINE (0x98, 0 &lt;= fileNo &amp;&amp; fileNo &lt; CARD_MAX_FILE);
+
+    if (fileNo &lt; 0 || CARD_MAX_FILE &lt;= fileNo)
+    {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+
+    result = __CARDGetControlBlock (chan, &amp;card);
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    dir = __CARDGetDirBlock (card);
+    ent = &amp;dir[fileNo];
+    result = __CARDAccess (ent);
+    if (result == CARD_RESULT_NOPERM)
+    {
+        result = __CARDIsPublic (ent);
+    }
+
+    if (result &gt;= 0)
+    {
+        memcpy (stat-&gt;gameName, ent-&gt;gameName, sizeof (stat-&gt;gameName));
+        memcpy (stat-&gt;company, ent-&gt;company, sizeof (stat-&gt;company));
+        stat-&gt;length = (u32)ent-&gt;length * card-&gt;sectorSize;
+        memcpy (stat-&gt;fileName, ent-&gt;fileName, CARD_FILENAME_MAX);
+        stat-&gt;time = ent-&gt;time;
+
+        stat-&gt;bannerFormat = ent-&gt;bannerFormat;
+        stat-&gt;iconAddr = ent-&gt;iconAddr;
+        stat-&gt;iconFormat = ent-&gt;iconFormat;
+        stat-&gt;iconSpeed = ent-&gt;iconSpeed;
+        stat-&gt;commentAddr = ent-&gt;commentAddr;
+
+        UpdateIconOffsets (ent, stat);
+    }
+
+    return __CARDPutControlBlock (card, result);
+}
+
+s32
+CARDSetStatusAsync (s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
+{
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
+    s32          result;
+
+    ASSERTLINE (0xD5, 0 &lt;= fileNo &amp;&amp; fileNo &lt; CARD_MAX_FILE);
+    ASSERTLINE (0xD6, 0 &lt;= chan &amp;&amp; chan &lt; 2);
+
+    if (fileNo &lt; 0 || CARD_MAX_FILE &lt;= fileNo ||
+        (stat-&gt;iconAddr != 0xffffffff &amp;&amp; stat-&gt;iconAddr &gt;= 0x200) ||
+        (stat-&gt;commentAddr != 0xffffffff &amp;&amp; (stat-&gt;commentAddr &amp; 0x1fff) &gt; 0x1fc0))
+    {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+
+    result = __CARDGetControlBlock (chan, &amp;card);
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    dir = __CARDGetDirBlock (card);
+    ent = &amp;dir[fileNo];
+    result = __CARDAccess (ent);
+    if (result &lt; 0)
+    {
+        return __CARDPutControlBlock (card, result);
+    }
+
+    ent-&gt;bannerFormat = stat-&gt;bannerFormat;
+    ent-&gt;iconAddr = stat-&gt;iconAddr;
+    ent-&gt;iconFormat = stat-&gt;iconFormat;
+    ent-&gt;iconSpeed = stat-&gt;iconSpeed;
+    ent-&gt;commentAddr = stat-&gt;commentAddr;
+    UpdateIconOffsets (ent, stat);
+
+    if (ent-&gt;iconAddr == 0xffffffff)
+    {
+        CARDSetIconSpeed (ent, 0, CARD_STAT_SPEED_FAST);
+    }
+
+    ent-&gt;time = (u32)OSTicksToSeconds (OSGetTime());
+    result = __CARDUpdateDir (chan, callback);
+    if (result &lt; 0)
+    {
+        __CARDPutControlBlock (card, result);
+    }
+
+    return result;
+}
+
+s32
+CARDSetStatus (s32 chan, long fileNo, struct CARDStat* stat)
+{
+    s32 result = CARDSetStatusAsync (chan, fileNo, stat, __CARDSyncCallback);
+
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    return __CARDSync (chan);
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

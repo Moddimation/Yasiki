@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File mtxvec.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-mtxvecc">File mtxvec.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_26b6e6c4cda21e7491fcc30d526d19d0/"><strong>mtx</strong></a> <strong>&gt;</strong> <a href="../mtxvec_8c/"><strong>mtxvec.c</strong></a></p>
+<p><a href="../mtxvec_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/mtx.h&gt;
+
+#include &lt;cmath&gt;
+
+#define qr0 0
+
+void
+C_MTXMultVec (Mtx44 m, Vec* src, Vec* dst)
+{
+    Vec vTmp;
+
+    ASSERTMSGLINE (0x39, m, &quot;MTXMultVec():  NULL MtxPtr 'm' &quot;);
+    ASSERTMSGLINE (0x3A, src, &quot;MTXMultVec():  NULL MtxPtr 'src' &quot;);
+    ASSERTMSGLINE (0x3B, dst, &quot;MTXMultVec():  NULL MtxPtr 'dst' &quot;);
+
+    vTmp.x = m[0][3] + ((m[0][2] * src-&gt;z) + ((m[0][0] * src-&gt;x) + (m[0][1] * src-&gt;y)));
+    vTmp.y = m[1][3] + ((m[1][2] * src-&gt;z) + ((m[1][0] * src-&gt;x) + (m[1][1] * src-&gt;y)));
+    vTmp.z = m[2][3] + ((m[2][2] * src-&gt;z) + ((m[2][0] * src-&gt;x) + (m[2][1] * src-&gt;y)));
+    dst-&gt;x = vTmp.x;
+    dst-&gt;y = vTmp.y;
+    dst-&gt;z = vTmp.z;
+}
+
+asm void
+PSMTXMultVec (register Mtx44 m, register Vec* src, register Vec* dst)
+{
+#ifdef __MWERKS__
+    nofralloc;
+    psq_l   f0, Vec.x (src), 0, qr0;
+    psq_l   f2, 0(m), 0, qr0;
+    psq_l   f1, Vec.z (src), 1, qr0;
+    ps_mul  f4, f2, f0;
+    psq_l   f3, 8(m), 0, qr0;
+    ps_madd f5, f3, f1, f4;
+    psq_l   f8, 16(m), 0, qr0;
+    ps_sum0 f6, f5, f6, f5;
+    psq_l   f9, 24(m), 0, qr0;
+    ps_mul  f10, f8, f0;
+    psq_st  f6, Vec.x (dst), 1, qr0;
+    ps_madd f11, f9, f1, f10;
+    psq_l   f2, 32(m), 0, qr0;
+    ps_sum0 f12, f11, f12, f11;
+    psq_l   f3, 40(m), 0, qr0;
+    ps_mul  f4, f2, f0;
+    psq_st  f12, Vec.y (dst), 1, qr0;
+    ps_madd f5, f3, f1, f4;
+    ps_sum0 f6, f5, f6, f5;
+    psq_st  f6, Vec.z (dst), 1, qr0;
+    blr;
+#endif
+}
+
+void
+C_MTXMultVecArray (Mtx m, Vec* srcBase, Vec* dstBase, u32 count)
+{
+    u32 i;
+    Vec vTmp;
+
+    ASSERTMSGLINE (0x9F, m, &quot;MTXMultVecArray():  NULL MtxPtr 'm' &quot;);
+    ASSERTMSGLINE (0xA0, srcBase, &quot;MTXMultVecArray():  NULL MtxPtr 'srcBase' &quot;);
+    ASSERTMSGLINE (0xA1, dstBase, &quot;MTXMultVecArray():  NULL MtxPtr 'dstBase' &quot;);
+
+    for (i = 0; i &lt; count; i++)
+    {
+        vTmp.x = m[0][3] +
+                 ((m[0][2] * srcBase-&gt;z) + ((m[0][0] * srcBase-&gt;x) + (m[0][1] * srcBase-&gt;y)));
+        vTmp.y = m[1][3] +
+                 ((m[1][2] * srcBase-&gt;z) + ((m[1][0] * srcBase-&gt;x) + (m[1][1] * srcBase-&gt;y)));
+        vTmp.z = m[2][3] +
+                 ((m[2][2] * srcBase-&gt;z) + ((m[2][0] * srcBase-&gt;x) + (m[2][1] * srcBase-&gt;y)));
+        dstBase-&gt;x = vTmp.x;
+        dstBase-&gt;y = vTmp.y;
+        dstBase-&gt;z = vTmp.z;
+        srcBase++;
+        dstBase++;
+    }
+}
+
+asm void
+PSMTXMultVecArray (register Mtx  m,
+                   register Vec* srcBase,
+                   register Vec* dstBase,
+                   register u32  count)
+{
+#ifdef __MWERKS__
+    psq_l   f0, 0(m), 0, qr0;
+    subi    count, count, 1;
+    psq_l   f6, Vec.x (srcBase), 0, qr0;
+    mtctr   count;
+    psq_l   f7, Vec.z (srcBase), 1, qr0;
+    psq_l   f1, 8(m), 0, qr0;
+    addi    srcBase, srcBase, 8;
+    psq_l   f2, 16(m), 0, qr0;
+    subi    dstBase, dstBase, 4;
+    psq_l   f3, 24(m), 0, qr0;
+    ps_mul  f8, f0, f6;
+    psq_l   f4, 32(m), 0, qr0;
+    ps_mul  f10, f2, f6;
+    psq_l   f5, 40(m), 0, qr0;
+    ps_mul  f12, f4, f6;
+    psq_lu  f6, Vec.y (srcBase), 0, qr0;
+    ps_madd f8, f1, f7, f8;
+    ps_madd f10, f3, f7, f10;
+    ps_madd f12, f5, f7, f12;
+    psq_lu  f7, Vec.z (srcBase), 1, qr0;
+    ps_sum0 f9, f8, f8, f8;
+
+loop:
+    ps_sum0 f11, f10, f10, f10;
+    ps_mul  f8, f0, f6;
+    ps_sum0 f13, f12, f12, f12;
+    ps_mul  f10, f2, f6;
+    psq_stu f9, Vec.y (dstBase), 1, qr0;
+    ps_mul  f12, f4, f6;
+    psq_stu f11, Vec.y (dstBase), 1, qr0;
+    ps_madd f8, f1, f7, f8;
+    psq_stu f13, Vec.y (dstBase), 1, qr0;
+    ps_madd f10, f3, f7, f10;
+    psq_lu  f6, Vec.y (srcBase), 0, qr0;
+    ps_madd f12, f5, f7, f12;
+    psq_lu  f7, Vec.z (srcBase), 1, qr0;
+    ps_sum0 f9, f8, f8, f8;
+    bdnz    loop;
+    ps_sum0 f11, f10, f10, f10;
+    ps_sum0 f13, f12, f12, f12;
+    psq_stu f9, Vec.y (dstBase), 1, qr0;
+    psq_stu f11, Vec.y (dstBase), 1, qr0;
+    psq_stu f13, Vec.y (dstBase), 1, qr0;
+#endif
+}
+
+void
+MTXMultVecSR (Mtx44 m, Vec* src, Vec* dst)
+{
+    Vec vTmp;
+
+    ASSERTMSGLINE (0x13A, m, &quot;MTXMultVecSR():  NULL MtxPtr 'm' &quot;);
+    ASSERTMSGLINE (0x13B, src, &quot;MTXMultVecSR():  NULL MtxPtr 'src' &quot;);
+    ASSERTMSGLINE (0x13C, dst, &quot;MTXMultVecSR():  NULL MtxPtr 'dst' &quot;);
+    vTmp.x = (m[0][2] * src-&gt;z) + ((m[0][0] * src-&gt;x) + (m[0][1] * src-&gt;y));
+    vTmp.y = (m[1][2] * src-&gt;z) + ((m[1][0] * src-&gt;x) + (m[1][1] * src-&gt;y));
+    vTmp.z = (m[2][2] * src-&gt;z) + ((m[2][0] * src-&gt;x) + (m[2][1] * src-&gt;y));
+    dst-&gt;x = vTmp.x;
+    dst-&gt;y = vTmp.y;
+    dst-&gt;z = vTmp.z;
+}
+
+void
+MTXMultVecArraySR (Mtx44 m, Vec* srcBase, Vec* dstBase, u32 count)
+{
+    u32 i;
+    Vec vTmp;
+
+    ASSERTMSGLINE (0x161, m, &quot;MTXMultVecArraySR():  NULL MtxPtr 'm' &quot;);
+    ASSERTMSGLINE (0x162, srcBase, &quot;MTXMultVecArraySR():  NULL MtxPtr 'srcBase' &quot;);
+    ASSERTMSGLINE (0x163, dstBase, &quot;MTXMultVecArraySR():  NULL MtxPtr 'dstBase' &quot;);
+
+    for (i = 0; i &lt; count; i++)
+    {
+        vTmp.x     = (m[0][2] * srcBase-&gt;z) + ((m[0][0] * srcBase-&gt;x) + (m[0][1] * srcBase-&gt;y));
+        vTmp.y     = (m[1][2] * srcBase-&gt;z) + ((m[1][0] * srcBase-&gt;x) + (m[1][1] * srcBase-&gt;y));
+        vTmp.z     = (m[2][2] * srcBase-&gt;z) + ((m[2][0] * srcBase-&gt;x) + (m[2][1] * srcBase-&gt;y));
+        dstBase-&gt;x = vTmp.x;
+        dstBase-&gt;y = vTmp.y;
+        dstBase-&gt;z = vTmp.z;
+        srcBase++;
+        dstBase++;
+    }
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

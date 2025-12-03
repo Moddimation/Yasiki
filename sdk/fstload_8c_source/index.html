@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File fstload.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-fstloadc">File fstload.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_6809de60dbef2d995cf7d874d1fa5b65/"><strong>dvd</strong></a> <strong>&gt;</strong> <a href="../dir_6de6c456a2e1a85511e548fcb278d527/"><strong>emu_level2</strong></a> <strong>&gt;</strong> <a href="../fstload_8c/"><strong>fstload.c</strong></a></p>
+<p><a href="../fstload_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#include &lt;string.h&gt;
+
+#include &quot;dvd_private.h&quot;
+
+static u32 status;         // size: 0x4, address: 0x0
+
+enum
+{
+    STATUS_READING_ID,
+    STATUS_READING_BB2,
+    STATUS_READING_FST
+};
+
+static u8      bb2Buf[63]; // size: 0x3F, address: 0x0
+static DVDBB2* bb2;        // size: 0x4, address: 0x4
+
+static DVDDiskID* idTmp;   // size: 0x4, address: 0x8
+
+// functions
+static void cb (s32 result, DVDCommandBlock* block);
+void        __fstLoad ();
+
+static void
+cb (s32 result, DVDCommandBlock* block)
+{
+    if (result &gt; 0)
+    {
+        switch (status)
+        {
+            case 0:                        // read id done
+                status = 1;                // next read bb2
+                DVDReadAbsAsyncForBS (block, bb2, OSRoundUp32B (sizeof (DVDBB2)), 0x420, cb);
+                return;
+            case 1:                        // read bb2 done
+                status = 2;                // next read fst
+                DVDReadAbsAsyncForBS (block,
+                                      bb2-&gt;FSTAddress,
+                                      (s32)((bb2-&gt;FSTLength + 0x1F) &amp; 0xFFFFFFE0),
+                                      (s32)bb2-&gt;FSTPosition,
+                                      cb);
+            default:
+                return;
+        }
+    }
+    if (result == DVD_RESULT_FATAL_ERROR)  // fatal error
+    {
+        return;
+    }
+    else if (result == DVD_RESULT_NO_DISK) // cover closed
+    {
+        status = 0;
+        DVDReset();
+        DVDReadDiskID (block, idTmp, cb);
+    }
+}
+
+void
+__fstLoad ()
+{
+    OSBootInfo*            bootInfo;
+    DVDDiskID*             id;
+    u8                     idTmpBuf[63];
+    s32                    state;
+    void*                  arenaHi;
+    static DVDCommandBlock block;
+
+    arenaHi  = OSGetArenaHi();
+
+    bootInfo = (void*)OSPhysicalToCached (0);
+
+    // disk id is not aligned 32b
+    idTmp    = (void*)OSRoundUp32B (idTmpBuf);
+    bb2      = (void*)OSRoundUp32B (bb2Buf);
+
+    DVDReset();
+    DVDReadDiskID (&amp;block, idTmp, cb);
+
+    while (1)
+    {
+        state = DVDGetDriveStatus();
+        if (state == DVD_STATE_END)
+        {
+            break;
+        }
+
+        // weird switch that seemingly wont do anything but break out of its
+        // own switch. What was this for? Early DVD development pre-hardware?
+        switch (state)
+        {
+            case DVD_STATE_FATAL_ERROR:
+                break;
+            case DVD_STATE_BUSY:
+                break;
+            case DVD_STATE_WAITING:
+                break;
+            case DVD_STATE_COVER_CLOSED:
+                break;
+            case DVD_STATE_NO_DISK:
+                break;
+            case DVD_STATE_COVER_OPEN:
+                break;
+            case DVD_STATE_MOTOR_STOPPED:
+                break;
+        }
+    }
+
+    bootInfo-&gt;FSTLocation  = (void*)bb2-&gt;FSTAddress;
+    bootInfo-&gt;FSTMaxLength = bb2-&gt;FSTMaxLength;
+
+    id                     = &amp;bootInfo-&gt;DVDDiskID;
+    memcpy (id, idTmp, 0x20);
+
+    OSReport (&quot;\n&quot;);
+    OSReport (&quot;  Game Name ... %c%c%c%c\n&quot;,
+              id-&gt;gameName[0],
+              id-&gt;gameName[1],
+              id-&gt;gameName[2],
+              id-&gt;gameName[3]);
+    OSReport (&quot;  Company ..... %c%c\n&quot;, id-&gt;company[0], id-&gt;company[1]);
+    OSReport (&quot;  Disk # ...... %d\n&quot;, id-&gt;diskNumber);
+    OSReport (&quot;  Game ver .... %d\n&quot;, id-&gt;gameVersion);
+    OSReport (&quot;  Streaming ... %s\n&quot;, !(id-&gt;streaming) ? &quot;OFF&quot; : &quot;ON&quot;);
+    OSReport (&quot;\n&quot;);
+    OSSetArenaHi (bb2-&gt;FSTAddress);
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

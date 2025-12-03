@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSTime.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-ostimec">File OSTime.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSTime.c</strong></a></p>
+<p><a href="../_o_s_time_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/exi.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include "OSPrivate.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-leapyeardays"><strong>LeapYearDays</strong></a>   = <code>{ 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 }</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-yeardays"><strong>YearDays</strong></a>   = <code>{ 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 }</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscalendartimetoticks"><strong>OSCalendarTimeToTicks</strong></a> (<a href="../struct_o_s_calendar_time/"><strong>OSCalendarTime</strong></a> * td) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgettick"><strong>OSGetTick</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../types_8h/#typedef-s64"><strong>s64</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgettime"><strong>OSGetTime</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ostickstocalendartime"><strong>OSTicksToCalendarTime</strong></a> (<a href="../types_8h/#typedef-s64"><strong>s64</strong></a> ticks, <a href="../struct_o_s_calendar_time/"><strong>OSCalendarTime</strong></a> * td) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s64"><strong>s64</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetsystemtime"><strong>__OSGetSystemTime</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossettick"><strong>__OSSetTick</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> newTicks) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossettime"><strong>__OSSetTime</strong></a> (<a href="../types_8h/#typedef-s64"><strong>s64</strong></a> time) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-getdates"><strong>GetDates</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> days, <a href="../struct_o_s_calendar_time/"><strong>OSCalendarTime</strong></a> * td) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-getleapdays"><strong>GetLeapDays</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> year) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-getyeardays"><strong>GetYearDays</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> year, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> mon) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-isleapyear"><strong>IsLeapYear</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> year) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__settime"><strong>__SetTime</strong></a> (<a href="../types_8h/#typedef-s64"><strong>s64</strong></a> time) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-leapyeardays">variable LeapYearDays</h3>
+<pre><code class="language-C++">int LeapYearDays[MONTH_MAX];
+</code></pre>
+<hr>
+
+<h3 id="variable-yeardays">variable YearDays</h3>
+<pre><code class="language-C++">int YearDays[MONTH_MAX];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-oscalendartimetoticks">function OSCalendarTimeToTicks</h3>
+<pre><code class="language-C++">OSTime OSCalendarTimeToTicks (
+    OSCalendarTime * td
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgettick">function OSGetTick</h3>
+<pre><code class="language-C++">asm  u32 OSGetTick (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osgettime">function OSGetTime</h3>
+<pre><code class="language-C++">asm  s64 OSGetTime (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ostickstocalendartime">function OSTicksToCalendarTime</h3>
+<pre><code class="language-C++">void OSTicksToCalendarTime (
+    s64 ticks,
+    OSCalendarTime * td
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetsystemtime">function __OSGetSystemTime</h3>
+<pre><code class="language-C++">s64 __OSGetSystemTime () 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossettick">function __OSSetTick</h3>
+<pre><code class="language-C++">asm  void __OSSetTick (
+    register  u32 newTicks
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossettime">function __OSSetTime</h3>
+<pre><code class="language-C++">void __OSSetTime (
+    s64 time
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-getdates">function GetDates</h3>
+<pre><code class="language-C++">static void GetDates (
+    int days,
+    OSCalendarTime * td
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-getleapdays">function GetLeapDays</h3>
+<pre><code class="language-C++">static int GetLeapDays (
+    int year
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-getyeardays">function GetYearDays</h3>
+<pre><code class="language-C++">static int GetYearDays (
+    int year,
+    int mon
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-isleapyear">function IsLeapYear</h3>
+<pre><code class="language-C++">static int IsLeapYear (
+    int year
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__settime">function __SetTime</h3>
+<pre><code class="language-C++">static asm  void __SetTime (
+    s64 time
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/os/OSTime.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>
