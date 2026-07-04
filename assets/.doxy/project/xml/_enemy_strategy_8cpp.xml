@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_enemy_strategy_8cpp" kind="file" language="C++">
+    <compoundname>EnemyStrategy.cpp</compoundname>
+    <includes local="yes">Sato/EnemyStrategy.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>EnemyStrategy.cpp</label>
+        <link refid="_enemy_strategy_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Sato/EnemyStrategy.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_enemy_strategy_8cpp_1ae65dc0f46aca88c6be39d97ca18d70ae" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float dummy[]</definition>
+        <argsstring>[]</argsstring>
+        <name>dummy</name>
+        <initializer>= { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/src/EnemyStrategy.cpp" line="4" column="14" bodyfile="decomp/Project/sources/Sato/src/EnemyStrategy.cpp" bodystart="4" bodyend="4"/>
+      </memberdef>
+      <memberdef kind="variable" id="_enemy_strategy_8cpp_1a5a4cf6bfaffd3fbb95c3070af2cc5148" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="_enemy_strategy_8h_1a56e0f23d4488b50f740b45678f968b4a" kindref="member">enemyStrategyInitFunc</ref></type>
+        <definition>enemyStrategyInitFunc gEnemyStrategyInitFuncs[187]</definition>
+        <argsstring>[187]</argsstring>
+        <name>gEnemyStrategyInitFuncs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/src/EnemyStrategy.cpp" line="6" column="30" declfile="decomp/Project/sources/Sato/src/EnemyStrategy.cpp" declline="6" declcolumn="30"/>
+        <referencedby refid="_enemy_strategy_8h_1a1fe8911513a68790297e955f8f25093f" compoundref="_enemy_strategy_8cpp" startline="9" endline="12">getEnemyStrategyInitFunc</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_enemy_strategy_8cpp_1a1fe8911513a68790297e955f8f25093f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_enemy_strategy_8h_1a56e0f23d4488b50f740b45678f968b4a" kindref="member">enemyStrategyInitFunc</ref> *</type>
+        <definition>enemyStrategyInitFunc * getEnemyStrategyInitFunc</definition>
+        <argsstring>(int i_entityIdx)</argsstring>
+        <name>getEnemyStrategyInitFunc</name>
+        <param>
+          <type>int</type>
+          <declname>i_entityIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/src/EnemyStrategy.cpp" line="9" column="1" bodyfile="decomp/Project/sources/Sato/src/EnemyStrategy.cpp" bodystart="9" bodyend="12"/>
+        <references refid="_enemy_strategy_8cpp_1a5a4cf6bfaffd3fbb95c3070af2cc5148">gEnemyStrategyInitFuncs</references>
+        <referencedby refid="class_en_cond_strategies_1aa235bde1639237509b42b9a3fedfcf07" compoundref="_en_strategy_8cpp" startline="130" endline="140">EnCondStrategies::createCondStrategy</referencedby>
+        <referencedby refid="class_en_strategy_container_1aeed873402a9a560ca617814468fb9a6b" compoundref="_en_strategy_8cpp" startline="35" endline="45">EnStrategyContainer::createStrategy</referencedby>
+        <referencedby refid="class_include_strategy_1ab68bed9315be483c35265f66503d7f29" compoundref="_include_strategy_8cpp" startline="16" endline="21">IncludeStrategy::setStrategy</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;Sato/EnemyStrategy.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Required<sp/>for<sp/>.data<sp/>to<sp/>match.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="_enemy_strategy_8cpp_1ae65dc0f46aca88c6be39d97ca18d70ae" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_enemy_strategy_8cpp_1ae65dc0f46aca88c6be39d97ca18d70ae" kindref="member">dummy</ref>[]<sp/>=<sp/>{<sp/>1.0f,<sp/>1.0f,<sp/>1.0f,<sp/>1.0f,<sp/>1.0f,<sp/>1.0f<sp/>};</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="_enemy_strategy_8h_1a56e0f23d4488b50f740b45678f968b4a" kindref="member">enemyStrategyInitFunc</ref><sp/><ref refid="_enemy_strategy_8cpp_1a5a4cf6bfaffd3fbb95c3070af2cc5148" kindref="member">gEnemyStrategyInitFuncs</ref>[187];</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><ref refid="_enemy_strategy_8h_1a56e0f23d4488b50f740b45678f968b4a" kindref="member">enemyStrategyInitFunc</ref>*</highlight></codeline>
+<codeline lineno="9" refid="_enemy_strategy_8h_1a1fe8911513a68790297e955f8f25093f" refkind="member"><highlight class="normal"><ref refid="_enemy_strategy_8cpp_1a1fe8911513a68790297e955f8f25093f" kindref="member">getEnemyStrategyInitFunc</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_entityIdx)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="_enemy_strategy_8cpp_1a5a4cf6bfaffd3fbb95c3070af2cc5148" kindref="member">gEnemyStrategyInitFuncs</ref>[i_entityIdx];</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>EnemyStrategy<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="class_enemy_strategy_1ac1f0572627452e344b08ba2c073c8d01" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1ac1f0572627452e344b08ba2c073c8d01" kindref="member">EnemyStrategy::EnemyStrategy</ref><sp/>()</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1a4182d611d41aafb0b68c7510b63e7a7a" kindref="member">mpZako</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1af28acab9860186ec7fb3ea4eda1cef25" kindref="member">mpUserData</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1aa04c3af8289883e35d592e0c510b763a" kindref="member">mNextState</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1a3b8371f205d260e30077c57cfe8fd39b" kindref="member">mCurState</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1a06d4ea8e8365789246e29004fe74de72" kindref="member">mTimer</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="class_enemy_strategy_1ad759854ea39c4827c89acb5ecec27e67" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1ad759854ea39c4827c89acb5ecec27e67" kindref="member">EnemyStrategy::~EnemyStrategy</ref><sp/>()<sp/>{}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="class_enemy_strategy_1a9b277ae622207f0ebbc7b7bbed6a873a" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1a9b277ae622207f0ebbc7b7bbed6a873a" kindref="member">EnemyStrategy::init</ref><sp/>()</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="class_enemy_strategy_1a707349e721b405eb5ff82e4332aa683c" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1a707349e721b405eb5ff82e4332aa683c" kindref="member">EnemyStrategy::update</ref><sp/>()</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_enemy_strategy_1aa04c3af8289883e35d592e0c510b763a" kindref="member">mNextState</ref><sp/>!=<sp/>0xFFFF)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1ae205a40f6f136008cf1f4eeae0efb96f" kindref="member">changeState</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1ae4504b90111f6fb9c1d27fc6124e8cea" kindref="member">doBehavior</ref>();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1a06d4ea8e8365789246e29004fe74de72" kindref="member">mTimer</ref>++;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="class_enemy_strategy_1ae4504b90111f6fb9c1d27fc6124e8cea" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1ae4504b90111f6fb9c1d27fc6124e8cea" kindref="member">EnemyStrategy::doBehavior</ref><sp/>()</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="class_enemy_strategy_1ac428d2db90cee100c0acc3a735713263" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1ac428d2db90cee100c0acc3a735713263" kindref="member">EnemyStrategy::doBehaviorInit</ref><sp/>()</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">s32</highlight></codeline>
+<codeline lineno="56" refid="class_enemy_strategy_1aa987cf928be56239b32150ce1f992600" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1aa987cf928be56239b32150ce1f992600" kindref="member">EnemyStrategy::unkEnemyStrategyFunc01</ref><sp/>()</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>FALSE;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="class_enemy_strategy_1a6bac8e76b28c1c98f6e83340509bf5a8" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1a6bac8e76b28c1c98f6e83340509bf5a8" kindref="member">EnemyStrategy::unkEnemyStrategyFunc02</ref><sp/>()</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="class_enemy_strategy_1ad98656894b6d463311f732242d497bcc" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1ad98656894b6d463311f732242d497bcc" kindref="member">EnemyStrategy::setNextState</ref><sp/>(s16<sp/>i_nextState)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1aa04c3af8289883e35d592e0c510b763a" kindref="member">mNextState</ref><sp/>=<sp/>i_nextState;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="class_enemy_strategy_1ae205a40f6f136008cf1f4eeae0efb96f" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_1ae205a40f6f136008cf1f4eeae0efb96f" kindref="member">EnemyStrategy::changeState</ref><sp/>()</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1a3b8371f205d260e30077c57cfe8fd39b" kindref="member">mCurState</ref><sp/>=<sp/><ref refid="class_enemy_strategy_1aa04c3af8289883e35d592e0c510b763a" kindref="member">mNextState</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1aa04c3af8289883e35d592e0c510b763a" kindref="member">mNextState</ref><sp/>=<sp/>0xFFFF;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1a06d4ea8e8365789246e29004fe74de72" kindref="member">mTimer</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1ac428d2db90cee100c0acc3a735713263" kindref="member">doBehaviorInit</ref>();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*</highlight></codeline>
+<codeline lineno="83" refid="class_enemy_strategy_1a329c2830762e0aa77c3b4f634fd4ce0e" refkind="member"><highlight class="normal">EnemyStrategy::operator<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>mem)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mem;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="class_enemy_strategy_1a928c150d7eba4fc0b99296718407c62f" refkind="member"><highlight class="normal">EnemyStrategy::operator<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>mem)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>EnemyStrategyDecorator<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="class_enemy_strategy_decorator_1a87af0868f174a75e85661ec8662ff601" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_decorator_1a87af0868f174a75e85661ec8662ff601" kindref="member">EnemyStrategyDecorator::EnemyStrategyDecorator</ref><sp/>()</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" kindref="member">mpTsuriStrategy</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_decorator_1a50bf346ab95334e1068843e380861654" kindref="member">mTsuriState</ref><sp/>=<sp/>0x100;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">s32</highlight></codeline>
+<codeline lineno="102" refid="class_enemy_strategy_decorator_1ab0190a46d0f997ceb9f40f8f9221670c" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_decorator_1ab0190a46d0f997ceb9f40f8f9221670c" kindref="member">EnemyStrategyDecorator::setTsuriStrategy</ref><sp/>(<ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>*<sp/>i_tsuri)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" kindref="member">mpTsuriStrategy</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>FALSE;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" kindref="member">mpTsuriStrategy</ref><sp/>=<sp/>i_tsuri;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>TRUE;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="class_enemy_strategy_decorator_1a05b8db6316cf58fb65c99ec76ed9bcf2" refkind="member"><highlight class="normal"><ref refid="class_enemy_strategy_decorator_1a05b8db6316cf58fb65c99ec76ed9bcf2" kindref="member">EnemyStrategyDecorator::update</ref><sp/>()</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/>padding[4];</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" kindref="member">mpTsuriStrategy</ref><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_1a707349e721b405eb5ff82e4332aa683c" kindref="member">EnemyStrategy::update</ref>();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" kindref="member">mpTsuriStrategy</ref>-&gt;<ref refid="class_enemy_strategy_1a707349e721b405eb5ff82e4332aa683c" kindref="member">update</ref>();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" kindref="member">mpTsuriStrategy</ref>-&gt;<ref refid="class_enemy_strategy_1a3b8371f205d260e30077c57cfe8fd39b" kindref="member">mCurState</ref>)</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0x100:</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0x101:</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0x102:</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_decorator_1a50bf346ab95334e1068843e380861654" kindref="member">mTsuriState</ref><sp/>=<sp/><ref refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" kindref="member">mpTsuriStrategy</ref>-&gt;<ref refid="class_enemy_strategy_1a3b8371f205d260e30077c57cfe8fd39b" kindref="member">mCurState</ref>;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" kindref="member">mpTsuriStrategy</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/Project/sources/Sato/src/EnemyStrategy.cpp"/>
+  </compounddef>
+</doxygen>

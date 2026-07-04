@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File GXVerify.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-gxverifyc">File GXVerify.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_b80c028b3e970eff7f2a07684ffcf104/"><strong>gx</strong></a> <strong>&gt;</strong> <a href="../_g_x_verify_8c/"><strong>GXVerify.c</strong></a></p>
+<p><a href="../_g_x_verify_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#if DEBUG
+
+#include &lt;dolphin/gx.h&gt;
+
+#include &quot;GXPrivate.h&quot;
+
+static struct __GXVerifyData __gxVerifData;
+struct __GXVerifyData*       __gxVerif = &amp;__gxVerifData;
+
+char* __gxvWarnings[113] = {
+    &quot;Invalid Vertex Format. Normal count must be set to GX_NRM_NBT&quot;,
+    &quot;Texture size %ld not initialized.&quot;,
+    &quot;Left edge of scissor rectangle is less than %d.&quot;,
+    &quot;Top edge of scissor rectangle is less than %d.&quot;,
+    &quot;Right edge of scissor rectangle is greater than %d in %s mode.&quot;,
+    &quot;Bottom edge of scissor rectangle is greater than %d in %s mode.&quot;,
+    &quot;%s value for subsample %d in pixel %ld is not 6 when single-sampling.&quot;,
+    &quot;Bump command for stage %ld is not set.&quot;,
+    &quot;Invalid indirect data request in TEV stage %ld&quot;,
+    &quot;Indirect matrix %ld requested in stage %d not set.&quot;,
+    &quot;Requested indirect textures never initialized.&quot;,
+    &quot;Indirect texture coordinate scales %d and %d not set.&quot;,
+    &quot;Invalid tex coordinate specified for BUMP stage %d.&quot;,
+    &quot;Accumulation is on in BUMP stage 0.&quot;,
+    &quot;Bump alpha is enabled in BUMP stage 0.&quot;,
+    &quot;Indirect vs. direct mask byte never set.&quot;,
+    &quot;Texture reference never written for TEV stage %ld.&quot;,
+    &quot;Invalid tex coordinate specified for TEV stage %ld.&quot;,
+    &quot;Texture %ld is used as both indirect and direct.&quot;,
+    &quot;Texture %ld not configured.&quot;,
+    &quot;Base pointer for cached texture %ld is never set.&quot;,
+    &quot;TLUT for indexed texture %ld never set up.&quot;,
+    &quot;%s is not a power of two for mipmapped  texture %ld.&quot;,
+    &quot;%s is not clamp-to-edge for non-power-of-2 width in texture %ld&quot;,
+    &quot;Minification filter for texture %ld is not compatible with color index texture &quot;
+    &quot;format.&quot;,
+    &quot;Minimum LOD is greater than maximum LOD in texture %ld.&quot;,
+    &quot;Maximum LOD is greater than image's maximum LOD for texture %ld.&quot;,
+    &quot;LOD clamp and diag LOD both set for texture %ld.&quot;,
+    &quot;Texture %ld does not meet requirements for anisotropic mipmapping.&quot;,
+    &quot;Filters are not linear for field prediction in texture %ld.&quot;,
+    &quot;Incomplete mpeg configuration for texture %ld.&quot;,
+    &quot;Rounding color indexed texture %ld.&quot;,
+    &quot;Environment for TEV stage %ld not fully set up.&quot;,
+    &quot;Invalid color channel selected in TEV stage %ld.&quot;,
+    &quot;%s selects null texture in TEV color stage %ld.&quot;,
+    &quot;%s selects null texture in TEV alpha stage %ld.&quot;,
+    &quot;Color arg %s in TEV stage %ld accesses %s register %ld, which may be dirty.&quot;,
+    &quot;Alpha arg %s in TEV stage %ld accesses alpha register %ld, which may be dirty.&quot;,
+    &quot;Color arg %s in TEV stage %ld accesses %s register %ld, which was last clamped &quot;
+    &quot;linear high. Possible wrap-around &quot;
+    &quot;effect.&quot;,
+    &quot;Alpha arg C in TEV stage %ld accesses alpha register %ld, which was last &quot;
+    &quot;clamped linear high. Possible &quot;
+    &quot;wrap-around effect.&quot;,
+    &quot;Z texturing enabled, but no Z offset specified.&quot;,
+    &quot;Z texturing enabled, but no texture specified for final TEV stage.&quot;,
+    &quot;Final stage doesn't write color to TEV register 0.&quot;,
+    &quot;Final stage doesn't write alpha to TEV register 0.&quot;,
+    &quot;Final color stage has linear high clamping possible color wrap-around effect.&quot;,
+    &quot;Final alpha stage has linear high clamping possible alpha wrap-around effect.&quot;,
+    &quot;Z buffering is before texture, but alpha function is an alpha function.&quot;,
+    &quot;PE blend and logicop are both on.&quot;,
+    &quot;Selected pixel format does not support dithering.&quot;,
+    &quot;Multisample enabled but pixel type is not RGB565&quot;,
+    &quot;Pixel type is RGB565 but multisample is not enabled&quot;,
+    &quot;Multisample locations for pixel %ld are not ordered correctly for antialias &quot;
+    &quot;filter.&quot;,
+    &quot;Invalid texgen_type %d for texture %d&quot;,
+    &quot;Register address 0x%04x uninitialized (%s)&quot;,
+    &quot;Register address 0x%04x initialized (%s), probably should not be&quot;,
+    &quot;Invalid combination of %d output colors and %d color texgen textures&quot;,
+    &quot;Invalid number of output colors, %d&quot;,
+    &quot;Vertex packet does not contain geometry values&quot;,
+    &quot;XF is not expecting host colors but cp is sending some&quot;,
+    &quot;XF is expecting a host color but cp is not sending one&quot;,
+    &quot;XF is expecting a single host color but cp is sending two&quot;,
+    &quot;XF is expecting two host colors but cp is not sending first color&quot;,
+    &quot;XF is expecting two host colors but cp is not sending second color&quot;,
+    &quot;Invalid value (%d) for INVERTEXSPEC_REG.host_colors&quot;,
+    &quot;XF is not expecting host normals but cp is sending them&quot;,
+    &quot;XF is not expecting host normals, binormals and tangents but cp is sending &quot;
+    &quot;them&quot;,
+    &quot;XF is expecting host normals but cp is not sending them&quot;,
+    &quot;XF is expecting host normals but cp is sending normals, binormals, and &quot;
+    &quot;tangents&quot;,
+    &quot;XF is expecting host normals, binormals and tangents but cp is only sending &quot;
+    &quot;normals&quot;,
+    &quot;XF is expecting host normals, binormals and tangents but cp is not sending &quot;
+    &quot;them&quot;,
+    &quot;Invalid value (%d) for INVERTEXSPEC_REG.host_normal&quot;,
+    &quot;XF expecting %d host textures but CP is only sending %d&quot;,
+    &quot;Regular texture %d specifying source row of geometry, but this is not getting &quot;
+    &quot;sent by the CP&quot;,
+    &quot;Regular texture %d specifying source row of normals, but this is not getting &quot;
+    &quot;sent by the CP&quot;,
+    &quot;Regular texture %d specifying source row of colors, but color0 is not getting &quot;
+    &quot;sent by the CP&quot;,
+    &quot;Regular texture %d specifying source row of colors, but color1 is not getting &quot;
+    &quot;sent by the CP&quot;,
+    &quot;Regular texture %d specifying source row of binormal or tangent, but these are &quot;
+    &quot;not getting sent by the CP&quot;,
+    &quot;Regular texture %d specifying source row of texture %d, but this is not &quot;
+    &quot;getting sent by the CP&quot;,
+    &quot;Regular texture %d is specifying an invalid source row of %d&quot;,
+    &quot;Texture texgen types are out of order. Must be defined as regular if any, then &quot;
+    &quot;bumpmap if any, then color if any&quot;,
+    &quot;Bumpmap textures are defined, which requires the binormals and tangents to be &quot;
+    &quot;transformed by a normal matrix, but &quot;
+    &quot;MATRIXINDEX0_REG.geom is set to an invalid value (%d)&quot;,
+    &quot;Bumpmap %d (texture %d) is referencing texture %d as a source texture, which &quot;
+    &quot;is not of texgen type regular&quot;,
+    &quot;Bumpmap %d (texture %d) using light source %d, but light's %c position is not &quot;
+    &quot;defined&quot;,
+    &quot;Texture %d is defined as texgen type Bumpmap, but cp is not sending binormals &quot;
+    &quot;and tangents&quot;,
+    &quot;Invalid regular texture number (%d)&quot;,
+    &quot;Regular texture %d specifying a source row of %d which only has 2 elements, &quot;
+    &quot;but an input form of ABC1&quot;,
+    &quot;Output XF colors or color textures enabled, but register address 0x%04x &quot;
+    &quot;uninitialized (%s)&quot;,
+    &quot;Output XF colors or color textures enabled, COLOR%dCNTRL_REG.material_src == &quot;
+    &quot;REGISTER, but Material %d register &quot;
+    &quot;(0x%04x) is not initialized&quot;,
+    &quot;Output XF colors or color textures enabled, COLOR%dCNTRL_REG.ambient_src == &quot;
+    &quot;REGISTER, but Ambient %d register &quot;
+    &quot;(0x%04x) is not initialized&quot;,
+    &quot;%sCNTRL_REG.attenselect == SPECULAR but %sCNTRL_REG.diffuseatten != NL_ONE&quot;,
+    &quot;Color %d lighting requires a normal, but cp is not sending it&quot;,
+    &quot;Color %d lighting requires the normal to be transformed by a normal matrix, &quot;
+    &quot;but MATRIXINDEX0_REG.geom is set to &quot;
+    &quot;an invalid value (%d)&quot;,
+    &quot;%s has a value of %sinfinity (%08x), which is probably not intended&quot;,
+    &quot;%s has a value of NaN (%08x), which is probably not intended&quot;,
+    &quot;%s has a value of (%f 0x%08x), which might be unintentionally small&quot;,
+    &quot;%s has a value of (%f 0x%08x), which might be unintentionally large&quot;,
+    &quot;%d regular textures active, but MatrixIndex1 register (0x%04x) uninitialized&quot;,
+    &quot;gen_mode register not initialized&quot;,
+    &quot;Number of XF output textures does not match what downstream units are &quot;
+    &quot;expecting&quot;,
+    &quot;Number of XF output colors does not match what downstream units are expecting&quot;,
+    &quot;Number of all texgens (%d) &gt; max allowed %d&quot;,
+    &quot;Number of regular type texgens (%d) &gt; max allowed %d&quot;,
+    &quot;Number of bumpmap type texgens (%d) &gt; max allowed %d&quot;,
+    &quot;Number of color texgens (%d) &gt; max allowed %d&quot;,
+    &quot;First color texgen is not referencing COLOR0&quot;,
+    &quot;Color texgen from COLOR%d is used more than once&quot;,
+    &quot;Bumpmap textures are defined, which requires the normal matrix values pointed &quot;
+    &quot;to by MATRIXINDEX0_REG.geom (%d) to &quot;
+    &quot;be loaded, however...&quot;,
+    &quot;Texture %d is a regular texture, which requires that the matrix values pointed &quot;
+    &quot;to by MATRIXINDEX0_REG.tex%d (%d) &quot;
+    &quot;must be loaded, however...&quot;,
+    &quot;Light %d is being referenced, however...&quot;,
+    &quot;Color %d lighting requires the normal matrix values pointed to by &quot;
+    &quot;MATRIXINDEX0_REG.geom (%d) to be loaded, &quot;
+    &quot;however...&quot;,
+    &quot;MatrixIndex0.Geometry matrix values must be loaded, however...&quot;,
+    &quot;Address 0x%04x is uninitialized&quot;,
+    &quot;Register (0x%04x) (%s) is not initialized&quot;
+};
+
+char __gxvDummyStr[256];
+
+static void
+__GXVerifyGlobal (void)
+{
+}
+
+static void
+__GXVerifyCP (GXVtxFmt fmt)
+{
+    u32 nrmCnt = GET_REG_FIELD (__GXData-&gt;vatA[fmt], 1, 9);
+
+    if (__gxVerif-&gt;verifyLevel &gt;= GX_WARN_SEVERE)
+    {
+        if (__GXData-&gt;hasNrms &amp;&amp; nrmCnt != 0)
+        {
+            __gxVerif-&gt;cb (1, 0, __gxvWarnings[0]);
+        }
+        else if (__GXData-&gt;hasBiNrms &amp;&amp; nrmCnt != 1 &amp;&amp; nrmCnt != 2)
+        {
+            __gxVerif-&gt;cb (1, 0, __gxvWarnings[0]);
+        }
+    }
+}
+
+void
+__GXVerifyState (GXVtxFmt vtxfmt)
+{
+    if (__gxVerif-&gt;verifyLevel != GX_WARN_NONE)
+    {
+        __GXVerifyGlobal();
+        __GXVerifyCP (vtxfmt);
+        __GXVerifyXF();
+        __GXVerifySU();
+        __GXVerifyBUMP();
+        __GXVerifyTEX();
+        __GXVerifyTEV();
+        __GXVerifyPE();
+    }
+}
+
+void
+GXSetVerifyLevel (GXWarningLevel level)
+{
+    __gxVerif-&gt;verifyLevel = level;
+}
+
+GXVerifyCallback
+GXSetVerifyCallback (GXVerifyCallback cb)
+{
+    GXVerifyCallback old_cb = __gxVerif-&gt;cb;
+
+    __gxVerif-&gt;cb = cb;
+    return old_cb;
+}
+#endif // DEBUG
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

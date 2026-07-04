@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CARDWrite.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardwritec">File CARDWrite.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_2dfa3b55db09c289c0394a464581d568/"><strong>card</strong></a> <strong>&gt;</strong> <a href="../_c_a_r_d_write_8c/"><strong>CARDWrite.c</strong></a></p>
+<p><a href="../_c_a_r_d_write_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/card.h&gt;
+
+// internal includes
+#include &quot;CARDPrivate.h&quot;
+
+#define OFFSET(addr, align) (((u32)(addr) &amp; ((align) - 1)))
+
+// functions
+static void WriteCallback (s32 chan, s32 result);
+static void EraseCallback (s32 chan, s32 result);
+
+static void
+WriteCallback (s32 chan, s32 result)
+{
+    CARDControl*  card;
+    void          (*callback) (s32, long);
+    u16*          fat;
+    CARDDir*      dir;
+    CARDDir*      ent;
+    CARDFileInfo* fileInfo;
+
+    card = &amp;__CARDBlock[chan];
+    if (result &gt;= 0)
+    {
+        fileInfo = card-&gt;fileInfo;
+        if (fileInfo-&gt;length &lt; 0)
+        {
+            result = CARD_RESULT_CANCELED;
+            goto after;
+        }
+        fileInfo-&gt;length -= card-&gt;sectorSize;
+        if (fileInfo-&gt;length &lt;= 0)
+        {
+            dir = __CARDGetDirBlock (card);
+            ent = dir + fileInfo-&gt;fileNo;
+            ent-&gt;time = (u32)(OSGetTime() / (__OSBusClock / 4));
+            callback = card-&gt;apiCallback;
+            card-&gt;apiCallback = NULL;
+            result = __CARDUpdateDir (chan, callback);
+            goto check;
+        }
+        else
+        {
+            fat = __CARDGetFatBlock (card);
+            fileInfo-&gt;offset += card-&gt;sectorSize;
+            fileInfo-&gt;iBlock = fat[fileInfo-&gt;iBlock];
+            if ((fileInfo-&gt;iBlock &lt; 5) || (fileInfo-&gt;iBlock &gt;= card-&gt;cBlock))
+            {
+                result = CARD_RESULT_BROKEN;
+                goto after;
+            }
+            result = (s32)__CARDEraseSector (chan,
+                                             (u32)(card-&gt;sectorSize * fileInfo-&gt;iBlock),
+                                             EraseCallback);
+        check:;
+            if (result &lt; 0)
+            {
+                goto after;
+            }
+        }
+    }
+    else
+    {
+    after:;
+        callback = card-&gt;apiCallback;
+        card-&gt;apiCallback = NULL;
+        __CARDPutControlBlock (card, result);
+        ASSERTLINE (0x7D, callback);
+        callback (chan, result);
+    }
+}
+
+static void
+EraseCallback (s32 chan, s32 result)
+{
+    CARDControl*  card;
+    void          (*callback) (s32, long);
+    CARDFileInfo* fileInfo;
+
+    card = &amp;__CARDBlock[chan];
+    if (result &gt;= 0)
+    {
+        fileInfo = card-&gt;fileInfo;
+        ASSERTLINE (0x98, OFFSET (fileInfo-&gt;offset, card-&gt;sectorSize) == 0);
+        result = __CARDWrite (chan,
+                              (u32)(card-&gt;sectorSize * fileInfo-&gt;iBlock),
+                              card-&gt;sectorSize,
+                              card-&gt;buffer,
+                              WriteCallback);
+        if (result &lt; 0)
+        {
+            goto after;
+        }
+    }
+    else
+    {
+    after:;
+        callback = card-&gt;apiCallback;
+        card-&gt;apiCallback = NULL;
+        __CARDPutControlBlock (card, result);
+        ASSERTLINE (0xA6, callback);
+        callback (chan, result);
+    }
+}
+
+s32
+CARDWriteAsync (CARDFileInfo* fileInfo,
+                void*         buf,
+                s32           length,
+                long          offset,
+                void          (*callback) (long, long))
+{
+    CARDControl* card;
+    s32          result;
+    CARDDir*     dir;
+    CARDDir*     ent;
+
+    ASSERTLINE (0xC9, buf &amp;&amp; ((u32)buf % 32) == 0);
+    ASSERTLINE (0xCA, 0 &lt; length);
+    result = __CARDSeek (fileInfo, length, offset, &amp;card);
+    if (result &lt; 0)
+    {
+        return result;
+    }
+    ASSERTLINE (0xD0, OFFSET (offset, card-&gt;sectorSize) == 0);
+    ASSERTLINE (0xD1, OFFSET (length, card-&gt;sectorSize) == 0);
+
+    if (OFFSET (offset, card-&gt;sectorSize) != 0 || OFFSET (length, card-&gt;sectorSize) != 0)
+    {
+        return __CARDPutControlBlock (card, CARD_RESULT_FATAL_ERROR);
+    }
+
+    dir = __CARDGetDirBlock (card);
+    ent = &amp;dir[fileInfo-&gt;fileNo];
+    result = __CARDAccess (ent);
+    if (result &lt; 0)
+    {
+        return __CARDPutControlBlock (card, result);
+    }
+
+    DCStoreRange ((void*)buf, (u32)length);
+    card-&gt;apiCallback = callback ? callback : __CARDDefaultApiCallback;
+    card-&gt;buffer = (void*)buf;
+    result = __CARDEraseSector (fileInfo-&gt;chan,
+                                card-&gt;sectorSize * (u32)fileInfo-&gt;iBlock,
+                                EraseCallback);
+    if (result &lt; 0)
+    {
+        __CARDPutControlBlock (card, result);
+    }
+
+    return result;
+}
+
+s32
+CARDWrite (struct CARDFileInfo* fileInfo, void* buf, s32 length, long offset)
+{
+    s32 result = CARDWriteAsync (fileInfo, buf, length, offset, __CARDSyncCallback);
+
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    return __CARDSync (fileInfo-&gt;chan);
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

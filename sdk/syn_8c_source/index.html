@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File syn.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-sync">File syn.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_69283c2dbc63a8d4f909cdea61511c2a/"><strong>syn</strong></a> <strong>&gt;</strong> <a href="../syn_8c/"><strong>syn.c</strong></a></p>
+<p><a href="../syn_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+#include &lt;dolphin/mix.h&gt;
+#include &lt;dolphin/os.h&gt;
+#include &lt;dolphin/syn.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;fake_tgmath.h&quot;
+#include &quot;SYNPrivate.h&quot;
+
+// .sbss
+struct SYNSYNTH* __SYNSynthList;
+
+// functions
+static void __SYNAddSynthToList (struct SYNSYNTH* synth);
+static void __SYNRemoveSynthFromList (struct SYNSYNTH* synth);
+
+static void
+__SYNAddSynthToList (struct SYNSYNTH* synth)
+{
+    int old = OSDisableInterrupts();
+
+    if (__SYNSynthList)
+    {
+        synth-&gt;next = __SYNSynthList;
+    }
+    else
+    {
+        synth-&gt;next = NULL;
+    }
+    __SYNSynthList = synth;
+    OSRestoreInterrupts (old);
+}
+
+static void
+__SYNRemoveSynthFromList (struct SYNSYNTH* synth)
+{
+    struct SYNSYNTH* tempList;
+    struct SYNSYNTH* tempSynth;
+    int              old;
+
+    old = OSDisableInterrupts();
+    tempList = NULL;
+
+    for (tempSynth = __SYNSynthList; tempSynth; tempSynth = tempSynth-&gt;next)
+    {
+        if (tempSynth != synth)
+        {
+            if (tempList)
+            {
+                tempSynth-&gt;next = tempList;
+            }
+            else
+            {
+                tempSynth-&gt;next = NULL;
+            }
+            tempList = tempSynth;
+        }
+    }
+    __SYNSynthList = tempList;
+    OSRestoreInterrupts (old);
+}
+
+void
+SYNInit ()
+{
+    int i;
+
+    for (i = 0; i &lt; 64; i++)
+    {
+        __SYNVoice[i].synth = 0;
+    }
+    __SYNSynthList = NULL;
+}
+
+void
+SYNQuit ()
+{
+    SYNInit();
+}
+
+void
+SYNRunAudioFrame ()
+{
+    int              i;
+    struct SYNSYNTH* synth;
+
+    for (i = 0; i &lt; 64; i++)
+    {
+        __SYNServiceVoice (i);
+    }
+    for (synth = __SYNSynthList; synth; synth = synth-&gt;next)
+    {
+        __SYNRunInputBufferEvents (synth);
+    }
+}
+
+void
+SYNInitSynth (struct SYNSYNTH* synth,
+              void*            wavetable,
+              u32              aramBase,
+              u32              priorityVoiceAlloc,
+              u32              priorityNoteOn,
+              u32              priorityNoteRelease)
+{
+    u32* p;
+    u32  midiChannel;
+    u32  noteNumber;
+
+    ASSERTLINE (0x84, synth);
+    ASSERTLINE (0x85, wavetable);
+    ASSERTLINE (0x86, aramBase);
+    p = wavetable;
+    synth-&gt;percussiveInst = (void*)((u32)wavetable + *(p));
+    p += 1;
+    synth-&gt;melodicInst = (void*)((u32)wavetable + *(p));
+    p += 1;
+    synth-&gt;region = (void*)((u32)wavetable + *(p));
+    p += 1;
+    synth-&gt;art = (void*)((u32)wavetable + *(p));
+    p += 1;
+    synth-&gt;sample = (void*)((u32)wavetable + *(p));
+    p += 1;
+    synth-&gt;adpcm = (void*)((u32)wavetable + *(p));
+    p += 1;
+    synth-&gt;aramBaseWord = (aramBase &gt;&gt; 1);
+    synth-&gt;aramBaseByte = aramBase;
+    synth-&gt;aramBaseNibble = (aramBase &lt;&lt; 1);
+    synth-&gt;priorityVoiceAlloc = priorityVoiceAlloc;
+    synth-&gt;priorityNoteOn = priorityNoteOn;
+    synth-&gt;priorityNoteRelease = priorityNoteRelease;
+    synth-&gt;masterVolume = 0;
+    __SYNResetAllControllers (synth);
+    synth-&gt;inputPosition = &amp;synth-&gt;input[0][0];
+    synth-&gt;inputCounter = 0;
+    synth-&gt;notes = 0;
+    for (midiChannel = 0; midiChannel &lt; 16; midiChannel++)
+    {
+        for (noteNumber = 0; noteNumber &lt; 16; noteNumber++)
+        {
+            synth-&gt;keyGroup[midiChannel][noteNumber] = 0;
+        }
+    }
+    for (midiChannel = 0; midiChannel &lt; 16; midiChannel++)
+    {
+        for (noteNumber = 0; noteNumber &lt; 128; noteNumber++)
+        {
+            synth-&gt;voice[midiChannel][noteNumber] = 0;
+        }
+    }
+    __SYNAddSynthToList (synth);
+}
+
+void
+SYNQuitSynth (struct SYNSYNTH* synth)
+{
+    int              i;
+    int              old;
+    struct SYNVOICE* voice;
+
+    old = OSDisableInterrupts();
+    if (synth-&gt;notes)
+    {
+        for (i = 0; i &lt; 64; i++)
+        {
+            voice = &amp;__SYNVoice[i];
+            if (voice-&gt;synth == synth)
+            {
+                MIXReleaseChannel (voice-&gt;axvpb);
+                AXFreeVoice (voice-&gt;axvpb);
+                voice-&gt;synth = 0;
+            }
+        }
+    }
+    __SYNRemoveSynthFromList (synth);
+    OSRestoreInterrupts (old);
+}
+
+void
+SYNMidiInput (struct SYNSYNTH* synth, u8* input)
+{
+    u8* src;
+
+    ASSERTLINE (0xD7, synth);
+    ASSERTLINE (0xD8, input);
+    src = input;
+    *(synth-&gt;inputPosition) = *(src);
+    (synth-&gt;inputPosition) += 1;
+    (src) += 1;
+    *(synth-&gt;inputPosition) = *(src);
+    (synth-&gt;inputPosition) += 1;
+    (src) += 1;
+    *(synth-&gt;inputPosition) = *(src);
+    (synth-&gt;inputPosition) += 1;
+    (src) += 1;
+    synth-&gt;inputCounter++;
+
+    if (synth-&gt;inputCounter &gt;= SYN_INPUT_BUFFER_SIZE)
+    {
+        ASSERTMSGLINE (0xE5, FALSE, &quot;synth input buffer exceeded, increase SYN_INPUT_BUFFER_SIZE&quot;);
+    }
+}
+
+void
+SYNSetMasterVolume (struct SYNSYNTH* synth, s32 dB)
+{
+    ASSERTLINE (0xEE, synth);
+    synth-&gt;masterVolume = (dB &lt;&lt; 0x10);
+}
+
+s32
+SYNGetMasterVolume (struct SYNSYNTH* synth)
+{
+    ASSERTLINE (0xF9, synth);
+    return synth-&gt;masterVolume &lt;&lt; 0x10;
+}
+
+u32
+SYNGetActiveNotes (struct SYNSYNTH* synth)
+{
+    ASSERTLINE (0x104, synth);
+    return synth-&gt;notes;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

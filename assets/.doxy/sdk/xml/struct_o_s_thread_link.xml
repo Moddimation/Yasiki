@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_o_s_thread_link" kind="struct" language="C++" prot="public">
+    <compoundname>OSThreadLink</compoundname>
+    <includes refid="_o_s_thread_8h" local="no">OSThread.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_o_s_thread_link_1aa088858c70226173056897f3086ddd0b" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref> *</type>
+        <definition>OSThread* OSThreadLink::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>OSThreadLink::next</qualifiedname>
+        <briefdescription>
+<para>0x00 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="31" column="14" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" compoundref="_o_s_mutex_8c" startline="262" endline="314">__OSCheckMutex</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a666b92c5f69ede02ed68effe166bfcb1" compoundref="_o_s_thread_8c" startline="901" endline="927">CheckThreadQueue</referencedby>
+        <referencedby refid="_o_s_thread_8c_1aacebc8f6f7092ea4fdca70bc438d9f99" compoundref="_o_s_thread_8c" startline="930" endline="944">IsMember</referencedby>
+        <referencedby refid="_o_s_reset_8c_1afd6e0ba5a2f96cd39ff3e4146be34d44" compoundref="_o_s_reset_8c" startline="176" endline="192">KillThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_link_1a8910e3f5a1f99cc783f3a2e490eb1125" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_thread" kindref="compound">OSThread</ref> *</type>
+        <definition>OSThread* OSThreadLink::prev</definition>
+        <argsstring></argsstring>
+        <name>prev</name>
+        <qualifiedname>OSThreadLink::prev</qualifiedname>
+        <briefdescription>
+<para>0x04 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="32" column="14" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" compoundref="_o_s_mutex_8c" startline="262" endline="314">__OSCheckMutex</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a666b92c5f69ede02ed68effe166bfcb1" compoundref="_o_s_thread_8c" startline="901" endline="927">CheckThreadQueue</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>OSContext</label>
+        <link refid="struct_o_s_context"/>
+      </node>
+      <node id="5">
+        <label>OSMutex</label>
+        <link refid="struct_o_s_mutex"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>queue</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>thread</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>link</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OSMutexLink</label>
+        <link refid="struct_o_s_mutex_link"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OSMutexQueue</label>
+        <link refid="struct_o_s_mutex_queue"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>OSThread</label>
+        <link refid="struct_o_s_thread"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>context</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>queue</edgelabel>
+          <edgelabel>queueJoin</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>link</edgelabel>
+          <edgelabel>linkActive</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>mutex</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>queueMutex</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OSThreadLink</label>
+        <link refid="struct_o_s_thread_link"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>OSThreadQueue</label>
+        <link refid="struct_o_s_thread_queue"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="29" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="30" bodyend="33"/>
+    <listofallmembers>
+      <member refid="struct_o_s_thread_link_1aa088858c70226173056897f3086ddd0b" prot="public" virt="non-virtual"><scope>OSThreadLink</scope><name>next</name></member>
+      <member refid="struct_o_s_thread_link_1a8910e3f5a1f99cc783f3a2e490eb1125" prot="public" virt="non-virtual"><scope>OSThreadLink</scope><name>prev</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

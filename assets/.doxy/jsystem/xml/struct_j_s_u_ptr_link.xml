@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_j_s_u_ptr_link" kind="struct" language="C++" prot="public">
+    <compoundname>JSUPtrLink</compoundname>
+    <derivedcompoundref refid="struct_j_s_u_link" prot="public" virt="non-virtual">JSULink&lt; JKRDisposer &gt;</derivedcompoundref>
+    <derivedcompoundref refid="struct_j_s_u_link" prot="public" virt="non-virtual">JSULink&lt; JKRHeap &gt;</derivedcompoundref>
+    <derivedcompoundref refid="struct_j_s_u_link" prot="public" virt="non-virtual">JSULink&lt; JKRThread &gt;</derivedcompoundref>
+    <derivedcompoundref refid="struct_j_s_u_link" prot="public" virt="non-virtual">JSULink&lt; T &gt;</derivedcompoundref>
+    <includes refid="_j_s_u_list_8h" local="no">JSUList.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_j_s_u_ptr_link_1a7b1260f4f09a9e6205ca2e4e6bb159a0" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* JSUPtrLink::pObject</definition>
+        <argsstring></argsstring>
+        <name>pObject</name>
+        <qualifiedname>JSUPtrLink::pObject</qualifiedname>
+        <briefdescription>
+<para>0x00 // data ptr </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JSupport/include/JSUList.h" line="13" column="16" bodyfile="decomp/JSystem/System/JSupport/include/JSUList.h" bodystart="13" bodyend="-1"/>
+        <referencedby refid="struct_j_s_u_link_1ad8975e79ab4144e88b1e2cc262a71439" compoundref="_j_s_u_list_8h" startline="31" endline="34">JSULink&lt; T &gt;::getObject</referencedby>
+        <referencedby refid="class_j_s_u_tree_1a83b2c274fa731a78efe654c42ee443eb" compoundref="_j_s_u_list_8h" startline="341" endline="344">JSUTree&lt; T &gt;::getObject</referencedby>
+        <referencedby refid="struct_j_s_u_ptr_link_1a2ebed1fa131eca26183e394029968df6" compoundref="_j_s_u_list_8cpp" startline="3" endline="9">JSUPtrLink</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_s_u_ptr_link_1a9f68408e3462f0cb9aa93ed9e7c9b712" prot="public" static="no" mutable="no">
+        <type><ref refid="class_j_s_u_ptr_list" kindref="compound">JSUPtrList</ref> *</type>
+        <definition>JSUPtrList* JSUPtrLink::pSupervisor</definition>
+        <argsstring></argsstring>
+        <name>pSupervisor</name>
+        <qualifiedname>JSUPtrLink::pSupervisor</qualifiedname>
+        <briefdescription>
+<para>0x04 // list that owns the link </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JSupport/include/JSUList.h" line="14" column="16" bodyfile="decomp/JSystem/System/JSupport/include/JSUList.h" bodystart="14" bodyend="-1"/>
+        <referencedby refid="class_j_s_u_ptr_list_1a4614c6735d7ed3f4d3c2a246dbe61c99" compoundref="_j_s_u_list_8cpp" startline="80" endline="100">JSUPtrList::append</referencedby>
+        <referencedby refid="class_j_s_u_tree_1afe12e664d12fc30ebafd9f57153d607d" compoundref="_j_s_u_list_8h" startline="347" endline="350">JSUTree&lt; T &gt;::getParent</referencedby>
+        <referencedby refid="struct_j_s_u_link_1a3d51e6819dc3120c12d3e9de883ed6e1" compoundref="_j_s_u_list_8h" startline="37" endline="40">JSULink&lt; T &gt;::getSupervisor</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1acee5c048cdef72a38b91679e5b6936b5" compoundref="_j_s_u_list_8cpp" startline="126" endline="159">JSUPtrList::insert</referencedby>
+        <referencedby refid="struct_j_s_u_ptr_link_1a2ebed1fa131eca26183e394029968df6" compoundref="_j_s_u_list_8cpp" startline="3" endline="9">JSUPtrLink</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a992571a5c03d52fd2cd6a08d22306b70" compoundref="_j_s_u_list_8cpp" startline="103" endline="123">JSUPtrList::prepend</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1ab33cec152cab62dce46eff946f2df5ad" compoundref="_j_s_u_list_8cpp" startline="162" endline="192">JSUPtrList::remove</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a7deef3a538a890df36d76a3ba8a77607" compoundref="_j_s_u_list_8cpp" startline="47" endline="55">JSUPtrList::setFirst</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a1586d59656a6f3f7339508f702ddacbc" compoundref="_j_s_u_list_8cpp" startline="58" endline="66">JSUPtrList::setLast</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a43f3d7ce4357f36cb4a6e7f0a3ea2795" compoundref="_j_s_u_list_8cpp" startline="69" endline="77">JSUPtrList::setNext</referencedby>
+        <referencedby refid="struct_j_s_u_ptr_link_1a75b8ba15e5bc7d8769b5e927614e8d41" compoundref="_j_s_u_list_8cpp" startline="11" endline="17">~JSUPtrLink</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a87cdd842eaebda30d6e49a43d22b40c8" compoundref="_j_s_u_list_8cpp" startline="27" endline="36">JSUPtrList::~JSUPtrList</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_s_u_ptr_link_1a5957ac1dd5eb2f5415664b91fec44310" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_j_s_u_ptr_link" kindref="compound">JSUPtrLink</ref> *</type>
+        <definition>JSUPtrLink* JSUPtrLink::pNext</definition>
+        <argsstring></argsstring>
+        <name>pNext</name>
+        <qualifiedname>JSUPtrLink::pNext</qualifiedname>
+        <briefdescription>
+<para>0x08 // next link </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JSupport/include/JSUList.h" line="15" column="16" bodyfile="decomp/JSystem/System/JSupport/include/JSUList.h" bodystart="15" bodyend="-1"/>
+        <referencedby refid="struct_j_s_u_link_1a318cbec36248ca0797b1c1dbf34a3b99" compoundref="_j_s_u_list_8h" startline="43" endline="46">JSULink&lt; T &gt;::getNext</referencedby>
+        <referencedby refid="class_j_s_u_tree_1ab2e66871f589acb0a46726a17ed91582" compoundref="_j_s_u_list_8h" startline="323" endline="326">JSUTree&lt; T &gt;::getNextChild</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1acee5c048cdef72a38b91679e5b6936b5" compoundref="_j_s_u_list_8cpp" startline="126" endline="159">JSUPtrList::insert</referencedby>
+        <referencedby refid="struct_j_s_u_ptr_link_1a2ebed1fa131eca26183e394029968df6" compoundref="_j_s_u_list_8cpp" startline="3" endline="9">JSUPtrLink</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1ab33cec152cab62dce46eff946f2df5ad" compoundref="_j_s_u_list_8cpp" startline="162" endline="192">JSUPtrList::remove</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a7deef3a538a890df36d76a3ba8a77607" compoundref="_j_s_u_list_8cpp" startline="47" endline="55">JSUPtrList::setFirst</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a1586d59656a6f3f7339508f702ddacbc" compoundref="_j_s_u_list_8cpp" startline="58" endline="66">JSUPtrList::setLast</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a43f3d7ce4357f36cb4a6e7f0a3ea2795" compoundref="_j_s_u_list_8cpp" startline="69" endline="77">JSUPtrList::setNext</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_s_u_ptr_link_1a3664a1be48687a991dd8dc6557fd4c56" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_j_s_u_ptr_link" kindref="compound">JSUPtrLink</ref> *</type>
+        <definition>JSUPtrLink* JSUPtrLink::pPrev</definition>
+        <argsstring></argsstring>
+        <name>pPrev</name>
+        <qualifiedname>JSUPtrLink::pPrev</qualifiedname>
+        <briefdescription>
+<para>0x0C // previous link </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JSupport/include/JSUList.h" line="16" column="16" bodyfile="decomp/JSystem/System/JSupport/include/JSUList.h" bodystart="16" bodyend="-1"/>
+        <referencedby refid="struct_j_s_u_link_1ad9dcf46a0a130f0c15e6afb2c1c7dd90" compoundref="_j_s_u_list_8h" startline="49" endline="52">JSULink&lt; T &gt;::getPrev</referencedby>
+        <referencedby refid="class_j_s_u_tree_1a1995cb7592161b02bef865882dd5723a" compoundref="_j_s_u_list_8h" startline="329" endline="332">JSUTree&lt; T &gt;::getPrevChild</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1acee5c048cdef72a38b91679e5b6936b5" compoundref="_j_s_u_list_8cpp" startline="126" endline="159">JSUPtrList::insert</referencedby>
+        <referencedby refid="struct_j_s_u_ptr_link_1a2ebed1fa131eca26183e394029968df6" compoundref="_j_s_u_list_8cpp" startline="3" endline="9">JSUPtrLink</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1ab33cec152cab62dce46eff946f2df5ad" compoundref="_j_s_u_list_8cpp" startline="162" endline="192">JSUPtrList::remove</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a7deef3a538a890df36d76a3ba8a77607" compoundref="_j_s_u_list_8cpp" startline="47" endline="55">JSUPtrList::setFirst</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a1586d59656a6f3f7339508f702ddacbc" compoundref="_j_s_u_list_8cpp" startline="58" endline="66">JSUPtrList::setLast</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a43f3d7ce4357f36cb4a6e7f0a3ea2795" compoundref="_j_s_u_list_8cpp" startline="69" endline="77">JSUPtrList::setNext</referencedby>
+        <referencedby refid="class_j_s_u_ptr_list_1a87cdd842eaebda30d6e49a43d22b40c8" compoundref="_j_s_u_list_8cpp" startline="27" endline="36">JSUPtrList::~JSUPtrList</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_j_s_u_ptr_link_1a2ebed1fa131eca26183e394029968df6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>JSUPtrLink::JSUPtrLink</definition>
+        <argsstring>(void *data)</argsstring>
+        <name>JSUPtrLink</name>
+        <qualifiedname>JSUPtrLink::JSUPtrLink</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JSupport/include/JSUList.h" line="10" column="5" bodyfile="decomp/JSystem/System/JSupport/src/JSUList.cpp" bodystart="3" bodyend="9"/>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="13">Nil</references>
+        <references refid="struct_j_s_u_ptr_link_1a5957ac1dd5eb2f5415664b91fec44310" compoundref="_j_s_u_list_8h" startline="15">pNext</references>
+        <references refid="struct_j_s_u_ptr_link_1a7b1260f4f09a9e6205ca2e4e6bb159a0" compoundref="_j_s_u_list_8h" startline="13">pObject</references>
+        <references refid="struct_j_s_u_ptr_link_1a3664a1be48687a991dd8dc6557fd4c56" compoundref="_j_s_u_list_8h" startline="16">pPrev</references>
+        <references refid="struct_j_s_u_ptr_link_1a9f68408e3462f0cb9aa93ed9e7c9b712" compoundref="_j_s_u_list_8h" startline="14">pSupervisor</references>
+      </memberdef>
+      <memberdef kind="function" id="struct_j_s_u_ptr_link_1a75b8ba15e5bc7d8769b5e927614e8d41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>JSUPtrLink::~JSUPtrLink</definition>
+        <argsstring>()</argsstring>
+        <name>~JSUPtrLink</name>
+        <qualifiedname>JSUPtrLink::~JSUPtrLink</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/JSystem/System/JSupport/include/JSUList.h" line="11" column="5" bodyfile="decomp/JSystem/System/JSupport/src/JSUList.cpp" bodystart="11" bodyend="17"/>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="13">Nil</references>
+        <references refid="struct_j_s_u_ptr_link_1a9f68408e3462f0cb9aa93ed9e7c9b712" compoundref="_j_s_u_list_8h" startline="14">pSupervisor</references>
+        <references refid="class_j_s_u_ptr_list_1ab33cec152cab62dce46eff946f2df5ad" compoundref="_j_s_u_list_8cpp" startline="162" endline="192">JSUPtrList::remove</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>JSULink&lt; JKRDisposer &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; JKRDisposer &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>JSULink&lt; JKRHeap &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; JKRHeap &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JSULink&lt; JKRThread &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; JKRThread &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>JSUPtrLink</label>
+        <link refid="struct_j_s_u_ptr_link"/>
+      </node>
+      <node id="6">
+        <label>JSUTree&lt; JKRHeap &gt;</label>
+        <link refid="class_j_s_u_tree"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="template-instance">
+          <edgelabel>&lt; JKRHeap &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>JSUTree&lt; T &gt;</label>
+        <link refid="class_j_s_u_tree"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>JSUPtrLink</label>
+        <link refid="struct_j_s_u_ptr_link"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pSupervisor</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>pNext</edgelabel>
+          <edgelabel>pPrev</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>JSUPtrList</label>
+        <link refid="class_j_s_u_ptr_list"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>pFirst</edgelabel>
+          <edgelabel>pLast</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/JSystem/System/JSupport/include/JSUList.h" line="8" column="1" bodyfile="decomp/JSystem/System/JSupport/include/JSUList.h" bodystart="9" bodyend="17"/>
+    <listofallmembers>
+      <member refid="struct_j_s_u_ptr_link_1a2ebed1fa131eca26183e394029968df6" prot="public" virt="non-virtual"><scope>JSUPtrLink</scope><name>JSUPtrLink</name></member>
+      <member refid="struct_j_s_u_ptr_link_1a5957ac1dd5eb2f5415664b91fec44310" prot="public" virt="non-virtual"><scope>JSUPtrLink</scope><name>pNext</name></member>
+      <member refid="struct_j_s_u_ptr_link_1a7b1260f4f09a9e6205ca2e4e6bb159a0" prot="public" virt="non-virtual"><scope>JSUPtrLink</scope><name>pObject</name></member>
+      <member refid="struct_j_s_u_ptr_link_1a3664a1be48687a991dd8dc6557fd4c56" prot="public" virt="non-virtual"><scope>JSUPtrLink</scope><name>pPrev</name></member>
+      <member refid="struct_j_s_u_ptr_link_1a9f68408e3462f0cb9aa93ed9e7c9b712" prot="public" virt="non-virtual"><scope>JSUPtrLink</scope><name>pSupervisor</name></member>
+      <member refid="struct_j_s_u_ptr_link_1a75b8ba15e5bc7d8769b5e927614e8d41" prot="public" virt="non-virtual"><scope>JSUPtrLink</scope><name>~JSUPtrLink</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

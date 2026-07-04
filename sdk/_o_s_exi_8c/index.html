@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSExi.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osexic">File OSExi.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSExi.c</strong></a></p>
+<p><a href="../_o_s_exi_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include &lt;string.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_e_x_i_control/"><strong>EXIControl</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-exicallback"><strong>EXICallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_e_x_i_control/"><strong>EXIControl</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-exicontrol"><strong>EXIControl</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>unsigned</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__gunknown800030c0"><strong>__gUnknown800030C0</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_e_x_i_control/"><strong>EXIControl</strong></a></td>
+<td style="text-align: left;"><a href="#variable-ecb"><strong>Ecb</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiattach"><strong>EXIAttach</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_amc_types_8h/#typedef-exicallback"><strong>EXICallback</strong></a> extCallback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiclearinterrupts"><strong>EXIClearInterrupts</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> exi, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> tc, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> ext) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exideselect"><strong>EXIDeselect</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exidetach"><strong>EXIDetach</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exidma"><strong>EXIDma</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * buf, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> len, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> type, <a href="../_amc_types_8h/#typedef-exicallback"><strong>EXICallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exigetid"><strong>EXIGetID</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dev, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * id) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-exigetstate"><strong>EXIGetState</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiimm"><strong>EXIImm</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * buf, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> len, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> type, <a href="../_amc_types_8h/#typedef-exicallback"><strong>EXICallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiimmex"><strong>EXIImmEx</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * buf, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> len, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiinit"><strong>EXIInit</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exilock"><strong>EXILock</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dev, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a>, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> *) unlockedCallback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiprobe"><strong>EXIProbe</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiprobeex"><strong>EXIProbeEx</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiprobereset"><strong>EXIProbeReset</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiselect"><strong>EXISelect</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dev, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> freq) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_amc_types_8h/#typedef-exicallback"><strong>EXICallback</strong></a></td>
+<td style="text-align: left;"><a href="#function-exisetexicallback"><strong>EXISetExiCallback</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_amc_types_8h/#typedef-exicallback"><strong>EXICallback</strong></a> exiCallback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exisync"><strong>EXISync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiunlock"><strong>EXIUnlock</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetdiconfig"><strong>__OSGetDIConfig</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-completetransfer"><strong>CompleteTransfer</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-exiintrrupthandler"><strong>EXIIntrruptHandler</strong></a> (<a href="../types_8h/#typedef-s16"><strong>s16</strong></a> interrupt, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-extintrrupthandler"><strong>EXTIntrruptHandler</strong></a> (<a href="../types_8h/#typedef-s16"><strong>s16</strong></a> interrupt, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-setexiinterruptmask"><strong>SetExiInterruptMask</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../struct_e_x_i_control/"><strong>EXIControl</strong></a> * exi) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-tcintrrupthandler"><strong>TCIntrruptHandler</strong></a> (<a href="../types_8h/#typedef-s16"><strong>s16</strong></a> interrupt, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_0length_exilength_mask"><strong>EXI_0LENGTH_EXILENGTH_MASK</strong></a>  <code>0x03FFFFE0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_rdwr"><strong>EXI_RDWR</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_read"><strong>EXI_READ</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_write"><strong>EXI_WRITE</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max_chan"><strong>MAX_CHAN</strong></a>  <code>0x03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max_dev"><strong>MAX_DEV</strong></a>  <code>0x03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max_freq"><strong>MAX_FREQ</strong></a>  <code>0x06</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max_imm"><strong>MAX_IMM</strong></a>  <code>0x04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max_type"><strong>MAX_TYPE</strong></a>  <code>0x03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-state_attached"><strong>STATE_ATTACHED</strong></a>  <code>0x08</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-state_busy"><strong>STATE_BUSY</strong></a>  <code>0x03</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-state_dma"><strong>STATE_DMA</strong></a>  <code>0x01</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-state_idle"><strong>STATE_IDLE</strong></a>  <code>0x00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-state_imm"><strong>STATE_IMM</strong></a>  <code>0x02</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-state_locked"><strong>STATE_LOCKED</strong></a>  <code>0x10</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-state_selected"><strong>STATE_SELECTED</strong></a>  <code>0x04</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-exicallback">typedef EXICallback</h3>
+<pre><code class="language-C++">typedef void(* EXICallback) (s32, OSContext *);
+</code></pre>
+<hr>
+
+<h3 id="typedef-exicontrol">typedef EXIControl</h3>
+<pre><code class="language-C++">typedef struct EXIControl EXIControl;
+</code></pre>
+<hr>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__gunknown800030c0">variable __gUnknown800030C0</h3>
+<pre><code class="language-C++">unsigned int __gUnknown800030C0[2];
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-ecb">variable Ecb</h3>
+<pre><code class="language-C++">EXIControl Ecb[3];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-exiattach">function EXIAttach</h3>
+<pre><code class="language-C++">int EXIAttach (
+    s32 chan,
+    EXICallback extCallback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiclearinterrupts">function EXIClearInterrupts</h3>
+<pre><code class="language-C++">u32 EXIClearInterrupts (
+    s32 chan,
+    int exi,
+    int tc,
+    int ext
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exideselect">function EXIDeselect</h3>
+<pre><code class="language-C++">int EXIDeselect (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exidetach">function EXIDetach</h3>
+<pre><code class="language-C++">int EXIDetach (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exidma">function EXIDma</h3>
+<pre><code class="language-C++">int EXIDma (
+    s32 chan,
+    void * buf,
+    long len,
+    u32 type,
+    EXICallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exigetid">function EXIGetID</h3>
+<pre><code class="language-C++">int EXIGetID (
+    s32 chan,
+    u32 dev,
+    u32 * id
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exigetstate">function EXIGetState</h3>
+<pre><code class="language-C++">u32 EXIGetState (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiimm">function EXIImm</h3>
+<pre><code class="language-C++">int EXIImm (
+    s32 chan,
+    void * buf,
+    long len,
+    u32 type,
+    EXICallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiimmex">function EXIImmEx</h3>
+<pre><code class="language-C++">int EXIImmEx (
+    s32 chan,
+    void * buf,
+    long len,
+    u32 mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiinit">function EXIInit</h3>
+<pre><code class="language-C++">void EXIInit () 
+</code></pre>
+<hr>
+
+<h3 id="function-exilock">function EXILock</h3>
+<pre><code class="language-C++">int EXILock (
+    s32 chan,
+    u32 dev,
+    void (*)( long , OSContext *) unlockedCallback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiprobe">function EXIProbe</h3>
+<pre><code class="language-C++">int EXIProbe (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiprobeex">function EXIProbeEx</h3>
+<pre><code class="language-C++">int EXIProbeEx (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiprobereset">function EXIProbeReset</h3>
+<pre><code class="language-C++">void EXIProbeReset () 
+</code></pre>
+<hr>
+
+<h3 id="function-exiselect">function EXISelect</h3>
+<pre><code class="language-C++">int EXISelect (
+    s32 chan,
+    u32 dev,
+    u32 freq
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exisetexicallback">function EXISetExiCallback</h3>
+<pre><code class="language-C++">EXICallback EXISetExiCallback (
+    s32 chan,
+    EXICallback exiCallback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exisync">function EXISync</h3>
+<pre><code class="language-C++">int EXISync (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiunlock">function EXIUnlock</h3>
+<pre><code class="language-C++">int EXIUnlock (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetdiconfig">function __OSGetDIConfig</h3>
+<pre><code class="language-C++">u32 __OSGetDIConfig (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-completetransfer">function CompleteTransfer</h3>
+<pre><code class="language-C++">static void CompleteTransfer (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exiintrrupthandler">function EXIIntrruptHandler</h3>
+<pre><code class="language-C++">static void EXIIntrruptHandler (
+    s16 interrupt,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-extintrrupthandler">function EXTIntrruptHandler</h3>
+<pre><code class="language-C++">static void EXTIntrruptHandler (
+    s16 interrupt,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-setexiinterruptmask">function SetExiInterruptMask</h3>
+<pre><code class="language-C++">static void SetExiInterruptMask (
+    s32 chan,
+    EXIControl * exi
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-tcintrrupthandler">function TCIntrruptHandler</h3>
+<pre><code class="language-C++">static void TCIntrruptHandler (
+    s16 interrupt,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-exi_0length_exilength_mask">define EXI_0LENGTH_EXILENGTH_MASK</h3>
+<pre><code class="language-C++">#define EXI_0LENGTH_EXILENGTH_MASK `0x03FFFFE0`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_rdwr">define EXI_RDWR</h3>
+<pre><code class="language-C++">#define EXI_RDWR `2`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_read">define EXI_READ</h3>
+<pre><code class="language-C++">#define EXI_READ `0`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_write">define EXI_WRITE</h3>
+<pre><code class="language-C++">#define EXI_WRITE `1`
+</code></pre>
+<hr>
+
+<h3 id="define-max_chan">define MAX_CHAN</h3>
+<pre><code class="language-C++">#define MAX_CHAN `0x03`
+</code></pre>
+<hr>
+
+<h3 id="define-max_dev">define MAX_DEV</h3>
+<pre><code class="language-C++">#define MAX_DEV `0x03`
+</code></pre>
+<hr>
+
+<h3 id="define-max_freq">define MAX_FREQ</h3>
+<pre><code class="language-C++">#define MAX_FREQ `0x06`
+</code></pre>
+<hr>
+
+<h3 id="define-max_imm">define MAX_IMM</h3>
+<pre><code class="language-C++">#define MAX_IMM `0x04`
+</code></pre>
+<hr>
+
+<h3 id="define-max_type">define MAX_TYPE</h3>
+<pre><code class="language-C++">#define MAX_TYPE `0x03`
+</code></pre>
+<hr>
+
+<h3 id="define-state_attached">define STATE_ATTACHED</h3>
+<pre><code class="language-C++">#define STATE_ATTACHED `0x08`
+</code></pre>
+<hr>
+
+<h3 id="define-state_busy">define STATE_BUSY</h3>
+<pre><code class="language-C++">#define STATE_BUSY `0x03`
+</code></pre>
+<hr>
+
+<h3 id="define-state_dma">define STATE_DMA</h3>
+<pre><code class="language-C++">#define STATE_DMA `0x01`
+</code></pre>
+<hr>
+
+<h3 id="define-state_idle">define STATE_IDLE</h3>
+<pre><code class="language-C++">#define STATE_IDLE `0x00`
+</code></pre>
+<hr>
+
+<h3 id="define-state_imm">define STATE_IMM</h3>
+<pre><code class="language-C++">#define STATE_IMM `0x02`
+</code></pre>
+<hr>
+
+<h3 id="define-state_locked">define STATE_LOCKED</h3>
+<pre><code class="language-C++">#define STATE_LOCKED `0x10`
+</code></pre>
+<hr>
+
+<h3 id="define-state_selected">define STATE_SELECTED</h3>
+<pre><code class="language-C++">#define STATE_SELECTED `0x04`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/os/OSExi.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,938 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="exi_8h" kind="file" language="C++">
+    <compoundname>exi.h</compoundname>
+    <includes refid="_o_s_context_8h" local="no">dolphin/os/OSContext.h</includes>
+    <includedby refid="_c_a_r_d_mount_8c" local="no">CARDMount.c</includedby>
+    <includedby refid="_c_a_r_d_private_8h" local="no">CARDPrivate.h</includedby>
+    <includedby refid="_o_s_8c" local="no">OS.c</includedby>
+    <includedby refid="_o_s_exi_ad16_8c" local="no">OSExiAd16.c</includedby>
+    <includedby refid="_o_s_rtc_8c" local="no">OSRtc.c</includedby>
+    <includedby refid="_o_s_time_8c" local="no">OSTime.c</includedby>
+    <includedby refid="_o_s_uart_exi_8c" local="no">OSUartExi.c</includedby>
+    <includedby refid="gpioexi_8c" local="no">gpioexi.c</includedby>
+    <includedby refid="hio_8c" local="no">hio.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>exi.h</label>
+        <link refid="exi_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>exi.h</label>
+        <link refid="exi_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>CARDBios.c</label>
+        <link refid="_c_a_r_d_bios_8c"/>
+      </node>
+      <node id="5">
+        <label>CARDBlock.c</label>
+        <link refid="_c_a_r_d_block_8c"/>
+      </node>
+      <node id="6">
+        <label>CARDCheck.c</label>
+        <link refid="_c_a_r_d_check_8c"/>
+      </node>
+      <node id="7">
+        <label>CARDCreate.c</label>
+        <link refid="_c_a_r_d_create_8c"/>
+      </node>
+      <node id="8">
+        <label>CARDDelete.c</label>
+        <link refid="_c_a_r_d_delete_8c"/>
+      </node>
+      <node id="9">
+        <label>CARDDir.c</label>
+        <link refid="_c_a_r_d_dir_8c"/>
+      </node>
+      <node id="10">
+        <label>CARDFormat.c</label>
+        <link refid="_c_a_r_d_format_8c"/>
+      </node>
+      <node id="2">
+        <label>CARDMount.c</label>
+        <link refid="_c_a_r_d_mount_8c"/>
+      </node>
+      <node id="11">
+        <label>CARDOpen.c</label>
+        <link refid="_c_a_r_d_open_8c"/>
+      </node>
+      <node id="3">
+        <label>CARDPrivate.h</label>
+        <link refid="_c_a_r_d_private_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>CARDRaw.c</label>
+        <link refid="_c_a_r_d_raw_8c"/>
+      </node>
+      <node id="13">
+        <label>CARDRdwr.c</label>
+        <link refid="_c_a_r_d_rdwr_8c"/>
+      </node>
+      <node id="14">
+        <label>CARDRead.c</label>
+        <link refid="_c_a_r_d_read_8c"/>
+      </node>
+      <node id="15">
+        <label>CARDRename.c</label>
+        <link refid="_c_a_r_d_rename_8c"/>
+      </node>
+      <node id="16">
+        <label>CARDStat.c</label>
+        <link refid="_c_a_r_d_stat_8c"/>
+      </node>
+      <node id="17">
+        <label>CARDStatEx.c</label>
+        <link refid="_c_a_r_d_stat_ex_8c"/>
+      </node>
+      <node id="18">
+        <label>CARDUnlock.c</label>
+        <link refid="_c_a_r_d_unlock_8c"/>
+      </node>
+      <node id="19">
+        <label>CARDWrite.c</label>
+        <link refid="_c_a_r_d_write_8c"/>
+      </node>
+      <node id="26">
+        <label>hio.c</label>
+        <link refid="hio_8c"/>
+      </node>
+      <node id="20">
+        <label>OS.c</label>
+        <link refid="_o_s_8c"/>
+      </node>
+      <node id="21">
+        <label>OSExiAd16.c</label>
+        <link refid="_o_s_exi_ad16_8c"/>
+      </node>
+      <node id="22">
+        <label>OSRtc.c</label>
+        <link refid="_o_s_rtc_8c"/>
+      </node>
+      <node id="23">
+        <label>OSTime.c</label>
+        <link refid="_o_s_time_8c"/>
+      </node>
+      <node id="24">
+        <label>OSUartExi.c</label>
+        <link refid="_o_s_uart_exi_8c"/>
+      </node>
+      <node id="25">
+        <label>gpioexi.c</label>
+        <link refid="gpioexi_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" prot="public" static="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>(*</type>
+        <definition>typedef void(* EXICallback) (s32 chan, OSContext *context)</definition>
+        <argsstring>)(s32 chan, OSContext *context)</argsstring>
+        <name>EXICallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="6" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/exi.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="exi_8h_1a34ac450e076df1daf9694fe4ede190d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_amc_types_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref></type>
+        <definition>EXICallback EXISetExiCallback</definition>
+        <argsstring>(s32 channel, EXICallback callback)</argsstring>
+        <name>EXISetExiCallback</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type><ref refid="_amc_types_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref></type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="8" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="289" bodyend="310" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="8" declcolumn="13"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="_o_s_exi_8c_1a585952389eeb27a7228d9f797ba8a227" compoundref="_o_s_exi_8c" startline="25">MAX_CHAN</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="dvdqueue_8c_1a0bf1c02a85121fc941973f58413e13f9" compoundref="dvdqueue_8c" startline="10">prev</references>
+        <references refid="_o_s_exi_8c_1a117e1bedf5e16c0d227df33f65ff54e8" compoundref="_o_s_exi_8c" startline="76" endline="107">SetExiInterruptMask</references>
+        <referencedby refid="_c_a_r_d_bios_8c_1aa6849cb848818ce84e7e8179feb4ff33" compoundref="_c_a_r_d_bios_8c" startline="40" endline="73">__CARDExtHandler</referencedby>
+        <referencedby refid="card_8h_1aabe7c2c323ab818e1b765c79e1e32efe" compoundref="_c_a_r_d_mount_8c" startline="269" endline="332">CARDMountAsync</referencedby>
+        <referencedby refid="_c_a_r_d_mount_8c_1ab0844c4b9f9e587f03df4ba6006a58c0" compoundref="_c_a_r_d_mount_8c" startline="103" endline="221">DoMount</referencedby>
+        <referencedby refid="_c_a_r_d_mount_8c_1ac3a45a577e72303758b3a3816a012ed0" compoundref="_c_a_r_d_mount_8c" startline="347" endline="367">DoUnmount</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a27d9c0504645b5c29e4bb369cf3a2da9" compoundref="_c_a_r_d_bios_8c" startline="319" endline="349">TimeoutHandler</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a6554aac16b8310c11bd9106751b29199" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void EXIInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>EXIInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="10" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="589" bodyend="608" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="10" declcolumn="6"/>
+        <references refid="_o_s_interrupt_8h_1ae1767574f2daf611741354075dcfbc82" compoundref="_o_s_interrupt_8c" startline="366" endline="382">__OSMaskInterrupts</references>
+        <references refid="_o_s_interrupt_8h_1a47dc6136ea35a70dddea9933b2afcdbc" compoundref="_o_s_interrupt_8c" startline="112" endline="124">__OSSetInterruptHandler</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ac70686439acec33f9b9b363797f689ee" compoundref="_o_s_exi_8c" startline="526" endline="542">EXIIntrruptHandler</references>
+        <references refid="_o_s_exi_8c_1abbf0ac3863e2e2a0fcbc5acb3b9b21a6" compoundref="_o_s_exi_8c" startline="313" endline="318">EXIProbeReset</references>
+        <references refid="_o_s_exi_8c_1a2f21b2832402527fc38e4e1516be8b90" compoundref="_o_s_exi_8c" startline="567" endline="586">EXTIntrruptHandler</references>
+        <references refid="os_8h_1ab627a752b6b5e8afe02e484738cad7fd" compoundref="_o_s_8c" startline="107" endline="114">OSGetConsoleType</references>
+        <references refid="_o_s_exi_8c_1a3bf482a06bdda883ea4983631beafdce" compoundref="_o_s_exi_8c" startline="545" endline="564">TCIntrruptHandler</references>
+        <referencedby refid="os_8h_1afefd47bb79544cf1414a3c6954d71258" compoundref="_o_s_8c" startline="117" endline="214">OSInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a1f32a2c2a5cae912b6475d38cff4afce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL EXILock</definition>
+        <argsstring>(s32 channel, u32 device, EXICallback callback)</argsstring>
+        <name>EXILock</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>device</declname>
+        </param>
+        <param>
+          <type><ref refid="_amc_types_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref></type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="11" column="6" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="11" declcolumn="6"/>
+        <referencedby refid="_c_a_r_d_bios_8c_1ac52ef5ba24ac9e1b2e66066cc15d4569" compoundref="_c_a_r_d_bios_8c" startline="76" endline="130">__CARDExiHandler</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a83c168a9484db01e978ce326a30fae3c" compoundref="_c_a_r_d_bios_8c" startline="474" endline="520">__CARDStart</referencedby>
+        <referencedby refid="_o_s_private_8h_1a079560ab75bd6f5c83d4c0789ddca155" compoundref="_o_s_rtc_8c" startline="295" endline="320">__OSReadROM</referencedby>
+        <referencedby refid="_o_s_private_8h_1a30863b86a37b41355b8187d8d4630ecb" compoundref="_o_s_rtc_8c" startline="338" endline="362">__OSReadROMAsync</referencedby>
+        <referencedby refid="_o_s_private_8h_1a47ecde090ede5c94fa8fccba7978f678" compoundref="_o_s_rtc_8c" startline="83" endline="106">__OSSetRTC</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a54a8bb40777c81b99160069ec72ea1ef" compoundref="_o_s_exi_ad16_8c" startline="11" endline="44">AD16Init</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a024cd53d400f898287ca6d662512fef5" compoundref="_o_s_exi_ad16_8c" startline="77" endline="104">AD16ReadReg</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a4ce5f0af906b29a74c733605ce4c38d5" compoundref="_o_s_exi_ad16_8c" startline="47" endline="74">AD16WriteReg</referencedby>
+        <referencedby refid="card_8h_1aabe7c2c323ab818e1b765c79e1e32efe" compoundref="_c_a_r_d_mount_8c" startline="269" endline="332">CARDMountAsync</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a7c25146041a7bb044f54709635fa3240" compoundref="_o_s_rtc_8c" startline="30" endline="54">GetRTC</referencedby>
+        <referencedby refid="gpioexi_8c_1a4b51e8da79350bc5613b237bcc71da85" compoundref="gpioexi_8c" startline="166" endline="188">gpioInput</referencedby>
+        <referencedby refid="gpioexi_8c_1a7d8f9d27bedb929e92b0dcd941caa23a" compoundref="gpioexi_8c" startline="141" endline="163">gpioOut</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+        <referencedby refid="hio_8h_1a840098bb0e279ecbb70831039809a3d8" compoundref="hio_8c" startline="252" endline="280">HIORead</referencedby>
+        <referencedby refid="hio_8h_1a43a9205fbe480359f95e869af40cca9b" compoundref="hio_8c" startline="314" endline="340">HIOReadAsync</referencedby>
+        <referencedby refid="hio_8h_1a250ab066d61b24346cb82ddae0836986" compoundref="hio_8c" startline="194" endline="221">HIOReadMailbox</referencedby>
+        <referencedby refid="hio_8h_1a3205361193b5b27ffc8bc7ce17376ee9" compoundref="hio_8c" startline="372" endline="399">HIOReadStatus</referencedby>
+        <referencedby refid="hio_8h_1a37c0d7118da3389b4fcfd64d84acb5ec" compoundref="hio_8c" startline="283" endline="311">HIOWrite</referencedby>
+        <referencedby refid="hio_8h_1a04ccd1f46f3d6767838e406fc7224ec9" compoundref="hio_8c" startline="343" endline="369">HIOWriteAsync</referencedby>
+        <referencedby refid="hio_8h_1ac538a4eb5175b9af9657a3ec0813e5af" compoundref="hio_8c" startline="224" endline="249">HIOWriteMailbox</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a72fe3a0516b0da19ce2638a31fd81e83" compoundref="_o_s_rtc_8c" startline="109" endline="133">ReadSram</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a320b896ec0c77a154e2beddc895d8e1b" compoundref="_c_a_r_d_bios_8c" startline="424" endline="471">UnlockedCallback</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a76b41dc7ee021d95a8aea02d4ef4c57c" compoundref="_o_s_rtc_8c" startline="151" endline="174">WriteSram</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1a20af008dba5276b2ec0151fe45a1d675" compoundref="_o_s_uart_exi_8c" startline="50" endline="125">WriteUARTN</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a7716809e41f8f7d4f656ffeaf5bc5d76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>int EXIUnlock</definition>
+        <argsstring>(s32 channel)</argsstring>
+        <name>EXIUnlock</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="12" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="651" bodyend="678" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="12" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="_o_s_exi_8c_1a585952389eeb27a7228d9f797ba8a227" compoundref="_o_s_exi_8c" startline="25">MAX_CHAN</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_exi_8c_1a117e1bedf5e16c0d227df33f65ff54e8" compoundref="_o_s_exi_8c" startline="76" endline="107">SetExiInterruptMask</references>
+        <references refid="_o_s_exi_8c_1a28e0076d828dd0899e949c39b25b765f" compoundref="_o_s_exi_8c" startline="33">STATE_LOCKED</references>
+        <referencedby refid="_c_a_r_d_bios_8c_1a39cceafd0a9596d090265bbe7ddca567" compoundref="_c_a_r_d_bios_8c" startline="613" endline="645">__CARDErase</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a9048a13e9e534d4869cd48a225d0057d" compoundref="_c_a_r_d_bios_8c" startline="648" endline="686">__CARDEraseSector</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1ac52ef5ba24ac9e1b2e66066cc15d4569" compoundref="_c_a_r_d_bios_8c" startline="76" endline="130">__CARDExiHandler</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a129a537656b956fc3fe995c2ec3bc807" compoundref="_c_a_r_d_bios_8c" startline="529" endline="570">__CARDReadSegment</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a83c168a9484db01e978ce326a30fae3c" compoundref="_c_a_r_d_bios_8c" startline="474" endline="520">__CARDStart</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1ab9e1631358c73f50f0504198e42e0e94" compoundref="_c_a_r_d_bios_8c" startline="133" endline="152">__CARDTxHandler</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a7a694e8b0db6ef2e99d6ede4cfb2fbca" compoundref="_c_a_r_d_bios_8c" startline="573" endline="610">__CARDWritePage</referencedby>
+        <referencedby refid="_o_s_private_8h_1a079560ab75bd6f5c83d4c0789ddca155" compoundref="_o_s_rtc_8c" startline="295" endline="320">__OSReadROM</referencedby>
+        <referencedby refid="_o_s_private_8h_1a30863b86a37b41355b8187d8d4630ecb" compoundref="_o_s_rtc_8c" startline="338" endline="362">__OSReadROMAsync</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1ae92edbbb40e009f46fad0f3adb85f6cf" compoundref="_o_s_rtc_8c" startline="323" endline="335">__OSReadROMCallback</referencedby>
+        <referencedby refid="_o_s_private_8h_1a47ecde090ede5c94fa8fccba7978f678" compoundref="_o_s_rtc_8c" startline="83" endline="106">__OSSetRTC</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a54a8bb40777c81b99160069ec72ea1ef" compoundref="_o_s_exi_ad16_8c" startline="11" endline="44">AD16Init</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a024cd53d400f898287ca6d662512fef5" compoundref="_o_s_exi_ad16_8c" startline="77" endline="104">AD16ReadReg</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a4ce5f0af906b29a74c733605ce4c38d5" compoundref="_o_s_exi_ad16_8c" startline="47" endline="74">AD16WriteReg</referencedby>
+        <referencedby refid="_c_a_r_d_mount_8c_1ab0844c4b9f9e587f03df4ba6006a58c0" compoundref="_c_a_r_d_mount_8c" startline="103" endline="221">DoMount</referencedby>
+        <referencedby refid="_c_a_r_d_unlock_8c_1ae6272e61fbd1178f2054981b9b5c54ac" compoundref="_c_a_r_d_unlock_8c" startline="360" endline="432">DoneCallback</referencedby>
+        <referencedby refid="exi_8h_1a2a3ca65a7ee279a02387ca070db19084" compoundref="_o_s_exi_8c" startline="691" endline="725">EXIGetID</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a7c25146041a7bb044f54709635fa3240" compoundref="_o_s_rtc_8c" startline="30" endline="54">GetRTC</referencedby>
+        <referencedby refid="gpioexi_8c_1a4b51e8da79350bc5613b237bcc71da85" compoundref="gpioexi_8c" startline="166" endline="188">gpioInput</referencedby>
+        <referencedby refid="gpioexi_8c_1a7d8f9d27bedb929e92b0dcd941caa23a" compoundref="gpioexi_8c" startline="141" endline="163">gpioOut</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+        <referencedby refid="hio_8h_1a840098bb0e279ecbb70831039809a3d8" compoundref="hio_8c" startline="252" endline="280">HIORead</referencedby>
+        <referencedby refid="hio_8h_1a43a9205fbe480359f95e869af40cca9b" compoundref="hio_8c" startline="314" endline="340">HIOReadAsync</referencedby>
+        <referencedby refid="hio_8h_1a250ab066d61b24346cb82ddae0836986" compoundref="hio_8c" startline="194" endline="221">HIOReadMailbox</referencedby>
+        <referencedby refid="hio_8h_1a3205361193b5b27ffc8bc7ce17376ee9" compoundref="hio_8c" startline="372" endline="399">HIOReadStatus</referencedby>
+        <referencedby refid="hio_8h_1a37c0d7118da3389b4fcfd64d84acb5ec" compoundref="hio_8c" startline="283" endline="311">HIOWrite</referencedby>
+        <referencedby refid="hio_8h_1a04ccd1f46f3d6767838e406fc7224ec9" compoundref="hio_8c" startline="343" endline="369">HIOWriteAsync</referencedby>
+        <referencedby refid="hio_8h_1ac538a4eb5175b9af9657a3ec0813e5af" compoundref="hio_8c" startline="224" endline="249">HIOWriteMailbox</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a72fe3a0516b0da19ce2638a31fd81e83" compoundref="_o_s_rtc_8c" startline="109" endline="133">ReadSram</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1addd43abe767099ae7d1c7d9fa691748c" compoundref="_c_a_r_d_bios_8c" startline="372" endline="421">Retry</referencedby>
+        <referencedby refid="hio_8c_1ab42646b3b74e7e3dd7ebba627761284b" compoundref="hio_8c" startline="50" endline="58">RxHandler</referencedby>
+        <referencedby refid="hio_8c_1a44bf4772e4a12d9b538e78cb93404ad9" compoundref="hio_8c" startline="39" endline="47">TxHandler</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a76b41dc7ee021d95a8aea02d4ef4c57c" compoundref="_o_s_rtc_8c" startline="151" endline="174">WriteSram</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1a20af008dba5276b2ec0151fe45a1d675" compoundref="_o_s_uart_exi_8c" startline="50" endline="125">WriteUARTN</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a6d85d8d6abef8216593aa9905db8bc0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>int EXISelect</definition>
+        <argsstring>(s32 channel, u32 device, u32 frequency)</argsstring>
+        <name>EXISelect</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>device</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>frequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="13" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="440" bodyend="481" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="13" declcolumn="6"/>
+        <references refid="_o_s_interrupt_8h_1ae1767574f2daf611741354075dcfbc82" compoundref="_o_s_interrupt_8c" startline="366" endline="382">__OSMaskInterrupts</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="_o_s_exi_8c_1a8f18e16e80c32de1e6446f18ba2e17cb" compoundref="_o_s_exi_8c" startline="321" endline="371">EXIProbe</references>
+        <references refid="_o_s_exi_8c_1a585952389eeb27a7228d9f797ba8a227" compoundref="_o_s_exi_8c" startline="25">MAX_CHAN</references>
+        <references refid="_o_s_exi_8c_1a801fe9d7edc4013da23f539f2ecacc44" compoundref="_o_s_exi_8c" startline="37">MAX_DEV</references>
+        <references refid="_o_s_exi_8c_1a9f1abe07c4d92ce70925be770153bb5d" compoundref="_o_s_exi_8c" startline="38">MAX_FREQ</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_exi_8c_1a91aea8f18583a4f39018d2a6a552f5ff" compoundref="_o_s_exi_8c" startline="32">STATE_ATTACHED</references>
+        <references refid="_o_s_exi_8c_1a28e0076d828dd0899e949c39b25b765f" compoundref="_o_s_exi_8c" startline="33">STATE_LOCKED</references>
+        <references refid="_o_s_exi_8c_1a04be6591ef29ae7689c2684ec069a4e3" compoundref="_o_s_exi_8c" startline="31">STATE_SELECTED</references>
+        <referencedby refid="_c_a_r_d_bios_8c_1a246bb771fbbfe585a04f831c524af0e4" compoundref="_c_a_r_d_bios_8c" startline="248" endline="267">__CARDClearStatus</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a3ca9f0d4abb0feea0a7d5d5f91fabab2" compoundref="_c_a_r_d_bios_8c" startline="204" endline="222">__CARDEnableInterrupt</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a7068e901e99727a8c6e116181673ec58" compoundref="_c_a_r_d_bios_8c" startline="174" endline="201">__CARDReadNintendoID</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1ab3459bbb51aa1f4ca2f3e800b68ca454" compoundref="_c_a_r_d_bios_8c" startline="225" endline="245">__CARDReadStatus</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a8fb2273f0cc09214644c6f107090043a" compoundref="_c_a_r_d_bios_8c" startline="270" endline="292">__CARDSleep</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a83c168a9484db01e978ce326a30fae3c" compoundref="_c_a_r_d_bios_8c" startline="474" endline="520">__CARDStart</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a124b7c93a31100f0ba248d457232db83" compoundref="_c_a_r_d_bios_8c" startline="295" endline="316">__CARDWakeup</referencedby>
+        <referencedby refid="_o_s_private_8h_1a079560ab75bd6f5c83d4c0789ddca155" compoundref="_o_s_rtc_8c" startline="295" endline="320">__OSReadROM</referencedby>
+        <referencedby refid="_o_s_private_8h_1a30863b86a37b41355b8187d8d4630ecb" compoundref="_o_s_rtc_8c" startline="338" endline="362">__OSReadROMAsync</referencedby>
+        <referencedby refid="_o_s_private_8h_1a47ecde090ede5c94fa8fccba7978f678" compoundref="_o_s_rtc_8c" startline="83" endline="106">__OSSetRTC</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a54a8bb40777c81b99160069ec72ea1ef" compoundref="_o_s_exi_ad16_8c" startline="11" endline="44">AD16Init</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a024cd53d400f898287ca6d662512fef5" compoundref="_o_s_exi_ad16_8c" startline="77" endline="104">AD16ReadReg</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a4ce5f0af906b29a74c733605ce4c38d5" compoundref="_o_s_exi_ad16_8c" startline="47" endline="74">AD16WriteReg</referencedby>
+        <referencedby refid="exi_8h_1a2a3ca65a7ee279a02387ca070db19084" compoundref="_o_s_exi_8c" startline="691" endline="725">EXIGetID</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a7c25146041a7bb044f54709635fa3240" compoundref="_o_s_rtc_8c" startline="30" endline="54">GetRTC</referencedby>
+        <referencedby refid="gpioexi_8c_1a4b51e8da79350bc5613b237bcc71da85" compoundref="gpioexi_8c" startline="166" endline="188">gpioInput</referencedby>
+        <referencedby refid="gpioexi_8c_1a7d8f9d27bedb929e92b0dcd941caa23a" compoundref="gpioexi_8c" startline="141" endline="163">gpioOut</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+        <referencedby refid="hio_8h_1a840098bb0e279ecbb70831039809a3d8" compoundref="hio_8c" startline="252" endline="280">HIORead</referencedby>
+        <referencedby refid="hio_8h_1a43a9205fbe480359f95e869af40cca9b" compoundref="hio_8c" startline="314" endline="340">HIOReadAsync</referencedby>
+        <referencedby refid="hio_8h_1a250ab066d61b24346cb82ddae0836986" compoundref="hio_8c" startline="194" endline="221">HIOReadMailbox</referencedby>
+        <referencedby refid="hio_8h_1a3205361193b5b27ffc8bc7ce17376ee9" compoundref="hio_8c" startline="372" endline="399">HIOReadStatus</referencedby>
+        <referencedby refid="hio_8h_1a37c0d7118da3389b4fcfd64d84acb5ec" compoundref="hio_8c" startline="283" endline="311">HIOWrite</referencedby>
+        <referencedby refid="hio_8h_1a04ccd1f46f3d6767838e406fc7224ec9" compoundref="hio_8c" startline="343" endline="369">HIOWriteAsync</referencedby>
+        <referencedby refid="hio_8h_1ac538a4eb5175b9af9657a3ec0813e5af" compoundref="hio_8c" startline="224" endline="249">HIOWriteMailbox</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1ae499dd0dccf91bd67c7dae9d826448a6" compoundref="_o_s_uart_exi_8c" startline="31" endline="47">QueueLength</referencedby>
+        <referencedby refid="_c_a_r_d_unlock_8c_1a6c86a341ad43ca530fc01613df6301f5" compoundref="_c_a_r_d_unlock_8c" startline="114" endline="151">ReadArrayUnlock</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a72fe3a0516b0da19ce2638a31fd81e83" compoundref="_o_s_rtc_8c" startline="109" endline="133">ReadSram</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1addd43abe767099ae7d1c7d9fa691748c" compoundref="_c_a_r_d_bios_8c" startline="372" endline="421">Retry</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a76b41dc7ee021d95a8aea02d4ef4c57c" compoundref="_o_s_rtc_8c" startline="151" endline="174">WriteSram</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1a20af008dba5276b2ec0151fe45a1d675" compoundref="_o_s_uart_exi_8c" startline="50" endline="125">WriteUARTN</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1ae73d3344b053ce33d208f2ffb713bf73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>int EXIDeselect</definition>
+        <argsstring>(s32 channel)</argsstring>
+        <name>EXIDeselect</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="14" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="484" bodyend="523" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="14" declcolumn="6"/>
+        <references refid="_o_s_interrupt_8h_1a23d24150de606226d6d4f07b1fd72934" compoundref="_o_s_interrupt_8c" startline="385" endline="401">__OSUnmaskInterrupts</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="_o_s_exi_8c_1a8f18e16e80c32de1e6446f18ba2e17cb" compoundref="_o_s_exi_8c" startline="321" endline="371">EXIProbe</references>
+        <references refid="_o_s_exi_8c_1a585952389eeb27a7228d9f797ba8a227" compoundref="_o_s_exi_8c" startline="25">MAX_CHAN</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_exi_8c_1a91aea8f18583a4f39018d2a6a552f5ff" compoundref="_o_s_exi_8c" startline="32">STATE_ATTACHED</references>
+        <references refid="_o_s_exi_8c_1a04be6591ef29ae7689c2684ec069a4e3" compoundref="_o_s_exi_8c" startline="31">STATE_SELECTED</references>
+        <referencedby refid="_c_a_r_d_bios_8c_1a246bb771fbbfe585a04f831c524af0e4" compoundref="_c_a_r_d_bios_8c" startline="248" endline="267">__CARDClearStatus</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a3ca9f0d4abb0feea0a7d5d5f91fabab2" compoundref="_c_a_r_d_bios_8c" startline="204" endline="222">__CARDEnableInterrupt</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a39cceafd0a9596d090265bbe7ddca567" compoundref="_c_a_r_d_bios_8c" startline="613" endline="645">__CARDErase</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a9048a13e9e534d4869cd48a225d0057d" compoundref="_c_a_r_d_bios_8c" startline="648" endline="686">__CARDEraseSector</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a7068e901e99727a8c6e116181673ec58" compoundref="_c_a_r_d_bios_8c" startline="174" endline="201">__CARDReadNintendoID</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a129a537656b956fc3fe995c2ec3bc807" compoundref="_c_a_r_d_bios_8c" startline="529" endline="570">__CARDReadSegment</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1ab3459bbb51aa1f4ca2f3e800b68ca454" compoundref="_c_a_r_d_bios_8c" startline="225" endline="245">__CARDReadStatus</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a8fb2273f0cc09214644c6f107090043a" compoundref="_c_a_r_d_bios_8c" startline="270" endline="292">__CARDSleep</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1ab9e1631358c73f50f0504198e42e0e94" compoundref="_c_a_r_d_bios_8c" startline="133" endline="152">__CARDTxHandler</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a124b7c93a31100f0ba248d457232db83" compoundref="_c_a_r_d_bios_8c" startline="295" endline="316">__CARDWakeup</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a7a694e8b0db6ef2e99d6ede4cfb2fbca" compoundref="_c_a_r_d_bios_8c" startline="573" endline="610">__CARDWritePage</referencedby>
+        <referencedby refid="_o_s_private_8h_1a079560ab75bd6f5c83d4c0789ddca155" compoundref="_o_s_rtc_8c" startline="295" endline="320">__OSReadROM</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1ae92edbbb40e009f46fad0f3adb85f6cf" compoundref="_o_s_rtc_8c" startline="323" endline="335">__OSReadROMCallback</referencedby>
+        <referencedby refid="_o_s_private_8h_1a47ecde090ede5c94fa8fccba7978f678" compoundref="_o_s_rtc_8c" startline="83" endline="106">__OSSetRTC</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a54a8bb40777c81b99160069ec72ea1ef" compoundref="_o_s_exi_ad16_8c" startline="11" endline="44">AD16Init</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a024cd53d400f898287ca6d662512fef5" compoundref="_o_s_exi_ad16_8c" startline="77" endline="104">AD16ReadReg</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a4ce5f0af906b29a74c733605ce4c38d5" compoundref="_o_s_exi_ad16_8c" startline="47" endline="74">AD16WriteReg</referencedby>
+        <referencedby refid="exi_8h_1a2a3ca65a7ee279a02387ca070db19084" compoundref="_o_s_exi_8c" startline="691" endline="725">EXIGetID</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a7c25146041a7bb044f54709635fa3240" compoundref="_o_s_rtc_8c" startline="30" endline="54">GetRTC</referencedby>
+        <referencedby refid="gpioexi_8c_1a4b51e8da79350bc5613b237bcc71da85" compoundref="gpioexi_8c" startline="166" endline="188">gpioInput</referencedby>
+        <referencedby refid="gpioexi_8c_1a7d8f9d27bedb929e92b0dcd941caa23a" compoundref="gpioexi_8c" startline="141" endline="163">gpioOut</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+        <referencedby refid="hio_8h_1a840098bb0e279ecbb70831039809a3d8" compoundref="hio_8c" startline="252" endline="280">HIORead</referencedby>
+        <referencedby refid="hio_8h_1a250ab066d61b24346cb82ddae0836986" compoundref="hio_8c" startline="194" endline="221">HIOReadMailbox</referencedby>
+        <referencedby refid="hio_8h_1a3205361193b5b27ffc8bc7ce17376ee9" compoundref="hio_8c" startline="372" endline="399">HIOReadStatus</referencedby>
+        <referencedby refid="hio_8h_1a37c0d7118da3389b4fcfd64d84acb5ec" compoundref="hio_8c" startline="283" endline="311">HIOWrite</referencedby>
+        <referencedby refid="hio_8h_1ac538a4eb5175b9af9657a3ec0813e5af" compoundref="hio_8c" startline="224" endline="249">HIOWriteMailbox</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1ae499dd0dccf91bd67c7dae9d826448a6" compoundref="_o_s_uart_exi_8c" startline="31" endline="47">QueueLength</referencedby>
+        <referencedby refid="_c_a_r_d_unlock_8c_1a6c86a341ad43ca530fc01613df6301f5" compoundref="_c_a_r_d_unlock_8c" startline="114" endline="151">ReadArrayUnlock</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a72fe3a0516b0da19ce2638a31fd81e83" compoundref="_o_s_rtc_8c" startline="109" endline="133">ReadSram</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1addd43abe767099ae7d1c7d9fa691748c" compoundref="_c_a_r_d_bios_8c" startline="372" endline="421">Retry</referencedby>
+        <referencedby refid="hio_8c_1ab42646b3b74e7e3dd7ebba627761284b" compoundref="hio_8c" startline="50" endline="58">RxHandler</referencedby>
+        <referencedby refid="hio_8c_1a44bf4772e4a12d9b538e78cb93404ad9" compoundref="hio_8c" startline="39" endline="47">TxHandler</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a76b41dc7ee021d95a8aea02d4ef4c57c" compoundref="_o_s_rtc_8c" startline="151" endline="174">WriteSram</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1a20af008dba5276b2ec0151fe45a1d675" compoundref="_o_s_uart_exi_8c" startline="50" endline="125">WriteUARTN</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a42cf5cddf6109f576682760062157d2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL EXIImm</definition>
+        <argsstring>(s32 channel, void *buffer, s32 length, u32 type, EXICallback callback)</argsstring>
+        <name>EXIImm</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>length</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="_amc_types_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref></type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="15" column="6" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="15" declcolumn="6"/>
+        <referencedby refid="_c_a_r_d_bios_8c_1a246bb771fbbfe585a04f831c524af0e4" compoundref="_c_a_r_d_bios_8c" startline="248" endline="267">__CARDClearStatus</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a3ca9f0d4abb0feea0a7d5d5f91fabab2" compoundref="_c_a_r_d_bios_8c" startline="204" endline="222">__CARDEnableInterrupt</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a7068e901e99727a8c6e116181673ec58" compoundref="_c_a_r_d_bios_8c" startline="174" endline="201">__CARDReadNintendoID</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1ab3459bbb51aa1f4ca2f3e800b68ca454" compoundref="_c_a_r_d_bios_8c" startline="225" endline="245">__CARDReadStatus</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a8fb2273f0cc09214644c6f107090043a" compoundref="_c_a_r_d_bios_8c" startline="270" endline="292">__CARDSleep</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a124b7c93a31100f0ba248d457232db83" compoundref="_c_a_r_d_bios_8c" startline="295" endline="316">__CARDWakeup</referencedby>
+        <referencedby refid="_o_s_private_8h_1a079560ab75bd6f5c83d4c0789ddca155" compoundref="_o_s_rtc_8c" startline="295" endline="320">__OSReadROM</referencedby>
+        <referencedby refid="_o_s_private_8h_1a30863b86a37b41355b8187d8d4630ecb" compoundref="_o_s_rtc_8c" startline="338" endline="362">__OSReadROMAsync</referencedby>
+        <referencedby refid="_o_s_private_8h_1a47ecde090ede5c94fa8fccba7978f678" compoundref="_o_s_rtc_8c" startline="83" endline="106">__OSSetRTC</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a54a8bb40777c81b99160069ec72ea1ef" compoundref="_o_s_exi_ad16_8c" startline="11" endline="44">AD16Init</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a024cd53d400f898287ca6d662512fef5" compoundref="_o_s_exi_ad16_8c" startline="77" endline="104">AD16ReadReg</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a4ce5f0af906b29a74c733605ce4c38d5" compoundref="_o_s_exi_ad16_8c" startline="47" endline="74">AD16WriteReg</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a7c25146041a7bb044f54709635fa3240" compoundref="_o_s_rtc_8c" startline="30" endline="54">GetRTC</referencedby>
+        <referencedby refid="gpioexi_8c_1a4b51e8da79350bc5613b237bcc71da85" compoundref="gpioexi_8c" startline="166" endline="188">gpioInput</referencedby>
+        <referencedby refid="gpioexi_8c_1a7d8f9d27bedb929e92b0dcd941caa23a" compoundref="gpioexi_8c" startline="141" endline="163">gpioOut</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+        <referencedby refid="hio_8h_1a840098bb0e279ecbb70831039809a3d8" compoundref="hio_8c" startline="252" endline="280">HIORead</referencedby>
+        <referencedby refid="hio_8h_1a43a9205fbe480359f95e869af40cca9b" compoundref="hio_8c" startline="314" endline="340">HIOReadAsync</referencedby>
+        <referencedby refid="hio_8h_1a250ab066d61b24346cb82ddae0836986" compoundref="hio_8c" startline="194" endline="221">HIOReadMailbox</referencedby>
+        <referencedby refid="hio_8h_1a3205361193b5b27ffc8bc7ce17376ee9" compoundref="hio_8c" startline="372" endline="399">HIOReadStatus</referencedby>
+        <referencedby refid="hio_8h_1a37c0d7118da3389b4fcfd64d84acb5ec" compoundref="hio_8c" startline="283" endline="311">HIOWrite</referencedby>
+        <referencedby refid="hio_8h_1a04ccd1f46f3d6767838e406fc7224ec9" compoundref="hio_8c" startline="343" endline="369">HIOWriteAsync</referencedby>
+        <referencedby refid="hio_8h_1ac538a4eb5175b9af9657a3ec0813e5af" compoundref="hio_8c" startline="224" endline="249">HIOWriteMailbox</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1ae499dd0dccf91bd67c7dae9d826448a6" compoundref="_o_s_uart_exi_8c" startline="31" endline="47">QueueLength</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a72fe3a0516b0da19ce2638a31fd81e83" compoundref="_o_s_rtc_8c" startline="109" endline="133">ReadSram</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a76b41dc7ee021d95a8aea02d4ef4c57c" compoundref="_o_s_rtc_8c" startline="151" endline="174">WriteSram</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1a20af008dba5276b2ec0151fe45a1d675" compoundref="_o_s_uart_exi_8c" startline="50" endline="125">WriteUARTN</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a3f634c5955d1eb3b851046f4e4353d93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL EXIImmEx</definition>
+        <argsstring>(s32 channel, void *buffer, s32 length, u32 type)</argsstring>
+        <name>EXIImmEx</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>length</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="16" column="6" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="16" declcolumn="6"/>
+        <referencedby refid="_c_a_r_d_bios_8c_1a39cceafd0a9596d090265bbe7ddca567" compoundref="_c_a_r_d_bios_8c" startline="613" endline="645">__CARDErase</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a9048a13e9e534d4869cd48a225d0057d" compoundref="_c_a_r_d_bios_8c" startline="648" endline="686">__CARDEraseSector</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a129a537656b956fc3fe995c2ec3bc807" compoundref="_c_a_r_d_bios_8c" startline="529" endline="570">__CARDReadSegment</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a7a694e8b0db6ef2e99d6ede4cfb2fbca" compoundref="_c_a_r_d_bios_8c" startline="573" endline="610">__CARDWritePage</referencedby>
+        <referencedby refid="_c_a_r_d_unlock_8c_1a6c86a341ad43ca530fc01613df6301f5" compoundref="_c_a_r_d_unlock_8c" startline="114" endline="151">ReadArrayUnlock</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1addd43abe767099ae7d1c7d9fa691748c" compoundref="_c_a_r_d_bios_8c" startline="372" endline="421">Retry</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a76b41dc7ee021d95a8aea02d4ef4c57c" compoundref="_o_s_rtc_8c" startline="151" endline="174">WriteSram</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1ac31c5646e10ab3826aa65a23bdf075f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL EXIDma</definition>
+        <argsstring>(s32 channel, void *buffer, s32 length, u32 type, EXICallback callback)</argsstring>
+        <name>EXIDma</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>length</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="_amc_types_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref></type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="17" column="6" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="17" declcolumn="6"/>
+        <referencedby refid="_c_a_r_d_bios_8c_1a129a537656b956fc3fe995c2ec3bc807" compoundref="_c_a_r_d_bios_8c" startline="529" endline="570">__CARDReadSegment</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a7a694e8b0db6ef2e99d6ede4cfb2fbca" compoundref="_c_a_r_d_bios_8c" startline="573" endline="610">__CARDWritePage</referencedby>
+        <referencedby refid="_o_s_private_8h_1a079560ab75bd6f5c83d4c0789ddca155" compoundref="_o_s_rtc_8c" startline="295" endline="320">__OSReadROM</referencedby>
+        <referencedby refid="_o_s_private_8h_1a30863b86a37b41355b8187d8d4630ecb" compoundref="_o_s_rtc_8c" startline="338" endline="362">__OSReadROMAsync</referencedby>
+        <referencedby refid="hio_8h_1a840098bb0e279ecbb70831039809a3d8" compoundref="hio_8c" startline="252" endline="280">HIORead</referencedby>
+        <referencedby refid="hio_8h_1a43a9205fbe480359f95e869af40cca9b" compoundref="hio_8c" startline="314" endline="340">HIOReadAsync</referencedby>
+        <referencedby refid="hio_8h_1a37c0d7118da3389b4fcfd64d84acb5ec" compoundref="hio_8c" startline="283" endline="311">HIOWrite</referencedby>
+        <referencedby refid="hio_8h_1a04ccd1f46f3d6767838e406fc7224ec9" compoundref="hio_8c" startline="343" endline="369">HIOWriteAsync</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a72fe3a0516b0da19ce2638a31fd81e83" compoundref="_o_s_rtc_8c" startline="109" endline="133">ReadSram</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1addd43abe767099ae7d1c7d9fa691748c" compoundref="_c_a_r_d_bios_8c" startline="372" endline="421">Retry</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a83346edc0e899d4081d32e297c4b854b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>int EXISync</definition>
+        <argsstring>(s32 channel)</argsstring>
+        <name>EXISync</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="18" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="234" bodyend="261" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="18" declcolumn="6"/>
+        <references refid="_o_s_exi_8c_1adc5b96d57d9d41cbd8044117b3bce620" compoundref="_o_s_8c" startline="497" endline="500">__OSGetDIConfig</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_serial_8c_1a4bed6b5cb9d8836802ca0f93af20cc8f" compoundref="_o_s_serial_8c" startline="75" endline="104">CompleteTransfer</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="_o_s_exi_8c_1a585952389eeb27a7228d9f797ba8a227" compoundref="_o_s_exi_8c" startline="25">MAX_CHAN</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_exi_8c_1a27da91b90c8db452e7f35bf9dd95f0c8" compoundref="_o_s_exi_8c" startline="30">STATE_BUSY</references>
+        <references refid="_o_s_exi_8c_1a04be6591ef29ae7689c2684ec069a4e3" compoundref="_o_s_exi_8c" startline="31">STATE_SELECTED</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_c_a_r_d_bios_8c_1a246bb771fbbfe585a04f831c524af0e4" compoundref="_c_a_r_d_bios_8c" startline="248" endline="267">__CARDClearStatus</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a3ca9f0d4abb0feea0a7d5d5f91fabab2" compoundref="_c_a_r_d_bios_8c" startline="204" endline="222">__CARDEnableInterrupt</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a7068e901e99727a8c6e116181673ec58" compoundref="_c_a_r_d_bios_8c" startline="174" endline="201">__CARDReadNintendoID</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1ab3459bbb51aa1f4ca2f3e800b68ca454" compoundref="_c_a_r_d_bios_8c" startline="225" endline="245">__CARDReadStatus</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a8fb2273f0cc09214644c6f107090043a" compoundref="_c_a_r_d_bios_8c" startline="270" endline="292">__CARDSleep</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a124b7c93a31100f0ba248d457232db83" compoundref="_c_a_r_d_bios_8c" startline="295" endline="316">__CARDWakeup</referencedby>
+        <referencedby refid="_o_s_private_8h_1a079560ab75bd6f5c83d4c0789ddca155" compoundref="_o_s_rtc_8c" startline="295" endline="320">__OSReadROM</referencedby>
+        <referencedby refid="_o_s_private_8h_1a30863b86a37b41355b8187d8d4630ecb" compoundref="_o_s_rtc_8c" startline="338" endline="362">__OSReadROMAsync</referencedby>
+        <referencedby refid="_o_s_private_8h_1a47ecde090ede5c94fa8fccba7978f678" compoundref="_o_s_rtc_8c" startline="83" endline="106">__OSSetRTC</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a54a8bb40777c81b99160069ec72ea1ef" compoundref="_o_s_exi_ad16_8c" startline="11" endline="44">AD16Init</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a024cd53d400f898287ca6d662512fef5" compoundref="_o_s_exi_ad16_8c" startline="77" endline="104">AD16ReadReg</referencedby>
+        <referencedby refid="_o_s_exi_ad16_8c_1a4ce5f0af906b29a74c733605ce4c38d5" compoundref="_o_s_exi_ad16_8c" startline="47" endline="74">AD16WriteReg</referencedby>
+        <referencedby refid="exi_8h_1a2a3ca65a7ee279a02387ca070db19084" compoundref="_o_s_exi_8c" startline="691" endline="725">EXIGetID</referencedby>
+        <referencedby refid="_o_s_exi_8c_1a2c2a331e8723d0c0777905f583962b56" compoundref="_o_s_exi_8c" startline="176" endline="195">EXIImmEx</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a7c25146041a7bb044f54709635fa3240" compoundref="_o_s_rtc_8c" startline="30" endline="54">GetRTC</referencedby>
+        <referencedby refid="gpioexi_8c_1a4b51e8da79350bc5613b237bcc71da85" compoundref="gpioexi_8c" startline="166" endline="188">gpioInput</referencedby>
+        <referencedby refid="gpioexi_8c_1a7d8f9d27bedb929e92b0dcd941caa23a" compoundref="gpioexi_8c" startline="141" endline="163">gpioOut</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+        <referencedby refid="hio_8h_1a840098bb0e279ecbb70831039809a3d8" compoundref="hio_8c" startline="252" endline="280">HIORead</referencedby>
+        <referencedby refid="hio_8h_1a43a9205fbe480359f95e869af40cca9b" compoundref="hio_8c" startline="314" endline="340">HIOReadAsync</referencedby>
+        <referencedby refid="hio_8h_1a250ab066d61b24346cb82ddae0836986" compoundref="hio_8c" startline="194" endline="221">HIOReadMailbox</referencedby>
+        <referencedby refid="hio_8h_1a3205361193b5b27ffc8bc7ce17376ee9" compoundref="hio_8c" startline="372" endline="399">HIOReadStatus</referencedby>
+        <referencedby refid="hio_8h_1a37c0d7118da3389b4fcfd64d84acb5ec" compoundref="hio_8c" startline="283" endline="311">HIOWrite</referencedby>
+        <referencedby refid="hio_8h_1a04ccd1f46f3d6767838e406fc7224ec9" compoundref="hio_8c" startline="343" endline="369">HIOWriteAsync</referencedby>
+        <referencedby refid="hio_8h_1ac538a4eb5175b9af9657a3ec0813e5af" compoundref="hio_8c" startline="224" endline="249">HIOWriteMailbox</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1ae499dd0dccf91bd67c7dae9d826448a6" compoundref="_o_s_uart_exi_8c" startline="31" endline="47">QueueLength</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a72fe3a0516b0da19ce2638a31fd81e83" compoundref="_o_s_rtc_8c" startline="109" endline="133">ReadSram</referencedby>
+        <referencedby refid="_o_s_rtc_8c_1a76b41dc7ee021d95a8aea02d4ef4c57c" compoundref="_o_s_rtc_8c" startline="151" endline="174">WriteSram</referencedby>
+        <referencedby refid="_o_s_uart_exi_8c_1a20af008dba5276b2ec0151fe45a1d675" compoundref="_o_s_uart_exi_8c" startline="50" endline="125">WriteUARTN</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a9761c453c7d40fe201d65927d9b0624b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>int EXIProbe</definition>
+        <argsstring>(s32 channel)</argsstring>
+        <name>EXIProbe</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="19" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="321" bodyend="371" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="19" declcolumn="6"/>
+        <references refid="_o_s_exi_8c_1aa96f5038f1509f6ee754130975360a82" compoundref="_o_s_exi_8c" startline="46">__gUnknown800030C0</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="_o_s_exi_8c_1af59b6d7750a5e3f483f8358dec7bab5b" compoundref="_o_s_exi_8c" startline="264" endline="286">EXIClearInterrupts</references>
+        <references refid="_o_s_exi_8c_1a585952389eeb27a7228d9f797ba8a227" compoundref="_o_s_exi_8c" startline="25">MAX_CHAN</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a113cfbbe1419d333639373d81e3062e5" compoundref="_o_s_time_8c" startline="12" endline="29">OSGetTime</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="os_8h_1a3aaf8e898b79bd50c4c99ba39ff5a212" compoundref="os_8h" startline="58">OSTicksToMilliseconds</references>
+        <references refid="_o_s_exi_8c_1a91aea8f18583a4f39018d2a6a552f5ff" compoundref="_o_s_exi_8c" startline="32">STATE_ATTACHED</references>
+        <referencedby refid="_c_a_r_d_bios_8c_1ab9e1631358c73f50f0504198e42e0e94" compoundref="_c_a_r_d_bios_8c" startline="133" endline="152">__CARDTxHandler</referencedby>
+        <referencedby refid="_c_a_r_d_bios_8c_1a379d48dd4a6e83557d5906a0ad5858b6" compoundref="_c_a_r_d_bios_8c" startline="155" endline="171">__CARDUnlockedHandler</referencedby>
+        <referencedby refid="card_8h_1a4f9f88b4aa73f4e79638b01841ee90d9" compoundref="_c_a_r_d_mount_8c" startline="22" endline="25">CARDProbe</referencedby>
+        <referencedby refid="_c_a_r_d_mount_8c_1ab0844c4b9f9e587f03df4ba6006a58c0" compoundref="_c_a_r_d_mount_8c" startline="103" endline="221">DoMount</referencedby>
+        <referencedby refid="_c_a_r_d_unlock_8c_1ae6272e61fbd1178f2054981b9b5c54ac" compoundref="_c_a_r_d_unlock_8c" startline="360" endline="432">DoneCallback</referencedby>
+        <referencedby refid="exi_8h_1a4b106a890b6afe84412de9ea56805b0d" compoundref="_o_s_exi_8c" startline="388" endline="412">EXIAttach</referencedby>
+        <referencedby refid="exi_8h_1ae73d3344b053ce33d208f2ffb713bf73" compoundref="_o_s_exi_8c" startline="484" endline="523">EXIDeselect</referencedby>
+        <referencedby refid="exi_8h_1aadb1902bde089a43b1a5b4859d7963e3" compoundref="_o_s_exi_8c" startline="374" endline="385">EXIProbeEx</referencedby>
+        <referencedby refid="exi_8h_1a53348d50e4e62b4938f84faf965ec70b" compoundref="_o_s_exi_8c" startline="313" endline="318">EXIProbeReset</referencedby>
+        <referencedby refid="exi_8h_1a6d85d8d6abef8216593aa9905db8bc0f" compoundref="_o_s_exi_8c" startline="440" endline="481">EXISelect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1aadb1902bde089a43b1a5b4859d7963e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>int EXIProbeEx</definition>
+        <argsstring>(s32 channel)</argsstring>
+        <name>EXIProbeEx</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="20" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="374" bodyend="385" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="20" declcolumn="6"/>
+        <references refid="_o_s_exi_8c_1aa96f5038f1509f6ee754130975360a82" compoundref="_o_s_exi_8c" startline="46">__gUnknown800030C0</references>
+        <references refid="_o_s_exi_8c_1a8f18e16e80c32de1e6446f18ba2e17cb" compoundref="_o_s_exi_8c" startline="321" endline="371">EXIProbe</references>
+        <referencedby refid="card_8h_1a04f1fc1338a5e97c5460ba8b990b30dc" compoundref="_c_a_r_d_mount_8c" startline="28" endline="100">CARDProbeEx</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a4b106a890b6afe84412de9ea56805b0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>int EXIAttach</definition>
+        <argsstring>(s32 channel, EXICallback callback)</argsstring>
+        <name>EXIAttach</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type><ref refid="_amc_types_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref></type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="21" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="388" bodyend="412" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="21" declcolumn="6"/>
+        <references refid="_o_s_interrupt_8h_1a23d24150de606226d6d4f07b1fd72934" compoundref="_o_s_interrupt_8c" startline="385" endline="401">__OSUnmaskInterrupts</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="_o_s_exi_8c_1af59b6d7750a5e3f483f8358dec7bab5b" compoundref="_o_s_exi_8c" startline="264" endline="286">EXIClearInterrupts</references>
+        <references refid="_o_s_exi_8c_1a8f18e16e80c32de1e6446f18ba2e17cb" compoundref="_o_s_exi_8c" startline="321" endline="371">EXIProbe</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_exi_8c_1a91aea8f18583a4f39018d2a6a552f5ff" compoundref="_o_s_exi_8c" startline="32">STATE_ATTACHED</references>
+        <referencedby refid="card_8h_1aabe7c2c323ab818e1b765c79e1e32efe" compoundref="_c_a_r_d_mount_8c" startline="269" endline="332">CARDMountAsync</referencedby>
+        <referencedby refid="exi_8h_1a2a3ca65a7ee279a02387ca070db19084" compoundref="_o_s_exi_8c" startline="691" endline="725">EXIGetID</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a2f7c58168040034c5cd8acb97dde42dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>int EXIDetach</definition>
+        <argsstring>(s32 channel)</argsstring>
+        <name>EXIDetach</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="22" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="415" bodyend="437" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="22" declcolumn="6"/>
+        <references refid="_o_s_interrupt_8h_1ae1767574f2daf611741354075dcfbc82" compoundref="_o_s_interrupt_8c" startline="366" endline="382">__OSMaskInterrupts</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_o_s_exi_8c_1a91aea8f18583a4f39018d2a6a552f5ff" compoundref="_o_s_exi_8c" startline="32">STATE_ATTACHED</references>
+        <references refid="_o_s_exi_8c_1a28e0076d828dd0899e949c39b25b765f" compoundref="_o_s_exi_8c" startline="33">STATE_LOCKED</references>
+        <referencedby refid="_c_a_r_d_mount_8c_1ac3a45a577e72303758b3a3816a012ed0" compoundref="_c_a_r_d_mount_8c" startline="347" endline="367">DoUnmount</referencedby>
+        <referencedby refid="exi_8h_1a2a3ca65a7ee279a02387ca070db19084" compoundref="_o_s_exi_8c" startline="691" endline="725">EXIGetID</referencedby>
+        <referencedby refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</referencedby>
+        <referencedby refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1ab37801f589313f8b5f17c484c76e0b96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 EXIGetState</definition>
+        <argsstring>(s32 channel)</argsstring>
+        <name>EXIGetState</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="23" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="681" bodyend="688" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="23" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1ab6b8e9b20518e1b7600d0083b5728c06" compoundref="_o_s_exi_8c" startline="49">Ecb</references>
+        <references refid="_o_s_exi_8c_1a585952389eeb27a7228d9f797ba8a227" compoundref="_o_s_exi_8c" startline="25">MAX_CHAN</references>
+        <referencedby refid="card_8h_1aabe7c2c323ab818e1b765c79e1e32efe" compoundref="_c_a_r_d_mount_8c" startline="269" endline="332">CARDMountAsync</referencedby>
+        <referencedby refid="card_8h_1a04f1fc1338a5e97c5460ba8b990b30dc" compoundref="_c_a_r_d_mount_8c" startline="28" endline="100">CARDProbeEx</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a2a3ca65a7ee279a02387ca070db19084" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>int EXIGetID</definition>
+        <argsstring>(s32 channel, u32 device, u32 *id)</argsstring>
+        <name>EXIGetID</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>device</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref> *</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="24" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="691" bodyend="725" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="24" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_exi_8c_1a93b67cbc41186d67a3c334dd825dc5ef" compoundref="_o_s_exi_8c" startline="388" endline="412">EXIAttach</references>
+        <references refid="_o_s_exi_8c_1a9d4e5caf7c1d74b6595f43ade9e2563c" compoundref="_o_s_exi_8c" startline="484" endline="523">EXIDeselect</references>
+        <references refid="_o_s_exi_8c_1a4917c24d6833cf4ca5836fc0f78f7100" compoundref="_o_s_exi_8c" startline="415" endline="437">EXIDetach</references>
+        <references refid="_o_s_exi_8c_1ae0ef3749e7fc3ae9a8e772491b962aca" compoundref="_o_s_exi_8c" startline="137" endline="173">EXIImm</references>
+        <references refid="_o_s_exi_8c_1a34510beeb8327cd93caa6048b14abe83" compoundref="_o_s_exi_8c" startline="611" endline="648">EXILock</references>
+        <references refid="_o_s_exi_8c_1aba2d52f80bf3e3307cdbf79a35bf671e" compoundref="_o_s_exi_8c" startline="440" endline="481">EXISelect</references>
+        <references refid="_o_s_exi_8c_1aac9e751ae0afde779115ccade4156db2" compoundref="_o_s_exi_8c" startline="234" endline="261">EXISync</references>
+        <references refid="_o_s_exi_8c_1a45c55172dea9ba94c67b2f1c61cef580" compoundref="_o_s_exi_8c" startline="651" endline="678">EXIUnlock</references>
+        <references refid="_o_s_exi_8c_1a585952389eeb27a7228d9f797ba8a227" compoundref="_o_s_exi_8c" startline="25">MAX_CHAN</references>
+        <referencedby refid="card_8h_1a04f1fc1338a5e97c5460ba8b990b30dc" compoundref="_c_a_r_d_mount_8c" startline="28" endline="100">CARDProbeEx</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="exi_8h_1a53348d50e4e62b4938f84faf965ec70b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void EXIProbeReset</definition>
+        <argsstring>(void)</argsstring>
+        <name>EXIProbeReset</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/exi.h" line="25" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSExi.c" bodystart="313" bodyend="318" declfile="decomp/DolphinSDK/include/dolphin/exi.h" declline="25" declcolumn="6"/>
+        <references refid="_o_s_exi_8c_1aa96f5038f1509f6ee754130975360a82" compoundref="_o_s_exi_8c" startline="46">__gUnknown800030C0</references>
+        <references refid="_o_s_exi_8c_1a8f18e16e80c32de1e6446f18ba2e17cb" compoundref="_o_s_exi_8c" startline="321" endline="371">EXIProbe</references>
+        <referencedby refid="_o_s_private_8h_1a214585598092eb1c113d59eecab32263" compoundref="_o_s_time_8c" startline="60" endline="72">__OSSetTime</referencedby>
+        <referencedby refid="exi_8h_1a6554aac16b8310c11bd9106751b29199" compoundref="_o_s_exi_8c" startline="589" endline="608">EXIInit</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_EXI_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_EXI_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_o_s_context_8h" kindref="compound">dolphin/os/OSContext.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/>(*<ref refid="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref>)<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>chan,<sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref>*<sp/>context);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><ref refid="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref><sp/><ref refid="exi_8h_1a34ac450e076df1daf9694fe4ede190d5" kindref="member">EXISetExiCallback</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/><ref refid="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref><sp/>callback);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="exi_8h_1a6554aac16b8310c11bd9106751b29199" kindref="member">EXIInit</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="11" refid="exi_8h_1a1f32a2c2a5cae912b6475d38cff4afce" refkind="member"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a1f32a2c2a5cae912b6475d38cff4afce" kindref="member">EXILock</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">device</ref>,<sp/><ref refid="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref><sp/>callback);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a7716809e41f8f7d4f656ffeaf5bc5d76" kindref="member">EXIUnlock</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a6d85d8d6abef8216593aa9905db8bc0f" kindref="member">EXISelect</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">device</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">frequency</ref>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1ae73d3344b053ce33d208f2ffb713bf73" kindref="member">EXIDeselect</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>);</highlight></codeline>
+<codeline lineno="15" refid="exi_8h_1a42cf5cddf6109f576682760062157d2b" refkind="member"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a42cf5cddf6109f576682760062157d2b" kindref="member">EXIImm</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="ai_8c_1afacf0f5f5bb482c160a5d05965598d32" kindref="member">buffer</ref>,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>length,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>type,<sp/><ref refid="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref><sp/>callback);</highlight></codeline>
+<codeline lineno="16" refid="exi_8h_1a3f634c5955d1eb3b851046f4e4353d93" refkind="member"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a3f634c5955d1eb3b851046f4e4353d93" kindref="member">EXIImmEx</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="ai_8c_1afacf0f5f5bb482c160a5d05965598d32" kindref="member">buffer</ref>,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>length,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>type);</highlight></codeline>
+<codeline lineno="17" refid="exi_8h_1ac31c5646e10ab3826aa65a23bdf075f0" refkind="member"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1ac31c5646e10ab3826aa65a23bdf075f0" kindref="member">EXIDma</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="ai_8c_1afacf0f5f5bb482c160a5d05965598d32" kindref="member">buffer</ref>,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>length,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>type,<sp/><ref refid="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref><sp/>callback);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a83346edc0e899d4081d32e297c4b854b" kindref="member">EXISync</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a9761c453c7d40fe201d65927d9b0624b" kindref="member">EXIProbe</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><ref refid="exi_8h_1aadb1902bde089a43b1a5b4859d7963e3" kindref="member">EXIProbeEx</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a4b106a890b6afe84412de9ea56805b0d" kindref="member">EXIAttach</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/><ref refid="exi_8h_1a7138fa1e7122b3f129311feaafcb13e7" kindref="member">EXICallback</ref><sp/>callback);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="exi_8h_1a2f7c58168040034c5cd8acb97dde42dc" kindref="member">EXIDetach</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="exi_8h_1ab37801f589313f8b5f17c484c76e0b96" kindref="member">EXIGetState</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><ref refid="exi_8h_1a2a3ca65a7ee279a02387ca070db19084" kindref="member">EXIGetID</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">device</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>*<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="exi_8h_1a53348d50e4e62b4938f84faf965ec70b" kindref="member">EXIProbeReset</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/include/dolphin/exi.h"/>
+  </compounddef>
+</doxygen>

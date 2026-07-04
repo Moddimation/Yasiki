@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSAlloc.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osallocc">File OSAlloc.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="../_o_s_alloc_8c/"><strong>OSAlloc.c</strong></a></p>
+<p><a href="../_o_s_alloc_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#define ALIGNMENT 32
+
+#define InRange(cell, arenaStart, arenaEnd)                                                    \
+    ((u32)arenaStart &lt;= (u32)cell) &amp;&amp; ((u32)cell &lt; (u32)arenaEnd)
+
+#define HEADERSIZE 32u
+#define MINOBJSIZE 64u
+
+#ifdef DEBUG
+#define ENABLE_HEAPDESC
+#endif
+
+typedef struct HeapDesc HeapDesc;
+typedef struct Cell     Cell;
+
+struct Cell
+{
+    Cell* prev;          
+    Cell* next;          
+    s32   size;          
+#ifdef ENABLE_HEAPDESC
+    HeapDesc* hd;        
+    s32       requested; 
+#endif
+};
+
+struct HeapDesc
+{
+    s32   size;
+    Cell* free;
+    Cell* allocated;
+#ifdef ENABLE_HEAPDESC
+    u32 paddingBytes;
+    u32 headerBytes;
+    u32 payloadBytes;
+#endif
+};
+
+volatile OSHeapHandle __OSCurrHeap = -1;
+
+static HeapDesc* HeapArray;
+static int       NumHeaps;
+static void*     ArenaStart;
+static void*     ArenaEnd;
+
+// functions
+static Cell* DLAddFront (Cell* list, Cell* cell);
+static Cell* DLLookup (Cell* list, Cell* cell);
+static Cell* DLExtract (Cell* list, Cell* cell);
+static Cell* DLInsert (Cell* list, Cell* cell);
+static int   DLOverlap (Cell* list, void* start, void* end);
+static s32   DLSize (Cell* list);
+
+static Cell*
+DLAddFront (Cell* list, Cell* cell)
+{
+    cell-&gt;next = list;
+    cell-&gt;prev = 0;
+    if (list)
+    {
+        list-&gt;prev = cell;
+    }
+    return cell;
+}
+
+static Cell*
+DLLookup (Cell* list, Cell* cell)
+{
+    for (; list; list = list-&gt;next)
+    {
+        if (list == cell)
+        {
+            return list;
+        }
+    }
+    return NULL;
+}
+
+static Cell*
+DLExtract (Cell* list, Cell* cell)
+{
+    if (cell-&gt;next)
+    {
+        cell-&gt;next-&gt;prev = cell-&gt;prev;
+    }
+    if (cell-&gt;prev == NULL)
+    {
+        return cell-&gt;next;
+    }
+    cell-&gt;prev-&gt;next = cell-&gt;next;
+    return list;
+}
+
+static Cell*
+DLInsert (Cell* list, Cell* cell)
+{
+    Cell* prev;
+    Cell* next;
+
+    for (next = list, prev = NULL; next != 0; prev = next, next = next-&gt;next)
+    {
+        if (cell &lt;= next)
+        {
+            break;
+        }
+    }
+
+    cell-&gt;next = next;
+    cell-&gt;prev = prev;
+    if (next)
+    {
+        next-&gt;prev = cell;
+        if ((u8*)cell + cell-&gt;size == (u8*)next)
+        {
+            cell-&gt;size += next-&gt;size;
+            next = next-&gt;next;
+            cell-&gt;next = next;
+            if (next)
+            {
+                next-&gt;prev = cell;
+            }
+        }
+    }
+    if (prev)
+    {
+        prev-&gt;next = cell;
+        if ((u8*)prev + prev-&gt;size == (u8*)cell)
+        {
+            prev-&gt;size += cell-&gt;size;
+            prev-&gt;next = next;
+            if (next)
+            {
+                next-&gt;prev = prev;
+            }
+        }
+        return list;
+    }
+    return cell;
+}
+
+static BOOL
+DLOverlap (Cell* list, void* start, void* end)
+{
+    Cell* cell = list;
+
+    while (cell)
+    {
+        if (((start &lt;= (void*)cell) &amp;&amp; ((void*)cell &lt; end)) ||
+            ((start &lt; (void*)((u8*)cell + cell-&gt;size)) &amp;&amp;
+             ((void*)((u8*)cell + cell-&gt;size) &lt;= end)))
+        {
+            return TRUE;
+        }
+        cell = cell-&gt;next;
+    }
+    return FALSE;
+}
+
+static s32
+DLSize (Cell* list)
+{
+    Cell* cell;
+    s32   size;
+
+    size = 0;
+    cell = list;
+
+    while (cell)
+    {
+        size += cell-&gt;size;
+        cell = cell-&gt;next;
+    }
+
+    return size;
+}
+
+void*
+OSAllocFromHeap (int heap, u32 size)
+{
+    HeapDesc* hd;
+    Cell*     cell;
+    Cell*     newCell;
+    s32       leftoverSize;
+    s32       requested;
+
+    requested = (s32)size;
+    ASSERTMSGLINE (0x14D, HeapArray, &quot;OSAllocFromHeap(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x14E, (s32)size &gt; 0, &quot;OSAllocFromHeap(): invalid size.&quot;);
+    ASSERTMSGLINE (0x14F,
+                   heap &gt;= 0 &amp;&amp; heap &lt; NumHeaps,
+                   &quot;OSAllocFromHeap(): invalid heap handle.&quot;);
+    ASSERTMSGLINE (0x150, HeapArray[heap].size &gt;= 0, &quot;OSAllocFromHeap(): invalid heap handle.&quot;);
+
+    hd = &amp;HeapArray[heap];
+    size += 0x20;
+    size = (size + 0x1F) &amp; 0xFFFFFFE0;
+
+    for (cell = hd-&gt;free; cell != NULL; cell = cell-&gt;next)
+    {
+        if ((signed)size &lt;= (signed)cell-&gt;size)
+        {
+            break;
+        }
+    }
+
+    if (cell == NULL)
+    {
+#if DEBUG
+        OSReport (&quot;OSAllocFromHeap: Warning- failed to allocate %d bytes\n&quot;, size);
+#endif
+        return NULL;
+    }
+    ASSERTMSGLINE (0x168, !((s32)cell &amp; 0x1F), &quot;OSAllocFromHeap(): heap is broken.&quot;);
+    ASSERTMSGLINE (0x169, cell-&gt;hd == NULL, &quot;OSAllocFromHeap(): heap is broken.&quot;);
+
+    leftoverSize = cell-&gt;size - (s32)size;
+    if (leftoverSize &lt; 0x40U)
+    {
+        hd-&gt;free = DLExtract (hd-&gt;free, cell);
+    }
+    else
+    {
+        cell-&gt;size = (s32)size;
+        newCell = (void*)((u8*)cell + size);
+        newCell-&gt;size = leftoverSize;
+#ifdef ENABLE_HEAPDESC
+        newCell-&gt;hd = 0;
+#endif
+        newCell-&gt;prev = cell-&gt;prev;
+        newCell-&gt;next = cell-&gt;next;
+        if (newCell-&gt;next != NULL)
+        {
+            newCell-&gt;next-&gt;prev = newCell;
+        }
+        if (newCell-&gt;prev != NULL)
+        {
+            newCell-&gt;prev-&gt;next = newCell;
+        }
+        else
+        {
+            ASSERTMSGLINE (0x186, hd-&gt;free == cell, &quot;OSAllocFromHeap(): heap is broken.&quot;);
+            hd-&gt;free = newCell;
+        }
+    }
+
+    hd-&gt;allocated = DLAddFront (hd-&gt;allocated, cell);
+#ifdef ENABLE_HEAPDESC
+    cell-&gt;hd = hd;
+    cell-&gt;requested = requested;
+    hd-&gt;headerBytes += 0x20;
+    hd-&gt;paddingBytes += (cell-&gt;size - (requested + 0x20));
+    hd-&gt;payloadBytes += requested;
+#endif
+    return (u8*)cell + 0x20;
+}
+
+void*
+OSAllocFixed (void* rstart, void* rend)
+{
+    int       i;
+    Cell*     cell;
+    Cell*     newCell;
+    HeapDesc* hd;
+    void*     start;
+    void*     end;
+    void*     cellEnd;
+
+    start = (void*)((*(u32*)rstart) &amp; ~((32) - 1));
+    end = (void*)((*(u32*)rend + 0x1FU) &amp; ~((32) - 1));
+
+    ASSERTMSGLINE (0x1B0, HeapArray, &quot;OSAllocFixed(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x1B1, (u32)start &lt; (u32)end, &quot;OSAllocFixed(): invalid range.&quot;);
+    ASSERTMSGLINE (0x1B3,
+                   ((u32)ArenaStart &lt;= (u32)start) &amp;&amp; ((u32)end &lt;= (u32)ArenaEnd),
+                   &quot;OSAllocFixed(): invalid range.&quot;);
+
+    for (i = 0; i &lt; NumHeaps; i++)
+    {
+        hd = &amp;HeapArray[i];
+        if (hd-&gt;size &gt;= 0)
+        {
+            if (DLOverlap (hd-&gt;allocated, start, end))
+            {
+#if DEBUG
+                OSReport (&quot;OSAllocFixed: Warning - failed to allocate from %p to %p\n&quot;,
+                          start,
+                          end);
+#endif
+                return NULL;
+            }
+        }
+    }
+
+    for (i = 0; i &lt; NumHeaps; i++)
+    {
+        hd = &amp;HeapArray[i];
+        if (hd-&gt;size &gt;= 0)
+        {
+            for (cell = hd-&gt;free; cell; cell = cell-&gt;next)
+            {
+                cellEnd = ((u8*)cell + cell-&gt;size);
+                if (cellEnd &gt; start)
+                {
+                    if (end &lt;= cell)
+                    {
+                        break;
+                    }
+                    if ((char*)start - 0x20 &lt;= (char*)cell &amp;&amp; cell &lt; end &amp;&amp;
+                        (start &lt;= cellEnd) &amp;&amp; (cellEnd &lt; ((char*)end + 0x40)))
+                    {
+                        if (cell &lt; start)
+                        {
+                            start = cell;
+                        }
+                        if (end &lt; cellEnd)
+                        {
+                            end = cellEnd;
+                        }
+                        hd-&gt;free = DLExtract (hd-&gt;free, cell);
+                        hd-&gt;size -= cell-&gt;size;
+                    }
+                    else if ((char*)start - 0x20 &lt;= (char*)cell &amp;&amp; cell &lt; end)
+                    {
+                        if (cell &lt; start)
+                        {
+                            start = cell;
+                        }
+                        ASSERTLINE (0x1F3, MINOBJSIZE &lt;= (char*)cellEnd - (char*)end);
+                        newCell = (Cell*)end;
+
+                        newCell-&gt;size = (s32)((char*)cellEnd - (char*)end);
+#ifdef ENABLE_HEAPDESC
+                        newCell-&gt;hd = 0;
+#endif
+                        newCell-&gt;next = cell-&gt;next;
+                        if (newCell-&gt;next)
+                        {
+                            newCell-&gt;next-&gt;prev = newCell;
+                        }
+                        newCell-&gt;prev = cell-&gt;prev;
+                        if (newCell-&gt;prev)
+                        {
+                            newCell-&gt;prev-&gt;next = newCell;
+                        }
+                        else
+                        {
+                            hd-&gt;free = newCell;
+                        }
+                        hd-&gt;size -= ((char*)end - (char*)cell);
+                        break;
+                    }
+                    else
+                    {
+                        if ((start &lt;= cellEnd) &amp;&amp; (cellEnd &lt; ((char*)end + 0x40U)))
+                        {
+                            if (end &lt; cellEnd)
+                            {
+                                end = cellEnd;
+                            }
+                            ASSERTLINE (0x20C, MINOBJSIZE &lt;= (char*)start - (char*)cell);
+                            hd-&gt;size -= ((char*)cellEnd - (char*)start);
+                            cell-&gt;size = ((char*)start - (char*)cell);
+                        }
+                        else
+                        {
+                            ASSERTLINE (0x213, MINOBJSIZE &lt;= (char*)cellEnd - (char*)end);
+                            newCell = (Cell*)end;
+                            newCell-&gt;size = ((char*)cellEnd - (char*)end);
+#ifdef ENABLE_HEAPDESC
+                            newCell-&gt;hd = 0;
+#endif
+                            newCell-&gt;next = cell-&gt;next;
+                            if (newCell-&gt;next)
+                            {
+                                newCell-&gt;next-&gt;prev = newCell;
+                            }
+                            newCell-&gt;prev = cell;
+                            cell-&gt;next = newCell;
+                            cell-&gt;size = ((char*)start - (char*)cell);
+                            hd-&gt;size -= ((char*)end - (char*)start);
+                            break;
+                        }
+                    }
+                }
+            }
+            ASSERTLINE (0x222, 0 &lt;= hd-&gt;size);
+        }
+    }
+    ASSERTLINE (0x225, OFFSET (start, ALIGNMENT) == 0);
+    ASSERTLINE (0x226, OFFSET (end, ALIGNMENT) == 0);
+    ASSERTLINE (0x227, start &lt; end);
+    *(u32*)rstart = (u32)start;
+    *(u32*)rend = (u32)end;
+    return (void*)*(u32*)rstart;
+}
+
+void
+OSFreeToHeap (int heap, void* ptr)
+{
+    HeapDesc* hd;
+    Cell*     cell;
+
+    ASSERTMSGLINE (0x23D, HeapArray, &quot;OSFreeToHeap(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x23F,
+                   ((u32)ArenaStart + 0x20) &lt;= (u32)ptr &amp;&amp; (u32)ptr &lt; (u32)ArenaEnd,
+                   &quot;OSFreeToHeap(): invalid pointer.&quot;);
+    ASSERTMSGLINE (0x240, OFFSET (ptr, ALIGNMENT) == 0, &quot;OSFreeToHeap(): invalid pointer.&quot;);
+    ASSERTMSGLINE (0x241, HeapArray[heap].size &gt;= 0, &quot;OSFreeToHeap(): invalid heap handle.&quot;);
+    cell = (void*)((u32)ptr - 0x20);
+    hd = &amp;HeapArray[heap];
+    ASSERTMSGLINE (0x246, cell-&gt;hd == hd, &quot;OSFreeToHeap(): invalid pointer.&quot;);
+    ASSERTMSGLINE (0x247, DLLookup (hd-&gt;allocated, cell), &quot;OSFreeToHeap(): invalid pointer.&quot;);
+#ifdef ENABLE_HEAPDESC
+    cell-&gt;hd = 0;
+    hd-&gt;headerBytes -= 0x20;
+    hd-&gt;paddingBytes -= (cell-&gt;size - (cell-&gt;requested + 0x20));
+    hd-&gt;payloadBytes -= cell-&gt;requested;
+#endif
+    hd-&gt;allocated = DLExtract (hd-&gt;allocated, cell);
+    hd-&gt;free = DLInsert (hd-&gt;free, cell);
+}
+
+int
+OSSetCurrentHeap (int heap)
+{
+    int prev;
+
+    ASSERTMSGLINE (0x267, HeapArray, &quot;OSSetCurrentHeap(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x268,
+                   (heap &gt;= 0) &amp;&amp; (heap &lt; NumHeaps),
+                   &quot;OSSetCurrentHeap(): invalid heap handle.&quot;);
+    ASSERTMSGLINE (0x269,
+                   HeapArray[heap].size &gt;= 0,
+                   &quot;OSSetCurrentHeap(): invalid heap handle.&quot;);
+    prev = __OSCurrHeap;
+    __OSCurrHeap = heap;
+    return prev;
+}
+
+void*
+OSInitAlloc (void* arenaStart, void* arenaEnd, int maxHeaps)
+{
+    u32       arraySize;
+    int       i;
+    HeapDesc* hd;
+
+    ASSERTMSGLINE (0x283, maxHeaps &gt; 0, &quot;OSInitAlloc(): invalid number of heaps.&quot;);
+    ASSERTMSGLINE (0x285, (u32)arenaStart &lt; (u32)arenaEnd, &quot;OSInitAlloc(): invalid range.&quot;);
+    ASSERTMSGLINE (0x288,
+                   maxHeaps &lt;= (((u32)arenaEnd - (u32)arenaStart) / 24U),
+                   &quot;OSInitAlloc(): too small range.&quot;);
+    arraySize = maxHeaps * sizeof (HeapDesc);
+    HeapArray = arenaStart;
+    NumHeaps = maxHeaps;
+
+    for (i = 0; i &lt; NumHeaps; i++)
+    {
+        hd = &amp;HeapArray[i];
+        hd-&gt;size = -1;
+        hd-&gt;free = hd-&gt;allocated = 0;
+#ifdef ENABLE_HEAPDESC
+        hd-&gt;paddingBytes = hd-&gt;headerBytes = hd-&gt;payloadBytes = 0;
+#endif
+    }
+    __OSCurrHeap = -1;
+    arenaStart = (void*)((u32)((char*)HeapArray + arraySize));
+    arenaStart = (void*)(((u32)arenaStart + 0x1F) &amp; 0xFFFFFFE0);
+    ArenaStart = arenaStart;
+    ArenaEnd = (void*)((u32)arenaEnd &amp; 0xFFFFFFE0);
+    ASSERTMSGLINE (0x2A4,
+                   ((u32)ArenaEnd - (u32)ArenaStart) &gt;= 0x40U,
+                   &quot;OSInitAlloc(): too small range.&quot;);
+    return arenaStart;
+}
+
+int
+OSCreateHeap (void* start, void* end)
+{
+    int       heap;
+    HeapDesc* hd;
+    Cell*     cell;
+
+    ASSERTMSGLINE (0x2BD, HeapArray, &quot;OSCreateHeap(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x2BE, (u32)start &lt; (u32)end, &quot;OSCreateHeap(): invalid range.&quot;);
+
+    start = (void*)(((u32)start + 0x1FU) &amp; ~((32) - 1));
+    end = (void*)(((u32)end) &amp; ~((32) - 1));
+
+    ASSERTMSGLINE (0x2C1, (u32)start &lt; (u32)end, &quot;OSCreateHeap(): invalid range.&quot;);
+    ASSERTMSGLINE (0x2C3,
+                   (u32)ArenaStart &lt;= (u32)start &amp;&amp; (u32)end &lt;= (u32)ArenaEnd,
+                   &quot;OSCreateHeap(): invalid range.&quot;);
+    ASSERTMSGLINE (0x2C5, ((u32)end - (u32)start) &gt;= 0x40U, &quot;OSCreateHeap(): too small range.&quot;);
+
+#if DEBUG
+    for (heap = 0; heap &lt; NumHeaps; heap++)
+    {
+        if (HeapArray[heap].size &gt;= 0)
+        {
+            ASSERTMSGLINE (0x2CF,
+                           !DLOverlap (HeapArray[heap].free, start, end),
+                           &quot;OSCreateHeap(): invalid range.&quot;);
+            ASSERTMSGLINE (0x2D1,
+                           !DLOverlap (HeapArray[heap].allocated, start, end),
+                           &quot;OSCreateHeap(): invalid range.&quot;);
+        }
+    }
+#endif
+
+    for (heap = 0; heap &lt; NumHeaps; heap++)
+    {
+        hd = &amp;HeapArray[heap];
+        if (hd-&gt;size &lt; 0)
+        {
+            hd-&gt;size = (s32)end - (s32)start;
+            cell = start;
+            cell-&gt;prev = 0;
+            cell-&gt;next = 0;
+            cell-&gt;size = hd-&gt;size;
+#ifdef ENABLE_HEAPDESC
+            cell-&gt;hd = 0;
+#endif
+            hd-&gt;free = cell;
+            hd-&gt;allocated = 0;
+#ifdef ENABLE_HEAPDESC
+            hd-&gt;paddingBytes = hd-&gt;headerBytes = hd-&gt;payloadBytes = 0;
+#endif
+            return heap;
+        }
+    }
+#if DEBUG
+    OSReport (&quot;OSCreateHeap: Warning - Failed to find free heap descriptor.&quot;);
+#endif
+    return -1;
+}
+
+void
+OSDestroyHeap (int heap)
+{
+    HeapDesc* hd;
+    s32       size;
+
+#pragma unused(size)
+
+    ASSERTMSGLINE (0x30A, HeapArray, &quot;OSDestroyHeap(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x30B,
+                   (heap &gt;= 0) &amp;&amp; (heap &lt; NumHeaps),
+                   &quot;OSDestroyHeap(): invalid heap handle.&quot;);
+    ASSERTMSGLINE (0x30C, HeapArray[heap].size &gt;= 0, &quot;OSDestroyHeap(): invalid heap handle.&quot;);
+
+    hd = &amp;HeapArray[heap];
+#if DEBUG
+    size = DLSize (hd-&gt;free);
+
+    if (hd-&gt;size != size)
+    {
+        OSReport (&quot;OSDestroyHeap(%d): Warning - free list size %d, heap size %d\n&quot;,
+                  heap,
+                  size,
+                  hd-&gt;size);
+    }
+#endif
+
+    hd-&gt;size = -1;
+#ifdef ENABLE_HEAPDESC
+    hd-&gt;paddingBytes = hd-&gt;headerBytes = hd-&gt;payloadBytes = 0;
+    if (__OSCurrHeap == heap)
+    {
+        __OSCurrHeap = -1;
+    }
+#endif
+}
+
+void
+OSAddToHeap (int heap, void* start, void* end)
+{
+    HeapDesc* hd;
+    Cell*     cell;
+    int       i;
+
+#pragma unused(i)
+
+    ASSERTMSGLINE (0x339, HeapArray, &quot;OSAddToHeap(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x33A,
+                   (heap &gt;= 0) &amp;&amp; (heap &lt; NumHeaps),
+                   &quot;OSAddToHeap(): invalid heap handle.&quot;);
+    ASSERTMSGLINE (0x33B, HeapArray[heap].size &gt;= 0, &quot;OSAddToHeap(): invalid heap handle.&quot;);
+
+    hd = &amp;HeapArray[heap];
+
+    ASSERTMSGLINE (0x33F, (u32)start &lt; (u32)end, &quot;OSAddToHeap(): invalid range.&quot;);
+
+    start = (void*)(((u32)start + 0x1F) &amp; ~((32) - 1));
+    end = (void*)(((u32)end) &amp; ~((32) - 1));
+
+    ASSERTMSGLINE (0x343, ((u32)end - (u32)start) &gt;= 0x40U, &quot;OSAddToHeap(): too small range.&quot;);
+    ASSERTMSGLINE (0x345,
+                   (u32)ArenaStart &lt;= (u32)start &amp;&amp; (u32)end &lt;= (u32)ArenaEnd,
+                   &quot;OSAddToHeap(): invalid range.&quot;);
+
+#if DEBUG
+    for (i = 0; i &lt; NumHeaps; i++)
+    {
+        if (HeapArray[i].size &gt;= 0)
+        {
+            ASSERTMSGLINE (0x34F,
+                           !DLOverlap (HeapArray[i].free, start, end),
+                           &quot;OSAddToHeap(): invalid range.&quot;);
+            ASSERTMSGLINE (0x351,
+                           !DLOverlap (HeapArray[i].allocated, start, end),
+                           &quot;OSAddToHeap(): invalid range.&quot;);
+        }
+    }
+#endif
+    cell = (Cell*)start;
+    cell-&gt;size = ((char*)end - (char*)start);
+#ifdef ENABLE_HEAPDESC
+    cell-&gt;hd = 0;
+#endif
+    hd-&gt;size += cell-&gt;size;
+    hd-&gt;free = DLInsert (hd-&gt;free, cell);
+}
+
+// custom macro for OSCheckHeap
+#define ASSERTREPORT(line, cond)                                                               \
+    if (!(cond))                                                                               \
+    {                                                                                          \
+        OSReport (&quot;OSCheckHeap: Failed &quot; #cond &quot; in %d&quot;, line);                                \
+        return -1;                                                                             \
+    }
+
+s32
+OSCheckHeap (int heap)
+{
+    HeapDesc* hd;
+    Cell*     cell;
+    s32       total = 0;
+    s32       free = 0;
+
+    ASSERTREPORT (0x37D, HeapArray);
+    ASSERTREPORT (0x37E, 0 &lt;= heap &amp;&amp; heap &lt; NumHeaps);
+    hd = &amp;HeapArray[heap];
+    ASSERTREPORT (0x381, 0 &lt;= hd-&gt;size);
+
+    ASSERTREPORT (0x383, hd-&gt;allocated == NULL || hd-&gt;allocated-&gt;prev == NULL);
+
+    for (cell = hd-&gt;allocated; cell; cell = cell-&gt;next)
+    {
+        ASSERTREPORT (0x386, InRange (cell, ArenaStart, ArenaEnd));
+        ASSERTREPORT (0x387, OFFSET (cell, ALIGNMENT) == 0);
+        ASSERTREPORT (0x388, cell-&gt;next == NULL || cell-&gt;next-&gt;prev == cell);
+        ASSERTREPORT (0x389, MINOBJSIZE &lt;= cell-&gt;size);
+        ASSERTREPORT (0x38A, OFFSET (cell-&gt;size, ALIGNMENT) == 0);
+        total += cell-&gt;size;
+        ASSERTREPORT (0x38D, 0 &lt; total &amp;&amp; total &lt;= hd-&gt;size);
+#ifdef ENABLE_HEAPDESC
+        ASSERTREPORT (0x390, cell-&gt;hd == hd);
+        ASSERTREPORT (0x391, HEADERSIZE + cell-&gt;requested &lt;= cell-&gt;size);
+#endif
+    }
+
+    ASSERTREPORT (0x395, hd-&gt;free == NULL || hd-&gt;free-&gt;prev == NULL);
+
+    for (cell = hd-&gt;free; cell; cell = cell-&gt;next)
+    {
+        ASSERTREPORT (0x398, InRange (cell, ArenaStart, ArenaEnd));
+        ASSERTREPORT (0x399, OFFSET (cell, ALIGNMENT) == 0);
+        ASSERTREPORT (0x39A, cell-&gt;next == NULL || cell-&gt;next-&gt;prev == cell);
+        ASSERTREPORT (0x39B, MINOBJSIZE &lt;= cell-&gt;size);
+        ASSERTREPORT (0x39C, OFFSET (cell-&gt;size, ALIGNMENT) == 0);
+        ASSERTREPORT (0x39D,
+                      cell-&gt;next == NULL || (char*)cell + cell-&gt;size &lt; (char*)cell-&gt;next);
+        total += cell-&gt;size;
+        free = (cell-&gt;size + free);
+        free -= HEADERSIZE;
+        ASSERTREPORT (0x3A1, 0 &lt; total &amp;&amp; total &lt;= hd-&gt;size);
+#ifdef ENABLE_HEAPDESC
+        ASSERTREPORT (0x3A4, cell-&gt;hd == NULL);
+#endif
+    }
+    ASSERTREPORT (0x3A8, total == hd-&gt;size);
+    return free;
+}
+
+u32
+OSReferentSize (void* ptr)
+{
+    Cell* cell;
+
+    ASSERTMSGLINE (0x3BB, HeapArray, &quot;OSReferentSize(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x3BD,
+                   InRange (ptr, ArenaStart + HEADERSIZE, ArenaEnd),
+                   &quot;OSReferentSize(): invalid pointer.&quot;);
+    ASSERTMSGLINE (0x3BE, !OFFSET (ptr, 32), &quot;OSReferentSize(): invalid pointer.&quot;);
+    cell = (void*)((u32)ptr - HEADERSIZE);
+    ASSERTMSGLINE (0x3C2, cell-&gt;hd, &quot;OSReferentSize(): invalid pointer.&quot;);
+    ASSERTMSGLINE (0x3C4,
+                   !(((u32)cell-&gt;hd - (u32)HeapArray) % 24),
+                   &quot;OSReferentSize(): invalid pointer.&quot;);
+    ASSERTMSGLINE (0x3C6,
+                   ((u32)HeapArray &lt;= (u32)cell-&gt;hd) &amp;&amp;
+                       ((u32)cell-&gt;hd &lt; (u32)((u32)HeapArray + (NumHeaps * 0x18))),
+                   &quot;OSReferentSize(): invalid pointer.&quot;);
+    ASSERTMSGLINE (0x3C7, cell-&gt;hd-&gt;size &gt;= 0, &quot;OSReferentSize(): invalid pointer.&quot;);
+    ASSERTMSGLINE (0x3C9,
+                   DLLookup (cell-&gt;hd-&gt;allocated, cell),
+                   &quot;OSReferentSize(): invalid pointer.&quot;);
+    return ((u32)cell-&gt;size - HEADERSIZE);
+}
+
+void
+OSDumpHeap (int heap)
+{
+    HeapDesc* hd;
+    Cell*     cell;
+
+    OSReport (&quot;\nOSDumpHeap(%d):\n&quot;, heap);
+    ASSERTMSGLINE (0x3DE, HeapArray, &quot;OSDumpHeap(): heap is not initialized.&quot;);
+    ASSERTMSGLINE (0x3DF,
+                   (heap &gt;= 0) &amp;&amp; (heap &lt; NumHeaps),
+                   &quot;OSDumpHeap(): invalid heap handle.&quot;);
+    hd = &amp;HeapArray[heap];
+    if (hd-&gt;size &lt; 0)
+    {
+        OSReport (&quot;--------Inactive\n&quot;);
+        return;
+    }
+    ASSERTMSGLINE (0x3E8, OSCheckHeap (heap) &gt;= 0, &quot;OSDumpHeap(): heap is broken.&quot;);
+#ifdef ENABLE_HEAPDESC
+    OSReport (&quot;padding %d/(%f%%) header %d/(%f%%) payload %d/(%f%%)\n&quot;,
+              hd-&gt;paddingBytes,
+              (100.0 * hd-&gt;paddingBytes / hd-&gt;size),
+              hd-&gt;headerBytes,
+              (100.0 * hd-&gt;headerBytes / hd-&gt;size),
+              hd-&gt;payloadBytes,
+              (100.0 * hd-&gt;payloadBytes / hd-&gt;size));
+#endif
+    OSReport (&quot;addr size        end prev    next\n&quot;);
+    OSReport (&quot;--------Allocated\n&quot;);
+
+    ASSERTMSGLINE (0x3F5,
+                   hd-&gt;allocated == NULL || hd-&gt;allocated-&gt;prev == NULL,
+                   &quot;OSDumpHeap(): heap is broken.&quot;);
+
+    for (cell = hd-&gt;allocated; cell; cell = cell-&gt;next)
+    {
+        OSReport (&quot;%x   %d  %x  %x  %x\n&quot;,
+                  cell,
+                  cell-&gt;size,
+                  (char*)cell + cell-&gt;size,
+                  cell-&gt;prev,
+                  cell-&gt;next);
+    }
+    OSReport (&quot;--------Free\n&quot;);
+    for (cell = hd-&gt;free; cell; cell = cell-&gt;next)
+    {
+        OSReport (&quot;%x   %d  %x  %x  %x\n&quot;,
+                  cell,
+                  cell-&gt;size,
+                  (char*)cell + cell-&gt;size,
+                  cell-&gt;prev,
+                  cell-&gt;next);
+    }
+}
+
+void
+OSVisitAllocated (void (*visitor) (void*, u32))
+{
+    u32   heap;
+    Cell* cell;
+
+    for (heap = 0; heap &lt; NumHeaps; heap++)
+    {
+        if (HeapArray[heap].size &gt;= 0)
+        {
+            for (cell = HeapArray[heap].allocated; cell; cell = cell-&gt;next)
+            {
+                visitor ((char*)cell + HEADERSIZE, (u32)cell-&gt;size);
+            }
+        }
+    }
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

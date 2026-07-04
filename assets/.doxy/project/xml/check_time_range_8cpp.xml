@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="check_time_range_8cpp" kind="file" language="C++">
+    <compoundname>checkTimeRange.cpp</compoundname>
+    <includes local="yes">Unsorted/Timer.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>checkTimeRange.cpp</label>
+        <link refid="check_time_range_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Unsorted/Timer.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="check_time_range_8cpp_1a4f0c4f45de5a45136619435ad2edd3b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int checkTimeRange</definition>
+        <argsstring>(int rangeLower, int rangeUpper)</argsstring>
+        <name>checkTimeRange</name>
+        <param>
+          <type>int</type>
+          <declname>rangeLower</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rangeUpper</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/unsorted/src/checkTimeRange.cpp" line="4" column="1" bodyfile="decomp/Project/sources/unsorted/src/checkTimeRange.cpp" bodystart="4" bodyend="19"/>
+        <references refid="_timer_8h_1a78af733baf81fe2caf182bd6ef02a404" compoundref="_timer_8h" startline="2">gCurrentHour</references>
+        <references refid="_timer_8h_1a69c24d06bffca66ba388afc7f896632b" compoundref="_timer_8h" startline="1">gCurrentMinute</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;Unsorted/Timer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="check_time_range_8cpp_1a4f0c4f45de5a45136619435ad2edd3b6" refkind="member"><highlight class="normal"><ref refid="check_time_range_8cpp_1a4f0c4f45de5a45136619435ad2edd3b6" kindref="member">checkTimeRange</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rangeLower,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rangeUpper)</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>totalMinutes;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>totalMinutes<sp/>=<sp/><ref refid="_timer_8h_1a69c24d06bffca66ba388afc7f896632b" kindref="member">gCurrentMinute</ref><sp/>+<sp/>(<ref refid="_timer_8h_1a78af733baf81fe2caf182bd6ef02a404" kindref="member">gCurrentHour</ref><sp/>*<sp/>60);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((totalMinutes<sp/>&gt;=<sp/>rangeLower)<sp/>&amp;&amp;<sp/>(totalMinutes<sp/>&lt;<sp/>rangeUpper))</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(totalMinutes<sp/>&gt;=<sp/>rangeUpper)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>2;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/Project/sources/unsorted/src/checkTimeRange.cpp"/>
+  </compounddef>
+</doxygen>

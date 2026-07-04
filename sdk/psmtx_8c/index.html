@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File psmtx.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-psmtxc">File psmtx.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_26b6e6c4cda21e7491fcc30d526d19d0/"><strong>mtx</strong></a> <strong>&gt;</strong> <a href="./"><strong>psmtx.c</strong></a></p>
+<p><a href="../psmtx_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/mtx.h&gt;</code></li>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+<li><code>#include "fake_tgmath.h"</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-psmtxmults16vecarray"><strong>PSMTXMultS16VecArray</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../mtx_8h/#typedef-mtx44"><strong>Mtx44</strong></a> * m, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_s16_vec/"><strong>S16Vec</strong></a> * srcBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_vec/"><strong>Vec</strong></a> * dstBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-psmtxromults16vecarray"><strong>PSMTXROMultS16VecArray</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../mtx_8h/#typedef-romtx"><strong>ROMtx</strong></a> * m, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_s16_vec/"><strong>S16Vec</strong></a> * srcBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_vec/"><strong>Vec</strong></a> * dstBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-psmtxromultvecarray"><strong>PSMTXROMultVecArray</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../mtx_8h/#typedef-romtx"><strong>ROMtx</strong></a> * m, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_vec/"><strong>Vec</strong></a> * srcBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_vec/"><strong>Vec</strong></a> * dstBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-psmtxroskin2vecarray"><strong>PSMTXROSkin2VecArray</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../mtx_8h/#typedef-romtx"><strong>ROMtx</strong></a> * m0, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../mtx_8h/#typedef-romtx"><strong>ROMtx</strong></a> * m1, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-f32"><strong>f32</strong></a> * wtBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_vec/"><strong>Vec</strong></a> * srcBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../struct_vec/"><strong>Vec</strong></a> * dstBase, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> count) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>asm</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-psmtxreorder"><strong>PSMTXReorder</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../mtx_8h/#typedef-mtx"><strong>Mtx</strong></a> src, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>register</strong></a> <a href="../mtx_8h/#typedef-romtx"><strong>ROMtx</strong></a> dest) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-qr0"><strong>qr0</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-qr1"><strong>qr1</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-qr6"><strong>qr6</strong></a>  <code>6</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-psmtxmults16vecarray">function PSMTXMultS16VecArray</h3>
+<pre><code class="language-C++">asm  void PSMTXMultS16VecArray (
+    register  Mtx44 * m,
+    register  S16Vec * srcBase,
+    register  Vec * dstBase,
+    register  u32 count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-psmtxromults16vecarray">function PSMTXROMultS16VecArray</h3>
+<pre><code class="language-C++">asm  void PSMTXROMultS16VecArray (
+    register  ROMtx * m,
+    register  S16Vec * srcBase,
+    register  Vec * dstBase,
+    register  u32 count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-psmtxromultvecarray">function PSMTXROMultVecArray</h3>
+<pre><code class="language-C++">asm  void PSMTXROMultVecArray (
+    register  ROMtx * m,
+    register  Vec * srcBase,
+    register  Vec * dstBase,
+    register  u32 count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-psmtxroskin2vecarray">function PSMTXROSkin2VecArray</h3>
+<pre><code class="language-C++">asm  void PSMTXROSkin2VecArray (
+    register  ROMtx * m0,
+    register  ROMtx * m1,
+    register  f32 * wtBase,
+    register  Vec * srcBase,
+    register  Vec * dstBase,
+    register  u32 count
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-psmtxreorder">function PSMTXReorder</h3>
+<pre><code class="language-C++">asm  void PSMTXReorder (
+    register  Mtx src,
+    register  ROMtx dest
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-qr0">define qr0</h3>
+<pre><code class="language-C++">#define qr0 `0`
+</code></pre>
+<hr>
+
+<h3 id="define-qr1">define qr1</h3>
+<pre><code class="language-C++">#define qr1 `1`
+</code></pre>
+<hr>
+
+<h3 id="define-qr6">define qr6</h3>
+<pre><code class="language-C++">#define qr6 `6`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/mtx/psmtx.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_enemy_typical_strategy_8cpp" kind="file" language="C++">
+    <compoundname>EnemyTypicalStrategy.cpp</compoundname>
+    <includes local="yes">Sato/EnemyTypicalStrategy.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>EnemyTypicalStrategy.cpp</label>
+        <link refid="_enemy_typical_strategy_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Sato/EnemyTypicalStrategy.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_enemy_typical_strategy_8cpp_1ae65dc0f46aca88c6be39d97ca18d70ae" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float dummy[]</definition>
+        <argsstring>[]</argsstring>
+        <name>dummy</name>
+        <initializer>= { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/src/EnemyTypicalStrategy.cpp" line="4" column="14" bodyfile="decomp/Project/sources/Sato/src/EnemyTypicalStrategy.cpp" bodystart="4" bodyend="4"/>
+      </memberdef>
+      <memberdef kind="variable" id="_enemy_typical_strategy_8cpp_1a5d50ea5fe45dde36fcba11f24a2f591f" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float dummy2[]</definition>
+        <argsstring>[]</argsstring>
+        <name>dummy2</name>
+        <initializer>= { 1.0f, 0.95f, 0.9f, 0.85f, 1.0f, 0.9f, 0.75f, 0.3f }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/src/EnemyTypicalStrategy.cpp" line="5" column="14" bodyfile="decomp/Project/sources/Sato/src/EnemyTypicalStrategy.cpp" bodystart="5" bodyend="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;Sato/EnemyTypicalStrategy.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Required<sp/>for<sp/>.data<sp/>to<sp/>match.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="_enemy_typical_strategy_8cpp_1ae65dc0f46aca88c6be39d97ca18d70ae" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_enemy_typical_strategy_8cpp_1ae65dc0f46aca88c6be39d97ca18d70ae" kindref="member">dummy</ref>[]<sp/>=<sp/>{<sp/>1.0f,<sp/>1.0f,<sp/>1.0f,<sp/>1.0f,<sp/>1.0f,<sp/>1.0f<sp/>};</highlight></codeline>
+<codeline lineno="5" refid="_enemy_typical_strategy_8cpp_1a5d50ea5fe45dde36fcba11f24a2f591f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_enemy_typical_strategy_8cpp_1a5d50ea5fe45dde36fcba11f24a2f591f" kindref="member">dummy2</ref>[]<sp/>=<sp/>{<sp/>1.0f,<sp/>0.95f,<sp/>0.9f,<sp/>0.85f,<sp/>1.0f,<sp/>0.9f,<sp/>0.75f,<sp/>0.3f<sp/>};</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="class_enemy_typical_strategy_1aeb9c7c784a4cbbf04865a7a1b0430f85" refkind="member"><highlight class="normal"><ref refid="class_enemy_typical_strategy_1aeb9c7c784a4cbbf04865a7a1b0430f85" kindref="member">EnemyTypicalStrategy::onFishingBegin</ref><sp/>(<ref refid="class_koga_1_1_character_event" kindref="compound">Koga::CharacterEvent</ref>*<sp/>msg)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref>*<sp/>strategy<sp/>=<sp/><ref refid="class_enemy_typical_strategy_1aff0f40a21169b4268deaba4d809b36c2" kindref="member">mTsuriStrategies</ref>.<ref refid="class_en_strategy_container_1aeed873402a9a560ca617814468fb9a6b" kindref="member">createStrategy</ref><sp/>(</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0);<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>The<sp/>argument<sp/>here<sp/>comes<sp/>from<sp/>mpZako-&gt;mpCharacter-&gt;mEntityIndex.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>strategy-&gt;<ref refid="class_enemy_strategy_1a4182d611d41aafb0b68c7510b63e7a7a" kindref="member">mpZako</ref><sp/>=<sp/><ref refid="class_enemy_strategy_1a4182d611d41aafb0b68c7510b63e7a7a" kindref="member">mpZako</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>strategy-&gt;<ref refid="class_enemy_strategy_1af28acab9860186ec7fb3ea4eda1cef25" kindref="member">mpUserData</ref><sp/>=<sp/><ref refid="class_enemy_strategy_1af28acab9860186ec7fb3ea4eda1cef25" kindref="member">mpUserData</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>strategy-&gt;<ref refid="class_enemy_strategy_1ad98656894b6d463311f732242d497bcc" kindref="member">setNextState</ref><sp/>(0);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_enemy_strategy_decorator_1ab0190a46d0f997ceb9f40f8f9221670c" kindref="member">setTsuriStrategy</ref><sp/>(strategy);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/Project/sources/Sato/src/EnemyTypicalStrategy.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CARDBios.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardbiosc">File CARDBios.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_2dfa3b55db09c289c0394a464581d568/"><strong>card</strong></a> <strong>&gt;</strong> <a href="./"><strong>CARDBios.c</strong></a></p>
+<p><a href="../_c_a_r_d_bios_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/card.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include "CARDPrivate.h"</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_c_a_r_d_control/"><strong>CARDControl</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__cardblock"><strong>__CARDBlock</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__carddiskid"><strong>__CARDDiskID</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__carddisknone"><strong>__CARDDiskNone</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_reset_function_info/"><strong>OSResetFunctionInfo</strong></a></td>
+<td style="text-align: left;"><a href="#variable-resetfunctioninfo"><strong>ResetFunctionInfo</strong></a>   = <code>{ [**OnReset**](_c_a_r_d_bios_8c.md#function-onreset), 127 }</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardfreeblocks"><strong>CARDFreeBlocks</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * byteNotUsed, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * filesNotUsed) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetencoding"><strong>CARDGetEncoding</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> * encode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetmemsize"><strong>CARDGetMemSize</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> * size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetresultcode"><strong>CARDGetResultCode</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetsectorsize"><strong>CARDGetSectorSize</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardinit"><strong>CARDInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardclearstatus"><strong>__CARDClearStatus</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__carddefaultapicallback"><strong>__CARDDefaultApiCallback</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardenableinterrupt"><strong>__CARDEnableInterrupt</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> enable) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__carderase"><strong>__CARDErase</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a>, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a>) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__carderasesector"><strong>__CARDEraseSector</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> addr, <a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardexihandler"><strong>__CARDExiHandler</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardexthandler"><strong>__CARDExtHandler</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardgetcontrolblock"><strong>__CARDGetControlBlock</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../struct_c_a_r_d_control/"><strong>CARDControl</strong></a> ** pcard) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardputcontrolblock"><strong>__CARDPutControlBlock</strong></a> (<a href="../struct_c_a_r_d_control/"><strong>CARDControl</strong></a> * card, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardreadnintendoid"><strong>__CARDReadNintendoID</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * id) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardreadsegment"><strong>__CARDReadSegment</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardreadstatus"><strong>__CARDReadStatus</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> * status) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardsetdiskid"><strong>__CARDSetDiskID</strong></a> (<a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a> * id) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardsleep"><strong>__CARDSleep</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardsync"><strong>__CARDSync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardsynccallback"><strong>__CARDSyncCallback</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardtxhandler"><strong>__CARDTxHandler</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardunlockedhandler"><strong>__CARDUnlockedHandler</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardwakeup"><strong>__CARDWakeup</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardwritepage"><strong>__CARDWritePage</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-onreset"><strong>OnReset</strong></a> (<a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> f) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-retry"><strong>Retry</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-setuptimeoutalarm"><strong>SetupTimeoutAlarm</strong></a> (<a href="../struct_c_a_r_d_control/"><strong>CARDControl</strong></a> * card) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-timeouthandler"><strong>TimeoutHandler</strong></a> (<a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a> * alarm, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-unlockedcallback"><strong>UnlockedCallback</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-__cardstart"><strong>__CARDStart</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a> txCallback, <a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a> exiCallback) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ad1"><strong>AD1</strong></a> (x) <code>(([**u8**](types_8h.md#typedef-u8))(((x) &amp;gt;&amp;gt; 17) &amp; 0x7f))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ad1ex"><strong>AD1EX</strong></a> (x) <code>(([**u8**](types_8h.md#typedef-u8))([**AD1**](_c_a_r_d_bios_8c.md#define-ad1) (x) \| 0x80));</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ad2"><strong>AD2</strong></a> (x) <code>(([**u8**](types_8h.md#typedef-u8))(((x) &amp;gt;&amp;gt; 9) &amp; 0xff))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ad3"><strong>AD3</strong></a> (x) <code>(([**u8**](types_8h.md#typedef-u8))(((x) &amp;gt;&amp;gt; 7) &amp; 0x03))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ba"><strong>BA</strong></a> (x) <code>(([**u8**](types_8h.md#typedef-u8))((x) &amp; 0x7f))</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__cardblock">variable __CARDBlock</h3>
+<pre><code class="language-C++">CARDControl __CARDBlock[2];
+</code></pre>
+<hr>
+
+<h3 id="variable-__carddiskid">variable __CARDDiskID</h3>
+<pre><code class="language-C++">DVDDiskID* __CARDDiskID;
+</code></pre>
+<hr>
+
+<h3 id="variable-__carddisknone">variable __CARDDiskNone</h3>
+<pre><code class="language-C++">DVDDiskID __CARDDiskNone;
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-resetfunctioninfo">variable ResetFunctionInfo</h3>
+<pre><code class="language-C++">OSResetFunctionInfo ResetFunctionInfo;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-cardfreeblocks">function CARDFreeBlocks</h3>
+<pre><code class="language-C++">s32 CARDFreeBlocks (
+    s32 chan,
+    s32 * byteNotUsed,
+    s32 * filesNotUsed
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetencoding">function CARDGetEncoding</h3>
+<pre><code class="language-C++">s32 CARDGetEncoding (
+    s32 chan,
+    u16 * encode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetmemsize">function CARDGetMemSize</h3>
+<pre><code class="language-C++">s32 CARDGetMemSize (
+    s32 chan,
+    u16 * size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetresultcode">function CARDGetResultCode</h3>
+<pre><code class="language-C++">s32 CARDGetResultCode (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetsectorsize">function CARDGetSectorSize</h3>
+<pre><code class="language-C++">s32 CARDGetSectorSize (
+    s32 chan,
+    u32 * size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardinit">function CARDInit</h3>
+<pre><code class="language-C++">void CARDInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardclearstatus">function __CARDClearStatus</h3>
+<pre><code class="language-C++">s32 __CARDClearStatus (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__carddefaultapicallback">function __CARDDefaultApiCallback</h3>
+<pre><code class="language-C++">void __CARDDefaultApiCallback (
+    s32 chan,
+    s32 result
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardenableinterrupt">function __CARDEnableInterrupt</h3>
+<pre><code class="language-C++">s32 __CARDEnableInterrupt (
+    s32 chan,
+    BOOL enable
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__carderase">function __CARDErase</h3>
+<pre><code class="language-C++">s32 __CARDErase (
+    s32 chan,
+    void (*)( long , long ) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__carderasesector">function __CARDEraseSector</h3>
+<pre><code class="language-C++">s32 __CARDEraseSector (
+    s32 chan,
+    u32 addr,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardexihandler">function __CARDExiHandler</h3>
+<pre><code class="language-C++">void __CARDExiHandler (
+    s32 chan,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardexthandler">function __CARDExtHandler</h3>
+<pre><code class="language-C++">void __CARDExtHandler (
+    s32 chan,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardgetcontrolblock">function __CARDGetControlBlock</h3>
+<pre><code class="language-C++">s32 __CARDGetControlBlock (
+    s32 chan,
+    CARDControl ** pcard
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardputcontrolblock">function __CARDPutControlBlock</h3>
+<pre><code class="language-C++">s32 __CARDPutControlBlock (
+    CARDControl * card,
+    s32 result
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardreadnintendoid">function __CARDReadNintendoID</h3>
+<pre><code class="language-C++">int __CARDReadNintendoID (
+    s32 chan,
+    u32 * id
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardreadsegment">function __CARDReadSegment</h3>
+<pre><code class="language-C++">s32 __CARDReadSegment (
+    s32 chan,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardreadstatus">function __CARDReadStatus</h3>
+<pre><code class="language-C++">s32 __CARDReadStatus (
+    s32 chan,
+    u8 * status
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardsetdiskid">function __CARDSetDiskID</h3>
+<pre><code class="language-C++">void __CARDSetDiskID (
+    DVDDiskID * id
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardsleep">function __CARDSleep</h3>
+<pre><code class="language-C++">s32 __CARDSleep (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardsync">function __CARDSync</h3>
+<pre><code class="language-C++">s32 __CARDSync (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardsynccallback">function __CARDSyncCallback</h3>
+<pre><code class="language-C++">void __CARDSyncCallback (
+    s32 chan,
+    s32 result
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardtxhandler">function __CARDTxHandler</h3>
+<pre><code class="language-C++">void __CARDTxHandler (
+    s32 chan,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardunlockedhandler">function __CARDUnlockedHandler</h3>
+<pre><code class="language-C++">void __CARDUnlockedHandler (
+    s32 chan,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardwakeup">function __CARDWakeup</h3>
+<pre><code class="language-C++">s32 __CARDWakeup (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardwritepage">function __CARDWritePage</h3>
+<pre><code class="language-C++">s32 __CARDWritePage (
+    s32 chan,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-onreset">function OnReset</h3>
+<pre><code class="language-C++">static BOOL OnReset (
+    BOOL f
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-retry">function Retry</h3>
+<pre><code class="language-C++">static s32 Retry (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-setuptimeoutalarm">function SetupTimeoutAlarm</h3>
+<pre><code class="language-C++">static void SetupTimeoutAlarm (
+    CARDControl * card
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-timeouthandler">function TimeoutHandler</h3>
+<pre><code class="language-C++">static void TimeoutHandler (
+    OSAlarm * alarm,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-unlockedcallback">function UnlockedCallback</h3>
+<pre><code class="language-C++">static void UnlockedCallback (
+    s32 chan,
+    s32 result
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__cardstart">function __CARDStart</h3>
+<pre><code class="language-C++">static s32 __CARDStart (
+    s32 chan,
+    CARDCallback txCallback,
+    CARDCallback exiCallback
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-ad1">define AD1</h3>
+<pre><code class="language-C++">#define AD1 (
+    x
+) `(( u8 )(((x) &gt;&gt; 17) &amp; 0x7f))`
+</code></pre>
+<hr>
+
+<h3 id="define-ad1ex">define AD1EX</h3>
+<pre><code class="language-C++">#define AD1EX (
+    x
+) `(( u8 )( AD1 (x) | 0x80));`
+</code></pre>
+<hr>
+
+<h3 id="define-ad2">define AD2</h3>
+<pre><code class="language-C++">#define AD2 (
+    x
+) `(( u8 )(((x) &gt;&gt; 9) &amp; 0xff))`
+</code></pre>
+<hr>
+
+<h3 id="define-ad3">define AD3</h3>
+<pre><code class="language-C++">#define AD3 (
+    x
+) `(( u8 )(((x) &gt;&gt; 7) &amp; 0x03))`
+</code></pre>
+<hr>
+
+<h3 id="define-ba">define BA</h3>
+<pre><code class="language-C++">#define BA (
+    x
+) `(( u8 )((x) &amp; 0x7f))`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/card/CARDBios.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

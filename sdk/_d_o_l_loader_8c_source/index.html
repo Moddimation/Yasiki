@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File DOLLoader.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dolloaderc">File DOLLoader.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_a6f8ee3cde9828a605b761774126fb19/"><strong>dolformat</strong></a> <strong>&gt;</strong> <a href="../_d_o_l_loader_8c/"><strong>DOLLoader.c</strong></a></p>
+<p><a href="../_d_o_l_loader_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/db.h&gt;
+#include &lt;dolphin/dolformat.h&gt;
+
+#include &lt;stddef.h&gt;
+#include &lt;string.h&gt;
+
+void bzero (void* start, u32 len);
+
+void
+bzero (void* start, u32 len)
+{
+    u32  i;
+    u16* a = start;
+
+    for (i = 0; i &lt; len; i++)
+    {
+        a[0] = 0; // BUG: this only zeros the first byte!
+    }
+}
+
+void*
+DOLLoadImage (u8* buffer, BOOL verbose)
+{
+    struct DolImage* ip;
+    s32              segment;
+
+    ip = (struct DolImage*)buffer;
+    if (verbose)
+    {
+        DBPrintf (&quot;DOLLoadImage header :¥n&quot;);
+        for (segment = 0; segment &lt; DOL_MAX_TEXT; segment++)
+        {
+            if (ip-&gt;textData[segment] != NULL)
+            {
+                DBPrintf (&quot;TEXT[%d]- offset 0x%x, length %d(0x%x) -&gt; VA 0x%x¥n&quot;,
+                          segment,
+                          ip-&gt;textData[segment],
+                          ip-&gt;textLen[segment],
+                          ip-&gt;textLen[segment],
+                          ip-&gt;text[segment]);
+            }
+        }
+        for (segment = 0; segment &lt; DOL_MAX_DATA; segment++)
+        {
+            if (ip-&gt;dataData[segment] != NULL)
+            {
+                DBPrintf (&quot;DATA[%d]- offset 0x%x, length %d (0x%x) -&gt; VA 0x%x¥n&quot;,
+                          segment,
+                          ip-&gt;dataData[segment],
+                          ip-&gt;dataLen[segment],
+                          ip-&gt;dataLen[segment],
+                          ip-&gt;data[segment]);
+            }
+        }
+        DBPrintf (&quot;BSS segment length %d -&gt; VA 0x%x¥n&quot;, ip-&gt;bssLen, ip-&gt;bss);
+        DBPrintf (&quot;ENTRY POINT -&gt; VA 0x%x¥n¥n&quot;, ip-&gt;entry);
+    }
+    bzero ((void*)ip-&gt;bss, ip-&gt;bssLen);
+    if (verbose)
+    {
+        DBPrintf (&quot;Loading TEXT...&quot;);
+    }
+    for (segment = 0; segment &lt; DOL_MAX_TEXT; segment++)
+    {
+        if (ip-&gt;textData[segment] != NULL)
+        {
+            if (verbose != 0)
+            {
+                DBPrintf (&quot;[%d]&quot;, segment);
+            }
+            memcpy ((void*)ip-&gt;text[segment],
+                    buffer + (u32)ip-&gt;textData[segment],
+                    ip-&gt;textLen[segment]);
+            DCFlushRange ((void*)ip-&gt;text[segment], ip-&gt;textLen[segment]);
+        }
+    }
+    if (verbose)
+    {
+        DBPrintf (&quot;Loading DATA...&quot;);
+    }
+    // BUG: Should be DOL_MAX_DATA instead!
+    for (segment = 0; segment &lt; DOL_MAX_TEXT; segment++)
+    {
+        if (ip-&gt;dataData[segment] != NULL)
+        {
+            if (verbose != 0)
+            {
+                DBPrintf (&quot;[%d]&quot;, segment);
+            }
+            memcpy ((void*)ip-&gt;data[segment],
+                    buffer + (u32)ip-&gt;dataData[segment],
+                    ip-&gt;dataLen[segment]);
+            DCFlushRange ((void*)ip-&gt;data[segment], ip-&gt;dataLen[segment]);
+        }
+    }
+    if (verbose)
+    {
+        DBPrintf (&quot;¥n&quot;);
+    }
+    ICFlashInvalidate();
+    ICSync();
+    return (void*)ip-&gt;entry;
+}
+
+asm void
+DOLRunApp (register void* entryPoint)
+{
+    nofralloc mtlr entryPoint blr
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

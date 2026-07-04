@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File vec.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-vecc">File vec.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_26b6e6c4cda21e7491fcc30d526d19d0/"><strong>mtx</strong></a> <strong>&gt;</strong> <a href="../vec_8c/"><strong>vec.c</strong></a></p>
+<p><a href="../vec_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/mtx.h&gt;
+
+#include &lt;cmath&gt;
+
+// defines to make asm work
+#define qr0 0
+
+void
+C_VECAdd (Vec* a, Vec* b, Vec* c)
+{
+    ASSERTMSGLINE (0x57, a, &quot;VECAdd():  NULL VecPtr 'a' &quot;);
+    ASSERTMSGLINE (0x58, b, &quot;VECAdd():  NULL VecPtr 'b' &quot;);
+    ASSERTMSGLINE (0x59, c, &quot;VECAdd():  NULL VecPtr 'ab' &quot;);
+    c-&gt;x = a-&gt;x + b-&gt;x;
+    c-&gt;y = a-&gt;y + b-&gt;y;
+    c-&gt;z = a-&gt;z + b-&gt;z;
+}
+
+asm void
+PSVECAdd (register Vec* a, register Vec* b, register Vec* c)
+{
+#ifdef __MWERKS__
+    psq_l  f2, Vec.x (a), 0, qr0;
+    psq_l  f4, Vec.x (b), 0, qr0;
+    ps_add f6, f2, f4;
+    psq_st f6, Vec.x (c), 0, qr0;
+    psq_l  f3, Vec.z (a), 1, qr0;
+    psq_l  f5, Vec.z (b), 1, qr0;
+    ps_add f7, f3, f5;
+    psq_st f7, Vec.z (c), 1, qr0
+#endif
+}
+
+void
+C_VECSubtract (Vec* a, Vec* b, Vec* c)
+{
+    ASSERTMSGLINE (0x9C, a, &quot;VECSubtract():  NULL VecPtr 'a' &quot;);
+    ASSERTMSGLINE (0x9D, b, &quot;VECSubtract():  NULL VecPtr 'b' &quot;);
+    ASSERTMSGLINE (0x9E, c, &quot;VECSubtract():  NULL VecPtr 'a_b' &quot;);
+    c-&gt;x = a-&gt;x - b-&gt;x;
+    c-&gt;y = a-&gt;y - b-&gt;y;
+    c-&gt;z = a-&gt;z - b-&gt;z;
+}
+
+asm void
+PSVECSubtract (register Vec* a, register Vec* b, register Vec* c)
+{
+#ifdef __MWERKS__
+    psq_l  f2, Vec.x (a), 0, qr0;
+    psq_l  f4, Vec.x (b), 0, qr0;
+    ps_sub f6, f2, f4;
+    psq_st f6, Vec.x (c), 0, qr0;
+    psq_l  f3, Vec.z (a), 1, qr0;
+    psq_l  f5, Vec.z (b), 1, qr0;
+    ps_sub f7, f3, f5;
+    psq_st f7, Vec.z (c), 1, qr0
+#endif
+}
+
+void
+C_VECScale (Vec* src, Vec* dst, f32 scale)
+{
+    ASSERTMSGLINE (0xE2, src, &quot;VECScale():  NULL VecPtr 'src' &quot;);
+    ASSERTMSGLINE (0xE3, dst, &quot;VECScale():  NULL VecPtr 'dst' &quot;);
+    dst-&gt;x = (src-&gt;x * scale);
+    dst-&gt;y = (src-&gt;y * scale);
+    dst-&gt;z = (src-&gt;z * scale);
+}
+
+asm void
+PSVECScale (register Vec* src, register Vec* dst, register f32 mult)
+{
+#ifdef __MWERKS__
+    psq_l      f2, Vec.x (src), 0, qr0;
+    ps_merge00 f4, mult, mult;
+    ps_mul     f6, f2, f4;
+    psq_st     f6, Vec.x (dst), 0, qr0;
+    psq_l      f3, Vec.z (src), 1, qr0;
+    ps_mul     f7, f3, f4;
+    psq_st     f7, Vec.z (dst), 1, qr0;
+#endif
+}
+
+void
+C_VECNormalize (Vec* src, Vec* unit)
+{
+    f32 mag;
+
+    ASSERTMSGLINE (0x127, src, &quot;VECNormalize():  NULL VecPtr 'src' &quot;);
+    ASSERTMSGLINE (0x128, unit, &quot;VECNormalize():  NULL VecPtr 'unit' &quot;);
+    mag = (src-&gt;z * src-&gt;z) + ((src-&gt;x * src-&gt;x) + (src-&gt;y * src-&gt;y));
+    ASSERTMSGLINE (0x12D, 0.0f != mag, &quot;VECNormalize():  zero magnitude vector &quot;);
+    mag     = 1.0f / sqrtf (mag);
+    unit-&gt;x = src-&gt;x * mag;
+    unit-&gt;y = src-&gt;y * mag;
+    unit-&gt;z = src-&gt;z * mag;
+}
+
+void
+PSVECNormalize (register Vec* vec1, register Vec* dst)
+{
+    register float c_half  = 0.5f;
+    register float c_three = 3.0f;
+    register float v1_xy;
+    register float v1_z;
+    register float xx_zz;
+    register float xx_yy;
+    register float sqsum;
+    register float rsqrt;
+    register float nwork0;
+    register float nwork1;
+
+#ifdef __MWERKS__
+    asm
+    {
+        psq_l     v1_xy, Vec.x (vec1), 0, qr0;
+        ps_mul    xx_yy, v1_xy, v1_xy;
+        psq_l     v1_z, Vec.z (vec1), 1, qr0;
+        ps_madd   xx_zz, v1_z, v1_z, xx_yy;
+        ps_sum0   sqsum, xx_zz, v1_z, xx_yy;
+        ps_rsqrte rsqrt, sqsum;
+        fmuls     nwork0, rsqrt, rsqrt;
+        fmuls     nwork1, rsqrt, c_half;
+        fmuls     nwork0, nwork0, sqsum;
+        fsubs     nwork0, c_three, nwork0;
+        fmuls     rsqrt, nwork0, nwork1;
+        ps_muls0  v1_xy, v1_xy, rsqrt;
+        psq_st    v1_xy, Vec.x (dst), 0, qr0;
+        ps_muls0  v1_z, v1_z, rsqrt;
+        psq_st    v1_z, Vec.z (dst), 1, qr0;
+    }
+#endif
+}
+
+f32
+C_VECSquareMag (Vec* v)
+{
+    f32 sqmag;
+
+    sqmag = v-&gt;z * v-&gt;z + ((v-&gt;x * v-&gt;x) + (v-&gt;y * v-&gt;y));
+    return sqmag;
+}
+
+asm f32
+PSVECSquareMag (register Vec* vec1)
+{
+#ifdef __MWERKS__
+    psq_l   f2, Vec.x (vec1), 0, qr0;
+    ps_mul  f3, f2, f2;
+    lfs     f4, Vec.z (vec1);
+    ps_madd f5, f4, f4, f3;
+    ps_sum0 f1, f5, f3, f3; // return square mag in f1
+    blr;                    
+#endif
+}
+
+f32
+VECMag (Vec* v)
+{
+    ASSERTMSGLINE (0x182, v, &quot;VECMag():  NULL VecPtr 'v' &quot;);
+    return sqrtf (VECSquareMag (v));
+}
+
+f32
+C_VECDotProduct (Vec* a, Vec* b)
+{
+    f32 dot;
+
+    ASSERTMSGLINE (0x1D1, a, &quot;VECDotProduct():  NULL VecPtr 'a' &quot;);
+    ASSERTMSGLINE (0x1D2, b, &quot;VECDotProduct():  NULL VecPtr 'b' &quot;);
+    dot = (a-&gt;z * b-&gt;z) + ((a-&gt;x * b-&gt;x) + (a-&gt;y * b-&gt;y));
+    return dot;
+}
+
+asm f32
+PSVECDotProduct (register Vec* vec1, register Vec* vec2)
+{
+#ifdef __MWERKS__
+    psq_l   f2, Vec.y (vec1), 0, qr0;
+    psq_l   f3, Vec.y (vec2), 0, qr0;
+    ps_mul  f2, f2, f3;
+    psq_l   f5, Vec.x (vec1), 0, qr0;
+    psq_l   f4, Vec.x (vec2), 0, qr0;
+    ps_madd f3, f5, f4, f2;
+    ps_sum0 f1, f3, f2, f2
+#endif
+}
+
+void
+C_VECCrossProduct (Vec* a, Vec* b, Vec* axb)
+{
+    Vec vTmp;
+
+    ASSERTMSGLINE (0x20F, a, &quot;VECCrossProduct():  NULL VecPtr 'a' &quot;);
+    ASSERTMSGLINE (0x210, b, &quot;VECCrossProduct():  NULL VecPtr 'b' &quot;);
+    ASSERTMSGLINE (0x211, axb, &quot;VECCrossProduct():  NULL VecPtr 'axb' &quot;);
+
+    vTmp.x = (a-&gt;y * b-&gt;z) - (a-&gt;z * b-&gt;y);
+    vTmp.y = (a-&gt;z * b-&gt;x) - (a-&gt;x * b-&gt;z);
+    vTmp.z = (a-&gt;x * b-&gt;y) - (a-&gt;y * b-&gt;x);
+    axb-&gt;x = vTmp.x;
+    axb-&gt;y = vTmp.y;
+    axb-&gt;z = vTmp.z;
+}
+
+asm void
+PSVECCrossProduct (register Vec* vec1, register Vec* vec2, register Vec* dst)
+{
+#ifdef __MWERKS__
+    psq_l      f1, Vec.x (vec2), 0, qr0;
+    lfs        f2, Vec.z (vec1);
+    psq_l      f0, Vec.x (vec1), 0, qr0;
+    ps_merge10 f6, f1, f1;
+    lfs        f3, Vec.z (vec2);
+    ps_mul     f4, f1, f2;
+    ps_muls0   f7, f1, f0;
+    ps_msub    f5, f0, f3, f4;
+    ps_msub    f8, f0, f6, f7;
+    ps_merge11 f9, f5, f5;
+    ps_merge01 f10, f5, f8;
+    psq_st     f9, Vec.x (dst), 1, qr0;
+    ps_neg     f10, f10;
+    psq_st     f10, Vec.y (dst), 0, qr0
+#endif
+}
+
+void
+VECHalfAngle (Vec* a, Vec* b, Vec* half)
+{
+    Vec aTmp;
+    Vec bTmp;
+    Vec hTmp;
+
+    ASSERTMSGLINE (0x27F, a, &quot;VECHalfAngle():  NULL VecPtr 'a' &quot;);
+    ASSERTMSGLINE (0x280, b, &quot;VECHalfAngle():  NULL VecPtr 'b' &quot;);
+    ASSERTMSGLINE (0x281, half, &quot;VECHalfAngle():  NULL VecPtr 'half' &quot;);
+    aTmp.x = -a-&gt;x;
+    aTmp.y = -a-&gt;y;
+    aTmp.z = -a-&gt;z;
+    bTmp.x = -b-&gt;x;
+    bTmp.y = -b-&gt;y;
+    bTmp.z = -b-&gt;z;
+    VECNormalize (&amp;aTmp, &amp;aTmp);
+    VECNormalize (&amp;bTmp, &amp;bTmp);
+    VECAdd (&amp;aTmp, &amp;bTmp, &amp;hTmp);
+    if (VECDotProduct (&amp;hTmp, &amp;hTmp) &gt; 0.0f)
+    {
+        VECNormalize (&amp;hTmp, half);
+        return;
+    }
+    *half = hTmp;
+}
+
+void
+VECReflect (Vec* src, Vec* normal, Vec* dst)
+{
+    f32 cosA;
+    Vec uI;
+    Vec uN;
+
+    ASSERTMSGLINE (0x2B7, src, &quot;VECReflect():  NULL VecPtr 'src' &quot;);
+    ASSERTMSGLINE (0x2B8, normal, &quot;VECReflect():  NULL VecPtr 'normal' &quot;);
+    ASSERTMSGLINE (0x2B9, dst, &quot;VECReflect():  NULL VecPtr 'dst' &quot;);
+
+    uI.x = -src-&gt;x;
+    uI.y = -src-&gt;y;
+    uI.z = -src-&gt;z;
+    VECNormalize (&amp;uI, &amp;uI);
+    VECNormalize (normal, &amp;uN);
+    cosA   = VECDotProduct (&amp;uI, &amp;uN);
+    dst-&gt;x = (2.0f * uN.x * cosA) - uI.x;
+    dst-&gt;y = (2.0f * uN.y * cosA) - uI.y;
+    dst-&gt;z = (2.0f * uN.z * cosA) - uI.z;
+    VECNormalize (dst, dst);
+}
+
+f32
+C_VECSquareDistance (Vec* a, Vec* b)
+{
+    Vec diff;
+
+    diff.x = a-&gt;x - b-&gt;x;
+    diff.y = a-&gt;y - b-&gt;y;
+    diff.z = a-&gt;z - b-&gt;z;
+    return (diff.z * diff.z) + ((diff.x * diff.x) + (diff.y * diff.y));
+}
+
+asm f32
+PSVECSquareDistance (register Vec* vec1, register Vec* vec2)
+{
+#ifdef __MWERKS__
+    psq_l   f2, Vec.y (vec1), 0, qr0;
+    psq_l   f3, Vec.y (vec2), 0, qr0;
+    ps_sub  f2, f2, f3;
+    psq_l   f5, Vec.x (vec1), 0, qr0;
+    psq_l   f6, Vec.x (vec2), 0, qr0;
+    ps_mul  f4, f2, f2;
+    ps_sub  f6, f5, f6;
+    ps_madd f5, f6, f6, f4;
+    ps_sum0 f1, f5, f4, f4;
+#endif
+}
+
+f32
+VECDistance (Vec* a, Vec* b)
+{
+    return sqrtf (VECSquareDistance (a, b));
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

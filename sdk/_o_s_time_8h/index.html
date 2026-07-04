@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSTime.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-ostimeh">File OSTime.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_2e13e6cf1d2e2aa91cbc210fef9f68a3/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSTime.h</strong></a></p>
+<p><a href="../_o_s_time_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;types.h&gt;</code></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ostick"><strong>OSTick</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../types_8h/#typedef-s64"><strong>s64</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-ostime"><strong>OSTime</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-bias"><strong>BIAS</strong></a>  <code>0xB2575</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-month_max"><strong>MONTH_MAX</strong></a>  <code>12</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-msec_max"><strong>MSEC_MAX</strong></a>  <code>1000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_msec_to_ticks"><strong>OS_MSEC_TO_TICKS</strong></a> (x) <code>((x) \* ([**OS\_TIME\_SPEED**](_o_s_time_8h.md#define-os_time_speed) / 1000))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_nsec_to_ticks"><strong>OS_NSEC_TO_TICKS</strong></a> (x) <code>((x) \* ([**OS\_TIME\_SPEED**](_o_s_time_8h.md#define-os_time_speed) / 125000) / 8000)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_sec_to_ticks"><strong>OS_SEC_TO_TICKS</strong></a> (x) <code>((x) \* ([**OS\_TIME\_SPEED**](_o_s_time_8h.md#define-os_time_speed)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_ticks_to_msec"><strong>OS_TICKS_TO_MSEC</strong></a> (x) <code>((x) / ([**OS\_TIME\_SPEED**](_o_s_time_8h.md#define-os_time_speed) / 1000))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_ticks_to_nsec"><strong>OS_TICKS_TO_NSEC</strong></a> (x) <code>(((x) \* 8000) / ([**OS\_TIME\_SPEED**](_o_s_time_8h.md#define-os_time_speed) / 125000))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_ticks_to_sec"><strong>OS_TICKS_TO_SEC</strong></a> (x) <code>((x) / ([**OS\_TIME\_SPEED**](_o_s_time_8h.md#define-os_time_speed)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_ticks_to_usec"><strong>OS_TICKS_TO_USEC</strong></a> (x) <code>(((x) \* 8) / ([**OS\_TIME\_SPEED**](_o_s_time_8h.md#define-os_time_speed) / 125000))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_time_speed"><strong>OS_TIME_SPEED</strong></a>  <code>([**OS\_BUS\_CLOCK**](os_8h.md#define-os_bus_clock) / 4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_usec_to_ticks"><strong>OS_USEC_TO_TICKS</strong></a> (x) <code>((x) \* ([**OS\_TIME\_SPEED**](_o_s_time_8h.md#define-os_time_speed) / 125000) / 8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-secs_in_day"><strong>SECS_IN_DAY</strong></a>  <code>([**SECS\_IN\_HOUR**](_o_s_time_8h.md#define-secs_in_hour) \* 24)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-secs_in_hour"><strong>SECS_IN_HOUR</strong></a>  <code>([**SECS\_IN\_MIN**](_o_s_time_8h.md#define-secs_in_min) \* 60)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-secs_in_min"><strong>SECS_IN_MIN</strong></a>  <code>60</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-secs_in_year"><strong>SECS_IN_YEAR</strong></a>  <code>([**SECS\_IN\_DAY**](_o_s_time_8h.md#define-secs_in_day) \* 365)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-usec_max"><strong>USEC_MAX</strong></a>  <code>1000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-week_day_max"><strong>WEEK_DAY_MAX</strong></a>  <code>7</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-year_day_max"><strong>YEAR_DAY_MAX</strong></a>  <code>365</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-ostick">typedef OSTick</h3>
+<pre><code class="language-C++">typedef u32 OSTick;
+</code></pre>
+<hr>
+
+<h3 id="typedef-ostime">typedef OSTime</h3>
+<pre><code class="language-C++">typedef s64 OSTime;
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-bias">define BIAS</h3>
+<pre><code class="language-C++">#define BIAS `0xB2575`
+</code></pre>
+<hr>
+
+<h3 id="define-month_max">define MONTH_MAX</h3>
+<pre><code class="language-C++">#define MONTH_MAX `12`
+</code></pre>
+<hr>
+
+<h3 id="define-msec_max">define MSEC_MAX</h3>
+<pre><code class="language-C++">#define MSEC_MAX `1000`
+</code></pre>
+<hr>
+
+<h3 id="define-os_msec_to_ticks">define OS_MSEC_TO_TICKS</h3>
+<pre><code class="language-C++">#define OS_MSEC_TO_TICKS (
+    x
+) `((x) * ( OS_TIME_SPEED / 1000))`
+</code></pre>
+<hr>
+
+<h3 id="define-os_nsec_to_ticks">define OS_NSEC_TO_TICKS</h3>
+<pre><code class="language-C++">#define OS_NSEC_TO_TICKS (
+    x
+) `((x) * ( OS_TIME_SPEED / 125000) / 8000)`
+</code></pre>
+<hr>
+
+<h3 id="define-os_sec_to_ticks">define OS_SEC_TO_TICKS</h3>
+<pre><code class="language-C++">#define OS_SEC_TO_TICKS (
+    x
+) `((x) * ( OS_TIME_SPEED ))`
+</code></pre>
+<hr>
+
+<h3 id="define-os_ticks_to_msec">define OS_TICKS_TO_MSEC</h3>
+<pre><code class="language-C++">#define OS_TICKS_TO_MSEC (
+    x
+) `((x) / ( OS_TIME_SPEED / 1000))`
+</code></pre>
+<hr>
+
+<h3 id="define-os_ticks_to_nsec">define OS_TICKS_TO_NSEC</h3>
+<pre><code class="language-C++">#define OS_TICKS_TO_NSEC (
+    x
+) `(((x) * 8000) / ( OS_TIME_SPEED / 125000))`
+</code></pre>
+<hr>
+
+<h3 id="define-os_ticks_to_sec">define OS_TICKS_TO_SEC</h3>
+<pre><code class="language-C++">#define OS_TICKS_TO_SEC (
+    x
+) `((x) / ( OS_TIME_SPEED ))`
+</code></pre>
+<hr>
+
+<h3 id="define-os_ticks_to_usec">define OS_TICKS_TO_USEC</h3>
+<pre><code class="language-C++">#define OS_TICKS_TO_USEC (
+    x
+) `(((x) * 8) / ( OS_TIME_SPEED / 125000))`
+</code></pre>
+<hr>
+
+<h3 id="define-os_time_speed">define OS_TIME_SPEED</h3>
+<pre><code class="language-C++">#define OS_TIME_SPEED `( OS_BUS_CLOCK / 4)`
+</code></pre>
+<hr>
+
+<h3 id="define-os_usec_to_ticks">define OS_USEC_TO_TICKS</h3>
+<pre><code class="language-C++">#define OS_USEC_TO_TICKS (
+    x
+) `((x) * ( OS_TIME_SPEED / 125000) / 8)`
+</code></pre>
+<hr>
+
+<h3 id="define-secs_in_day">define SECS_IN_DAY</h3>
+<pre><code class="language-C++">#define SECS_IN_DAY `( SECS_IN_HOUR * 24)`
+</code></pre>
+<hr>
+
+<h3 id="define-secs_in_hour">define SECS_IN_HOUR</h3>
+<pre><code class="language-C++">#define SECS_IN_HOUR `( SECS_IN_MIN * 60)`
+</code></pre>
+<hr>
+
+<h3 id="define-secs_in_min">define SECS_IN_MIN</h3>
+<pre><code class="language-C++">#define SECS_IN_MIN `60`
+</code></pre>
+<hr>
+
+<h3 id="define-secs_in_year">define SECS_IN_YEAR</h3>
+<pre><code class="language-C++">#define SECS_IN_YEAR `( SECS_IN_DAY * 365)`
+</code></pre>
+<hr>
+
+<h3 id="define-usec_max">define USEC_MAX</h3>
+<pre><code class="language-C++">#define USEC_MAX `1000`
+</code></pre>
+<hr>
+
+<h3 id="define-week_day_max">define WEEK_DAY_MAX</h3>
+<pre><code class="language-C++">#define WEEK_DAY_MAX `7`
+</code></pre>
+<hr>
+
+<h3 id="define-year_day_max">define YEAR_DAY_MAX</h3>
+<pre><code class="language-C++">#define YEAR_DAY_MAX `365`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/os/OSTime.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

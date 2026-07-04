@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File DebuggerDriver.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-debuggerdriverc">File DebuggerDriver.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_3db02da560834236de46d8d627abd3de/"><strong>OdemuExi2</strong></a> <strong>&gt;</strong> <a href="./"><strong>DebuggerDriver.c</strong></a></p>
+<p><a href="../_debugger_driver_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/db.h&gt;</code></li>
+<li><code>#include &lt;dolphin/gx.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include &lt;types.h&gt;</code></li>
+<li><code>#include "macros.h"</code></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-dbgcallbacktype"><strong>DBGCallbackType</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-dbgcallbacktype"><strong>DBGCallbackType</strong></a></td>
+<td style="text-align: left;"><a href="#variable-dbgcallback"><strong>DBGCallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#variable-exiinputflag"><strong>EXIInputFlag</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_d_b_interface_8h/#typedef-mtrcallbacktype"><strong>MTRCallbackType</strong></a></td>
+<td style="text-align: left;"><a href="#variable-mtrcallback"><strong>MTRCallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-recvdataleng"><strong>RecvDataLeng</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-sendmaildata"><strong>SendMailData</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-pexiinputflag"><strong>pEXIInputFlag</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-checkmailbox"><strong>CheckMailBox</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbclose"><strong>DBClose</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgexiclearinterrupts"><strong>DBGEXIClearInterrupts</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgexideselect"><strong>DBGEXIDeselect</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgexiimm"><strong>DBGEXIImm</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> size, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgexiinit"><strong>DBGEXIInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgexiselect"><strong>DBGEXISelect</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> v) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgexisync"><strong>DBGEXISync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbghandler"><strong>DBGHandler</strong></a> (<a href="../types_8h/#typedef-s16"><strong>s16</strong></a> a, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * b) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgread"><strong>DBGRead</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * data, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> byte_size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgreadmailbox"><strong>DBGReadMailbox</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * v) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgreadstatus"><strong>DBGReadStatus</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * status) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgwrite"><strong>DBGWrite</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> addr, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbgwritemailbox"><strong>DBGWriteMailbox</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> v) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbinitcomm"><strong>DBInitComm</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> ** a, <a href="../_d_b_interface_8h/#typedef-mtrcallbacktype"><strong>MTRCallbackType</strong></a> b) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbinitinterrupts"><strong>DBInitInterrupts</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbopen"><strong>DBOpen</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbquerydata"><strong>DBQueryData</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbread"><strong>DBRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * data, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dbwrite"><strong>DBWrite</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * data, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-mwcallback"><strong>MWCallback</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> a, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * b) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-db_no_error"><strong>DB_NO_ERROR</strong></a>  <code>0x0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-db_stat_recieve"><strong>DB_STAT_RECIEVE</strong></a>  <code>0x2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-db_stat_send"><strong>DB_STAT_SEND</strong></a>  <code>0x1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-odemu_addr_recv"><strong>ODEMU_ADDR_RECV</strong></a>  <code>0x0001E000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-odemu_error"><strong>ODEMU_ERROR</strong></a>  <code>1;</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-odemu_error"><strong>ODEMU_ERROR</strong></a>  <code>1;</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-odemu_mail_magic"><strong>ODEMU_MAIL_MAGIC</strong></a>  <code>0x1F000000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-odemu_mail_mask"><strong>ODEMU_MAIL_MASK</strong></a>  <code>0x1fffffff</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-odemu_no_error"><strong>ODEMU_NO_ERROR</strong></a>  <code>1;</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-odemu_offset_recv"><strong>ODEMU_OFFSET_RECV</strong></a>  <code>0x00001000</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-dbgcallbacktype">typedef DBGCallbackType</h3>
+<pre><code class="language-C++">typedef void(* DBGCallbackType) (u32, OSContext *);
+</code></pre>
+<hr>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-dbgcallback">variable DBGCallback</h3>
+<pre><code class="language-C++">DBGCallbackType DBGCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-exiinputflag">variable EXIInputFlag</h3>
+<pre><code class="language-C++">u8 EXIInputFlag;
+</code></pre>
+<hr>
+
+<h3 id="variable-mtrcallback">variable MTRCallback</h3>
+<pre><code class="language-C++">MTRCallbackType MTRCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-recvdataleng">variable RecvDataLeng</h3>
+<pre><code class="language-C++">s32 RecvDataLeng;
+</code></pre>
+<hr>
+
+<h3 id="variable-sendmaildata">variable SendMailData</h3>
+<pre><code class="language-C++">u32 SendMailData;
+</code></pre>
+<hr>
+
+<h3 id="variable-pexiinputflag">variable pEXIInputFlag</h3>
+<pre><code class="language-C++">u8* pEXIInputFlag;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-checkmailbox">function CheckMailBox</h3>
+<pre><code class="language-C++">void CheckMailBox (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbclose">function DBClose</h3>
+<pre><code class="language-C++">void DBClose (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgexiclearinterrupts">function DBGEXIClearInterrupts</h3>
+<pre><code class="language-C++">void DBGEXIClearInterrupts (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgexideselect">function DBGEXIDeselect</h3>
+<pre><code class="language-C++">BOOL DBGEXIDeselect (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgexiimm">function DBGEXIImm</h3>
+<pre><code class="language-C++">BOOL DBGEXIImm (
+    const  void * data,
+    s32 size,
+    u32 mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgexiinit">function DBGEXIInit</h3>
+<pre><code class="language-C++">void DBGEXIInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgexiselect">function DBGEXISelect</h3>
+<pre><code class="language-C++">BOOL DBGEXISelect (
+    u32 v
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgexisync">function DBGEXISync</h3>
+<pre><code class="language-C++">BOOL DBGEXISync (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbghandler">function DBGHandler</h3>
+<pre><code class="language-C++">void DBGHandler (
+    s16 a,
+    OSContext * b
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgread">function DBGRead</h3>
+<pre><code class="language-C++">BOOL DBGRead (
+    u32 addr,
+    const  u32 * data,
+    s32 byte_size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgreadmailbox">function DBGReadMailbox</h3>
+<pre><code class="language-C++">BOOL DBGReadMailbox (
+    u32 * v
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgreadstatus">function DBGReadStatus</h3>
+<pre><code class="language-C++">BOOL DBGReadStatus (
+    u32 * status
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgwrite">function DBGWrite</h3>
+<pre><code class="language-C++">BOOL DBGWrite (
+    u32 addr,
+    const  void * data,
+    s32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbgwritemailbox">function DBGWriteMailbox</h3>
+<pre><code class="language-C++">BOOL DBGWriteMailbox (
+    u32 v
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbinitcomm">function DBInitComm</h3>
+<pre><code class="language-C++">void DBInitComm (
+    u8 ** a,
+    MTRCallbackType b
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbinitinterrupts">function DBInitInterrupts</h3>
+<pre><code class="language-C++">void DBInitInterrupts (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbopen">function DBOpen</h3>
+<pre><code class="language-C++">void DBOpen (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbquerydata">function DBQueryData</h3>
+<pre><code class="language-C++">s32 DBQueryData () 
+</code></pre>
+<hr>
+
+<h3 id="function-dbread">function DBRead</h3>
+<pre><code class="language-C++">BOOL DBRead (
+    const  u32 * data,
+    s32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dbwrite">function DBWrite</h3>
+<pre><code class="language-C++">BOOL DBWrite (
+    const  s32 * data,
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mwcallback">function MWCallback</h3>
+<pre><code class="language-C++">void MWCallback (
+    u32 a,
+    OSContext * b
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-db_no_error">define DB_NO_ERROR</h3>
+<pre><code class="language-C++">#define DB_NO_ERROR `0x0`
+</code></pre>
+<hr>
+
+<h3 id="define-db_stat_recieve">define DB_STAT_RECIEVE</h3>
+<pre><code class="language-C++">#define DB_STAT_RECIEVE `0x2`
+</code></pre>
+<hr>
+
+<h3 id="define-db_stat_send">define DB_STAT_SEND</h3>
+<pre><code class="language-C++">#define DB_STAT_SEND `0x1`
+</code></pre>
+<hr>
+
+<h3 id="define-odemu_addr_recv">define ODEMU_ADDR_RECV</h3>
+<pre><code class="language-C++">#define ODEMU_ADDR_RECV `0x0001E000`
+</code></pre>
+<hr>
+
+<h3 id="define-odemu_error">define ODEMU_ERROR</h3>
+<pre><code class="language-C++">#define ODEMU_ERROR `1;`
+</code></pre>
+<hr>
+
+<h3 id="define-odemu_error_1">define ODEMU_ERROR</h3>
+<pre><code class="language-C++">#define ODEMU_ERROR `1;`
+</code></pre>
+<hr>
+
+<h3 id="define-odemu_mail_magic">define ODEMU_MAIL_MAGIC</h3>
+<pre><code class="language-C++">#define ODEMU_MAIL_MAGIC `0x1F000000`
+</code></pre>
+<hr>
+
+<h3 id="define-odemu_mail_mask">define ODEMU_MAIL_MASK</h3>
+<pre><code class="language-C++">#define ODEMU_MAIL_MASK `0x1fffffff`
+</code></pre>
+<hr>
+
+<h3 id="define-odemu_no_error">define ODEMU_NO_ERROR</h3>
+<pre><code class="language-C++">#define ODEMU_NO_ERROR `1;`
+</code></pre>
+<hr>
+
+<h3 id="define-odemu_offset_recv">define ODEMU_OFFSET_RECV</h3>
+<pre><code class="language-C++">#define ODEMU_OFFSET_RECV `0x00001000`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/OdemuExi2/DebuggerDriver.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

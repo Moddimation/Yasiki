@@ -1,0 +1,932 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mtxstack_8c" kind="file" language="C++">
+    <compoundname>mtxstack.c</compoundname>
+    <includes refid="mtx_8h" local="no">dolphin/mtx.h</includes>
+    <includes refid="dolphin_8h" local="no">dolphin.h</includes>
+    <includes local="yes">fake_tgmath.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>dolphin.h</label>
+        <link refid="dolphin_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dolphin/ai.h</label>
+        <link refid="ai_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/ar.h</label>
+        <link refid="ar_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/card.h</label>
+        <link refid="card_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>dolphin/db.h</label>
+        <link refid="db_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>dolphin/db/DBInterface.h</label>
+        <link refid="_d_b_interface_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>dolphin/demo.h</label>
+        <link refid="demo_8h"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>dolphin/demo/DEMOInit.h</label>
+        <link refid="_d_e_m_o_init_8h"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>dolphin/demo/DEMOPad.h</label>
+        <link refid="_d_e_m_o_pad_8h"/>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>dolphin/demo/DEMOPuts.h</label>
+        <link refid="_d_e_m_o_puts_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>dolphin/demo/DEMOStats.h</label>
+        <link refid="_d_e_m_o_stats_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>dolphin/demo/DEMOWin.h</label>
+        <link refid="_d_e_m_o_win_8h"/>
+      </node>
+      <node id="9">
+        <label>dolphin/dsp.h</label>
+        <link refid="dsp_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>dolphin/dtk.h</label>
+        <link refid="dtk_8h"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>dolphin/gx.h</label>
+        <link refid="gx_8h"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>dolphin/gx/GXBump.h</label>
+        <link refid="_g_x_bump_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>dolphin/gx/GXCommandList.h</label>
+        <link refid="_g_x_command_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>dolphin/gx/GXCpu2Efb.h</label>
+        <link refid="_g_x_cpu2_efb_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>dolphin/gx/GXCull.h</label>
+        <link refid="_g_x_cull_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>dolphin/gx/GXDispList.h</label>
+        <link refid="_g_x_disp_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>dolphin/gx/GXDraw.h</label>
+        <link refid="_g_x_draw_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>dolphin/gx/GXEnum.h</label>
+        <link refid="_g_x_enum_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>dolphin/gx/GXFifo.h</label>
+        <link refid="_g_x_fifo_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>dolphin/gx/GXFrameBuffer.h</label>
+        <link refid="_g_x_frame_buffer_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>dolphin/gx/GXGeometry.h</label>
+        <link refid="_g_x_geometry_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>dolphin/gx/GXGet.h</label>
+        <link refid="_g_x_get_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>dolphin/gx/GXLighting.h</label>
+        <link refid="_g_x_lighting_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>dolphin/gx/GXManage.h</label>
+        <link refid="_g_x_manage_8h"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>dolphin/gx/GXPerf.h</label>
+        <link refid="_g_x_perf_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>dolphin/gx/GXPixel.h</label>
+        <link refid="_g_x_pixel_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>dolphin/gx/GXStruct.h</label>
+        <link refid="_g_x_struct_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>dolphin/gx/GXTev.h</label>
+        <link refid="_g_x_tev_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>dolphin/gx/GXTexture.h</label>
+        <link refid="_g_x_texture_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>dolphin/gx/GXTransform.h</label>
+        <link refid="_g_x_transform_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>dolphin/gx/GXVerify.h</label>
+        <link refid="_g_x_verify_8h"/>
+      </node>
+      <node id="61">
+        <label>dolphin/gx/GXVert.h</label>
+        <link refid="_g_x_vert_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="69">
+        <label>dolphin/hio.h</label>
+        <link refid="hio_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/mtx.h</label>
+        <link refid="mtx_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>dolphin/pad.h</label>
+        <link refid="pad_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>dolphin/perf.h</label>
+        <link refid="perf_8h"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="71">
+        <label>dolphin/vi.h</label>
+        <link refid="vi_8h"/>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>dolphin/vi/vifuncs.h</label>
+        <link refid="vifuncs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>dolphin/vi/vitypes.h</label>
+        <link refid="vitypes_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mtxstack.c</label>
+        <link refid="mtxstack_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>fake_tgmath.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="mtxstack_8c_1ae552ed93b5271a69409dbb12911f75ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void MTXInitStack</definition>
+        <argsstring>(MTXStack *sPtr, u32 numMtx)</argsstring>
+        <name>MTXInitStack</name>
+        <param>
+          <type><ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref> *</type>
+          <declname>sPtr</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>numMtx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" line="11" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" bodystart="11" bodyend="20"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+      </memberdef>
+      <memberdef kind="function" id="mtxstack_8c_1abfff9d1dbc7d0331b1b9f50b1e115710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref> *</type>
+        <definition>Mtx * MTXPush</definition>
+        <argsstring>(MTXStack *sPtr, Mtx m)</argsstring>
+        <name>MTXPush</name>
+        <param>
+          <type><ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref> *</type>
+          <declname>sPtr</declname>
+        </param>
+        <param>
+          <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" line="23" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" bodystart="23" bodyend="45"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" compoundref="mtx_8h" startline="64">MTXCopy</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mtxstack_8c_1afed1eaef0bea6c878b38b06d9de3c5d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref> *</type>
+        <definition>Mtx * MTXPushFwd</definition>
+        <argsstring>(MTXStack *sPtr, Mtx m)</argsstring>
+        <name>MTXPushFwd</name>
+        <param>
+          <type><ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref> *</type>
+          <declname>sPtr</declname>
+        </param>
+        <param>
+          <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" line="48" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" bodystart="48" bodyend="71"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mtx_8h_1a1a6c99923def60e65ace12e1860bbd57" compoundref="mtx_8h" startline="65">MTXConcat</references>
+        <references refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" compoundref="mtx_8h" startline="64">MTXCopy</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mtxstack_8c_1ab7de80b58db74bcf17b0b5efaa9c25cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref> *</type>
+        <definition>Mtx * MTXPushInv</definition>
+        <argsstring>(MTXStack *sPtr, Mtx m)</argsstring>
+        <name>MTXPushInv</name>
+        <param>
+          <type><ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref> *</type>
+          <declname>sPtr</declname>
+        </param>
+        <param>
+          <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" line="74" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" bodystart="74" bodyend="99"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mtx_8h_1a1a6c99923def60e65ace12e1860bbd57" compoundref="mtx_8h" startline="65">MTXConcat</references>
+        <references refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" compoundref="mtx_8h" startline="64">MTXCopy</references>
+        <references refid="mtx_8h_1a2fa20bb7213655a9097b935318330806" compoundref="mtx_8h" startline="66">MTXInverse</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mtxstack_8c_1ab3885c8345f1c0fbf102eb9e1879a716" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref> *</type>
+        <definition>Mtx * MTXPushInvXpose</definition>
+        <argsstring>(MTXStack *sPtr, Mtx m)</argsstring>
+        <name>MTXPushInvXpose</name>
+        <param>
+          <type><ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref> *</type>
+          <declname>sPtr</declname>
+        </param>
+        <param>
+          <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" line="102" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" bodystart="102" bodyend="128"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mtx_8h_1a1a6c99923def60e65ace12e1860bbd57" compoundref="mtx_8h" startline="65">MTXConcat</references>
+        <references refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" compoundref="mtx_8h" startline="64">MTXCopy</references>
+        <references refid="mtx_8h_1a2fa20bb7213655a9097b935318330806" compoundref="mtx_8h" startline="66">MTXInverse</references>
+        <references refid="mtx_8h_1ab0c1bbb2f3a675ca56e3fb55ed7f8cce" compoundref="mtx_8h" startline="67">MTXTranspose</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mtxstack_8c_1a607005f17f8cd19164c7c925096528ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref> *</type>
+        <definition>Mtx * MTXPop</definition>
+        <argsstring>(MTXStack *sPtr)</argsstring>
+        <name>MTXPop</name>
+        <param>
+          <type><ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref> *</type>
+          <declname>sPtr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" line="131" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" bodystart="131" bodyend="148"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mtxstack_8c_1a0efa015165ae699c5748398db6b11bfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref> *</type>
+        <definition>Mtx * MTXGetStackPtr</definition>
+        <argsstring>(MTXStack *sPtr)</argsstring>
+        <name>MTXGetStackPtr</name>
+        <param>
+          <type><ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref> *</type>
+          <declname>sPtr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" line="151" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c" bodystart="151" bodyend="158"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="mtx_8h" kindref="compound">dolphin/mtx.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="dolphin_8h" kindref="compound">dolphin.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fake_tgmath.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>A<sp/>bunch<sp/>of<sp/>pointless<sp/>void<sp/>casts<sp/>because<sp/>of<sp/>Mtx<sp/>type-ness.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Dunno<sp/>how<sp/>to<sp/>resolve<sp/>this<sp/>at<sp/>the<sp/>moment.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="mtx_8h_1ae552ed93b5271a69409dbb12911f75ad" refkind="member"><highlight class="normal"><ref refid="mtxstack_8c_1ae552ed93b5271a69409dbb12911f75ad" kindref="member">MTXInitStack</ref><sp/>(<ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>numMtx)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x47,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXInitStack():<sp/><sp/>NULL<sp/>MtxStackPtr<sp/>&apos;sPtr&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x48,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXInitStack():<sp/><sp/>&apos;sPtr&apos;<sp/>contains<sp/>a<sp/>NULL<sp/>ptr<sp/>to<sp/>stack<sp/>memory<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x49,<sp/>numMtx,<sp/></highlight><highlight class="stringliteral">&quot;MTXInitStack():<sp/><sp/>&apos;numMtx&apos;<sp/>is<sp/>0<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;numMtx<sp/>=<sp/>numMtx;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref>*</highlight></codeline>
+<codeline lineno="23" refid="mtx_8h_1abfff9d1dbc7d0331b1b9f50b1e115710" refkind="member"><highlight class="normal"><ref refid="mtxstack_8c_1abfff9d1dbc7d0331b1b9f50b1e115710" kindref="member">MTXPush</ref><sp/>(<ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x65,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPush():<sp/><sp/>NULL<sp/>MtxStackPtr<sp/>&apos;sPtr&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x66,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPush():<sp/><sp/>&apos;sPtr&apos;<sp/>contains<sp/>a<sp/>NULL<sp/>ptr<sp/>to<sp/>stack<sp/>memory<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x67,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPush():<sp/><sp/>NULL<sp/>MtxPtr<sp/>&apos;m&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" kindref="member">MTXCopy</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x76,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((((<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>-<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase)<sp/>/<sp/>16)<sp/>/<sp/>3)<sp/>&lt;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;numMtx<sp/>-<sp/>1),</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPush():<sp/><sp/>stack<sp/>overflow<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" kindref="member">MTXCopy</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>+<sp/>1));</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr++;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref>*</highlight></codeline>
+<codeline lineno="48" refid="mtx_8h_1afed1eaef0bea6c878b38b06d9de3c5d7" refkind="member"><highlight class="normal"><ref refid="mtxstack_8c_1afed1eaef0bea6c878b38b06d9de3c5d7" kindref="member">MTXPushFwd</ref><sp/>(<ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x9A,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPushFwd():<sp/><sp/>NULL<sp/>MtxStackPtr<sp/>&apos;sPtr&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x9B,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPushFwd():<sp/><sp/>&apos;sPtr&apos;<sp/>contains<sp/>a<sp/>NULL<sp/>ptr<sp/>to<sp/>stack<sp/>memory<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x9C,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPushFwd():<sp/><sp/>NULL<sp/>MtxPtr<sp/>&apos;m&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" kindref="member">MTXCopy</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xAB,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((((<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>-<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase)<sp/>/<sp/>16)<sp/>/<sp/>3)<sp/>&lt;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;numMtx<sp/>-<sp/>1),</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPushFwd():<sp/><sp/>stack<sp/>overflow&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1a1a6c99923def60e65ace12e1860bbd57" kindref="member">MTXConcat</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>+<sp/>1));</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr++;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref>*</highlight></codeline>
+<codeline lineno="74" refid="mtx_8h_1ab7de80b58db74bcf17b0b5efaa9c25cf" refkind="member"><highlight class="normal"><ref refid="mtxstack_8c_1ab7de80b58db74bcf17b0b5efaa9c25cf" kindref="member">MTXPushInv</ref><sp/>(<ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mInv</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xD5,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPushInv():<sp/><sp/>NULL<sp/>MtxStackPtr<sp/>&apos;sPtr&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xD6,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase,</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPushInv():<sp/><sp/>&apos;sPtr&apos;<sp/>contains<sp/>a<sp/>NULL<sp/>ptr<sp/>to<sp/>stack<sp/>memory<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xD7,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPushInv():<sp/><sp/>NULL<sp/>MtxPtr<sp/>&apos;m&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1a2fa20bb7213655a9097b935318330806" kindref="member">MTXInverse</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mInv</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" kindref="member">MTXCopy</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mInv</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xE9,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((((<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>-<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase)<sp/>/<sp/>16)<sp/>/<sp/>3)<sp/>&lt;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;numMtx<sp/>-<sp/>1),</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPushInv():<sp/><sp/>stack<sp/>overflow&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1a1a6c99923def60e65ace12e1860bbd57" kindref="member">MTXConcat</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mInv</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>+<sp/>1));</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr++;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref>*</highlight></codeline>
+<codeline lineno="102" refid="mtx_8h_1ab3885c8345f1c0fbf102eb9e1879a716" refkind="member"><highlight class="normal"><ref refid="mtxstack_8c_1ab3885c8345f1c0fbf102eb9e1879a716" kindref="member">MTXPushInvXpose</ref><sp/>(<ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mIT</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x114,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPushInvXpose():<sp/><sp/>NULL<sp/>MtxStackPtr<sp/>&apos;sPtr&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x115,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPushInvXpose():<sp/><sp/>&apos;sPtr&apos;<sp/>contains<sp/>a<sp/>NULL<sp/>ptr<sp/>to<sp/>stack<sp/>memory<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x116,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPushInvXpose():<sp/><sp/>NULL<sp/>MtxPtr<sp/>&apos;m&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1a2fa20bb7213655a9097b935318330806" kindref="member">MTXInverse</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">m</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mIT</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1ab0c1bbb2f3a675ca56e3fb55ed7f8cce" kindref="member">MTXTranspose</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mIT</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mIT</ref>);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1abeefab06a4321dc6dee01a632eac80f4" kindref="member">MTXCopy</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mIT</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x129,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((((<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>-<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase)<sp/>/<sp/>16)<sp/>/<sp/>3)<sp/>&lt;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;numMtx<sp/>-<sp/>1),</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPushInvXpose():<sp/><sp/>stack<sp/>overflow<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1a1a6c99923def60e65ace12e1860bbd57" kindref="member">MTXConcat</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mIT</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>+<sp/>1));</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr++;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref>*</highlight></codeline>
+<codeline lineno="131" refid="mtx_8h_1a607005f17f8cd19164c7c925096528ec" refkind="member"><highlight class="normal"><ref refid="mtxstack_8c_1a607005f17f8cd19164c7c925096528ec" kindref="member">MTXPop</ref><sp/>(<ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x145,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXPop():<sp/><sp/>NULL<sp/>MtxStackPtr<sp/>&apos;sPtr&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x146,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXPop():<sp/><sp/>&apos;sPtr&apos;<sp/>contains<sp/>a<sp/>NULL<sp/>ptr<sp/>to<sp/>stack<sp/>memory<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>==<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase<sp/>==<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr--;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><ref refid="mtx_8h_1afc58fc7f5dd84f97da2dab35156849ae" kindref="member">Mtx</ref>*</highlight></codeline>
+<codeline lineno="151" refid="mtx_8h_1a0efa015165ae699c5748398db6b11bfa" refkind="member"><highlight class="normal"><ref refid="mtxstack_8c_1a0efa015165ae699c5748398db6b11bfa" kindref="member">MTXGetStackPtr</ref><sp/>(<ref refid="struct_m_t_x_stack" kindref="compound">MTXStack</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>)</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x16B,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MTXGetStackPtr():<sp/><sp/>NULL<sp/>MtxStackPtr<sp/>&apos;sPtr&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x16C,</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackBase,</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MTXGetStackPtr():<sp/><sp/>&apos;sPtr&apos;<sp/>contains<sp/>a<sp/>NULL<sp/>ptr<sp/>to<sp/>stack<sp/>memory<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sPtr</ref>-&gt;stackPtr;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/mtx/mtxstack.c"/>
+  </compounddef>
+</doxygen>

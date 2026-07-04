@@ -1,0 +1,683 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_o_s_reboot_8c" kind="file" language="C++">
+    <compoundname>OSReboot.c</compoundname>
+    <includes refid="ai_8h" local="no">dolphin/ai.h</includes>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <includes refid="_o_s_private_8h" local="yes">OSPrivate.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>dolphin/ai.h</label>
+        <link refid="ai_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="31">
+        <label>OSPrivate.h</label>
+        <link refid="_o_s_private_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OSReboot.c</label>
+        <link refid="_o_s_reboot_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct___apploader_header" prot="public">_ApploaderHeader</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_o_s_reboot_8c_1a3e3abdf1d830c7d44f8eec6114b1ebd2" prot="public" static="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct___apploader_header" kindref="compound">_ApploaderHeader</ref></type>
+        <definition>typedef struct _ApploaderHeader ApploaderHeader</definition>
+        <argsstring></argsstring>
+        <name>ApploaderHeader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="26" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_o_s_reboot_8c_1a9c76cedeb86b2f435001c94e6483f73e" prot="public" static="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">volatile</ref> <ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>volatile BOOL Prepared</definition>
+        <argsstring></argsstring>
+        <name>Prepared</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="4" column="22" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" bodystart="4" bodyend="-1"/>
+        <referencedby refid="_o_s_reboot_8c_1a00bf2b5d9adbc367d99c7c1e8be44329" compoundref="_o_s_reboot_8c" startline="80" endline="86">Callback</referencedby>
+        <referencedby refid="_o_s_reboot_8c_1a11c4dfa011ac4ff59832c6c9d8a3b9fd" compoundref="_o_s_reboot_8c" startline="47" endline="77">ReadApploader</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="_o_s_reboot_8c_1aaf8f249a080ee95497046a0ada83b1dc" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void* __OSSavedRegionStart</definition>
+        <argsstring></argsstring>
+        <name>__OSSavedRegionStart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="15" column="13" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="15" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_o_s_reboot_8c_1ac9592dbe9802a9713563e098403f32db" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void* __OSSavedRegionEnd</definition>
+        <argsstring></argsstring>
+        <name>__OSSavedRegionEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="16" column="13" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="16" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_o_s_reboot_8c_1ac2ead7ace38d3d0d0a3636e0120ef6d9" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *<ref refid="_o_s_private_8h_1ac63f8cf051875384aa3069358d1d0bef" kindref="member">BOOT_REGION_START</ref></type>
+        <definition>void *BOOT_REGION_START AT_ADDRESS</definition>
+        <argsstring>(0x812FDFF0)</argsstring>
+        <name>AT_ADDRESS</name>
+        <param>
+          <type>0x812FDFF0</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="6" column="31" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="6" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1a86d633457642dc4d004e542878ddea2a" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *<ref refid="_o_s_private_8h_1ae1366d7ff60a730f5491d3f78ed53fbe" kindref="member">BOOT_REGION_END</ref></type>
+        <definition>void *BOOT_REGION_END AT_ADDRESS</definition>
+        <argsstring>(0x812FDFEC)</argsstring>
+        <name>AT_ADDRESS</name>
+        <param>
+          <type>0x812FDFEC</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="7" column="31" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="7" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1ab57cc619e6ce64802f3f9b387c1b3a17" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_RESET_CODE</ref></type>
+        <definition>u32 OS_RESET_CODE AT_ADDRESS</definition>
+        <argsstring>(0x800030F0)</argsstring>
+        <name>AT_ADDRESS</name>
+        <param>
+          <type>0x800030F0</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="8" column="32" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="8" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1afdf6f2456caaa22bfe870dd1a198af33" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_REBOOT_BOOL</ref></type>
+        <definition>u8 OS_REBOOT_BOOL AT_ADDRESS</definition>
+        <argsstring>(0x800030E2)</argsstring>
+        <name>AT_ADDRESS</name>
+        <param>
+          <type>0x800030E2</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="9" column="32" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="9" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1a3e2cf40514022179a72caa28fe5f5e4d" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_UNK_CODE</ref></type>
+        <definition>u32 OS_UNK_CODE AT_ADDRESS</definition>
+        <argsstring>(0x817FFFF8)</argsstring>
+        <name>AT_ADDRESS</name>
+        <param>
+          <type>0x817FFFF8</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="10" column="32" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="10" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1a50c941bf1c59975ca9b705fca030fa1f" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_HOT_RESET_CODE</ref></type>
+        <definition>u32 OS_HOT_RESET_CODE AT_ADDRESS</definition>
+        <argsstring>(0x817FFFFC)</argsstring>
+        <name>AT_ADDRESS</name>
+        <param>
+          <type>0x817FFFFC</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="11" column="32" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="11" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1a9f7f54d17cc6c332f477a8119b1b1148" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_o_s_reboot_8c_1a3e3abdf1d830c7d44f8eec6114b1ebd2" kindref="member">ApploaderHeader</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Header</ref></type>
+        <definition>static ApploaderHeader Header ALIGN</definition>
+        <argsstring>(32)</argsstring>
+        <name>ALIGN</name>
+        <param>
+          <type>32</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="28" column="31" declfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" declline="28" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1a01c2846a0d0dd8f797c49f5b6e4643a3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static asm void Run</definition>
+        <argsstring>(register u32 addr)</argsstring>
+        <name>Run</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="31" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" bodystart="31" bodyend="44"/>
+        <references refid="____ppc__eabi__init_8cpp_1ad03e74e669804ade36f4514efadcba4c" compoundref="____ppc__eabi__init_8cpp" startline="59">blr</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_i_c_8h_1abfdc4b48f079e44019ed3d91c5c63339" compoundref="_o_s_cache_8c" startline="308" endline="317">ICFlashInvalidate</references>
+        <references refid="____ppc__eabi__init_8cpp_1aa1e8617ddf2c19e13497f01058739d13" compoundref="____ppc__eabi__init_8cpp" startline="58">isync</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="____ppc__eabi__init_8cpp_1a050ff29e81a2b89113106adebc65c173" compoundref="____ppc__eabi__init_8cpp" startline="53">sync</references>
+        <referencedby refid="_o_s_private_8h_1a5a0867f9e11d4b9ac051291ac06dacf2" compoundref="_o_s_reboot_8c" startline="89" endline="130">__OSReboot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1a11c4dfa011ac4ff59832c6c9d8a3b9fd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static void ReadApploader</definition>
+        <argsstring>(DVDCommandBlock *dvdCmd, void *addr, u32 offset, u32 numBytes)</argsstring>
+        <name>ReadApploader</name>
+        <param>
+          <type><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+          <declname>dvdCmd</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>addr</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>numBytes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="47" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" bodystart="47" bodyend="77"/>
+        <references refid="_o_s_private_8h_1a8467329de3b842a7d3a2def789f2d326" compoundref="_o_s_reset_8c" startline="195" endline="201">__OSDoHotReset</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="dvd_8h_1a1c41c2b1db1b1bb7274b67480328e12e">DVDReadAbsAsyncForBS</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="_o_s_reboot_8c_1a9c76cedeb86b2f435001c94e6483f73e" compoundref="_o_s_reboot_8c" startline="4">Prepared</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_o_s_private_8h_1a5a0867f9e11d4b9ac051291ac06dacf2" compoundref="_o_s_reboot_8c" startline="89" endline="130">__OSReboot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1a00bf2b5d9adbc367d99c7c1e8be44329" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static void Callback</definition>
+        <argsstring>(s32 result, DVDCommandBlock *block)</argsstring>
+        <name>Callback</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>result</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+          <declname>block</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="80" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" bodystart="80" bodyend="86"/>
+        <references refid="_o_s_reboot_8c_1a9c76cedeb86b2f435001c94e6483f73e" compoundref="_o_s_reboot_8c" startline="4">Prepared</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_reboot_8c_1a5a0867f9e11d4b9ac051291ac06dacf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __OSReboot</definition>
+        <argsstring>(u32 resetCode, BOOL forceMenu)</argsstring>
+        <name>__OSReboot</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>resetCode</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+          <declname>forceMenu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" line="89" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSReboot.c" bodystart="89" bodyend="130"/>
+        <references refid="dvd_8h_1ad6c99010b0652d14dfdc555926ea9699" compoundref="dvd_8c" startline="2129" endline="2152">__DVDPrepareResetAsync</references>
+        <references refid="_o_s_private_8h_1a8467329de3b842a7d3a2def789f2d326" compoundref="_o_s_reset_8c" startline="195" endline="201">__OSDoHotReset</references>
+        <references refid="_o_s_interrupt_8h_1ae1767574f2daf611741354075dcfbc82" compoundref="_o_s_interrupt_8c" startline="366" endline="382">__OSMaskInterrupts</references>
+        <references refid="_o_s_interrupt_8h_1a23d24150de606226d6d4f07b1fd72934" compoundref="_o_s_interrupt_8c" startline="385" endline="401">__OSUnmaskInterrupts</references>
+        <references refid="dvdlow_8c_1a7a296cf9939c52623810e2072430bcb3" compoundref="dvdlow_8c" startline="9">Callback</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="dvd_8h_1a0453a6478023036695fd83140621a72a" compoundref="dvd_8c" startline="2060" endline="2126">DVDCheckDisk</references>
+        <references refid="dvd_8h_1a0e38a04ccc2dd987bb6c2f42fbe4ac1a" compoundref="dvd_8c" startline="80" endline="111">DVDInit</references>
+        <references refid="_o_s_cache_8h_1a8fa469afbc66b3d4d2f5429b125fe6ef">ICInvalidateRange</references>
+        <references refid="_o_s_boot_info_8h_1a37cde76990cb9ede761672ff5e91852c" compoundref="_o_s_boot_info_8h" startline="50">OS_BOOTROM_ADDR</references>
+        <references refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784">OSClearContext</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a469c21fd671f7da19db139158e431503" compoundref="_o_s_interrupt_8c" startline="72" endline="85">OSEnableInterrupts</references>
+        <references refid="os_8h_1acd7a8be65dcebb96c504de8119bce00f" compoundref="os_8h" startline="123">OSRoundUp32B</references>
+        <references refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7">OSSetCurrentContext</references>
+        <references refid="_o_s_reboot_8c_1a11c4dfa011ac4ff59832c6c9d8a3b9fd" compoundref="_o_s_reboot_8c" startline="47" endline="77">ReadApploader</references>
+        <references refid="_o_s_reboot_8c_1a01c2846a0d0dd8f797c49f5b6e4643a3" compoundref="_o_s_reboot_8c" startline="31" endline="44">Run</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_o_s_reset_8h_1a7036bb15abf7642d6b88165222033baf" compoundref="_o_s_reset_8c" startline="204" endline="244">OSResetSystem</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ai_8h" kindref="compound">dolphin/ai.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="_o_s_reboot_8c_1a9c76cedeb86b2f435001c94e6483f73e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">volatile</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="_o_s_reboot_8c_1a9c76cedeb86b2f435001c94e6483f73e" kindref="member">Prepared</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="_o_s_reboot_8c_1ac2ead7ace38d3d0d0a3636e0120ef6d9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_o_s_private_8h_1ac63f8cf051875384aa3069358d1d0bef" kindref="member">BOOT_REGION_START</ref><sp/><ref refid="types_8h_1a8a66704870cdfe676dac0d8b06495dc2" kindref="member">AT_ADDRESS</ref><sp/>(0x812FDFF0);</highlight></codeline>
+<codeline lineno="7" refid="_o_s_reboot_8c_1a86d633457642dc4d004e542878ddea2a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_o_s_private_8h_1ae1366d7ff60a730f5491d3f78ed53fbe" kindref="member">BOOT_REGION_END</ref><sp/><sp/><sp/><ref refid="types_8h_1a8a66704870cdfe676dac0d8b06495dc2" kindref="member">AT_ADDRESS</ref><sp/>(0x812FDFEC);</highlight></codeline>
+<codeline lineno="8" refid="_o_s_reboot_8c_1ab57cc619e6ce64802f3f9b387c1b3a17" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_RESET_CODE</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a8a66704870cdfe676dac0d8b06495dc2" kindref="member">AT_ADDRESS</ref><sp/>(0x800030F0);</highlight></codeline>
+<codeline lineno="9" refid="_o_s_reboot_8c_1afdf6f2456caaa22bfe870dd1a198af33" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_REBOOT_BOOL</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a8a66704870cdfe676dac0d8b06495dc2" kindref="member">AT_ADDRESS</ref><sp/>(0x800030E2);</highlight></codeline>
+<codeline lineno="10" refid="_o_s_reboot_8c_1a3e2cf40514022179a72caa28fe5f5e4d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_UNK_CODE</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a8a66704870cdfe676dac0d8b06495dc2" kindref="member">AT_ADDRESS</ref><sp/>(0x817FFFF8);</highlight></codeline>
+<codeline lineno="11" refid="_o_s_reboot_8c_1a50c941bf1c59975ca9b705fca030fa1f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_HOT_RESET_CODE</ref><sp/><sp/><sp/><ref refid="types_8h_1a8a66704870cdfe676dac0d8b06495dc2" kindref="member">AT_ADDRESS</ref><sp/>(0x817FFFFC);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_o_s_private_8h" kindref="compound">OSPrivate.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_o_s_reboot_8c_1aaf8f249a080ee95497046a0ada83b1dc" kindref="member">__OSSavedRegionStart</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_o_s_reboot_8c_1ac9592dbe9802a9713563e098403f32db" kindref="member">__OSSavedRegionEnd</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Struct<sp/>for<sp/>Apploader<sp/>header<sp/>(size<sp/>0x20).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="struct___apploader_header" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct___apploader_header" kindref="compound">_ApploaderHeader</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21" refid="struct___apploader_header_1abf09216537da5fe35c98935f178dd70d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="struct___apploader_header_1abf09216537da5fe35c98935f178dd70d" kindref="member">date</ref>[16];<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22" refid="struct___apploader_header_1a18292aaa6f84993a0a79af85628cd8ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct___apploader_header_1a18292aaa6f84993a0a79af85628cd8ed" kindref="member">entry</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23" refid="struct___apploader_header_1a0f176120720e999df394c34357cc6aac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct___apploader_header_1a0f176120720e999df394c34357cc6aac" kindref="member">size</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24" refid="struct___apploader_header_1ac973e91cd0c285e81ebcb5b286372422" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct___apploader_header_1ac973e91cd0c285e81ebcb5b286372422" kindref="member">rebootSize</ref>;<sp/></highlight></codeline>
+<codeline lineno="25" refid="struct___apploader_header_1a7db50e20901b8951bd97e6bcb84bc050" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct___apploader_header_1a7db50e20901b8951bd97e6bcb84bc050" kindref="member">reserved2</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="26" refid="_o_s_reboot_8c_1a3e3abdf1d830c7d44f8eec6114b1ebd2" refkind="member"><highlight class="normal">}<sp/><ref refid="_o_s_reboot_8c_1a3e3abdf1d830c7d44f8eec6114b1ebd2" kindref="member">ApploaderHeader</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="_o_s_reboot_8c_1a9f7f54d17cc6c332f477a8119b1b1148" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct___apploader_header" kindref="compound">ApploaderHeader</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Header</ref><sp/><ref refid="types_8h_1a4aa00a4448dea190c5ecb6166e6a9a18" kindref="member">ALIGN</ref><sp/>(32);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="_o_s_reboot_8c_1a01c2846a0d0dd8f797c49f5b6e4643a3" refkind="member"><highlight class="normal"><ref refid="_o_s_reboot_8c_1a01c2846a0d0dd8f797c49f5b6e4643a3" kindref="member">Run</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>addr)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fralloc</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bl</ref><sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bl</ref><sp/><ref refid="_o_s_i_c_8h_1abfdc4b48f079e44019ed3d91c5c63339" kindref="member">ICFlashInvalidate</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8cpp_1a050ff29e81a2b89113106adebc65c173" kindref="member">sync</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8cpp_1aa1e8617ddf2c19e13497f01058739d13" kindref="member">isync</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mtlr</ref><sp/>addr;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8cpp_1ad03e74e669804ade36f4514efadcba4c" kindref="member">blr</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">frfree</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8cpp_1ad03e74e669804ade36f4514efadcba4c" kindref="member">blr</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="_o_s_reboot_8c_1a11c4dfa011ac4ff59832c6c9d8a3b9fd" refkind="member"><highlight class="normal"><ref refid="_o_s_reboot_8c_1a11c4dfa011ac4ff59832c6c9d8a3b9fd" kindref="member">ReadApploader</ref><sp/>(<ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dvdCmd</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>addr,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>offset,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">numBytes</ref>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="_o_s_reboot_8c_1a9c76cedeb86b2f435001c94e6483f73e" kindref="member">Prepared</ref><sp/>==<sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>)<sp/>{}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8h_1a1c41c2b1db1b1bb7274b67480328e12e" kindref="member">DVDReadAbsAsyncForBS</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dvdCmd</ref>,<sp/>addr,<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">numBytes</ref>,<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)(offset<sp/>+<sp/>0x2440),<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dvdCmd</ref>-&gt;state)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>-1:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>5:</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>6:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>7:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>8:</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>9:</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>10:</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>11:</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_private_8h_1a8467329de3b842a7d3a2def789f2d326" kindref="member">__OSDoHotReset</ref><sp/>((<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_HOT_RESET_CODE</ref>);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="_o_s_reboot_8c_1a00bf2b5d9adbc367d99c7c1e8be44329" refkind="member"><highlight class="normal"><ref refid="dvdlow_8c_1a7a296cf9939c52623810e2072430bcb3" kindref="member">Callback</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>result,<sp/><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">block</ref>)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>unused(result)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>unused(block)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_reboot_8c_1a9c76cedeb86b2f435001c94e6483f73e" kindref="member">Prepared</ref><sp/>=<sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="_o_s_private_8h_1a5a0867f9e11d4b9ac051291ac06dacf2" refkind="member"><highlight class="normal"><ref refid="_o_s_reboot_8c_1a5a0867f9e11d4b9ac051291ac06dacf2" kindref="member">__OSReboot</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">resetCode</ref>,<sp/><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">forceMenu</ref>)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>unused(forceMenu)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dvdCmd</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dvdCmd2</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">numBytes</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>offset;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_UNK_CODE</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_REBOOT_BOOL</ref><sp/>=<sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_HOT_RESET_CODE</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">resetCode</ref>;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784" kindref="member">OSClearContext</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7" kindref="member">OSSetCurrentContext</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8h_1a0e38a04ccc2dd987bb6c2f42fbe4ac1a" kindref="member">DVDInit</ref>();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dvd_8h_1ad6c99010b0652d14dfdc555926ea9699" kindref="member">__DVDPrepareResetAsync</ref><sp/>(<ref refid="dvdlow_8c_1a7a296cf9939c52623810e2072430bcb3" kindref="member">Callback</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="dvd_8h_1a0453a6478023036695fd83140621a72a" kindref="member">DVDCheckDisk</ref>())</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_private_8h_1a8467329de3b842a7d3a2def789f2d326" kindref="member">__OSDoHotReset</ref><sp/>((<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">OS_HOT_RESET_CODE</ref>);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_interrupt_8h_1ae1767574f2daf611741354075dcfbc82" kindref="member">__OSMaskInterrupts</ref><sp/>(0xffffffe0);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_interrupt_8h_1a23d24150de606226d6d4f07b1fd72934" kindref="member">__OSUnmaskInterrupts</ref><sp/>(0x400);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a469c21fd671f7da19db139158e431503" kindref="member">OSEnableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>offset<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">numBytes</ref><sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_reboot_8c_1a11c4dfa011ac4ff59832c6c9d8a3b9fd" kindref="member">ReadApploader</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dvdCmd</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Header</ref>,<sp/>offset,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">numBytes</ref>);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>offset<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Header</ref>.size<sp/>+<sp/>0x20;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">numBytes</ref><sp/>=<sp/><ref refid="os_8h_1acd7a8be65dcebb96c504de8119bce00f" kindref="member">OSRoundUp32B</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">Header</ref>.rebootSize);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_reboot_8c_1a11c4dfa011ac4ff59832c6c9d8a3b9fd" kindref="member">ReadApploader</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dvdCmd2</ref>,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_o_s_boot_info_8h_1a37cde76990cb9ede761672ff5e91852c" kindref="member">OS_BOOTROM_ADDR</ref>,<sp/>offset,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">numBytes</ref>);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_cache_8h_1a8fa469afbc66b3d4d2f5429b125fe6ef" kindref="member">ICInvalidateRange</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_o_s_boot_info_8h_1a37cde76990cb9ede761672ff5e91852c" kindref="member">OS_BOOTROM_ADDR</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">numBytes</ref>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_reboot_8c_1a01c2846a0d0dd8f797c49f5b6e4643a3" kindref="member">Run</ref><sp/>(<ref refid="_o_s_boot_info_8h_1a37cde76990cb9ede761672ff5e91852c" kindref="member">OS_BOOTROM_ADDR</ref>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/os/OSReboot.c"/>
+  </compounddef>
+</doxygen>

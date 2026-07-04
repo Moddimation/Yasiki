@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSError.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-oserrorc">File OSError.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="../_o_s_error_8c/"><strong>OSError.c</strong></a></p>
+<p><a href="../_o_s_error_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#include &lt;stdarg.h&gt;
+#include &lt;stdio.h&gt;
+
+// internal include
+#include &quot;OSPrivate.h&quot;
+
+static OSErrorHandler OSErrorTable[15];
+
+void
+OSReport (char* msg, ...)
+{
+    va_list marker;
+    va_start (marker, msg);
+    vprintf (msg, marker);
+    va_end (marker);
+}
+
+void
+OSPanic (char* file, int line, char* msg, ...)
+{
+    va_list marker;
+    u32     i;
+    u32*    p;
+
+    OSDisableInterrupts();
+    va_start (marker, msg);
+    vprintf (msg, marker);
+    va_end (marker);
+    OSReport (&quot; in \&quot;%s\&quot; on line %d.\n&quot;, file, line);
+
+    OSReport (&quot;\nAddress:      Back Chain    LR Save\n&quot;);
+    for (i = 0, p = (u32*)OSGetStackPointer(); p &amp;&amp; (u32)p != 0xffffffff &amp;&amp; i++ &lt; 16;
+         p = (u32*)*p)
+    {
+        OSReport (&quot;0x%08x:   0x%08x    0x%08x\n&quot;, p, p[0], p[1]);
+    }
+
+    PPCHalt();
+}
+
+OSErrorHandler
+OSSetErrorHandler (OSError error, OSErrorHandler handler)
+{
+    OSErrorHandler oldHandler;
+
+    ASSERTMSGLINE (0x8F, error &lt; __OS_EXCEPTION_MAX, &quot;OSSetErrorHandler(): unknown error.&quot;);
+    oldHandler = OSErrorTable[error];
+    OSErrorTable[error] = handler;
+    return oldHandler;
+}
+
+void
+__OSUnhandledException (u8 exception, OSContext* context, u32 dsisr, u32 dar)
+{
+    if (!(context-&gt;srr1 &amp; MSR_RI))
+    {
+        OSReport (&quot;Non-recoverable Exception %d&quot;, exception);
+    }
+    else
+    {
+        if (OSErrorTable[exception])
+        {
+            OSErrorTable[exception](exception, context, dsisr, dar);
+            OSLoadContext (context);
+        }
+        if (exception == __OS_EXCEPTION_DECREMENTER)
+        {
+            OSLoadContext (context);
+        }
+        OSReport (&quot;Unhandled Exception %d&quot;, exception);
+    }
+#if DEBUG
+    OSReport (&quot;(%s)&quot;, __OSExceptionNames[exception]);
+#endif
+    OSReport (&quot;\n&quot;);
+    OSDumpContext (context);
+    OSReport (&quot;\nDSISR= 0x%08x                   DAR  = 0x%08x\n&quot;, dsisr, dar);
+
+    switch (exception)
+    {
+        case __OS_EXCEPTION_DSI:
+            OSReport (
+                &quot;\nInstruction at 0x%x (read from SRR0) attempted to access &quot;
+                &quot;invalid address 0x%x (read from DAR)\n&quot;,
+                context-&gt;srr0,
+                dar);
+            break;
+        case __OS_EXCEPTION_ISI:
+            OSReport (
+                &quot;\nAttempted to fetch instruction from invalid address 0x%x &quot;
+                &quot;(read from SRR0)\n&quot;,
+                context-&gt;srr0);
+            break;
+        case __OS_EXCEPTION_ALIGNMENT:
+            OSReport (
+                &quot;\nInstruction at 0x%x (read from SRR0) attempted to access &quot;
+                &quot;unaligned address 0x%x (read from DAR)\n&quot;,
+                context-&gt;srr0,
+                dar);
+            break;
+        case __OS_EXCEPTION_PROGRAM:
+            OSReport (
+                &quot;\nProgram exception : Possible illegal instruction/operation &quot;
+                &quot;at or around 0x%x (read from SRR0)\n&quot;,
+                context-&gt;srr0,
+                dar);
+            break;
+    }
+    PPCHalt();
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

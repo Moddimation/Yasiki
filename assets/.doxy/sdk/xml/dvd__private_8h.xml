@@ -1,0 +1,802 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dvd__private_8h" kind="file" language="C++">
+    <compoundname>dvd_private.h</compoundname>
+    <includes refid="dvd_8h" local="no">dolphin/dvd.h</includes>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <includedby refid="dvd_8c" local="yes">dvd.c</includedby>
+    <includedby refid="dvderror_8c" local="yes">dvderror.c</includedby>
+    <includedby refid="dvdfs_8c" local="yes">dvdfs.c</includedby>
+    <includedby refid="dvdlow_8c" local="yes">dvdlow.c</includedby>
+    <includedby refid="dvdqueue_8c" local="yes">dvdqueue.c</includedby>
+    <includedby refid="fstload_8c" local="yes">fstload.c</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>dvd_private.h</label>
+        <link refid="dvd__private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>dvd.c</label>
+        <link refid="dvd_8c"/>
+      </node>
+      <node id="1">
+        <label>dvd_private.h</label>
+        <link refid="dvd__private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dvderror.c</label>
+        <link refid="dvderror_8c"/>
+      </node>
+      <node id="4">
+        <label>dvdfs.c</label>
+        <link refid="dvdfs_8c"/>
+      </node>
+      <node id="5">
+        <label>dvdlow.c</label>
+        <link refid="dvdlow_8c"/>
+      </node>
+      <node id="6">
+        <label>dvdqueue.c</label>
+        <link refid="dvdqueue_8c"/>
+      </node>
+      <node id="7">
+        <label>fstload.c</label>
+        <link refid="fstload_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="dvd__private_8h_1a894eab19b3a991c55bf2fa6e957886e1" prot="public" static="no">
+        <name>DVD_DE_INT_ERROR_CODE</name>
+        <initializer>0x01234567</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="39" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="dvd__private_8h_1a68d8842d245d167709a51a2fb8aaaf70" prot="public" static="no">
+        <name>DVD_TIMEOUT_ERROR_CODE</name>
+        <initializer>0x01234568</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="40" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dvd__private_8h_1a0764984f4a23336c239ccbc9fec3e724" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="struct_o_s_thread_queue" kindref="compound">OSThreadQueue</ref></type>
+        <definition>OSThreadQueue __DVDThreadQueue</definition>
+        <argsstring></argsstring>
+        <name>__DVDThreadQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="15" column="22" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdfs.c" bodystart="22" bodyend="-1" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="15" declcolumn="22"/>
+        <referencedby refid="dvd_8c_1a4f1623758b916c1d3f745f4630708972" compoundref="dvd_8c" startline="2047" endline="2051">cbForCancelAllSync</referencedby>
+        <referencedby refid="dvd_8c_1afb4ff0467127228acada9b0ec0b45f96" compoundref="dvd_8c" startline="1276" endline="1280">cbForCancelStreamSync</referencedby>
+        <referencedby refid="dvd_8c_1ac9253d11d34e5dcb5a1719006ccfd5ae" compoundref="dvd_8c" startline="1982" endline="1985">cbForCancelSync</referencedby>
+        <referencedby refid="dvd_8c_1aeb0e5b0b69dcdabc4ad40d639abf65b9" compoundref="dvd_8c" startline="1637" endline="1640">cbForChangeDiskSync</referencedby>
+        <referencedby refid="dvd_8c_1ac6835400b9c3beca89d7c5cbbf962638" compoundref="dvd_8c" startline="1378" endline="1384">cbForGetStreamErrorStatusSync</referencedby>
+        <referencedby refid="dvd_8c_1ad1a8c6b9ae6ee31eb8d48a17ff2f1d6e" compoundref="dvd_8c" startline="1531" endline="1535">cbForGetStreamLengthSync</referencedby>
+        <referencedby refid="dvd_8c_1a23939928f5a7fbc0662f602e3b205cc2" compoundref="dvd_8c" startline="1429" endline="1435">cbForGetStreamPlayAddrSync</referencedby>
+        <referencedby refid="dvd_8c_1aa99bad607916cea2785b9cc51659d129" compoundref="dvd_8c" startline="1480" endline="1486">cbForGetStreamStartAddrSync</referencedby>
+        <referencedby refid="dvd_8c_1a32c335ee936b320038581d524192369b" compoundref="dvd_8c" startline="1695" endline="1701">cbForInquirySync</referencedby>
+        <referencedby refid="dvdfs_8c_1a66787b9a123e4a9755ff894823bf6a82" compoundref="dvdfs_8c" startline="877" endline="883">cbForPrepareStreamSync</referencedby>
+        <referencedby refid="dvdfs_8c_1a62c1b7a8b28f263aa56971234896c6d9" compoundref="dvdfs_8c" startline="538" endline="544">cbForReadSync</referencedby>
+        <referencedby refid="dvdfs_8c_1a1e0c5bd50da244473e46c95bc843f999" compoundref="dvdfs_8c" startline="638" endline="644">cbForSeekSync</referencedby>
+        <referencedby refid="dvd_8c_1a7a59528f503c8fcbb2ce0361e139eca8" compoundref="dvd_8c" startline="1325" endline="1331">cbForStopStreamAtEndSync</referencedby>
+        <referencedby refid="dvd_8h_1a51fe1085ff5d6b15e590592be81497df" compoundref="dvd_8c" startline="1943" endline="1979">DVDCancel</referencedby>
+        <referencedby refid="dvd_8h_1a368651ae66da6931e80e43ed71a5ac6d" compoundref="dvd_8c" startline="2017" endline="2044">DVDCancelAll</referencedby>
+        <referencedby refid="dvd_8h_1adaaf135f761e4264ec5cbf709a70e63b" compoundref="dvd_8c" startline="1245" endline="1273">DVDCancelStream</referencedby>
+        <referencedby refid="dvd_8h_1af7da2e4c736efe6dc4f62bda903c611d" compoundref="dvd_8c" startline="1602" endline="1634">DVDChangeDisk</referencedby>
+        <referencedby refid="dvd_8h_1a5aefe5d95b0e7e563d3b460136d5a7b6" compoundref="dvd_8c" startline="1348" endline="1375">DVDGetStreamErrorStatus</referencedby>
+        <referencedby refid="dvd_8h_1a1a4d208ff519e7d4be6d3acf9dbf2299" compoundref="dvd_8c" startline="1501" endline="1528">DVDGetStreamLength</referencedby>
+        <referencedby refid="dvd_8h_1a91b667560b8fda9f0189c248a74a50af" compoundref="dvd_8c" startline="1399" endline="1426">DVDGetStreamPlayAddr</referencedby>
+        <referencedby refid="dvd_8h_1ac9639e45f1646263b50c8df5ce1e5939" compoundref="dvd_8c" startline="1450" endline="1477">DVDGetStreamStartAddr</referencedby>
+        <referencedby refid="dvd_8h_1a0e38a04ccc2dd987bb6c2f42fbe4ac1a" compoundref="dvd_8c" startline="80" endline="111">DVDInit</referencedby>
+        <referencedby refid="dvd_8h_1a3038de0645c538833e89e882a30cfbc0" compoundref="dvd_8c" startline="1666" endline="1692">DVDInquiry</referencedby>
+        <referencedby refid="dvd_8h_1a8e0982b8ed97fc3efff56bacd457b0e2" compoundref="dvdfs_8c" startline="790" endline="874">DVDPrepareStream</referencedby>
+        <referencedby refid="dvd_8h_1a71cba57105db01c686ab5aa051359771" compoundref="dvdfs_8c" startline="471" endline="535">DVDReadPrio</referencedby>
+        <referencedby refid="dvd_8h_1ac5c921b4e49271c07ed53950ea19dca0" compoundref="dvdfs_8c" startline="585" endline="635">DVDSeekPrio</referencedby>
+        <referencedby refid="dvd_8h_1a9adc269d363d02f618e97bc60338e36f" compoundref="dvd_8c" startline="1295" endline="1322">DVDStopStreamAtEnd</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dvd__private_8h_1ad54dca4cd8b5d4c4caa734dc0c04c435" prot="public" static="no" extern="yes" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 __DVDLongFileNameFlag</definition>
+        <argsstring></argsstring>
+        <name>__DVDLongFileNameFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="16" column="22" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdfs.c" bodystart="23" bodyend="-1" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="16" declcolumn="22"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dvd__private_8h_1a3a36178e06e1f44ca59acd5bd1e255bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DVDAudioBufferConfig</definition>
+        <argsstring>(DVDCommandBlock *block, u32 enable, u32 size, void(*callback)(s32, struct DVDCommandBlock *))</argsstring>
+        <name>__DVDAudioBufferConfig</name>
+        <param>
+          <type><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+          <declname>block</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>enable</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>(*)(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>, <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *)</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="8" column="6" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="8" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1ad541f0dc9b439de821121de85c6c5f11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DVDInitWA</definition>
+        <argsstring>()</argsstring>
+        <name>__DVDInitWA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="12" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdlow.c" bodystart="50" bodyend="56" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="12" declcolumn="6"/>
+        <references refid="dvdlow_8c_1a9fd5a2259a78b7a3a5a44c8d16ba6b1f" compoundref="dvdlow_8c" startline="659" endline="668">__DVDLowSetWAType</references>
+        <references refid="struct_d_v_d_command_1a5d70356e90f1d6f6d1f74d044c699e04" compoundref="dvdlow_8c" startline="31">DVDCommand::command</references>
+        <references refid="dvdlow_8c_1a2160dff4907d7e3ebcdde78ec0b79c1f" compoundref="dvdlow_8c" startline="38">CommandList</references>
+        <references refid="dvdlow_8c_1aac2d3978c657e1c24c43f491da8ca10c" compoundref="dvdlow_8c" startline="20">NextCommandNumber</references>
+        <references refid="_o_s_alarm_8h_1a57a60d9e768f3686cf9911cad08c9b9f" compoundref="_o_s_alarm_8c" startline="67" endline="74">OSInitAlarm</references>
+        <referencedby refid="dvd_8h_1a0e38a04ccc2dd987bb6c2f42fbe4ac1a" compoundref="dvd_8c" startline="80" endline="111">DVDInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1a67c2c481c14693c56d4f717eea8d2711" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DVDFSInit</definition>
+        <argsstring>()</argsstring>
+        <name>__DVDFSInit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="18" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdfs.c" bodystart="38" bodyend="47" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="18" declcolumn="6"/>
+        <references refid="dvdfs_8c_1a543da2d195a8f0576fe4a625c4d15f39" compoundref="dvdfs_8c" startline="17">BootInfo</references>
+        <references refid="struct_o_s_boot_info__s_1a6ec396bca44ea96c17efea535fbb329d" compoundref="_o_s_boot_info_8h" startline="26">OSBootInfo_s::FSTLocation</references>
+        <references refid="dvdfs_8c_1ac2bbd1961fee7855c1ff11048f26af78" compoundref="dvdfs_8c" startline="18">FstStart</references>
+        <references refid="dvdfs_8c_1a055627f40768db7ae255bded8da48862" compoundref="dvdfs_8c" startline="19">FstStringStart</references>
+        <references refid="dvdfs_8c_1ad023cd8b657a21062527353ed9a29dad" compoundref="dvdfs_8c" startline="20">MaxEntryNum</references>
+        <references refid="struct_f_s_t_entry_1a34ab6a5c6212415bf1835542520fed58" compoundref="dvdfs_8c" startline="13">FSTEntry::nextEntryOrLength</references>
+        <references refid="os_8h_1ace957d040592a9519a208b27251be311" compoundref="os_8h" startline="133">OSPhysicalToCached</references>
+        <referencedby refid="dvd_8h_1a0e38a04ccc2dd987bb6c2f42fbe4ac1a" compoundref="dvd_8c" startline="80" endline="111">DVDInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1a9fd5a2259a78b7a3a5a44c8d16ba6b1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DVDLowSetWAType</definition>
+        <argsstring>(u32 type, s32 seekLoc)</argsstring>
+        <name>__DVDLowSetWAType</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>seekLoc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="19" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdlow.c" bodystart="659" bodyend="668" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="19" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="dvdlow_8c_1a5d6bc1626b066aaa0d432038755035e2" compoundref="dvdlow_8c" startline="16">WorkAroundSeekLocation</references>
+        <references refid="dvdlow_8c_1ac5eb830ced8e806ef1d837bdbcc2fb8c" compoundref="dvdlow_8c" startline="15">WorkAroundType</references>
+        <referencedby refid="dvd__private_8h_1ad541f0dc9b439de821121de85c6c5f11" compoundref="dvdlow_8c" startline="50" endline="56">__DVDInitWA</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1aeec3b7cf70a431d357725388f0d85ed2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL __DVDLowTestAlarm</definition>
+        <argsstring>(const OSAlarm *alarm)</argsstring>
+        <name>__DVDLowTestAlarm</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">const</ref> <ref refid="struct_o_s_alarm" kindref="compound">OSAlarm</ref> *</type>
+          <declname>alarm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="20" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdlow.c" bodystart="671" bodyend="683" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="20" declcolumn="6"/>
+        <references refid="dvdlow_8c_1a7bc4b19095bb58277f0d205520da588c" compoundref="dvdlow_8c" startline="41">AlarmForBreak</references>
+        <references refid="dvdlow_8c_1a482ca2f1b23c968b8089aae7bffe7dda" compoundref="dvdlow_8c" startline="40">AlarmForTimeout</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1a6d0100c5ff33f3a89846d8641bfaea9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DVDInterruptHandler</definition>
+        <argsstring>(s16 unused, OSContext *context)</argsstring>
+        <name>__DVDInterruptHandler</name>
+        <param>
+          <type><ref refid="types_8h_1a5ffa4f640862b25ba6d4f635b78bdbe1" kindref="member">s16</ref></type>
+          <declname>unused</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_o_s_context" kindref="compound">OSContext</ref> *</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="23" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdlow.c" bodystart="85" bodyend="206" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="23" declcolumn="6"/>
+        <references refid="_o_s_private_8h_1af607ffc67b3570411ec35d28e3feee59" compoundref="_o_s_time_8c" startline="75" endline="87">__OSGetSystemTime</references>
+        <references refid="struct_d_v_d_buffer_1a1b1526f553b1b7d7921a9bbe1b198bb0" compoundref="dvdlow_8c" startline="24">DVDBuffer::addr</references>
+        <references refid="dvdlow_8c_1a7bc4b19095bb58277f0d205520da588c" compoundref="dvdlow_8c" startline="41">AlarmForBreak</references>
+        <references refid="dvdlow_8c_1a482ca2f1b23c968b8089aae7bffe7dda" compoundref="dvdlow_8c" startline="40">AlarmForTimeout</references>
+        <references refid="dvdlow_8c_1a9bb6f3f90e6b26fe04a13bdc1fd69725" compoundref="dvdlow_8c" startline="14">Breaking</references>
+        <references refid="dvdlow_8c_1a7a296cf9939c52623810e2072430bcb3" compoundref="dvdlow_8c" startline="9">Callback</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="fstload_8c_1aa6d09795f26162c600796b79530c146e" compoundref="fstload_8c" startline="26" endline="57">cb</references>
+        <references refid="struct_d_v_d_command_1a5d70356e90f1d6f6d1f74d044c699e04" compoundref="dvdlow_8c" startline="31">DVDCommand::command</references>
+        <references refid="dvdlow_8c_1a2160dff4907d7e3ebcdde78ec0b79c1f" compoundref="dvdlow_8c" startline="38">CommandList</references>
+        <references refid="dvdlow_8c_1a39ef7c5e9e2d636341cf4b0396216136" compoundref="dvdlow_8c" startline="43">Curr</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="dvdlow_8c_1a8fdc679d49836ec3a2369d7a0b2cae00" compoundref="dvdlow_8c" startline="7">FirstRead</references>
+        <references refid="dvdlow_8c_1af37088b0dff0743fc62c731496294044" compoundref="dvdlow_8c" startline="19">LastCommandWasRead</references>
+        <references refid="dvdlow_8c_1ace03238b015f8113cda08c6f1fdf98ae" compoundref="dvdlow_8c" startline="17">LastReadFinished</references>
+        <references refid="dvdlow_8c_1aef0b19327da015a3d75f61bb2e2aec88" compoundref="dvdlow_8c" startline="11">LastResetEnd</references>
+        <references refid="struct_d_v_d_buffer_1a2f7eb3ff6bff1cd3842623389efdaf3e" compoundref="dvdlow_8c" startline="25">DVDBuffer::length</references>
+        <references refid="dvdlow_8c_1aac2d3978c657e1c24c43f491da8ca10c" compoundref="dvdlow_8c" startline="20">NextCommandNumber</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_d_v_d_buffer_1adfdfda16ff37ab95d78629aa1288f0a2" compoundref="dvdlow_8c" startline="26">DVDBuffer::offset</references>
+        <references refid="_o_s_alarm_8h_1ad08820cab8590f7b2a3345b3ed8c3a0e" compoundref="_o_s_alarm_8c" startline="188" endline="225">OSCancelAlarm</references>
+        <references refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784">OSClearContext</references>
+        <references refid="os_8h_1afde69beba66827e5d5c0922046bc6318" compoundref="os_8h" startline="61">OSMillisecondsToTicks</references>
+        <references refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7">OSSetCurrentContext</references>
+        <references refid="dvdlow_8c_1a8650e6f1f024671e17426e6ccc96daf2" compoundref="dvdlow_8c" startline="42">Prev</references>
+        <references refid="dvdlow_8c_1aff9e3d6cc4db1de95b8a16464de6b948" compoundref="dvdlow_8c" startline="59" endline="82">ProcessNextCommand</references>
+        <references refid="dvdlow_8c_1ab9ee8e6cdca2aeb2fa3da0a983bdb9b9" compoundref="dvdlow_8c" startline="10">ResetCoverCallback</references>
+        <references refid="dvdlow_8c_1af8c11a1f7672e7a0e04c17b1eb0ab890" compoundref="dvdlow_8c" startline="12">ResetOccurred</references>
+        <references refid="dvdlow_8c_1abc3cde4df9b502e6e27a71e1ab00e1f4" compoundref="dvdlow_8c" startline="13">WaitingCoverClose</references>
+        <referencedby refid="dvd_8h_1a0e38a04ccc2dd987bb6c2f42fbe4ac1a" compoundref="dvd_8c" startline="80" endline="111">DVDInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1ab39f743ae25e3fc28207dedbee8284d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DVDClearWaitingQueue</definition>
+        <argsstring>()</argsstring>
+        <name>__DVDClearWaitingQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="26" column="25" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdqueue.c" bodystart="16" bodyend="27" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="26" declcolumn="25"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_d_v_d_command_block_1ae3869b09be8d5da11cb6d425da305dbf" compoundref="dvd_8h" startline="22">DVDCommandBlock::next</references>
+        <references refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" compoundref="dvdqueue_8c" startline="9">next</references>
+        <references refid="struct_d_v_d_command_block_1a4c8ffc33378e6360f33c586642f16339" compoundref="dvd_8h" startline="23">DVDCommandBlock::prev</references>
+        <references refid="dvdqueue_8c_1aac3fa7024b8a50c53f50f773e17576b2">WaitingQueue</references>
+        <referencedby refid="dvd_8h_1ad6c99010b0652d14dfdc555926ea9699" compoundref="dvd_8c" startline="2129" endline="2152">__DVDPrepareResetAsync</referencedby>
+        <referencedby refid="dvd_8h_1a0e38a04ccc2dd987bb6c2f42fbe4ac1a" compoundref="dvd_8c" startline="80" endline="111">DVDInit</referencedby>
+        <referencedby refid="dvd_8c_1abc1ef00aed1d00cb95992e6b75072095" compoundref="dvd_8c" startline="614" endline="638">stateCoverClosed</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1a8850900d7a19a0cb1606083ff8fbe815" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL __DVDPushWaitingQueue</definition>
+        <argsstring>(s32 prio, struct DVDCommandBlock *block)</argsstring>
+        <name>__DVDPushWaitingQueue</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>prio</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+          <declname>block</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="27" column="25" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdqueue.c" bodystart="30" bodyend="42" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="27" declcolumn="25"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_d_v_d_command_block_1ae3869b09be8d5da11cb6d425da305dbf" compoundref="dvd_8h" startline="22">DVDCommandBlock::next</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_d_v_d_command_block_1a4c8ffc33378e6360f33c586642f16339" compoundref="dvd_8h" startline="23">DVDCommandBlock::prev</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <references refid="dvdqueue_8c_1aac3fa7024b8a50c53f50f773e17576b2">WaitingQueue</references>
+        <referencedby refid="dvd_8c_1adf4864b648c8ca0acb967a1291bc4dc1" compoundref="dvd_8c" startline="1036" endline="1067">issueCommand</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1af6c0886b605b3e097e7dfd8f7f979e9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+        <definition>struct DVDCommandBlock * __DVDPopWaitingQueue</definition>
+        <argsstring>()</argsstring>
+        <name>__DVDPopWaitingQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="28" column="23" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdqueue.c" bodystart="65" bodyend="84" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="28" declcolumn="23"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="dvdqueue_8c_1a53db1a01a2283ea7541b496516052c8d" compoundref="dvdqueue_8c" startline="45" endline="62">PopWaitingQueuePrio</references>
+        <references refid="dvdqueue_8c_1aac3fa7024b8a50c53f50f773e17576b2">WaitingQueue</references>
+        <referencedby refid="dvd_8c_1a97a28dc5a05b53290713bbc4b2d3bdcf" compoundref="dvd_8c" startline="1988" endline="2014">DVDCancelAllAsync</referencedby>
+        <referencedby refid="dvd_8c_1a32cf226358f6449cea2cb9c097307130" compoundref="dvd_8c" startline="694" endline="767">stateReady</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1a8c3259c6b0311270d9f3c21e69769d4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL __DVDCheckWaitingQueue</definition>
+        <argsstring>()</argsstring>
+        <name>__DVDCheckWaitingQueue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="29" column="25" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdqueue.c" bodystart="87" bodyend="106" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="29" declcolumn="25"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <references refid="dvdqueue_8c_1aac3fa7024b8a50c53f50f773e17576b2">WaitingQueue</references>
+        <referencedby refid="dvd_8c_1a32cf226358f6449cea2cb9c097307130" compoundref="dvd_8c" startline="694" endline="767">stateReady</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1aedd857145f9294ae2c8db5eadfefadde" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL __DVDDequeueWaitingQueue</definition>
+        <argsstring>(struct DVDCommandBlock *block)</argsstring>
+        <name>__DVDDequeueWaitingQueue</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+          <declname>block</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="30" column="25" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdqueue.c" bodystart="109" bodyend="129" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="30" declcolumn="25"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="struct_d_v_d_command_block_1ae3869b09be8d5da11cb6d425da305dbf" compoundref="dvd_8h" startline="22">DVDCommandBlock::next</references>
+        <references refid="dvdqueue_8c_1a0424132da119cd04a54a02b4189e2e68" compoundref="dvdqueue_8c" startline="9">next</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_d_v_d_command_block_1a4c8ffc33378e6360f33c586642f16339" compoundref="dvd_8h" startline="23">DVDCommandBlock::prev</references>
+        <references refid="dvdqueue_8c_1a0bf1c02a85121fc941973f58413e13f9" compoundref="dvdqueue_8c" startline="10">prev</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="dvd_8c_1adbdec67ea4678f8a3477bfb542a61412" compoundref="dvd_8c" startline="1828" endline="1940">DVDCancelAsync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1a8aa4a41c9c004c0062937d7133bc8eba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL __DVDIsBlockInWaitingQueue</definition>
+        <argsstring>(struct DVDCommandBlock *block)</argsstring>
+        <name>__DVDIsBlockInWaitingQueue</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+          <declname>block</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="31" column="25" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvdqueue.c" bodystart="132" bodyend="155" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="31" declcolumn="25"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="struct_d_v_d_command_block_1ae3869b09be8d5da11cb6d425da305dbf" compoundref="dvd_8h" startline="22">DVDCommandBlock::next</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <references refid="dvdqueue_8c_1aac3fa7024b8a50c53f50f773e17576b2">WaitingQueue</references>
+        <referencedby refid="dvd_8c_1adf4864b648c8ca0acb967a1291bc4dc1" compoundref="dvd_8c" startline="1036" endline="1067">issueCommand</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1a139f733b5d112a3181b78ccb98989739" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __fstLoad</definition>
+        <argsstring>()</argsstring>
+        <name>__fstLoad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="34" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/emu_level2/fstload.c" bodystart="60" bodyend="127" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="34" declcolumn="6"/>
+        <references refid="fstload_8c_1aeb755f9f391b9e20f8edc93c864e6496" compoundref="fstload_8c" startline="17">bb2</references>
+        <references refid="fstload_8c_1aeff4bb085e8de3086a81bcfa3c349881" compoundref="fstload_8c" startline="16">bb2Buf</references>
+        <references refid="dvd_8c_1ae01eb00e7e44cc8852fedb9d075b90e5" compoundref="dvd_8c" startline="19">bootInfo</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="fstload_8c_1aa6d09795f26162c600796b79530c146e" compoundref="fstload_8c" startline="26" endline="57">cb</references>
+        <references refid="struct_d_v_d_disk_i_d_1ad81615f962ea2a3eb2628d13425f7b0f" compoundref="dvd_8h" startline="9">DVDDiskID::company</references>
+        <references refid="struct_d_v_d_disk_i_d_1aa541ceec9c8acb00fb403b873116e63c" compoundref="dvd_8h" startline="10">DVDDiskID::diskNumber</references>
+        <references refid="dvd_8h_1acdd4b2cd2e697d1c9e3f6ce9be48e933" compoundref="dvd_8h" startline="191">DVD_STATE_BUSY</references>
+        <references refid="dvd_8h_1ac6690ced397ccd0c8e83179b16ca857d" compoundref="dvd_8h" startline="193">DVD_STATE_COVER_CLOSED</references>
+        <references refid="dvd_8h_1a7d8bf671cae78a244dd65329d04547ca" compoundref="dvd_8h" startline="195">DVD_STATE_COVER_OPEN</references>
+        <references refid="dvd_8h_1aabedb0143fcafe5aee1392d1ea519742" compoundref="dvd_8h" startline="190">DVD_STATE_END</references>
+        <references refid="dvd_8h_1a9bbc064a28a4d6e8f2b7c6f52d8dfe6d" compoundref="dvd_8h" startline="189">DVD_STATE_FATAL_ERROR</references>
+        <references refid="dvd_8h_1accce54da2992003ef8982a7856867562" compoundref="dvd_8h" startline="197">DVD_STATE_MOTOR_STOPPED</references>
+        <references refid="dvd_8h_1a1195c0bd155444e350b5ceefafdd01fd" compoundref="dvd_8h" startline="194">DVD_STATE_NO_DISK</references>
+        <references refid="dvd_8h_1a166b23ba1653674bc5aee218f6b94be7" compoundref="dvd_8h" startline="192">DVD_STATE_WAITING</references>
+        <references refid="struct_o_s_boot_info__s_1a6988c544b4ca0b1e561a66fba16be2d4" compoundref="_o_s_boot_info_8h" startline="19">OSBootInfo_s::DVDDiskID</references>
+        <references refid="dvd_8h_1a7986e38f5eefcdc3f8978b0b23a3fd0f" compoundref="dvd_8c" startline="1749" endline="1783">DVDGetDriveStatus</references>
+        <references refid="dvd_8h_1a45f3a10ace4ba708362ac969259d9fd3">DVDReadDiskID</references>
+        <references refid="dvd_8h_1a0fcbadd48512a09f1dd4e3c9c397cb5f" compoundref="dvd_8c" startline="1704" endline="1711">DVDReset</references>
+        <references refid="struct_d_v_d_b_b2_1aba80972a7138944a10575f3de5275e01" compoundref="dvd_8h" startline="68">DVDBB2::FSTAddress</references>
+        <references refid="struct_o_s_boot_info__s_1a6ec396bca44ea96c17efea535fbb329d" compoundref="_o_s_boot_info_8h" startline="26">OSBootInfo_s::FSTLocation</references>
+        <references refid="struct_d_v_d_b_b2_1a165f33e2b7caa2964b37553af1ed4bc2" compoundref="dvd_8h" startline="67">DVDBB2::FSTMaxLength</references>
+        <references refid="struct_o_s_boot_info__s_1a4b823acbe1b0bb51484ac95c8ec96731" compoundref="_o_s_boot_info_8h" startline="27">OSBootInfo_s::FSTMaxLength</references>
+        <references refid="struct_d_v_d_disk_i_d_1aeda919f788550d0a4737bfaac8598a34" compoundref="dvd_8h" startline="8">DVDDiskID::gameName</references>
+        <references refid="struct_d_v_d_disk_i_d_1a98af57584e7a5b66ce19839d6db20a3c" compoundref="dvd_8h" startline="11">DVDDiskID::gameVersion</references>
+        <references refid="fstload_8c_1a94dace58c3d91ccd33749d8771077651" compoundref="fstload_8c" startline="19">idTmp</references>
+        <references refid="os_8h_1ad24eb9d172aadff451ca195aae1795b9" compoundref="_o_s_arena_8c" startline="10" endline="20">OSGetArenaHi</references>
+        <references refid="os_8h_1ace957d040592a9519a208b27251be311" compoundref="os_8h" startline="133">OSPhysicalToCached</references>
+        <references refid="os_8h_1a31ab617dc142f4562371fd05927d36d7" compoundref="_o_s_error_8c" startline="12" endline="18">OSReport</references>
+        <references refid="os_8h_1acd7a8be65dcebb96c504de8119bce00f" compoundref="os_8h" startline="123">OSRoundUp32B</references>
+        <references refid="os_8h_1ab73bd23107e283f3a61ca0db32021dd5" compoundref="_o_s_arena_8c" startline="35" endline="38">OSSetArenaHi</references>
+        <references refid="struct_d_v_d_disk_i_d_1a088e9205f7f04377ed8d2bc2cedc1026" compoundref="dvd_8h" startline="12">DVDDiskID::streaming</references>
+        <referencedby refid="dvd_8h_1a0e38a04ccc2dd987bb6c2f42fbe4ac1a" compoundref="dvd_8c" startline="80" endline="111">DVDInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dvd__private_8h_1aad2337080b462c7670507b258df70242" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __DVDStoreErrorCode</definition>
+        <argsstring>(u32 code)</argsstring>
+        <name>__DVDStoreErrorCode</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" line="37" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/dvd/dvderror.c" bodystart="56" bodyend="65" declfile="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h" declline="37" declcolumn="6"/>
+        <references refid="_o_s_private_8h_1aea31a8b428328669d73acb55c9f31607" compoundref="_o_s_rtc_8c" startline="209" endline="212">__OSLockSramEx</references>
+        <references refid="_o_s_private_8h_1a5ec2f512c3229898f35215c3430a2fd0" compoundref="_o_s_rtc_8c" startline="258" endline="261">__OSUnlockSramEx</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="dvderror_8c_1a0db86aaf5931b96b07c7675dc82c9d36" compoundref="dvderror_8c" startline="29" endline="53">Convert</references>
+        <references refid="struct_o_s_sram_ex_1a22d5756921f813b13bdb47d6c26e4acc" compoundref="_o_s_rtc_8h" startline="37">OSSramEx::dvdErrorCode</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="dvd_8c_1a343ccced30206ffdf6dfcbf485b1f6ec" compoundref="dvd_8c" startline="850" endline="1033">cbForStateBusy</referencedby>
+        <referencedby refid="dvd_8c_1a18f405befdb60a67ba89c0c2366ec4bc" compoundref="dvd_8c" startline="517" endline="546">cbForStateCheckID1</referencedby>
+        <referencedby refid="dvd_8c_1a68cbbc980f61bc6dd2a28b3f32bbaad0" compoundref="dvd_8c" startline="549" endline="572">cbForStateCheckID2</referencedby>
+        <referencedby refid="dvd_8c_1a612a535857930916f4415f6f33f29efe" compoundref="dvd_8c" startline="575" endline="602">cbForStateCheckID3</referencedby>
+        <referencedby refid="dvd_8c_1afe5bd6d17a918038855e9dd391384f99" compoundref="dvd_8c" startline="649" endline="674">cbForStateCoverClosed</referencedby>
+        <referencedby refid="dvd_8c_1a0d4c4474433cb3dfc3b4c2cd33940434" compoundref="dvd_8c" startline="287" endline="381">cbForStateGettingError</referencedby>
+        <referencedby refid="dvd_8c_1a332022861ea62e781af413a314452b15" compoundref="dvd_8c" startline="431" endline="468">cbForStateGoToRetry</referencedby>
+        <referencedby refid="dvd_8c_1a11403b75e23bf6f145a48ea2134a251f" compoundref="dvd_8c" startline="384" endline="402">cbForUnrecoveredError</referencedby>
+        <referencedby refid="dvd_8c_1a1652a65c9c98215b78034dc1ff6795fd" compoundref="dvd_8c" startline="405" endline="422">cbForUnrecoveredErrorRetry</referencedby>
+        <referencedby refid="dvd_8c_1a395869bf12c37246e1c897b7f7477a17" compoundref="dvd_8c" startline="188" endline="192">stateError</referencedby>
+        <referencedby refid="dvd_8c_1a6d36b6c785b14d8f907b6c0cf0d18a55" compoundref="dvd_8c" startline="195" endline="219">stateTimeout</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_DVD_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_DVD_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="dvd_8h" kindref="compound">dolphin/dvd.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>dvd.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="dvd__private_8h_1a3a36178e06e1f44ca59acd5bd1e255bc" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dvd__private_8h_1a3a36178e06e1f44ca59acd5bd1e255bc" kindref="member">__DVDAudioBufferConfig</ref><sp/>(<ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">block</ref>,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enable</ref>,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>,</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*callback)<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref>*));</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dvd__private_8h_1ad541f0dc9b439de821121de85c6c5f11" kindref="member">__DVDInitWA</ref><sp/>();</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>dvdfs.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="struct_o_s_thread_queue" kindref="compound">OSThreadQueue</ref><sp/><ref refid="dvd__private_8h_1a0764984f4a23336c239ccbc9fec3e724" kindref="member">__DVDThreadQueue</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvd__private_8h_1ad54dca4cd8b5d4c4caa734dc0c04c435" kindref="member">__DVDLongFileNameFlag</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dvd__private_8h_1a67c2c481c14693c56d4f717eea8d2711" kindref="member">__DVDFSInit</ref><sp/>();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dvd__private_8h_1a9fd5a2259a78b7a3a5a44c8d16ba6b1f" kindref="member">__DVDLowSetWAType</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>type,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">seekLoc</ref>);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><ref refid="dvd__private_8h_1aeec3b7cf70a431d357725388f0d85ed2" kindref="member">__DVDLowTestAlarm</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_o_s_alarm" kindref="compound">OSAlarm</ref>*<sp/>alarm);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>dvdlow.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dvd__private_8h_1a6d0100c5ff33f3a89846d8641bfaea9c" kindref="member">__DVDInterruptHandler</ref><sp/>(<ref refid="types_8h_1a5ffa4f640862b25ba6d4f635b78bdbe1" kindref="member">s16</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">unused</ref>,<sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref>*<sp/>context);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>dvdqueue.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvd__private_8h_1ab39f743ae25e3fc28207dedbee8284d3" kindref="member">__DVDClearWaitingQueue</ref><sp/>();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvd__private_8h_1a8850900d7a19a0cb1606083ff8fbe815" kindref="member">__DVDPushWaitingQueue</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">prio</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">block</ref>);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref>*<sp/><ref refid="dvd__private_8h_1af6c0886b605b3e097e7dfd8f7f979e9f" kindref="member">__DVDPopWaitingQueue</ref><sp/>();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvd__private_8h_1a8c3259c6b0311270d9f3c21e69769d4b" kindref="member">__DVDCheckWaitingQueue</ref><sp/>();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvd__private_8h_1aedd857145f9294ae2c8db5eadfefadde" kindref="member">__DVDDequeueWaitingQueue</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">block</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dvd__private_8h_1a8aa4a41c9c004c0062937d7133bc8eba" kindref="member">__DVDIsBlockInWaitingQueue</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">block</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>fstload.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dvd__private_8h_1a139f733b5d112a3181b78ccb98989739" kindref="member">__fstLoad</ref><sp/>();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>dvderror.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dvd__private_8h_1aad2337080b462c7670507b258df70242" kindref="member">__DVDStoreErrorCode</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>code);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="dvd__private_8h_1a894eab19b3a991c55bf2fa6e957886e1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DVD_DE_INT_ERROR_CODE<sp/><sp/>0x01234567</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="dvd__private_8h_1a68d8842d245d167709a51a2fb8aaaf70" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DVD_TIMEOUT_ERROR_CODE<sp/>0x01234568</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_DOLPHIN_DVD_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/dvd/dvd_private.h"/>
+  </compounddef>
+</doxygen>

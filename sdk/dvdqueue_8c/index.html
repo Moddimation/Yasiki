@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dvdqueue.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dvdqueuec">File dvdqueue.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_6809de60dbef2d995cf7d874d1fa5b65/"><strong>dvd</strong></a> <strong>&gt;</strong> <a href="./"><strong>dvdqueue.c</strong></a></p>
+<p><a href="../dvdqueue_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/dvd.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include "dvd_private.h"</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-next"><strong>next</strong></a>  <br><em>0x00</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-prev"><strong>prev</strong></a>  <br><em>0x04</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-commandnames"><strong>CommandNames</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a></td>
+<td style="text-align: left;"><a href="#variable-waitingqueue"><strong>WaitingQueue</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvddumpwaitingqueue"><strong>DVDDumpWaitingQueue</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdcheckwaitingqueue"><strong>__DVDCheckWaitingQueue</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdclearwaitingqueue"><strong>__DVDClearWaitingQueue</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvddequeuewaitingqueue"><strong>__DVDDequeueWaitingQueue</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdisblockinwaitingqueue"><strong>__DVDIsBlockInWaitingQueue</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__dvdpopwaitingqueue"><strong>__DVDPopWaitingQueue</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdpushwaitingqueue"><strong>__DVDPushWaitingQueue</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> prio, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-popwaitingqueueprio"><strong>PopWaitingQueuePrio</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> prio) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-next">variable next</h3>
+<p><em>0x00</em> </p>
+<pre><code class="language-C++">DVDCommandBlock* next;
+</code></pre>
+<hr>
+
+<h3 id="variable-prev">variable prev</h3>
+<p><em>0x04</em> </p>
+<pre><code class="language-C++">DVDCommandBlock* prev;
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-commandnames">variable CommandNames</h3>
+<pre><code class="language-C++">char* CommandNames[16];
+</code></pre>
+<hr>
+
+<h3 id="variable-waitingqueue">variable WaitingQueue</h3>
+<pre><code class="language-C++">struct  WaitingQueue[4];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-dvddumpwaitingqueue">function DVDDumpWaitingQueue</h3>
+<pre><code class="language-C++">void DVDDumpWaitingQueue (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdcheckwaitingqueue">function __DVDCheckWaitingQueue</h3>
+<pre><code class="language-C++">int __DVDCheckWaitingQueue (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdclearwaitingqueue">function __DVDClearWaitingQueue</h3>
+<pre><code class="language-C++">void __DVDClearWaitingQueue (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvddequeuewaitingqueue">function __DVDDequeueWaitingQueue</h3>
+<pre><code class="language-C++">int __DVDDequeueWaitingQueue (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdisblockinwaitingqueue">function __DVDIsBlockInWaitingQueue</h3>
+<pre><code class="language-C++">int __DVDIsBlockInWaitingQueue (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdpopwaitingqueue">function __DVDPopWaitingQueue</h3>
+<pre><code class="language-C++">DVDCommandBlock * __DVDPopWaitingQueue (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdpushwaitingqueue">function __DVDPushWaitingQueue</h3>
+<pre><code class="language-C++">BOOL __DVDPushWaitingQueue (
+    s32 prio,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-popwaitingqueueprio">function PopWaitingQueuePrio</h3>
+<pre><code class="language-C++">static DVDCommandBlock * PopWaitingQueuePrio (
+    s32 prio
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/dvd/dvdqueue.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

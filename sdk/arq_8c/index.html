@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File arq.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-arqc">File arq.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_1f6a6668d55aa42931fc4b14e0914ad0/"><strong>ar</strong></a> <strong>&gt;</strong> <a href="./"><strong>arq.c</strong></a></p>
+<p><a href="../arq_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+<li><code>#include &lt;dolphin/ar.h&gt;</code></li>
+<li><code>#include "ar_private.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../ar_8h/#typedef-arqcallback"><strong>ARQCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__arqcallbackhi"><strong>__ARQCallbackHi</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ar_8h/#typedef-arqcallback"><strong>ARQCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__arqcallbacklo"><strong>__ARQCallbackLo</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__arqchunksize"><strong>__ARQChunkSize</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__arqrequestpendinghi"><strong>__ARQRequestPendingHi</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__arqrequestpendinglo"><strong>__ARQRequestPendingLo</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__arqrequestqueuehi"><strong>__ARQRequestQueueHi</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__arqrequestqueuelo"><strong>__ARQRequestQueueLo</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__arqrequestqueuetemp"><strong>__ARQRequestQueueTemp</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__arqrequesttailhi"><strong>__ARQRequestTailHi</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__arqrequesttaillo"><strong>__ARQRequestTailLo</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__arqrequesttailtemp"><strong>__ARQRequestTailTemp</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__arq_init_flag"><strong>__ARQ_init_flag</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arqflushqueue"><strong>ARQFlushQueue</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-arqgetchunksize"><strong>ARQGetChunkSize</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arqinit"><strong>ARQInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arqpostrequest"><strong>ARQPostRequest</strong></a> (<a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> * request, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> owner, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> type, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> priority, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> source, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dest, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length, <a href="../ar_8h/#typedef-arqcallback"><strong>ARQCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arqremoveownerrequest"><strong>ARQRemoveOwnerRequest</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> owner) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arqremoverequest"><strong>ARQRemoveRequest</strong></a> (<a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> * request) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arqreset"><strong>ARQReset</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-arqsetchunksize"><strong>ARQSetChunkSize</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arqcallbackhack"><strong>__ARQCallbackHack</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> unused) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arqinittempqueue"><strong>__ARQInitTempQueue</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arqinterruptserviceroutine"><strong>__ARQInterruptServiceRoutine</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arqpoptaskqueuehi"><strong>__ARQPopTaskQueueHi</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arqpushtempqueue"><strong>__ARQPushTempQueue</strong></a> (<a href="../struct_a_r_q_request/"><strong>ARQRequest</strong></a> * task) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__arqservicequeuelo"><strong>__ARQServiceQueueLo</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-__arqcallbackhi">variable __ARQCallbackHi</h3>
+<pre><code class="language-C++">ARQCallback __ARQCallbackHi;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqcallbacklo">variable __ARQCallbackLo</h3>
+<pre><code class="language-C++">ARQCallback __ARQCallbackLo;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqchunksize">variable __ARQChunkSize</h3>
+<pre><code class="language-C++">u32 __ARQChunkSize;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqrequestpendinghi">variable __ARQRequestPendingHi</h3>
+<pre><code class="language-C++">ARQRequest* __ARQRequestPendingHi;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqrequestpendinglo">variable __ARQRequestPendingLo</h3>
+<pre><code class="language-C++">ARQRequest* __ARQRequestPendingLo;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqrequestqueuehi">variable __ARQRequestQueueHi</h3>
+<pre><code class="language-C++">ARQRequest* __ARQRequestQueueHi;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqrequestqueuelo">variable __ARQRequestQueueLo</h3>
+<pre><code class="language-C++">ARQRequest* __ARQRequestQueueLo;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqrequestqueuetemp">variable __ARQRequestQueueTemp</h3>
+<pre><code class="language-C++">ARQRequest* __ARQRequestQueueTemp;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqrequesttailhi">variable __ARQRequestTailHi</h3>
+<pre><code class="language-C++">ARQRequest* __ARQRequestTailHi;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqrequesttaillo">variable __ARQRequestTailLo</h3>
+<pre><code class="language-C++">ARQRequest* __ARQRequestTailLo;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arqrequesttailtemp">variable __ARQRequestTailTemp</h3>
+<pre><code class="language-C++">ARQRequest* __ARQRequestTailTemp;
+</code></pre>
+<hr>
+
+<h3 id="variable-__arq_init_flag">variable __ARQ_init_flag</h3>
+<pre><code class="language-C++">int __ARQ_init_flag;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-arqflushqueue">function ARQFlushQueue</h3>
+<pre><code class="language-C++">void ARQFlushQueue (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arqgetchunksize">function ARQGetChunkSize</h3>
+<pre><code class="language-C++">u32 ARQGetChunkSize (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arqinit">function ARQInit</h3>
+<pre><code class="language-C++">void ARQInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arqpostrequest">function ARQPostRequest</h3>
+<pre><code class="language-C++">void ARQPostRequest (
+    ARQRequest * request,
+    u32 owner,
+    u32 type,
+    u32 priority,
+    u32 source,
+    u32 dest,
+    u32 length,
+    ARQCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arqremoveownerrequest">function ARQRemoveOwnerRequest</h3>
+<pre><code class="language-C++">void ARQRemoveOwnerRequest (
+    u32 owner
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arqremoverequest">function ARQRemoveRequest</h3>
+<pre><code class="language-C++">void ARQRemoveRequest (
+    ARQRequest * request
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arqreset">function ARQReset</h3>
+<pre><code class="language-C++">void ARQReset (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-arqsetchunksize">function ARQSetChunkSize</h3>
+<pre><code class="language-C++">void ARQSetChunkSize (
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arqcallbackhack">function __ARQCallbackHack</h3>
+<pre><code class="language-C++">void __ARQCallbackHack (
+    u32 unused
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arqinittempqueue">function __ARQInitTempQueue</h3>
+<pre><code class="language-C++">void __ARQInitTempQueue (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arqinterruptserviceroutine">function __ARQInterruptServiceRoutine</h3>
+<pre><code class="language-C++">void __ARQInterruptServiceRoutine () 
+</code></pre>
+<hr>
+
+<h3 id="function-__arqpoptaskqueuehi">function __ARQPopTaskQueueHi</h3>
+<pre><code class="language-C++">void __ARQPopTaskQueueHi (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arqpushtempqueue">function __ARQPushTempQueue</h3>
+<pre><code class="language-C++">void __ARQPushTempQueue (
+    ARQRequest * task
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__arqservicequeuelo">function __ARQServiceQueueLo</h3>
+<pre><code class="language-C++">void __ARQServiceQueueLo (
+    void
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/ar/arq.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

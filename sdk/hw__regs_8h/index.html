@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File hw_regs.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-hw_regsh">File hw_regs.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>hw_regs.h</strong></a></p>
+<p><a href="../hw__regs_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;types.h&gt;</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__RAMRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0x80000000) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__CPRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC000000) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__PERegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC001000) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__VIRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC002000) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__PIRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC003000) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__MIRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC004000) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__DSPRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC005000) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__DIRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC006000) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__SIRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC006400) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__EXIRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC006800) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__AIRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC006C00) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__GXRegs</strong></a>[]</td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (0xCC008000) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ai_cr"><strong>AI_CR</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ai_it"><strong>AI_IT</strong></a>  <code>(3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ai_scnt"><strong>AI_SCNT</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ai_vr"><strong>AI_VR</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_bbbottom"><strong>CP_BBBOTTOM</strong></a>  <code>(11)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_bbleft"><strong>CP_BBLEFT</strong></a>  <code>(8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_bbright"><strong>CP_BBRIGHT</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_bbtop"><strong>CP_BBTOP</strong></a>  <code>(10)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_clear"><strong>CP_CLEAR</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_cr"><strong>CP_CR</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_base"><strong>CP_FIFO_BASE</strong></a>  <code>(16)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_base_u"><strong>CP_FIFO_BASE_U</strong></a>  <code>(17)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_bp"><strong>CP_FIFO_BP</strong></a>  <code>(30)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_bp_u"><strong>CP_FIFO_BP_U</strong></a>  <code>(31)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_dist"><strong>CP_FIFO_DIST</strong></a>  <code>(24)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_dist_u"><strong>CP_FIFO_DIST_U</strong></a>  <code>(25)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_end"><strong>CP_FIFO_END</strong></a>  <code>(18)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_end_u"><strong>CP_FIFO_END_U</strong></a>  <code>(19)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_high_mark"><strong>CP_FIFO_HIGH_MARK</strong></a>  <code>(20)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_high_mark_u"><strong>CP_FIFO_HIGH_MARK_U</strong></a>  <code>(21)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_low_mark"><strong>CP_FIFO_LOW_MARK</strong></a>  <code>(22)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_low_mark_u"><strong>CP_FIFO_LOW_MARK_U</strong></a>  <code>(23)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_read"><strong>CP_FIFO_READ</strong></a>  <code>(28)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_read_u"><strong>CP_FIFO_READ_U</strong></a>  <code>(29)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_write"><strong>CP_FIFO_WRITE</strong></a>  <code>(26)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_fifo_write_u"><strong>CP_FIFO_WRITE_U</strong></a>  <code>(27)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_sr"><strong>CP_SR</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cp_token"><strong>CP_TOKEN</strong></a>  <code>(4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_cfg"><strong>DI_CFG</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_cmdbuf_0"><strong>DI_CMDBUF_0</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_cmdbuf_1"><strong>DI_CMDBUF_1</strong></a>  <code>(3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_cmdbuf_2"><strong>DI_CMDBUF_2</strong></a>  <code>(4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_cr"><strong>DI_CR</strong></a>  <code>(7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_cvr"><strong>DI_CVR</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_immbuf"><strong>DI_IMMBUF</strong></a>  <code>(8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_length"><strong>DI_LENGTH</strong></a>  <code>(6)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_mar"><strong>DI_MAR</strong></a>  <code>(5)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-di_sr"><strong>DI_SR</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_dma_aram"><strong>DSP_AR_DMA_ARAM</strong></a>  <code>(18)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_dma_aram_u"><strong>DSP_AR_DMA_ARAM_U</strong></a>  <code>(19)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_dma_mm"><strong>DSP_AR_DMA_MM</strong></a>  <code>(16)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_dma_mm_u"><strong>DSP_AR_DMA_MM_U</strong></a>  <code>(17)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_dma_size"><strong>DSP_AR_DMA_SIZE</strong></a>  <code>(20)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_dma_size_u"><strong>DSP_AR_DMA_SIZE_U</strong></a>  <code>(21)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_mode"><strong>DSP_AR_MODE</strong></a>  <code>(11)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_refresh"><strong>DSP_AR_REFRESH</strong></a>  <code>(13)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_ar_size"><strong>DSP_AR_SIZE</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_csr"><strong>DSP_CSR</strong></a>  <code>(5)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_dma_bytes_left"><strong>DSP_DMA_BYTES_LEFT</strong></a>  <code>(29)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_dma_control_len"><strong>DSP_DMA_CONTROL_LEN</strong></a>  <code>(27)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_dma_start"><strong>DSP_DMA_START</strong></a>  <code>(24)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_dma_start_u"><strong>DSP_DMA_START_U</strong></a>  <code>(25)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_mailbox_in"><strong>DSP_MAILBOX_IN</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_mailbox_in_u"><strong>DSP_MAILBOX_IN_U</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_mailbox_out"><strong>DSP_MAILBOX_OUT</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dsp_mailbox_out_u"><strong>DSP_MAILBOX_OUT_U</strong></a>  <code>(3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c0_cr"><strong>EXI_C0_CR</strong></a>  <code>(3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c0_data"><strong>EXI_C0_DATA</strong></a>  <code>(4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c0_length"><strong>EXI_C0_LENGTH</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c0_mar"><strong>EXI_C0_MAR</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c0_sr"><strong>EXI_C0_SR</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c1_cr"><strong>EXI_C1_CR</strong></a>  <code>(8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c1_data"><strong>EXI_C1_DATA</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c1_length"><strong>EXI_C1_LENGTH</strong></a>  <code>(7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c1_mar"><strong>EXI_C1_MAR</strong></a>  <code>(6)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c1_sr"><strong>EXI_C1_SR</strong></a>  <code>(5)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c2_cr"><strong>EXI_C2_CR</strong></a>  <code>(13)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c2_data"><strong>EXI_C2_DATA</strong></a>  <code>(14)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c2_length"><strong>EXI_C2_LENGTH</strong></a>  <code>(12)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c2_mar"><strong>EXI_C2_MAR</strong></a>  <code>(11)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-exi_c2_sr"><strong>EXI_C2_SR</strong></a>  <code>(10)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_ack"><strong>MI_ACK</strong></a>  <code>(8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_int_cause"><strong>MI_INT_CAUSE</strong></a>  <code>(7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_int_mask"><strong>MI_INT_MASK</strong></a>  <code>(6)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_prot_1"><strong>MI_PROT_1</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_prot_2"><strong>MI_PROT_2</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_prot_3"><strong>MI_PROT_3</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_prot_4"><strong>MI_PROT_4</strong></a>  <code>(3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_prot_type"><strong>MI_PROT_TYPE</strong></a>  <code>(4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_reg"><strong>MI_REG</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mi_reg_u"><strong>MI_REG_U</strong></a>  <code>(10)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_alpha_threshold_id"><strong>PE_PI_ALPHA_THRESHOLD_ID</strong></a>  <code>(0x03)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_cmode0_id"><strong>PE_PI_CMODE0_ID</strong></a>  <code>(0x01)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_cmode1_id"><strong>PE_PI_CMODE1_ID</strong></a>  <code>(0x02)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_ctl_id"><strong>PE_PI_CTL_ID</strong></a>  <code>(0x04)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_intrctl_id"><strong>PE_PI_INTRCTL_ID</strong></a>  <code>(0x05)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_intrstat_id"><strong>PE_PI_INTRSTAT_ID</strong></a>  <code>(0x06)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_token_id"><strong>PE_PI_TOKEN_ID</strong></a>  <code>(0x07)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_xbound0_id"><strong>PE_PI_XBOUND0_ID</strong></a>  <code>(0x08)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_xbound1_id"><strong>PE_PI_XBOUND1_ID</strong></a>  <code>(0x09)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_ybound0_id"><strong>PE_PI_YBOUND0_ID</strong></a>  <code>(0x0A)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_ybound1_id"><strong>PE_PI_YBOUND1_ID</strong></a>  <code>(0x0B)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pe_pi_zmode_id"><strong>PE_PI_ZMODE_ID</strong></a>  <code>(0x00)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_ear"><strong>PI_EAR</strong></a>  <code>(6)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_esr"><strong>PI_ESR</strong></a>  <code>(5)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_fifo_base_end"><strong>PI_FIFO_BASE_END</strong></a>  <code>(3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_fifo_base_start"><strong>PI_FIFO_BASE_START</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_fifo_write_ptr"><strong>PI_FIFO_WRITE_PTR</strong></a>  <code>(4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_intmr"><strong>PI_INTMR</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_intsr"><strong>PI_INTSR</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_reset"><strong>PI_RESET</strong></a>  <code>(7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_reset_code"><strong>PI_RESET_CODE</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pi_type"><strong>PI_TYPE</strong></a>  <code>(8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_aram_size"><strong>RAM_ARAM_SIZE</strong></a>  <code>(52)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_arena"><strong>RAM_ARENA</strong></a>  <code>(12)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_arena_u"><strong>RAM_ARENA_U</strong></a>  <code>(13)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_bus_clock_speed"><strong>RAM_BUS_CLOCK_SPEED</strong></a>  <code>(62)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_console_type"><strong>RAM_CONSOLE_TYPE</strong></a>  <code>(11)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_cpu_clock_speed"><strong>RAM_CPU_CLOCK_SPEED</strong></a>  <code>(63)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dbg_except_hook_dest"><strong>RAM_DBG_EXCEPT_HOOK_DEST</strong></a>  <code>(18)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dbg_except_mask"><strong>RAM_DBG_EXCEPT_MASK</strong></a>  <code>(17)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dbg_flag"><strong>RAM_DBG_FLAG</strong></a>  <code>(16)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dbg_hook_ptr"><strong>RAM_DBG_HOOK_PTR</strong></a>  <code>(24)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dbg_lr_temp"><strong>RAM_DBG_LR_TEMP</strong></a>  <code>(19)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dbg_monitor_ptr"><strong>RAM_DBG_MONITOR_PTR</strong></a>  <code>(58)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dbg_monitor_size"><strong>RAM_DBG_MONITOR_SIZE</strong></a>  <code>(57)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dvd_bi2_pos"><strong>RAM_DVD_BI2_POS</strong></a>  <code>(61)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dvd_info"><strong>RAM_DVD_INFO</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_dvd_magic_word"><strong>RAM_DVD_MAGIC_WORD</strong></a>  <code>(7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_fst_max_length"><strong>RAM_FST_MAX_LENGTH</strong></a>  <code>(15)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_fst_pos"><strong>RAM_FST_POS</strong></a>  <code>(14)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_align"><strong>RAM_IRQ_ALIGN</strong></a>  <code>(284)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_decrementer"><strong>RAM_IRQ_DECREMENTER</strong></a>  <code>(576)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_dsi"><strong>RAM_IRQ_DSI</strong></a>  <code>(192)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_ext"><strong>RAM_IRQ_EXT</strong></a>  <code>(320)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_fp_unavail"><strong>RAM_IRQ_FP_UNAVAIL</strong></a>  <code>(512)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_iabr"><strong>RAM_IRQ_IABR</strong></a>  <code>(1216)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_isi"><strong>RAM_IRQ_ISI</strong></a>  <code>(256)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_machinecheck"><strong>RAM_IRQ_MACHINECHECK</strong></a>  <code>(128)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_performance_monitor"><strong>RAM_IRQ_PERFORMANCE_MONITOR</strong></a>  <code>(960)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_prog"><strong>RAM_IRQ_PROG</strong></a>  <code>(448)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_reset"><strong>RAM_IRQ_RESET</strong></a>  <code>(64)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_syscall"><strong>RAM_IRQ_SYSCALL</strong></a>  <code>(768)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_thermal"><strong>RAM_IRQ_THERMAL</strong></a>  <code>(1472)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_irq_trace"><strong>RAM_IRQ_TRACE</strong></a>  <code>(832)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_magic_word"><strong>RAM_MAGIC_WORD</strong></a>  <code>(8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_os_context_logical_curr"><strong>RAM_OS_CONTEXT_LOGICAL_CURR</strong></a>  <code>(53)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_os_contx_phys_curr"><strong>RAM_OS_CONTX_PHYS_CURR</strong></a>  <code>(48)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_os_int_mask_curr"><strong>RAM_OS_INT_MASK_CURR</strong></a>  <code>(50)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_os_int_mask_prev"><strong>RAM_OS_INT_MASK_PREV</strong></a>  <code>(49)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_os_thread_active_head"><strong>RAM_OS_THREAD_ACTIVE_HEAD</strong></a>  <code>(55)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_os_thread_active_tail"><strong>RAM_OS_THREAD_ACTIVE_TAIL</strong></a>  <code>(56)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_os_thread_current"><strong>RAM_OS_THREAD_CURRENT</strong></a>  <code>(56)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_os_thread_logical_def"><strong>RAM_OS_THREAD_LOGICAL_DEF</strong></a>  <code>(54)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_phys_mem_size"><strong>RAM_PHYS_MEM_SIZE</strong></a>  <code>(10)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_tv_mode"><strong>RAM_TV_MODE</strong></a>  <code>(51)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_version"><strong>RAM_VERSION</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ram_virt_mem_size"><strong>RAM_VIRT_MEM_SIZE</strong></a>  <code>(60)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_buffer"><strong>SI_BUFFER</strong></a>  <code>(16)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c0_inbuf"><strong>SI_C0_INBUF</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c0_inbuf_u"><strong>SI_C0_INBUF_U</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c0_outbuf"><strong>SI_C0_OUTBUF</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c1_inbuf"><strong>SI_C1_INBUF</strong></a>  <code>(4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c1_inbuf_u"><strong>SI_C1_INBUF_U</strong></a>  <code>(5)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c1_outbuf"><strong>SI_C1_OUTBUF</strong></a>  <code>(3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c2_inbuf"><strong>SI_C2_INBUF</strong></a>  <code>(7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c2_inbuf_u"><strong>SI_C2_INBUF_U</strong></a>  <code>(8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c2_outbuf"><strong>SI_C2_OUTBUF</strong></a>  <code>(6)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c3_inbuf"><strong>SI_C3_INBUF</strong></a>  <code>(10)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c3_inbuf_u"><strong>SI_C3_INBUF_U</strong></a>  <code>(11)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_c3_outbuf"><strong>SI_C3_OUTBUF</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_comcsr"><strong>SI_COMCSR</strong></a>  <code>(13)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_exilk"><strong>SI_EXILK</strong></a>  <code>(15)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_poll"><strong>SI_POLL</strong></a>  <code>(12)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-si_sr"><strong>SI_SR</strong></a>  <code>(14)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_bbi_even"><strong>VI_BBI_EVEN</strong></a>  <code>(12)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_bbi_even_u"><strong>VI_BBI_EVEN_U</strong></a>  <code>(13)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_bbi_odd"><strong>VI_BBI_ODD</strong></a>  <code>(10)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_bbi_odd_u"><strong>VI_BBI_ODD_U</strong></a>  <code>(11)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_bttm_field_base_left"><strong>VI_BTTM_FIELD_BASE_LEFT</strong></a>  <code>(18)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_bttm_field_base_left_u"><strong>VI_BTTM_FIELD_BASE_LEFT_U</strong></a>  <code>(19)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_bttm_field_base_right"><strong>VI_BTTM_FIELD_BASE_RIGHT</strong></a>  <code>(20)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_bttm_field_base_right_u"><strong>VI_BTTM_FIELD_BASE_RIGHT_U</strong></a>  <code>(21)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_clock_sel"><strong>VI_CLOCK_SEL</strong></a>  <code>(54)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_config"><strong>VI_DISP_CONFIG</strong></a>  <code>(1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_int_0"><strong>VI_DISP_INT_0</strong></a>  <code>(24)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_int_0_u"><strong>VI_DISP_INT_0_U</strong></a>  <code>(25)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_int_1"><strong>VI_DISP_INT_1</strong></a>  <code>(26)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_int_1_u"><strong>VI_DISP_INT_1_U</strong></a>  <code>(27)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_int_2"><strong>VI_DISP_INT_2</strong></a>  <code>(28)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_int_2_u"><strong>VI_DISP_INT_2_U</strong></a>  <code>(29)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_int_3"><strong>VI_DISP_INT_3</strong></a>  <code>(30)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_int_3_u"><strong>VI_DISP_INT_3_U</strong></a>  <code>(31)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_lat_0"><strong>VI_DISP_LAT_0</strong></a>  <code>(32)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_disp_lat_1"><strong>VI_DISP_LAT_1</strong></a>  <code>(34)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_dtv_stat"><strong>VI_DTV_STAT</strong></a>  <code>(55)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_0"><strong>VI_FCT_0</strong></a>  <code>(38)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_0_u"><strong>VI_FCT_0_U</strong></a>  <code>(39)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_1"><strong>VI_FCT_1</strong></a>  <code>(40)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_1_u"><strong>VI_FCT_1_U</strong></a>  <code>(41)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_2"><strong>VI_FCT_2</strong></a>  <code>(42)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_2_u"><strong>VI_FCT_2_U</strong></a>  <code>(43)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_3"><strong>VI_FCT_3</strong></a>  <code>(44)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_3_u"><strong>VI_FCT_3_U</strong></a>  <code>(45)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_4"><strong>VI_FCT_4</strong></a>  <code>(46)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_4_u"><strong>VI_FCT_4_U</strong></a>  <code>(47)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_5"><strong>VI_FCT_5</strong></a>  <code>(48)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_5_u"><strong>VI_FCT_5_U</strong></a>  <code>(49)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_6"><strong>VI_FCT_6</strong></a>  <code>(50)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_fct_6_u"><strong>VI_FCT_6_U</strong></a>  <code>(51)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_hbe"><strong>VI_HBE</strong></a>  <code>(57)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_hbs"><strong>VI_HBS</strong></a>  <code>(58)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_hline"><strong>VI_HLINE</strong></a>  <code>[**VI\_VERT\_COUNT**](hw__regs_8h.md#define-vi_vert_count)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_horiz_count"><strong>VI_HORIZ_COUNT</strong></a>  <code>(23)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_horiz_timing_0"><strong>VI_HORIZ_TIMING_0</strong></a>  <code>(2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_horiz_timing_0_u"><strong>VI_HORIZ_TIMING_0_U</strong></a>  <code>(3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_horiz_timing_1"><strong>VI_HORIZ_TIMING_1</strong></a>  <code>(4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_horiz_timing_1_u"><strong>VI_HORIZ_TIMING_1_U</strong></a>  <code>(5)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_hsr"><strong>VI_HSR</strong></a>  <code>(37)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_hsw"><strong>VI_HSW</strong></a>  <code>(36)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_top_field_base_left"><strong>VI_TOP_FIELD_BASE_LEFT</strong></a>  <code>(14)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_top_field_base_left_u"><strong>VI_TOP_FIELD_BASE_LEFT_U</strong></a>  <code>(15)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_top_field_base_right"><strong>VI_TOP_FIELD_BASE_RIGHT</strong></a>  <code>(16)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_top_field_base_right_u"><strong>VI_TOP_FIELD_BASE_RIGHT_U</strong></a>  <code>(17)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_vert_count"><strong>VI_VERT_COUNT</strong></a>  <code>(22)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_vert_timing"><strong>VI_VERT_TIMING</strong></a>  <code>(0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_vert_timing_even"><strong>VI_VERT_TIMING_EVEN</strong></a>  <code>(8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_vert_timing_even_u"><strong>VI_VERT_TIMING_EVEN_U</strong></a>  <code>(9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_vert_timing_odd"><strong>VI_VERT_TIMING_ODD</strong></a>  <code>(6)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_vert_timing_odd_u"><strong>VI_VERT_TIMING_ODD_U</strong></a>  <code>(7)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_width"><strong>VI_WIDTH</strong></a>  <code>(56)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_xfb1"><strong>VI_XFB1</strong></a>  <code>[**VI\_TOP\_FIELD\_BASE\_LEFT**](hw__regs_8h.md#define-vi_top_field_base_left)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-vi_xfb2"><strong>VI_XFB2</strong></a>  <code>[**VI\_BTTM\_FIELD\_BASE\_LEFT**](hw__regs_8h.md#define-vi_bttm_field_base_left)</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-at_address">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u32  __RAMRegs [] AT_ADDRESS (
+    0x80000000
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_1">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u16  __CPRegs [] AT_ADDRESS (
+    0xCC000000
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_2">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u16  __PERegs [] AT_ADDRESS (
+    0xCC001000
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_3">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u16  __VIRegs [] AT_ADDRESS (
+    0xCC002000
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_4">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u32  __PIRegs [] AT_ADDRESS (
+    0xCC003000
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_5">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u16  __MIRegs [] AT_ADDRESS (
+    0xCC004000
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_6">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u16  __DSPRegs [] AT_ADDRESS (
+    0xCC005000
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_7">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u32  __DIRegs [] AT_ADDRESS (
+    0xCC006000
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_8">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u32  __SIRegs [] AT_ADDRESS (
+    0xCC006400
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_9">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u32  __EXIRegs [] AT_ADDRESS (
+    0xCC006800
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_10">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u32  __AIRegs [] AT_ADDRESS (
+    0xCC006C00
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-at_address_11">function AT_ADDRESS</h3>
+<pre><code class="language-C++">volatile  u8  __GXRegs [] AT_ADDRESS (
+    0xCC008000
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-ai_cr">define AI_CR</h3>
+<pre><code class="language-C++">#define AI_CR `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-ai_it">define AI_IT</h3>
+<pre><code class="language-C++">#define AI_IT `(3)`
+</code></pre>
+<hr>
+
+<h3 id="define-ai_scnt">define AI_SCNT</h3>
+<pre><code class="language-C++">#define AI_SCNT `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-ai_vr">define AI_VR</h3>
+<pre><code class="language-C++">#define AI_VR `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_bbbottom">define CP_BBBOTTOM</h3>
+<pre><code class="language-C++">#define CP_BBBOTTOM `(11)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_bbleft">define CP_BBLEFT</h3>
+<pre><code class="language-C++">#define CP_BBLEFT `(8)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_bbright">define CP_BBRIGHT</h3>
+<pre><code class="language-C++">#define CP_BBRIGHT `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_bbtop">define CP_BBTOP</h3>
+<pre><code class="language-C++">#define CP_BBTOP `(10)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_clear">define CP_CLEAR</h3>
+<pre><code class="language-C++">#define CP_CLEAR `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_cr">define CP_CR</h3>
+<pre><code class="language-C++">#define CP_CR `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_base">define CP_FIFO_BASE</h3>
+<pre><code class="language-C++">#define CP_FIFO_BASE `(16)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_base_u">define CP_FIFO_BASE_U</h3>
+<pre><code class="language-C++">#define CP_FIFO_BASE_U `(17)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_bp">define CP_FIFO_BP</h3>
+<pre><code class="language-C++">#define CP_FIFO_BP `(30)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_bp_u">define CP_FIFO_BP_U</h3>
+<pre><code class="language-C++">#define CP_FIFO_BP_U `(31)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_dist">define CP_FIFO_DIST</h3>
+<pre><code class="language-C++">#define CP_FIFO_DIST `(24)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_dist_u">define CP_FIFO_DIST_U</h3>
+<pre><code class="language-C++">#define CP_FIFO_DIST_U `(25)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_end">define CP_FIFO_END</h3>
+<pre><code class="language-C++">#define CP_FIFO_END `(18)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_end_u">define CP_FIFO_END_U</h3>
+<pre><code class="language-C++">#define CP_FIFO_END_U `(19)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_high_mark">define CP_FIFO_HIGH_MARK</h3>
+<pre><code class="language-C++">#define CP_FIFO_HIGH_MARK `(20)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_high_mark_u">define CP_FIFO_HIGH_MARK_U</h3>
+<pre><code class="language-C++">#define CP_FIFO_HIGH_MARK_U `(21)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_low_mark">define CP_FIFO_LOW_MARK</h3>
+<pre><code class="language-C++">#define CP_FIFO_LOW_MARK `(22)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_low_mark_u">define CP_FIFO_LOW_MARK_U</h3>
+<pre><code class="language-C++">#define CP_FIFO_LOW_MARK_U `(23)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_read">define CP_FIFO_READ</h3>
+<pre><code class="language-C++">#define CP_FIFO_READ `(28)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_read_u">define CP_FIFO_READ_U</h3>
+<pre><code class="language-C++">#define CP_FIFO_READ_U `(29)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_write">define CP_FIFO_WRITE</h3>
+<pre><code class="language-C++">#define CP_FIFO_WRITE `(26)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_fifo_write_u">define CP_FIFO_WRITE_U</h3>
+<pre><code class="language-C++">#define CP_FIFO_WRITE_U `(27)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_sr">define CP_SR</h3>
+<pre><code class="language-C++">#define CP_SR `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-cp_token">define CP_TOKEN</h3>
+<pre><code class="language-C++">#define CP_TOKEN `(4)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_cfg">define DI_CFG</h3>
+<pre><code class="language-C++">#define DI_CFG `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_cmdbuf_0">define DI_CMDBUF_0</h3>
+<pre><code class="language-C++">#define DI_CMDBUF_0 `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_cmdbuf_1">define DI_CMDBUF_1</h3>
+<pre><code class="language-C++">#define DI_CMDBUF_1 `(3)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_cmdbuf_2">define DI_CMDBUF_2</h3>
+<pre><code class="language-C++">#define DI_CMDBUF_2 `(4)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_cr">define DI_CR</h3>
+<pre><code class="language-C++">#define DI_CR `(7)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_cvr">define DI_CVR</h3>
+<pre><code class="language-C++">#define DI_CVR `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_immbuf">define DI_IMMBUF</h3>
+<pre><code class="language-C++">#define DI_IMMBUF `(8)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_length">define DI_LENGTH</h3>
+<pre><code class="language-C++">#define DI_LENGTH `(6)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_mar">define DI_MAR</h3>
+<pre><code class="language-C++">#define DI_MAR `(5)`
+</code></pre>
+<hr>
+
+<h3 id="define-di_sr">define DI_SR</h3>
+<pre><code class="language-C++">#define DI_SR `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_dma_aram">define DSP_AR_DMA_ARAM</h3>
+<pre><code class="language-C++">#define DSP_AR_DMA_ARAM `(18)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_dma_aram_u">define DSP_AR_DMA_ARAM_U</h3>
+<pre><code class="language-C++">#define DSP_AR_DMA_ARAM_U `(19)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_dma_mm">define DSP_AR_DMA_MM</h3>
+<pre><code class="language-C++">#define DSP_AR_DMA_MM `(16)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_dma_mm_u">define DSP_AR_DMA_MM_U</h3>
+<pre><code class="language-C++">#define DSP_AR_DMA_MM_U `(17)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_dma_size">define DSP_AR_DMA_SIZE</h3>
+<pre><code class="language-C++">#define DSP_AR_DMA_SIZE `(20)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_dma_size_u">define DSP_AR_DMA_SIZE_U</h3>
+<pre><code class="language-C++">#define DSP_AR_DMA_SIZE_U `(21)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_mode">define DSP_AR_MODE</h3>
+<pre><code class="language-C++">#define DSP_AR_MODE `(11)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_refresh">define DSP_AR_REFRESH</h3>
+<pre><code class="language-C++">#define DSP_AR_REFRESH `(13)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_ar_size">define DSP_AR_SIZE</h3>
+<pre><code class="language-C++">#define DSP_AR_SIZE `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_csr">define DSP_CSR</h3>
+<pre><code class="language-C++">#define DSP_CSR `(5)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_dma_bytes_left">define DSP_DMA_BYTES_LEFT</h3>
+<pre><code class="language-C++">#define DSP_DMA_BYTES_LEFT `(29)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_dma_control_len">define DSP_DMA_CONTROL_LEN</h3>
+<pre><code class="language-C++">#define DSP_DMA_CONTROL_LEN `(27)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_dma_start">define DSP_DMA_START</h3>
+<pre><code class="language-C++">#define DSP_DMA_START `(24)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_dma_start_u">define DSP_DMA_START_U</h3>
+<pre><code class="language-C++">#define DSP_DMA_START_U `(25)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_mailbox_in">define DSP_MAILBOX_IN</h3>
+<pre><code class="language-C++">#define DSP_MAILBOX_IN `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_mailbox_in_u">define DSP_MAILBOX_IN_U</h3>
+<pre><code class="language-C++">#define DSP_MAILBOX_IN_U `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_mailbox_out">define DSP_MAILBOX_OUT</h3>
+<pre><code class="language-C++">#define DSP_MAILBOX_OUT `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-dsp_mailbox_out_u">define DSP_MAILBOX_OUT_U</h3>
+<pre><code class="language-C++">#define DSP_MAILBOX_OUT_U `(3)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c0_cr">define EXI_C0_CR</h3>
+<pre><code class="language-C++">#define EXI_C0_CR `(3)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c0_data">define EXI_C0_DATA</h3>
+<pre><code class="language-C++">#define EXI_C0_DATA `(4)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c0_length">define EXI_C0_LENGTH</h3>
+<pre><code class="language-C++">#define EXI_C0_LENGTH `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c0_mar">define EXI_C0_MAR</h3>
+<pre><code class="language-C++">#define EXI_C0_MAR `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c0_sr">define EXI_C0_SR</h3>
+<pre><code class="language-C++">#define EXI_C0_SR `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c1_cr">define EXI_C1_CR</h3>
+<pre><code class="language-C++">#define EXI_C1_CR `(8)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c1_data">define EXI_C1_DATA</h3>
+<pre><code class="language-C++">#define EXI_C1_DATA `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c1_length">define EXI_C1_LENGTH</h3>
+<pre><code class="language-C++">#define EXI_C1_LENGTH `(7)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c1_mar">define EXI_C1_MAR</h3>
+<pre><code class="language-C++">#define EXI_C1_MAR `(6)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c1_sr">define EXI_C1_SR</h3>
+<pre><code class="language-C++">#define EXI_C1_SR `(5)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c2_cr">define EXI_C2_CR</h3>
+<pre><code class="language-C++">#define EXI_C2_CR `(13)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c2_data">define EXI_C2_DATA</h3>
+<pre><code class="language-C++">#define EXI_C2_DATA `(14)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c2_length">define EXI_C2_LENGTH</h3>
+<pre><code class="language-C++">#define EXI_C2_LENGTH `(12)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c2_mar">define EXI_C2_MAR</h3>
+<pre><code class="language-C++">#define EXI_C2_MAR `(11)`
+</code></pre>
+<hr>
+
+<h3 id="define-exi_c2_sr">define EXI_C2_SR</h3>
+<pre><code class="language-C++">#define EXI_C2_SR `(10)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_ack">define MI_ACK</h3>
+<pre><code class="language-C++">#define MI_ACK `(8)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_int_cause">define MI_INT_CAUSE</h3>
+<pre><code class="language-C++">#define MI_INT_CAUSE `(7)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_int_mask">define MI_INT_MASK</h3>
+<pre><code class="language-C++">#define MI_INT_MASK `(6)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_prot_1">define MI_PROT_1</h3>
+<pre><code class="language-C++">#define MI_PROT_1 `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_prot_2">define MI_PROT_2</h3>
+<pre><code class="language-C++">#define MI_PROT_2 `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_prot_3">define MI_PROT_3</h3>
+<pre><code class="language-C++">#define MI_PROT_3 `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_prot_4">define MI_PROT_4</h3>
+<pre><code class="language-C++">#define MI_PROT_4 `(3)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_prot_type">define MI_PROT_TYPE</h3>
+<pre><code class="language-C++">#define MI_PROT_TYPE `(4)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_reg">define MI_REG</h3>
+<pre><code class="language-C++">#define MI_REG `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-mi_reg_u">define MI_REG_U</h3>
+<pre><code class="language-C++">#define MI_REG_U `(10)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_alpha_threshold_id">define PE_PI_ALPHA_THRESHOLD_ID</h3>
+<pre><code class="language-C++">#define PE_PI_ALPHA_THRESHOLD_ID `(0x03)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_cmode0_id">define PE_PI_CMODE0_ID</h3>
+<pre><code class="language-C++">#define PE_PI_CMODE0_ID `(0x01)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_cmode1_id">define PE_PI_CMODE1_ID</h3>
+<pre><code class="language-C++">#define PE_PI_CMODE1_ID `(0x02)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_ctl_id">define PE_PI_CTL_ID</h3>
+<pre><code class="language-C++">#define PE_PI_CTL_ID `(0x04)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_intrctl_id">define PE_PI_INTRCTL_ID</h3>
+<pre><code class="language-C++">#define PE_PI_INTRCTL_ID `(0x05)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_intrstat_id">define PE_PI_INTRSTAT_ID</h3>
+<pre><code class="language-C++">#define PE_PI_INTRSTAT_ID `(0x06)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_token_id">define PE_PI_TOKEN_ID</h3>
+<pre><code class="language-C++">#define PE_PI_TOKEN_ID `(0x07)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_xbound0_id">define PE_PI_XBOUND0_ID</h3>
+<pre><code class="language-C++">#define PE_PI_XBOUND0_ID `(0x08)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_xbound1_id">define PE_PI_XBOUND1_ID</h3>
+<pre><code class="language-C++">#define PE_PI_XBOUND1_ID `(0x09)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_ybound0_id">define PE_PI_YBOUND0_ID</h3>
+<pre><code class="language-C++">#define PE_PI_YBOUND0_ID `(0x0A)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_ybound1_id">define PE_PI_YBOUND1_ID</h3>
+<pre><code class="language-C++">#define PE_PI_YBOUND1_ID `(0x0B)`
+</code></pre>
+<hr>
+
+<h3 id="define-pe_pi_zmode_id">define PE_PI_ZMODE_ID</h3>
+<pre><code class="language-C++">#define PE_PI_ZMODE_ID `(0x00)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_ear">define PI_EAR</h3>
+<pre><code class="language-C++">#define PI_EAR `(6)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_esr">define PI_ESR</h3>
+<pre><code class="language-C++">#define PI_ESR `(5)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_fifo_base_end">define PI_FIFO_BASE_END</h3>
+<pre><code class="language-C++">#define PI_FIFO_BASE_END `(3)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_fifo_base_start">define PI_FIFO_BASE_START</h3>
+<pre><code class="language-C++">#define PI_FIFO_BASE_START `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_fifo_write_ptr">define PI_FIFO_WRITE_PTR</h3>
+<pre><code class="language-C++">#define PI_FIFO_WRITE_PTR `(4)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_intmr">define PI_INTMR</h3>
+<pre><code class="language-C++">#define PI_INTMR `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_intsr">define PI_INTSR</h3>
+<pre><code class="language-C++">#define PI_INTSR `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_reset">define PI_RESET</h3>
+<pre><code class="language-C++">#define PI_RESET `(7)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_reset_code">define PI_RESET_CODE</h3>
+<pre><code class="language-C++">#define PI_RESET_CODE `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-pi_type">define PI_TYPE</h3>
+<pre><code class="language-C++">#define PI_TYPE `(8)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_aram_size">define RAM_ARAM_SIZE</h3>
+<pre><code class="language-C++">#define RAM_ARAM_SIZE `(52)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_arena">define RAM_ARENA</h3>
+<pre><code class="language-C++">#define RAM_ARENA `(12)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_arena_u">define RAM_ARENA_U</h3>
+<pre><code class="language-C++">#define RAM_ARENA_U `(13)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_bus_clock_speed">define RAM_BUS_CLOCK_SPEED</h3>
+<pre><code class="language-C++">#define RAM_BUS_CLOCK_SPEED `(62)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_console_type">define RAM_CONSOLE_TYPE</h3>
+<pre><code class="language-C++">#define RAM_CONSOLE_TYPE `(11)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_cpu_clock_speed">define RAM_CPU_CLOCK_SPEED</h3>
+<pre><code class="language-C++">#define RAM_CPU_CLOCK_SPEED `(63)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dbg_except_hook_dest">define RAM_DBG_EXCEPT_HOOK_DEST</h3>
+<pre><code class="language-C++">#define RAM_DBG_EXCEPT_HOOK_DEST `(18)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dbg_except_mask">define RAM_DBG_EXCEPT_MASK</h3>
+<pre><code class="language-C++">#define RAM_DBG_EXCEPT_MASK `(17)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dbg_flag">define RAM_DBG_FLAG</h3>
+<pre><code class="language-C++">#define RAM_DBG_FLAG `(16)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dbg_hook_ptr">define RAM_DBG_HOOK_PTR</h3>
+<pre><code class="language-C++">#define RAM_DBG_HOOK_PTR `(24)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dbg_lr_temp">define RAM_DBG_LR_TEMP</h3>
+<pre><code class="language-C++">#define RAM_DBG_LR_TEMP `(19)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dbg_monitor_ptr">define RAM_DBG_MONITOR_PTR</h3>
+<pre><code class="language-C++">#define RAM_DBG_MONITOR_PTR `(58)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dbg_monitor_size">define RAM_DBG_MONITOR_SIZE</h3>
+<pre><code class="language-C++">#define RAM_DBG_MONITOR_SIZE `(57)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dvd_bi2_pos">define RAM_DVD_BI2_POS</h3>
+<pre><code class="language-C++">#define RAM_DVD_BI2_POS `(61)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dvd_info">define RAM_DVD_INFO</h3>
+<pre><code class="language-C++">#define RAM_DVD_INFO `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_dvd_magic_word">define RAM_DVD_MAGIC_WORD</h3>
+<pre><code class="language-C++">#define RAM_DVD_MAGIC_WORD `(7)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_fst_max_length">define RAM_FST_MAX_LENGTH</h3>
+<pre><code class="language-C++">#define RAM_FST_MAX_LENGTH `(15)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_fst_pos">define RAM_FST_POS</h3>
+<pre><code class="language-C++">#define RAM_FST_POS `(14)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_align">define RAM_IRQ_ALIGN</h3>
+<pre><code class="language-C++">#define RAM_IRQ_ALIGN `(284)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_decrementer">define RAM_IRQ_DECREMENTER</h3>
+<pre><code class="language-C++">#define RAM_IRQ_DECREMENTER `(576)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_dsi">define RAM_IRQ_DSI</h3>
+<pre><code class="language-C++">#define RAM_IRQ_DSI `(192)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_ext">define RAM_IRQ_EXT</h3>
+<pre><code class="language-C++">#define RAM_IRQ_EXT `(320)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_fp_unavail">define RAM_IRQ_FP_UNAVAIL</h3>
+<pre><code class="language-C++">#define RAM_IRQ_FP_UNAVAIL `(512)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_iabr">define RAM_IRQ_IABR</h3>
+<pre><code class="language-C++">#define RAM_IRQ_IABR `(1216)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_isi">define RAM_IRQ_ISI</h3>
+<pre><code class="language-C++">#define RAM_IRQ_ISI `(256)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_machinecheck">define RAM_IRQ_MACHINECHECK</h3>
+<pre><code class="language-C++">#define RAM_IRQ_MACHINECHECK `(128)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_performance_monitor">define RAM_IRQ_PERFORMANCE_MONITOR</h3>
+<pre><code class="language-C++">#define RAM_IRQ_PERFORMANCE_MONITOR `(960)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_prog">define RAM_IRQ_PROG</h3>
+<pre><code class="language-C++">#define RAM_IRQ_PROG `(448)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_reset">define RAM_IRQ_RESET</h3>
+<pre><code class="language-C++">#define RAM_IRQ_RESET `(64)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_syscall">define RAM_IRQ_SYSCALL</h3>
+<pre><code class="language-C++">#define RAM_IRQ_SYSCALL `(768)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_thermal">define RAM_IRQ_THERMAL</h3>
+<pre><code class="language-C++">#define RAM_IRQ_THERMAL `(1472)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_irq_trace">define RAM_IRQ_TRACE</h3>
+<pre><code class="language-C++">#define RAM_IRQ_TRACE `(832)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_magic_word">define RAM_MAGIC_WORD</h3>
+<pre><code class="language-C++">#define RAM_MAGIC_WORD `(8)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_os_context_logical_curr">define RAM_OS_CONTEXT_LOGICAL_CURR</h3>
+<pre><code class="language-C++">#define RAM_OS_CONTEXT_LOGICAL_CURR `(53)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_os_contx_phys_curr">define RAM_OS_CONTX_PHYS_CURR</h3>
+<pre><code class="language-C++">#define RAM_OS_CONTX_PHYS_CURR `(48)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_os_int_mask_curr">define RAM_OS_INT_MASK_CURR</h3>
+<pre><code class="language-C++">#define RAM_OS_INT_MASK_CURR `(50)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_os_int_mask_prev">define RAM_OS_INT_MASK_PREV</h3>
+<pre><code class="language-C++">#define RAM_OS_INT_MASK_PREV `(49)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_os_thread_active_head">define RAM_OS_THREAD_ACTIVE_HEAD</h3>
+<pre><code class="language-C++">#define RAM_OS_THREAD_ACTIVE_HEAD `(55)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_os_thread_active_tail">define RAM_OS_THREAD_ACTIVE_TAIL</h3>
+<pre><code class="language-C++">#define RAM_OS_THREAD_ACTIVE_TAIL `(56)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_os_thread_current">define RAM_OS_THREAD_CURRENT</h3>
+<pre><code class="language-C++">#define RAM_OS_THREAD_CURRENT `(56)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_os_thread_logical_def">define RAM_OS_THREAD_LOGICAL_DEF</h3>
+<pre><code class="language-C++">#define RAM_OS_THREAD_LOGICAL_DEF `(54)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_phys_mem_size">define RAM_PHYS_MEM_SIZE</h3>
+<pre><code class="language-C++">#define RAM_PHYS_MEM_SIZE `(10)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_tv_mode">define RAM_TV_MODE</h3>
+<pre><code class="language-C++">#define RAM_TV_MODE `(51)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_version">define RAM_VERSION</h3>
+<pre><code class="language-C++">#define RAM_VERSION `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-ram_virt_mem_size">define RAM_VIRT_MEM_SIZE</h3>
+<pre><code class="language-C++">#define RAM_VIRT_MEM_SIZE `(60)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_buffer">define SI_BUFFER</h3>
+<pre><code class="language-C++">#define SI_BUFFER `(16)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c0_inbuf">define SI_C0_INBUF</h3>
+<pre><code class="language-C++">#define SI_C0_INBUF `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c0_inbuf_u">define SI_C0_INBUF_U</h3>
+<pre><code class="language-C++">#define SI_C0_INBUF_U `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c0_outbuf">define SI_C0_OUTBUF</h3>
+<pre><code class="language-C++">#define SI_C0_OUTBUF `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c1_inbuf">define SI_C1_INBUF</h3>
+<pre><code class="language-C++">#define SI_C1_INBUF `(4)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c1_inbuf_u">define SI_C1_INBUF_U</h3>
+<pre><code class="language-C++">#define SI_C1_INBUF_U `(5)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c1_outbuf">define SI_C1_OUTBUF</h3>
+<pre><code class="language-C++">#define SI_C1_OUTBUF `(3)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c2_inbuf">define SI_C2_INBUF</h3>
+<pre><code class="language-C++">#define SI_C2_INBUF `(7)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c2_inbuf_u">define SI_C2_INBUF_U</h3>
+<pre><code class="language-C++">#define SI_C2_INBUF_U `(8)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c2_outbuf">define SI_C2_OUTBUF</h3>
+<pre><code class="language-C++">#define SI_C2_OUTBUF `(6)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c3_inbuf">define SI_C3_INBUF</h3>
+<pre><code class="language-C++">#define SI_C3_INBUF `(10)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c3_inbuf_u">define SI_C3_INBUF_U</h3>
+<pre><code class="language-C++">#define SI_C3_INBUF_U `(11)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_c3_outbuf">define SI_C3_OUTBUF</h3>
+<pre><code class="language-C++">#define SI_C3_OUTBUF `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_comcsr">define SI_COMCSR</h3>
+<pre><code class="language-C++">#define SI_COMCSR `(13)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_exilk">define SI_EXILK</h3>
+<pre><code class="language-C++">#define SI_EXILK `(15)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_poll">define SI_POLL</h3>
+<pre><code class="language-C++">#define SI_POLL `(12)`
+</code></pre>
+<hr>
+
+<h3 id="define-si_sr">define SI_SR</h3>
+<pre><code class="language-C++">#define SI_SR `(14)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_bbi_even">define VI_BBI_EVEN</h3>
+<pre><code class="language-C++">#define VI_BBI_EVEN `(12)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_bbi_even_u">define VI_BBI_EVEN_U</h3>
+<pre><code class="language-C++">#define VI_BBI_EVEN_U `(13)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_bbi_odd">define VI_BBI_ODD</h3>
+<pre><code class="language-C++">#define VI_BBI_ODD `(10)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_bbi_odd_u">define VI_BBI_ODD_U</h3>
+<pre><code class="language-C++">#define VI_BBI_ODD_U `(11)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_bttm_field_base_left">define VI_BTTM_FIELD_BASE_LEFT</h3>
+<pre><code class="language-C++">#define VI_BTTM_FIELD_BASE_LEFT `(18)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_bttm_field_base_left_u">define VI_BTTM_FIELD_BASE_LEFT_U</h3>
+<pre><code class="language-C++">#define VI_BTTM_FIELD_BASE_LEFT_U `(19)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_bttm_field_base_right">define VI_BTTM_FIELD_BASE_RIGHT</h3>
+<pre><code class="language-C++">#define VI_BTTM_FIELD_BASE_RIGHT `(20)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_bttm_field_base_right_u">define VI_BTTM_FIELD_BASE_RIGHT_U</h3>
+<pre><code class="language-C++">#define VI_BTTM_FIELD_BASE_RIGHT_U `(21)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_clock_sel">define VI_CLOCK_SEL</h3>
+<pre><code class="language-C++">#define VI_CLOCK_SEL `(54)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_config">define VI_DISP_CONFIG</h3>
+<pre><code class="language-C++">#define VI_DISP_CONFIG `(1)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_int_0">define VI_DISP_INT_0</h3>
+<pre><code class="language-C++">#define VI_DISP_INT_0 `(24)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_int_0_u">define VI_DISP_INT_0_U</h3>
+<pre><code class="language-C++">#define VI_DISP_INT_0_U `(25)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_int_1">define VI_DISP_INT_1</h3>
+<pre><code class="language-C++">#define VI_DISP_INT_1 `(26)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_int_1_u">define VI_DISP_INT_1_U</h3>
+<pre><code class="language-C++">#define VI_DISP_INT_1_U `(27)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_int_2">define VI_DISP_INT_2</h3>
+<pre><code class="language-C++">#define VI_DISP_INT_2 `(28)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_int_2_u">define VI_DISP_INT_2_U</h3>
+<pre><code class="language-C++">#define VI_DISP_INT_2_U `(29)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_int_3">define VI_DISP_INT_3</h3>
+<pre><code class="language-C++">#define VI_DISP_INT_3 `(30)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_int_3_u">define VI_DISP_INT_3_U</h3>
+<pre><code class="language-C++">#define VI_DISP_INT_3_U `(31)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_lat_0">define VI_DISP_LAT_0</h3>
+<pre><code class="language-C++">#define VI_DISP_LAT_0 `(32)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_disp_lat_1">define VI_DISP_LAT_1</h3>
+<pre><code class="language-C++">#define VI_DISP_LAT_1 `(34)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_dtv_stat">define VI_DTV_STAT</h3>
+<pre><code class="language-C++">#define VI_DTV_STAT `(55)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_0">define VI_FCT_0</h3>
+<pre><code class="language-C++">#define VI_FCT_0 `(38)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_0_u">define VI_FCT_0_U</h3>
+<pre><code class="language-C++">#define VI_FCT_0_U `(39)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_1">define VI_FCT_1</h3>
+<pre><code class="language-C++">#define VI_FCT_1 `(40)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_1_u">define VI_FCT_1_U</h3>
+<pre><code class="language-C++">#define VI_FCT_1_U `(41)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_2">define VI_FCT_2</h3>
+<pre><code class="language-C++">#define VI_FCT_2 `(42)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_2_u">define VI_FCT_2_U</h3>
+<pre><code class="language-C++">#define VI_FCT_2_U `(43)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_3">define VI_FCT_3</h3>
+<pre><code class="language-C++">#define VI_FCT_3 `(44)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_3_u">define VI_FCT_3_U</h3>
+<pre><code class="language-C++">#define VI_FCT_3_U `(45)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_4">define VI_FCT_4</h3>
+<pre><code class="language-C++">#define VI_FCT_4 `(46)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_4_u">define VI_FCT_4_U</h3>
+<pre><code class="language-C++">#define VI_FCT_4_U `(47)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_5">define VI_FCT_5</h3>
+<pre><code class="language-C++">#define VI_FCT_5 `(48)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_5_u">define VI_FCT_5_U</h3>
+<pre><code class="language-C++">#define VI_FCT_5_U `(49)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_6">define VI_FCT_6</h3>
+<pre><code class="language-C++">#define VI_FCT_6 `(50)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_fct_6_u">define VI_FCT_6_U</h3>
+<pre><code class="language-C++">#define VI_FCT_6_U `(51)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_hbe">define VI_HBE</h3>
+<pre><code class="language-C++">#define VI_HBE `(57)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_hbs">define VI_HBS</h3>
+<pre><code class="language-C++">#define VI_HBS `(58)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_hline">define VI_HLINE</h3>
+<pre><code class="language-C++">#define VI_HLINE `VI_VERT_COUNT`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_horiz_count">define VI_HORIZ_COUNT</h3>
+<pre><code class="language-C++">#define VI_HORIZ_COUNT `(23)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_horiz_timing_0">define VI_HORIZ_TIMING_0</h3>
+<pre><code class="language-C++">#define VI_HORIZ_TIMING_0 `(2)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_horiz_timing_0_u">define VI_HORIZ_TIMING_0_U</h3>
+<pre><code class="language-C++">#define VI_HORIZ_TIMING_0_U `(3)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_horiz_timing_1">define VI_HORIZ_TIMING_1</h3>
+<pre><code class="language-C++">#define VI_HORIZ_TIMING_1 `(4)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_horiz_timing_1_u">define VI_HORIZ_TIMING_1_U</h3>
+<pre><code class="language-C++">#define VI_HORIZ_TIMING_1_U `(5)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_hsr">define VI_HSR</h3>
+<pre><code class="language-C++">#define VI_HSR `(37)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_hsw">define VI_HSW</h3>
+<pre><code class="language-C++">#define VI_HSW `(36)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_top_field_base_left">define VI_TOP_FIELD_BASE_LEFT</h3>
+<pre><code class="language-C++">#define VI_TOP_FIELD_BASE_LEFT `(14)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_top_field_base_left_u">define VI_TOP_FIELD_BASE_LEFT_U</h3>
+<pre><code class="language-C++">#define VI_TOP_FIELD_BASE_LEFT_U `(15)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_top_field_base_right">define VI_TOP_FIELD_BASE_RIGHT</h3>
+<pre><code class="language-C++">#define VI_TOP_FIELD_BASE_RIGHT `(16)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_top_field_base_right_u">define VI_TOP_FIELD_BASE_RIGHT_U</h3>
+<pre><code class="language-C++">#define VI_TOP_FIELD_BASE_RIGHT_U `(17)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_vert_count">define VI_VERT_COUNT</h3>
+<pre><code class="language-C++">#define VI_VERT_COUNT `(22)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_vert_timing">define VI_VERT_TIMING</h3>
+<pre><code class="language-C++">#define VI_VERT_TIMING `(0)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_vert_timing_even">define VI_VERT_TIMING_EVEN</h3>
+<pre><code class="language-C++">#define VI_VERT_TIMING_EVEN `(8)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_vert_timing_even_u">define VI_VERT_TIMING_EVEN_U</h3>
+<pre><code class="language-C++">#define VI_VERT_TIMING_EVEN_U `(9)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_vert_timing_odd">define VI_VERT_TIMING_ODD</h3>
+<pre><code class="language-C++">#define VI_VERT_TIMING_ODD `(6)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_vert_timing_odd_u">define VI_VERT_TIMING_ODD_U</h3>
+<pre><code class="language-C++">#define VI_VERT_TIMING_ODD_U `(7)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_width">define VI_WIDTH</h3>
+<pre><code class="language-C++">#define VI_WIDTH `(56)`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_xfb1">define VI_XFB1</h3>
+<pre><code class="language-C++">#define VI_XFB1 `VI_TOP_FIELD_BASE_LEFT`
+</code></pre>
+<hr>
+
+<h3 id="define-vi_xfb2">define VI_XFB2</h3>
+<pre><code class="language-C++">#define VI_XFB2 `VI_BTTM_FIELD_BASE_LEFT`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/hw_regs.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

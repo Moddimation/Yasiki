@@ -1,0 +1,56 @@
+
+
+# File DEMOStats.h
+
+[**File List**](files.md) **>** [**decomp**](dir_0c56b33aa00ddb0e63af648508d6e3f4.md) **>** [**DolphinSDK**](dir_7403dcf2df2f5392613493bf2b736904.md) **>** [**include**](dir_9b186dc3f3e3b6d33b9081cb8e685142.md) **>** [**dolphin**](dir_47b271ade99b633966c54f819f725c3c.md) **>** [**demo**](dir_331bf99e07843061bc97f5d482e7f04d.md) **>** [**DEMOStats.h**](_d_e_m_o_stats_8h.md)
+
+[Go to the documentation of this file](_d_e_m_o_stats_8h.md)
+
+
+```C++
+#ifndef _DOLPHIN_DEMOSTATS_H_
+#define _DOLPHIN_DEMOSTATS_H_
+
+#include <types.h>
+
+typedef enum DEMO_STAT_TYPE
+{
+    DEMO_STAT_GP0 = 0,
+    DEMO_STAT_GP1 = 1,
+    DEMO_STAT_MEM = 2,
+    DEMO_STAT_PIX = 3,
+    DEMO_STAT_VC = 4,
+    DEMO_STAT_FR = 5,
+    DEMO_STAT_TBW = 6,
+    DEMO_STAT_TBP = 7,
+    DEMO_STAT_MYC = 8,
+    DEMO_STAT_MYR = 9
+} DEMO_STAT_TYPE;
+
+typedef struct DemoStatData
+{
+    s8             text[50];
+    DEMO_STAT_TYPE stat_type;
+    u32            stat;
+    u32            count;
+} DemoStatData;
+
+typedef enum
+{
+    DEMO_STAT_TL = 0,
+    DEMO_STAT_BL = 1,
+    DEMO_STAT_TLD = 2,
+    DEMO_STAT_BLD = 3,
+    DEMO_STAT_IO = 4
+} DEMO_STAT_DISP;
+
+extern u16 DemoStatEnable;
+
+void DEMOSetStats (DemoStatData* stat, u32 nstats, DEMO_STAT_DISP disp);
+void DEMOUpdateStats (u16 inc);
+void DEMOPrintStats (void);
+
+#endif // _DOLPHIN_DEMOSTATS_H_
+```
+
+

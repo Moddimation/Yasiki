@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_include_strategy" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>IncludeStrategy</compoundname>
+    <includes refid="_include_strategy_8h" local="no">IncludeStrategy.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_include_strategy_1afc30d7bd14a04706c0cb6e745a0f388d" prot="private" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 IncludeStrategy::mStrategyMemory[0x800]</definition>
+        <argsstring>[0x800]</argsstring>
+        <name>mStrategyMemory</name>
+        <qualifiedname>IncludeStrategy::mStrategyMemory</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="10" column="20" bodyfile="decomp/Project/sources/Koga/include/IncludeStrategy.h" bodystart="10" bodyend="-1"/>
+        <referencedby refid="class_include_strategy_1a1f85b281575d09582674019c71b4772e" compoundref="_include_strategy_8h" startline="23" endline="26">getBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_include_strategy_1ad6a597cd8ddb457145928214c6a830c7" prot="private" static="no" mutable="no">
+        <type><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref> *</type>
+        <definition>EnemyStrategy* IncludeStrategy::mpStrategy</definition>
+        <argsstring></argsstring>
+        <name>mpStrategy</name>
+        <qualifiedname>IncludeStrategy::mpStrategy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="11" column="19" bodyfile="decomp/Project/sources/Koga/include/IncludeStrategy.h" bodystart="11" bodyend="-1"/>
+        <referencedby refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" compoundref="_include_strategy_8cpp" startline="24" endline="35">destroyStrategy</referencedby>
+        <referencedby refid="class_include_strategy_1ab68bed9315be483c35265f66503d7f29" compoundref="_include_strategy_8cpp" startline="16" endline="21">setStrategy</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_include_strategy_1a3f4a47b73e3b5d34663b8549af639b74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>IncludeStrategy::IncludeStrategy</definition>
+        <argsstring>()</argsstring>
+        <name>IncludeStrategy</name>
+        <qualifiedname>IncludeStrategy::IncludeStrategy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="14" column="5" bodyfile="decomp/Project/sources/Koga/src/IncludeStrategy.cpp" bodystart="5" bodyend="8"/>
+        <references refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" compoundref="_include_strategy_8cpp" startline="24" endline="35">destroyStrategy</references>
+      </memberdef>
+      <memberdef kind="function" id="class_include_strategy_1a5c55ae01f8f7697ce63def4c8cfd5912" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>IncludeStrategy::~IncludeStrategy</definition>
+        <argsstring>()</argsstring>
+        <name>~IncludeStrategy</name>
+        <qualifiedname>IncludeStrategy::~IncludeStrategy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="16" column="13" bodyfile="decomp/Project/sources/Koga/src/IncludeStrategy.cpp" bodystart="10" bodyend="13"/>
+        <references refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" compoundref="_include_strategy_8cpp" startline="24" endline="35">destroyStrategy</references>
+      </memberdef>
+      <memberdef kind="function" id="class_include_strategy_1a30f585d93d7c1fdb84e83e729bc4b719" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void IncludeStrategy::unknownVirtualFunc</definition>
+        <argsstring>()=0</argsstring>
+        <name>unknownVirtualFunc</name>
+        <qualifiedname>IncludeStrategy::unknownVirtualFunc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="17" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_include_strategy_1ab68bed9315be483c35265f66503d7f29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IncludeStrategy::setStrategy</definition>
+        <argsstring>(int i_entityIdx)</argsstring>
+        <name>setStrategy</name>
+        <qualifiedname>IncludeStrategy::setStrategy</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i_entityIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="19" column="10" bodyfile="decomp/Project/sources/Koga/src/IncludeStrategy.cpp" bodystart="16" bodyend="21"/>
+        <references refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" compoundref="_include_strategy_8cpp" startline="24" endline="35">destroyStrategy</references>
+        <references refid="class_include_strategy_1a1f85b281575d09582674019c71b4772e" compoundref="_include_strategy_8h" startline="23" endline="26">getBuffer</references>
+        <references refid="_enemy_strategy_8h_1a1fe8911513a68790297e955f8f25093f" compoundref="_enemy_strategy_8cpp" startline="9" endline="12">getEnemyStrategyInitFunc</references>
+        <references refid="class_include_strategy_1ad6a597cd8ddb457145928214c6a830c7" compoundref="_include_strategy_8h" startline="11">mpStrategy</references>
+      </memberdef>
+      <memberdef kind="function" id="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IncludeStrategy::destroyStrategy</definition>
+        <argsstring>()</argsstring>
+        <name>destroyStrategy</name>
+        <qualifiedname>IncludeStrategy::destroyStrategy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="20" column="10" bodyfile="decomp/Project/sources/Koga/src/IncludeStrategy.cpp" bodystart="24" bodyend="35"/>
+        <references refid="class_include_strategy_1ad6a597cd8ddb457145928214c6a830c7" compoundref="_include_strategy_8h" startline="11">mpStrategy</references>
+        <references refid="class_enemy_strategy_1ad759854ea39c4827c89acb5ecec27e67" compoundref="_enemy_strategy_8cpp" startline="26" endline="26">EnemyStrategy::~EnemyStrategy</references>
+        <referencedby refid="class_include_strategy_1a3f4a47b73e3b5d34663b8549af639b74" compoundref="_include_strategy_8cpp" startline="5" endline="8">IncludeStrategy</referencedby>
+        <referencedby refid="class_include_strategy_1ab68bed9315be483c35265f66503d7f29" compoundref="_include_strategy_8cpp" startline="16" endline="21">setStrategy</referencedby>
+        <referencedby refid="class_include_strategy_1a5c55ae01f8f7697ce63def4c8cfd5912" compoundref="_include_strategy_8cpp" startline="10" endline="13">~IncludeStrategy</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_include_strategy_1a1f85b281575d09582674019c71b4772e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * IncludeStrategy::getBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>getBuffer</name>
+        <qualifiedname>IncludeStrategy::getBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="23" column="5" bodyfile="decomp/Project/sources/Koga/include/IncludeStrategy.h" bodystart="23" bodyend="26"/>
+        <references refid="class_include_strategy_1afc30d7bd14a04706c0cb6e745a0f388d" compoundref="_include_strategy_8h" startline="10">mStrategyMemory</references>
+        <referencedby refid="class_include_strategy_1ab68bed9315be483c35265f66503d7f29" compoundref="_include_strategy_8cpp" startline="16" endline="21">setStrategy</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>EnemyStrategy</label>
+        <link refid="class_enemy_strategy"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>IncludeStrategy</label>
+        <link refid="class_include_strategy"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mpStrategy</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>JORReflexible</label>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/Project/sources/Koga/include/IncludeStrategy.h" line="8" column="1" bodyfile="decomp/Project/sources/Koga/include/IncludeStrategy.h" bodystart="9" bodyend="27"/>
+    <listofallmembers>
+      <member refid="class_include_strategy_1a697add762df6e9553f4917d7e1f6acd3" prot="public" virt="non-virtual"><scope>IncludeStrategy</scope><name>destroyStrategy</name></member>
+      <member refid="class_include_strategy_1a1f85b281575d09582674019c71b4772e" prot="public" virt="non-virtual"><scope>IncludeStrategy</scope><name>getBuffer</name></member>
+      <member refid="class_include_strategy_1a3f4a47b73e3b5d34663b8549af639b74" prot="public" virt="non-virtual"><scope>IncludeStrategy</scope><name>IncludeStrategy</name></member>
+      <member refid="class_include_strategy_1ad6a597cd8ddb457145928214c6a830c7" prot="private" virt="non-virtual"><scope>IncludeStrategy</scope><name>mpStrategy</name></member>
+      <member refid="class_include_strategy_1afc30d7bd14a04706c0cb6e745a0f388d" prot="private" virt="non-virtual"><scope>IncludeStrategy</scope><name>mStrategyMemory</name></member>
+      <member refid="class_include_strategy_1ab68bed9315be483c35265f66503d7f29" prot="public" virt="non-virtual"><scope>IncludeStrategy</scope><name>setStrategy</name></member>
+      <member refid="class_include_strategy_1a30f585d93d7c1fdb84e83e729bc4b719" prot="public" virt="pure-virtual"><scope>IncludeStrategy</scope><name>unknownVirtualFunc</name></member>
+      <member refid="class_include_strategy_1a5c55ae01f8f7697ce63def4c8cfd5912" prot="public" virt="virtual"><scope>IncludeStrategy</scope><name>~IncludeStrategy</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

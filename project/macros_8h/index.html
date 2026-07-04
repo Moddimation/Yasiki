@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File macros.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-macrosh">File macros.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_b9837e7912a2e62dbadd80ce5876b790/"><strong>Project</strong></a> <strong>&gt;</strong> <a href="../dir_3b305cf5e36a513e0ca27de630bae6c6/"><strong>lib</strong></a> <strong>&gt;</strong> <a href="./"><strong>macros.h</strong></a></p>
+<p><a href="../macros_8h_source/">Go to the source code of this file</a></p>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-align"><strong>ALIGN</strong></a> (num) <code>\_\_attribute\_\_ ((aligned (num)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-align_next"><strong>ALIGN_NEXT</strong></a> (u, align) <code>((u + (align - 1)) &amp; (~(align - 1)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-align_prev"><strong>ALIGN_PREV</strong></a> (u, align) <code>(u &amp; (~(align - 1)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertline"><strong>ASSERTLINE</strong></a> (cond, line) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertmsg1line"><strong>ASSERTMSG1LINE</strong></a> (cond, msg, arg1, line) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertmsg2line"><strong>ASSERTMSG2LINE</strong></a> (cond, msg, arg1, arg2, line) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertmsgline"><strong>ASSERTMSGLINE</strong></a> (cond, msg, line) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertmsglinev"><strong>ASSERTMSGLINEV</strong></a> (cond, line, ...) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-force_dont_inline"><strong>FORCE_DONT_INLINE</strong></a>  <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-is_aligned"><strong>IS_ALIGNED</strong></a> (X, N) <code>(((X) &amp; ((N) - 1)) == 0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-is_not_aligned"><strong>IS_NOT_ALIGNED</strong></a> (X, N) <code>(((X) &amp; ((N) - 1)) != 0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mstring"><strong>MSTRING</strong></a> (x) <code>[**\_\_MSTRING**](macros_8h.md#define-__mstring) (x)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mstring_concat"><strong>MSTRING_CONCAT</strong></a> (a, b) <code>[**\_\_MSTRING\_CONCAT**](macros_8h.md#define-__mstring_concat) (a, b)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-offset"><strong>OFFSET</strong></a> (addr, align) <code>(((u32)(addr) &amp; ((align) - 1)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-readu32_be"><strong>READU32_BE</strong></a> (ptr, offset) <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__mstring"><strong>__MSTRING</strong></a> (x) <code>#x</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__mstring_concat"><strong>__MSTRING_CONCAT</strong></a> (a, b) <code>a##b</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-align">define ALIGN</h3>
+<pre><code class="language-C++">#define ALIGN (
+    num
+) `__attribute__ ((aligned (num)))`
+</code></pre>
+<hr>
+
+<h3 id="define-align_next">define ALIGN_NEXT</h3>
+<pre><code class="language-C++">#define ALIGN_NEXT (
+    u,
+    align
+) `((u + (align - 1)) &amp; (~(align - 1)))`
+</code></pre>
+<hr>
+
+<h3 id="define-align_prev">define ALIGN_PREV</h3>
+<pre><code class="language-C++">#define ALIGN_PREV (
+    u,
+    align
+) `(u &amp; (~(align - 1)))`
+</code></pre>
+<hr>
+
+<h3 id="define-assertline">define ASSERTLINE</h3>
+<pre><code class="language-C++">#define ASSERTLINE (
+    cond,
+    line
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assertmsg1line">define ASSERTMSG1LINE</h3>
+<pre><code class="language-C++">#define ASSERTMSG1LINE (
+    cond,
+    msg,
+    arg1,
+    line
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assertmsg2line">define ASSERTMSG2LINE</h3>
+<pre><code class="language-C++">#define ASSERTMSG2LINE (
+    cond,
+    msg,
+    arg1,
+    arg2,
+    line
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assertmsgline">define ASSERTMSGLINE</h3>
+<pre><code class="language-C++">#define ASSERTMSGLINE (
+    cond,
+    msg,
+    line
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assertmsglinev">define ASSERTMSGLINEV</h3>
+<pre><code class="language-C++">#define ASSERTMSGLINEV (
+    cond,
+    line,
+    ...
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-force_dont_inline">define FORCE_DONT_INLINE</h3>
+<pre><code class="language-C++">#define FORCE_DONT_INLINE `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-is_aligned">define IS_ALIGNED</h3>
+<pre><code class="language-C++">#define IS_ALIGNED (
+    X,
+    N
+) `(((X) &amp; ((N) - 1)) == 0)`
+</code></pre>
+<hr>
+
+<h3 id="define-is_not_aligned">define IS_NOT_ALIGNED</h3>
+<pre><code class="language-C++">#define IS_NOT_ALIGNED (
+    X,
+    N
+) `(((X) &amp; ((N) - 1)) != 0)`
+</code></pre>
+<hr>
+
+<h3 id="define-mstring">define MSTRING</h3>
+<pre><code class="language-C++">#define MSTRING (
+    x
+) `__MSTRING (x)`
+</code></pre>
+<hr>
+
+<h3 id="define-mstring_concat">define MSTRING_CONCAT</h3>
+<pre><code class="language-C++">#define MSTRING_CONCAT (
+    a,
+    b
+) `__MSTRING_CONCAT (a, b)`
+</code></pre>
+<hr>
+
+<h3 id="define-offset">define OFFSET</h3>
+<pre><code class="language-C++">#define OFFSET (
+    addr,
+    align
+) `(((u32)(addr) &amp; ((align) - 1)))`
+</code></pre>
+<hr>
+
+<h3 id="define-readu32_be">define READU32_BE</h3>
+<pre><code class="language-C++">#define READU32_BE (
+    ptr,
+    offset
+) `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-__mstring">define __MSTRING</h3>
+<pre><code class="language-C++">#define __MSTRING (
+    x
+) `#x`
+</code></pre>
+<hr>
+
+<h3 id="define-__mstring_concat">define __MSTRING_CONCAT</h3>
+<pre><code class="language-C++">#define __MSTRING_CONCAT (
+    a,
+    b
+) `a##b`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/Project/lib/macros.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

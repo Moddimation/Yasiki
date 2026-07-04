@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSInterrupt.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osinterrupth">File OSInterrupt.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_2e13e6cf1d2e2aa91cbc210fef9f68a3/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSInterrupt.h</strong></a></p>
+<p><a href="../_o_s_interrupt_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;types.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os/OSException.h&gt;</code></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../types_8h/#typedef-s16"><strong>s16</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-__osinterrupthandler"><strong>__OSInterruptHandler</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="./#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__oslastinterrupt"><strong>__OSLastInterrupt</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__oslastinterruptsrr0"><strong>__OSLastInterruptSrr0</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__oslastinterrupttime"><strong>__OSLastInterruptTime</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a></td>
+<td style="text-align: left;"><a href="#function-osgetinterruptmask"><strong>OSGetInterruptMask</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetinterruptmask"><strong>OSSetInterruptMask</strong></a> (<a href="./#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a> mask) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osdispatchinterrupt"><strong>__OSDispatchInterrupt</strong></a> (<a href="../_o_s_exception_8h/#typedef-__osexception"><strong>__OSException</strong></a> exception, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-__osinterrupthandler"><strong>__OSInterruptHandler</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osgetinterrupthandler"><strong>__OSGetInterruptHandler</strong></a> (<a href="./#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a> interrupt) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osmaskinterrupts"><strong>__OSMaskInterrupts</strong></a> (<a href="./#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a> mask) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-__osinterrupthandler"><strong>__OSInterruptHandler</strong></a></td>
+<td style="text-align: left;"><a href="#function-__ossetinterrupthandler"><strong>__OSSetInterruptHandler</strong></a> (<a href="./#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a> interrupt, <a href="./#typedef-__osinterrupthandler"><strong>__OSInterruptHandler</strong></a> handler) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osunmaskinterrupts"><strong>__OSUnmaskInterrupts</strong></a> (<a href="./#typedef-osinterruptmask"><strong>OSInterruptMask</strong></a> mask) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask"><strong>OS_INTERRUPTMASK</strong></a> (interrupt) <code>(0x80000000u &amp;gt;&amp;gt; ([**interrupt**](_c_a_r_d_private_8h.md#define-card_max_mount_step)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_ai"><strong>OS_INTERRUPTMASK_AI</strong></a>  <code>([**OS\_INTERRUPTMASK\_AI\_AI**](_o_s_interrupt_8h.md#define-os_interruptmask_ai_ai))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_ai_ai"><strong>OS_INTERRUPTMASK_AI_AI</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_AI\_AI**](_o_s_interrupt_8h.md#define-__os_interrupt_ai_ai))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_dsp"><strong>OS_INTERRUPTMASK_DSP</strong></a>  <code>([**OS\_INTERRUPTMASK\_DSP\_AI**](_o_s_interrupt_8h.md#define-os_interruptmask_dsp_ai) \| [**OS\_INTERRUPTMASK\_DSP\_ARAM**](_o_s_interrupt_8h.md#define-os_interruptmask_dsp_aram) \| [**OS\_INTERRUPTMASK\_DSP\_DSP**](_o_s_interrupt_8h.md#define-os_interruptmask_dsp_dsp))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_dsp_ai"><strong>OS_INTERRUPTMASK_DSP_AI</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_DSP\_AI**](_o_s_interrupt_8h.md#define-__os_interrupt_dsp_ai))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_dsp_aram"><strong>OS_INTERRUPTMASK_DSP_ARAM</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_DSP\_ARAM**](_o_s_interrupt_8h.md#define-__os_interrupt_dsp_aram))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_dsp_dsp"><strong>OS_INTERRUPTMASK_DSP_DSP</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_DSP\_DSP**](_o_s_interrupt_8h.md#define-__os_interrupt_dsp_dsp))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi"><strong>OS_INTERRUPTMASK_EXI</strong></a>  <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_0"><strong>OS_INTERRUPTMASK_EXI_0</strong></a>  <code>([**OS\_INTERRUPTMASK\_EXI\_0\_EXI**](_o_s_interrupt_8h.md#define-os_interruptmask_exi_0_exi) \| [**OS\_INTERRUPTMASK\_EXI\_0\_TC**](_o_s_interrupt_8h.md#define-os_interruptmask_exi_0_tc) \| [**OS\_INTERRUPTMASK\_EXI\_0\_EXT**](_o_s_interrupt_8h.md#define-os_interruptmask_exi_0_ext))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_0_exi"><strong>OS_INTERRUPTMASK_EXI_0_EXI</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_EXI\_0\_EXI**](_o_s_interrupt_8h.md#define-__os_interrupt_exi_0_exi))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_0_ext"><strong>OS_INTERRUPTMASK_EXI_0_EXT</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_EXI\_0\_EXT**](_o_s_interrupt_8h.md#define-__os_interrupt_exi_0_ext))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_0_tc"><strong>OS_INTERRUPTMASK_EXI_0_TC</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_EXI\_0\_TC**](_o_s_interrupt_8h.md#define-__os_interrupt_exi_0_tc))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_1"><strong>OS_INTERRUPTMASK_EXI_1</strong></a>  <code>([**OS\_INTERRUPTMASK\_EXI\_1\_EXI**](_o_s_interrupt_8h.md#define-os_interruptmask_exi_1_exi) \| [**OS\_INTERRUPTMASK\_EXI\_1\_TC**](_o_s_interrupt_8h.md#define-os_interruptmask_exi_1_tc) \| [**OS\_INTERRUPTMASK\_EXI\_1\_EXT**](_o_s_interrupt_8h.md#define-os_interruptmask_exi_1_ext))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_1_exi"><strong>OS_INTERRUPTMASK_EXI_1_EXI</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_EXI\_1\_EXI**](_o_s_interrupt_8h.md#define-__os_interrupt_exi_1_exi))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_1_ext"><strong>OS_INTERRUPTMASK_EXI_1_EXT</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_EXI\_1\_EXT**](_o_s_interrupt_8h.md#define-__os_interrupt_exi_1_ext))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_1_tc"><strong>OS_INTERRUPTMASK_EXI_1_TC</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_EXI\_1\_TC**](_o_s_interrupt_8h.md#define-__os_interrupt_exi_1_tc))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_2"><strong>OS_INTERRUPTMASK_EXI_2</strong></a>  <code>([**OS\_INTERRUPTMASK\_EXI\_2\_EXI**](_o_s_interrupt_8h.md#define-os_interruptmask_exi_2_exi) \| [**OS\_INTERRUPTMASK\_EXI\_2\_TC**](_o_s_interrupt_8h.md#define-os_interruptmask_exi_2_tc))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_2_exi"><strong>OS_INTERRUPTMASK_EXI_2_EXI</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_EXI\_2\_EXI**](_o_s_interrupt_8h.md#define-__os_interrupt_exi_2_exi))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_exi_2_tc"><strong>OS_INTERRUPTMASK_EXI_2_TC</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_EXI\_2\_TC**](_o_s_interrupt_8h.md#define-__os_interrupt_exi_2_tc))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_mem"><strong>OS_INTERRUPTMASK_MEM</strong></a>  <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_mem_0"><strong>OS_INTERRUPTMASK_MEM_0</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_MEM\_0**](_o_s_interrupt_8h.md#define-__os_interrupt_mem_0))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_mem_1"><strong>OS_INTERRUPTMASK_MEM_1</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_MEM\_1**](_o_s_interrupt_8h.md#define-__os_interrupt_mem_1))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_mem_2"><strong>OS_INTERRUPTMASK_MEM_2</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_MEM\_2**](_o_s_interrupt_8h.md#define-__os_interrupt_mem_2))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_mem_3"><strong>OS_INTERRUPTMASK_MEM_3</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_MEM\_3**](_o_s_interrupt_8h.md#define-__os_interrupt_mem_3))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_mem_address"><strong>OS_INTERRUPTMASK_MEM_ADDRESS</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_MEM\_ADDRESS**](_o_s_interrupt_8h.md#define-__os_interrupt_mem_address))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi"><strong>OS_INTERRUPTMASK_PI</strong></a>  <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_cp"><strong>OS_INTERRUPTMASK_PI_CP</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_CP**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_cp))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_debug"><strong>OS_INTERRUPTMASK_PI_DEBUG</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_DEBUG**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_debug))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_di"><strong>OS_INTERRUPTMASK_PI_DI</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_DI**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_di))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_error"><strong>OS_INTERRUPTMASK_PI_ERROR</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_ERROR**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_error))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_hsp"><strong>OS_INTERRUPTMASK_PI_HSP</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_HSP**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_hsp))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_pe"><strong>OS_INTERRUPTMASK_PI_PE</strong></a>  <code>([**OS\_INTERRUPTMASK\_PI\_PE\_TOKEN**](_o_s_interrupt_8h.md#define-os_interruptmask_pi_pe_token) \| [**OS\_INTERRUPTMASK\_PI\_PE\_FINISH**](_o_s_interrupt_8h.md#define-os_interruptmask_pi_pe_finish))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_pe_finish"><strong>OS_INTERRUPTMASK_PI_PE_FINISH</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_PE\_FINISH**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_pe_finish))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_pe_token"><strong>OS_INTERRUPTMASK_PI_PE_TOKEN</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_PE\_TOKEN**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_pe_token))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_rsw"><strong>OS_INTERRUPTMASK_PI_RSW</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_RSW**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_rsw))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_si"><strong>OS_INTERRUPTMASK_PI_SI</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_SI**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_si))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-os_interruptmask_pi_vi"><strong>OS_INTERRUPTMASK_PI_VI</strong></a>  <code>[**OS\_INTERRUPTMASK**](_o_s_interrupt_8h.md#define-os_interruptmask) ([**\_\_OS\_INTERRUPT\_PI\_VI**](_o_s_interrupt_8h.md#define-__os_interrupt_pi_vi))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_ai_ai"><strong>__OS_INTERRUPT_AI_AI</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_dsp_ai"><strong>__OS_INTERRUPT_DSP_AI</strong></a>  <code>5</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_dsp_aram"><strong>__OS_INTERRUPT_DSP_ARAM</strong></a>  <code>6</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_dsp_dsp"><strong>__OS_INTERRUPT_DSP_DSP</strong></a>  <code>7</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_exi_0_exi"><strong>__OS_INTERRUPT_EXI_0_EXI</strong></a>  <code>9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_exi_0_ext"><strong>__OS_INTERRUPT_EXI_0_EXT</strong></a>  <code>11</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_exi_0_tc"><strong>__OS_INTERRUPT_EXI_0_TC</strong></a>  <code>10</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_exi_1_exi"><strong>__OS_INTERRUPT_EXI_1_EXI</strong></a>  <code>12</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_exi_1_ext"><strong>__OS_INTERRUPT_EXI_1_EXT</strong></a>  <code>14</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_exi_1_tc"><strong>__OS_INTERRUPT_EXI_1_TC</strong></a>  <code>13</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_exi_2_exi"><strong>__OS_INTERRUPT_EXI_2_EXI</strong></a>  <code>15</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_exi_2_tc"><strong>__OS_INTERRUPT_EXI_2_TC</strong></a>  <code>16</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_max"><strong>__OS_INTERRUPT_MAX</strong></a>  <code>32</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_mem_0"><strong>__OS_INTERRUPT_MEM_0</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_mem_1"><strong>__OS_INTERRUPT_MEM_1</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_mem_2"><strong>__OS_INTERRUPT_MEM_2</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_mem_3"><strong>__OS_INTERRUPT_MEM_3</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_mem_address"><strong>__OS_INTERRUPT_MEM_ADDRESS</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_cp"><strong>__OS_INTERRUPT_PI_CP</strong></a>  <code>17</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_debug"><strong>__OS_INTERRUPT_PI_DEBUG</strong></a>  <code>25</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_di"><strong>__OS_INTERRUPT_PI_DI</strong></a>  <code>21</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_error"><strong>__OS_INTERRUPT_PI_ERROR</strong></a>  <code>23</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_hsp"><strong>__OS_INTERRUPT_PI_HSP</strong></a>  <code>26</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_pe_finish"><strong>__OS_INTERRUPT_PI_PE_FINISH</strong></a>  <code>19</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_pe_token"><strong>__OS_INTERRUPT_PI_PE_TOKEN</strong></a>  <code>18</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_rsw"><strong>__OS_INTERRUPT_PI_RSW</strong></a>  <code>22</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_si"><strong>__OS_INTERRUPT_PI_SI</strong></a>  <code>20</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__os_interrupt_pi_vi"><strong>__OS_INTERRUPT_PI_VI</strong></a>  <code>24</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-osinterruptmask">typedef OSInterruptMask</h3>
+<pre><code class="language-C++">typedef u32 OSInterruptMask;
+</code></pre>
+<hr>
+
+<h3 id="typedef-__osinterrupt">typedef __OSInterrupt</h3>
+<pre><code class="language-C++">typedef s16 __OSInterrupt;
+</code></pre>
+<hr>
+
+<h3 id="typedef-__osinterrupthandler">typedef __OSInterruptHandler</h3>
+<pre><code class="language-C++">typedef void(* __OSInterruptHandler) (__OSInterrupt interrupt, OSContext *context);
+</code></pre>
+<hr>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__oslastinterrupt">variable __OSLastInterrupt</h3>
+<pre><code class="language-C++">volatile __OSInterrupt __OSLastInterrupt;
+</code></pre>
+<hr>
+
+<h3 id="variable-__oslastinterruptsrr0">variable __OSLastInterruptSrr0</h3>
+<pre><code class="language-C++">volatile u32 __OSLastInterruptSrr0;
+</code></pre>
+<hr>
+
+<h3 id="variable-__oslastinterrupttime">variable __OSLastInterruptTime</h3>
+<pre><code class="language-C++">volatile OSTime __OSLastInterruptTime;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-osgetinterruptmask">function OSGetInterruptMask</h3>
+<pre><code class="language-C++">OSInterruptMask OSGetInterruptMask (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetinterruptmask">function OSSetInterruptMask</h3>
+<pre><code class="language-C++">OSInterruptMask OSSetInterruptMask (
+    OSInterruptMask mask
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osdispatchinterrupt">function __OSDispatchInterrupt</h3>
+<pre><code class="language-C++">void __OSDispatchInterrupt (
+    __OSException exception,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osgetinterrupthandler">function __OSGetInterruptHandler</h3>
+<pre><code class="language-C++">__OSInterruptHandler __OSGetInterruptHandler (
+    __OSInterrupt interrupt
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osmaskinterrupts">function __OSMaskInterrupts</h3>
+<pre><code class="language-C++">OSInterruptMask __OSMaskInterrupts (
+    OSInterruptMask mask
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__ossetinterrupthandler">function __OSSetInterruptHandler</h3>
+<pre><code class="language-C++">__OSInterruptHandler __OSSetInterruptHandler (
+    __OSInterrupt interrupt,
+    __OSInterruptHandler handler
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osunmaskinterrupts">function __OSUnmaskInterrupts</h3>
+<pre><code class="language-C++">OSInterruptMask __OSUnmaskInterrupts (
+    OSInterruptMask mask
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-os_interruptmask">define OS_INTERRUPTMASK</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK (
+    interrupt
+) `(0x80000000u &gt;&gt; ( interrupt ))`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_ai">define OS_INTERRUPTMASK_AI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_AI `( OS_INTERRUPTMASK_AI_AI )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_ai_ai">define OS_INTERRUPTMASK_AI_AI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_AI_AI `OS_INTERRUPTMASK ( __OS_INTERRUPT_AI_AI )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_dsp">define OS_INTERRUPTMASK_DSP</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_DSP `( OS_INTERRUPTMASK_DSP_AI | OS_INTERRUPTMASK_DSP_ARAM | OS_INTERRUPTMASK_DSP_DSP )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_dsp_ai">define OS_INTERRUPTMASK_DSP_AI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_DSP_AI `OS_INTERRUPTMASK ( __OS_INTERRUPT_DSP_AI )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_dsp_aram">define OS_INTERRUPTMASK_DSP_ARAM</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_DSP_ARAM `OS_INTERRUPTMASK ( __OS_INTERRUPT_DSP_ARAM )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_dsp_dsp">define OS_INTERRUPTMASK_DSP_DSP</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_DSP_DSP `OS_INTERRUPTMASK ( __OS_INTERRUPT_DSP_DSP )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi">define OS_INTERRUPTMASK_EXI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI `( OS_INTERRUPTMASK_EXI_0_EXI | OS_INTERRUPTMASK_EXI_0_TC | OS_INTERRUPTMASK_EXI_0_EXT |         \ OS_INTERRUPTMASK_EXI_1_EXI | OS_INTERRUPTMASK_EXI_1_TC | OS_INTERRUPTMASK_EXI_1_EXT |         \ OS_INTERRUPTMASK_EXI_2_EXI | OS_INTERRUPTMASK_EXI_2_TC )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_0">define OS_INTERRUPTMASK_EXI_0</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_0 `( OS_INTERRUPTMASK_EXI_0_EXI | OS_INTERRUPTMASK_EXI_0_TC | OS_INTERRUPTMASK_EXI_0_EXT )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_0_exi">define OS_INTERRUPTMASK_EXI_0_EXI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_0_EXI `OS_INTERRUPTMASK ( __OS_INTERRUPT_EXI_0_EXI )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_0_ext">define OS_INTERRUPTMASK_EXI_0_EXT</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_0_EXT `OS_INTERRUPTMASK ( __OS_INTERRUPT_EXI_0_EXT )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_0_tc">define OS_INTERRUPTMASK_EXI_0_TC</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_0_TC `OS_INTERRUPTMASK ( __OS_INTERRUPT_EXI_0_TC )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_1">define OS_INTERRUPTMASK_EXI_1</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_1 `( OS_INTERRUPTMASK_EXI_1_EXI | OS_INTERRUPTMASK_EXI_1_TC | OS_INTERRUPTMASK_EXI_1_EXT )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_1_exi">define OS_INTERRUPTMASK_EXI_1_EXI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_1_EXI `OS_INTERRUPTMASK ( __OS_INTERRUPT_EXI_1_EXI )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_1_ext">define OS_INTERRUPTMASK_EXI_1_EXT</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_1_EXT `OS_INTERRUPTMASK ( __OS_INTERRUPT_EXI_1_EXT )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_1_tc">define OS_INTERRUPTMASK_EXI_1_TC</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_1_TC `OS_INTERRUPTMASK ( __OS_INTERRUPT_EXI_1_TC )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_2">define OS_INTERRUPTMASK_EXI_2</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_2 `( OS_INTERRUPTMASK_EXI_2_EXI | OS_INTERRUPTMASK_EXI_2_TC )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_2_exi">define OS_INTERRUPTMASK_EXI_2_EXI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_2_EXI `OS_INTERRUPTMASK ( __OS_INTERRUPT_EXI_2_EXI )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_exi_2_tc">define OS_INTERRUPTMASK_EXI_2_TC</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_EXI_2_TC `OS_INTERRUPTMASK ( __OS_INTERRUPT_EXI_2_TC )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_mem">define OS_INTERRUPTMASK_MEM</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_MEM `( OS_INTERRUPTMASK_MEM_0 | OS_INTERRUPTMASK_MEM_1 | OS_INTERRUPTMASK_MEM_2 |                    \ OS_INTERRUPTMASK_MEM_3 | OS_INTERRUPTMASK_MEM_ADDRESS )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_mem_0">define OS_INTERRUPTMASK_MEM_0</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_MEM_0 `OS_INTERRUPTMASK ( __OS_INTERRUPT_MEM_0 )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_mem_1">define OS_INTERRUPTMASK_MEM_1</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_MEM_1 `OS_INTERRUPTMASK ( __OS_INTERRUPT_MEM_1 )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_mem_2">define OS_INTERRUPTMASK_MEM_2</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_MEM_2 `OS_INTERRUPTMASK ( __OS_INTERRUPT_MEM_2 )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_mem_3">define OS_INTERRUPTMASK_MEM_3</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_MEM_3 `OS_INTERRUPTMASK ( __OS_INTERRUPT_MEM_3 )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_mem_address">define OS_INTERRUPTMASK_MEM_ADDRESS</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_MEM_ADDRESS `OS_INTERRUPTMASK ( __OS_INTERRUPT_MEM_ADDRESS )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi">define OS_INTERRUPTMASK_PI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI `( OS_INTERRUPTMASK_PI_CP | OS_INTERRUPTMASK_PI_SI | OS_INTERRUPTMASK_PI_DI |                    \ OS_INTERRUPTMASK_PI_RSW | OS_INTERRUPTMASK_PI_ERROR | OS_INTERRUPTMASK_PI_VI |                \ OS_INTERRUPTMASK_PI_PE_TOKEN | OS_INTERRUPTMASK_PI_PE_FINISH | OS_INTERRUPTMASK_PI_DEBUG |    \ OS_INTERRUPTMASK_PI_HSP )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_cp">define OS_INTERRUPTMASK_PI_CP</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_CP `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_CP )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_debug">define OS_INTERRUPTMASK_PI_DEBUG</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_DEBUG `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_DEBUG )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_di">define OS_INTERRUPTMASK_PI_DI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_DI `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_DI )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_error">define OS_INTERRUPTMASK_PI_ERROR</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_ERROR `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_ERROR )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_hsp">define OS_INTERRUPTMASK_PI_HSP</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_HSP `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_HSP )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_pe">define OS_INTERRUPTMASK_PI_PE</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_PE `( OS_INTERRUPTMASK_PI_PE_TOKEN | OS_INTERRUPTMASK_PI_PE_FINISH )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_pe_finish">define OS_INTERRUPTMASK_PI_PE_FINISH</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_PE_FINISH `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_PE_FINISH )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_pe_token">define OS_INTERRUPTMASK_PI_PE_TOKEN</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_PE_TOKEN `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_PE_TOKEN )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_rsw">define OS_INTERRUPTMASK_PI_RSW</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_RSW `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_RSW )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_si">define OS_INTERRUPTMASK_PI_SI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_SI `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_SI )`
+</code></pre>
+<hr>
+
+<h3 id="define-os_interruptmask_pi_vi">define OS_INTERRUPTMASK_PI_VI</h3>
+<pre><code class="language-C++">#define OS_INTERRUPTMASK_PI_VI `OS_INTERRUPTMASK ( __OS_INTERRUPT_PI_VI )`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_ai_ai">define __OS_INTERRUPT_AI_AI</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_AI_AI `8`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_dsp_ai">define __OS_INTERRUPT_DSP_AI</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_DSP_AI `5`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_dsp_aram">define __OS_INTERRUPT_DSP_ARAM</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_DSP_ARAM `6`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_dsp_dsp">define __OS_INTERRUPT_DSP_DSP</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_DSP_DSP `7`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_exi_0_exi">define __OS_INTERRUPT_EXI_0_EXI</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_EXI_0_EXI `9`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_exi_0_ext">define __OS_INTERRUPT_EXI_0_EXT</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_EXI_0_EXT `11`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_exi_0_tc">define __OS_INTERRUPT_EXI_0_TC</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_EXI_0_TC `10`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_exi_1_exi">define __OS_INTERRUPT_EXI_1_EXI</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_EXI_1_EXI `12`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_exi_1_ext">define __OS_INTERRUPT_EXI_1_EXT</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_EXI_1_EXT `14`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_exi_1_tc">define __OS_INTERRUPT_EXI_1_TC</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_EXI_1_TC `13`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_exi_2_exi">define __OS_INTERRUPT_EXI_2_EXI</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_EXI_2_EXI `15`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_exi_2_tc">define __OS_INTERRUPT_EXI_2_TC</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_EXI_2_TC `16`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_max">define __OS_INTERRUPT_MAX</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_MAX `32`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_mem_0">define __OS_INTERRUPT_MEM_0</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_MEM_0 `0`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_mem_1">define __OS_INTERRUPT_MEM_1</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_MEM_1 `1`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_mem_2">define __OS_INTERRUPT_MEM_2</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_MEM_2 `2`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_mem_3">define __OS_INTERRUPT_MEM_3</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_MEM_3 `3`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_mem_address">define __OS_INTERRUPT_MEM_ADDRESS</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_MEM_ADDRESS `4`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_cp">define __OS_INTERRUPT_PI_CP</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_CP `17`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_debug">define __OS_INTERRUPT_PI_DEBUG</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_DEBUG `25`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_di">define __OS_INTERRUPT_PI_DI</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_DI `21`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_error">define __OS_INTERRUPT_PI_ERROR</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_ERROR `23`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_hsp">define __OS_INTERRUPT_PI_HSP</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_HSP `26`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_pe_finish">define __OS_INTERRUPT_PI_PE_FINISH</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_PE_FINISH `19`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_pe_token">define __OS_INTERRUPT_PI_PE_TOKEN</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_PE_TOKEN `18`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_rsw">define __OS_INTERRUPT_PI_RSW</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_RSW `22`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_si">define __OS_INTERRUPT_PI_SI</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_SI `20`
+</code></pre>
+<hr>
+
+<h3 id="define-__os_interrupt_pi_vi">define __OS_INTERRUPT_PI_VI</h3>
+<pre><code class="language-C++">#define __OS_INTERRUPT_PI_VI `24`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/os/OSInterrupt.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

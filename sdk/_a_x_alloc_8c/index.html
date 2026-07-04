@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File AXAlloc.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-axallocc">File AXAlloc.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_284807f63fc993a939ff676a07eb86c2/"><strong>ax</strong></a> <strong>&gt;</strong> <a href="./"><strong>AXAlloc.c</strong></a></p>
+<p><a href="../_a_x_alloc_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/ax.h&gt;</code></li>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+<li><code>#include "AXPrivate.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axcallbackstack"><strong>__AXCallbackStack</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axstackhead"><strong>__AXStackHead</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axstacktail"><strong>__AXStackTail</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-axacquirevoice"><strong>AXAcquireVoice</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> priority, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *) callback, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> userContext) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axfreevoice"><strong>AXFreeVoice</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axsetvoicepriority"><strong>AXSetVoicePriority</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> priority) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axallocinit"><strong>__AXAllocInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axallocquit"><strong>__AXAllocQuit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__axgetstackhead"><strong>__AXGetStackHead</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> priority) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axinitvoicestacks"><strong>__AXInitVoiceStacks</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__axpopcallbackstack"><strong>__AXPopCallbackStack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__axpopfreestack"><strong>__AXPopFreeStack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-__axpopstackfrombottom"><strong>__AXPopStackFromBottom</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> priority) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axpushcallbackstack"><strong>__AXPushCallbackStack</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axpushfreestack"><strong>__AXPushFreeStack</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axpushstackhead"><strong>__AXPushStackHead</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> priority) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axremovefromstack"><strong>__AXRemoveFromStack</strong></a> (<a href="../ax_8h/#typedef-axvpb"><strong>AXVPB</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axservicecallbackstack"><strong>__AXServiceCallbackStack</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-__axcallbackstack">variable __AXCallbackStack</h3>
+<pre><code class="language-C++">AXVPB* __AXCallbackStack;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axstackhead">variable __AXStackHead</h3>
+<pre><code class="language-C++">AXVPB* __AXStackHead[AX_PRIORITY_STACKS];
+</code></pre>
+<hr>
+
+<h3 id="variable-__axstacktail">variable __AXStackTail</h3>
+<pre><code class="language-C++">AXVPB* __AXStackTail[AX_PRIORITY_STACKS];
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-axacquirevoice">function AXAcquireVoice</h3>
+<pre><code class="language-C++">AXVPB * AXAcquireVoice (
+    u32 priority,
+    void (*)( void *) callback,
+    u32 userContext
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axfreevoice">function AXFreeVoice</h3>
+<pre><code class="language-C++">void AXFreeVoice (
+    AXVPB * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axsetvoicepriority">function AXSetVoicePriority</h3>
+<pre><code class="language-C++">void AXSetVoicePriority (
+    AXVPB * p,
+    u32 priority
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axallocinit">function __AXAllocInit</h3>
+<pre><code class="language-C++">void __AXAllocInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axallocquit">function __AXAllocQuit</h3>
+<pre><code class="language-C++">void __AXAllocQuit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axgetstackhead">function __AXGetStackHead</h3>
+<pre><code class="language-C++">AXVPB * __AXGetStackHead (
+    u32 priority
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axinitvoicestacks">function __AXInitVoiceStacks</h3>
+<pre><code class="language-C++">void __AXInitVoiceStacks (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axpopcallbackstack">function __AXPopCallbackStack</h3>
+<pre><code class="language-C++">AXVPB * __AXPopCallbackStack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axpopfreestack">function __AXPopFreeStack</h3>
+<pre><code class="language-C++">AXVPB * __AXPopFreeStack (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axpopstackfrombottom">function __AXPopStackFromBottom</h3>
+<pre><code class="language-C++">AXVPB * __AXPopStackFromBottom (
+    u32 priority
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axpushcallbackstack">function __AXPushCallbackStack</h3>
+<pre><code class="language-C++">void __AXPushCallbackStack (
+    AXVPB * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axpushfreestack">function __AXPushFreeStack</h3>
+<pre><code class="language-C++">void __AXPushFreeStack (
+    AXVPB * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axpushstackhead">function __AXPushStackHead</h3>
+<pre><code class="language-C++">void __AXPushStackHead (
+    AXVPB * p,
+    u32 priority
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axremovefromstack">function __AXRemoveFromStack</h3>
+<pre><code class="language-C++">void __AXRemoveFromStack (
+    AXVPB * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axservicecallbackstack">function __AXServiceCallbackStack</h3>
+<pre><code class="language-C++">void __AXServiceCallbackStack (
+    void
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/ax/AXAlloc.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File macros.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-macrosh">File macros.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_b9837e7912a2e62dbadd80ce5876b790/"><strong>Project</strong></a> <strong>&gt;</strong> <a href="../dir_3b305cf5e36a513e0ca27de630bae6c6/"><strong>lib</strong></a> <strong>&gt;</strong> <a href="../macros_8h/"><strong>macros.h</strong></a></p>
+<p><a href="../macros_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef _H_MACROS_
+#define _H_MACROS_
+
+#define ALIGN_PREV(u, align) (u &amp; (~(align - 1)))
+#define ALIGN_NEXT(u, align) ((u + (align - 1)) &amp; (~(align - 1)))
+#define IS_ALIGNED(X, N)     (((X) &amp; ((N) - 1)) == 0)
+#define IS_NOT_ALIGNED(X, N) (((X) &amp; ((N) - 1)) != 0)
+
+#define READU32_BE(ptr, offset)                                                                \
+    (((u32)ptr[offset] &lt;&lt; 24) | ((u32)ptr[offset + 1] &lt;&lt; 16) | ((u32)ptr[offset + 2] &lt;&lt; 8) |   \
+     (u32)ptr[offset + 3]);
+
+#ifdef DEBUG
+#    define ASSERTLINE(cond, line)                                                             \
+        ((cond) || (OSPanic (__FILE__, line, &quot;Failed assertion &quot; #cond), 0))
+
+#    define ASSERTMSGLINE(cond, msg, line) ((cond) || (OSPanic (__FILE__, line, msg), 0))
+
+// This is dumb but we dont have a Metrowerks way to do variadic macros in the
+// macro to make this done in a not scrubby way.
+#    define ASSERTMSG1LINE(cond, msg, arg1, line)                                              \
+        ((cond) || (OSPanic (__FILE__, line, msg, arg1), 0))
+
+#    define ASSERTMSG2LINE(cond, msg, arg1, arg2, line)                                        \
+        ((cond) || (OSPanic (__FILE__, line, msg, arg1, arg2), 0))
+
+#    define ASSERTMSGVLINE(cond, line, ...)                                                    \
+        ((cond) || (OSPanic (__FILE__, line, __VA_ARGS__), 0))
+
+#else
+#    define ASSERTLINE(cond, line)                      (void)0
+#    define ASSERTMSGLINE(cond, msg, line)              (void)0
+#    define ASSERTMSG1LINE(cond, msg, arg1, line)       (void)0
+#    define ASSERTMSG2LINE(cond, msg, arg1, arg2, line) (void)0
+#    define ASSERTMSGLINEV(cond, line, ...)             (void)0
+#endif
+
+// clang-format off
+#define FORCE_DONT_INLINE \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+    (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
+// clang-format on
+
+// Align object to num bytes (num should be power of two)
+#define ALIGN(num)          __attribute__ ((aligned (num)))
+
+// Kept it because its used everywhere
+#define OFFSET(addr, align) (((u32)(addr) &amp; ((align) - 1)))
+
+// Disable some clangd warnings
+#ifdef __clang__
+// Allow string literals to be converted to char*
+#    pragma clang diagnostic ignored &quot;-Wc++11-compat-deprecated-writable-strings&quot;
+#endif
+
+#define __MSTRING(x)           #x
+#define MSTRING(x)             __MSTRING (x)
+
+#define __MSTRING_CONCAT(a, b) a##b
+#define MSTRING_CONCAT(a, b)   __MSTRING_CONCAT (a, b)
+
+// Static Asserts, for decompiling purposes and security
+#define SASSERT(name, expr)                                                                    \
+    enum                                                                                       \
+    {                                                                                          \
+        MSTRING_CONCAT (assert_fail_, name) = 1 / (expr)                                       \
+    }
+#define SASSERT_SIZE(type, size) SASSERT (MSTRING_CONCAT (size_, type), sizeof (type) == size)
+
+#ifndef __MWERKS__
+// Avoid a few warnings inside of text editors with clangd or similar
+
+#    ifdef __POWERPC__
+#        undef __POWERPC__
+#    endif
+
+#    ifndef __PPC_EABI__
+#        define __PPC_EABI__
+#    endif
+
+#    define __builtin_va_info
+#    define __option(x) 1
+#    define __declspec(x)
+#    define __frsqrte(x)
+#    define __fabsf(x)
+#    define __sync()
+#    define __cntlzw(x) 1
+#    define __cdecl
+#    define asm
+#    define weak 1
+#    define section
+#    define floatingpoint 1
+#endif
+
+#endif // _H_MACROS_
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

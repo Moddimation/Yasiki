@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File JKRThread.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-jkrthreadcpp">File JKRThread.cpp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_2add8750dabb2c81b6f2c3c5af4cfeba/"><strong>JSystem</strong></a> <strong>&gt;</strong> <a href="../dir_e5be38218225624e70ebb9ea7ff5d81f/"><strong>System</strong></a> <strong>&gt;</strong> <a href="../dir_cddf90ee7c92ffd4474a8c27c5ea5882/"><strong>JKernel</strong></a> <strong>&gt;</strong> <a href="../dir_2af99252d1c483de143a7a3f414b45a2/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_j_k_r_thread_8cpp/"><strong>JKRThread.cpp</strong></a></p>
+<p><a href="../_j_k_r_thread_8cpp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/os.h&gt;
+
+#include &lt;JKRHeap.h&gt;
+#include &lt;JKRThread.h&gt;
+
+#include &quot;dolphin/os/OSMessage.h&quot;
+#include &quot;dolphin/os/OSThread.h&quot;
+#include &quot;JKRDisposer.h&quot;
+
+#define ALIGN_VAL 32
+
+JSUList&lt;JKRThread&gt; sThreadList;
+
+inline void
+JKRThread::setCommon_mesgQueue (int mesg_count)
+{
+    mMesgCount = mesg_count;
+    mMesgArray = JKRAllocFromHeap (mCurrHeap, (u32)(mMesgCount &lt;&lt; 2), 4);
+
+    OSInitMessageQueue (&amp;mMesgQueue, mMesgArray, mMesgCount);
+
+    sThreadList.append (&amp;mLink);
+}
+
+inline void
+JKRThread::setCommon_heapSpecified (size_t size, int pri)
+{
+    mStackSize    = ALIGN_PREV (size, ALIGN_VAL);
+    mStack        = JKRAllocFromHeap (mCurrHeap, mStackSize, ALIGN_VAL);
+    mThreadRecord = (OSThread*)JKRAllocFromHeap (mCurrHeap, sizeof (OSThread), ALIGN_VAL);
+
+    OSCreateThread (mThreadRecord,
+                    start,
+                    (void*)this,
+                    (void*)((u32)mStack + mStackSize),
+                    mStackSize,
+                    pri,
+                    (u16)1);
+}
+
+JKRThread::JKRThread (size_t size, int p1, int pri)
+  : JKRDisposer(),
+    mLink (this)
+{
+    mCurrHeap = JKRHeap::findFromRoot (this);
+    if (mCurrHeap == Nil)
+    {
+        mCurrHeap = JKRHeap::getSystemHeap();
+    }
+    setCommon_heapSpecified (size, pri);
+    setCommon_mesgQueue (p1);
+}
+
+JKRThread::~JKRThread ()
+{
+    sThreadList.remove (&amp;mLink);
+    if (mCurrHeap != Nil)
+    {
+        if (!OSIsThreadTerminated (mThreadRecord))
+        {
+            OSDetachThread (mThreadRecord);
+            OSCancelThread (mThreadRecord);
+        }
+        JKRFreeToHeap (mCurrHeap, mStack);
+        JKRFreeToHeap (mCurrHeap, mThreadRecord);
+    }
+    JKRFree (mMesgArray);
+}
+
+void*
+JKRThread::start (void* _this)
+{
+    return ((JKRThread*)_this)-&gt;run();
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

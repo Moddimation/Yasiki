@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Class EnemyStrategy - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="class-enemystrategy">Class EnemyStrategy</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>EnemyStrategy</strong></a></p>
+<ul>
+<li><code>#include &lt;EnemyStrategy.h&gt;</code></li>
+</ul>
+<p>Inherits the following classes: JORReflexible</p>
+<p>Inherited by the following classes: <a href="../class_enemy_strategy_decorator/">EnemyStrategyDecorator</a></p>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">u16</td>
+<td style="text-align: left;"><a href="#variable-mcurstate"><strong>mCurState</strong></a>  <br><em>0x0E</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">u16</td>
+<td style="text-align: left;"><a href="#variable-mnextstate"><strong>mNextState</strong></a>  <br><em>0x0C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">s32</td>
+<td style="text-align: left;"><a href="#variable-mtimer"><strong>mTimer</strong></a>  <br><em>0x10</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#variable-mpuserdata"><strong>mpUserData</strong></a>  <br><em>0x08</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#variable-mpzako"><strong>mpZako</strong></a>  <br><em>0x04</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-enemystrategy"><strong>EnemyStrategy</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-changestate"><strong>changeState</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-dobehavior"><strong>doBehavior</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-dobehaviorinit"><strong>doBehaviorInit</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-init"><strong>init</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setnextstate"><strong>setNextState</strong></a> (s16 i_nextState) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual s32</td>
+<td style="text-align: left;"><a href="#function-unkenemystrategyfunc01"><strong>unkEnemyStrategyFunc01</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-unkenemystrategyfunc02"><strong>unkEnemyStrategyFunc02</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-update"><strong>update</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual</td>
+<td style="text-align: left;"><a href="#function-enemystrategy"><strong>~EnemyStrategy</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-operator-delete"><strong>operator delete</strong></a> (void * mem) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-operator-new"><strong>operator new</strong></a> (<a href="../_enemy_strategy_8h/#typedef-size_t"><strong>size_t</strong></a> size, void * mem) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-mcurstate">variable mCurState</h3>
+<p><em>0x0E</em> </p>
+<pre><code class="language-C++">u16 EnemyStrategy::mCurState;
+</code></pre>
+<hr>
+
+<h3 id="variable-mnextstate">variable mNextState</h3>
+<p><em>0x0C</em> </p>
+<pre><code class="language-C++">u16 EnemyStrategy::mNextState;
+</code></pre>
+<hr>
+
+<h3 id="variable-mtimer">variable mTimer</h3>
+<p><em>0x10</em> </p>
+<pre><code class="language-C++">s32 EnemyStrategy::mTimer;
+</code></pre>
+<hr>
+
+<h3 id="variable-mpuserdata">variable mpUserData</h3>
+<p><em>0x08</em> </p>
+<pre><code class="language-C++">void* EnemyStrategy::mpUserData;
+</code></pre>
+<hr>
+
+<h3 id="variable-mpzako">variable mpZako</h3>
+<p><em>0x04</em> </p>
+<pre><code class="language-C++">void* EnemyStrategy::mpZako;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-enemystrategy">function EnemyStrategy</h3>
+<pre><code class="language-C++">EnemyStrategy::EnemyStrategy () 
+</code></pre>
+<hr>
+
+<h3 id="function-changestate">function changeState</h3>
+<pre><code class="language-C++">void EnemyStrategy::changeState () 
+</code></pre>
+<hr>
+
+<h3 id="function-dobehavior">function doBehavior</h3>
+<pre><code class="language-C++">virtual void EnemyStrategy::doBehavior () 
+</code></pre>
+<hr>
+
+<h3 id="function-dobehaviorinit">function doBehaviorInit</h3>
+<pre><code class="language-C++">virtual void EnemyStrategy::doBehaviorInit () 
+</code></pre>
+<hr>
+
+<h3 id="function-init">function init</h3>
+<pre><code class="language-C++">virtual void EnemyStrategy::init () 
+</code></pre>
+<hr>
+
+<h3 id="function-setnextstate">function setNextState</h3>
+<pre><code class="language-C++">void EnemyStrategy::setNextState (
+    s16 i_nextState
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-unkenemystrategyfunc01">function unkEnemyStrategyFunc01</h3>
+<pre><code class="language-C++">virtual s32 EnemyStrategy::unkEnemyStrategyFunc01 () 
+</code></pre>
+<hr>
+
+<h3 id="function-unkenemystrategyfunc02">function unkEnemyStrategyFunc02</h3>
+<pre><code class="language-C++">virtual void EnemyStrategy::unkEnemyStrategyFunc02 () 
+</code></pre>
+<hr>
+
+<h3 id="function-update">function update</h3>
+<pre><code class="language-C++">virtual void EnemyStrategy::update () 
+</code></pre>
+<hr>
+
+<h3 id="function-enemystrategy_1">function ~EnemyStrategy</h3>
+<pre><code class="language-C++">virtual EnemyStrategy::~EnemyStrategy () 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-operator-delete">function operator delete</h3>
+<pre><code class="language-C++">static void EnemyStrategy::operator delete (
+    void * mem
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-operator-new">function operator new</h3>
+<pre><code class="language-C++">static void * EnemyStrategy::operator new (
+    size_t size,
+    void * mem
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/Project/sources/Sato/include/EnemyStrategy.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

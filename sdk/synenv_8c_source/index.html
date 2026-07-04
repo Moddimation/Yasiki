@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File synenv.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-synenvc">File synenv.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_69283c2dbc63a8d4f909cdea61511c2a/"><strong>syn</strong></a> <strong>&gt;</strong> <a href="../synenv_8c/"><strong>synenv.c</strong></a></p>
+<p><a href="../synenv_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+#include &lt;dolphin/syn.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;cmath.h&quot;
+#include &quot;fake_tgmath.h&quot;
+#include &quot;SYNPrivate.h&quot;
+
+s32
+__SYNGetEnvelopeTime (s32 scale, s32 mod, u8 key)
+{
+    if (scale == 0x80000000)
+    {
+        return 0;
+    }
+    if (mod == 0x80000000)
+    {
+        return (1000.0f * powf (2.0f, (f32)scale / (65536 * 1200)));
+    }
+    return (1000.0f * powf (2.0f, ((f32)scale + (mod * __SYNn128[key])) / (65535 * 1200)));
+}
+
+void
+__SYNSetupVolumeEnvelope (struct SYNVOICE* voice)
+{
+    ASSERTLINE (0x2B, voice);
+
+    if (voice-&gt;art-&gt;eg1Attack + 0x80000000 == 0)
+    {
+        voice-&gt;veState = 1;
+        voice-&gt;veAttn = 0;
+        if (voice-&gt;art-&gt;eg1Decay + 0x80000000 == 0)
+        {
+            voice-&gt;veState = 2;
+            voice-&gt;veAttn = voice-&gt;art-&gt;eg1Sustain;
+        }
+    }
+    else
+    {
+        s32 frames =
+            __SYNGetEnvelopeTime (voice-&gt;art-&gt;eg1Attack, voice-&gt;art-&gt;eg1Vel2Attack, voice-&gt;keyVel) /
+            5;
+        if (frames)
+        {
+            voice-&gt;veAttack = 0;
+            voice-&gt;veAttackDelta = 0x640000 / frames;
+            voice-&gt;veAttn = 0xFC400000;
+            voice-&gt;veState = 0;
+        }
+        else
+        {
+            voice-&gt;veAttack = 0;
+            voice-&gt;veAttackDelta = 0x640000;
+            voice-&gt;veAttn = 0xFC400000;
+            voice-&gt;veState = 0;
+        }
+    }
+    if (voice-&gt;veState &lt; 2)
+    {
+        s32 frames =
+            __SYNGetEnvelopeTime (voice-&gt;art-&gt;eg1Decay, voice-&gt;art-&gt;eg1Key2Decay, voice-&gt;keyNum) /
+            5;
+        if (frames != 0)
+        {
+            voice-&gt;veDecay = -0x03C00000 / frames;
+        }
+        else
+        {
+            voice-&gt;veDecay = -0x03C00000;
+        }
+    }
+    voice-&gt;veSustain = voice-&gt;art-&gt;eg1Sustain;
+    voice-&gt;veRelease = voice-&gt;art-&gt;eg1Release;
+}
+
+void
+__SYNSetupPitchEnvelope (struct SYNVOICE* voice)
+{
+    ASSERTLINE (0x6B, voice);
+
+    voice-&gt;peCents = 0;
+    voice-&gt;pePitch = voice-&gt;art-&gt;eg2Pitch;
+    if (voice-&gt;pePitch != 0)
+    {
+        if (voice-&gt;art-&gt;eg2Attack + 0x80000000 == 0)
+        {
+            voice-&gt;peState = 1;
+            voice-&gt;peCents = voice-&gt;pePitch;
+            if (voice-&gt;art-&gt;eg2Decay + 0x80000000 == 0)
+            {
+                voice-&gt;peState = 2;
+                voice-&gt;peCents = voice-&gt;art-&gt;eg2Sustain;
+            }
+        }
+        else
+        {
+            s32 frames = __SYNGetEnvelopeTime (voice-&gt;art-&gt;eg2Attack,
+                                               voice-&gt;art-&gt;eg2Vel2Attack,
+                                               voice-&gt;keyVel) /
+                         5;
+            if (frames)
+            {
+                voice-&gt;peAttack = voice-&gt;pePitch / frames;
+                voice-&gt;peState = 0;
+            }
+            else
+            {
+                voice-&gt;peAttack = voice-&gt;pePitch;
+                voice-&gt;peState = 0;
+            }
+        }
+        if (voice-&gt;peState &lt; 2)
+        {
+            s32 frames = __SYNGetEnvelopeTime (voice-&gt;art-&gt;eg2Decay,
+                                               voice-&gt;art-&gt;eg2Key2Decay,
+                                               voice-&gt;keyNum) /
+                         5;
+            if (frames != 0)
+            {
+                voice-&gt;peDecay = voice-&gt;pePitch / frames;
+            }
+            else
+            {
+                voice-&gt;peDecay = voice-&gt;pePitch;
+            }
+            voice-&gt;peDecay = voice-&gt;peDecay * -1;
+        }
+        voice-&gt;peSustain = voice-&gt;art-&gt;eg2Sustain;
+        voice-&gt;peRelease = voice-&gt;art-&gt;eg2Release;
+    }
+}
+
+void
+__SYNRunVolumeEnvelope (struct SYNVOICE* voice)
+{
+    ASSERTLINE (0xAF, voice);
+
+    switch (voice-&gt;veState)
+    {
+        case 0:
+            voice-&gt;veAttack = (voice-&gt;veAttack + voice-&gt;veAttackDelta);
+            if (voice-&gt;veAttack &gt;= 0x630000)
+            {
+                voice-&gt;veAttn = 0;
+            }
+            else
+            {
+                voice-&gt;veAttn = __SYNAttackAttnTable[voice-&gt;veAttack &gt;&gt; 0x10];
+            }
+            if (voice-&gt;veAttn == 0)
+            {
+                voice-&gt;veState = 1;
+            }
+        case 2:
+            return;
+        case 1:
+            voice-&gt;veAttn = (voice-&gt;veAttn + voice-&gt;veDecay);
+            if (voice-&gt;veAttn &lt;= voice-&gt;veSustain)
+            {
+                voice-&gt;veAttn = voice-&gt;veSustain;
+                voice-&gt;veState = 2;
+            }
+            if (voice-&gt;veAttn &lt;= -0x02D00000)
+            {
+                voice-&gt;veState = 4;
+                voice-&gt;synth-&gt;voice[voice-&gt;midiChannel][voice-&gt;keyNum] = 0;
+            }
+            return;
+        case 3:
+            voice-&gt;veAttn = (voice-&gt;veAttn + voice-&gt;veRelease);
+            if (voice-&gt;veAttn &lt;= -0x02D00000)
+            {
+                voice-&gt;veState = 4;
+            }
+            return;
+    }
+}
+
+void
+__SYNRunPitchEnvelope (struct SYNVOICE* voice)
+{
+    ASSERTLINE (0xEB, voice);
+
+    if (voice-&gt;pePitch != 0)
+    {
+        switch (voice-&gt;peState)
+        {
+            case 0:
+                voice-&gt;peCents = (voice-&gt;peCents + voice-&gt;peAttack);
+                if (voice-&gt;pePitch &gt; 0)
+                {
+                    if (voice-&gt;peCents &gt;= voice-&gt;pePitch)
+                    {
+                        voice-&gt;pePitch = voice-&gt;peCents;
+                        voice-&gt;peState = 1;
+                    }
+                }
+                else if (voice-&gt;peCents &lt;= voice-&gt;pePitch)
+                {
+                    voice-&gt;pePitch = voice-&gt;peCents;
+                    voice-&gt;peState = 1;
+                }
+            case 2:
+                return;
+            case 1:
+                voice-&gt;peCents = (voice-&gt;peCents + voice-&gt;peDecay);
+                if (voice-&gt;pePitch &gt; 0)
+                {
+                    if (voice-&gt;peCents &lt;= 0)
+                    {
+                        voice-&gt;peCents = 0;
+                        voice-&gt;pePitch = 0;
+                    }
+                    else if (voice-&gt;peCents &lt;= voice-&gt;peSustain)
+                    {
+                        voice-&gt;peCents = voice-&gt;peSustain;
+                        voice-&gt;peState = 2;
+                    }
+                }
+                else
+                {
+                    if (voice-&gt;peCents &gt;= 0)
+                    {
+                        voice-&gt;peCents = 0;
+                        voice-&gt;pePitch = 0;
+                    }
+                    else if (voice-&gt;peCents &gt;= voice-&gt;peSustain)
+                    {
+                        voice-&gt;peCents = voice-&gt;peSustain;
+                        voice-&gt;peState = 2;
+                    }
+                }
+                break;
+            case 3:
+                voice-&gt;peCents = (voice-&gt;peCents + voice-&gt;peRelease);
+                if (voice-&gt;pePitch &gt; 0)
+                {
+                    if (voice-&gt;peCents &lt;= 0)
+                    {
+                        voice-&gt;peCents = 0;
+                        voice-&gt;pePitch = 0;
+                    }
+                }
+                else if (voice-&gt;peCents &gt;= 0)
+                {
+                    voice-&gt;peCents = 0;
+                    voice-&gt;pePitch = 0;
+                }
+        }
+    }
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File AXSPB.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-axspbc">File AXSPB.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_284807f63fc993a939ff676a07eb86c2/"><strong>ax</strong></a> <strong>&gt;</strong> <a href="../_a_x_s_p_b_8c/"><strong>AXSPB.c</strong></a></p>
+<p><a href="../_a_x_s_p_b_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;AXPrivate.h&quot;
+
+// .bss
+static struct _AXSPB __AXStudio ALIGN (32);
+
+// .sbss
+static s32 __AXSpbAL;
+static s32 __AXSpbAR;
+static s32 __AXSpbAS;
+static s32 __AXSpbAAL;
+static s32 __AXSpbAAR;
+static s32 __AXSpbAAS;
+static s32 __AXSpbABL;
+static s32 __AXSpbABR;
+static s32 __AXSpbABS;
+
+u32
+__AXGetStudio (void)
+{
+    return (u32)&amp;__AXStudio;
+}
+
+void
+__AXDepopFade (s32* hostSum, long* dspVolume, s16* dspDelta)
+{
+    int frames;
+    s32 delta;
+
+    frames = *hostSum / 160;
+
+    if (frames)
+    {
+        delta = *hostSum / 160;
+        if (delta &gt; 0x14)
+        {
+            delta = 0x14;
+        }
+        if (delta &lt; -0x14)
+        {
+            delta = -0x14;
+        }
+        *dspVolume = *hostSum;
+        *hostSum -= delta * 0xA0;
+        *dspDelta = delta * -1;
+        return;
+    }
+    *hostSum = 0;
+    *dspVolume = 0;
+    *dspDelta = 0;
+}
+
+void
+__AXPrintStudio (void)
+{
+    __AXDepopFade (&amp;__AXSpbAL, (void*)&amp;__AXStudio.dpopLHi, &amp;__AXStudio.dpopLDelta);
+    __AXDepopFade (&amp;__AXSpbAR, (void*)&amp;__AXStudio.dpopRHi, &amp;__AXStudio.dpopRDelta);
+    __AXDepopFade (&amp;__AXSpbAS, (void*)&amp;__AXStudio.dpopSHi, &amp;__AXStudio.dpopSDelta);
+    __AXDepopFade (&amp;__AXSpbAAL, (void*)&amp;__AXStudio.dpopALHi, &amp;__AXStudio.dpopALDelta);
+    __AXDepopFade (&amp;__AXSpbAAR, (void*)&amp;__AXStudio.dpopARHi, &amp;__AXStudio.dpopARDelta);
+    __AXDepopFade (&amp;__AXSpbAAS, (void*)&amp;__AXStudio.dpopASHi, &amp;__AXStudio.dpopASDelta);
+    __AXDepopFade (&amp;__AXSpbABL, (void*)&amp;__AXStudio.dpopBLHi, &amp;__AXStudio.dpopBLDelta);
+    __AXDepopFade (&amp;__AXSpbABR, (void*)&amp;__AXStudio.dpopBRHi, &amp;__AXStudio.dpopBRDelta);
+    __AXDepopFade (&amp;__AXSpbABS, (void*)&amp;__AXStudio.dpopBSHi, &amp;__AXStudio.dpopBSDelta);
+    DCFlushRange (&amp;__AXStudio, sizeof (__AXStudio));
+}
+
+void
+__AXSPBInit (void)
+{
+#ifdef DEBUG
+    OSReport (&quot;Initializing AXSPB code module¥n&quot;);
+#endif
+    __AXSpbAL = __AXSpbAR = __AXSpbAS = __AXSpbAAL = __AXSpbAAR = __AXSpbAAS = __AXSpbABL =
+        __AXSpbABR = __AXSpbABS = 0;
+}
+
+void
+__AXSPBQuit (void)
+{
+#ifdef DEBUG
+    OSReport (&quot;Shutting down AXSPB code module¥n&quot;);
+#endif
+}
+
+void
+__AXDepopVoice (AXPB* p)
+{
+    __AXSpbAL += p-&gt;dpop.aL;
+    __AXSpbAAL += p-&gt;dpop.aAuxAL;
+    __AXSpbABL += p-&gt;dpop.aAuxBL;
+    __AXSpbAR += p-&gt;dpop.aR;
+    __AXSpbAAR += p-&gt;dpop.aAuxAR;
+    __AXSpbABR += p-&gt;dpop.aAuxBR;
+    __AXSpbAS += p-&gt;dpop.aS;
+    __AXSpbAAS += p-&gt;dpop.aAuxAS;
+    __AXSpbABS += p-&gt;dpop.aAuxBS;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File mtx44.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-mtx44c">File mtx44.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_26b6e6c4cda21e7491fcc30d526d19d0/"><strong>mtx</strong></a> <strong>&gt;</strong> <a href="../mtx44_8c/"><strong>mtx44.c</strong></a></p>
+<p><a href="../mtx44_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/mtx.h&gt;
+
+#include &lt;cmath&gt;
+
+// functions
+void MTXFrustum (Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f);
+void MTXPerspective (Mtx m, f32 fovY, f32 aspect, f32 n, f32 f);
+void MTXOrtho (Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f);
+
+void
+MTXFrustum (Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f)
+{
+    f32 tmp;
+
+    ASSERTMSGLINE (0x4C, m, &quot;MTXFrustum():  NULL Mtx44Ptr 'm' &quot;);
+    ASSERTMSGLINE (0x4D, t != b, &quot;MTXFrustum():  't' and 'b' clipping planes are equal &quot;);
+    ASSERTMSGLINE (0x4E, l != r, &quot;MTXFrustum():  'l' and 'r' clipping planes are equal &quot;);
+    ASSERTMSGLINE (0x4F, n != f, &quot;MTXFrustum():  'n' and 'f' clipping planes are equal &quot;);
+    tmp     = 1 / (r - l);
+    m[0][0] = (2 * n * tmp);
+    m[0][1] = 0;
+    m[0][2] = (tmp * (r + l));
+    m[0][3] = 0;
+    tmp     = 1 / (t - b);
+    m[1][0] = 0;
+    m[1][1] = (2 * n * tmp);
+    m[1][2] = (tmp * (t + b));
+    m[1][3] = 0;
+    m[2][0] = 0;
+    m[2][1] = 0;
+    tmp     = 1 / (f - n);
+    m[2][2] = (-n * tmp);
+    m[2][3] = (tmp * -(f * n));
+    m[3][0] = 0;
+    m[3][1] = 0;
+    m[3][2] = -1;
+    m[3][3] = 0;
+}
+
+void
+MTXPerspective (Mtx m, f32 fovY, f32 aspect, f32 n, f32 f)
+{
+    f32 angle;
+    f32 cot;
+    f32 tmp;
+
+    ASSERTMSGLINE (0x93, m, &quot;MTXPerspective():  NULL Mtx44Ptr 'm' &quot;);
+    ASSERTMSGLINE (0x94,
+                   (fovY &gt; 0.0) &amp;&amp; (fovY &lt; 180.0),
+                   &quot;MTXPerspective():  'fovY' out of range &quot;);
+    ASSERTMSGLINE (0x95, 0.0f != aspect, &quot;MTXPerspective():  'aspect' is 0 &quot;);
+
+    angle   = (0.5f * fovY);
+    angle   = angle * 0.017453293f;
+    cot     = 1 / tanf (angle);
+    m[0][0] = (cot / aspect);
+    m[0][1] = 0;
+    m[0][2] = 0;
+    m[0][3] = 0;
+    m[1][0] = 0;
+    m[1][1] = (cot);
+    m[1][2] = 0;
+    m[1][3] = 0;
+    m[2][0] = 0;
+    m[2][1] = 0;
+    tmp     = 1 / (f - n);
+    m[2][2] = (-n * tmp);
+    m[2][3] = (tmp * -(f * n));
+    m[3][0] = 0;
+    m[3][1] = 0;
+    m[3][2] = -1;
+    m[3][3] = 0;
+}
+
+void
+MTXOrtho (Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f)
+{
+    f32 tmp;
+
+    ASSERTMSGLINE (0xDB, m, &quot;MTXOrtho():  NULL Mtx44Ptr 'm' &quot;);
+    ASSERTMSGLINE (0xDC, t != b, &quot;MTXOrtho():  't' and 'b' clipping planes are equal &quot;);
+    ASSERTMSGLINE (0xDD, l != r, &quot;MTXOrtho():  'l' and 'r' clipping planes are equal &quot;);
+    ASSERTMSGLINE (0xDE, n != f, &quot;MTXOrtho():  'n' and 'f' clipping planes are equal &quot;);
+    tmp     = 1 / (r - l);
+    m[0][0] = 2 * tmp;
+    m[0][1] = 0;
+    m[0][2] = 0;
+    m[0][3] = (tmp * -(r + l));
+    tmp     = 1 / (t - b);
+    m[1][0] = 0;
+    m[1][1] = 2 * tmp;
+    m[1][2] = 0;
+    m[1][3] = (tmp * -(t + b));
+    m[2][0] = 0;
+    m[2][1] = 0;
+    tmp     = 1 / (f - n);
+    m[2][2] = (-1 * tmp);
+    m[2][3] = (-f * tmp);
+    m[3][0] = 0;
+    m[3][1] = 0;
+    m[3][2] = 0;
+    m[3][3] = 1;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

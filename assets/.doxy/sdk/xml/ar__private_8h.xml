@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ar__private_8h" kind="file" language="C++">
+    <compoundname>ar_private.h</compoundname>
+    <includes refid="ar_8h" local="no">dolphin/ar.h</includes>
+    <includedby refid="ar_8c" local="yes">ar.c</includedby>
+    <includedby refid="arq_8c" local="yes">arq.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>dolphin/ar.h</label>
+        <link refid="ar_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>ar_private.h</label>
+        <link refid="ar__private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>ar.c</label>
+        <link refid="ar_8c"/>
+      </node>
+      <node id="1">
+        <label>ar_private.h</label>
+        <link refid="ar__private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>arq.c</label>
+        <link refid="arq_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ar__private_8h_1a6cede154e4122d848de959ce31972acb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __ARQPopTaskQueueHi</definition>
+        <argsstring>(void)</argsstring>
+        <name>__ARQPopTaskQueueHi</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" line="6" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/ar/arq.c" bodystart="20" bodyend="42" declfile="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" declline="6" declcolumn="6"/>
+        <references refid="arq_8c_1a0f135b4ff3b0e5a137851474b66a4fb4" compoundref="arq_8c" startline="14">__ARQCallbackHi</references>
+        <references refid="arq_8c_1a77db01ca9bec7a58d2abdbaeb86d7701" compoundref="arq_8c" startline="12">__ARQRequestPendingHi</references>
+        <references refid="arq_8c_1a5974a9dbe72c315badc1fd4d92e1402e" compoundref="arq_8c" startline="6">__ARQRequestQueueHi</references>
+        <references refid="ar_8h_1a75359f3ed5d9c6e2c688e2e44a2a87e5" compoundref="ar_8c" startline="50" endline="78">ARStartDMA</references>
+        <references refid="struct_a_r_q_request_1a433fccd3e9eb2c1510bdcf4835621c6c" compoundref="ar_8h" startline="17">ARQRequest::callback</references>
+        <references refid="struct_a_r_q_request_1ab1e37bf94787bfee112dc513533a370a" compoundref="ar_8h" startline="15">ARQRequest::dest</references>
+        <references refid="struct_a_r_q_request_1a7eab4d725f00d352ad58eb25a547d6ba" compoundref="ar_8h" startline="16">ARQRequest::length</references>
+        <references refid="struct_a_r_q_request_1a07fbec1b1254a57f9f6aa5958b2fbbd8" compoundref="ar_8h" startline="10">ARQRequest::next</references>
+        <references refid="struct_a_r_q_request_1a9c07a1c34f462c2f31aa535bf7b0da14" compoundref="ar_8h" startline="14">ARQRequest::source</references>
+        <references refid="struct_a_r_q_request_1af4f2afb7058e6c08bcb7a63473d687ef" compoundref="ar_8h" startline="12">ARQRequest::type</references>
+        <referencedby refid="ar__private_8h_1a4ff09876a7adc268abfcae76208c72e6" compoundref="arq_8c" startline="99" endline="118">__ARQInterruptServiceRoutine</referencedby>
+        <referencedby refid="ar_8h_1a752163fe3c87512f79e39104b3c82e91" compoundref="arq_8c" startline="163" endline="228">ARQPostRequest</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="ar__private_8h_1a8a6753a354cf6aee5fb2afa6fc6a23e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __ARQServiceQueueLo</definition>
+        <argsstring>(void)</argsstring>
+        <name>__ARQServiceQueueLo</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" line="7" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/ar/arq.c" bodystart="45" bodyend="90" declfile="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" declline="7" declcolumn="6"/>
+        <references refid="arq_8c_1aa3c8013177709a50d8fc75bf8ee284fd" compoundref="arq_8c" startline="15">__ARQCallbackLo</references>
+        <references refid="arq_8c_1a35b7a86f0e8767e627f7a31eb16a2fa7" compoundref="arq_8c" startline="16">__ARQChunkSize</references>
+        <references refid="arq_8c_1aea04e4364703242e63a72fc08052156d" compoundref="arq_8c" startline="13">__ARQRequestPendingLo</references>
+        <references refid="arq_8c_1ada71cf5f0c43adabc9b71ac257326859" compoundref="arq_8c" startline="8">__ARQRequestQueueLo</references>
+        <references refid="ar_8h_1a75359f3ed5d9c6e2c688e2e44a2a87e5" compoundref="ar_8c" startline="50" endline="78">ARStartDMA</references>
+        <references refid="struct_a_r_q_request_1a433fccd3e9eb2c1510bdcf4835621c6c" compoundref="ar_8h" startline="17">ARQRequest::callback</references>
+        <references refid="struct_a_r_q_request_1ab1e37bf94787bfee112dc513533a370a" compoundref="ar_8h" startline="15">ARQRequest::dest</references>
+        <references refid="struct_a_r_q_request_1a7eab4d725f00d352ad58eb25a547d6ba" compoundref="ar_8h" startline="16">ARQRequest::length</references>
+        <references refid="struct_a_r_q_request_1a07fbec1b1254a57f9f6aa5958b2fbbd8" compoundref="ar_8h" startline="10">ARQRequest::next</references>
+        <references refid="struct_a_r_q_request_1a9c07a1c34f462c2f31aa535bf7b0da14" compoundref="ar_8h" startline="14">ARQRequest::source</references>
+        <references refid="struct_a_r_q_request_1af4f2afb7058e6c08bcb7a63473d687ef" compoundref="ar_8h" startline="12">ARQRequest::type</references>
+        <referencedby refid="ar__private_8h_1a4ff09876a7adc268abfcae76208c72e6" compoundref="arq_8c" startline="99" endline="118">__ARQInterruptServiceRoutine</referencedby>
+        <referencedby refid="ar_8h_1a752163fe3c87512f79e39104b3c82e91" compoundref="arq_8c" startline="163" endline="228">ARQPostRequest</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="ar__private_8h_1a8cc80bfc267bcc7847e9e5a4dfd36a96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __ARQCallbackHack</definition>
+        <argsstring>(u32 pointerToARQRequest)</argsstring>
+        <name>__ARQCallbackHack</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>pointerToARQRequest</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" line="8" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/ar/arq.c" bodystart="93" bodyend="96" declfile="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" declline="8" declcolumn="6"/>
+        <referencedby refid="ar_8h_1a752163fe3c87512f79e39104b3c82e91" compoundref="arq_8c" startline="163" endline="228">ARQPostRequest</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="ar__private_8h_1a4ff09876a7adc268abfcae76208c72e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __ARQInterruptServiceRoutine</definition>
+        <argsstring>(void)</argsstring>
+        <name>__ARQInterruptServiceRoutine</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" line="9" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/ar/arq.c" bodystart="99" bodyend="118" declfile="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" declline="9" declcolumn="6"/>
+        <references refid="arq_8c_1a0f135b4ff3b0e5a137851474b66a4fb4" compoundref="arq_8c" startline="14">__ARQCallbackHi</references>
+        <references refid="arq_8c_1aa3c8013177709a50d8fc75bf8ee284fd" compoundref="arq_8c" startline="15">__ARQCallbackLo</references>
+        <references refid="arq_8c_1a6cede154e4122d848de959ce31972acb" compoundref="arq_8c" startline="20" endline="42">__ARQPopTaskQueueHi</references>
+        <references refid="arq_8c_1a77db01ca9bec7a58d2abdbaeb86d7701" compoundref="arq_8c" startline="12">__ARQRequestPendingHi</references>
+        <references refid="arq_8c_1aea04e4364703242e63a72fc08052156d" compoundref="arq_8c" startline="13">__ARQRequestPendingLo</references>
+        <references refid="arq_8c_1a8a6753a354cf6aee5fb2afa6fc6a23e1" compoundref="arq_8c" startline="45" endline="90">__ARQServiceQueueLo</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <referencedby refid="ar_8h_1a97be65d05f55c2767f6f96d94a8eb9e9" compoundref="arq_8c" startline="141" endline="154">ARQInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="ar__private_8h_1a7e35a1e956795dc3cc0f1a28fb0dda17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __ARQInitTempQueue</definition>
+        <argsstring>(void)</argsstring>
+        <name>__ARQInitTempQueue</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" line="10" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/ar/arq.c" bodystart="121" bodyend="125" declfile="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" declline="10" declcolumn="6"/>
+        <references refid="arq_8c_1a8f55d631650ce474e7527900f9e5d659" compoundref="arq_8c" startline="10">__ARQRequestQueueTemp</references>
+        <references refid="arq_8c_1a762fe18bba0694e2cf97c68b09714c08" compoundref="arq_8c" startline="11">__ARQRequestTailTemp</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <referencedby refid="ar_8h_1a59c330dc02e2fc9a9fbf2daeab27b3c5" compoundref="arq_8c" startline="266" endline="299">ARQRemoveOwnerRequest</referencedby>
+        <referencedby refid="ar_8h_1a4399ad3c0b08fdad4a6bd6339067c220" compoundref="arq_8c" startline="231" endline="263">ARQRemoveRequest</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="ar__private_8h_1a1c5c901fe9932704d8980d869b121338" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __ARQPushTempQueue</definition>
+        <argsstring>(struct ARQRequest *task)</argsstring>
+        <name>__ARQPushTempQueue</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_r_q_request" kindref="compound">ARQRequest</ref> *</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" line="11" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/ar/arq.c" bodystart="128" bodyend="138" declfile="decomp/DolphinSDK/src/dolphin/ar/ar_private.h" declline="11" declcolumn="6"/>
+        <references refid="arq_8c_1a8f55d631650ce474e7527900f9e5d659" compoundref="arq_8c" startline="10">__ARQRequestQueueTemp</references>
+        <references refid="arq_8c_1a762fe18bba0694e2cf97c68b09714c08" compoundref="arq_8c" startline="11">__ARQRequestTailTemp</references>
+        <references refid="struct_a_r_q_request_1a07fbec1b1254a57f9f6aa5958b2fbbd8" compoundref="ar_8h" startline="10">ARQRequest::next</references>
+        <references refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" compoundref="_a_x_out_8c" startline="11">task</references>
+        <referencedby refid="ar_8h_1a59c330dc02e2fc9a9fbf2daeab27b3c5" compoundref="arq_8c" startline="266" endline="299">ARQRemoveOwnerRequest</referencedby>
+        <referencedby refid="ar_8h_1a4399ad3c0b08fdad4a6bd6339067c220" compoundref="arq_8c" startline="231" endline="263">ARQRemoveRequest</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_AR_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_AR_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ar_8h" kindref="compound">dolphin/ar.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ar__private_8h_1a6cede154e4122d848de959ce31972acb" kindref="member">__ARQPopTaskQueueHi</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ar__private_8h_1a8a6753a354cf6aee5fb2afa6fc6a23e1" kindref="member">__ARQServiceQueueLo</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ar__private_8h_1a8cc80bfc267bcc7847e9e5a4dfd36a96" kindref="member">__ARQCallbackHack</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">pointerToARQRequest</ref>);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ar__private_8h_1a4ff09876a7adc268abfcae76208c72e6" kindref="member">__ARQInterruptServiceRoutine</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ar__private_8h_1a7e35a1e956795dc3cc0f1a28fb0dda17" kindref="member">__ARQInitTempQueue</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ar__private_8h_1a1c5c901fe9932704d8980d869b121338" kindref="member">__ARQPushTempQueue</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_r_q_request" kindref="compound">ARQRequest</ref>*<sp/><ref refid="ax_8h_1a8b4324025b08a7ac00fcaaf2f1b56712" kindref="member">task</ref>);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_DOLPHIN_AR_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/ar/ar_private.h"/>
+  </compounddef>
+</doxygen>

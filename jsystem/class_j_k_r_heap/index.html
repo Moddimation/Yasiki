@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Class JKRHeap - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="class-jkrheap">Class JKRHeap</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>JKRHeap</strong></a></p>
+<ul>
+<li><code>#include &lt;JKRHeap.h&gt;</code></li>
+</ul>
+<p>Inherits the following classes: <a href="../class_j_k_r_disposer/">JKRDisposer</a></p>
+<p>Inherited by the following classes: <a href="../class_j_k_r_exp_heap/">JKRExpHeap</a>,  <a href="../class_j_k_r_solid_heap/">JKRSolidHeap</a></p>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_j_k_r_heap_8h/#typedef-jkrerrorroutine"><strong>JKRErrorRoutine</strong></a></td>
+<td style="text-align: left;"><a href="#variable-merrorhandler"><strong>mErrorHandler</strong></a>   = <code>[**Nil**](_j_u_t_types_8h.md#define-nil)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-scurrentheap"><strong>sCurrentHeap</strong></a>   = <code>[**Nil**](_j_u_t_types_8h.md#define-nil)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-srootheap"><strong>sRootHeap</strong></a>   = <code>[**Nil**](_j_u_t_types_8h.md#define-nil)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-ssystemheap"><strong>sSystemHeap</strong></a>   = <code>[**Nil**](_j_u_t_types_8h.md#define-nil)</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-appenddisposer"><strong>appendDisposer</strong></a> (<a href="../class_j_k_r_disposer/"><strong>JKRDisposer</strong></a> * disposer) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-callerrorhandler"><strong>callErrorHandler</strong></a> (<a href="./"><strong>JKRHeap</strong></a> * heap, size_t size, int align) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-geterrorflag"><strong>getErrorFlag</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-removedisposer"><strong>removeDisposer</strong></a> (<a href="../class_j_k_r_disposer/"><strong>JKRDisposer</strong></a> * disposer) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-alloc-12"><strong>alloc</strong></a> (size_t size, int align, <a href="./"><strong>JKRHeap</strong></a> * heap) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-copymemory"><strong>copyMemory</strong></a> (void * dest, void * source, u32 size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-findfromroot"><strong>findFromRoot</strong></a> (void * obj) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-free-12"><strong>free</strong></a> (void * ptr, <a href="./"><strong>JKRHeap</strong></a> * heap) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-getcurrentheap"><strong>getCurrentHeap</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-getrootheap"><strong>getRootHeap</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-getsystemheap"><strong>getSystemHeap</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-initarena"><strong>initArena</strong></a> (char ** ramStart, u32 * ramSize, int maxHeaps) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes">Protected Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../class_j_s_u_list/"><strong>JSUList</strong></a>&lt; <a href="../class_j_k_r_disposer/"><strong>JKRDisposer</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-mdisposerlist"><strong>mDisposerList</strong></a>  <br><em>0x58</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#variable-mend"><strong>mEnd</strong></a>  <br><em>0x34</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-merrorflag"><strong>mErrorFlag</strong></a>  <br><em>0x64</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../class_j_s_u_tree/"><strong>JSUTree</strong></a>&lt; <a href="./"><strong>JKRHeap</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-mheaptree"><strong>mHeapTree</strong></a>  <br><em>0x3C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">OSMutex</td>
+<td style="text-align: left;"><a href="#variable-mmutex"><strong>mMutex</strong></a>  <br><em>0x18</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">size_t</td>
+<td style="text-align: left;"><a href="#variable-msize"><strong>mSize</strong></a>  <br><em>0x38</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#variable-mstart"><strong>mStart</strong></a>  <br><em>0x30</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes-inherited-from-jkrdisposer">Protected Attributes inherited from JKRDisposer</h2>
+<p>See <a href="../class_j_k_r_disposer/">JKRDisposer</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_j_s_u_link/"><strong>JSULink</strong></a>&lt; <a href="../class_j_k_r_disposer/"><strong>JKRDisposer</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../class_j_k_r_disposer/#variable-mheaplink"><strong>mHeapLink</strong></a>  <br><em>0x04 // Link to disposer, for heap (?)</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="../class_j_k_r_disposer/#variable-pheapobj"><strong>pHeapObj</strong></a>  <br><em>0x00 // Pointer to inheriting heap (?)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions">Protected Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-constructor"><strong>constructor</strong></a></td>
+<td style="text-align: left;"><a href="#function-jkrheap"><strong>JKRHeap</strong></a> (void * obj, size_t size, <a href="./"><strong>JKRHeap</strong></a> * parent, bool is_error) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void *</td>
+<td style="text-align: left;"><a href="#function-alloc-22"><strong>alloc</strong></a> (size_t size, int align) = 0<br><em>0x0Cv</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-becomecurrentheap"><strong>becomeCurrentHeap</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-becomesystemheap"><strong>becomeSystemHeap</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-check"><strong>check</strong></a> (void) = 0<br><em>0x30v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-dispose-13"><strong>dispose</strong></a> (void * obj, u32 size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-dispose-23"><strong>dispose</strong></a> (void * begin, void * end) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-dispose-33"><strong>dispose</strong></a> (void) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-dispose_subroutine"><strong>dispose_subroutine</strong></a> (size_t start, size_t end) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../_j_u_t_types_8h/#define-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dump"><strong>dump</strong></a> (void) = 0<br><em>0x34v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-find"><strong>find</strong></a> (void * obj) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-free-22"><strong>free</strong></a> (void * ptr) = 0<br><em>0x10v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-freeall"><strong>freeAll</strong></a> (void) <br><em>0x14v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-freetail"><strong>freeTail</strong></a> (void) = 0<br><em>0x18v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual u32</td>
+<td style="text-align: left;"><a href="#function-getcurrentgroupid"><strong>getCurrentGroupId</strong></a> (void) <br><em>0x3Cv</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual size_t</td>
+<td style="text-align: left;"><a href="#function-getfreesize"><strong>getFreeSize</strong></a> (void) = 0<br><em>0x24v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../class_j_s_u_tree/"><strong>JSUTree</strong></a>&lt; <a href="./"><strong>JKRHeap</strong></a> &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-getheaptree"><strong>getHeapTree</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual u32</td>
+<td style="text-align: left;"><a href="#function-getheaptype"><strong>getHeapType</strong></a> (void) = 0<br><em>0x2Cv</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>JKRHeap</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-getparent"><strong>getParent</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual size_t</td>
+<td style="text-align: left;"><a href="#function-getsize"><strong>getSize</strong></a> (void *) = 0<br><em>0x20v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual size_t</td>
+<td style="text-align: left;"><a href="#function-gettotalfreesize"><strong>getTotalFreeSize</strong></a> (void) = 0<br><em>0x28v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual u32</td>
+<td style="text-align: left;"><a href="#function-getunk"><strong>getUNK</strong></a> (void) <br><em>0x38v</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-lock"><strong>lock</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual size_t</td>
+<td style="text-align: left;"><a href="#function-resize"><strong>resize</strong></a> (void *, size_t) = 0<br><em>0x1Cv</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-unlock"><strong>unlock</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-destructor"><strong>destructor</strong></a></td>
+<td style="text-align: left;"><a href="#function-jkrheap"><strong>~JKRHeap</strong></a> () <br><em>0x08v</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions-inherited-from-jkrdisposer">Protected Functions inherited from JKRDisposer</h2>
+<p>See <a href="../class_j_k_r_disposer/">JKRDisposer</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-constructor"><strong>constructor</strong></a></td>
+<td style="text-align: left;"><a href="../class_j_k_r_disposer/#function-jkrdisposer"><strong>JKRDisposer</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_j_u_t_types_8h/#define-destructor"><strong>destructor</strong></a></td>
+<td style="text-align: left;"><a href="../class_j_k_r_disposer/#function-jkrdisposer"><strong>~JKRDisposer</strong></a> () <br><em>0x08v</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-merrorhandler">variable mErrorHandler</h3>
+<pre><code class="language-C++">JKRErrorRoutine JKRHeap::mErrorHandler;
+</code></pre>
+<hr>
+
+<h3 id="variable-scurrentheap">variable sCurrentHeap</h3>
+<pre><code class="language-C++">JKRHeap * JKRHeap::sCurrentHeap;
+</code></pre>
+<hr>
+
+<h3 id="variable-srootheap">variable sRootHeap</h3>
+<pre><code class="language-C++">JKRHeap * JKRHeap::sRootHeap;
+</code></pre>
+<hr>
+
+<h3 id="variable-ssystemheap">variable sSystemHeap</h3>
+<pre><code class="language-C++">JKRHeap * JKRHeap::sSystemHeap;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-appenddisposer">function appendDisposer</h3>
+<pre><code class="language-C++">inline void JKRHeap::appendDisposer (
+    JKRDisposer * disposer
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-callerrorhandler">function callErrorHandler</h3>
+<pre><code class="language-C++">inline void JKRHeap::callErrorHandler (
+    JKRHeap * heap,
+    size_t size,
+    int align
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-geterrorflag">function getErrorFlag</h3>
+<pre><code class="language-C++">inline BOOL JKRHeap::getErrorFlag () 
+</code></pre>
+<hr>
+
+<h3 id="function-removedisposer">function removeDisposer</h3>
+<pre><code class="language-C++">inline void JKRHeap::removeDisposer (
+    JKRDisposer * disposer
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-alloc-12">function alloc [1/2]</h3>
+<pre><code class="language-C++">static void * JKRHeap::alloc (
+    size_t size,
+    int align,
+    JKRHeap * heap
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-copymemory">function copyMemory</h3>
+<pre><code class="language-C++">static void JKRHeap::copyMemory (
+    void * dest,
+    void * source,
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-findfromroot">function findFromRoot</h3>
+<pre><code class="language-C++">static JKRHeap * JKRHeap::findFromRoot (
+    void * obj
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-free-12">function free [1/2]</h3>
+<pre><code class="language-C++">static void JKRHeap::free (
+    void * ptr,
+    JKRHeap * heap
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-getcurrentheap">function getCurrentHeap</h3>
+<pre><code class="language-C++">static inline JKRHeap * JKRHeap::getCurrentHeap () 
+</code></pre>
+<hr>
+
+<h3 id="function-getrootheap">function getRootHeap</h3>
+<pre><code class="language-C++">static inline JKRHeap * JKRHeap::getRootHeap () 
+</code></pre>
+<hr>
+
+<h3 id="function-getsystemheap">function getSystemHeap</h3>
+<pre><code class="language-C++">static inline JKRHeap * JKRHeap::getSystemHeap () 
+</code></pre>
+<hr>
+
+<h3 id="function-initarena">function initArena</h3>
+<pre><code class="language-C++">static BOOL JKRHeap::initArena (
+    char ** ramStart,
+    u32 * ramSize,
+    int maxHeaps
+) 
+</code></pre>
+<hr>
+<h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
+<h3 id="variable-mdisposerlist">variable mDisposerList</h3>
+<p><em>0x58</em> </p>
+<pre><code class="language-C++">JSUList&lt;JKRDisposer&gt; JKRHeap::mDisposerList;
+</code></pre>
+<hr>
+
+<h3 id="variable-mend">variable mEnd</h3>
+<p><em>0x34</em> </p>
+<pre><code class="language-C++">void* JKRHeap::mEnd;
+</code></pre>
+<hr>
+
+<h3 id="variable-merrorflag">variable mErrorFlag</h3>
+<p><em>0x64</em> </p>
+<pre><code class="language-C++">BOOL JKRHeap::mErrorFlag;
+</code></pre>
+<hr>
+
+<h3 id="variable-mheaptree">variable mHeapTree</h3>
+<p><em>0x3C</em> </p>
+<pre><code class="language-C++">JSUTree&lt;JKRHeap&gt; JKRHeap::mHeapTree;
+</code></pre>
+<hr>
+
+<h3 id="variable-mmutex">variable mMutex</h3>
+<p><em>0x18</em> </p>
+<pre><code class="language-C++">OSMutex JKRHeap::mMutex;
+</code></pre>
+<hr>
+
+<h3 id="variable-msize">variable mSize</h3>
+<p><em>0x38</em> </p>
+<pre><code class="language-C++">size_t JKRHeap::mSize;
+</code></pre>
+<hr>
+
+<h3 id="variable-mstart">variable mStart</h3>
+<p><em>0x30</em> </p>
+<pre><code class="language-C++">void* JKRHeap::mStart;
+</code></pre>
+<hr>
+<h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
+<h3 id="function-jkrheap">function JKRHeap</h3>
+<pre><code class="language-C++">constructor JKRHeap::JKRHeap (
+    void * obj,
+    size_t size,
+    JKRHeap * parent,
+    bool is_error
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-alloc-22">function alloc [2/2]</h3>
+<p><em>0x0Cv</em> </p>
+<pre><code class="language-C++">virtual void * JKRHeap::alloc (
+    size_t size,
+    int align
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-becomecurrentheap">function becomeCurrentHeap</h3>
+<pre><code class="language-C++">JKRHeap * JKRHeap::becomeCurrentHeap (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-becomesystemheap">function becomeSystemHeap</h3>
+<pre><code class="language-C++">JKRHeap * JKRHeap::becomeSystemHeap (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-check">function check</h3>
+<p><em>0x30v</em> </p>
+<pre><code class="language-C++">virtual BOOL JKRHeap::check (
+    void
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-dispose-13">function dispose [1/3]</h3>
+<pre><code class="language-C++">int JKRHeap::dispose (
+    void * obj,
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dispose-23">function dispose [2/3]</h3>
+<pre><code class="language-C++">void JKRHeap::dispose (
+    void * begin,
+    void * end
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dispose-33">function dispose [3/3]</h3>
+<pre><code class="language-C++">void JKRHeap::dispose (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dispose_subroutine">function dispose_subroutine</h3>
+<pre><code class="language-C++">void JKRHeap::dispose_subroutine (
+    size_t start,
+    size_t end
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dump">function dump</h3>
+<p><em>0x34v</em> </p>
+<pre><code class="language-C++">virtual BOOL JKRHeap::dump (
+    void
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-find">function find</h3>
+<pre><code class="language-C++">JKRHeap * JKRHeap::find (
+    void * obj
+) const
+</code></pre>
+<hr>
+
+<h3 id="function-free-22">function free [2/2]</h3>
+<p><em>0x10v</em> </p>
+<pre><code class="language-C++">virtual void JKRHeap::free (
+    void * ptr
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-freeall">function freeAll</h3>
+<p><em>0x14v</em> </p>
+<pre><code class="language-C++">virtual void JKRHeap::freeAll (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-freetail">function freeTail</h3>
+<p><em>0x18v</em> </p>
+<pre><code class="language-C++">virtual void JKRHeap::freeTail (
+    void
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-getcurrentgroupid">function getCurrentGroupId</h3>
+<p><em>0x3Cv</em> </p>
+<pre><code class="language-C++">virtual u32 JKRHeap::getCurrentGroupId (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-getfreesize">function getFreeSize</h3>
+<p><em>0x24v</em> </p>
+<pre><code class="language-C++">virtual size_t JKRHeap::getFreeSize (
+    void
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-getheaptree">function getHeapTree</h3>
+<pre><code class="language-C++">inline JSUTree &lt; JKRHeap &gt; &amp; JKRHeap::getHeapTree () 
+</code></pre>
+<hr>
+
+<h3 id="function-getheaptype">function getHeapType</h3>
+<p><em>0x2Cv</em> </p>
+<pre><code class="language-C++">virtual u32 JKRHeap::getHeapType (
+    void
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-getparent">function getParent</h3>
+<pre><code class="language-C++">inline JKRHeap * JKRHeap::getParent () const
+</code></pre>
+<hr>
+
+<h3 id="function-getsize">function getSize</h3>
+<p><em>0x20v</em> </p>
+<pre><code class="language-C++">virtual size_t JKRHeap::getSize (
+    void *
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-gettotalfreesize">function getTotalFreeSize</h3>
+<p><em>0x28v</em> </p>
+<pre><code class="language-C++">virtual size_t JKRHeap::getTotalFreeSize (
+    void
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-getunk">function getUNK</h3>
+<p><em>0x38v</em> </p>
+<pre><code class="language-C++">virtual u32 JKRHeap::getUNK (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-lock">function lock</h3>
+<pre><code class="language-C++">inline void JKRHeap::lock () 
+</code></pre>
+<hr>
+
+<h3 id="function-resize">function resize</h3>
+<p><em>0x1Cv</em> </p>
+<pre><code class="language-C++">virtual size_t JKRHeap::resize (
+    void *,
+    size_t
+) = 0
+</code></pre>
+<hr>
+
+<h3 id="function-unlock">function unlock</h3>
+<pre><code class="language-C++">inline void JKRHeap::unlock () 
+</code></pre>
+<hr>
+
+<h3 id="function-jkrheap_1">function ~JKRHeap</h3>
+<p><em>0x08v</em> </p>
+<pre><code class="language-C++">destructor JKRHeap::~JKRHeap () 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/JSystem/System/JKernel/include/JKRHeap.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Struct CARDControl - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="struct-cardcontrol">Struct CARDControl</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>CARDControl</strong></a></p>
+<ul>
+<li><code>#include &lt;CARDPrivate.h&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#variable-_pad9d"><strong>_pad9D</strong></a>  <br><em>0x9D</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-addr"><strong>addr</strong></a>  <br><em>0xB0</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a></td>
+<td style="text-align: left;"><a href="#variable-alarm"><strong>alarm</strong></a>  <br><em>0xE4</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-apicallback"><strong>apiCallback</strong></a>  <br><em>0xD0</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-attached"><strong>attached</strong></a>  <br><em>0x00</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-buffer"><strong>buffer</strong></a>  <br><em>0xB4</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cblock"><strong>cBlock</strong></a>  <br><em>0x10</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cmd"><strong>cmd</strong></a>  <br><em>0x94</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cmdlen"><strong>cmdlen</strong></a>  <br><em>0xA0</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_c_a_r_d_dir/"><strong>CARDDir</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-currentdir"><strong>currentDir</strong></a>  <br><em>0x84</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-currentfat"><strong>currentFat</strong></a>  <br><em>0x88</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-erasecallback"><strong>eraseCallback</strong></a>  <br><em>0xD8</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-exicallback"><strong>exiCallback</strong></a>  <br><em>0xCC</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-extcallback"><strong>extCallback</strong></a>  <br><em>0xC4</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-fileinfo"><strong>fileInfo</strong></a>  <br><em>0xC0</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-formatstep"><strong>formatStep</strong></a>  <br><em>0x2C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-freeno"><strong>freeNo</strong></a>  <br><em>0xBC</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#variable-id"><strong>id</strong></a>  <br><em>0x18</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-latency"><strong>latency</strong></a>  <br><em>0x14</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vs32"><strong>vs32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-mode"><strong>mode</strong></a>  <br><em>0xA4</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-mountstep"><strong>mountStep</strong></a>  <br><em>0x24</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-pagesize"><strong>pageSize</strong></a>  <br><em>0x0A</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-repeat"><strong>repeat</strong></a>  <br><em>0xAC</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-result"><strong>result</strong></a>  <br><em>0x04</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-retry"><strong>retry</strong></a>  <br><em>0xA8</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-scramble"><strong>scramble</strong></a>  <br><em>0x28</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-sectorsize"><strong>sectorSize</strong></a>  <br><em>0x0C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-size"><strong>size</strong></a>  <br><em>0x08</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-startblock"><strong>startBlock</strong></a>  <br><em>0xBE</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../dsp_8h/#typedef-dsptaskinfo"><strong>DSPTaskInfo</strong></a></td>
+<td style="text-align: left;"><a href="#variable-task"><strong>task</strong></a>  <br><em>0x30</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_thread_queue/"><strong>OSThreadQueue</strong></a></td>
+<td style="text-align: left;"><a href="#variable-threadqueue"><strong>threadQueue</strong></a>  <br><em>0x8C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-txcallback"><strong>txCallback</strong></a>  <br><em>0xC8</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-unlockcallback"><strong>unlockCallback</strong></a>  <br><em>0xDC</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-vendorid"><strong>vendorID</strong></a>  <br><em>0x12</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-workarea"><strong>workArea</strong></a>  <br><em>0x80</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../card_8h/#typedef-cardcallback"><strong>CARDCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-xfercallback"><strong>xferCallback</strong></a>  <br><em>0xD4</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-xferred"><strong>xferred</strong></a>  <br><em>0xB8</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-_pad9d">variable _pad9D</h3>
+<p><em>0x9D</em> </p>
+<pre><code class="language-C++">u8 CARDControl::_pad9D[3];
+</code></pre>
+<hr>
+
+<h3 id="variable-addr">variable addr</h3>
+<p><em>0xB0</em> </p>
+<pre><code class="language-C++">u32 CARDControl::addr;
+</code></pre>
+<hr>
+
+<h3 id="variable-alarm">variable alarm</h3>
+<p><em>0xE4</em> </p>
+<pre><code class="language-C++">OSAlarm CARDControl::alarm;
+</code></pre>
+<hr>
+
+<h3 id="variable-apicallback">variable apiCallback</h3>
+<p><em>0xD0</em> </p>
+<pre><code class="language-C++">CARDCallback CARDControl::apiCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-attached">variable attached</h3>
+<p><em>0x00</em> </p>
+<pre><code class="language-C++">BOOL CARDControl::attached;
+</code></pre>
+<hr>
+
+<h3 id="variable-buffer">variable buffer</h3>
+<p><em>0xB4</em> </p>
+<pre><code class="language-C++">void* CARDControl::buffer;
+</code></pre>
+<hr>
+
+<h3 id="variable-cblock">variable cBlock</h3>
+<p><em>0x10</em> </p>
+<pre><code class="language-C++">u16 CARDControl::cBlock;
+</code></pre>
+<hr>
+
+<h3 id="variable-cmd">variable cmd</h3>
+<p><em>0x94</em> </p>
+<pre><code class="language-C++">u8 CARDControl::cmd[9];
+</code></pre>
+<hr>
+
+<h3 id="variable-cmdlen">variable cmdlen</h3>
+<p><em>0xA0</em> </p>
+<pre><code class="language-C++">s32 CARDControl::cmdlen;
+</code></pre>
+<hr>
+
+<h3 id="variable-currentdir">variable currentDir</h3>
+<p><em>0x84</em> </p>
+<pre><code class="language-C++">CARDDir* CARDControl::currentDir;
+</code></pre>
+<hr>
+
+<h3 id="variable-currentfat">variable currentFat</h3>
+<p><em>0x88</em> </p>
+<pre><code class="language-C++">u16* CARDControl::currentFat;
+</code></pre>
+<hr>
+
+<h3 id="variable-erasecallback">variable eraseCallback</h3>
+<p><em>0xD8</em> </p>
+<pre><code class="language-C++">CARDCallback CARDControl::eraseCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-exicallback">variable exiCallback</h3>
+<p><em>0xCC</em> </p>
+<pre><code class="language-C++">CARDCallback CARDControl::exiCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-extcallback">variable extCallback</h3>
+<p><em>0xC4</em> </p>
+<pre><code class="language-C++">CARDCallback CARDControl::extCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-fileinfo">variable fileInfo</h3>
+<p><em>0xC0</em> </p>
+<pre><code class="language-C++">CARDFileInfo* CARDControl::fileInfo;
+</code></pre>
+<hr>
+
+<h3 id="variable-formatstep">variable formatStep</h3>
+<p><em>0x2C</em> </p>
+<pre><code class="language-C++">int CARDControl::formatStep;
+</code></pre>
+<hr>
+
+<h3 id="variable-freeno">variable freeNo</h3>
+<p><em>0xBC</em> </p>
+<pre><code class="language-C++">u16 CARDControl::freeNo;
+</code></pre>
+<hr>
+
+<h3 id="variable-id">variable id</h3>
+<p><em>0x18</em> </p>
+<pre><code class="language-C++">u8 CARDControl::id[12];
+</code></pre>
+<hr>
+
+<h3 id="variable-latency">variable latency</h3>
+<p><em>0x14</em> </p>
+<pre><code class="language-C++">s32 CARDControl::latency;
+</code></pre>
+<hr>
+
+<h3 id="variable-mode">variable mode</h3>
+<p><em>0xA4</em> </p>
+<pre><code class="language-C++">vs32 CARDControl::mode;
+</code></pre>
+<hr>
+
+<h3 id="variable-mountstep">variable mountStep</h3>
+<p><em>0x24</em> </p>
+<pre><code class="language-C++">int CARDControl::mountStep;
+</code></pre>
+<hr>
+
+<h3 id="variable-pagesize">variable pageSize</h3>
+<p><em>0x0A</em> </p>
+<pre><code class="language-C++">u16 CARDControl::pageSize;
+</code></pre>
+<hr>
+
+<h3 id="variable-repeat">variable repeat</h3>
+<p><em>0xAC</em> </p>
+<pre><code class="language-C++">int CARDControl::repeat;
+</code></pre>
+<hr>
+
+<h3 id="variable-result">variable result</h3>
+<p><em>0x04</em> </p>
+<pre><code class="language-C++">s32 CARDControl::result;
+</code></pre>
+<hr>
+
+<h3 id="variable-retry">variable retry</h3>
+<p><em>0xA8</em> </p>
+<pre><code class="language-C++">int CARDControl::retry;
+</code></pre>
+<hr>
+
+<h3 id="variable-scramble">variable scramble</h3>
+<p><em>0x28</em> </p>
+<pre><code class="language-C++">u32 CARDControl::scramble;
+</code></pre>
+<hr>
+
+<h3 id="variable-sectorsize">variable sectorSize</h3>
+<p><em>0x0C</em> </p>
+<pre><code class="language-C++">s32 CARDControl::sectorSize;
+</code></pre>
+<hr>
+
+<h3 id="variable-size">variable size</h3>
+<p><em>0x08</em> </p>
+<pre><code class="language-C++">u16 CARDControl::size;
+</code></pre>
+<hr>
+
+<h3 id="variable-startblock">variable startBlock</h3>
+<p><em>0xBE</em> </p>
+<pre><code class="language-C++">u16 CARDControl::startBlock;
+</code></pre>
+<hr>
+
+<h3 id="variable-task">variable task</h3>
+<p><em>0x30</em> </p>
+<pre><code class="language-C++">DSPTaskInfo CARDControl::task;
+</code></pre>
+<hr>
+
+<h3 id="variable-threadqueue">variable threadQueue</h3>
+<p><em>0x8C</em> </p>
+<pre><code class="language-C++">OSThreadQueue CARDControl::threadQueue;
+</code></pre>
+<hr>
+
+<h3 id="variable-txcallback">variable txCallback</h3>
+<p><em>0xC8</em> </p>
+<pre><code class="language-C++">CARDCallback CARDControl::txCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-unlockcallback">variable unlockCallback</h3>
+<p><em>0xDC</em> </p>
+<pre><code class="language-C++">CARDCallback CARDControl::unlockCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-vendorid">variable vendorID</h3>
+<p><em>0x12</em> </p>
+<pre><code class="language-C++">u16 CARDControl::vendorID;
+</code></pre>
+<hr>
+
+<h3 id="variable-workarea">variable workArea</h3>
+<p><em>0x80</em> </p>
+<pre><code class="language-C++">void* CARDControl::workArea;
+</code></pre>
+<hr>
+
+<h3 id="variable-xfercallback">variable xferCallback</h3>
+<p><em>0xD4</em> </p>
+<pre><code class="language-C++">CARDCallback CARDControl::xferCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-xferred">variable xferred</h3>
+<p><em>0xB8</em> </p>
+<pre><code class="language-C++">s32 CARDControl::xferred;
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/card/CARDPrivate.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

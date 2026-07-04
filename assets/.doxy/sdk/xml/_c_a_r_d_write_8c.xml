@@ -1,0 +1,607 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_c_a_r_d_write_8c" kind="file" language="C++">
+    <compoundname>CARDWrite.c</compoundname>
+    <includes refid="card_8h" local="no">dolphin/card.h</includes>
+    <includes refid="_c_a_r_d_private_8h" local="yes">CARDPrivate.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/card.h</label>
+        <link refid="card_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/dsp.h</label>
+        <link refid="dsp_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>dolphin/exi.h</label>
+        <link refid="exi_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="32">
+        <label>CARDPrivate.h</label>
+        <link refid="_c_a_r_d_private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CARDWrite.c</label>
+        <link refid="_c_a_r_d_write_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" prot="public" static="no">
+        <name>OFFSET</name>
+        <param><defname>addr</defname></param>
+        <param><defname>align</defname></param>
+        <initializer>(((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(addr) &amp; ((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">align</ref>) - 1)))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" line="6" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" bodystart="6" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_c_a_r_d_write_8c_1af72339ee8de94fbb2a7b866acea34a81" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static void WriteCallback</definition>
+        <argsstring>(s32 chan, s32 result)</argsstring>
+        <name>WriteCallback</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>chan</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" line="13" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" bodystart="13" bodyend="71" declfile="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" declline="9" declcolumn="13"/>
+        <references refid="_c_a_r_d_bios_8c_1ac4ddb862f764b09d8cf10ae2f75dd14c" compoundref="_c_a_r_d_bios_8c" startline="6">__CARDBlock</references>
+        <references refid="_c_a_r_d_bios_8c_1a9048a13e9e534d4869cd48a225d0057d" compoundref="_c_a_r_d_bios_8c" startline="648" endline="686">__CARDEraseSector</references>
+        <references refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" compoundref="_c_a_r_d_dir_8c" startline="11" endline="15">__CARDGetDirBlock</references>
+        <references refid="_c_a_r_d_block_8c_1ac6f0c4824f77579046857637d532b6a4" compoundref="_c_a_r_d_block_8c" startline="11" endline="15">__CARDGetFatBlock</references>
+        <references refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" compoundref="_c_a_r_d_bios_8c" startline="754" endline="771">__CARDPutControlBlock</references>
+        <references refid="_c_a_r_d_dir_8c_1a26654b5cec0ed777608cfb4b9f5dd1fc" compoundref="_c_a_r_d_dir_8c" startline="87" endline="111">__CARDUpdateDir</references>
+        <references refid="os_8h_1a3a9d25ac9723844e113e9282e6ff8e27" compoundref="os_8h" startline="47">__OSBusClock</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="card_8h_1ade36d0f524a0e4cbfb28b13c5c0faeb3" compoundref="card_8h" startline="178">CARD_RESULT_BROKEN</references>
+        <references refid="card_8h_1a8f89011ef6698e9fd451c3572befec1d" compoundref="card_8h" startline="186">CARD_RESULT_CANCELED</references>
+        <references refid="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" compoundref="_c_a_r_d_write_8c" startline="74" endline="104">EraseCallback</references>
+        <references refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" compoundref="card_8h" startline="42">CARDFileInfo::fileNo</references>
+        <references refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" compoundref="card_8h" startline="46">CARDFileInfo::iBlock</references>
+        <references refid="struct_c_a_r_d_file_info_1a0a4ae19b3ad497a0f609ddc120df2a1a" compoundref="card_8h" startline="45">CARDFileInfo::length</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_c_a_r_d_file_info_1a1386c6e9628a166029865d4f496a2e57" compoundref="card_8h" startline="44">CARDFileInfo::offset</references>
+        <references refid="os_8h_1a113cfbbe1419d333639373d81e3062e5" compoundref="_o_s_time_8c" startline="12" endline="29">OSGetTime</references>
+        <referencedby refid="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" compoundref="_c_a_r_d_write_8c" startline="74" endline="104">EraseCallback</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static void EraseCallback</definition>
+        <argsstring>(s32 chan, s32 result)</argsstring>
+        <name>EraseCallback</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>chan</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" line="74" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" bodystart="74" bodyend="104" declfile="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" declline="10" declcolumn="13"/>
+        <references refid="_c_a_r_d_bios_8c_1ac4ddb862f764b09d8cf10ae2f75dd14c" compoundref="_c_a_r_d_bios_8c" startline="6">__CARDBlock</references>
+        <references refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" compoundref="_c_a_r_d_bios_8c" startline="754" endline="771">__CARDPutControlBlock</references>
+        <references refid="_c_a_r_d_private_8h_1a16d4e62860c49869822cc72704dc61ac">__CARDWrite</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" compoundref="card_8h" startline="46">CARDFileInfo::iBlock</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_c_a_r_d_file_info_1a1386c6e9628a166029865d4f496a2e57" compoundref="card_8h" startline="44">CARDFileInfo::offset</references>
+        <references refid="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" compoundref="_c_a_r_d_write_8c" startline="6">OFFSET</references>
+        <references refid="_c_a_r_d_write_8c_1af72339ee8de94fbb2a7b866acea34a81" compoundref="_c_a_r_d_write_8c" startline="13" endline="71">WriteCallback</references>
+        <referencedby refid="_c_a_r_d_write_8c_1a47b22ba860b7b1d3129baae619002949" compoundref="_c_a_r_d_write_8c" startline="107" endline="153">CARDWriteAsync</referencedby>
+        <referencedby refid="_c_a_r_d_write_8c_1af72339ee8de94fbb2a7b866acea34a81" compoundref="_c_a_r_d_write_8c" startline="13" endline="71">WriteCallback</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_write_8c_1a47b22ba860b7b1d3129baae619002949" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 CARDWriteAsync</definition>
+        <argsstring>(CARDFileInfo *fileInfo, void *buf, s32 length, long offset, void(*callback)(long, long))</argsstring>
+        <name>CARDWriteAsync</name>
+        <param>
+          <type><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref> *</type>
+          <declname>fileInfo</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>length</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">long</ref></type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>(*)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">long</ref>, <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">long</ref>)</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" line="107" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" bodystart="107" bodyend="153"/>
+        <references refid="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" compoundref="_c_a_r_d_open_8c" startline="36" endline="51">__CARDAccess</references>
+        <references refid="_c_a_r_d_bios_8c_1a72f42c643a03e4272ace22690a74dc9a" compoundref="_c_a_r_d_bios_8c" startline="21" endline="25">__CARDDefaultApiCallback</references>
+        <references refid="_c_a_r_d_bios_8c_1a9048a13e9e534d4869cd48a225d0057d" compoundref="_c_a_r_d_bios_8c" startline="648" endline="686">__CARDEraseSector</references>
+        <references refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" compoundref="_c_a_r_d_dir_8c" startline="11" endline="15">__CARDGetDirBlock</references>
+        <references refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" compoundref="_c_a_r_d_bios_8c" startline="754" endline="771">__CARDPutControlBlock</references>
+        <references refid="_c_a_r_d_private_8h_1a1225017bc5c3e1f18317a7a0f9e482d6" compoundref="_c_a_r_d_read_8c" startline="12" endline="76">__CARDSeek</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="card_8h_1a9d3fac86ba93f99b25489dc23b5cb417" compoundref="card_8h" startline="187">CARD_RESULT_FATAL_ERROR</references>
+        <references refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" compoundref="card_8h" startline="41">CARDFileInfo::chan</references>
+        <references refid="_o_s_cache_8h_1ab94f25d718b5be57eeb7622967e1fc6e">DCStoreRange</references>
+        <references refid="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" compoundref="_c_a_r_d_write_8c" startline="74" endline="104">EraseCallback</references>
+        <references refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" compoundref="card_8h" startline="42">CARDFileInfo::fileNo</references>
+        <references refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" compoundref="card_8h" startline="46">CARDFileInfo::iBlock</references>
+        <references refid="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" compoundref="_c_a_r_d_write_8c" startline="6">OFFSET</references>
+        <referencedby refid="_c_a_r_d_write_8c_1ac66f6b36e0cd3f225d9ec9c7404b6000" compoundref="_c_a_r_d_write_8c" startline="156" endline="166">CARDWrite</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_write_8c_1ac66f6b36e0cd3f225d9ec9c7404b6000" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 CARDWrite</definition>
+        <argsstring>(struct CARDFileInfo *fileInfo, void *buf, s32 length, long offset)</argsstring>
+        <name>CARDWrite</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref> *</type>
+          <declname>fileInfo</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>length</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">long</ref></type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" line="156" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c" bodystart="156" bodyend="166"/>
+        <references refid="_c_a_r_d_bios_8c_1abd9f1b7ba21ee26f4c3cf243a86f6d88" compoundref="_c_a_r_d_bios_8c" startline="879" endline="890">__CARDSync</references>
+        <references refid="_c_a_r_d_bios_8c_1acf2b407fcb67e854c44739b8194fb134" compoundref="_c_a_r_d_bios_8c" startline="28" endline="37">__CARDSyncCallback</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_c_a_r_d_write_8c_1a47b22ba860b7b1d3129baae619002949" compoundref="_c_a_r_d_write_8c" startline="107" endline="153">CARDWriteAsync</references>
+        <references refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" compoundref="card_8h" startline="41">CARDFileInfo::chan</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="card_8h" kindref="compound">dolphin/card.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>internal<sp/>includes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_c_a_r_d_private_8h" kindref="compound">CARDPrivate.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OFFSET(addr,<sp/>align)<sp/>(((u32)(addr)<sp/>&amp;<sp/>((align)<sp/>-<sp/>1)))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_write_8c_1af72339ee8de94fbb2a7b866acea34a81" kindref="member">WriteCallback</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>chan,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>result);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" kindref="member">EraseCallback</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>chan,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>result);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="_c_a_r_d_write_8c_1af72339ee8de94fbb2a7b866acea34a81" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_write_8c_1af72339ee8de94fbb2a7b866acea34a81" kindref="member">WriteCallback</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>chan,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>result)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref>*<sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*callback)<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">long</ref>);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fat</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref>*<sp/>fileInfo;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref><sp/>=<sp/>&amp;<ref refid="_c_a_r_d_bios_8c_1ac4ddb862f764b09d8cf10ae2f75dd14c" kindref="member">__CARDBlock</ref>[chan];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;fileInfo;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a0a4ae19b3ad497a0f609ddc120df2a1a" kindref="member">length</ref><sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="card_8h_1a8f89011ef6698e9fd451c3572befec1d" kindref="member">CARD_RESULT_CANCELED</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">after</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a0a4ae19b3ad497a0f609ddc120df2a1a" kindref="member">length</ref><sp/>-=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a0a4ae19b3ad497a0f609ddc120df2a1a" kindref="member">length</ref><sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref><sp/>=<sp/><ref refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" kindref="member">__CARDGetDirBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref><sp/>+<sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" kindref="member">fileNo</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;time<sp/>=<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="os_8h_1a113cfbbe1419d333639373d81e3062e5" kindref="member">OSGetTime</ref>()<sp/>/<sp/>(<ref refid="os_8h_1a3a9d25ac9723844e113e9282e6ff8e27" kindref="member">__OSBusClock</ref><sp/>/<sp/>4));</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>callback<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;apiCallback;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;apiCallback<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_dir_8c_1a26654b5cec0ed777608cfb4b9f5dd1fc" kindref="member">__CARDUpdateDir</ref><sp/>(chan,<sp/>callback);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">check</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fat</ref><sp/>=<sp/><ref refid="_c_a_r_d_block_8c_1ac6f0c4824f77579046857637d532b6a4" kindref="member">__CARDGetFatBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a1386c6e9628a166029865d4f496a2e57" kindref="member">offset</ref><sp/>+=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fat</ref>[fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref>];</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref><sp/>&lt;<sp/>5)<sp/>||<sp/>(fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref><sp/>&gt;=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;cBlock))</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="card_8h_1ade36d0f524a0e4cbfb28b13c5c0faeb3" kindref="member">CARD_RESULT_BROKEN</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">after</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>)<ref refid="_c_a_r_d_bios_8c_1a9048a13e9e534d4869cd48a225d0057d" kindref="member">__CARDEraseSector</ref><sp/>(chan,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize<sp/>*<sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref>),</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" kindref="member">EraseCallback</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">check</ref>:;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">after</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">after</ref>:;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>callback<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;apiCallback;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;apiCallback<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" kindref="member">__CARDPutControlBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/>result);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0x7D,<sp/>callback);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>callback<sp/>(chan,<sp/>result);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" kindref="member">EraseCallback</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>chan,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>result)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref>*<sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*callback)<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">long</ref>);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref>*<sp/>fileInfo;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref><sp/>=<sp/>&amp;<ref refid="_c_a_r_d_bios_8c_1ac4ddb862f764b09d8cf10ae2f75dd14c" kindref="member">__CARDBlock</ref>[chan];</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;fileInfo;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0x98,<sp/><ref refid="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" kindref="member">OFFSET</ref><sp/>(fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a1386c6e9628a166029865d4f496a2e57" kindref="member">offset</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize)<sp/>==<sp/>0);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a16d4e62860c49869822cc72704dc61ac" kindref="member">__CARDWrite</ref><sp/>(chan,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize<sp/>*<sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref>),</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;buffer,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_write_8c_1af72339ee8de94fbb2a7b866acea34a81" kindref="member">WriteCallback</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">after</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">after</ref>:;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>callback<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;apiCallback;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;apiCallback<sp/>=<sp/><ref refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" kindref="member">NULL</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" kindref="member">__CARDPutControlBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/>result);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0xA6,<sp/>callback);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>callback<sp/>(chan,<sp/>result);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></highlight></codeline>
+<codeline lineno="107" refid="_c_a_r_d_write_8c_1a47b22ba860b7b1d3129baae619002949" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_write_8c_1a47b22ba860b7b1d3129baae619002949" kindref="member">CARDWriteAsync</ref><sp/>(<ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref>*<sp/>fileInfo,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">buf</ref>,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length,</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>offset,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*callback)<sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0xC9,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">buf</ref><sp/>&amp;&amp;<sp/>((<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">buf</ref><sp/>%<sp/>32)<sp/>==<sp/>0);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0xCA,<sp/>0<sp/>&lt;<sp/>length);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a1225017bc5c3e1f18317a7a0f9e482d6" kindref="member">__CARDSeek</ref><sp/>(fileInfo,<sp/>length,<sp/>offset,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0xD0,<sp/><ref refid="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" kindref="member">OFFSET</ref><sp/>(offset,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize)<sp/>==<sp/>0);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0xD1,<sp/><ref refid="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" kindref="member">OFFSET</ref><sp/>(length,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize)<sp/>==<sp/>0);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" kindref="member">OFFSET</ref><sp/>(offset,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize)<sp/>!=<sp/>0<sp/>||<sp/><ref refid="_c_a_r_d_write_8c_1a7e4c0d2555f889202c58808e98b882ef" kindref="member">OFFSET</ref><sp/>(length,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" kindref="member">__CARDPutControlBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/><ref refid="card_8h_1a9d3fac86ba93f99b25489dc23b5cb417" kindref="member">CARD_RESULT_FATAL_ERROR</ref>);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref><sp/>=<sp/><ref refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" kindref="member">__CARDGetDirBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref><sp/>=<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>[fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" kindref="member">fileNo</ref>];</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" kindref="member">__CARDAccess</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" kindref="member">__CARDPutControlBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/>result);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_cache_8h_1ab94f25d718b5be57eeb7622967e1fc6e" kindref="member">DCStoreRange</ref><sp/>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">buf</ref>,<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)length);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;apiCallback<sp/>=<sp/>callback<sp/>?<sp/>callback<sp/>:<sp/><ref refid="_c_a_r_d_bios_8c_1a72f42c643a03e4272ace22690a74dc9a" kindref="member">__CARDDefaultApiCallback</ref>;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;buffer<sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">buf</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_bios_8c_1a9048a13e9e534d4869cd48a225d0057d" kindref="member">__CARDEraseSector</ref><sp/>(fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref>,</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;sectorSize<sp/>*<sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>)fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref>,</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_write_8c_1a0ea91fd694ca1aaa6b3f425c1fcbc7cf" kindref="member">EraseCallback</ref>);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" kindref="member">__CARDPutControlBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/>result);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></highlight></codeline>
+<codeline lineno="156" refid="_c_a_r_d_write_8c_1ac66f6b36e0cd3f225d9ec9c7404b6000" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_write_8c_1ac66f6b36e0cd3f225d9ec9c7404b6000" kindref="member">CARDWrite</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref>*<sp/>fileInfo,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">buf</ref>,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>length,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>offset)</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_write_8c_1a47b22ba860b7b1d3129baae619002949" kindref="member">CARDWriteAsync</ref><sp/>(fileInfo,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">buf</ref>,<sp/>length,<sp/>offset,<sp/><ref refid="_c_a_r_d_bios_8c_1acf2b407fcb67e854c44739b8194fb134" kindref="member">__CARDSyncCallback</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_bios_8c_1abd9f1b7ba21ee26f4c3cf243a86f6d88" kindref="member">__CARDSync</ref><sp/>(fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref>);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/card/CARDWrite.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File card.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardh">File card.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>card.h</strong></a></p>
+<p><a href="../card_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/dsp.h&gt;</code></li>
+<li><code>#include &lt;dolphin/dvd.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_c_a_r_d_stat/"><strong>CARDStat</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-cardcallback"><strong>CARDCallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-cardfileinfo"><strong>CARDFileInfo</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_c_a_r_d_stat/"><strong>CARDStat</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-cardstat"><strong>CARDStat</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardcancel"><strong>CARDCancel</strong></a> (<a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardcheck"><strong>CARDCheck</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardcheckasync"><strong>CARDCheckAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardcheckex"><strong>CARDCheckEx</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * xferBytes) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardcheckexasync"><strong>CARDCheckExAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * xferBytes, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardclose"><strong>CARDClose</strong></a> (<a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardcreate"><strong>CARDCreate</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * fileName, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size, <a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardcreateasync"><strong>CARDCreateAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * fileName, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size, <a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-carddelete"><strong>CARDDelete</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * fileName) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-carddeleteasync"><strong>CARDDeleteAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * fileName, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardfastdelete"><strong>CARDFastDelete</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> fileNo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardfastdeleteasync"><strong>CARDFastDeleteAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> fileNo, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardfastopen"><strong>CARDFastOpen</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> fileNo, <a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardformat"><strong>CARDFormat</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardformatasync"><strong>CARDFormatAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardfreeblocks"><strong>CARDFreeBlocks</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * byteNotUsed, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * filesNotUsed) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetencoding"><strong>CARDGetEncoding</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> * encode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetmemsize"><strong>CARDGetMemSize</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> * size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetresultcode"><strong>CARDGetResultCode</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetsectorsize"><strong>CARDGetSectorSize</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetstatus"><strong>CARDGetStatus</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> fileNo, <a href="../struct_c_a_r_d_stat/"><strong>CARDStat</strong></a> * stat) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardgetxferredbytes"><strong>CARDGetXferredBytes</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardinit"><strong>CARDInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardmount"><strong>CARDMount</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * workArea, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> detachCallback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardmountasync"><strong>CARDMountAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * workArea, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> detachCallback, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> attachCallback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardopen"><strong>CARDOpen</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * fileName, <a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardprobe"><strong>CARDProbe</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardprobeex"><strong>CARDProbeEx</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * memSize, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> * sectorSize) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardread"><strong>CARDRead</strong></a> (<a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> offset) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardreadasync"><strong>CARDReadAsync</strong></a> (<a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> offset, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardrename"><strong>CARDRename</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * oldName, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * newName) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardrenameasync"><strong>CARDRenameAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * oldName, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * newName, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardsetstatus"><strong>CARDSetStatus</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> fileNo, <a href="../struct_c_a_r_d_stat/"><strong>CARDStat</strong></a> * stat) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardsetstatusasync"><strong>CARDSetStatusAsync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> fileNo, <a href="../struct_c_a_r_d_stat/"><strong>CARDStat</strong></a> * stat, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardunmount"><strong>CARDUnmount</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardwrite"><strong>CARDWrite</strong></a> (<a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> offset) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardwriteasync"><strong>CARDWriteAsync</strong></a> (<a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> offset, <a href="./#typedef-cardcallback"><strong>CARDCallback</strong></a> callback) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cardgetbannerformat"><strong>CARDGetBannerFormat</strong></a> (stat) <code>(((stat)-&amp;gt;bannerFormat) &amp; [**CARD\_STAT\_BANNER\_MASK**](card_8h.md#define-card_stat_banner_mask))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cardgetfileno"><strong>CARDGetFileNo</strong></a> (fileInfo) <code>((fileInfo)-&amp;gt;fileNo)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cardgeticonanim"><strong>CARDGetIconAnim</strong></a> (stat) <code>(((stat)-&amp;gt;bannerFormat) &amp; [**CARD\_STAT\_ANIM\_MASK**](card_8h.md#define-card_stat_anim_mask))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cardgeticonformat"><strong>CARDGetIconFormat</strong></a> (stat, n) <code>(((stat)-&amp;gt;iconFormat &amp;gt;&amp;gt; (2 \* ([**n**](_c_a_r_d_private_8h.md#define-card_max_mount_step)))) &amp; [**CARD\_STAT\_ICON\_MASK**](card_8h.md#define-card_stat_icon_mask))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cardgeticonspeed"><strong>CARDGetIconSpeed</strong></a> (stat, n) <code>(((stat)-&amp;gt;iconSpeed &amp;gt;&amp;gt; (2 \* ([**n**](_c_a_r_d_private_8h.md#define-card_max_mount_step)))) &amp; [**CARD\_STAT\_SPEED\_MASK**](card_8h.md#define-card_stat_speed_mask))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cardseticonformat"><strong>CARDSetIconFormat</strong></a> (stat, n, f) <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-cardseticonspeed"><strong>CARDSetIconSpeed</strong></a> (stat, n, f) <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_attr_company"><strong>CARD_ATTR_COMPANY</strong></a>  <code>0x40u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_attr_global"><strong>CARD_ATTR_GLOBAL</strong></a>  <code>0x20u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_attr_no_copy"><strong>CARD_ATTR_NO_COPY</strong></a>  <code>0x08u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_attr_no_move"><strong>CARD_ATTR_NO_MOVE</strong></a>  <code>0x10u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_attr_public"><strong>CARD_ATTR_PUBLIC</strong></a>  <code>0x04u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_attr_unk0"><strong>CARD_ATTR_UNK0</strong></a>  <code>0x01u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_attr_unk1"><strong>CARD_ATTR_UNK1</strong></a>  <code>0x02u</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_banner_height"><strong>CARD_BANNER_HEIGHT</strong></a>  <code>32</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_banner_width"><strong>CARD_BANNER_WIDTH</strong></a>  <code>96</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_comment_size"><strong>CARD_COMMENT_SIZE</strong></a>  <code>64</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_encode_ansi"><strong>CARD_ENCODE_ANSI</strong></a>  <code>[**OS\_FONT\_ENCODE\_ANSI**](_o_s_font_8h.md#define-os_font_encode_ansi)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_encode_sjis"><strong>CARD_ENCODE_SJIS</strong></a>  <code>[**OS\_FONT\_ENCODE\_SJIS**](_o_s_font_8h.md#define-os_font_encode_sjis)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_filename_max"><strong>CARD_FILENAME_MAX</strong></a>  <code>32</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_icon_height"><strong>CARD_ICON_HEIGHT</strong></a>  <code>32</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_icon_max"><strong>CARD_ICON_MAX</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_icon_width"><strong>CARD_ICON_WIDTH</strong></a>  <code>32</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_max_file"><strong>CARD_MAX_FILE</strong></a>  <code>127</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_read_size"><strong>CARD_READ_SIZE</strong></a>  <code>512</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_broken"><strong>CARD_RESULT_BROKEN</strong></a>  <code>-6</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_busy"><strong>CARD_RESULT_BUSY</strong></a>  <code>-1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_canceled"><strong>CARD_RESULT_CANCELED</strong></a>  <code>-14</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_encoding"><strong>CARD_RESULT_ENCODING</strong></a>  <code>-13</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_exist"><strong>CARD_RESULT_EXIST</strong></a>  <code>-7</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_fatal_error"><strong>CARD_RESULT_FATAL_ERROR</strong></a>  <code>-128</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_insspace"><strong>CARD_RESULT_INSSPACE</strong></a>  <code>-9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_ioerror"><strong>CARD_RESULT_IOERROR</strong></a>  <code>-5</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_limit"><strong>CARD_RESULT_LIMIT</strong></a>  <code>-11</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_nametoolong"><strong>CARD_RESULT_NAMETOOLONG</strong></a>  <code>-12</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_nocard"><strong>CARD_RESULT_NOCARD</strong></a>  <code>-3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_noent"><strong>CARD_RESULT_NOENT</strong></a>  <code>-8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_nofile"><strong>CARD_RESULT_NOFILE</strong></a>  <code>-4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_noperm"><strong>CARD_RESULT_NOPERM</strong></a>  <code>-10</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_ready"><strong>CARD_RESULT_READY</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_unlocked"><strong>CARD_RESULT_UNLOCKED</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_result_wrongdevice"><strong>CARD_RESULT_WRONGDEVICE</strong></a>  <code>-2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_anim_bounce"><strong>CARD_STAT_ANIM_BOUNCE</strong></a>  <code>0x04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_anim_loop"><strong>CARD_STAT_ANIM_LOOP</strong></a>  <code>0x00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_anim_mask"><strong>CARD_STAT_ANIM_MASK</strong></a>  <code>0x04</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_banner_c8"><strong>CARD_STAT_BANNER_C8</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_banner_mask"><strong>CARD_STAT_BANNER_MASK</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_banner_none"><strong>CARD_STAT_BANNER_NONE</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_banner_rgb5a3"><strong>CARD_STAT_BANNER_RGB5A3</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_icon_c8"><strong>CARD_STAT_ICON_C8</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_icon_mask"><strong>CARD_STAT_ICON_MASK</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_icon_none"><strong>CARD_STAT_ICON_NONE</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_icon_rgb5a3"><strong>CARD_STAT_ICON_RGB5A3</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_speed_end"><strong>CARD_STAT_SPEED_END</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_speed_fast"><strong>CARD_STAT_SPEED_FAST</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_speed_mask"><strong>CARD_STAT_SPEED_MASK</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_speed_middle"><strong>CARD_STAT_SPEED_MIDDLE</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_stat_speed_slow"><strong>CARD_STAT_SPEED_SLOW</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_workarea_size"><strong>CARD_WORKAREA_SIZE</strong></a>  <code>(5 \* 8 \* 1024)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_xfer_create"><strong>CARD_XFER_CREATE</strong></a>  <code>(2 \* 8 \* 1024)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_xfer_delete"><strong>CARD_XFER_DELETE</strong></a>  <code>(2 \* 8 \* 1024)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_xfer_format"><strong>CARD_XFER_FORMAT</strong></a>  <code>(5 \* 8 \* 1024)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_xfer_mount"><strong>CARD_XFER_MOUNT</strong></a>  <code>(5 \* 8 \* 1024)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_xfer_rename"><strong>CARD_XFER_RENAME</strong></a>  <code>(1 \* 8 \* 1024)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-card_xfer_setstatus"><strong>CARD_XFER_SETSTATUS</strong></a>  <code>(1 \* 8 \* 1024)</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-cardcallback">typedef CARDCallback</h3>
+<pre><code class="language-C++">typedef void(* CARDCallback) (s32 chan, s32 result);
+</code></pre>
+<hr>
+
+<h3 id="typedef-cardfileinfo">typedef CARDFileInfo</h3>
+<pre><code class="language-C++">typedef struct CARDFileInfo CARDFileInfo;
+</code></pre>
+<hr>
+
+<h3 id="typedef-cardstat">typedef CARDStat</h3>
+<pre><code class="language-C++">typedef struct CARDStat CARDStat;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-cardcancel">function CARDCancel</h3>
+<pre><code class="language-C++">s32 CARDCancel (
+    CARDFileInfo * fileInfo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardcheck">function CARDCheck</h3>
+<pre><code class="language-C++">s32 CARDCheck (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardcheckasync">function CARDCheckAsync</h3>
+<pre><code class="language-C++">s32 CARDCheckAsync (
+    s32 chan,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardcheckex">function CARDCheckEx</h3>
+<pre><code class="language-C++">s32 CARDCheckEx (
+    s32 chan,
+    s32 * xferBytes
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardcheckexasync">function CARDCheckExAsync</h3>
+<pre><code class="language-C++">s32 CARDCheckExAsync (
+    s32 chan,
+    s32 * xferBytes,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardclose">function CARDClose</h3>
+<pre><code class="language-C++">s32 CARDClose (
+    CARDFileInfo * fileInfo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardcreate">function CARDCreate</h3>
+<pre><code class="language-C++">s32 CARDCreate (
+    s32 chan,
+    char * fileName,
+    u32 size,
+    CARDFileInfo * fileInfo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardcreateasync">function CARDCreateAsync</h3>
+<pre><code class="language-C++">s32 CARDCreateAsync (
+    s32 chan,
+    char * fileName,
+    u32 size,
+    CARDFileInfo * fileInfo,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-carddelete">function CARDDelete</h3>
+<pre><code class="language-C++">s32 CARDDelete (
+    s32 chan,
+    char * fileName
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-carddeleteasync">function CARDDeleteAsync</h3>
+<pre><code class="language-C++">s32 CARDDeleteAsync (
+    s32 chan,
+    char * fileName,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardfastdelete">function CARDFastDelete</h3>
+<pre><code class="language-C++">s32 CARDFastDelete (
+    s32 chan,
+    s32 fileNo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardfastdeleteasync">function CARDFastDeleteAsync</h3>
+<pre><code class="language-C++">s32 CARDFastDeleteAsync (
+    s32 chan,
+    s32 fileNo,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardfastopen">function CARDFastOpen</h3>
+<pre><code class="language-C++">s32 CARDFastOpen (
+    s32 chan,
+    s32 fileNo,
+    CARDFileInfo * fileInfo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardformat">function CARDFormat</h3>
+<pre><code class="language-C++">s32 CARDFormat (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardformatasync">function CARDFormatAsync</h3>
+<pre><code class="language-C++">s32 CARDFormatAsync (
+    s32 chan,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardfreeblocks">function CARDFreeBlocks</h3>
+<pre><code class="language-C++">s32 CARDFreeBlocks (
+    s32 chan,
+    s32 * byteNotUsed,
+    s32 * filesNotUsed
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetencoding">function CARDGetEncoding</h3>
+<pre><code class="language-C++">s32 CARDGetEncoding (
+    s32 chan,
+    u16 * encode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetmemsize">function CARDGetMemSize</h3>
+<pre><code class="language-C++">s32 CARDGetMemSize (
+    s32 chan,
+    u16 * size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetresultcode">function CARDGetResultCode</h3>
+<pre><code class="language-C++">s32 CARDGetResultCode (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetsectorsize">function CARDGetSectorSize</h3>
+<pre><code class="language-C++">s32 CARDGetSectorSize (
+    s32 chan,
+    u32 * size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetstatus">function CARDGetStatus</h3>
+<pre><code class="language-C++">s32 CARDGetStatus (
+    s32 chan,
+    s32 fileNo,
+    CARDStat * stat
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardgetxferredbytes">function CARDGetXferredBytes</h3>
+<pre><code class="language-C++">s32 CARDGetXferredBytes (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardinit">function CARDInit</h3>
+<pre><code class="language-C++">void CARDInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardmount">function CARDMount</h3>
+<pre><code class="language-C++">s32 CARDMount (
+    s32 chan,
+    void * workArea,
+    CARDCallback detachCallback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardmountasync">function CARDMountAsync</h3>
+<pre><code class="language-C++">s32 CARDMountAsync (
+    s32 chan,
+    void * workArea,
+    CARDCallback detachCallback,
+    CARDCallback attachCallback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardopen">function CARDOpen</h3>
+<pre><code class="language-C++">s32 CARDOpen (
+    s32 chan,
+    char * fileName,
+    CARDFileInfo * fileInfo
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardprobe">function CARDProbe</h3>
+<pre><code class="language-C++">BOOL CARDProbe (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardprobeex">function CARDProbeEx</h3>
+<pre><code class="language-C++">s32 CARDProbeEx (
+    s32 chan,
+    s32 * memSize,
+    s32 * sectorSize
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardread">function CARDRead</h3>
+<pre><code class="language-C++">s32 CARDRead (
+    CARDFileInfo * fileInfo,
+    void * addr,
+    s32 length,
+    s32 offset
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardreadasync">function CARDReadAsync</h3>
+<pre><code class="language-C++">s32 CARDReadAsync (
+    CARDFileInfo * fileInfo,
+    void * addr,
+    s32 length,
+    s32 offset,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardrename">function CARDRename</h3>
+<pre><code class="language-C++">s32 CARDRename (
+    s32 chan,
+    char * oldName,
+    char * newName
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardrenameasync">function CARDRenameAsync</h3>
+<pre><code class="language-C++">s32 CARDRenameAsync (
+    s32 chan,
+    char * oldName,
+    char * newName,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardsetstatus">function CARDSetStatus</h3>
+<pre><code class="language-C++">s32 CARDSetStatus (
+    s32 chan,
+    s32 fileNo,
+    CARDStat * stat
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardsetstatusasync">function CARDSetStatusAsync</h3>
+<pre><code class="language-C++">s32 CARDSetStatusAsync (
+    s32 chan,
+    s32 fileNo,
+    CARDStat * stat,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardunmount">function CARDUnmount</h3>
+<pre><code class="language-C++">s32 CARDUnmount (
+    s32 chan
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardwrite">function CARDWrite</h3>
+<pre><code class="language-C++">s32 CARDWrite (
+    CARDFileInfo * fileInfo,
+    void * addr,
+    s32 length,
+    s32 offset
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardwriteasync">function CARDWriteAsync</h3>
+<pre><code class="language-C++">s32 CARDWriteAsync (
+    CARDFileInfo * fileInfo,
+    void * addr,
+    s32 length,
+    s32 offset,
+    CARDCallback callback
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-cardgetbannerformat">define CARDGetBannerFormat</h3>
+<pre><code class="language-C++">#define CARDGetBannerFormat (
+    stat
+) `(((stat)-&gt;bannerFormat) &amp; CARD_STAT_BANNER_MASK )`
+</code></pre>
+<hr>
+
+<h3 id="define-cardgetfileno">define CARDGetFileNo</h3>
+<pre><code class="language-C++">#define CARDGetFileNo (
+    fileInfo
+) `((fileInfo)-&gt;fileNo)`
+</code></pre>
+<hr>
+
+<h3 id="define-cardgeticonanim">define CARDGetIconAnim</h3>
+<pre><code class="language-C++">#define CARDGetIconAnim (
+    stat
+) `(((stat)-&gt;bannerFormat) &amp; CARD_STAT_ANIM_MASK )`
+</code></pre>
+<hr>
+
+<h3 id="define-cardgeticonformat">define CARDGetIconFormat</h3>
+<pre><code class="language-C++">#define CARDGetIconFormat (
+    stat,
+    n
+) `(((stat)-&gt;iconFormat &gt;&gt; (2 * ( n ))) &amp; CARD_STAT_ICON_MASK )`
+</code></pre>
+<hr>
+
+<h3 id="define-cardgeticonspeed">define CARDGetIconSpeed</h3>
+<pre><code class="language-C++">#define CARDGetIconSpeed (
+    stat,
+    n
+) `(((stat)-&gt;iconSpeed &gt;&gt; (2 * ( n ))) &amp; CARD_STAT_SPEED_MASK )`
+</code></pre>
+<hr>
+
+<h3 id="define-cardseticonformat">define CARDSetIconFormat</h3>
+<pre><code class="language-C++">#define CARDSetIconFormat (
+    stat,
+    n,
+    f
+) `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-cardseticonspeed">define CARDSetIconSpeed</h3>
+<pre><code class="language-C++">#define CARDSetIconSpeed (
+    stat,
+    n,
+    f
+) `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-card_attr_company">define CARD_ATTR_COMPANY</h3>
+<pre><code class="language-C++">#define CARD_ATTR_COMPANY `0x40u`
+</code></pre>
+<hr>
+
+<h3 id="define-card_attr_global">define CARD_ATTR_GLOBAL</h3>
+<pre><code class="language-C++">#define CARD_ATTR_GLOBAL `0x20u`
+</code></pre>
+<hr>
+
+<h3 id="define-card_attr_no_copy">define CARD_ATTR_NO_COPY</h3>
+<pre><code class="language-C++">#define CARD_ATTR_NO_COPY `0x08u`
+</code></pre>
+<hr>
+
+<h3 id="define-card_attr_no_move">define CARD_ATTR_NO_MOVE</h3>
+<pre><code class="language-C++">#define CARD_ATTR_NO_MOVE `0x10u`
+</code></pre>
+<hr>
+
+<h3 id="define-card_attr_public">define CARD_ATTR_PUBLIC</h3>
+<pre><code class="language-C++">#define CARD_ATTR_PUBLIC `0x04u`
+</code></pre>
+<hr>
+
+<h3 id="define-card_attr_unk0">define CARD_ATTR_UNK0</h3>
+<pre><code class="language-C++">#define CARD_ATTR_UNK0 `0x01u`
+</code></pre>
+<hr>
+
+<h3 id="define-card_attr_unk1">define CARD_ATTR_UNK1</h3>
+<pre><code class="language-C++">#define CARD_ATTR_UNK1 `0x02u`
+</code></pre>
+<hr>
+
+<h3 id="define-card_banner_height">define CARD_BANNER_HEIGHT</h3>
+<pre><code class="language-C++">#define CARD_BANNER_HEIGHT `32`
+</code></pre>
+<hr>
+
+<h3 id="define-card_banner_width">define CARD_BANNER_WIDTH</h3>
+<pre><code class="language-C++">#define CARD_BANNER_WIDTH `96`
+</code></pre>
+<hr>
+
+<h3 id="define-card_comment_size">define CARD_COMMENT_SIZE</h3>
+<pre><code class="language-C++">#define CARD_COMMENT_SIZE `64`
+</code></pre>
+<hr>
+
+<h3 id="define-card_encode_ansi">define CARD_ENCODE_ANSI</h3>
+<pre><code class="language-C++">#define CARD_ENCODE_ANSI `OS_FONT_ENCODE_ANSI`
+</code></pre>
+<hr>
+
+<h3 id="define-card_encode_sjis">define CARD_ENCODE_SJIS</h3>
+<pre><code class="language-C++">#define CARD_ENCODE_SJIS `OS_FONT_ENCODE_SJIS`
+</code></pre>
+<hr>
+
+<h3 id="define-card_filename_max">define CARD_FILENAME_MAX</h3>
+<pre><code class="language-C++">#define CARD_FILENAME_MAX `32`
+</code></pre>
+<hr>
+
+<h3 id="define-card_icon_height">define CARD_ICON_HEIGHT</h3>
+<pre><code class="language-C++">#define CARD_ICON_HEIGHT `32`
+</code></pre>
+<hr>
+
+<h3 id="define-card_icon_max">define CARD_ICON_MAX</h3>
+<pre><code class="language-C++">#define CARD_ICON_MAX `8`
+</code></pre>
+<hr>
+
+<h3 id="define-card_icon_width">define CARD_ICON_WIDTH</h3>
+<pre><code class="language-C++">#define CARD_ICON_WIDTH `32`
+</code></pre>
+<hr>
+
+<h3 id="define-card_max_file">define CARD_MAX_FILE</h3>
+<pre><code class="language-C++">#define CARD_MAX_FILE `127`
+</code></pre>
+<hr>
+
+<h3 id="define-card_read_size">define CARD_READ_SIZE</h3>
+<pre><code class="language-C++">#define CARD_READ_SIZE `512`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_broken">define CARD_RESULT_BROKEN</h3>
+<pre><code class="language-C++">#define CARD_RESULT_BROKEN `-6`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_busy">define CARD_RESULT_BUSY</h3>
+<pre><code class="language-C++">#define CARD_RESULT_BUSY `-1`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_canceled">define CARD_RESULT_CANCELED</h3>
+<pre><code class="language-C++">#define CARD_RESULT_CANCELED `-14`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_encoding">define CARD_RESULT_ENCODING</h3>
+<pre><code class="language-C++">#define CARD_RESULT_ENCODING `-13`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_exist">define CARD_RESULT_EXIST</h3>
+<pre><code class="language-C++">#define CARD_RESULT_EXIST `-7`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_fatal_error">define CARD_RESULT_FATAL_ERROR</h3>
+<pre><code class="language-C++">#define CARD_RESULT_FATAL_ERROR `-128`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_insspace">define CARD_RESULT_INSSPACE</h3>
+<pre><code class="language-C++">#define CARD_RESULT_INSSPACE `-9`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_ioerror">define CARD_RESULT_IOERROR</h3>
+<pre><code class="language-C++">#define CARD_RESULT_IOERROR `-5`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_limit">define CARD_RESULT_LIMIT</h3>
+<pre><code class="language-C++">#define CARD_RESULT_LIMIT `-11`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_nametoolong">define CARD_RESULT_NAMETOOLONG</h3>
+<pre><code class="language-C++">#define CARD_RESULT_NAMETOOLONG `-12`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_nocard">define CARD_RESULT_NOCARD</h3>
+<pre><code class="language-C++">#define CARD_RESULT_NOCARD `-3`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_noent">define CARD_RESULT_NOENT</h3>
+<pre><code class="language-C++">#define CARD_RESULT_NOENT `-8`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_nofile">define CARD_RESULT_NOFILE</h3>
+<pre><code class="language-C++">#define CARD_RESULT_NOFILE `-4`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_noperm">define CARD_RESULT_NOPERM</h3>
+<pre><code class="language-C++">#define CARD_RESULT_NOPERM `-10`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_ready">define CARD_RESULT_READY</h3>
+<pre><code class="language-C++">#define CARD_RESULT_READY `0`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_unlocked">define CARD_RESULT_UNLOCKED</h3>
+<pre><code class="language-C++">#define CARD_RESULT_UNLOCKED `1`
+</code></pre>
+<hr>
+
+<h3 id="define-card_result_wrongdevice">define CARD_RESULT_WRONGDEVICE</h3>
+<pre><code class="language-C++">#define CARD_RESULT_WRONGDEVICE `-2`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_anim_bounce">define CARD_STAT_ANIM_BOUNCE</h3>
+<pre><code class="language-C++">#define CARD_STAT_ANIM_BOUNCE `0x04`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_anim_loop">define CARD_STAT_ANIM_LOOP</h3>
+<pre><code class="language-C++">#define CARD_STAT_ANIM_LOOP `0x00`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_anim_mask">define CARD_STAT_ANIM_MASK</h3>
+<pre><code class="language-C++">#define CARD_STAT_ANIM_MASK `0x04`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_banner_c8">define CARD_STAT_BANNER_C8</h3>
+<pre><code class="language-C++">#define CARD_STAT_BANNER_C8 `1`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_banner_mask">define CARD_STAT_BANNER_MASK</h3>
+<pre><code class="language-C++">#define CARD_STAT_BANNER_MASK `3`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_banner_none">define CARD_STAT_BANNER_NONE</h3>
+<pre><code class="language-C++">#define CARD_STAT_BANNER_NONE `0`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_banner_rgb5a3">define CARD_STAT_BANNER_RGB5A3</h3>
+<pre><code class="language-C++">#define CARD_STAT_BANNER_RGB5A3 `2`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_icon_c8">define CARD_STAT_ICON_C8</h3>
+<pre><code class="language-C++">#define CARD_STAT_ICON_C8 `1`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_icon_mask">define CARD_STAT_ICON_MASK</h3>
+<pre><code class="language-C++">#define CARD_STAT_ICON_MASK `3`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_icon_none">define CARD_STAT_ICON_NONE</h3>
+<pre><code class="language-C++">#define CARD_STAT_ICON_NONE `0`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_icon_rgb5a3">define CARD_STAT_ICON_RGB5A3</h3>
+<pre><code class="language-C++">#define CARD_STAT_ICON_RGB5A3 `2`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_speed_end">define CARD_STAT_SPEED_END</h3>
+<pre><code class="language-C++">#define CARD_STAT_SPEED_END `0`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_speed_fast">define CARD_STAT_SPEED_FAST</h3>
+<pre><code class="language-C++">#define CARD_STAT_SPEED_FAST `1`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_speed_mask">define CARD_STAT_SPEED_MASK</h3>
+<pre><code class="language-C++">#define CARD_STAT_SPEED_MASK `3`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_speed_middle">define CARD_STAT_SPEED_MIDDLE</h3>
+<pre><code class="language-C++">#define CARD_STAT_SPEED_MIDDLE `2`
+</code></pre>
+<hr>
+
+<h3 id="define-card_stat_speed_slow">define CARD_STAT_SPEED_SLOW</h3>
+<pre><code class="language-C++">#define CARD_STAT_SPEED_SLOW `3`
+</code></pre>
+<hr>
+
+<h3 id="define-card_workarea_size">define CARD_WORKAREA_SIZE</h3>
+<pre><code class="language-C++">#define CARD_WORKAREA_SIZE `(5 * 8 * 1024)`
+</code></pre>
+<hr>
+
+<h3 id="define-card_xfer_create">define CARD_XFER_CREATE</h3>
+<pre><code class="language-C++">#define CARD_XFER_CREATE `(2 * 8 * 1024)`
+</code></pre>
+<hr>
+
+<h3 id="define-card_xfer_delete">define CARD_XFER_DELETE</h3>
+<pre><code class="language-C++">#define CARD_XFER_DELETE `(2 * 8 * 1024)`
+</code></pre>
+<hr>
+
+<h3 id="define-card_xfer_format">define CARD_XFER_FORMAT</h3>
+<pre><code class="language-C++">#define CARD_XFER_FORMAT `(5 * 8 * 1024)`
+</code></pre>
+<hr>
+
+<h3 id="define-card_xfer_mount">define CARD_XFER_MOUNT</h3>
+<pre><code class="language-C++">#define CARD_XFER_MOUNT `(5 * 8 * 1024)`
+</code></pre>
+<hr>
+
+<h3 id="define-card_xfer_rename">define CARD_XFER_RENAME</h3>
+<pre><code class="language-C++">#define CARD_XFER_RENAME `(1 * 8 * 1024)`
+</code></pre>
+<hr>
+
+<h3 id="define-card_xfer_setstatus">define CARD_XFER_SETSTATUS</h3>
+<pre><code class="language-C++">#define CARD_XFER_SETSTATUS `(1 * 8 * 1024)`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/card.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

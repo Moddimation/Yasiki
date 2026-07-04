@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dvdlow.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dvdlowc">File dvdlow.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_6809de60dbef2d995cf7d874d1fa5b65/"><strong>dvd</strong></a> <strong>&gt;</strong> <a href="./"><strong>dvdlow.c</strong></a></p>
+<p><a href="../dvdlow_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/dvd.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include "../os/OSPrivate.h"</code></li>
+<li><code>#include "dvd_private.h"</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_d_v_d_buffer/"><strong>DVDBuffer</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_d_v_d_command/"><strong>DVDCommand</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a></td>
+<td style="text-align: left;"><a href="#variable-alarmforbreak"><strong>AlarmForBreak</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a></td>
+<td style="text-align: left;"><a href="#variable-alarmfortimeout"><strong>AlarmForTimeout</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a></td>
+<td style="text-align: left;"><a href="#variable-alarmforwa"><strong>AlarmForWA</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-breaking"><strong>Breaking</strong></a>   = <code>[**FALSE**](types_8h.md#define-false)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-callback"><strong>Callback</strong></a>   = <code>[**NULL**](types_8h.md#define-null)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command/"><strong>DVDCommand</strong></a></td>
+<td style="text-align: left;"><a href="#variable-commandlist"><strong>CommandList</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_buffer/"><strong>DVDBuffer</strong></a></td>
+<td style="text-align: left;"><a href="#variable-curr"><strong>Curr</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-firstread"><strong>FirstRead</strong></a>   = <code>[**TRUE**](types_8h.md#define-true)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-lastcommandwasread"><strong>LastCommandWasRead</strong></a>   = <code>[**FALSE**](types_8h.md#define-false)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-lastlength"><strong>LastLength</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-lastreadfinished"><strong>LastReadFinished</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-lastreadissued"><strong>LastReadIssued</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a></td>
+<td style="text-align: left;"><a href="#variable-lastresetend"><strong>LastResetEnd</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vu32"><strong>vu32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-nextcommandnumber"><strong>NextCommandNumber</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_buffer/"><strong>DVDBuffer</strong></a></td>
+<td style="text-align: left;"><a href="#variable-prev"><strong>Prev</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a></td>
+<td style="text-align: left;"><a href="#variable-resetcovercallback"><strong>ResetCoverCallback</strong></a>   = <code>[**NULL**](types_8h.md#define-null)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vu32"><strong>vu32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-resetoccurred"><strong>ResetOccurred</strong></a>   = <code>[**FALSE**](types_8h.md#define-false)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-waitingcoverclose"><strong>WaitingCoverClose</strong></a>   = <code>[**FALSE**](types_8h.md#define-false)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-workaroundseeklocation"><strong>WorkAroundSeekLocation</strong></a>   = <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vu32"><strong>vu32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-workaroundtype"><strong>WorkAroundType</strong></a>   = <code>0</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowaudiobufferconfig"><strong>DVDLowAudioBufferConfig</strong></a> (<a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> enable, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowaudiostream"><strong>DVDLowAudioStream</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> subcmd, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowbreak"><strong>DVDLowBreak</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowclearcallback"><strong>DVDLowClearCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowgetcoverstatus"><strong>DVDLowGetCoverStatus</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowinquiry"><strong>DVDLowInquiry</strong></a> (<a href="../struct_d_v_d_drive_info/"><strong>DVDDriveInfo</strong></a> * info, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowread"><strong>DVDLowRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowreaddiskid"><strong>DVDLowReadDiskID</strong></a> (<a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a> * diskID, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowrequestaudiostatus"><strong>DVDLowRequestAudioStatus</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> subcmd, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowrequesterror"><strong>DVDLowRequestError</strong></a> (<a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowreset"><strong>DVDLowReset</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowseek"><strong>DVDLowSeek</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowsetresetcovercallback"><strong>DVDLowSetResetCoverCallback</strong></a> (<a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowstopmotor"><strong>DVDLowStopMotor</strong></a> (<a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdlowwaitcoverclose"><strong>DVDLowWaitCoverClose</strong></a> (<a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdinitwa"><strong>__DVDInitWA</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdinterrupthandler"><strong>__DVDInterruptHandler</strong></a> (<a href="../_o_s_interrupt_8h/#typedef-__osinterrupt"><strong>__OSInterrupt</strong></a> interrupt, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdlowsetwatype"><strong>__DVDLowSetWAType</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> type, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> seekLoc) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdlowtestalarm"><strong>__DVDLowTestAlarm</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a> * alarm) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-alarmhandler"><strong>AlarmHandler</strong></a> (<a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a> * alarm, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-alarmhandlerforbreak"><strong>AlarmHandlerForBreak</strong></a> (<a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a> * alarm, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-alarmhandlerfortimeout"><strong>AlarmHandlerForTimeout</strong></a> (<a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a> * alarm, <a href="../struct_o_s_context/"><strong>OSContext</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-audiobufferon"><strong>AudioBufferOn</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dobreak"><strong>DoBreak</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dojustread"><strong>DoJustRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-hitcache"><strong>HitCache</strong></a> (<a href="../struct_d_v_d_buffer/"><strong>DVDBuffer</strong></a> * curr, <a href="../struct_d_v_d_buffer/"><strong>DVDBuffer</strong></a> * prev) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-processnextcommand"><strong>ProcessNextCommand</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-read"><strong>Read</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * address, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-seektwicebeforeread"><strong>SeekTwiceBeforeRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-setbreakalarm"><strong>SetBreakAlarm</strong></a> (<a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a> timeout) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-settimeoutalarm"><strong>SetTimeoutAlarm</strong></a> (<a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a> timeout) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-waitbeforeread"><strong>WaitBeforeRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../dvd_8h/#typedef-dvdlowcallback"><strong>DVDLowCallback</strong></a> callback, <a href="../_o_s_time_8h/#typedef-ostime"><strong>OSTime</strong></a> wait) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-alarmforbreak">variable AlarmForBreak</h3>
+<pre><code class="language-C++">OSAlarm AlarmForBreak;
+</code></pre>
+<hr>
+
+<h3 id="variable-alarmfortimeout">variable AlarmForTimeout</h3>
+<pre><code class="language-C++">OSAlarm AlarmForTimeout;
+</code></pre>
+<hr>
+
+<h3 id="variable-alarmforwa">variable AlarmForWA</h3>
+<pre><code class="language-C++">OSAlarm AlarmForWA;
+</code></pre>
+<hr>
+
+<h3 id="variable-breaking">variable Breaking</h3>
+<pre><code class="language-C++">volatile BOOL Breaking;
+</code></pre>
+<hr>
+
+<h3 id="variable-callback">variable Callback</h3>
+<pre><code class="language-C++">DVDLowCallback Callback;
+</code></pre>
+<hr>
+
+<h3 id="variable-commandlist">variable CommandList</h3>
+<pre><code class="language-C++">DVDCommand CommandList[3];
+</code></pre>
+<hr>
+
+<h3 id="variable-curr">variable Curr</h3>
+<pre><code class="language-C++">DVDBuffer Curr;
+</code></pre>
+<hr>
+
+<h3 id="variable-firstread">variable FirstRead</h3>
+<pre><code class="language-C++">BOOL FirstRead;
+</code></pre>
+<hr>
+
+<h3 id="variable-lastcommandwasread">variable LastCommandWasRead</h3>
+<pre><code class="language-C++">volatile BOOL LastCommandWasRead;
+</code></pre>
+<hr>
+
+<h3 id="variable-lastlength">variable LastLength</h3>
+<pre><code class="language-C++">u32 LastLength;
+</code></pre>
+<hr>
+
+<h3 id="variable-lastreadfinished">variable LastReadFinished</h3>
+<pre><code class="language-C++">volatile OSTime LastReadFinished;
+</code></pre>
+<hr>
+
+<h3 id="variable-lastreadissued">variable LastReadIssued</h3>
+<pre><code class="language-C++">OSTime LastReadIssued;
+</code></pre>
+<hr>
+
+<h3 id="variable-lastresetend">variable LastResetEnd</h3>
+<pre><code class="language-C++">volatile OSTime LastResetEnd;
+</code></pre>
+<hr>
+
+<h3 id="variable-nextcommandnumber">variable NextCommandNumber</h3>
+<pre><code class="language-C++">vu32 NextCommandNumber;
+</code></pre>
+<hr>
+
+<h3 id="variable-prev">variable Prev</h3>
+<pre><code class="language-C++">DVDBuffer Prev;
+</code></pre>
+<hr>
+
+<h3 id="variable-resetcovercallback">variable ResetCoverCallback</h3>
+<pre><code class="language-C++">DVDLowCallback ResetCoverCallback;
+</code></pre>
+<hr>
+
+<h3 id="variable-resetoccurred">variable ResetOccurred</h3>
+<pre><code class="language-C++">vu32 ResetOccurred;
+</code></pre>
+<hr>
+
+<h3 id="variable-waitingcoverclose">variable WaitingCoverClose</h3>
+<pre><code class="language-C++">volatile BOOL WaitingCoverClose;
+</code></pre>
+<hr>
+
+<h3 id="variable-workaroundseeklocation">variable WorkAroundSeekLocation</h3>
+<pre><code class="language-C++">u32 WorkAroundSeekLocation;
+</code></pre>
+<hr>
+
+<h3 id="variable-workaroundtype">variable WorkAroundType</h3>
+<pre><code class="language-C++">vu32 WorkAroundType;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-dvdlowaudiobufferconfig">function DVDLowAudioBufferConfig</h3>
+<pre><code class="language-C++">BOOL DVDLowAudioBufferConfig (
+    BOOL enable,
+    u32 size,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowaudiostream">function DVDLowAudioStream</h3>
+<pre><code class="language-C++">BOOL DVDLowAudioStream (
+    u32 subcmd,
+    u32 length,
+    u32 offset,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowbreak">function DVDLowBreak</h3>
+<pre><code class="language-C++">BOOL DVDLowBreak (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowclearcallback">function DVDLowClearCallback</h3>
+<pre><code class="language-C++">DVDLowCallback DVDLowClearCallback (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowgetcoverstatus">function DVDLowGetCoverStatus</h3>
+<pre><code class="language-C++">u32 DVDLowGetCoverStatus (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowinquiry">function DVDLowInquiry</h3>
+<pre><code class="language-C++">BOOL DVDLowInquiry (
+    DVDDriveInfo * info,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowread">function DVDLowRead</h3>
+<pre><code class="language-C++">BOOL DVDLowRead (
+    void * addr,
+    u32 length,
+    u32 offset,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowreaddiskid">function DVDLowReadDiskID</h3>
+<pre><code class="language-C++">BOOL DVDLowReadDiskID (
+    DVDDiskID * diskID,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowrequestaudiostatus">function DVDLowRequestAudioStatus</h3>
+<pre><code class="language-C++">BOOL DVDLowRequestAudioStatus (
+    u32 subcmd,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowrequesterror">function DVDLowRequestError</h3>
+<pre><code class="language-C++">BOOL DVDLowRequestError (
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowreset">function DVDLowReset</h3>
+<pre><code class="language-C++">void DVDLowReset (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowseek">function DVDLowSeek</h3>
+<pre><code class="language-C++">BOOL DVDLowSeek (
+    u32 offset,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowsetresetcovercallback">function DVDLowSetResetCoverCallback</h3>
+<pre><code class="language-C++">DVDLowCallback DVDLowSetResetCoverCallback (
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowstopmotor">function DVDLowStopMotor</h3>
+<pre><code class="language-C++">BOOL DVDLowStopMotor (
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdlowwaitcoverclose">function DVDLowWaitCoverClose</h3>
+<pre><code class="language-C++">BOOL DVDLowWaitCoverClose (
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdinitwa">function __DVDInitWA</h3>
+<pre><code class="language-C++">void __DVDInitWA (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdinterrupthandler">function __DVDInterruptHandler</h3>
+<pre><code class="language-C++">void __DVDInterruptHandler (
+    __OSInterrupt interrupt,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdlowsetwatype">function __DVDLowSetWAType</h3>
+<pre><code class="language-C++">void __DVDLowSetWAType (
+    u32 type,
+    s32 seekLoc
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdlowtestalarm">function __DVDLowTestAlarm</h3>
+<pre><code class="language-C++">BOOL __DVDLowTestAlarm (
+    const  OSAlarm * alarm
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-alarmhandler">function AlarmHandler</h3>
+<pre><code class="language-C++">static void AlarmHandler (
+    OSAlarm * alarm,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-alarmhandlerforbreak">function AlarmHandlerForBreak</h3>
+<pre><code class="language-C++">static void AlarmHandlerForBreak (
+    OSAlarm * alarm,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-alarmhandlerfortimeout">function AlarmHandlerForTimeout</h3>
+<pre><code class="language-C++">static void AlarmHandlerForTimeout (
+    OSAlarm * alarm,
+    OSContext * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-audiobufferon">function AudioBufferOn</h3>
+<pre><code class="language-C++">static BOOL AudioBufferOn (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dobreak">function DoBreak</h3>
+<pre><code class="language-C++">static void DoBreak (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dojustread">function DoJustRead</h3>
+<pre><code class="language-C++">static void DoJustRead (
+    void * addr,
+    u32 length,
+    u32 offset,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-hitcache">function HitCache</h3>
+<pre><code class="language-C++">static BOOL HitCache (
+    DVDBuffer * curr,
+    DVDBuffer * prev
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-processnextcommand">function ProcessNextCommand</h3>
+<pre><code class="language-C++">static BOOL ProcessNextCommand (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-read">function Read</h3>
+<pre><code class="language-C++">static void Read (
+    void * address,
+    u32 length,
+    u32 offset,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-seektwicebeforeread">function SeekTwiceBeforeRead</h3>
+<pre><code class="language-C++">static void SeekTwiceBeforeRead (
+    void * addr,
+    u32 length,
+    u32 offset,
+    DVDLowCallback callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-setbreakalarm">function SetBreakAlarm</h3>
+<pre><code class="language-C++">static void SetBreakAlarm (
+    OSTime timeout
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-settimeoutalarm">function SetTimeoutAlarm</h3>
+<pre><code class="language-C++">static void SetTimeoutAlarm (
+    OSTime timeout
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-waitbeforeread">function WaitBeforeRead</h3>
+<pre><code class="language-C++">static void WaitBeforeRead (
+    void * addr,
+    u32 length,
+    u32 offset,
+    DVDLowCallback callback,
+    OSTime wait
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/dvd/dvdlow.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

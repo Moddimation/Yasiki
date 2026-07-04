@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File pad.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-padh">File pad.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>pad.h</strong></a></p>
+<p><a href="../pad_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;types.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_p_a_d_status/"><strong>PADStatus</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_p_a_d_status/"><strong>PADStatus</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-padstatus"><strong>PADStatus</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-padclamp"><strong>PADClamp</strong></a> (<a href="../struct_p_a_d_status/"><strong>PADStatus</strong></a> * status) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-padcontrolallmotors"><strong>PADControlAllMotors</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * commandArray) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-padcontrolmotor"><strong>PADControlMotor</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> command) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-padgetspec"><strong>PADGetSpec</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-padgettype"><strong>PADGetType</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * type) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-padinit"><strong>PADInit</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-padread"><strong>PADRead</strong></a> (<a href="../struct_p_a_d_status/"><strong>PADStatus</strong></a> * status) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-padrecalibrate"><strong>PADRecalibrate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mask) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-padreset"><strong>PADReset</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mask) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-padsetanalogmode"><strong>PADSetAnalogMode</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-padsetsamplingrate"><strong>PADSetSamplingRate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> msec) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-padsetspec"><strong>PADSetSpec</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> spec) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-padsync"><strong>PADSync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__padtestsamplingrate"><strong>__PADTestSamplingRate</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> tvmode) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_a"><strong>PAD_BUTTON_A</strong></a>  <code>(1 &amp;lt;&amp;lt; 8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_b"><strong>PAD_BUTTON_B</strong></a>  <code>(1 &amp;lt;&amp;lt; 9)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_down"><strong>PAD_BUTTON_DOWN</strong></a>  <code>(1 &amp;lt;&amp;lt; 2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_left"><strong>PAD_BUTTON_LEFT</strong></a>  <code>(1 &amp;lt;&amp;lt; 0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_menu"><strong>PAD_BUTTON_MENU</strong></a>  <code>(1 &amp;lt;&amp;lt; 12)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_right"><strong>PAD_BUTTON_RIGHT</strong></a>  <code>(1 &amp;lt;&amp;lt; 1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_start"><strong>PAD_BUTTON_START</strong></a>  <code>(1 &amp;lt;&amp;lt; 12)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_up"><strong>PAD_BUTTON_UP</strong></a>  <code>(1 &amp;lt;&amp;lt; 3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_x"><strong>PAD_BUTTON_X</strong></a>  <code>(1 &amp;lt;&amp;lt; 10)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_button_y"><strong>PAD_BUTTON_Y</strong></a>  <code>(1 &amp;lt;&amp;lt; 11)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_chan0_bit"><strong>PAD_CHAN0_BIT</strong></a>  <code>0x80000000</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_err_none"><strong>PAD_ERR_NONE</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_err_not_ready"><strong>PAD_ERR_NOT_READY</strong></a>  <code>-2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_err_no_controller"><strong>PAD_ERR_NO_CONTROLLER</strong></a>  <code>-1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_err_transfer"><strong>PAD_ERR_TRANSFER</strong></a>  <code>-3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_max_controllers"><strong>PAD_MAX_CONTROLLERS</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_motor_rumble"><strong>PAD_MOTOR_RUMBLE</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_motor_stop"><strong>PAD_MOTOR_STOP</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_motor_stop_hard"><strong>PAD_MOTOR_STOP_HARD</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_spec_0"><strong>PAD_SPEC_0</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_spec_1"><strong>PAD_SPEC_1</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_spec_2"><strong>PAD_SPEC_2</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_spec_3"><strong>PAD_SPEC_3</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_spec_4"><strong>PAD_SPEC_4</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_spec_5"><strong>PAD_SPEC_5</strong></a>  <code>5</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_trigger_l"><strong>PAD_TRIGGER_L</strong></a>  <code>(1 &amp;lt;&amp;lt; 6)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_trigger_r"><strong>PAD_TRIGGER_R</strong></a>  <code>(1 &amp;lt;&amp;lt; 5)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pad_trigger_z"><strong>PAD_TRIGGER_Z</strong></a>  <code>(1 &amp;lt;&amp;lt; 4)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-res_wireless_lite"><strong>RES_WIRELESS_LITE</strong></a>  <code>0x40000</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-padstatus">typedef PADStatus</h3>
+<pre><code class="language-C++">typedef struct PADStatus PADStatus;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-padclamp">function PADClamp</h3>
+<pre><code class="language-C++">void PADClamp (
+    PADStatus * status
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padcontrolallmotors">function PADControlAllMotors</h3>
+<pre><code class="language-C++">void PADControlAllMotors (
+    const  u32 * commandArray
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padcontrolmotor">function PADControlMotor</h3>
+<pre><code class="language-C++">void PADControlMotor (
+    s32 chan,
+    u32 command
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padgetspec">function PADGetSpec</h3>
+<pre><code class="language-C++">u32 PADGetSpec () 
+</code></pre>
+<hr>
+
+<h3 id="function-padgettype">function PADGetType</h3>
+<pre><code class="language-C++">int PADGetType (
+    s32 chan,
+    u32 * type
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padinit">function PADInit</h3>
+<pre><code class="language-C++">BOOL PADInit () 
+</code></pre>
+<hr>
+
+<h3 id="function-padread">function PADRead</h3>
+<pre><code class="language-C++">u32 PADRead (
+    PADStatus * status
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padrecalibrate">function PADRecalibrate</h3>
+<pre><code class="language-C++">BOOL PADRecalibrate (
+    u32 mask
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padreset">function PADReset</h3>
+<pre><code class="language-C++">int PADReset (
+    u32 mask
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padsetanalogmode">function PADSetAnalogMode</h3>
+<pre><code class="language-C++">void PADSetAnalogMode (
+    u32 mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padsetsamplingrate">function PADSetSamplingRate</h3>
+<pre><code class="language-C++">void PADSetSamplingRate (
+    u32 msec
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padsetspec">function PADSetSpec</h3>
+<pre><code class="language-C++">void PADSetSpec (
+    u32 spec
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-padsync">function PADSync</h3>
+<pre><code class="language-C++">BOOL PADSync (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__padtestsamplingrate">function __PADTestSamplingRate</h3>
+<pre><code class="language-C++">void __PADTestSamplingRate (
+    u32 tvmode
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-pad_button_a">define PAD_BUTTON_A</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_A `(1 &lt;&lt; 8)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_b">define PAD_BUTTON_B</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_B `(1 &lt;&lt; 9)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_down">define PAD_BUTTON_DOWN</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_DOWN `(1 &lt;&lt; 2)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_left">define PAD_BUTTON_LEFT</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_LEFT `(1 &lt;&lt; 0)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_menu">define PAD_BUTTON_MENU</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_MENU `(1 &lt;&lt; 12)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_right">define PAD_BUTTON_RIGHT</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_RIGHT `(1 &lt;&lt; 1)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_start">define PAD_BUTTON_START</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_START `(1 &lt;&lt; 12)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_up">define PAD_BUTTON_UP</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_UP `(1 &lt;&lt; 3)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_x">define PAD_BUTTON_X</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_X `(1 &lt;&lt; 10)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_button_y">define PAD_BUTTON_Y</h3>
+<pre><code class="language-C++">#define PAD_BUTTON_Y `(1 &lt;&lt; 11)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_chan0_bit">define PAD_CHAN0_BIT</h3>
+<pre><code class="language-C++">#define PAD_CHAN0_BIT `0x80000000`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_err_none">define PAD_ERR_NONE</h3>
+<pre><code class="language-C++">#define PAD_ERR_NONE `0`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_err_not_ready">define PAD_ERR_NOT_READY</h3>
+<pre><code class="language-C++">#define PAD_ERR_NOT_READY `-2`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_err_no_controller">define PAD_ERR_NO_CONTROLLER</h3>
+<pre><code class="language-C++">#define PAD_ERR_NO_CONTROLLER `-1`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_err_transfer">define PAD_ERR_TRANSFER</h3>
+<pre><code class="language-C++">#define PAD_ERR_TRANSFER `-3`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_max_controllers">define PAD_MAX_CONTROLLERS</h3>
+<pre><code class="language-C++">#define PAD_MAX_CONTROLLERS `4`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_motor_rumble">define PAD_MOTOR_RUMBLE</h3>
+<pre><code class="language-C++">#define PAD_MOTOR_RUMBLE `1`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_motor_stop">define PAD_MOTOR_STOP</h3>
+<pre><code class="language-C++">#define PAD_MOTOR_STOP `0`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_motor_stop_hard">define PAD_MOTOR_STOP_HARD</h3>
+<pre><code class="language-C++">#define PAD_MOTOR_STOP_HARD `2`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_spec_0">define PAD_SPEC_0</h3>
+<pre><code class="language-C++">#define PAD_SPEC_0 `0`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_spec_1">define PAD_SPEC_1</h3>
+<pre><code class="language-C++">#define PAD_SPEC_1 `1`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_spec_2">define PAD_SPEC_2</h3>
+<pre><code class="language-C++">#define PAD_SPEC_2 `2`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_spec_3">define PAD_SPEC_3</h3>
+<pre><code class="language-C++">#define PAD_SPEC_3 `3`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_spec_4">define PAD_SPEC_4</h3>
+<pre><code class="language-C++">#define PAD_SPEC_4 `4`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_spec_5">define PAD_SPEC_5</h3>
+<pre><code class="language-C++">#define PAD_SPEC_5 `5`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_trigger_l">define PAD_TRIGGER_L</h3>
+<pre><code class="language-C++">#define PAD_TRIGGER_L `(1 &lt;&lt; 6)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_trigger_r">define PAD_TRIGGER_R</h3>
+<pre><code class="language-C++">#define PAD_TRIGGER_R `(1 &lt;&lt; 5)`
+</code></pre>
+<hr>
+
+<h3 id="define-pad_trigger_z">define PAD_TRIGGER_Z</h3>
+<pre><code class="language-C++">#define PAD_TRIGGER_Z `(1 &lt;&lt; 4)`
+</code></pre>
+<hr>
+
+<h3 id="define-res_wireless_lite">define RES_WIRELESS_LITE</h3>
+<pre><code class="language-C++">#define RES_WIRELESS_LITE `0x40000`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/pad.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

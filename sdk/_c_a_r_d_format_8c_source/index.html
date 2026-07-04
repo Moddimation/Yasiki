@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CARDFormat.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardformatc">File CARDFormat.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_2dfa3b55db09c289c0394a464581d568/"><strong>card</strong></a> <strong>&gt;</strong> <a href="../_c_a_r_d_format_8c/"><strong>CARDFormat.c</strong></a></p>
+<p><a href="../_c_a_r_d_format_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/card.h&gt;
+
+#include &lt;string.h&gt;
+
+#include &quot;../os/OSPrivate.h&quot;
+#include &quot;CARDPrivate.h&quot;
+
+#define formatStep mountStep // huh?
+
+// functions
+static void FormatCallback (s32 chan, s32 result);
+
+static void
+FormatCallback (s32 chan, s32 result)
+{
+    CARDControl* card;
+    CARDCallback callback;
+
+    card = &amp;__CARDBlock[chan];
+    if (result &lt; 0)
+    {
+        goto error;
+    }
+
+    ++card-&gt;formatStep;
+    if (card-&gt;formatStep &lt; CARD_NUM_SYSTEM_BLOCK)
+    {
+        result =
+            __CARDEraseSector (chan, (u32)card-&gt;sectorSize * card-&gt;formatStep, FormatCallback);
+        if (result &gt;= 0)
+        {
+            return;
+        }
+    }
+    else if (card-&gt;formatStep &lt; 2 * CARD_NUM_SYSTEM_BLOCK)
+    {
+        int step = card-&gt;formatStep - CARD_NUM_SYSTEM_BLOCK;
+        result = __CARDWrite (chan,
+                              (u32)card-&gt;sectorSize * step,
+                              CARD_SYSTEM_BLOCK_SIZE,
+                              (u8*)card-&gt;workArea + (CARD_SYSTEM_BLOCK_SIZE * step),
+                              FormatCallback);
+        if (result &gt;= 0)
+        {
+            return;
+        }
+    }
+    else
+    {
+        card-&gt;currentDir = (CARDDir*)((u8*)card-&gt;workArea + (1 + 0) * CARD_SYSTEM_BLOCK_SIZE);
+        memcpy (card-&gt;currentDir,
+                (u8*)card-&gt;workArea + (1 + 1) * CARD_SYSTEM_BLOCK_SIZE,
+                CARD_SYSTEM_BLOCK_SIZE);
+        card-&gt;currentFat = (u16*)((u8*)card-&gt;workArea + (3 + 0) * CARD_SYSTEM_BLOCK_SIZE);
+        memcpy (card-&gt;currentFat,
+                (u8*)card-&gt;workArea + (3 + 1) * CARD_SYSTEM_BLOCK_SIZE,
+                CARD_SYSTEM_BLOCK_SIZE);
+    }
+
+error:
+    callback = card-&gt;apiCallback;
+    card-&gt;apiCallback = NULL;
+    __CARDPutControlBlock (card, result);
+    ASSERTLINE (0x79, callback);
+    callback (chan, result);
+}
+
+s32
+CARDFormatAsync (s32 chan, CARDCallback callback)
+{
+    CARDControl* card;
+    CARDID*      id;
+    CARDDir*     dir;
+    u16*         fat;
+    s16          i;
+    s32          result;
+    OSSram*      sram;
+    OSSramEx*    sramEx;
+    u16          viDTVStatus;
+    OSTime       time;
+    OSTime       rand;
+
+    ASSERTLINE (0x9A, 0 &lt;= chan &amp;&amp; chan &lt; 2);
+
+    result = __CARDGetControlBlock (chan, &amp;card);
+    if (result &lt; 0)
+    {
+        return result;
+    }
+
+    id = (CARDID*)card-&gt;workArea;
+    memset (id, 0xff, CARD_SYSTEM_BLOCK_SIZE);
+    viDTVStatus = __VIRegs[55];
+
+    id-&gt;encode = OSGetFontEncode();
+
+    sram = __OSLockSram();
+    *(u32*)&amp;id-&gt;serial[20] = sram-&gt;counterBias;
+    *(u32*)&amp;id-&gt;serial[24] = sram-&gt;language;
+    __OSUnlockSram (FALSE);
+
+    rand = time = OSGetTime();
+
+    sramEx = __OSLockSramEx();
+    for (i = 0; i &lt; 12; i++)
+    {
+        rand = (rand * 1103515245 + 12345) &gt;&gt; 16;
+        id-&gt;serial[i] = (u8)(sramEx-&gt;flashID[chan][i] + rand);
+        rand = ((rand * 1103515245 + 12345) &gt;&gt; 16) &amp; 0x7FFF;
+    }
+    __OSUnlockSramEx (FALSE);
+
+    *(u32*)&amp;id-&gt;serial[28] = viDTVStatus;
+    *(OSTime*)&amp;id-&gt;serial[12] = time;
+
+    id-&gt;deviceID = 0;
+    id-&gt;size = card-&gt;size;
+    __CARDCheckSum (id, sizeof (CARDID) - sizeof (u32), &amp;id-&gt;checkSum, &amp;id-&gt;checkSumInv);
+
+    for (i = 0; i &lt; 2; i++)
+    {
+        CARDDirCheck* check;
+
+        dir = (CARDDir*)((u8*)card-&gt;workArea + (1 + i) * CARD_SYSTEM_BLOCK_SIZE);
+        memset (dir, 0xff, CARD_SYSTEM_BLOCK_SIZE);
+        check = CARDGetDirCheck (dir);
+        check-&gt;checkCode = i;
+        __CARDCheckSum (dir,
+                        CARD_SYSTEM_BLOCK_SIZE - sizeof (u32),
+                        &amp;check-&gt;checkSum,
+                        &amp;check-&gt;checkSumInv);
+    }
+    for (i = 0; i &lt; 2; i++)
+    {
+        fat = (u16*)((u8*)card-&gt;workArea + (3 + i) * CARD_SYSTEM_BLOCK_SIZE);
+        memset (fat, 0x00, CARD_SYSTEM_BLOCK_SIZE);
+        fat[CARD_FAT_CHECKCODE] = (u16)i;
+        fat[CARD_FAT_FREEBLOCKS] = (u16)(card-&gt;cBlock - CARD_NUM_SYSTEM_BLOCK);
+        fat[CARD_FAT_LASTSLOT] = CARD_NUM_SYSTEM_BLOCK - 1;
+        __CARDCheckSum (&amp;fat[CARD_FAT_CHECKCODE],
+                        CARD_SYSTEM_BLOCK_SIZE - sizeof (u32),
+                        &amp;fat[CARD_FAT_CHECKSUM],
+                        &amp;fat[CARD_FAT_CHECKSUMINV]);
+    }
+
+    card-&gt;apiCallback = callback ? callback : __CARDDefaultApiCallback;
+    DCStoreRange (card-&gt;workArea, CARD_WORKAREA_SIZE);
+
+    card-&gt;formatStep = 0;
+    result = __CARDEraseSector (chan, (u32)card-&gt;sectorSize * card-&gt;formatStep, FormatCallback);
+    if (result &lt; 0)
+    {
+        __CARDPutControlBlock (card, result);
+    }
+    return result;
+}
+
+s32
+CARDFormat (s32 chan)
+{
+    s32 result = CARDFormatAsync (chan, &amp;__CARDSyncCallback);
+
+    if (result &lt; 0)
+    {
+        return result;
+    }
+    return __CARDSync (chan);
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

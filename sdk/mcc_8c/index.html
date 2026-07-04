@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File mcc.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-mccc">File mcc.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_09af956a0e77733960814cc502aa891a/"><strong>mcc</strong></a> <strong>&gt;</strong> <a href="./"><strong>mcc.c</strong></a></p>
+<p><a href="../mcc_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/mcc.h&gt;</code></li>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gasyncresourcestatus"><strong>gAsyncResourceStatus</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gcallbacksysevent"><strong>gCallbackSysEvent</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gischannelinfodirty"><strong>gIsChannelinfoDirty</strong></a>   = <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-glasterror"><strong>gLastError</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gmccinitialized"><strong>gMccInitialized</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gmccsession"><strong>gMccSession</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gothersideinitdone"><strong>gOtherSideInitDone</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#variable-gpingflag"><strong>gPingFlag</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mcccheckasyncdone"><strong>MCCCheckAsyncDone</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccclose"><strong>MCCClose</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccenumdevices"><strong>MCCEnumDevices</strong></a> (<a href="../mcc_8h/#typedef-mcc_cbenumdevices"><strong>MCC_CBEnumDevices</strong></a> callbackEnumDevices) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccexit"><strong>MCCExit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccgetchannelinfo"><strong>MCCGetChannelInfo</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../struct_m_c_c___info/"><strong>MCC_Info</strong></a> * info) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccgetconnectionstatus"><strong>MCCGetConnectionStatus</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_connect"><strong>MCC_CONNECT</strong></a> * connect) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccgetfreeblocks"><strong>MCCGetFreeBlocks</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_mode"><strong>MCC_MODE</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccgetlasterror"><strong>MCCGetLastError</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccinit"><strong>MCCInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_exi"><strong>MCC_EXI</strong></a> exiChannel, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> timeout, <a href="../mcc_8h/#typedef-mcc_cbsysevent"><strong>MCC_CBSysEvent</strong></a> callbackSysEvent) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mcclock"><strong>MCCLock</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccnotify"><strong>MCCNotify</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> notify) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccopen"><strong>MCCOpen</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> blockSize, <a href="../mcc_8h/#typedef-mcc_cbevent"><strong>MCC_CBEvent</strong></a> callbackEvent) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccping"><strong>MCCPing</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccread"><strong>MCCRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> size, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_sync_state"><strong>MCC_SYNC_STATE</strong></a> async) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccsetchanneleventmask"><strong>MCCSetChannelEventMask</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> event) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccstreamclose"><strong>MCCStreamClose</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccstreamopen"><strong>MCCStreamOpen</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> blockSize) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccstreamread"><strong>MCCStreamRead</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccstreamwrite"><strong>MCCStreamWrite</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> dataBlockSize) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccunlock"><strong>MCCUnlock</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccwrite"><strong>MCCWrite</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * data, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> size, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_sync_state"><strong>MCC_SYNC_STATE</strong></a> async) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_m_c_c___channel_info/"><strong>MCC_ChannelInfo</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>gChannelInfo</strong></a>[16]</td>
+<td style="text-align: left;"><a href="#function-align"><strong>ALIGN</strong></a> (32) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-asyncresourceclearstate"><strong>AsyncResourceClearState</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-asyncresourcegetchannel"><strong>AsyncResourceGetChannel</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#function-asyncresourcegetmode"><strong>AsyncResourceGetMode</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#function-asyncresourcegetstat"><strong>AsyncResourceGetStat</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-asyncresourceisbusy"><strong>AsyncResourceIsBusy</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-asyncresourcesetstate"><strong>AsyncResourceSetState</strong></a> (<a href="../types_8h/#typedef-u16"><strong>u16</strong></a> state) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-asyncresourcestatebusy"><strong>AsyncResourceStateBusy</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> channel, <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-asyncresourcestatedone"><strong>AsyncResourceStateDone</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-clearchannelinfo"><strong>ClearChannelInfo</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> i) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-flushchannelinfo"><strong>FlushChannelInfo</strong></a> (<a href="../struct_m_c_c___channel_info/"><strong>MCC_ChannelInfo</strong></a> * info) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-getusbadaptermode"><strong>GetUsbAdapterMode</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-initializecodecheck"><strong>InitializeCodeCheck</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-initializecodeclear"><strong>InitializeCodeClear</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-initializecodeset"><strong>InitializeCodeSet</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-ischannelopened"><strong>IsChannelOpened</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-loadchannelinfo"><strong>LoadChannelInfo</strong></a> (<a href="../struct_m_c_c___channel_info/"><strong>MCC_ChannelInfo</strong></a> * info) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccexicallback"><strong>MCCExiCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccrxcallback"><strong>MCCRxCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-mcctxcallback"><strong>MCCTxCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-mailboxcheck"><strong>MailboxCheck</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-makememorymap"><strong>MakeMemoryMap</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> * map) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-notifychannelevent"><strong>NotifyChannelEvent</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> notify) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-notifycompulsorily"><strong>NotifyCompulsorily</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> notify, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> timeout) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-notifyinit"><strong>NotifyInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-notifyinitdone"><strong>NotifyInitDone</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#function-searchfreeblocks"><strong>SearchFreeBlocks</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_mode"><strong>MCC_MODE</strong></a> mode, <a href="../types_8h/#typedef-u8"><strong>u8</strong></a> * index) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-setchannelinfodirty"><strong>SetChannelInfoDirty</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> dirty) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-setusbadaptermode"><strong>SetUsbAdapterMode</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> mode) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-waitaminute"><strong>WaitAMinute</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> timeout, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> * flag, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> value) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-callbackeventstream"><strong>callbackEventStream</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>enum</strong></a> <a href="../mcc_8h/#enum-mcc_channel"><strong>MCC_CHANNEL</strong></a> chID, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> event, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> value) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccdebugprint"><strong>mccDebugPrint</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * str) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-mccinitializecheck"><strong>mccInitializeCheck</strong></a> (<a href="../types_8h/#typedef-u8"><strong>u8</strong></a> timeout) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-gasyncresourcestatus">variable gAsyncResourceStatus</h3>
+<pre><code class="language-C++">volatile u16 gAsyncResourceStatus;
+</code></pre>
+<hr>
+
+<h3 id="variable-gcallbacksysevent">variable gCallbackSysEvent</h3>
+<pre><code class="language-C++">void(*volatile gCallbackSysEvent) (enum MCC_SYSEVENT);
+</code></pre>
+<hr>
+
+<h3 id="variable-gischannelinfodirty">variable gIsChannelinfoDirty</h3>
+<pre><code class="language-C++">volatile int gIsChannelinfoDirty;
+</code></pre>
+<hr>
+
+<h3 id="variable-glasterror">variable gLastError</h3>
+<pre><code class="language-C++">volatile u16 gLastError;
+</code></pre>
+<hr>
+
+<h3 id="variable-gmccinitialized">variable gMccInitialized</h3>
+<pre><code class="language-C++">int gMccInitialized;
+</code></pre>
+<hr>
+
+<h3 id="variable-gmccsession">variable gMccSession</h3>
+<pre><code class="language-C++">int gMccSession;
+</code></pre>
+<hr>
+
+<h3 id="variable-gothersideinitdone">variable gOtherSideInitDone</h3>
+<pre><code class="language-C++">int gOtherSideInitDone;
+</code></pre>
+<hr>
+
+<h3 id="variable-gpingflag">variable gPingFlag</h3>
+<pre><code class="language-C++">volatile int gPingFlag;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-mcccheckasyncdone">function MCCCheckAsyncDone</h3>
+<pre><code class="language-C++">int MCCCheckAsyncDone () 
+</code></pre>
+<hr>
+
+<h3 id="function-mccclose">function MCCClose</h3>
+<pre><code class="language-C++">int MCCClose (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccenumdevices">function MCCEnumDevices</h3>
+<pre><code class="language-C++">int MCCEnumDevices (
+    MCC_CBEnumDevices callbackEnumDevices
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccexit">function MCCExit</h3>
+<pre><code class="language-C++">void MCCExit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccgetchannelinfo">function MCCGetChannelInfo</h3>
+<pre><code class="language-C++">int MCCGetChannelInfo (
+    enum  MCC_CHANNEL chID,
+    MCC_Info * info
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccgetconnectionstatus">function MCCGetConnectionStatus</h3>
+<pre><code class="language-C++">int MCCGetConnectionStatus (
+    enum  MCC_CHANNEL chID,
+    enum  MCC_CONNECT * connect
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccgetfreeblocks">function MCCGetFreeBlocks</h3>
+<pre><code class="language-C++">u8 MCCGetFreeBlocks (
+    enum  MCC_MODE mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccgetlasterror">function MCCGetLastError</h3>
+<pre><code class="language-C++">u8 MCCGetLastError (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccinit">function MCCInit</h3>
+<pre><code class="language-C++">int MCCInit (
+    enum  MCC_EXI exiChannel,
+    u8 timeout,
+    MCC_CBSysEvent callbackSysEvent
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mcclock">function MCCLock</h3>
+<pre><code class="language-C++">int MCCLock (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccnotify">function MCCNotify</h3>
+<pre><code class="language-C++">int MCCNotify (
+    enum  MCC_CHANNEL chID,
+    u32 notify
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccopen">function MCCOpen</h3>
+<pre><code class="language-C++">int MCCOpen (
+    enum  MCC_CHANNEL chID,
+    u8 blockSize,
+    MCC_CBEvent callbackEvent
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccping">function MCCPing</h3>
+<pre><code class="language-C++">int MCCPing (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccread">function MCCRead</h3>
+<pre><code class="language-C++">int MCCRead (
+    enum  MCC_CHANNEL chID,
+    u32 offset,
+    void * data,
+    s32 size,
+    enum  MCC_SYNC_STATE async
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccsetchanneleventmask">function MCCSetChannelEventMask</h3>
+<pre><code class="language-C++">u32 MCCSetChannelEventMask (
+    enum  MCC_CHANNEL chID,
+    u32 event
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccstreamclose">function MCCStreamClose</h3>
+<pre><code class="language-C++">int MCCStreamClose (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccstreamopen">function MCCStreamOpen</h3>
+<pre><code class="language-C++">int MCCStreamOpen (
+    enum  MCC_CHANNEL chID,
+    u8 blockSize
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccstreamread">function MCCStreamRead</h3>
+<pre><code class="language-C++">u32 MCCStreamRead (
+    enum  MCC_CHANNEL chID,
+    void * data
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccstreamwrite">function MCCStreamWrite</h3>
+<pre><code class="language-C++">int MCCStreamWrite (
+    enum  MCC_CHANNEL chID,
+    void * data,
+    u32 dataBlockSize
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccunlock">function MCCUnlock</h3>
+<pre><code class="language-C++">int MCCUnlock (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccwrite">function MCCWrite</h3>
+<pre><code class="language-C++">int MCCWrite (
+    enum  MCC_CHANNEL chID,
+    u32 offset,
+    void * data,
+    s32 size,
+    enum  MCC_SYNC_STATE async
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-align">function ALIGN</h3>
+<pre><code class="language-C++">static MCC_ChannelInfo  gChannelInfo [16] ALIGN (
+    32
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asyncresourceclearstate">function AsyncResourceClearState</h3>
+<pre><code class="language-C++">static void AsyncResourceClearState (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asyncresourcegetchannel">function AsyncResourceGetChannel</h3>
+<pre><code class="language-C++">static u8 AsyncResourceGetChannel (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asyncresourcegetmode">function AsyncResourceGetMode</h3>
+<pre><code class="language-C++">static u16 AsyncResourceGetMode (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asyncresourcegetstat">function AsyncResourceGetStat</h3>
+<pre><code class="language-C++">static u16 AsyncResourceGetStat (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asyncresourceisbusy">function AsyncResourceIsBusy</h3>
+<pre><code class="language-C++">static int AsyncResourceIsBusy (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asyncresourcesetstate">function AsyncResourceSetState</h3>
+<pre><code class="language-C++">static void AsyncResourceSetState (
+    u16 state
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asyncresourcestatebusy">function AsyncResourceStateBusy</h3>
+<pre><code class="language-C++">static void AsyncResourceStateBusy (
+    u8 channel,
+    u16 mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-asyncresourcestatedone">function AsyncResourceStateDone</h3>
+<pre><code class="language-C++">static void AsyncResourceStateDone (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-clearchannelinfo">function ClearChannelInfo</h3>
+<pre><code class="language-C++">static void ClearChannelInfo (
+    int i
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-flushchannelinfo">function FlushChannelInfo</h3>
+<pre><code class="language-C++">static int FlushChannelInfo (
+    MCC_ChannelInfo * info
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-getusbadaptermode">function GetUsbAdapterMode</h3>
+<pre><code class="language-C++">static u8 GetUsbAdapterMode (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-initializecodecheck">function InitializeCodeCheck</h3>
+<pre><code class="language-C++">static int InitializeCodeCheck (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-initializecodeclear">function InitializeCodeClear</h3>
+<pre><code class="language-C++">static int InitializeCodeClear (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-initializecodeset">function InitializeCodeSet</h3>
+<pre><code class="language-C++">static int InitializeCodeSet (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ischannelopened">function IsChannelOpened</h3>
+<pre><code class="language-C++">static int IsChannelOpened (
+    enum  MCC_CHANNEL chID
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-loadchannelinfo">function LoadChannelInfo</h3>
+<pre><code class="language-C++">static int LoadChannelInfo (
+    MCC_ChannelInfo * info
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccexicallback">function MCCExiCallback</h3>
+<pre><code class="language-C++">static void MCCExiCallback (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccrxcallback">function MCCRxCallback</h3>
+<pre><code class="language-C++">static void MCCRxCallback (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mcctxcallback">function MCCTxCallback</h3>
+<pre><code class="language-C++">static void MCCTxCallback (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mailboxcheck">function MailboxCheck</h3>
+<pre><code class="language-C++">static void MailboxCheck (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-makememorymap">function MakeMemoryMap</h3>
+<pre><code class="language-C++">static void MakeMemoryMap (
+    u8 * map
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-notifychannelevent">function NotifyChannelEvent</h3>
+<pre><code class="language-C++">static int NotifyChannelEvent (
+    enum  MCC_CHANNEL chID,
+    u32 notify
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-notifycompulsorily">function NotifyCompulsorily</h3>
+<pre><code class="language-C++">static int NotifyCompulsorily (
+    enum  MCC_CHANNEL chID,
+    u32 notify,
+    u32 timeout
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-notifyinit">function NotifyInit</h3>
+<pre><code class="language-C++">static int NotifyInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-notifyinitdone">function NotifyInitDone</h3>
+<pre><code class="language-C++">static int NotifyInitDone (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-searchfreeblocks">function SearchFreeBlocks</h3>
+<pre><code class="language-C++">static u8 SearchFreeBlocks (
+    enum  MCC_MODE mode,
+    u8 * index
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-setchannelinfodirty">function SetChannelInfoDirty</h3>
+<pre><code class="language-C++">static void SetChannelInfoDirty (
+    int dirty
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-setusbadaptermode">function SetUsbAdapterMode</h3>
+<pre><code class="language-C++">static int SetUsbAdapterMode (
+    u8 mode
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-waitaminute">function WaitAMinute</h3>
+<pre><code class="language-C++">static int WaitAMinute (
+    int timeout,
+    volatile  int * flag,
+    int value
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-callbackeventstream">function callbackEventStream</h3>
+<pre><code class="language-C++">static void callbackEventStream (
+    enum  MCC_CHANNEL chID,
+    u32 event,
+    u32 value
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccdebugprint">function mccDebugPrint</h3>
+<pre><code class="language-C++">static void mccDebugPrint (
+    char * str
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-mccinitializecheck">function mccInitializeCheck</h3>
+<pre><code class="language-C++">static int mccInitializeCheck (
+    u8 timeout
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/mcc/mcc.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

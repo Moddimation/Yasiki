@@ -1,0 +1,739 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_c_a_r_d_open_8c" kind="file" language="C++">
+    <compoundname>CARDOpen.c</compoundname>
+    <includes refid="card_8h" local="no">dolphin/card.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="_c_a_r_d_private_8h" local="yes">CARDPrivate.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/card.h</label>
+        <link refid="card_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>dolphin/dsp.h</label>
+        <link refid="dsp_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>dolphin/exi.h</label>
+        <link refid="exi_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>CARDOpen.c</label>
+        <link refid="_c_a_r_d_open_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>CARDPrivate.h</label>
+        <link refid="_c_a_r_d_private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_c_a_r_d_open_8c_1a6fb364956689ccb44301cc145aeb3e6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL __CARDCompareFileName</definition>
+        <argsstring>(CARDDir *ent, const char *fileName)</argsstring>
+        <name>__CARDCompareFileName</name>
+        <param>
+          <type><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref> *</type>
+          <declname>ent</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">const</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">char</ref> *</type>
+          <declname>fileName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" line="8" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" bodystart="8" bodyend="33"/>
+        <references refid="card_8h_1a474e81aef82e1c0244e0a9e97413b695" compoundref="card_8h" startline="30">CARD_FILENAME_MAX</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <references refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="types_8h" startline="34">TRUE</references>
+        <referencedby refid="_c_a_r_d_open_8c_1a61b627a05f705a4c013ed602261c82d3" compoundref="_c_a_r_d_open_8c" startline="69" endline="97">__CARDGetFileNo</referencedby>
+        <referencedby refid="card_8h_1a6ceadfc2c4939b5bf7237e4b8b85783d" compoundref="_c_a_r_d_create_8c" startline="58" endline="139">CARDCreateAsync</referencedby>
+        <referencedby refid="_c_a_r_d_rename_8c_1a8cf73a10a71b8358b6e03a7bab5f8230" compoundref="_c_a_r_d_rename_8c" startline="9" endline="88">CARDRenameAsync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 __CARDAccess</definition>
+        <argsstring>(CARDDir *ent)</argsstring>
+        <name>__CARDAccess</name>
+        <param>
+          <type><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref> *</type>
+          <declname>ent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" line="36" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" bodystart="36" bodyend="51"/>
+        <references refid="_c_a_r_d_bios_8c_1a4995860017b4a43a554310dff5bc0a59" compoundref="_c_a_r_d_bios_8c" startline="8">__CARDDiskID</references>
+        <references refid="_c_a_r_d_bios_8c_1a7ebf31387a355f07630bbcf3d3ce94a2" compoundref="_c_a_r_d_bios_8c" startline="9">__CARDDiskNone</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="card_8h_1a5d7bd94be95d5bd98cc3e2db5383622d" compoundref="card_8h" startline="176">CARD_RESULT_NOFILE</references>
+        <references refid="card_8h_1a6984c7e6ce75ce319a267fa73f26aa62" compoundref="card_8h" startline="182">CARD_RESULT_NOPERM</references>
+        <references refid="card_8h_1ae1801cbb38a2949890a1585132617a2f" compoundref="card_8h" startline="172">CARD_RESULT_READY</references>
+        <references refid="struct_d_v_d_disk_i_d_1ad81615f962ea2a3eb2628d13425f7b0f" compoundref="dvd_8h" startline="9">DVDDiskID::company</references>
+        <references refid="struct_d_v_d_disk_i_d_1aeda919f788550d0a4737bfaac8598a34" compoundref="dvd_8h" startline="8">DVDDiskID::gameName</references>
+        <referencedby refid="_c_a_r_d_open_8c_1a61b627a05f705a4c013ed602261c82d3" compoundref="_c_a_r_d_open_8c" startline="69" endline="97">__CARDGetFileNo</referencedby>
+        <referencedby refid="_c_a_r_d_stat_ex_8c_1a4cb090c6edb895a86a18ce56dd602a16" compoundref="_c_a_r_d_stat_ex_8c" startline="8" endline="42">__CARDGetStatusEx</referencedby>
+        <referencedby refid="_c_a_r_d_stat_ex_8c_1a74425710ab08ce841a8699a0d4fa3239" compoundref="_c_a_r_d_stat_ex_8c" startline="45" endline="124">__CARDSetStatusExAsync</referencedby>
+        <referencedby refid="card_8h_1a75711c2577e705ba306592733a84662c" compoundref="_c_a_r_d_delete_8c" startline="41" endline="82">CARDFastDeleteAsync</referencedby>
+        <referencedby refid="card_8h_1a9baecae04e61b4c5f0c337bcd2b8874c" compoundref="_c_a_r_d_open_8c" startline="100" endline="145">CARDFastOpen</referencedby>
+        <referencedby refid="card_8h_1a154db1efb6f362c33a8a900402e88b1b" compoundref="_c_a_r_d_stat_8c" startline="74" endline="121">CARDGetStatus</referencedby>
+        <referencedby refid="card_8h_1ad52134d8f7f604794dd3a7a332964d3a" compoundref="_c_a_r_d_read_8c" startline="142" endline="191">CARDReadAsync</referencedby>
+        <referencedby refid="_c_a_r_d_rename_8c_1a8cf73a10a71b8358b6e03a7bab5f8230" compoundref="_c_a_r_d_rename_8c" startline="9" endline="88">CARDRenameAsync</referencedby>
+        <referencedby refid="card_8h_1a7903ea4d92c79c32a94635cb23d53d75" compoundref="_c_a_r_d_stat_8c" startline="124" endline="175">CARDSetStatusAsync</referencedby>
+        <referencedby refid="_c_a_r_d_write_8c_1a47b22ba860b7b1d3129baae619002949" compoundref="_c_a_r_d_write_8c" startline="107" endline="153">CARDWriteAsync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_open_8c_1af3bccb07f709db0b632cf8840ca05879" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 __CARDIsPublic</definition>
+        <argsstring>(CARDDir *ent)</argsstring>
+        <name>__CARDIsPublic</name>
+        <param>
+          <type><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref> *</type>
+          <declname>ent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" line="54" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" bodystart="54" bodyend="66"/>
+        <references refid="card_8h_1a5417d4e309530e08898a8d244584ff62" compoundref="card_8h" startline="106">CARD_ATTR_PUBLIC</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="card_8h_1a5d7bd94be95d5bd98cc3e2db5383622d" compoundref="card_8h" startline="176">CARD_RESULT_NOFILE</references>
+        <references refid="card_8h_1a6984c7e6ce75ce319a267fa73f26aa62" compoundref="card_8h" startline="182">CARD_RESULT_NOPERM</references>
+        <referencedby refid="_c_a_r_d_stat_ex_8c_1a4cb090c6edb895a86a18ce56dd602a16" compoundref="_c_a_r_d_stat_ex_8c" startline="8" endline="42">__CARDGetStatusEx</referencedby>
+        <referencedby refid="card_8h_1a9baecae04e61b4c5f0c337bcd2b8874c" compoundref="_c_a_r_d_open_8c" startline="100" endline="145">CARDFastOpen</referencedby>
+        <referencedby refid="card_8h_1a154db1efb6f362c33a8a900402e88b1b" compoundref="_c_a_r_d_stat_8c" startline="74" endline="121">CARDGetStatus</referencedby>
+        <referencedby refid="card_8h_1ad52134d8f7f604794dd3a7a332964d3a" compoundref="_c_a_r_d_read_8c" startline="142" endline="191">CARDReadAsync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_open_8c_1a61b627a05f705a4c013ed602261c82d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 __CARDGetFileNo</definition>
+        <argsstring>(CARDControl *card, const char *fileName, s32 *pfileNo)</argsstring>
+        <name>__CARDGetFileNo</name>
+        <param>
+          <type><ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref> *</type>
+          <declname>card</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">const</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">char</ref> *</type>
+          <declname>fileName</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref> *</type>
+          <declname>pfileNo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" line="69" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" bodystart="69" bodyend="97"/>
+        <references refid="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" compoundref="_c_a_r_d_open_8c" startline="36" endline="51">__CARDAccess</references>
+        <references refid="_c_a_r_d_open_8c_1a6fb364956689ccb44301cc145aeb3e6d" compoundref="_c_a_r_d_open_8c" startline="8" endline="33">__CARDCompareFileName</references>
+        <references refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" compoundref="_c_a_r_d_dir_8c" startline="11" endline="15">__CARDGetDirBlock</references>
+        <references refid="card_8h_1af09abc947ee4aa230511bfadddc23b36" compoundref="card_8h" startline="15">CARD_MAX_FILE</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="card_8h_1a1bb587c18f066d73753cc22aedfaf241" compoundref="card_8h" startline="175">CARD_RESULT_NOCARD</references>
+        <references refid="card_8h_1a5d7bd94be95d5bd98cc3e2db5383622d" compoundref="card_8h" startline="176">CARD_RESULT_NOFILE</references>
+        <references refid="card_8h_1ae1801cbb38a2949890a1585132617a2f" compoundref="card_8h" startline="172">CARD_RESULT_READY</references>
+        <referencedby refid="card_8h_1a2ce7bb5766b7b9a29257a90dfbee2919" compoundref="_c_a_r_d_delete_8c" startline="97" endline="132">CARDDeleteAsync</referencedby>
+        <referencedby refid="card_8h_1ad32f62c8f9d8d71631ecccfacd24c3e7" compoundref="_c_a_r_d_open_8c" startline="148" endline="184">CARDOpen</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_open_8c_1a9baecae04e61b4c5f0c337bcd2b8874c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 CARDFastOpen</definition>
+        <argsstring>(s32 chan, s32 fileNo, CARDFileInfo *fileInfo)</argsstring>
+        <name>CARDFastOpen</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>chan</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>fileNo</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref> *</type>
+          <declname>fileInfo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" line="100" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" bodystart="100" bodyend="145"/>
+        <references refid="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" compoundref="_c_a_r_d_open_8c" startline="36" endline="51">__CARDAccess</references>
+        <references refid="_c_a_r_d_bios_8c_1ab5f0a1a1cb2541b7d7c6686b81e052c2" compoundref="_c_a_r_d_bios_8c" startline="721" endline="751">__CARDGetControlBlock</references>
+        <references refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" compoundref="_c_a_r_d_dir_8c" startline="11" endline="15">__CARDGetDirBlock</references>
+        <references refid="_c_a_r_d_open_8c_1af3bccb07f709db0b632cf8840ca05879" compoundref="_c_a_r_d_open_8c" startline="54" endline="66">__CARDIsPublic</references>
+        <references refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" compoundref="_c_a_r_d_bios_8c" startline="754" endline="771">__CARDPutControlBlock</references>
+        <references refid="card_8h_1af09abc947ee4aa230511bfadddc23b36" compoundref="card_8h" startline="15">CARD_MAX_FILE</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="card_8h_1ade36d0f524a0e4cbfb28b13c5c0faeb3" compoundref="card_8h" startline="178">CARD_RESULT_BROKEN</references>
+        <references refid="card_8h_1a9d3fac86ba93f99b25489dc23b5cb417" compoundref="card_8h" startline="187">CARD_RESULT_FATAL_ERROR</references>
+        <references refid="card_8h_1a6984c7e6ce75ce319a267fa73f26aa62" compoundref="card_8h" startline="182">CARD_RESULT_NOPERM</references>
+        <references refid="_c_a_r_d_private_8h_1aaadf43143ecd85f02e457d090404f1ac" compoundref="_c_a_r_d_private_8h" startline="151" endline="152">CARDIsValidBlockNo</references>
+        <references refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" compoundref="card_8h" startline="41">CARDFileInfo::chan</references>
+        <references refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" compoundref="card_8h" startline="42">CARDFileInfo::fileNo</references>
+        <references refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" compoundref="card_8h" startline="46">CARDFileInfo::iBlock</references>
+        <references refid="struct_c_a_r_d_file_info_1a1386c6e9628a166029865d4f496a2e57" compoundref="card_8h" startline="44">CARDFileInfo::offset</references>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_open_8c_1ad32f62c8f9d8d71631ecccfacd24c3e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 CARDOpen</definition>
+        <argsstring>(s32 chan, char *fileName, CARDFileInfo *fileInfo)</argsstring>
+        <name>CARDOpen</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>chan</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">char</ref> *</type>
+          <declname>fileName</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref> *</type>
+          <declname>fileInfo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" line="148" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" bodystart="148" bodyend="184"/>
+        <references refid="_c_a_r_d_bios_8c_1ab5f0a1a1cb2541b7d7c6686b81e052c2" compoundref="_c_a_r_d_bios_8c" startline="721" endline="751">__CARDGetControlBlock</references>
+        <references refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" compoundref="_c_a_r_d_dir_8c" startline="11" endline="15">__CARDGetDirBlock</references>
+        <references refid="_c_a_r_d_open_8c_1a61b627a05f705a4c013ed602261c82d3" compoundref="_c_a_r_d_open_8c" startline="69" endline="97">__CARDGetFileNo</references>
+        <references refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" compoundref="_c_a_r_d_bios_8c" startline="754" endline="771">__CARDPutControlBlock</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="card_8h_1ade36d0f524a0e4cbfb28b13c5c0faeb3" compoundref="card_8h" startline="178">CARD_RESULT_BROKEN</references>
+        <references refid="_c_a_r_d_private_8h_1aaadf43143ecd85f02e457d090404f1ac" compoundref="_c_a_r_d_private_8h" startline="151" endline="152">CARDIsValidBlockNo</references>
+        <references refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" compoundref="card_8h" startline="41">CARDFileInfo::chan</references>
+        <references refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" compoundref="card_8h" startline="42">CARDFileInfo::fileNo</references>
+        <references refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" compoundref="card_8h" startline="46">CARDFileInfo::iBlock</references>
+        <references refid="struct_c_a_r_d_file_info_1a1386c6e9628a166029865d4f496a2e57" compoundref="card_8h" startline="44">CARDFileInfo::offset</references>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_open_8c_1a52867ec62756a9aac2eb08b7d9c50a06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 CARDClose</definition>
+        <argsstring>(CARDFileInfo *fileInfo)</argsstring>
+        <name>CARDClose</name>
+        <param>
+          <type><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref> *</type>
+          <declname>fileInfo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" line="187" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" bodystart="187" bodyend="204"/>
+        <references refid="_c_a_r_d_bios_8c_1ab5f0a1a1cb2541b7d7c6686b81e052c2" compoundref="_c_a_r_d_bios_8c" startline="721" endline="751">__CARDGetControlBlock</references>
+        <references refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" compoundref="_c_a_r_d_bios_8c" startline="754" endline="771">__CARDPutControlBlock</references>
+        <references refid="card_8h_1af09abc947ee4aa230511bfadddc23b36" compoundref="card_8h" startline="15">CARD_MAX_FILE</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="card_8h_1ae1801cbb38a2949890a1585132617a2f" compoundref="card_8h" startline="172">CARD_RESULT_READY</references>
+        <references refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" compoundref="card_8h" startline="41">CARDFileInfo::chan</references>
+        <references refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" compoundref="card_8h" startline="42">CARDFileInfo::fileNo</references>
+      </memberdef>
+      <memberdef kind="function" id="_c_a_r_d_open_8c_1a4c938718e6d11602f2301a952fc22efc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></type>
+        <definition>BOOL __CARDIsOpened</definition>
+        <argsstring>(CARDControl *card, s32 fileNo)</argsstring>
+        <name>__CARDIsOpened</name>
+        <param>
+          <type><ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref> *</type>
+          <declname>card</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>fileNo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" line="207" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c" bodystart="207" bodyend="213"/>
+        <references refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="types_8h" startline="38">FALSE</references>
+        <referencedby refid="card_8h_1a2ce7bb5766b7b9a29257a90dfbee2919" compoundref="_c_a_r_d_delete_8c" startline="97" endline="132">CARDDeleteAsync</referencedby>
+        <referencedby refid="card_8h_1a75711c2577e705ba306592733a84662c" compoundref="_c_a_r_d_delete_8c" startline="41" endline="82">CARDFastDeleteAsync</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="card_8h" kindref="compound">dolphin/card.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_c_a_r_d_private_8h" kindref="compound">CARDPrivate.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></highlight></codeline>
+<codeline lineno="8" refid="_c_a_r_d_open_8c_1a6fb364956689ccb44301cc145aeb3e6d" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_open_8c_1a6fb364956689ccb44301cc145aeb3e6d" kindref="member">__CARDCompareFileName</ref><sp/>(<ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>fileName)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">entName</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;fileName;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><sp/><sp/><sp/>c1;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><sp/><sp/><sp/>c2;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">n</ref><sp/>=<sp/><ref refid="card_8h_1a474e81aef82e1c0244e0a9e97413b695" kindref="member">CARD_FILENAME_MAX</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(--<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">n</ref><sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((c1<sp/>=<sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">entName</ref>++)<sp/>!=<sp/>(c2<sp/>=<sp/>*fileName++))</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c2<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*fileName<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></highlight></codeline>
+<codeline lineno="36" refid="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" kindref="member">__CARDAccess</ref><sp/>(<ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;gameName[0]<sp/>==<sp/>0xFF)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1a5d7bd94be95d5bd98cc3e2db5383622d" kindref="member">CARD_RESULT_NOFILE</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_bios_8c_1a4995860017b4a43a554310dff5bc0a59" kindref="member">__CARDDiskID</ref><sp/>==<sp/>&amp;<ref refid="_c_a_r_d_bios_8c_1a7ebf31387a355f07630bbcf3d3ce94a2" kindref="member">__CARDDiskNone</ref><sp/>||</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">memcmp</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;gameName,<sp/><ref refid="_c_a_r_d_bios_8c_1a4995860017b4a43a554310dff5bc0a59" kindref="member">__CARDDiskID</ref>-&gt;<ref refid="struct_d_v_d_disk_i_d_1aeda919f788550d0a4737bfaac8598a34" kindref="member">gameName</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sizeof</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;gameName))<sp/>==<sp/>0<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">memcmp</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;company,<sp/><ref refid="_c_a_r_d_bios_8c_1a4995860017b4a43a554310dff5bc0a59" kindref="member">__CARDDiskID</ref>-&gt;<ref refid="struct_d_v_d_disk_i_d_1ad81615f962ea2a3eb2628d13425f7b0f" kindref="member">company</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sizeof</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;company))<sp/>==<sp/>0))</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1ae1801cbb38a2949890a1585132617a2f" kindref="member">CARD_RESULT_READY</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1a6984c7e6ce75ce319a267fa73f26aa62" kindref="member">CARD_RESULT_NOPERM</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></highlight></codeline>
+<codeline lineno="54" refid="_c_a_r_d_open_8c_1af3bccb07f709db0b632cf8840ca05879" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_open_8c_1af3bccb07f709db0b632cf8840ca05879" kindref="member">__CARDIsPublic</ref><sp/>(<ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;gameName[0]<sp/>==<sp/>0xFF)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1a5d7bd94be95d5bd98cc3e2db5383622d" kindref="member">CARD_RESULT_NOFILE</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;permission<sp/>&amp;<sp/><ref refid="card_8h_1a5417d4e309530e08898a8d244584ff62" kindref="member">CARD_ATTR_PUBLIC</ref>)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1a6984c7e6ce75ce319a267fa73f26aa62" kindref="member">CARD_RESULT_NOPERM</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></highlight></codeline>
+<codeline lineno="69" refid="_c_a_r_d_open_8c_1a61b627a05f705a4c013ed602261c82d3" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_open_8c_1a61b627a05f705a4c013ed602261c82d3" kindref="member">__CARDGetFileNo</ref><sp/>(<ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>fileName,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">pfileNo</ref>)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/>fileNo;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>-&gt;attached)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1a1bb587c18f066d73753cc22aedfaf241" kindref="member">CARD_RESULT_NOCARD</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref><sp/>=<sp/><ref refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" kindref="member">__CARDGetDirBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(fileNo<sp/>=<sp/>0;<sp/>fileNo<sp/>&lt;<sp/><ref refid="card_8h_1af09abc947ee4aa230511bfadddc23b36" kindref="member">CARD_MAX_FILE</ref>;<sp/>fileNo++)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref><sp/><sp/><sp/><sp/>=<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>[fileNo];</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" kindref="member">__CARDAccess</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_open_8c_1a6fb364956689ccb44301cc145aeb3e6d" kindref="member">__CARDCompareFileName</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>,<sp/>fileName))</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">pfileNo</ref><sp/>=<sp/>fileNo;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1ae1801cbb38a2949890a1585132617a2f" kindref="member">CARD_RESULT_READY</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1a5d7bd94be95d5bd98cc3e2db5383622d" kindref="member">CARD_RESULT_NOFILE</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></highlight></codeline>
+<codeline lineno="100" refid="card_8h_1a9baecae04e61b4c5f0c337bcd2b8874c" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_open_8c_1a9baecae04e61b4c5f0c337bcd2b8874c" kindref="member">CARDFastOpen</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>chan,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>fileNo,<sp/><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref>*<sp/>fileInfo)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0xDC,<sp/>0<sp/>&lt;=<sp/>fileNo<sp/>&amp;&amp;<sp/>fileNo<sp/>&lt;<sp/><ref refid="card_8h_1af09abc947ee4aa230511bfadddc23b36" kindref="member">CARD_MAX_FILE</ref>);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0xDD,<sp/>0<sp/>&lt;=<sp/>chan<sp/>&amp;&amp;<sp/>chan<sp/>&lt;<sp/>2);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fileNo &lt; 0 || fileNo &gt;</ref>=<sp/><ref refid="card_8h_1af09abc947ee4aa230511bfadddc23b36" kindref="member">CARD_MAX_FILE</ref>)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="card_8h_1a9d3fac86ba93f99b25489dc23b5cb417" kindref="member">CARD_RESULT_FATAL_ERROR</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_bios_8c_1ab5f0a1a1cb2541b7d7c6686b81e052c2" kindref="member">__CARDGetControlBlock</ref><sp/>(chan,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" kindref="member">__CARDGetDirBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref><sp/><sp/><sp/><sp/>=<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>[fileNo];</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_open_8c_1aadd03077aceea30f5b67902a685c5d0e" kindref="member">__CARDAccess</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>==<sp/><ref refid="card_8h_1a6984c7e6ce75ce319a267fa73f26aa62" kindref="member">CARD_RESULT_NOPERM</ref>)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_open_8c_1af3bccb07f709db0b632cf8840ca05879" kindref="member">__CARDIsPublic</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="_c_a_r_d_private_8h_1aaadf43143ecd85f02e457d090404f1ac" kindref="member">CARDIsValidBlockNo</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;startBlock))</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="card_8h_1ade36d0f524a0e4cbfb28b13c5c0faeb3" kindref="member">CARD_RESULT_BROKEN</ref>;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref><sp/><sp/><sp/>=<sp/>chan;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" kindref="member">fileNo</ref><sp/>=<sp/>fileNo;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a1386c6e9628a166029865d4f496a2e57" kindref="member">offset</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;startBlock;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" kindref="member">__CARDPutControlBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/>result);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></highlight></codeline>
+<codeline lineno="148" refid="card_8h_1ad32f62c8f9d8d71631ecccfacd24c3e7" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_open_8c_1ad32f62c8f9d8d71631ecccfacd24c3e7" kindref="member">CARDOpen</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>chan,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>fileName,<sp/><ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref>*<sp/>fileInfo)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_dir" kindref="compound">CARDDir</ref>*<sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileNo;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0x11A,<sp/>0<sp/>&lt;=<sp/>chan<sp/>&amp;&amp;<sp/>chan<sp/>&lt;<sp/>2);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="_c_a_r_d_bios_8c_1ab5f0a1a1cb2541b7d7c6686b81e052c2" kindref="member">__CARDGetControlBlock</ref><sp/>(chan,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_open_8c_1a61b627a05f705a4c013ed602261c82d3" kindref="member">__CARDGetFileNo</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/>fileName,<sp/>&amp;fileNo);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref><sp/>=<sp/><ref refid="_c_a_r_d_dir_8c_1ad4775582269a3c38fb14203d504095a5" kindref="member">__CARDGetDirBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref><sp/>=<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dir</ref>[fileNo];</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="_c_a_r_d_private_8h_1aaadf43143ecd85f02e457d090404f1ac" kindref="member">CARDIsValidBlockNo</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;startBlock))</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="card_8h_1ade36d0f524a0e4cbfb28b13c5c0faeb3" kindref="member">CARD_RESULT_BROKEN</ref>;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref><sp/><sp/><sp/>=<sp/>chan;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" kindref="member">fileNo</ref><sp/>=<sp/>fileNo;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a1386c6e9628a166029865d4f496a2e57" kindref="member">offset</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1ab1f6014758d64a612bbe213c6fcbcd82" kindref="member">iBlock</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ent</ref>-&gt;startBlock;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" kindref="member">__CARDPutControlBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/>result);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></highlight></codeline>
+<codeline lineno="187" refid="card_8h_1a52867ec62756a9aac2eb08b7d9c50a06" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_open_8c_1a52867ec62756a9aac2eb08b7d9c50a06" kindref="member">CARDClose</ref><sp/>(<ref refid="struct_c_a_r_d_file_info" kindref="compound">CARDFileInfo</ref>*<sp/>fileInfo)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0x146,<sp/>0<sp/>&lt;=<sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref><sp/>&amp;&amp;<sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref><sp/>&lt;<sp/>2);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTLINE</ref><sp/>(0x147,<sp/>0<sp/>&lt;=<sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" kindref="member">fileNo</ref><sp/>&amp;&amp;<sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a3e7e62a1b5aee01dd7e05fab387adfdb" kindref="member">fileNo</ref><sp/>&lt;<sp/><ref refid="card_8h_1af09abc947ee4aa230511bfadddc23b36" kindref="member">CARD_MAX_FILE</ref>);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/><ref refid="_c_a_r_d_bios_8c_1ab5f0a1a1cb2541b7d7c6686b81e052c2" kindref="member">__CARDGetControlBlock</ref><sp/>(fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>fileInfo-&gt;<ref refid="struct_c_a_r_d_file_info_1a40179a103adf85e5c4724fa059e09a4a" kindref="member">chan</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_bios_8c_1a7876ddd72ef2a53cd3ad358abe67e773" kindref="member">__CARDPutControlBlock</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/><ref refid="card_8h_1ae1801cbb38a2949890a1585132617a2f" kindref="member">CARD_RESULT_READY</ref>);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><ref refid="types_8h_1a050c65e107f0c828f856a231f4b4e788" kindref="member">BOOL</ref></highlight></codeline>
+<codeline lineno="207" refid="_c_a_r_d_open_8c_1a4c938718e6d11602f2301a952fc22efc" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_open_8c_1a4c938718e6d11602f2301a952fc22efc" kindref="member">__CARDIsOpened</ref><sp/>(<ref refid="struct_c_a_r_d_control" kindref="compound">CARDControl</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">card</ref>,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>fileNo)</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>unused(card)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>unused(fileNo)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="types_8h_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/card/CARDOpen.c"/>
+  </compounddef>
+</doxygen>

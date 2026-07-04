@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Struct DEMODMPad - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="struct-demodmpad">Struct DEMODMPad</h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>DEMODMPad</strong></a></p>
+<ul>
+<li><code>#include &lt;DEMOPad.h&gt;</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-buttondown"><strong>buttonDown</strong></a>  <br><em>0x0C</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-buttonup"><strong>buttonUp</strong></a>  <br><em>0x0E</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-dirs"><strong>dirs</strong></a>  <br><em>0x10</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-dirsnew"><strong>dirsNew</strong></a>  <br><em>0x12</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-dirsreleased"><strong>dirsReleased</strong></a>  <br><em>0x14</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_p_a_d_status/"><strong>PADStatus</strong></a></td>
+<td style="text-align: left;"><a href="#variable-pst"><strong>pst</strong></a>  <br><em>0x00</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s16"><strong>s16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-stickdeltax"><strong>stickDeltaX</strong></a>  <br><em>0x16</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s16"><strong>s16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-stickdeltay"><strong>stickDeltaY</strong></a>  <br><em>0x18</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s16"><strong>s16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-substickdeltax"><strong>substickDeltaX</strong></a>  <br><em>0x1A</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s16"><strong>s16</strong></a></td>
+<td style="text-align: left;"><a href="#variable-substickdeltay"><strong>substickDeltaY</strong></a>  <br><em>0x1C</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-buttondown">variable buttonDown</h3>
+<p><em>0x0C</em> </p>
+<pre><code class="language-C++">u16 DEMODMPad::buttonDown;
+</code></pre>
+<hr>
+
+<h3 id="variable-buttonup">variable buttonUp</h3>
+<p><em>0x0E</em> </p>
+<pre><code class="language-C++">u16 DEMODMPad::buttonUp;
+</code></pre>
+<hr>
+
+<h3 id="variable-dirs">variable dirs</h3>
+<p><em>0x10</em> </p>
+<pre><code class="language-C++">u16 DEMODMPad::dirs;
+</code></pre>
+<hr>
+
+<h3 id="variable-dirsnew">variable dirsNew</h3>
+<p><em>0x12</em> </p>
+<pre><code class="language-C++">u16 DEMODMPad::dirsNew;
+</code></pre>
+<hr>
+
+<h3 id="variable-dirsreleased">variable dirsReleased</h3>
+<p><em>0x14</em> </p>
+<pre><code class="language-C++">u16 DEMODMPad::dirsReleased;
+</code></pre>
+<hr>
+
+<h3 id="variable-pst">variable pst</h3>
+<p><em>0x00</em> </p>
+<pre><code class="language-C++">PADStatus DEMODMPad::pst;
+</code></pre>
+<hr>
+
+<h3 id="variable-stickdeltax">variable stickDeltaX</h3>
+<p><em>0x16</em> </p>
+<pre><code class="language-C++">s16 DEMODMPad::stickDeltaX;
+</code></pre>
+<hr>
+
+<h3 id="variable-stickdeltay">variable stickDeltaY</h3>
+<p><em>0x18</em> </p>
+<pre><code class="language-C++">s16 DEMODMPad::stickDeltaY;
+</code></pre>
+<hr>
+
+<h3 id="variable-substickdeltax">variable substickDeltaX</h3>
+<p><em>0x1A</em> </p>
+<pre><code class="language-C++">s16 DEMODMPad::substickDeltaX;
+</code></pre>
+<hr>
+
+<h3 id="variable-substickdeltay">variable substickDeltaY</h3>
+<p><em>0x1C</em> </p>
+<pre><code class="language-C++">s16 DEMODMPad::substickDeltaY;
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/demo/DEMOPad.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

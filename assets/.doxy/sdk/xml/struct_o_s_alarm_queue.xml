@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_o_s_alarm_queue" kind="struct" language="C++" prot="public">
+    <compoundname>OSAlarmQueue</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_o_s_alarm_queue_1afa64e6d51b2ec0556c4905d4fa5be3a1" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_alarm" kindref="compound">OSAlarm</ref> *</type>
+        <definition>OSAlarm* OSAlarmQueue::head</definition>
+        <argsstring></argsstring>
+        <name>head</name>
+        <qualifiedname>OSAlarmQueue::head</qualifiedname>
+        <briefdescription>
+<para>0x00 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAlarm.c" line="8" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAlarm.c" bodystart="8" bodyend="-1"/>
+        <referencedby refid="_o_s_alarm_8c_1a1122859864b8fa63ef93fad9cf492f16" compoundref="_o_s_alarm_8c" startline="228" endline="279">DecrementerExceptionCallback</referencedby>
+        <referencedby refid="_o_s_alarm_8c_1a8f3822f0b5ca4381962d68c467ea8f27" compoundref="_o_s_alarm_8c" startline="83" endline="145">InsertAlarm</referencedby>
+        <referencedby refid="_o_s_alarm_8h_1ad08820cab8590f7b2a3345b3ed8c3a0e" compoundref="_o_s_alarm_8c" startline="188" endline="225">OSCancelAlarm</referencedby>
+        <referencedby refid="_o_s_alarm_8h_1a519f25b87bc661f17fa744a1499ff2a5" compoundref="_o_s_alarm_8c" startline="29" endline="45">OSCheckAlarmQueue</referencedby>
+        <referencedby refid="_o_s_alarm_8h_1a57a60d9e768f3686cf9911cad08c9b9f" compoundref="_o_s_alarm_8c" startline="67" endline="74">OSInitAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_alarm_queue_1a9ab2b7507bd4fc937a6abc79c164c5af" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_alarm" kindref="compound">OSAlarm</ref> *</type>
+        <definition>OSAlarm* OSAlarmQueue::tail</definition>
+        <argsstring></argsstring>
+        <name>tail</name>
+        <qualifiedname>OSAlarmQueue::tail</qualifiedname>
+        <briefdescription>
+<para>0x04 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSAlarm.c" line="9" column="13" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAlarm.c" bodystart="9" bodyend="-1"/>
+        <referencedby refid="_o_s_alarm_8c_1a1122859864b8fa63ef93fad9cf492f16" compoundref="_o_s_alarm_8c" startline="228" endline="279">DecrementerExceptionCallback</referencedby>
+        <referencedby refid="_o_s_alarm_8c_1a8f3822f0b5ca4381962d68c467ea8f27" compoundref="_o_s_alarm_8c" startline="83" endline="145">InsertAlarm</referencedby>
+        <referencedby refid="_o_s_alarm_8h_1ad08820cab8590f7b2a3345b3ed8c3a0e" compoundref="_o_s_alarm_8c" startline="188" endline="225">OSCancelAlarm</referencedby>
+        <referencedby refid="_o_s_alarm_8h_1a519f25b87bc661f17fa744a1499ff2a5" compoundref="_o_s_alarm_8c" startline="29" endline="45">OSCheckAlarmQueue</referencedby>
+        <referencedby refid="_o_s_alarm_8h_1a57a60d9e768f3686cf9911cad08c9b9f" compoundref="_o_s_alarm_8c" startline="67" endline="74">OSInitAlarm</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>OSAlarm</label>
+        <link refid="struct_o_s_alarm"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>handler</edgelabel>
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OSAlarmQueue</label>
+        <link refid="struct_o_s_alarm_queue"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/DolphinSDK/src/dolphin/os/OSAlarm.c" line="6" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSAlarm.c" bodystart="7" bodyend="10"/>
+    <listofallmembers>
+      <member refid="struct_o_s_alarm_queue_1afa64e6d51b2ec0556c4905d4fa5be3a1" prot="public" virt="non-virtual"><scope>OSAlarmQueue</scope><name>head</name></member>
+      <member refid="struct_o_s_alarm_queue_1a9ab2b7507bd4fc937a6abc79c164c5af" prot="public" virt="non-virtual"><scope>OSAlarmQueue</scope><name>tail</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

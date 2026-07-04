@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_en_cond_strategies" kind="class" language="C++" prot="public">
+    <compoundname>EnCondStrategies</compoundname>
+    <includes refid="_en_strategy_8h" local="no">EnStrategy.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_en_cond_strategies_1a3049795980d088b6c23c1f0c5a3c9362" prot="private" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 EnCondStrategies::mBuffer[0x40]</definition>
+        <argsstring>[0x40]</argsstring>
+        <name>mBuffer</name>
+        <qualifiedname>EnCondStrategies::mBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="49" column="20" bodyfile="decomp/Project/sources/Sato/include/EnStrategy.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="class_en_cond_strategies_1ac58ac27a7ab7fa0ddec5b716f0f727b6" compoundref="_en_strategy_8h" startline="61" endline="64">getBuffer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_en_cond_strategies_1adcb4a7409bf06b0020fb84106425d983" prot="private" static="no" mutable="no">
+        <type><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref> *</type>
+        <definition>EnemyStrategy* EnCondStrategies::mpCondStrategy</definition>
+        <argsstring></argsstring>
+        <name>mpCondStrategy</name>
+        <qualifiedname>EnCondStrategies::mpCondStrategy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="50" column="19" bodyfile="decomp/Project/sources/Sato/include/EnStrategy.h" bodystart="50" bodyend="-1"/>
+        <referencedby refid="class_en_cond_strategies_1aa235bde1639237509b42b9a3fedfcf07" compoundref="_en_strategy_8cpp" startline="130" endline="140">createCondStrategy</referencedby>
+        <referencedby refid="class_en_cond_strategies_1a58d9a0914bdc42a8e644a696e2ec0b0a" compoundref="_en_strategy_8cpp" startline="116" endline="127">destroyCondStrategy</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_en_cond_strategies_1a26326b0df27019b9b2c2eca0d4a555be" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>EnCondStrategies::~EnCondStrategies</definition>
+        <argsstring>()</argsstring>
+        <name>~EnCondStrategies</name>
+        <qualifiedname>EnCondStrategies::~EnCondStrategies</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="53" column="13" bodyfile="decomp/Project/sources/Sato/src/EnStrategy.cpp" bodystart="110" bodyend="113"/>
+        <references refid="class_en_cond_strategies_1a58d9a0914bdc42a8e644a696e2ec0b0a" compoundref="_en_strategy_8cpp" startline="116" endline="127">destroyCondStrategy</references>
+      </memberdef>
+      <memberdef kind="function" id="class_en_cond_strategies_1a58d9a0914bdc42a8e644a696e2ec0b0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnCondStrategies::destroyCondStrategy</definition>
+        <argsstring>()</argsstring>
+        <name>destroyCondStrategy</name>
+        <qualifiedname>EnCondStrategies::destroyCondStrategy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="55" column="20" bodyfile="decomp/Project/sources/Sato/src/EnStrategy.cpp" bodystart="116" bodyend="127"/>
+        <references refid="class_en_cond_strategies_1adcb4a7409bf06b0020fb84106425d983" compoundref="_en_strategy_8h" startline="50">mpCondStrategy</references>
+        <references refid="class_enemy_strategy_1ad759854ea39c4827c89acb5ecec27e67" compoundref="_enemy_strategy_8cpp" startline="26" endline="26">EnemyStrategy::~EnemyStrategy</references>
+        <referencedby refid="class_en_cond_strategies_1aa235bde1639237509b42b9a3fedfcf07" compoundref="_en_strategy_8cpp" startline="130" endline="140">createCondStrategy</referencedby>
+        <referencedby refid="class_en_cond_strategies_1a26326b0df27019b9b2c2eca0d4a555be" compoundref="_en_strategy_8cpp" startline="110" endline="113">~EnCondStrategies</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_en_cond_strategies_1aa235bde1639237509b42b9a3fedfcf07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_enemy_strategy" kindref="compound">EnemyStrategy</ref> *</type>
+        <definition>EnemyStrategy * EnCondStrategies::createCondStrategy</definition>
+        <argsstring>(int i_condType)</argsstring>
+        <name>createCondStrategy</name>
+        <qualifiedname>EnCondStrategies::createCondStrategy</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i_condType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="56" column="19" bodyfile="decomp/Project/sources/Sato/src/EnStrategy.cpp" bodystart="130" bodyend="140"/>
+        <references refid="class_en_cond_strategies_1a58d9a0914bdc42a8e644a696e2ec0b0a" compoundref="_en_strategy_8cpp" startline="116" endline="127">destroyCondStrategy</references>
+        <references refid="class_en_cond_strategies_1ac58ac27a7ab7fa0ddec5b716f0f727b6" compoundref="_en_strategy_8h" startline="61" endline="64">getBuffer</references>
+        <references refid="class_en_cond_strategies_1a86d084f4c40c4ba2038293fc8a977117" compoundref="_en_strategy_8cpp" startline="143" endline="186">getCondStrategyId</references>
+        <references refid="_enemy_strategy_8h_1a1fe8911513a68790297e955f8f25093f" compoundref="_enemy_strategy_8cpp" startline="9" endline="12">getEnemyStrategyInitFunc</references>
+        <references refid="class_en_cond_strategies_1adcb4a7409bf06b0020fb84106425d983" compoundref="_en_strategy_8h" startline="50">mpCondStrategy</references>
+      </memberdef>
+      <memberdef kind="function" id="class_en_cond_strategies_1a86d084f4c40c4ba2038293fc8a977117" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>s32</type>
+        <definition>s32 EnCondStrategies::getCondStrategyId</definition>
+        <argsstring>(int i_entityIdx)</argsstring>
+        <name>getCondStrategyId</name>
+        <qualifiedname>EnCondStrategies::getCondStrategyId</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i_entityIdx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="58" column="9" bodyfile="decomp/Project/sources/Sato/src/EnStrategy.cpp" bodystart="143" bodyend="186"/>
+        <referencedby refid="class_en_cond_strategies_1aa235bde1639237509b42b9a3fedfcf07" compoundref="_en_strategy_8cpp" startline="130" endline="140">createCondStrategy</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_en_cond_strategies_1ac58ac27a7ab7fa0ddec5b716f0f727b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * EnCondStrategies::getBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>getBuffer</name>
+        <qualifiedname>EnCondStrategies::getBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="61" column="5" bodyfile="decomp/Project/sources/Sato/include/EnStrategy.h" bodystart="61" bodyend="64"/>
+        <references refid="class_en_cond_strategies_1a3049795980d088b6c23c1f0c5a3c9362" compoundref="_en_strategy_8h" startline="49">mBuffer</references>
+        <referencedby refid="class_en_cond_strategies_1aa235bde1639237509b42b9a3fedfcf07" compoundref="_en_strategy_8cpp" startline="130" endline="140">createCondStrategy</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_en_cond_strategies_1aeb056b784018a0c2e44f7d940bb62703" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int EnCondStrategies::getBufferSize</definition>
+        <argsstring>()</argsstring>
+        <name>getBufferSize</name>
+        <qualifiedname>EnCondStrategies::getBufferSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="67" column="5" bodyfile="decomp/Project/sources/Sato/include/EnStrategy.h" bodystart="67" bodyend="70"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>EnCondStrategies</label>
+        <link refid="class_en_cond_strategies"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mpCondStrategy</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>EnemyStrategy</label>
+        <link refid="class_enemy_strategy"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>JORReflexible</label>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/Project/sources/Sato/include/EnStrategy.h" line="47" column="1" bodyfile="decomp/Project/sources/Sato/include/EnStrategy.h" bodystart="48" bodyend="71"/>
+    <listofallmembers>
+      <member refid="class_en_cond_strategies_1aa235bde1639237509b42b9a3fedfcf07" prot="public" virt="non-virtual"><scope>EnCondStrategies</scope><name>createCondStrategy</name></member>
+      <member refid="class_en_cond_strategies_1a58d9a0914bdc42a8e644a696e2ec0b0a" prot="public" virt="non-virtual"><scope>EnCondStrategies</scope><name>destroyCondStrategy</name></member>
+      <member refid="class_en_cond_strategies_1ac58ac27a7ab7fa0ddec5b716f0f727b6" prot="public" virt="non-virtual"><scope>EnCondStrategies</scope><name>getBuffer</name></member>
+      <member refid="class_en_cond_strategies_1aeb056b784018a0c2e44f7d940bb62703" prot="public" virt="non-virtual"><scope>EnCondStrategies</scope><name>getBufferSize</name></member>
+      <member refid="class_en_cond_strategies_1a86d084f4c40c4ba2038293fc8a977117" prot="public" virt="non-virtual"><scope>EnCondStrategies</scope><name>getCondStrategyId</name></member>
+      <member refid="class_en_cond_strategies_1a3049795980d088b6c23c1f0c5a3c9362" prot="private" virt="non-virtual"><scope>EnCondStrategies</scope><name>mBuffer</name></member>
+      <member refid="class_en_cond_strategies_1adcb4a7409bf06b0020fb84106425d983" prot="private" virt="non-virtual"><scope>EnCondStrategies</scope><name>mpCondStrategy</name></member>
+      <member refid="class_en_cond_strategies_1a26326b0df27019b9b2c2eca0d4a555be" prot="public" virt="virtual"><scope>EnCondStrategies</scope><name>~EnCondStrategies</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

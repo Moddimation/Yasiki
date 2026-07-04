@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File AXAux.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-axauxc">File AXAux.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_284807f63fc993a939ff676a07eb86c2/"><strong>ax</strong></a> <strong>&gt;</strong> <a href="./"><strong>AXAux.c</strong></a></p>
+<p><a href="../_a_x_aux_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/ax.h&gt;</code></li>
+<li><code>#include &lt;dolphin.h&gt;</code></li>
+<li><code>#include "AXPrivate.h"</code></li>
+</ul>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axauxadspread"><strong>__AXAuxADspRead</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axauxadspwrite"><strong>__AXAuxADspWrite</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axauxbdspread"><strong>__AXAuxBDspRead</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axauxbdspwrite"><strong>__AXAuxBDspWrite</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axauxcpureadwriteposition"><strong>__AXAuxCpuReadWritePosition</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axauxdspreadposition"><strong>__AXAuxDspReadPosition</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__axauxdspwriteposition"><strong>__AXAuxDspWritePosition</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#variable-__axcallbackauxa"><strong>__AXCallbackAuxA</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#variable-__axcallbackauxb"><strong>__AXCallbackAuxB</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axcontextauxa"><strong>__AXContextAuxA</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-__axcontextauxb"><strong>__AXContextAuxB</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axregisterauxacallback"><strong>AXRegisterAuxACallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *) callback, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-axregisterauxbcallback"><strong>AXRegisterAuxBCallback</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *) callback, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * context) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axauxinit"><strong>__AXAuxInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axauxquit"><strong>__AXAuxQuit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axgetauxainput"><strong>__AXGetAuxAInput</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axgetauxaoutput"><strong>__AXGetAuxAOutput</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axgetauxbinput"><strong>__AXGetAuxBInput</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axgetauxboutput"><strong>__AXGetAuxBOutput</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> * p) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__axprocessaux"><strong>__AXProcessAux</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__AXBufferAuxA</strong></a>[3][480]</td>
+<td style="text-align: left;"><a href="#function-align"><strong>ALIGN</strong></a> (32) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-__axauxadspread">variable __AXAuxADspRead</h3>
+<pre><code class="language-C++">s32* __AXAuxADspRead;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axauxadspwrite">variable __AXAuxADspWrite</h3>
+<pre><code class="language-C++">s32* __AXAuxADspWrite;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axauxbdspread">variable __AXAuxBDspRead</h3>
+<pre><code class="language-C++">s32* __AXAuxBDspRead;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axauxbdspwrite">variable __AXAuxBDspWrite</h3>
+<pre><code class="language-C++">s32* __AXAuxBDspWrite;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axauxcpureadwriteposition">variable __AXAuxCpuReadWritePosition</h3>
+<pre><code class="language-C++">u32 __AXAuxCpuReadWritePosition;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axauxdspreadposition">variable __AXAuxDspReadPosition</h3>
+<pre><code class="language-C++">u32 __AXAuxDspReadPosition;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axauxdspwriteposition">variable __AXAuxDspWritePosition</h3>
+<pre><code class="language-C++">u32 __AXAuxDspWritePosition;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axcallbackauxa">variable __AXCallbackAuxA</h3>
+<pre><code class="language-C++">void(* __AXCallbackAuxA) (void *, void *);
+</code></pre>
+<hr>
+
+<h3 id="variable-__axcallbackauxb">variable __AXCallbackAuxB</h3>
+<pre><code class="language-C++">void(* __AXCallbackAuxB) (void *, void *);
+</code></pre>
+<hr>
+
+<h3 id="variable-__axcontextauxa">variable __AXContextAuxA</h3>
+<pre><code class="language-C++">void* __AXContextAuxA;
+</code></pre>
+<hr>
+
+<h3 id="variable-__axcontextauxb">variable __AXContextAuxB</h3>
+<pre><code class="language-C++">void* __AXContextAuxB;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-axregisterauxacallback">function AXRegisterAuxACallback</h3>
+<pre><code class="language-C++">void AXRegisterAuxACallback (
+    void (*)( void *, void *) callback,
+    void * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-axregisterauxbcallback">function AXRegisterAuxBCallback</h3>
+<pre><code class="language-C++">void AXRegisterAuxBCallback (
+    void (*)( void *, void *) callback,
+    void * context
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axauxinit">function __AXAuxInit</h3>
+<pre><code class="language-C++">void __AXAuxInit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axauxquit">function __AXAuxQuit</h3>
+<pre><code class="language-C++">void __AXAuxQuit (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axgetauxainput">function __AXGetAuxAInput</h3>
+<pre><code class="language-C++">void __AXGetAuxAInput (
+    u32 * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axgetauxaoutput">function __AXGetAuxAOutput</h3>
+<pre><code class="language-C++">void __AXGetAuxAOutput (
+    u32 * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axgetauxbinput">function __AXGetAuxBInput</h3>
+<pre><code class="language-C++">void __AXGetAuxBInput (
+    u32 * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axgetauxboutput">function __AXGetAuxBOutput</h3>
+<pre><code class="language-C++">void __AXGetAuxBOutput (
+    u32 * p
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__axprocessaux">function __AXProcessAux</h3>
+<pre><code class="language-C++">void __AXProcessAux (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-align">function ALIGN</h3>
+<pre><code class="language-C++">static s32  __AXBufferAuxA [3][480] ALIGN (
+    32
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/ax/AXAux.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

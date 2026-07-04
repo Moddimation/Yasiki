@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="boot_8cpp" kind="file" language="C++">
+    <compoundname>boot.cpp</compoundname>
+    <includes refid="types_8h" local="no">types.h</includes>
+    <includes local="yes">Game/sdata.inc</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>macros.h</label>
+        <link refid="macros_8h"/>
+      </node>
+      <node id="2">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>boot.cpp</label>
+        <link refid="boot_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Game/sdata.inc</label>
+      </node>
+      <node id="3">
+        <label>dolphin/types.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="boot_8cpp_1a9ebf3ef149982355ce1058af978dca83" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>u8 static_data[]</type>
+        <definition>u8 static_data[] ALIGN</definition>
+        <argsstring>(32)</argsstring>
+        <name>ALIGN</name>
+        <param>
+          <type>32</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sequence/src/boot.cpp" line="4" column="23" declfile="decomp/Project/sources/Sequence/src/boot.cpp" declline="4" declcolumn="23"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8h" kindref="compound">types.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="boot_8cpp_1a9ebf3ef149982355ce1058af978dca83" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>u8<sp/>static_data[]<sp/><ref refid="macros_8h_1a4aa00a4448dea190c5ecb6166e6a9a18" kindref="member">ALIGN</ref><sp/>(32)<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>include<sp/>&quot;Game/sdata.inc&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*inline<sp/>sdata.arc<sp/>bytes*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="decomp/Project/sources/Sequence/src/boot.cpp"/>
+  </compounddef>
+</doxygen>

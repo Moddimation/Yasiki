@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSLink.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-oslinkc">File OSLink.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_c85f9e83f0f4b4374578811cecebda65/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSLink.c</strong></a></p>
+<p><a href="../_o_s_link_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+<li><code>#include &lt;string.h&gt;</code></li>
+<li><code>#include "dolphin/types.h"</code></li>
+<li><code>#include "OSPrivate.h"</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_module_queue/"><strong>OSModuleQueue</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>__OSModuleInfoList</strong></a></td>
+<td style="text-align: left;"><a href="#function-at_address"><strong>AT_ADDRESS</strong></a> (<a href="../os_8h/#define-os_base_cached"><strong>OS_BASE_CACHED</strong></a>| 0x30C8) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-oslink"><strong>OSLink</strong></a> (<a href="../struct_o_s_module_info/"><strong>OSModuleInfo</strong></a> * newModule, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * bss) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osnotifylink"><strong>OSNotifyLink</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osnotifyunlink"><strong>OSNotifyUnlink</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetstringtable"><strong>OSSetStringTable</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * stringTable) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-osunlink"><strong>OSUnlink</strong></a> (<a href="../struct_o_s_module_info/"><strong>OSModuleInfo</strong></a> * oldModule) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__osmoduleinit"><strong>__OSModuleInit</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-relocate"><strong>Relocate</strong></a> (<a href="../struct_o_s_module_header/"><strong>OSModuleHeader</strong></a> * newModule, <a href="../struct_o_s_module_header/"><strong>OSModuleHeader</strong></a> * module) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-undo"><strong>Undo</strong></a> (<a href="../struct_o_s_module_header/"><strong>OSModuleHeader</strong></a> * newModule, <a href="../struct_o_s_module_header/"><strong>OSModuleHeader</strong></a> * module) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-dequeue_info"><strong>DEQUEUE_INFO</strong></a> (info, queue, link) <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-elf32_r_info"><strong>ELF32_R_INFO</strong></a> (s, t) <code>(((s) &amp;lt;&amp;lt; 8) + ([**u16**](types_8h.md#typedef-u16))([**t**](_c_a_r_d_private_8h.md#define-card_max_mount_step)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-elf32_r_sym"><strong>ELF32_R_SYM</strong></a> (i) <code>(([**i**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) &amp;gt;&amp;gt; 8)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-elf32_r_type"><strong>ELF32_R_TYPE</strong></a> (i) <code>(([**u16**](types_8h.md#typedef-u16))([**i**](_c_a_r_d_private_8h.md#define-card_max_mount_step)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-enqueue_info"><strong>ENQUEUE_INFO</strong></a> (queue, info, link) <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr14"><strong>R_PPC_ADDR14</strong></a>  <code>7</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr14_brntaken"><strong>R_PPC_ADDR14_BRNTAKEN</strong></a>  <code>9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr14_brtaken"><strong>R_PPC_ADDR14_BRTAKEN</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr16"><strong>R_PPC_ADDR16</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr16_ha"><strong>R_PPC_ADDR16_HA</strong></a>  <code>6</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr16_hi"><strong>R_PPC_ADDR16_HI</strong></a>  <code>5</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr16_lo"><strong>R_PPC_ADDR16_LO</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr24"><strong>R_PPC_ADDR24</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr30"><strong>R_PPC_ADDR30</strong></a>  <code>37</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_addr32"><strong>R_PPC_ADDR32</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_copy"><strong>R_PPC_COPY</strong></a>  <code>19</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_bit_fld"><strong>R_PPC_EMB_BIT_FLD</strong></a>  <code>115</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_mrkref"><strong>R_PPC_EMB_MRKREF</strong></a>  <code>110</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_naddr16"><strong>R_PPC_EMB_NADDR16</strong></a>  <code>102</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_naddr16_ha"><strong>R_PPC_EMB_NADDR16_HA</strong></a>  <code>105</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_naddr16_hi"><strong>R_PPC_EMB_NADDR16_HI</strong></a>  <code>104</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_naddr16_lo"><strong>R_PPC_EMB_NADDR16_LO</strong></a>  <code>103</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_naddr32"><strong>R_PPC_EMB_NADDR32</strong></a>  <code>101</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_relsda"><strong>R_PPC_EMB_RELSDA</strong></a>  <code>116</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_relsec16"><strong>R_PPC_EMB_RELSEC16</strong></a>  <code>111</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_relst_ha"><strong>R_PPC_EMB_RELST_HA</strong></a>  <code>114</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_relst_hi"><strong>R_PPC_EMB_RELST_HI</strong></a>  <code>113</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_relst_lo"><strong>R_PPC_EMB_RELST_LO</strong></a>  <code>112</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_sda21"><strong>R_PPC_EMB_SDA21</strong></a>  <code>109</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_sda2i16"><strong>R_PPC_EMB_SDA2I16</strong></a>  <code>107</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_sda2rel"><strong>R_PPC_EMB_SDA2REL</strong></a>  <code>108</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_emb_sdai16"><strong>R_PPC_EMB_SDAI16</strong></a>  <code>106</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_glob_dat"><strong>R_PPC_GLOB_DAT</strong></a>  <code>20</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_got16"><strong>R_PPC_GOT16</strong></a>  <code>14</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_got16_ha"><strong>R_PPC_GOT16_HA</strong></a>  <code>17</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_got16_hi"><strong>R_PPC_GOT16_HI</strong></a>  <code>16</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_got16_lo"><strong>R_PPC_GOT16_LO</strong></a>  <code>15</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_jmp_slot"><strong>R_PPC_JMP_SLOT</strong></a>  <code>21</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_local24pc"><strong>R_PPC_LOCAL24PC</strong></a>  <code>23</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_none"><strong>R_PPC_NONE</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_plt16_ha"><strong>R_PPC_PLT16_HA</strong></a>  <code>31</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_plt16_lo"><strong>R_PPC_PLT16_LO</strong></a>  <code>29</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_plt32"><strong>R_PPC_PLT32</strong></a>  <code>27</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_pltrel24"><strong>R_PPC_PLTREL24</strong></a>  <code>18</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_pltrel32"><strong>R_PPC_PLTREL32</strong></a>  <code>28</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_rel14"><strong>R_PPC_REL14</strong></a>  <code>11</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_rel14_brntaken"><strong>R_PPC_REL14_BRNTAKEN</strong></a>  <code>13</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_rel14_brtaken"><strong>R_PPC_REL14_BRTAKEN</strong></a>  <code>12</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_rel24"><strong>R_PPC_REL24</strong></a>  <code>10</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_rel32"><strong>R_PPC_REL32</strong></a>  <code>26</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_relative"><strong>R_PPC_RELATIVE</strong></a>  <code>22</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_sdarel16"><strong>R_PPC_SDAREL16</strong></a>  <code>32</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_sectoff"><strong>R_PPC_SECTOFF</strong></a>  <code>33</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_sectoff_ha"><strong>R_PPC_SECTOFF_HA</strong></a>  <code>36</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_sectoff_hi"><strong>R_PPC_SECTOFF_HI</strong></a>  <code>35</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_sectoff_lo"><strong>R_PPC_SECTOFF_LO</strong></a>  <code>34</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_uaddr16"><strong>R_PPC_UADDR16</strong></a>  <code>25</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppc_uaddr32"><strong>R_PPC_UADDR32</strong></a>  <code>24</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-r_ppl_plt16_hi"><strong>R_PPL_PLT16_HI</strong></a>  <code>30</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-shn_abs"><strong>SHN_ABS</strong></a>  <code>0xfff1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-shn_common"><strong>SHN_COMMON</strong></a>  <code>0xfff2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-shn_hiproc"><strong>SHN_HIPROC</strong></a>  <code>0xff1f</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-shn_hireserve"><strong>SHN_HIRESERVE</strong></a>  <code>0xffff</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-shn_loproc"><strong>SHN_LOPROC</strong></a>  <code>0xff00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-shn_loreserve"><strong>SHN_LORESERVE</strong></a>  <code>0xff00</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-shn_undef"><strong>SHN_UNDEF</strong></a>  <code>0</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-at_address">function AT_ADDRESS</h3>
+<pre><code class="language-C++">OSModuleQueue  __OSModuleInfoList AT_ADDRESS (
+    OS_BASE_CACHED | 0x30C8
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oslink">function OSLink</h3>
+<pre><code class="language-C++">BOOL OSLink (
+    OSModuleInfo * newModule,
+    void * bss
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osnotifylink">function OSNotifyLink</h3>
+<pre><code class="language-C++">void OSNotifyLink () 
+</code></pre>
+<hr>
+
+<h3 id="function-osnotifyunlink">function OSNotifyUnlink</h3>
+<pre><code class="language-C++">void OSNotifyUnlink () 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetstringtable">function OSSetStringTable</h3>
+<pre><code class="language-C++">void OSSetStringTable (
+    const  void * stringTable
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osunlink">function OSUnlink</h3>
+<pre><code class="language-C++">BOOL OSUnlink (
+    OSModuleInfo * oldModule
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__osmoduleinit">function __OSModuleInit</h3>
+<pre><code class="language-C++">void __OSModuleInit (
+    void
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-relocate">function Relocate</h3>
+<pre><code class="language-C++">static BOOL Relocate (
+    OSModuleHeader * newModule,
+    OSModuleHeader * module
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-undo">function Undo</h3>
+<pre><code class="language-C++">static BOOL Undo (
+    OSModuleHeader * newModule,
+    OSModuleHeader * module
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-dequeue_info">define DEQUEUE_INFO</h3>
+<pre><code class="language-C++">#define DEQUEUE_INFO (
+    info,
+    queue,
+    link
+) `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-elf32_r_info">define ELF32_R_INFO</h3>
+<pre><code class="language-C++">#define ELF32_R_INFO (
+    s,
+    t
+) `(((s) &lt;&lt; 8) + ( u16 )( t ))`
+</code></pre>
+<hr>
+
+<h3 id="define-elf32_r_sym">define ELF32_R_SYM</h3>
+<pre><code class="language-C++">#define ELF32_R_SYM (
+    i
+) `(( i ) &gt;&gt; 8)`
+</code></pre>
+<hr>
+
+<h3 id="define-elf32_r_type">define ELF32_R_TYPE</h3>
+<pre><code class="language-C++">#define ELF32_R_TYPE (
+    i
+) `(( u16 )( i ))`
+</code></pre>
+<hr>
+
+<h3 id="define-enqueue_info">define ENQUEUE_INFO</h3>
+<pre><code class="language-C++">#define ENQUEUE_INFO (
+    queue,
+    info,
+    link
+) `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr14">define R_PPC_ADDR14</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR14 `7`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr14_brntaken">define R_PPC_ADDR14_BRNTAKEN</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR14_BRNTAKEN `9`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr14_brtaken">define R_PPC_ADDR14_BRTAKEN</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR14_BRTAKEN `8`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr16">define R_PPC_ADDR16</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR16 `3`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr16_ha">define R_PPC_ADDR16_HA</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR16_HA `6`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr16_hi">define R_PPC_ADDR16_HI</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR16_HI `5`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr16_lo">define R_PPC_ADDR16_LO</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR16_LO `4`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr24">define R_PPC_ADDR24</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR24 `2`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr30">define R_PPC_ADDR30</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR30 `37`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_addr32">define R_PPC_ADDR32</h3>
+<pre><code class="language-C++">#define R_PPC_ADDR32 `1`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_copy">define R_PPC_COPY</h3>
+<pre><code class="language-C++">#define R_PPC_COPY `19`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_bit_fld">define R_PPC_EMB_BIT_FLD</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_BIT_FLD `115`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_mrkref">define R_PPC_EMB_MRKREF</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_MRKREF `110`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_naddr16">define R_PPC_EMB_NADDR16</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_NADDR16 `102`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_naddr16_ha">define R_PPC_EMB_NADDR16_HA</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_NADDR16_HA `105`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_naddr16_hi">define R_PPC_EMB_NADDR16_HI</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_NADDR16_HI `104`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_naddr16_lo">define R_PPC_EMB_NADDR16_LO</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_NADDR16_LO `103`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_naddr32">define R_PPC_EMB_NADDR32</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_NADDR32 `101`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_relsda">define R_PPC_EMB_RELSDA</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_RELSDA `116`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_relsec16">define R_PPC_EMB_RELSEC16</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_RELSEC16 `111`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_relst_ha">define R_PPC_EMB_RELST_HA</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_RELST_HA `114`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_relst_hi">define R_PPC_EMB_RELST_HI</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_RELST_HI `113`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_relst_lo">define R_PPC_EMB_RELST_LO</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_RELST_LO `112`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_sda21">define R_PPC_EMB_SDA21</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_SDA21 `109`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_sda2i16">define R_PPC_EMB_SDA2I16</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_SDA2I16 `107`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_sda2rel">define R_PPC_EMB_SDA2REL</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_SDA2REL `108`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_emb_sdai16">define R_PPC_EMB_SDAI16</h3>
+<pre><code class="language-C++">#define R_PPC_EMB_SDAI16 `106`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_glob_dat">define R_PPC_GLOB_DAT</h3>
+<pre><code class="language-C++">#define R_PPC_GLOB_DAT `20`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_got16">define R_PPC_GOT16</h3>
+<pre><code class="language-C++">#define R_PPC_GOT16 `14`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_got16_ha">define R_PPC_GOT16_HA</h3>
+<pre><code class="language-C++">#define R_PPC_GOT16_HA `17`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_got16_hi">define R_PPC_GOT16_HI</h3>
+<pre><code class="language-C++">#define R_PPC_GOT16_HI `16`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_got16_lo">define R_PPC_GOT16_LO</h3>
+<pre><code class="language-C++">#define R_PPC_GOT16_LO `15`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_jmp_slot">define R_PPC_JMP_SLOT</h3>
+<pre><code class="language-C++">#define R_PPC_JMP_SLOT `21`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_local24pc">define R_PPC_LOCAL24PC</h3>
+<pre><code class="language-C++">#define R_PPC_LOCAL24PC `23`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_none">define R_PPC_NONE</h3>
+<pre><code class="language-C++">#define R_PPC_NONE `0`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_plt16_ha">define R_PPC_PLT16_HA</h3>
+<pre><code class="language-C++">#define R_PPC_PLT16_HA `31`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_plt16_lo">define R_PPC_PLT16_LO</h3>
+<pre><code class="language-C++">#define R_PPC_PLT16_LO `29`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_plt32">define R_PPC_PLT32</h3>
+<pre><code class="language-C++">#define R_PPC_PLT32 `27`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_pltrel24">define R_PPC_PLTREL24</h3>
+<pre><code class="language-C++">#define R_PPC_PLTREL24 `18`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_pltrel32">define R_PPC_PLTREL32</h3>
+<pre><code class="language-C++">#define R_PPC_PLTREL32 `28`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_rel14">define R_PPC_REL14</h3>
+<pre><code class="language-C++">#define R_PPC_REL14 `11`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_rel14_brntaken">define R_PPC_REL14_BRNTAKEN</h3>
+<pre><code class="language-C++">#define R_PPC_REL14_BRNTAKEN `13`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_rel14_brtaken">define R_PPC_REL14_BRTAKEN</h3>
+<pre><code class="language-C++">#define R_PPC_REL14_BRTAKEN `12`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_rel24">define R_PPC_REL24</h3>
+<pre><code class="language-C++">#define R_PPC_REL24 `10`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_rel32">define R_PPC_REL32</h3>
+<pre><code class="language-C++">#define R_PPC_REL32 `26`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_relative">define R_PPC_RELATIVE</h3>
+<pre><code class="language-C++">#define R_PPC_RELATIVE `22`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_sdarel16">define R_PPC_SDAREL16</h3>
+<pre><code class="language-C++">#define R_PPC_SDAREL16 `32`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_sectoff">define R_PPC_SECTOFF</h3>
+<pre><code class="language-C++">#define R_PPC_SECTOFF `33`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_sectoff_ha">define R_PPC_SECTOFF_HA</h3>
+<pre><code class="language-C++">#define R_PPC_SECTOFF_HA `36`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_sectoff_hi">define R_PPC_SECTOFF_HI</h3>
+<pre><code class="language-C++">#define R_PPC_SECTOFF_HI `35`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_sectoff_lo">define R_PPC_SECTOFF_LO</h3>
+<pre><code class="language-C++">#define R_PPC_SECTOFF_LO `34`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_uaddr16">define R_PPC_UADDR16</h3>
+<pre><code class="language-C++">#define R_PPC_UADDR16 `25`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppc_uaddr32">define R_PPC_UADDR32</h3>
+<pre><code class="language-C++">#define R_PPC_UADDR32 `24`
+</code></pre>
+<hr>
+
+<h3 id="define-r_ppl_plt16_hi">define R_PPL_PLT16_HI</h3>
+<pre><code class="language-C++">#define R_PPL_PLT16_HI `30`
+</code></pre>
+<hr>
+
+<h3 id="define-shn_abs">define SHN_ABS</h3>
+<pre><code class="language-C++">#define SHN_ABS `0xfff1`
+</code></pre>
+<hr>
+
+<h3 id="define-shn_common">define SHN_COMMON</h3>
+<pre><code class="language-C++">#define SHN_COMMON `0xfff2`
+</code></pre>
+<hr>
+
+<h3 id="define-shn_hiproc">define SHN_HIPROC</h3>
+<pre><code class="language-C++">#define SHN_HIPROC `0xff1f`
+</code></pre>
+<hr>
+
+<h3 id="define-shn_hireserve">define SHN_HIRESERVE</h3>
+<pre><code class="language-C++">#define SHN_HIRESERVE `0xffff`
+</code></pre>
+<hr>
+
+<h3 id="define-shn_loproc">define SHN_LOPROC</h3>
+<pre><code class="language-C++">#define SHN_LOPROC `0xff00`
+</code></pre>
+<hr>
+
+<h3 id="define-shn_loreserve">define SHN_LORESERVE</h3>
+<pre><code class="language-C++">#define SHN_LORESERVE `0xff00`
+</code></pre>
+<hr>
+
+<h3 id="define-shn_undef">define SHN_UNDEF</h3>
+<pre><code class="language-C++">#define SHN_UNDEF `0`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/os/OSLink.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

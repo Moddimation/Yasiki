@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_o_s_thread" kind="struct" language="C++" prot="public">
+    <compoundname>OSThread</compoundname>
+    <includes refid="_o_s_thread_8h" local="no">OSThread.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_o_s_thread_1aeeb8aea4eec4f7d37d165615fd535b8d" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_context" kindref="compound">OSContext</ref></type>
+        <definition>OSContext OSThread::context</definition>
+        <argsstring></argsstring>
+        <name>context</name>
+        <qualifiedname>OSThread::context</qualifiedname>
+        <briefdescription>
+<para>0x00 register context </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="49" column="15" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a4dc00e8b9758c58fbdbb73350637f805" compoundref="_o_s_thread_8c" startline="581" endline="628">OSCancelThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a16ac1f5159a0135c7ff65684998fbe64" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref></type>
+        <definition>u16 OSThread::state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <qualifiedname>OSThread::state</qualifiedname>
+        <briefdescription>
+<para>0x2C8 OS_THREAD_STATE_* </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="51" column="16" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="51" bodyend="-1"/>
+        <referencedby refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" compoundref="_o_s_mutex_8c" startline="262" endline="314">__OSCheckMutex</referencedby>
+        <referencedby refid="_o_s_thread_8c_1aeb295c080b30ed8fdef80d4901399775" compoundref="_o_s_thread_8c" startline="202" endline="220">__OSIsThreadActive</referencedby>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_reset_8c_1afd6e0ba5a2f96cd39ff3e4146be34d44" compoundref="_o_s_reset_8c" startline="176" endline="192">KillThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a4dc00e8b9758c58fbdbb73350637f805" compoundref="_o_s_thread_8c" startline="581" endline="628">OSCancelThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a5c8cbb581c038073ea97105cbc389e73" compoundref="_o_s_thread_8c" startline="666" endline="683">OSDetachThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1ac327de41cf5f326efb0be767a4e226b6" compoundref="_o_s_thread_8c" startline="891" endline="898">OSGetIdleFunction</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a0bec4859c6c3575439660463ab58fc14" compoundref="_o_s_thread_8c" startline="196" endline="199">OSIsThreadTerminated</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a9413e35bdce0900321294e90a6510a45" compoundref="_o_s_thread_8c" startline="631" endline="663">OSJoinThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a1aacb698b0ee2fe116a332baaf949da0" compoundref="_o_s_thread_8c" startline="686" endline="728">OSResumeThread</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a055233781b19493d8f635cd92a4b7054" compoundref="_o_s_thread_8c" startline="871" endline="888">OSSetIdleFunction</referencedby>
+        <referencedby refid="_o_s_thread_8h_1aa0be839d600936da8c3b976b731ead02" compoundref="_o_s_thread_8c" startline="830" endline="862">OSSetThreadPriority</referencedby>
+        <referencedby refid="_o_s_thread_8h_1ae270edc601974a1841d45aceb293f294" compoundref="_o_s_thread_8c" startline="731" endline="773">OSSuspendThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" compoundref="_o_s_thread_8c" startline="805" endline="827">OSWakeupThread</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a7a65bd2a5f3e70088fd9b36db40926ad" compoundref="_o_s_thread_8c" startline="308" endline="338">SetEffectivePriority</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a5badae2bbe4249f8bc477352df1ad3f6" compoundref="_o_s_thread_8c" startline="251" endline="265">SetRun</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a5b16f1d9a607516405aa9bd6d05539f4" compoundref="_o_s_thread_8c" startline="268" endline="287">UnsetRun</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1ae2577b6d8b148ecdfdb3210ae764d0be" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref></type>
+        <definition>u16 OSThread::attr</definition>
+        <argsstring></argsstring>
+        <name>attr</name>
+        <qualifiedname>OSThread::attr</qualifiedname>
+        <briefdescription>
+<para>0x2CA OS_THREAD_ATTR_* </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="52" column="16" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a4dc00e8b9758c58fbdbb73350637f805" compoundref="_o_s_thread_8c" startline="581" endline="628">OSCancelThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a5c8cbb581c038073ea97105cbc389e73" compoundref="_o_s_thread_8c" startline="666" endline="683">OSDetachThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a9413e35bdce0900321294e90a6510a45" compoundref="_o_s_thread_8c" startline="631" endline="663">OSJoinThread</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a4ba637f1b0992df7986ed6f018c16305" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 OSThread::suspend</definition>
+        <argsstring></argsstring>
+        <name>suspend</name>
+        <qualifiedname>OSThread::suspend</qualifiedname>
+        <briefdescription>
+<para>0x2CC suspended if the count is greater than zero </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="53" column="16" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="53" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1a7273bdc1fd7324c51fed91595266a7d0" compoundref="_o_s_thread_8c" startline="365" endline="379">__OSPromoteThread</referencedby>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a4dc00e8b9758c58fbdbb73350637f805" compoundref="_o_s_thread_8c" startline="581" endline="628">OSCancelThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a0074df288baf29c18a7c823c258ba353" compoundref="_o_s_thread_8c" startline="185" endline="193">OSIsThreadSuspended</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a1aacb698b0ee2fe116a332baaf949da0" compoundref="_o_s_thread_8c" startline="686" endline="728">OSResumeThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1ae270edc601974a1841d45aceb293f294" compoundref="_o_s_thread_8c" startline="731" endline="773">OSSuspendThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" compoundref="_o_s_thread_8c" startline="805" endline="827">OSWakeupThread</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a7a65bd2a5f3e70088fd9b36db40926ad" compoundref="_o_s_thread_8c" startline="308" endline="338">SetEffectivePriority</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a5badae2bbe4249f8bc477352df1ad3f6" compoundref="_o_s_thread_8c" startline="251" endline="265">SetRun</referencedby>
+        <referencedby refid="_o_s_thread_8c_1ae0f380d6433f304bd1309dcf9b988115" compoundref="_o_s_thread_8c" startline="341" endline="362">UpdatePriority</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" prot="public" static="no" mutable="no">
+        <type><ref refid="_o_s_thread_8h_1a560cc5a88212e677890e0d10ec37dc27" kindref="member">OSPriority</ref></type>
+        <definition>OSPriority OSThread::priority</definition>
+        <argsstring></argsstring>
+        <name>priority</name>
+        <qualifiedname>OSThread::priority</qualifiedname>
+        <briefdescription>
+<para>0x2D0 effective scheduling priority </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="54" column="16" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="54" bodyend="-1"/>
+        <referencedby refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" compoundref="_o_s_mutex_8c" startline="262" endline="314">__OSCheckMutex</referencedby>
+        <referencedby refid="_o_s_private_8h_1aeec7b3d334173acfa47f9e8fa69390cd" compoundref="_o_s_thread_8c" startline="290" endline="305">__OSGetEffectivePriority</referencedby>
+        <referencedby refid="_o_s_private_8h_1a7273bdc1fd7324c51fed91595266a7d0" compoundref="_o_s_thread_8c" startline="365" endline="379">__OSPromoteThread</referencedby>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+        <referencedby refid="_o_s_mutex_8h_1ac540b8ab45b64548e31395f193f0fc49" compoundref="_o_s_mutex_8c" startline="74" endline="113">OSLockMutex</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a1aacb698b0ee2fe116a332baaf949da0" compoundref="_o_s_thread_8c" startline="686" endline="728">OSResumeThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1ae270edc601974a1841d45aceb293f294" compoundref="_o_s_thread_8c" startline="731" endline="773">OSSuspendThread</referencedby>
+        <referencedby refid="_o_s_mutex_8h_1abdcea1245d3bf588114b33e213892d6f" compoundref="_o_s_mutex_8c" startline="116" endline="146">OSUnlockMutex</referencedby>
+        <referencedby refid="_o_s_mutex_8h_1ae1e07e157d68fb2149cc5ac69628640f" compoundref="_o_s_mutex_8c" startline="203" endline="236">OSWaitCond</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a7a65bd2a5f3e70088fd9b36db40926ad" compoundref="_o_s_thread_8c" startline="308" endline="338">SetEffectivePriority</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a5badae2bbe4249f8bc477352df1ad3f6" compoundref="_o_s_thread_8c" startline="251" endline="265">SetRun</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a5b16f1d9a607516405aa9bd6d05539f4" compoundref="_o_s_thread_8c" startline="268" endline="287">UnsetRun</referencedby>
+        <referencedby refid="_o_s_thread_8c_1ae0f380d6433f304bd1309dcf9b988115" compoundref="_o_s_thread_8c" startline="341" endline="362">UpdatePriority</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a43285802590d187819ae970ccc5399f5" prot="public" static="no" mutable="no">
+        <type><ref refid="_o_s_thread_8h_1a560cc5a88212e677890e0d10ec37dc27" kindref="member">OSPriority</ref></type>
+        <definition>OSPriority OSThread::base</definition>
+        <argsstring></argsstring>
+        <name>base</name>
+        <qualifiedname>OSThread::base</qualifiedname>
+        <briefdescription>
+<para>0x2D4 base scheduling priority </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="55" column="16" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="55" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1aeec7b3d334173acfa47f9e8fa69390cd" compoundref="_o_s_thread_8c" startline="290" endline="305">__OSGetEffectivePriority</referencedby>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a853120b6d607d1100ff2da86ca3739fb" compoundref="_o_s_thread_8c" startline="865" endline="868">OSGetThreadPriority</referencedby>
+        <referencedby refid="_o_s_thread_8h_1aa0be839d600936da8c3b976b731ead02" compoundref="_o_s_thread_8c" startline="830" endline="862">OSSetThreadPriority</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1ab2f4ecfc72c57c1a78481982fce8fb1c" prot="public" static="no" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void* OSThread::val</definition>
+        <argsstring></argsstring>
+        <name>val</name>
+        <qualifiedname>OSThread::val</qualifiedname>
+        <briefdescription>
+<para>0x2D8 exit value </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="56" column="15" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="56" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a9413e35bdce0900321294e90a6510a45" compoundref="_o_s_thread_8c" startline="631" endline="663">OSJoinThread</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1ad4db9ecdbeb784a78a7d6abf52f1ff57" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_thread_queue" kindref="compound">OSThreadQueue</ref> *</type>
+        <definition>OSThreadQueue* OSThread::queue</definition>
+        <argsstring></argsstring>
+        <name>queue</name>
+        <qualifiedname>OSThread::queue</qualifiedname>
+        <briefdescription>
+<para>0x2DC queue thread is on </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="58" column="19" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="58" bodyend="-1"/>
+        <referencedby refid="_o_s_thread_8h_1a4dc00e8b9758c58fbdbb73350637f805" compoundref="_o_s_thread_8c" startline="581" endline="628">OSCancelThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a1aacb698b0ee2fe116a332baaf949da0" compoundref="_o_s_thread_8c" startline="686" endline="728">OSResumeThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1ae270edc601974a1841d45aceb293f294" compoundref="_o_s_thread_8c" startline="731" endline="773">OSSuspendThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a233d3d678de8dcccceb18424e24950b8" compoundref="_o_s_thread_8c" startline="805" endline="827">OSWakeupThread</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a7a65bd2a5f3e70088fd9b36db40926ad" compoundref="_o_s_thread_8c" startline="308" endline="338">SetEffectivePriority</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a5badae2bbe4249f8bc477352df1ad3f6" compoundref="_o_s_thread_8c" startline="251" endline="265">SetRun</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a5b16f1d9a607516405aa9bd6d05539f4" compoundref="_o_s_thread_8c" startline="268" endline="287">UnsetRun</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_thread_link" kindref="compound">OSThreadLink</ref></type>
+        <definition>OSThreadLink OSThread::link</definition>
+        <argsstring></argsstring>
+        <name>link</name>
+        <qualifiedname>OSThread::link</qualifiedname>
+        <briefdescription>
+<para>0x2E0 queue link </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="59" column="20" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="59" bodyend="-1"/>
+        <referencedby refid="_o_s_mutex_8c_1ab5aedd62b4344933225525dc73d3184d" compoundref="_o_s_mutex_8c" startline="262" endline="314">__OSCheckMutex</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a666b92c5f69ede02ed68effe166bfcb1" compoundref="_o_s_thread_8c" startline="901" endline="927">CheckThreadQueue</referencedby>
+        <referencedby refid="_o_s_thread_8c_1aacebc8f6f7092ea4fdca70bc438d9f99" compoundref="_o_s_thread_8c" startline="930" endline="944">IsMember</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a7513c4819c4536517d66e65b939135dc" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_thread_queue" kindref="compound">OSThreadQueue</ref></type>
+        <definition>OSThreadQueue OSThread::queueJoin</definition>
+        <argsstring></argsstring>
+        <name>queueJoin</name>
+        <qualifiedname>OSThread::queueJoin</qualifiedname>
+        <briefdescription>
+<para>0x2E8 list of threads waiting for termination (join) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="61" column="19" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="61" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a4dc00e8b9758c58fbdbb73350637f805" compoundref="_o_s_thread_8c" startline="581" endline="628">OSCancelThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a5c8cbb581c038073ea97105cbc389e73" compoundref="_o_s_thread_8c" startline="666" endline="683">OSDetachThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a9413e35bdce0900321294e90a6510a45" compoundref="_o_s_thread_8c" startline="631" endline="663">OSJoinThread</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a3e0d8b8f33e95c09dce31b0205d87a1b" prot="public" static="no" mutable="no">
+        <type><ref refid="_o_s_thread_8h_1a42b7c5a07043d7f6c8324f51ac1747c8" kindref="member">OSMutex</ref> *</type>
+        <definition>OSMutex* OSThread::mutex</definition>
+        <argsstring></argsstring>
+        <name>mutex</name>
+        <qualifiedname>OSThread::mutex</qualifiedname>
+        <briefdescription>
+<para>0x2F0 mutex trying to lock </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="63" column="17" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="63" bodyend="-1"/>
+        <referencedby refid="_o_s_mutex_8c_1a44139aecb52285e28ee357e6fb07e9df" compoundref="_o_s_mutex_8c" startline="317" endline="331">__OSCheckDeadLock</referencedby>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a4dc00e8b9758c58fbdbb73350637f805" compoundref="_o_s_thread_8c" startline="581" endline="628">OSCancelThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a1aacb698b0ee2fe116a332baaf949da0" compoundref="_o_s_thread_8c" startline="686" endline="728">OSResumeThread</referencedby>
+        <referencedby refid="_o_s_thread_8h_1ae270edc601974a1841d45aceb293f294" compoundref="_o_s_thread_8c" startline="731" endline="773">OSSuspendThread</referencedby>
+        <referencedby refid="_o_s_thread_8c_1a7a65bd2a5f3e70088fd9b36db40926ad" compoundref="_o_s_thread_8c" startline="308" endline="338">SetEffectivePriority</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a5b7c70a4a77604d3092c9143e3ecadee" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_mutex_queue" kindref="compound">OSMutexQueue</ref></type>
+        <definition>OSMutexQueue OSThread::queueMutex</definition>
+        <argsstring></argsstring>
+        <name>queueMutex</name>
+        <qualifiedname>OSThread::queueMutex</qualifiedname>
+        <briefdescription>
+<para>0x2F4 list of mutexes owned </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="64" column="18" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="64" bodyend="-1"/>
+        <referencedby refid="_o_s_mutex_8c_1af756730c8323a5b414eac45cd13aeb48" compoundref="_o_s_mutex_8c" startline="334" endline="352">__OSCheckMutexes</referencedby>
+        <referencedby refid="_o_s_private_8h_1aeec7b3d334173acfa47f9e8fa69390cd" compoundref="_o_s_thread_8c" startline="290" endline="305">__OSGetEffectivePriority</referencedby>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_mutex_8c_1a1aa6bb203afd1d6771603ffdf5dcb882" compoundref="_o_s_mutex_8c" startline="149" endline="162">__OSUnlockAllMutex</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a06443615b933acfc679c238fd1ca6ed1" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_o_s_thread_link" kindref="compound">OSThreadLink</ref></type>
+        <definition>OSThreadLink OSThread::linkActive</definition>
+        <argsstring></argsstring>
+        <name>linkActive</name>
+        <qualifiedname>OSThread::linkActive</qualifiedname>
+        <briefdescription>
+<para>0x2FC link of all threads for debugging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="66" column="18" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="66" bodyend="-1"/>
+        <referencedby refid="_o_s_reset_8c_1afd6e0ba5a2f96cd39ff3e4146be34d44" compoundref="_o_s_reset_8c" startline="176" endline="192">KillThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a5232f1d5f0c435fd1222284b2dbdf004" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref> *</type>
+        <definition>u8* OSThread::stackBase</definition>
+        <argsstring></argsstring>
+        <name>stackBase</name>
+        <qualifiedname>OSThread::stackBase</qualifiedname>
+        <briefdescription>
+<para>0x304 the thread&apos;s designated stack (high address) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="68" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_o_s_thread_1a944dd12ea82e9629440efb6eef50073b" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref> *</type>
+        <definition>u32* OSThread::stackEnd</definition>
+        <argsstring></argsstring>
+        <name>stackEnd</name>
+        <qualifiedname>OSThread::stackEnd</qualifiedname>
+        <briefdescription>
+<para>0x308 last word of stack (low address) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="69" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="69" bodyend="-1"/>
+        <referencedby refid="_o_s_private_8h_1abf027e983c90d86f31b664bffd8229c9" compoundref="_o_s_thread_8c" startline="117" endline="156">__OSThreadInit</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a3126785f6a22dbc7716fc5ca2a153663" compoundref="_o_s_thread_8c" startline="956" endline="1052">OSCheckActiveThreads</referencedby>
+        <referencedby refid="_o_s_thread_8h_1a047cb728bd16efc02bb515d13b140b79" compoundref="_o_s_thread_8c" startline="481" endline="539">OSCreateThread</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>OSContext</label>
+        <link refid="struct_o_s_context"/>
+      </node>
+      <node id="5">
+        <label>OSMutex</label>
+        <link refid="struct_o_s_mutex"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>queue</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>thread</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>link</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>OSMutexLink</label>
+        <link refid="struct_o_s_mutex_link"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>OSMutexQueue</label>
+        <link refid="struct_o_s_mutex_queue"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OSThread</label>
+        <link refid="struct_o_s_thread"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>context</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>queue</edgelabel>
+          <edgelabel>queueJoin</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>link</edgelabel>
+          <edgelabel>linkActive</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>mutex</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>queueMutex</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>OSThreadLink</label>
+        <link refid="struct_o_s_thread_link"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>OSThreadQueue</label>
+        <link refid="struct_o_s_thread_queue"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>head</edgelabel>
+          <edgelabel>tail</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/DolphinSDK/include/dolphin/os/OSThread.h" line="47" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/os/OSThread.h" bodystart="48" bodyend="70"/>
+    <listofallmembers>
+      <member refid="struct_o_s_thread_1ae2577b6d8b148ecdfdb3210ae764d0be" prot="public" virt="non-virtual"><scope>OSThread</scope><name>attr</name></member>
+      <member refid="struct_o_s_thread_1a43285802590d187819ae970ccc5399f5" prot="public" virt="non-virtual"><scope>OSThread</scope><name>base</name></member>
+      <member refid="struct_o_s_thread_1aeeb8aea4eec4f7d37d165615fd535b8d" prot="public" virt="non-virtual"><scope>OSThread</scope><name>context</name></member>
+      <member refid="struct_o_s_thread_1ac27abf0e8bb8c9f904cd31da317a32d1" prot="public" virt="non-virtual"><scope>OSThread</scope><name>link</name></member>
+      <member refid="struct_o_s_thread_1a06443615b933acfc679c238fd1ca6ed1" prot="public" virt="non-virtual"><scope>OSThread</scope><name>linkActive</name></member>
+      <member refid="struct_o_s_thread_1a3e0d8b8f33e95c09dce31b0205d87a1b" prot="public" virt="non-virtual"><scope>OSThread</scope><name>mutex</name></member>
+      <member refid="struct_o_s_thread_1a24378e10983cdaa6273b613c1804d633" prot="public" virt="non-virtual"><scope>OSThread</scope><name>priority</name></member>
+      <member refid="struct_o_s_thread_1ad4db9ecdbeb784a78a7d6abf52f1ff57" prot="public" virt="non-virtual"><scope>OSThread</scope><name>queue</name></member>
+      <member refid="struct_o_s_thread_1a7513c4819c4536517d66e65b939135dc" prot="public" virt="non-virtual"><scope>OSThread</scope><name>queueJoin</name></member>
+      <member refid="struct_o_s_thread_1a5b7c70a4a77604d3092c9143e3ecadee" prot="public" virt="non-virtual"><scope>OSThread</scope><name>queueMutex</name></member>
+      <member refid="struct_o_s_thread_1a5232f1d5f0c435fd1222284b2dbdf004" prot="public" virt="non-virtual"><scope>OSThread</scope><name>stackBase</name></member>
+      <member refid="struct_o_s_thread_1a944dd12ea82e9629440efb6eef50073b" prot="public" virt="non-virtual"><scope>OSThread</scope><name>stackEnd</name></member>
+      <member refid="struct_o_s_thread_1a16ac1f5159a0135c7ff65684998fbe64" prot="public" virt="non-virtual"><scope>OSThread</scope><name>state</name></member>
+      <member refid="struct_o_s_thread_1a4ba637f1b0992df7986ed6f018c16305" prot="public" virt="non-virtual"><scope>OSThread</scope><name>suspend</name></member>
+      <member refid="struct_o_s_thread_1ab2f4ecfc72c57c1a78481982fce8fb1c" prot="public" virt="non-virtual"><scope>OSThread</scope><name>val</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

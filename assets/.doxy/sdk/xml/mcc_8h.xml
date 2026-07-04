@@ -1,0 +1,1863 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mcc_8h" kind="file" language="C++">
+    <compoundname>mcc.h</compoundname>
+    <includedby refid="fio_8c" local="no">fio.c</includedby>
+    <includedby refid="mcc_8c" local="no">mcc.c</includedby>
+    <includedby refid="tty_8c" local="no">tty.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>mcc.h</label>
+        <link refid="mcc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fio.c</label>
+        <link refid="fio_8c"/>
+      </node>
+      <node id="3">
+        <label>mcc.c</label>
+        <link refid="mcc_8c"/>
+      </node>
+      <node id="4">
+        <label>tty.c</label>
+        <link refid="tty_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_m_c_c___info" prot="public">MCC_Info</innerclass>
+    <innerclass refid="struct_m_c_c___hdr" prot="public">MCC_Hdr</innerclass>
+    <innerclass refid="struct_m_c_c___hdr_fio" prot="public">MCC_HdrFio</innerclass>
+    <innerclass refid="struct_m_c_c___channel_info" prot="public">MCC_ChannelInfo</innerclass>
+    <innerclass refid="struct_f_i_o___date" prot="public">FIO_Date</innerclass>
+    <innerclass refid="struct_f_i_o___daytime" prot="public">FIO_Daytime</innerclass>
+    <innerclass refid="struct_f_i_o___timestamp" prot="public">FIO_Timestamp</innerclass>
+    <innerclass refid="struct_f_i_o___stat" prot="public">FIO_Stat</innerclass>
+    <innerclass refid="struct_f_i_o___finddata" prot="public">FIO_Finddata</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MCC_CHANNEL</name>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da114df198a22da7f333be6d795a9068ee" prot="public">
+          <name>MCC_CHANNEL_SYSTEM</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dad7de3bfa9bbc6bac3870479f2a535090" prot="public">
+          <name>MCC_CHANNEL_1</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da558f11ee34d589bf7835b606525e483e" prot="public">
+          <name>MCC_CHANNEL_2</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac768c29d94d5648f53fba159597198b4" prot="public">
+          <name>MCC_CHANNEL_3</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da3b6c6288e25781dc8aea8984a133052c" prot="public">
+          <name>MCC_CHANNEL_4</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac40efc499629d452d0ee231e2cd93303" prot="public">
+          <name>MCC_CHANNEL_5</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7daf3a8efbcb5f974cc1ee23c697707330a" prot="public">
+          <name>MCC_CHANNEL_6</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dafdf588b46c99335ed2ea738b268c74cd" prot="public">
+          <name>MCC_CHANNEL_7</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7daa46cd041e12e6da61d2cc282fd548197" prot="public">
+          <name>MCC_CHANNEL_8</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dadde063ff26f2fe3e364373a44970526f" prot="public">
+          <name>MCC_CHANNEL_9</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da12c6d380e248b0a995d4e50d1b888637" prot="public">
+          <name>MCC_CHANNEL_10</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac067611e701786a1a430d01f97d70819" prot="public">
+          <name>MCC_CHANNEL_11</name>
+          <initializer>= 11</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dabf4f32351cbda0153c9824850cc7e37c" prot="public">
+          <name>MCC_CHANNEL_12</name>
+          <initializer>= 12</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da69bb62357c95c13c44638d36162858ae" prot="public">
+          <name>MCC_CHANNEL_13</name>
+          <initializer>= 13</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da07bdb538d6e419962ffbbe540719cc46" prot="public">
+          <name>MCC_CHANNEL_14</name>
+          <initializer>= 14</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da2221bfbc5a63883b1d0e08c8f09c96f9" prot="public">
+          <name>MCC_CHANNEL_15</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="4" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="5" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="enum" id="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MCC_EXI</name>
+        <enumvalue id="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469a44d28708ce92506704747f78428e881a" prot="public">
+          <name>MCC_EXI_0</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469affeeeb07ee48c7751640e55f0e5bc5a4" prot="public">
+          <name>MCC_EXI_1</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469aaf3e490cebaaabefc8d5ae0027cc1761" prot="public">
+          <name>MCC_EXI_2</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="32" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="33" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="enum" id="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84c" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MCC_SYSEVENT</name>
+        <enumvalue id="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca55b97b95bc82d2f5a5fe66ac7b69e62e" prot="public">
+          <name>MCC_SYSEVENT_UNKNOWN</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca89341fe5dd356c3f3a793cd8e0560776" prot="public">
+          <name>MCC_SYSEVENT_REBOOT</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca3d1e2e96031955ff1bd625349a8d2597" prot="public">
+          <name>MCC_SYSEVENT_INITIALIZED</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cac1211f413c4286da5071922303a9f152" prot="public">
+          <name>MCC_SYSEVENT_PING</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cabda8a895053b1e9b337749ef8c340f09" prot="public">
+          <name>MCC_SYSEVENT_PING_RESULT</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cad8bb2d792d04df52419a5df98ff7534a" prot="public">
+          <name>MCC_SYSEVENT_FLUSH</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="39" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="40" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="enum" id="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MCC_MODE</name>
+        <enumvalue id="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951a8d7b1aa1ee24de48ae2d718ade47bd6f" prot="public">
+          <name>MCC_MODE_MIN</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951af4b7710138cf9db6952f53240480911a" prot="public">
+          <name>MCC_MODE_MAX</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951a39681c29a4879f071011717cb1776f7e" prot="public">
+          <name>MCC_MODE_ALL</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="75" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="76" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="enum" id="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MCC_CONNECT</name>
+        <enumvalue id="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a507cf1e75b1c85cac0566c3f033e1702" prot="public">
+          <name>MCC_CONNECT_DISCONNECT</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a0c67053126e33ff32f64b1e02578d5fa" prot="public">
+          <name>MCC_CONNECT_HOST_OPEN</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a6649fe3dbf623108a861ef9ac38988f7" prot="public">
+          <name>MCC_CONNECT_TARGET_OPEN</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a9101cd5d40d7bb936f900b76d56e3b2e" prot="public">
+          <name>MCC_CONNECT_CONNECTED</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="82" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="83" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="enum" id="mcc_8h_1a8d0c016e4e82375f28fd6897af367432" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MCC_SYNC_STATE</name>
+        <enumvalue id="mcc_8h_1a8d0c016e4e82375f28fd6897af367432af4cb1346308ca86e922ed08c3ab6c408" prot="public">
+          <name>MCC_SYNC</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a8d0c016e4e82375f28fd6897af367432a6f51e1ff1c5fcc0693d5e188d3695604" prot="public">
+          <name>MCC_ASYNC</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="90" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="91" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="enum" id="mcc_8h_1a119acad31c2473bc5599e5792474fd7a" prot="public" static="no" strong="no">
+        <type></type>
+        <name>FIO_ASYNC_STATE</name>
+        <enumvalue id="mcc_8h_1a119acad31c2473bc5599e5792474fd7aa36ff5595774c3ab33e1a7c96d0c4dad0" prot="public">
+          <name>FIO_ASYNC_STATE_IDOL</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a119acad31c2473bc5599e5792474fd7aa0b52e75946706e45d349522f16bbab4f" prot="public">
+          <name>FIO_ASYNC_STATE_BUSY</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="mcc_8h_1a119acad31c2473bc5599e5792474fd7aaddbe63d025e2cc65cb5b0328fe69af2d" prot="public">
+          <name>FIO_ASYNC_STATE_DONE</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="96" column="1" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="97" bodyend="101"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="mcc_8h_1ac0fc698e94775602ed3532a3f8f38bf6" prot="public" static="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>(*</type>
+        <definition>typedef void(* MCC_CBEvent) (enum MCC_CHANNEL channel, u32, u32)</definition>
+        <argsstring>)(enum MCC_CHANNEL channel, u32, u32)</argsstring>
+        <name>MCC_CBEvent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="49" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="mcc_8h_1a3b6e871c7154ec3ec0c0f712d5a6f9a2" prot="public" static="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>(*</type>
+        <definition>typedef void(* MCC_CBSysEvent) (enum MCC_SYSEVENT sysEvent)</definition>
+        <argsstring>)(enum MCC_SYSEVENT sysEvent)</argsstring>
+        <name>MCC_CBSysEvent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="50" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="mcc_8h_1a39b0aa1ff46e500c25047ade97a2c8b5" prot="public" static="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref>(*</type>
+        <definition>typedef int(* MCC_CBEnumDevices) (s32)</definition>
+        <argsstring>)(s32)</argsstring>
+        <name>MCC_CBEnumDevices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="51" column="9" bodyfile="decomp/DolphinSDK/include/dolphin/mcc.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="mcc_8h_1a253a190eb1c1e903371129affb866a30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOInit</definition>
+        <argsstring>(enum MCC_EXI exiChannel, enum MCC_CHANNEL chID, u8 blockSize)</argsstring>
+        <name>FIOInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469" kindref="member">MCC_EXI</ref></type>
+          <declname>exiChannel</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="141" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="148" bodyend="174" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="141" declcolumn="6"/>
+        <references refid="fio_8c_1addad48cb0dd82073040cd2a5e2b534ce" compoundref="fio_8c" startline="20">bAsyncBuffer</references>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="fio_8c_1a55c9eafdf8ec716f1265f0cb3bf7fa3c" compoundref="fio_8c" startline="18">bAsyncIsRead</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1afa903617c9996ac6b6e65a7adac76474" compoundref="fio_8c" startline="106" endline="145">fioMccChannelEvent</references>
+        <references refid="fio_8c_1a4a04d540f301731a8bdbcd54325a05f3" compoundref="fio_8c" startline="13">gChID</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="fio_8c_1a0055d4a210f6db30b6c2498f4c47f924" compoundref="fio_8c" startline="12">gmChID</references>
+        <references refid="fio_8c_1a575c3765f5aa5a7d891b73d23047e4f2" compoundref="fio_8c" startline="8">gmSizeOfBlocks</references>
+        <references refid="fio_8c_1ad746bde09fcf3bb44c0ef849ade73f1b" compoundref="fio_8c" startline="15">gProcBusy</references>
+        <references refid="fio_8c_1af1d7f6c9eaec823d191666748850d9fc" compoundref="fio_8c" startline="10">gProcDone</references>
+        <references refid="fio_8c_1a1865f239379318780396d6f2e6db3119" compoundref="fio_8c" startline="14">gQuery</references>
+        <references refid="fio_8c_1a26a469970f52320e7b4dd39d44e7b000" compoundref="fio_8c" startline="9">gSizeOfBlocks</references>
+        <references refid="mcc_8h_1a514a974f382491f12ae32d2c23e1aede" compoundref="mcc_8c" startline="865" endline="923">MCCInit</references>
+        <references refid="mcc_8h_1a0ddc1d662c8808bfc77b2defce627691" compoundref="mcc_8c" startline="1183" endline="1292">MCCOpen</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a2e803897f29ff19feb4244fd3f361108" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void FIOExit</definition>
+        <argsstring>(void)</argsstring>
+        <name>FIOExit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="142" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="177" bodyend="193" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="142" declcolumn="6"/>
+        <references refid="fio_8c_1addad48cb0dd82073040cd2a5e2b534ce" compoundref="fio_8c" startline="20">bAsyncBuffer</references>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="fio_8c_1a55c9eafdf8ec716f1265f0cb3bf7fa3c" compoundref="fio_8c" startline="18">bAsyncIsRead</references>
+        <references refid="fio_8c_1a4a04d540f301731a8bdbcd54325a05f3" compoundref="fio_8c" startline="13">gChID</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="fio_8c_1a0055d4a210f6db30b6c2498f4c47f924" compoundref="fio_8c" startline="12">gmChID</references>
+        <references refid="fio_8c_1a575c3765f5aa5a7d891b73d23047e4f2" compoundref="fio_8c" startline="8">gmSizeOfBlocks</references>
+        <references refid="fio_8c_1ad746bde09fcf3bb44c0ef849ade73f1b" compoundref="fio_8c" startline="15">gProcBusy</references>
+        <references refid="fio_8c_1af1d7f6c9eaec823d191666748850d9fc" compoundref="fio_8c" startline="10">gProcDone</references>
+        <references refid="fio_8c_1a1865f239379318780396d6f2e6db3119" compoundref="fio_8c" startline="14">gQuery</references>
+        <references refid="fio_8c_1a26a469970f52320e7b4dd39d44e7b000" compoundref="fio_8c" startline="9">gSizeOfBlocks</references>
+        <references refid="mcc_8h_1a5d7f4ff168c3b368dca3f6a28b68709d" compoundref="mcc_8c" startline="1295" endline="1357">MCCClose</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ae39ba1bffe561836b4674a47ed78bff6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOQuery</definition>
+        <argsstring>(void)</argsstring>
+        <name>FIOQuery</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="143" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="196" bodyend="222" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="143" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a3f5f278ef871eca70146e7b44ff2610d" compoundref="fio_8c" startline="42" endline="45">fioIsInitialized</references>
+        <references refid="fio_8c_1a4a04d540f301731a8bdbcd54325a05f3" compoundref="fio_8c" startline="13">gChID</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="fio_8c_1a1865f239379318780396d6f2e6db3119" compoundref="fio_8c" startline="14">gQuery</references>
+        <references refid="mcc_8h_1aa6dafd31ecb87169b18362b8696e0079" compoundref="mcc_8c" startline="1105" endline="1145">MCCNotify</references>
+        <references refid="fio_8c_1adfae6494190426ed7963be7475667378" compoundref="fio_8c" startline="60" endline="77">MPDWaiting</references>
+        <references refid="os_8h_1acd39b7eb8a0f4b65ee3188875b70b787" compoundref="_o_s_time_8c" startline="32" endline="42">OSGetTick</references>
+        <references refid="os_8h_1ab4ad4710edca1090a1d9cf64dae86209" compoundref="os_8h" startline="57">OSTicksToSeconds</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ac46cea5ad2640c01924cecde3c7d5895" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+        <definition>u8 FIOGetLastError</definition>
+        <argsstring>()</argsstring>
+        <name>FIOGetLastError</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="144" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="225" bodyend="228" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="144" declcolumn="6"/>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a29655b71926ce090ce857c5d0cf2e3f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFopen</definition>
+        <argsstring>(const char *filename, u32 mode)</argsstring>
+        <name>FIOFopen</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">const</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">char</ref> *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 0x00</para>
+<para>&lt; 0x04 // dynamic length</para>
+<para>&lt; 0x00</para>
+<para>&lt; 0x04</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="145" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="231" bodyend="279" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="145" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a57aa840497031935e8360a2035ac3416" compoundref="fio_8c" startline="915" endline="938">fioPacketMakeHeader</references>
+        <references refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</references>
+        <references refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a4c096a22cb43f96dbe678037d71918a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFclose</definition>
+        <argsstring>(int handle)</argsstring>
+        <name>FIOFclose</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 0x00</para>
+<para>&lt; 0x00</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="146" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="282" bodyend="322" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="146" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a57aa840497031935e8360a2035ac3416" compoundref="fio_8c" startline="915" endline="938">fioPacketMakeHeader</references>
+        <references refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</references>
+        <references refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a6ce2f3b3f5676ad6ba9af5df060eb502" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 FIOFread</definition>
+        <argsstring>(int handle, void *data, u32 size)</argsstring>
+        <name>FIOFread</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="147" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="325" bodyend="371" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="147" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1aaab923311a031820c2e43b3a1f330a97" compoundref="fio_8c" startline="1034" endline="1056">fioPacketRead</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" compoundref="____ppc__eabi__init_8cpp" startline="39">size</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a30f5cce70713e82c0fdd14ceb5774b7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 FIOFwrite</definition>
+        <argsstring>(int handle, void *data, u32 size)</argsstring>
+        <name>FIOFwrite</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="148" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="374" bodyend="418" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="148" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a4d3b2860db5b06ff23e2eabc010414bb" compoundref="fio_8c" startline="1059" endline="1081">fioPacketWrite</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" compoundref="____ppc__eabi__init_8cpp" startline="39">size</references>
+        <referencedby refid="mcc_8h_1a41a2fa70a805c6ff0547cdace76f3cb9" compoundref="fio_8c" startline="484" endline="533">FIOFprintf</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ad59040b012a2e54af05d45c6a73618d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 FIOFseek</definition>
+        <argsstring>(int handle, s32 offset, u32 mode)</argsstring>
+        <name>FIOFseek</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 0x00</para>
+<para>&lt; 0x04</para>
+<para>&lt; 0x08</para>
+<para>&lt; 0x00</para>
+<para>&lt; 0x04</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="149" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="421" bodyend="481" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="149" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a57aa840497031935e8360a2035ac3416" compoundref="fio_8c" startline="915" endline="938">fioPacketMakeHeader</references>
+        <references refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</references>
+        <references refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a41a2fa70a805c6ff0547cdace76f3cb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFprintf</definition>
+        <argsstring>(int handle, const char *format,...)</argsstring>
+        <name>FIOFprintf</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">const</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">char</ref> *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="150" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="484" bodyend="533" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="150" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a30f5cce70713e82c0fdd14ceb5774b7d" compoundref="fio_8c" startline="374" endline="418">FIOFwrite</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="fio_8c_1a274788c74c633b5e52e043a953f35af8" compoundref="fio_8c" startline="6">gPrintBuf</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ab55d1f087202a3c6e8472e31b988bb30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFflush</definition>
+        <argsstring>(int handle)</argsstring>
+        <name>FIOFflush</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 0x00</para>
+<para>&lt; 0x00</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="151" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="536" bodyend="582" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="151" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a57aa840497031935e8360a2035ac3416" compoundref="fio_8c" startline="915" endline="938">fioPacketMakeHeader</references>
+        <references refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</references>
+        <references refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ace27718f5fb96cd7175dd3ff677b3851" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFstat</definition>
+        <argsstring>(int handle, struct FIO_Stat *stat)</argsstring>
+        <name>FIOFstat</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_f_i_o___stat" kindref="compound">FIO_Stat</ref> *</type>
+          <declname>stat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 0x00</para>
+<para>&lt; 0x00</para>
+<para>&lt; 0x04</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="152" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="585" bodyend="640" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="152" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a57aa840497031935e8360a2035ac3416" compoundref="fio_8c" startline="915" endline="938">fioPacketMakeHeader</references>
+        <references refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</references>
+        <references refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a8103c7cf695acdcbeb15eceaacb6c125" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFerror</definition>
+        <argsstring>(int handle)</argsstring>
+        <name>FIOFerror</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 0x00</para>
+<para>&lt; 0x00</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="153" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="643" bodyend="688" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="153" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a57aa840497031935e8360a2035ac3416" compoundref="fio_8c" startline="915" endline="938">fioPacketMakeHeader</references>
+        <references refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</references>
+        <references refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a0ef932e79fe575d404b7da7c0ae3803b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFindFirst</definition>
+        <argsstring>(const char *filename, struct FIO_Finddata *finddata)</argsstring>
+        <name>FIOFindFirst</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">const</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">char</ref> *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_f_i_o___finddata" kindref="compound">FIO_Finddata</ref> *</type>
+          <declname>finddata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 0x00 // dynamic length</para>
+<para>&lt; 0x00</para>
+<para>&lt; 0x04</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="154" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="691" bodyend="741" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="154" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="struct_f_i_o___finddata_1a5601c1b75c22a23b7b0d87882d532d81" compoundref="mcc_8h" startline="137">FIO_Finddata::filename</references>
+        <references refid="fio_8c_1a57aa840497031935e8360a2035ac3416" compoundref="fio_8c" startline="915" endline="938">fioPacketMakeHeader</references>
+        <references refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</references>
+        <references refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a7b8761edb2a50e73a05c893328150d9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFindNext</definition>
+        <argsstring>(struct FIO_Finddata *finddata)</argsstring>
+        <name>FIOFindNext</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_f_i_o___finddata" kindref="compound">FIO_Finddata</ref> *</type>
+          <declname>finddata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 0x00</para>
+<para>&lt; 0x00</para>
+<para>&lt; 0x04</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="155" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="744" bodyend="789" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="155" declcolumn="6"/>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a57aa840497031935e8360a2035ac3416" compoundref="fio_8c" startline="915" endline="938">fioPacketMakeHeader</references>
+        <references refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</references>
+        <references refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a408a84c05d69126fe1869584c5ec53aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 FIOGetAsyncBufferSize</definition>
+        <argsstring>(void)</argsstring>
+        <name>FIOGetAsyncBufferSize</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="156" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="792" bodyend="805" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="156" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="fio_8c_1a4a04d540f301731a8bdbcd54325a05f3" compoundref="fio_8c" startline="13">gChID</references>
+        <references refid="fio_8c_1a26a469970f52320e7b4dd39d44e7b000" compoundref="fio_8c" startline="9">gSizeOfBlocks</references>
+        <referencedby refid="mcc_8h_1ae96e1d7e5e4073535fc242d48fa3cd28" compoundref="fio_8c" startline="808" endline="847">FIOFreadAsync</referencedby>
+        <referencedby refid="mcc_8h_1abda221da5445e20699afcac737d92335" compoundref="fio_8c" startline="850" endline="890">FIOFwriteAsync</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ae96e1d7e5e4073535fc242d48fa3cd28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFreadAsync</definition>
+        <argsstring>(int handle, void *data, u32 size)</argsstring>
+        <name>FIOFreadAsync</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="157" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="808" bodyend="847" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="157" declcolumn="6"/>
+        <references refid="fio_8c_1addad48cb0dd82073040cd2a5e2b534ce" compoundref="fio_8c" startline="20">bAsyncBuffer</references>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="fio_8c_1a55c9eafdf8ec716f1265f0cb3bf7fa3c" compoundref="fio_8c" startline="18">bAsyncIsRead</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a408a84c05d69126fe1869584c5ec53aa" compoundref="fio_8c" startline="792" endline="805">FIOGetAsyncBufferSize</references>
+        <references refid="fio_8c_1aaab923311a031820c2e43b3a1f330a97" compoundref="fio_8c" startline="1034" endline="1056">fioPacketRead</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" compoundref="____ppc__eabi__init_8cpp" startline="39">size</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1abda221da5445e20699afcac737d92335" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOFwriteAsync</definition>
+        <argsstring>(int handle, void *data, u32 size)</argsstring>
+        <name>FIOFwriteAsync</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="158" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="850" bodyend="890" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="158" declcolumn="6"/>
+        <references refid="fio_8c_1addad48cb0dd82073040cd2a5e2b534ce" compoundref="fio_8c" startline="20">bAsyncBuffer</references>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="fio_8c_1a55c9eafdf8ec716f1265f0cb3bf7fa3c" compoundref="fio_8c" startline="18">bAsyncIsRead</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="fio_8c_1a408a84c05d69126fe1869584c5ec53aa" compoundref="fio_8c" startline="792" endline="805">FIOGetAsyncBufferSize</references>
+        <references refid="fio_8c_1a4d3b2860db5b06ff23e2eabc010414bb" compoundref="fio_8c" startline="1059" endline="1081">fioPacketWrite</references>
+        <references refid="fio_8c_1a5960a618f39ce9eeddb529adb1748d06" compoundref="fio_8c" startline="17">gLastErr</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" compoundref="____ppc__eabi__init_8cpp" startline="39">size</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a16929872441268f5b4b593ddb0fd2582" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int FIOCheckAsyncDone</definition>
+        <argsstring>(u32 *result)</argsstring>
+        <name>FIOCheckAsyncDone</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref> *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="159" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/fio.c" bodystart="893" bodyend="912" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="159" declcolumn="6"/>
+        <references refid="fio_8c_1addad48cb0dd82073040cd2a5e2b534ce" compoundref="fio_8c" startline="20">bAsyncBuffer</references>
+        <references refid="fio_8c_1a2a5338fac5966c1e954285d50fa22060" compoundref="fio_8c" startline="19">bAsyncBusy</references>
+        <references refid="fio_8c_1a55c9eafdf8ec716f1265f0cb3bf7fa3c" compoundref="fio_8c" startline="18">bAsyncIsRead</references>
+        <references refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</references>
+        <references refid="fio_8c_1a1fb09f63bae0727aeaaac7164551267a" compoundref="fio_8c" startline="1217" endline="1310">fioPacketResultWrite</references>
+        <references refid="fio_8c_1a51e627742deca4db8e255806f9b77232" compoundref="fio_8c" startline="21">gAsyncDataSize</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ae307f8c1646d571684a31b645f817cce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCStreamOpen</definition>
+        <argsstring>(enum MCC_CHANNEL chID, u8 blockSize)</argsstring>
+        <name>MCCStreamOpen</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="162" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="86" bodyend="98" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="162" declcolumn="6"/>
+        <references refid="mcc_8c_1a40824452b96fd80e35d457d31f408614" compoundref="mcc_8c" startline="64" endline="83">callbackEventStream</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a0ddc1d662c8808bfc77b2defce627691" compoundref="mcc_8c" startline="1183" endline="1292">MCCOpen</references>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+        <referencedby refid="fio_8c_1a1fb09f63bae0727aeaaac7164551267a" compoundref="fio_8c" startline="1217" endline="1310">fioPacketResultWrite</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a6626d6a39cb0f3496ee020758063bda6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCStreamClose</definition>
+        <argsstring>(enum MCC_CHANNEL chID)</argsstring>
+        <name>MCCStreamClose</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="163" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="101" bodyend="104" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="163" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a5d7f4ff168c3b368dca3f6a28b68709d" compoundref="mcc_8c" startline="1295" endline="1357">MCCClose</references>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+        <referencedby refid="fio_8c_1a1fb09f63bae0727aeaaac7164551267a" compoundref="fio_8c" startline="1217" endline="1310">fioPacketResultWrite</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ab6f2a72416634a42e6c53de72ebbc400" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCStreamWrite</definition>
+        <argsstring>(enum MCC_CHANNEL chID, void *data, u32 dataBlockSize)</argsstring>
+        <name>MCCStreamWrite</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>dataBlockSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="164" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="107" bodyend="179" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="164" declcolumn="6"/>
+        <references refid="struct_m_c_c___info_1ac953f089a26616a04922719873b69c18" compoundref="mcc_8h" startline="27">MCC_Info::blockLength</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a7f9250beb823cb5041f464b48b69bc25" compoundref="mcc_8c" startline="1026" endline="1061">MCCGetChannelInfo</references>
+        <references refid="mcc_8c_1a5e1e4710b55dc28eb5b3196b6ac5ba18" compoundref="mcc_8c" startline="1578" endline="1681">MCCWrite</references>
+        <references refid="mcc_8c_1ab712be842f3dd5c417d9364222700d8d" compoundref="mcc_8c" startline="644" endline="661">WaitAMinute</references>
+        <referencedby refid="fio_8c_1a1fb09f63bae0727aeaaac7164551267a" compoundref="fio_8c" startline="1217" endline="1310">fioPacketResultWrite</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a905b7eaf560841f1a5a453fe0409aec1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 MCCStreamRead</definition>
+        <argsstring>(enum MCC_CHANNEL chID, void *data)</argsstring>
+        <name>MCCStreamRead</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="165" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="182" bodyend="260" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="165" declcolumn="6"/>
+        <references refid="struct_m_c_c___info_1ac953f089a26616a04922719873b69c18" compoundref="mcc_8h" startline="27">MCC_Info::blockLength</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a7f9250beb823cb5041f464b48b69bc25" compoundref="mcc_8c" startline="1026" endline="1061">MCCGetChannelInfo</references>
+        <references refid="mcc_8c_1ae46076052d0a308f624a76e8c3e47371" compoundref="mcc_8c" startline="1478" endline="1575">MCCRead</references>
+        <references refid="mcc_8c_1ab712be842f3dd5c417d9364222700d8d" compoundref="mcc_8c" startline="644" endline="661">WaitAMinute</references>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a514a974f382491f12ae32d2c23e1aede" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCInit</definition>
+        <argsstring>(enum MCC_EXI exiChannel, u8 timeout, MCC_CBSysEvent callbackSysEvent)</argsstring>
+        <name>MCCInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469" kindref="member">MCC_EXI</ref></type>
+          <declname>exiChannel</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>timeout</declname>
+        </param>
+        <param>
+          <type><ref refid="mcc_8h_1a3b6e871c7154ec3ec0c0f712d5a6f9a2" kindref="member">MCC_CBSysEvent</ref></type>
+          <declname>callbackSysEvent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="166" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="865" bodyend="923" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="166" declcolumn="6"/>
+        <references refid="mcc_8c_1a4b26347c6e60e0d591b5398e0e172455" compoundref="mcc_8c" startline="322" endline="325">AsyncResourceClearState</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a439c29544db6fa573325f65c82d9b866" compoundref="mcc_8c" startline="447" endline="457">ClearChannelInfo</references>
+        <references refid="mcc_8c_1a787b78586533bfd90ab0e1f8dedeed01" compoundref="mcc_8c" startline="16">gCallbackSysEvent</references>
+        <references refid="mcc_8c_1a1d345f82d77cea8ee913ef988072992e" compoundref="mcc_8c" startline="281" endline="289">GetUsbAdapterMode</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="hio_8h_1a6680448902ed516def60c42072c7d05f" compoundref="hio_8c" startline="123" endline="191">HIOInit</references>
+        <references refid="hio_8h_1a250ab066d61b24346cb82ddae0836986" compoundref="hio_8c" startline="194" endline="221">HIOReadMailbox</references>
+        <references refid="hio_8h_1a3205361193b5b27ffc8bc7ce17376ee9" compoundref="hio_8c" startline="372" endline="399">HIOReadStatus</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a69c7af46a9b64c050905d3911814f85a" compoundref="mcc_8c" startline="778" endline="781">MCCExiCallback</references>
+        <references refid="mcc_8c_1a73cba94cc4bd09eb1bd7d24340572ff9" compoundref="mcc_8c" startline="796" endline="862">mccInitializeCheck</references>
+        <references refid="mcc_8c_1a7e4ece04c139bbad0da6b88d9b345107" compoundref="mcc_8c" startline="608" endline="611">NotifyInit</references>
+        <references refid="mcc_8c_1a36e276780e95e0894d0f58084edc406b" compoundref="mcc_8c" startline="441" endline="444">SetChannelInfoDirty</references>
+        <references refid="mcc_8c_1a2c34f25a11bbaf3013f5539cb9c9e0d6" compoundref="mcc_8c" startline="263" endline="278">SetUsbAdapterMode</references>
+        <references refid="fstload_8c_1a088e3e37581e2ecb5079c1d75067923f" compoundref="fstload_8c" startline="7">status</references>
+        <references refid="mcc_8c_1ab712be842f3dd5c417d9364222700d8d" compoundref="mcc_8c" startline="644" endline="661">WaitAMinute</references>
+        <referencedby refid="mcc_8h_1a253a190eb1c1e903371129affb866a30" compoundref="fio_8c" startline="148" endline="174">FIOInit</referencedby>
+        <referencedby refid="tty_8c_1a1f44d317f222064c2d4df40149080c33" compoundref="tty_8c" startline="110" endline="123">TTYInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ab618b83ed3fe601b76a9c0c59161ec9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void MCCExit</definition>
+        <argsstring>(void)</argsstring>
+        <name>MCCExit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="167" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="926" bodyend="948" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="167" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1a950b2d56c338ef961170683894cb3ad6" compoundref="mcc_8c" startline="20">gMccSession</references>
+        <references refid="mcc_8c_1acde1c1c007f9134f4ddb99b7d3681f0b" compoundref="mcc_8c" startline="487" endline="502">IsChannelOpened</references>
+        <references refid="mcc_8c_1a5d7f4ff168c3b368dca3f6a28b68709d" compoundref="mcc_8c" startline="1295" endline="1357">MCCClose</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1af13c541325f6900bf06ae5b56c3c57f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCPing</definition>
+        <argsstring>(void)</argsstring>
+        <name>MCCPing</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="168" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="951" bodyend="965" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="168" declcolumn="6"/>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1ae64ad81295e517aab6d6f51f4761b40b" compoundref="mcc_8c" startline="21">gPingFlag</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a60236ab63b430df9901f2588f34dd838" compoundref="mcc_8c" startline="561" endline="605">NotifyCompulsorily</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a54d69ee7b3704bde1a5a8ce16d12f1dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCEnumDevices</definition>
+        <argsstring>(MCC_CBEnumDevices callbackEnumDevices)</argsstring>
+        <name>MCCEnumDevices</name>
+        <param>
+          <type><ref refid="mcc_8h_1a39b0aa1ff46e500c25047ade97a2c8b5" kindref="member">MCC_CBEnumDevices</ref></type>
+          <declname>callbackEnumDevices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="169" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="968" bodyend="984" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="169" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="hio_8h_1a07b8dcb191b892c8e2e54cfaff1199e6" compoundref="hio_8c" startline="61" endline="120">HIOEnumDevices</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1aac64827d0fc66babae02f68256097a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+        <definition>u8 MCCGetFreeBlocks</definition>
+        <argsstring>(enum MCC_MODE mode)</argsstring>
+        <name>MCCGetFreeBlocks</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951" kindref="member">MCC_MODE</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="170" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="987" bodyend="1016" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="170" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="mcc_8c_1acd90879295c1169570d4a3fc828844e5" compoundref="mcc_8c" startline="505" endline="558">SearchFreeBlocks</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a556d167b923cf0baff1a19ac7493d76d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+        <definition>u8 MCCGetLastError</definition>
+        <argsstring>(void)</argsstring>
+        <name>MCCGetLastError</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>wrong print?</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="171" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1019" bodyend="1023" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="171" declcolumn="6"/>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a7f9250beb823cb5041f464b48b69bc25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCGetChannelInfo</definition>
+        <argsstring>(enum MCC_CHANNEL chID, MCC_Info *info)</argsstring>
+        <name>MCCGetChannelInfo</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_m_c_c___info" kindref="compound">MCC_Info</ref> *</type>
+          <declname>info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="172" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1026" bodyend="1061" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="172" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <referencedby refid="mcc_8h_1a40dc6a8848e38d75251181601b364a4c" compoundref="mcc_8c" startline="1064" endline="1102">MCCGetConnectionStatus</referencedby>
+        <referencedby refid="mcc_8h_1a905b7eaf560841f1a5a453fe0409aec1" compoundref="mcc_8c" startline="182" endline="260">MCCStreamRead</referencedby>
+        <referencedby refid="mcc_8h_1ab6f2a72416634a42e6c53de72ebbc400" compoundref="mcc_8c" startline="107" endline="179">MCCStreamWrite</referencedby>
+        <referencedby refid="fio_8c_1a46af0dff48abb70902aa4175f80b23d9" compoundref="fio_8c" startline="80" endline="97">ShowChannelInfo</referencedby>
+        <referencedby refid="tty_8c_1a46af0dff48abb70902aa4175f80b23d9" compoundref="tty_8c" startline="40" endline="57">ShowChannelInfo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a40dc6a8848e38d75251181601b364a4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCGetConnectionStatus</definition>
+        <argsstring>(enum MCC_CHANNEL chID, enum MCC_CONNECT *connect)</argsstring>
+        <name>MCCGetConnectionStatus</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467" kindref="member">MCC_CONNECT</ref> *</type>
+          <declname>connect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="173" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1064" bodyend="1102" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="173" declcolumn="6"/>
+        <references refid="mcc_8c_1a60f0e5a0ae19d99d9c922d8a1943029d" compoundref="mcc_8c" startline="368" endline="371">AsyncResourceIsBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_m_c_c___info_1a8b5b58db1c30d6df04b604f585fc05ac" compoundref="mcc_8h" startline="28">MCC_Info::connect</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a7f9250beb823cb5041f464b48b69bc25" compoundref="mcc_8c" startline="1026" endline="1061">MCCGetChannelInfo</references>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+        <referencedby refid="fio_8c_1a1fb09f63bae0727aeaaac7164551267a" compoundref="fio_8c" startline="1217" endline="1310">fioPacketResultWrite</referencedby>
+        <referencedby refid="mcc_8h_1aa6dafd31ecb87169b18362b8696e0079" compoundref="mcc_8c" startline="1105" endline="1145">MCCNotify</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1aa6dafd31ecb87169b18362b8696e0079" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCNotify</definition>
+        <argsstring>(enum MCC_CHANNEL chID, u32 notify)</argsstring>
+        <name>MCCNotify</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>notify</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="174" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1105" bodyend="1145" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="174" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a40dc6a8848e38d75251181601b364a4c" compoundref="mcc_8c" startline="1064" endline="1102">MCCGetConnectionStatus</references>
+        <references refid="mcc_8c_1a60236ab63b430df9901f2588f34dd838" compoundref="mcc_8c" startline="561" endline="605">NotifyCompulsorily</references>
+        <referencedby refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</referencedby>
+        <referencedby refid="mcc_8h_1ae39ba1bffe561836b4674a47ed78bff6" compoundref="fio_8c" startline="196" endline="222">FIOQuery</referencedby>
+        <referencedby refid="tty_8c_1ac4071947f0170a25b9b252b7b1795b7e" compoundref="tty_8c" startline="286" endline="307">ttyFlush</referencedby>
+        <referencedby refid="tty_8c_1ae79a69055ecc2bb66d75f05ab6a1aeff" compoundref="tty_8c" startline="139" endline="156">TTYQuery</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1adfa3493c78a51f98d506114f658a71ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 MCCSetChannelEventMask</definition>
+        <argsstring>(enum MCC_CHANNEL chID, u32 event)</argsstring>
+        <name>MCCSetChannelEventMask</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="175" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1148" bodyend="1180" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="175" declcolumn="6"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1acde1c1c007f9134f4ddb99b7d3681f0b" compoundref="mcc_8c" startline="487" endline="502">IsChannelOpened</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <referencedby refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</referencedby>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+        <referencedby refid="fio_8c_1a1fb09f63bae0727aeaaac7164551267a" compoundref="fio_8c" startline="1217" endline="1310">fioPacketResultWrite</referencedby>
+        <referencedby refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</referencedby>
+        <referencedby refid="tty_8c_1a0441538a49fd9aebfdcbdb0816414edc" compoundref="tty_8c" startline="126" endline="136">TTYExit</referencedby>
+        <referencedby refid="tty_8c_1a1f44d317f222064c2d4df40149080c33" compoundref="tty_8c" startline="110" endline="123">TTYInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a0ddc1d662c8808bfc77b2defce627691" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCOpen</definition>
+        <argsstring>(enum MCC_CHANNEL chID, u8 blockSize, MCC_CBEvent callbackEvent)</argsstring>
+        <name>MCCOpen</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>blockSize</declname>
+        </param>
+        <param>
+          <type><ref refid="mcc_8h_1ac0fc698e94775602ed3532a3f8f38bf6" kindref="member">MCC_CBEvent</ref></type>
+          <declname>callbackEvent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="176" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1183" bodyend="1292" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="176" declcolumn="6"/>
+        <references refid="mcc_8c_1a60f0e5a0ae19d99d9c922d8a1943029d" compoundref="mcc_8c" startline="368" endline="371">AsyncResourceIsBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="mcc_8c_1ae2da496c84ac043278fb3c8f4b25f310" compoundref="mcc_8c" startline="413" endline="438">FlushChannelInfo</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a60236ab63b430df9901f2588f34dd838" compoundref="mcc_8c" startline="561" endline="605">NotifyCompulsorily</references>
+        <references refid="mcc_8c_1acd90879295c1169570d4a3fc828844e5" compoundref="mcc_8c" startline="505" endline="558">SearchFreeBlocks</references>
+        <referencedby refid="mcc_8h_1a253a190eb1c1e903371129affb866a30" compoundref="fio_8c" startline="148" endline="174">FIOInit</referencedby>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+        <referencedby refid="fio_8c_1a1fb09f63bae0727aeaaac7164551267a" compoundref="fio_8c" startline="1217" endline="1310">fioPacketResultWrite</referencedby>
+        <referencedby refid="mcc_8h_1ae307f8c1646d571684a31b645f817cce" compoundref="mcc_8c" startline="86" endline="98">MCCStreamOpen</referencedby>
+        <referencedby refid="tty_8c_1a1f44d317f222064c2d4df40149080c33" compoundref="tty_8c" startline="110" endline="123">TTYInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a5d7f4ff168c3b368dca3f6a28b68709d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCClose</definition>
+        <argsstring>(enum MCC_CHANNEL chID)</argsstring>
+        <name>MCCClose</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="177" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1295" bodyend="1357" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="177" declcolumn="6"/>
+        <references refid="mcc_8c_1a60f0e5a0ae19d99d9c922d8a1943029d" compoundref="mcc_8c" startline="368" endline="371">AsyncResourceIsBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a439c29544db6fa573325f65c82d9b866" compoundref="mcc_8c" startline="447" endline="457">ClearChannelInfo</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="mcc_8c_1ae2da496c84ac043278fb3c8f4b25f310" compoundref="mcc_8c" startline="413" endline="438">FlushChannelInfo</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1acde1c1c007f9134f4ddb99b7d3681f0b" compoundref="mcc_8c" startline="487" endline="502">IsChannelOpened</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a60236ab63b430df9901f2588f34dd838" compoundref="mcc_8c" startline="561" endline="605">NotifyCompulsorily</references>
+        <referencedby refid="mcc_8h_1a2e803897f29ff19feb4244fd3f361108" compoundref="fio_8c" startline="177" endline="193">FIOExit</referencedby>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+        <referencedby refid="fio_8c_1a1fb09f63bae0727aeaaac7164551267a" compoundref="fio_8c" startline="1217" endline="1310">fioPacketResultWrite</referencedby>
+        <referencedby refid="mcc_8h_1ab618b83ed3fe601b76a9c0c59161ec9b" compoundref="mcc_8c" startline="926" endline="948">MCCExit</referencedby>
+        <referencedby refid="mcc_8h_1a6626d6a39cb0f3496ee020758063bda6" compoundref="mcc_8c" startline="101" endline="104">MCCStreamClose</referencedby>
+        <referencedby refid="tty_8c_1a0441538a49fd9aebfdcbdb0816414edc" compoundref="tty_8c" startline="126" endline="136">TTYExit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a340ebb37b1c2d3b5b0b058076aeb4bb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCLock</definition>
+        <argsstring>(enum MCC_CHANNEL chID)</argsstring>
+        <name>MCCLock</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="178" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1360" bodyend="1416" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="178" declcolumn="6"/>
+        <references refid="mcc_8c_1a60f0e5a0ae19d99d9c922d8a1943029d" compoundref="mcc_8c" startline="368" endline="371">AsyncResourceIsBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="mcc_8c_1ae2da496c84ac043278fb3c8f4b25f310" compoundref="mcc_8c" startline="413" endline="438">FlushChannelInfo</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1acde1c1c007f9134f4ddb99b7d3681f0b" compoundref="mcc_8c" startline="487" endline="502">IsChannelOpened</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a908e60fb303da9bff737e794982b40a0" compoundref="mcc_8c" startline="620" endline="641">NotifyChannelEvent</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1aab3792420ab37404c0dcd8b16b9689e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCUnlock</definition>
+        <argsstring>(enum MCC_CHANNEL chID)</argsstring>
+        <name>MCCUnlock</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="179" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1419" bodyend="1475" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="179" declcolumn="6"/>
+        <references refid="mcc_8c_1a60f0e5a0ae19d99d9c922d8a1943029d" compoundref="mcc_8c" startline="368" endline="371">AsyncResourceIsBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="mcc_8c_1ae2da496c84ac043278fb3c8f4b25f310" compoundref="mcc_8c" startline="413" endline="438">FlushChannelInfo</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1acde1c1c007f9134f4ddb99b7d3681f0b" compoundref="mcc_8c" startline="487" endline="502">IsChannelOpened</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a908e60fb303da9bff737e794982b40a0" compoundref="mcc_8c" startline="620" endline="641">NotifyChannelEvent</references>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ae46076052d0a308f624a76e8c3e47371" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCRead</definition>
+        <argsstring>(enum MCC_CHANNEL chID, u32 offset, void *data, s32 size, enum MCC_SYNC_STATE async)</argsstring>
+        <name>MCCRead</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432" kindref="member">MCC_SYNC_STATE</ref></type>
+          <declname>async</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="180" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1478" bodyend="1575" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="180" declcolumn="6"/>
+        <references refid="mcc_8c_1a60f0e5a0ae19d99d9c922d8a1943029d" compoundref="mcc_8c" startline="368" endline="371">AsyncResourceIsBusy</references>
+        <references refid="mcc_8c_1a151f6328616acfde0422f1d5d1229432" compoundref="mcc_8c" startline="335" endline="341">AsyncResourceStateBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_cache_8h_1a236ac61fe850173a4e05a9715591af1f">DCInvalidateRange</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="hio_8h_1a840098bb0e279ecbb70831039809a3d8" compoundref="hio_8c" startline="252" endline="280">HIORead</references>
+        <references refid="hio_8h_1a43a9205fbe480359f95e869af40cca9b" compoundref="hio_8c" startline="314" endline="340">HIOReadAsync</references>
+        <references refid="mcc_8c_1acde1c1c007f9134f4ddb99b7d3681f0b" compoundref="mcc_8c" startline="487" endline="502">IsChannelOpened</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1ab312b6cc076bb22d30ab9af8bacff50e" compoundref="mcc_8c" startline="1684" endline="1732">MCCCheckAsyncDone</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1a1b8e35017b169b0d547ff3ecc5818ce1" compoundref="mcc_8c" startline="790" endline="793">MCCRxCallback</references>
+        <references refid="mcc_8c_1a908e60fb303da9bff737e794982b40a0" compoundref="mcc_8c" startline="620" endline="641">NotifyChannelEvent</references>
+        <references refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" compoundref="____ppc__eabi__init_8cpp" startline="39">size</references>
+        <referencedby refid="fio_8c_1ae69fcce5a3886fe9ab411cfe79535c6b" compoundref="fio_8c" startline="983" endline="1025">fioPacketReceiveResult</referencedby>
+        <referencedby refid="fio_8c_1acf9beb2b5aceae5fe8860ec806ebc361" compoundref="fio_8c" startline="1084" endline="1214">fioPacketResultRead</referencedby>
+        <referencedby refid="mcc_8h_1a905b7eaf560841f1a5a453fe0409aec1" compoundref="mcc_8c" startline="182" endline="260">MCCStreamRead</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1a5e1e4710b55dc28eb5b3196b6ac5ba18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCWrite</definition>
+        <argsstring>(enum MCC_CHANNEL chID, u32 offset, void *data, s32 size, enum MCC_SYNC_STATE async)</argsstring>
+        <name>MCCWrite</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></type>
+          <declname>chID</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">enum</ref> <ref refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432" kindref="member">MCC_SYNC_STATE</ref></type>
+          <declname>async</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="181" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1578" bodyend="1681" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="181" declcolumn="6"/>
+        <references refid="mcc_8c_1a60f0e5a0ae19d99d9c922d8a1943029d" compoundref="mcc_8c" startline="368" endline="371">AsyncResourceIsBusy</references>
+        <references refid="mcc_8c_1a151f6328616acfde0422f1d5d1229432" compoundref="mcc_8c" startline="335" endline="341">AsyncResourceStateBusy</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_cache_8h_1ac8eec6bbf9334efd0e1387586212ea99">DCFlushRange</references>
+        <references refid="____ppc__eabi__init_8cpp_1a55e99c539cf7723ec15e856b7e0a8cee">exit</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="hio_8h_1a37c0d7118da3389b4fcfd64d84acb5ec" compoundref="hio_8c" startline="283" endline="311">HIOWrite</references>
+        <references refid="hio_8h_1a04ccd1f46f3d6767838e406fc7224ec9" compoundref="hio_8c" startline="343" endline="369">HIOWriteAsync</references>
+        <references refid="mcc_8c_1acde1c1c007f9134f4ddb99b7d3681f0b" compoundref="mcc_8c" startline="487" endline="502">IsChannelOpened</references>
+        <references refid="mcc_8c_1afde33f655124d369ee83135ae39b675f" compoundref="mcc_8c" startline="374" endline="410">LoadChannelInfo</references>
+        <references refid="mcc_8c_1ab312b6cc076bb22d30ab9af8bacff50e" compoundref="mcc_8c" startline="1684" endline="1732">MCCCheckAsyncDone</references>
+        <references refid="mcc_8c_1a4d79b5e0776350666539ede293a7ae91" compoundref="mcc_8c" startline="59" endline="61">mccDebugPrint</references>
+        <references refid="mcc_8c_1ae5f94add1988c45f507659a7aed8c3d7" compoundref="mcc_8c" startline="784" endline="787">MCCTxCallback</references>
+        <references refid="mcc_8c_1a908e60fb303da9bff737e794982b40a0" compoundref="mcc_8c" startline="620" endline="641">NotifyChannelEvent</references>
+        <references refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" compoundref="____ppc__eabi__init_8cpp" startline="39">size</references>
+        <referencedby refid="fio_8c_1a82162f86cf1f3d63310bb387445b3c7d" compoundref="fio_8c" startline="941" endline="980">fioPacketSendPacket</referencedby>
+        <referencedby refid="mcc_8h_1ab6f2a72416634a42e6c53de72ebbc400" compoundref="mcc_8c" startline="107" endline="179">MCCStreamWrite</referencedby>
+        <referencedby refid="tty_8c_1a26fcd7141071f9b7dbaaa6d0b7025c8a" compoundref="tty_8c" startline="276" endline="283">ttyWrite</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="mcc_8h_1ab312b6cc076bb22d30ab9af8bacff50e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int MCCCheckAsyncDone</definition>
+        <argsstring>()</argsstring>
+        <name>MCCCheckAsyncDone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/mcc.h" line="182" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/mcc/mcc.c" bodystart="1684" bodyend="1732" declfile="decomp/DolphinSDK/include/dolphin/mcc.h" declline="182" declcolumn="6"/>
+        <references refid="mcc_8c_1a4b26347c6e60e0d591b5398e0e172455" compoundref="mcc_8c" startline="322" endline="325">AsyncResourceClearState</references>
+        <references refid="mcc_8c_1a6a4ae9bd7f2c7198a70b6199f5092e21" compoundref="mcc_8c" startline="362" endline="365">AsyncResourceGetChannel</references>
+        <references refid="mcc_8c_1abc2f3655baa1471901ba716a049a0e5c" compoundref="mcc_8c" startline="356" endline="359">AsyncResourceGetMode</references>
+        <references refid="mcc_8c_1a70942c0abec8d1c2fca86f2cd91d00a3" compoundref="mcc_8c" startline="350" endline="353">AsyncResourceGetStat</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mcc_8c_1a39eba76785ecf9f9f6590b76bbfc7d8f" compoundref="mcc_8c" startline="18">gLastError</references>
+        <references refid="mcc_8c_1a98f5535d0ce23de229198f6a8f244d1a" compoundref="mcc_8c" startline="19">gMccInitialized</references>
+        <references refid="mcc_8c_1a908e60fb303da9bff737e794982b40a0" compoundref="mcc_8c" startline="620" endline="641">NotifyChannelEvent</references>
+        <referencedby refid="mcc_8h_1ae46076052d0a308f624a76e8c3e47371" compoundref="mcc_8c" startline="1478" endline="1575">MCCRead</referencedby>
+        <referencedby refid="mcc_8h_1a5e1e4710b55dc28eb5b3196b6ac5ba18" compoundref="mcc_8c" startline="1578" endline="1681">MCCWrite</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_MCC_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_MCC_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da114df198a22da7f333be6d795a9068ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da114df198a22da7f333be6d795a9068ee" kindref="member">MCC_CHANNEL_SYSTEM</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="7" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dad7de3bfa9bbc6bac3870479f2a535090" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dad7de3bfa9bbc6bac3870479f2a535090" kindref="member">MCC_CHANNEL_1</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="8" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da558f11ee34d589bf7835b606525e483e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da558f11ee34d589bf7835b606525e483e" kindref="member">MCC_CHANNEL_2</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="9" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac768c29d94d5648f53fba159597198b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac768c29d94d5648f53fba159597198b4" kindref="member">MCC_CHANNEL_3</ref><sp/>=<sp/>3,</highlight></codeline>
+<codeline lineno="10" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da3b6c6288e25781dc8aea8984a133052c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da3b6c6288e25781dc8aea8984a133052c" kindref="member">MCC_CHANNEL_4</ref><sp/>=<sp/>4,</highlight></codeline>
+<codeline lineno="11" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac40efc499629d452d0ee231e2cd93303" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac40efc499629d452d0ee231e2cd93303" kindref="member">MCC_CHANNEL_5</ref><sp/>=<sp/>5,</highlight></codeline>
+<codeline lineno="12" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7daf3a8efbcb5f974cc1ee23c697707330a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7daf3a8efbcb5f974cc1ee23c697707330a" kindref="member">MCC_CHANNEL_6</ref><sp/>=<sp/>6,</highlight></codeline>
+<codeline lineno="13" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dafdf588b46c99335ed2ea738b268c74cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dafdf588b46c99335ed2ea738b268c74cd" kindref="member">MCC_CHANNEL_7</ref><sp/>=<sp/>7,</highlight></codeline>
+<codeline lineno="14" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7daa46cd041e12e6da61d2cc282fd548197" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7daa46cd041e12e6da61d2cc282fd548197" kindref="member">MCC_CHANNEL_8</ref><sp/>=<sp/>8,</highlight></codeline>
+<codeline lineno="15" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dadde063ff26f2fe3e364373a44970526f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dadde063ff26f2fe3e364373a44970526f" kindref="member">MCC_CHANNEL_9</ref><sp/>=<sp/>9,</highlight></codeline>
+<codeline lineno="16" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da12c6d380e248b0a995d4e50d1b888637" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da12c6d380e248b0a995d4e50d1b888637" kindref="member">MCC_CHANNEL_10</ref><sp/>=<sp/>10,</highlight></codeline>
+<codeline lineno="17" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac067611e701786a1a430d01f97d70819" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dac067611e701786a1a430d01f97d70819" kindref="member">MCC_CHANNEL_11</ref><sp/>=<sp/>11,</highlight></codeline>
+<codeline lineno="18" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dabf4f32351cbda0153c9824850cc7e37c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7dabf4f32351cbda0153c9824850cc7e37c" kindref="member">MCC_CHANNEL_12</ref><sp/>=<sp/>12,</highlight></codeline>
+<codeline lineno="19" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da69bb62357c95c13c44638d36162858ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da69bb62357c95c13c44638d36162858ae" kindref="member">MCC_CHANNEL_13</ref><sp/>=<sp/>13,</highlight></codeline>
+<codeline lineno="20" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da07bdb538d6e419962ffbbe540719cc46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da07bdb538d6e419962ffbbe540719cc46" kindref="member">MCC_CHANNEL_14</ref><sp/>=<sp/>14,</highlight></codeline>
+<codeline lineno="21" refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da2221bfbc5a63883b1d0e08c8f09c96f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7da2221bfbc5a63883b1d0e08c8f09c96f9" kindref="member">MCC_CHANNEL_15</ref><sp/>=<sp/>15,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="struct_m_c_c___info" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26" refid="struct_m_c_c___info_1a1e6679d952a08d4dc43f491db530d819" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_m_c_c___info_1a1e6679d952a08d4dc43f491db530d819" kindref="member">firstBlock</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27" refid="struct_m_c_c___info_1ac953f089a26616a04922719873b69c18" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_m_c_c___info_1ac953f089a26616a04922719873b69c18" kindref="member">blockLength</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28" refid="struct_m_c_c___info_1a8b5b58db1c30d6df04b604f585fc05ac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_m_c_c___info_1a8b5b58db1c30d6df04b604f585fc05ac" kindref="member">connect</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29" refid="struct_m_c_c___info_1aa534e297fae03252812e914eb385010c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_m_c_c___info_1aa534e297fae03252812e914eb385010c" kindref="member">isLocked</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}<sp/><ref refid="struct_m_c_c___info" kindref="compound">MCC_Info</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469" kindref="member">MCC_EXI</ref></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34" refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469a44d28708ce92506704747f78428e881a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469a44d28708ce92506704747f78428e881a" kindref="member">MCC_EXI_0</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="35" refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469affeeeb07ee48c7751640e55f0e5bc5a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469affeeeb07ee48c7751640e55f0e5bc5a4" kindref="member">MCC_EXI_1</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="36" refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469aaf3e490cebaaabefc8d5ae0027cc1761" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469aaf3e490cebaaabefc8d5ae0027cc1761" kindref="member">MCC_EXI_2</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84c" kindref="member">MCC_SYSEVENT</ref></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41" refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca55b97b95bc82d2f5a5fe66ac7b69e62e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca55b97b95bc82d2f5a5fe66ac7b69e62e" kindref="member">MCC_SYSEVENT_UNKNOWN</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="42" refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca89341fe5dd356c3f3a793cd8e0560776" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca89341fe5dd356c3f3a793cd8e0560776" kindref="member">MCC_SYSEVENT_REBOOT</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="43" refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca3d1e2e96031955ff1bd625349a8d2597" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84ca3d1e2e96031955ff1bd625349a8d2597" kindref="member">MCC_SYSEVENT_INITIALIZED</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="44" refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cac1211f413c4286da5071922303a9f152" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cac1211f413c4286da5071922303a9f152" kindref="member">MCC_SYSEVENT_PING</ref><sp/>=<sp/>3,</highlight></codeline>
+<codeline lineno="45" refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cabda8a895053b1e9b337749ef8c340f09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cabda8a895053b1e9b337749ef8c340f09" kindref="member">MCC_SYSEVENT_PING_RESULT</ref><sp/>=<sp/>4,</highlight></codeline>
+<codeline lineno="46" refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cad8bb2d792d04df52419a5df98ff7534a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84cad8bb2d792d04df52419a5df98ff7534a" kindref="member">MCC_SYSEVENT_FLUSH</ref><sp/>=<sp/>5,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="mcc_8h_1ac0fc698e94775602ed3532a3f8f38bf6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/>(*<ref refid="mcc_8h_1ac0fc698e94775602ed3532a3f8f38bf6" kindref="member">MCC_CBEvent</ref>)<sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">channel</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>);</highlight></codeline>
+<codeline lineno="50" refid="mcc_8h_1a3b6e871c7154ec3ec0c0f712d5a6f9a2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/>(*<ref refid="mcc_8h_1a3b6e871c7154ec3ec0c0f712d5a6f9a2" kindref="member">MCC_CBSysEvent</ref>)<sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a0d6a283e93013e901ae1b4aba0c9e84c" kindref="member">MCC_SYSEVENT</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sysEvent</ref>);</highlight></codeline>
+<codeline lineno="51" refid="mcc_8h_1a39b0aa1ff46e500c25047ade97a2c8b5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref><sp/><sp/>(*<ref refid="mcc_8h_1a39b0aa1ff46e500c25047ade97a2c8b5" kindref="member">MCC_CBEnumDevices</ref>)<sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="struct_m_c_c___hdr" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55" refid="struct_m_c_c___hdr_1a7bc0c4fba71ff38aa9b1c16d07bb8652" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_m_c_c___hdr_1a7bc0c4fba71ff38aa9b1c16d07bb8652" kindref="member">length</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="struct_m_c_c___hdr_1a930e7aa469fa56007af4fa3ab346bc50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_m_c_c___hdr_1a930e7aa469fa56007af4fa3ab346bc50" kindref="member">rsvd</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="struct_m_c_c___hdr_1ab78565b1dbbc34e37c6d171c1759fec9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_m_c_c___hdr_1ab78565b1dbbc34e37c6d171c1759fec9" kindref="member">protocol</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}<sp/><ref refid="struct_m_c_c___hdr" kindref="compound">MCC_Hdr</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="struct_m_c_c___hdr_fio" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="62" refid="struct_m_c_c___hdr_fio_1a1daf8f0c35362e89354d09e1f72f725c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_m_c_c___hdr_fio_1a1daf8f0c35362e89354d09e1f72f725c" kindref="member">code</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="struct_m_c_c___hdr_fio_1a01d1f410822624d257e72d9ea7b390ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="struct_m_c_c___hdr_fio_1a01d1f410822624d257e72d9ea7b390ba" kindref="member">number</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}<sp/><ref refid="struct_m_c_c___hdr_fio" kindref="compound">MCC_HdrFio</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="struct_m_c_c___channel_info" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68" refid="struct_m_c_c___channel_info_1ac6dc642ed88577d92495938d124a4c8c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_m_c_c___info" kindref="compound">MCC_Info</ref><sp/><sp/><sp/><sp/><ref refid="struct_m_c_c___channel_info_1ac6dc642ed88577d92495938d124a4c8c" kindref="member">info</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="struct_m_c_c___channel_info_1ace770dff8ed35cbdf74da3a1b3270796" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1ac0fc698e94775602ed3532a3f8f38bf6" kindref="member">MCC_CBEvent</ref><sp/><ref refid="struct_m_c_c___channel_info_1ace770dff8ed35cbdf74da3a1b3270796" kindref="member">callbackEvent</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="struct_m_c_c___channel_info_1aa117a20376518a2e76d5cc11f939e0ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_m_c_c___channel_info_1aa117a20376518a2e76d5cc11f939e0ef" kindref="member">eventMask</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="struct_m_c_c___channel_info_1a5de0dff3e6da5980d5a8b64029c26bf7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_m_c_c___channel_info_1a5de0dff3e6da5980d5a8b64029c26bf7" kindref="member">isStreamDone</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="struct_m_c_c___channel_info_1aba41b4aa60143df3b0aa1c11fffbf415" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_m_c_c___channel_info_1aba41b4aa60143df3b0aa1c11fffbf415" kindref="member">isStreamConnection</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}<sp/><ref refid="struct_m_c_c___channel_info" kindref="compound">MCC_ChannelInfo</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951" kindref="member">MCC_MODE</ref></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="77" refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951a8d7b1aa1ee24de48ae2d718ade47bd6f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951a8d7b1aa1ee24de48ae2d718ade47bd6f" kindref="member">MCC_MODE_MIN</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="78" refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951af4b7710138cf9db6952f53240480911a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951af4b7710138cf9db6952f53240480911a" kindref="member">MCC_MODE_MAX</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="79" refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951a39681c29a4879f071011717cb1776f7e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951a39681c29a4879f071011717cb1776f7e" kindref="member">MCC_MODE_ALL</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467" kindref="member">MCC_CONNECT</ref></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="84" refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a507cf1e75b1c85cac0566c3f033e1702" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a507cf1e75b1c85cac0566c3f033e1702" kindref="member">MCC_CONNECT_DISCONNECT</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="85" refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a0c67053126e33ff32f64b1e02578d5fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a0c67053126e33ff32f64b1e02578d5fa" kindref="member">MCC_CONNECT_HOST_OPEN</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="86" refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a6649fe3dbf623108a861ef9ac38988f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a6649fe3dbf623108a861ef9ac38988f7" kindref="member">MCC_CONNECT_TARGET_OPEN</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="87" refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a9101cd5d40d7bb936f900b76d56e3b2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467a9101cd5d40d7bb936f900b76d56e3b2e" kindref="member">MCC_CONNECT_CONNECTED</ref><sp/>=<sp/>3,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432" kindref="member">MCC_SYNC_STATE</ref></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92" refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432af4cb1346308ca86e922ed08c3ab6c408" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432af4cb1346308ca86e922ed08c3ab6c408" kindref="member">MCC_SYNC</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="93" refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432a6f51e1ff1c5fcc0693d5e188d3695604" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432a6f51e1ff1c5fcc0693d5e188d3695604" kindref="member">MCC_ASYNC</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="mcc_8h_1a119acad31c2473bc5599e5792474fd7a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a119acad31c2473bc5599e5792474fd7a" kindref="member">FIO_ASYNC_STATE</ref></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98" refid="mcc_8h_1a119acad31c2473bc5599e5792474fd7aa36ff5595774c3ab33e1a7c96d0c4dad0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a119acad31c2473bc5599e5792474fd7aa36ff5595774c3ab33e1a7c96d0c4dad0" kindref="member">FIO_ASYNC_STATE_IDOL</ref><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="99" refid="mcc_8h_1a119acad31c2473bc5599e5792474fd7aa0b52e75946706e45d349522f16bbab4f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a119acad31c2473bc5599e5792474fd7aa0b52e75946706e45d349522f16bbab4f" kindref="member">FIO_ASYNC_STATE_BUSY</ref><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="100" refid="mcc_8h_1a119acad31c2473bc5599e5792474fd7aaddbe63d025e2cc65cb5b0328fe69af2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mcc_8h_1a119acad31c2473bc5599e5792474fd7aaddbe63d025e2cc65cb5b0328fe69af2d" kindref="member">FIO_ASYNC_STATE_DONE</ref><sp/>=<sp/>2,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="struct_f_i_o___date" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___date" kindref="compound">FIO_Date</ref></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105" refid="struct_f_i_o___date_1a82ed73bab022ccdaf264e0ac331682f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_f_i_o___date_1a82ed73bab022ccdaf264e0ac331682f5" kindref="member">year</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106" refid="struct_f_i_o___date_1ac53fc255a8fa38bf4f28d930dcd689a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><ref refid="struct_f_i_o___date_1ac53fc255a8fa38bf4f28d930dcd689a0" kindref="member">month</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107" refid="struct_f_i_o___date_1af47d6cf8655f880f1c55db042964bc86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><ref refid="struct_f_i_o___date_1af47d6cf8655f880f1c55db042964bc86" kindref="member">day</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="struct_f_i_o___daytime" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___daytime" kindref="compound">FIO_Daytime</ref></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="112" refid="struct_f_i_o___daytime_1a864c000adc7421ae4c5e424d84f246a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_f_i_o___daytime_1a864c000adc7421ae4c5e424d84f246a8" kindref="member">hour</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113" refid="struct_f_i_o___daytime_1a55472eda0e905beb8765c5d70f7f6993" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_f_i_o___daytime_1a55472eda0e905beb8765c5d70f7f6993" kindref="member">minute</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114" refid="struct_f_i_o___daytime_1a7d11cfa926f9404e9f300c907cac50fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_f_i_o___daytime_1a7d11cfa926f9404e9f300c907cac50fe" kindref="member">second</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115" refid="struct_f_i_o___daytime_1a564591c792523c3e8cf79674ac2584da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="struct_f_i_o___daytime_1a564591c792523c3e8cf79674ac2584da" kindref="member">reserved</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="struct_f_i_o___timestamp" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___timestamp" kindref="compound">FIO_Timestamp</ref></highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120" refid="struct_f_i_o___timestamp_1a5aeb0026e4e3682d30303a95ff3203f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___date" kindref="compound">FIO_Date</ref><sp/><sp/><sp/><sp/><ref refid="struct_f_i_o___timestamp_1a5aeb0026e4e3682d30303a95ff3203f3" kindref="member">date</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121" refid="struct_f_i_o___timestamp_1aec40c8dc124159e978556d6066f21075" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___daytime" kindref="compound">FIO_Daytime</ref><sp/><ref refid="struct_f_i_o___timestamp_1aec40c8dc124159e978556d6066f21075" kindref="member">time</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="struct_f_i_o___stat" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___stat" kindref="compound">FIO_Stat</ref></highlight></codeline>
+<codeline lineno="125"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="126" refid="struct_f_i_o___stat_1a74983b05c5eaedd7e311d301e62452c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_f_i_o___stat_1a74983b05c5eaedd7e311d301e62452c0" kindref="member">fileAttributes</ref>;<sp/></highlight></codeline>
+<codeline lineno="127" refid="struct_f_i_o___stat_1ae7c923919f69ceaa4c7a398b340a2e2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___timestamp" kindref="compound">FIO_Timestamp</ref><sp/><ref refid="struct_f_i_o___stat_1ae7c923919f69ceaa4c7a398b340a2e2c" kindref="member">creationTime</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="128" refid="struct_f_i_o___stat_1a26aa5b43a8ff7099cd6e3cf616cf7a3e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___timestamp" kindref="compound">FIO_Timestamp</ref><sp/><ref refid="struct_f_i_o___stat_1a26aa5b43a8ff7099cd6e3cf616cf7a3e" kindref="member">lastAccessTime</ref>;<sp/></highlight></codeline>
+<codeline lineno="129" refid="struct_f_i_o___stat_1aa176b9b527de10b421de84360fa686bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___timestamp" kindref="compound">FIO_Timestamp</ref><sp/><ref refid="struct_f_i_o___stat_1aa176b9b527de10b421de84360fa686bd" kindref="member">lastWriteTime</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="130" refid="struct_f_i_o___stat_1a4864bef430acdb7cfc1e4070019a0acd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_f_i_o___stat_1a4864bef430acdb7cfc1e4070019a0acd" kindref="member">fileSizeHigh</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="131" refid="struct_f_i_o___stat_1affbe970bda6acf4618cddcabf1b48286" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_f_i_o___stat_1affbe970bda6acf4618cddcabf1b48286" kindref="member">fileSizeLow</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="132"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="struct_f_i_o___finddata" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___finddata" kindref="compound">FIO_Finddata</ref></highlight></codeline>
+<codeline lineno="135"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="136" refid="struct_f_i_o___finddata_1a27ab3cf3194ad5ad06427b43706cd22a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_f_i_o___stat" kindref="compound">FIO_Stat</ref><sp/><ref refid="struct_f_i_o___finddata_1a27ab3cf3194ad5ad06427b43706cd22a" kindref="member">stat</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137" refid="struct_f_i_o___finddata_1a5601c1b75c22a23b7b0d87882d532d81" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a151f780fb455885061d3b77ec1c90c03" kindref="member">s8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_f_i_o___finddata_1a5601c1b75c22a23b7b0d87882d532d81" kindref="member">filename</ref>[256];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="138"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="comment">//<sp/>fio.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a253a190eb1c1e903371129affb866a30" kindref="member">FIOInit</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469" kindref="member">MCC_EXI</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exiChannel</ref>,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">blockSize</ref>);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a2e803897f29ff19feb4244fd3f361108" kindref="member">FIOExit</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1ae39ba1bffe561836b4674a47ed78bff6" kindref="member">FIOQuery</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><ref refid="mcc_8h_1ac46cea5ad2640c01924cecde3c7d5895" kindref="member">FIOGetLastError</ref><sp/>();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a29655b71926ce090ce857c5d0cf2e3f1" kindref="member">FIOFopen</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>mode);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a4c096a22cb43f96dbe678037d71918a9" kindref="member">FIOFclose</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="mcc_8h_1a6ce2f3b3f5676ad6ba9af5df060eb502" kindref="member">FIOFread</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="mcc_8h_1a30f5cce70713e82c0fdd14ceb5774b7d" kindref="member">FIOFwrite</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="mcc_8h_1ad59040b012a2e54af05d45c6a73618d0" kindref="member">FIOFseek</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/>offset,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>mode);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a41a2fa70a805c6ff0547cdace76f3cb9" kindref="member">FIOFprintf</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>format,<sp/>...);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1ab55d1f087202a3c6e8472e31b988bb30" kindref="member">FIOFflush</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1ace27718f5fb96cd7175dd3ff677b3851" kindref="member">FIOFstat</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_f_i_o___stat" kindref="compound">FIO_Stat</ref>*<sp/>stat);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a8103c7cf695acdcbeb15eceaacb6c125" kindref="member">FIOFerror</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a0ef932e79fe575d404b7da7c0ae3803b" kindref="member">FIOFindFirst</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_f_i_o___finddata" kindref="compound">FIO_Finddata</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">finddata</ref>);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a7b8761edb2a50e73a05c893328150d9c" kindref="member">FIOFindNext</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_f_i_o___finddata" kindref="compound">FIO_Finddata</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">finddata</ref>);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="mcc_8h_1a408a84c05d69126fe1869584c5ec53aa" kindref="member">FIOGetAsyncBufferSize</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1ae96e1d7e5e4073535fc242d48fa3cd28" kindref="member">FIOFreadAsync</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1abda221da5445e20699afcac737d92335" kindref="member">FIOFwriteAsync</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>handle,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a16929872441268f5b4b593ddb0fd2582" kindref="member">FIOCheckAsyncDone</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref>*<sp/>result);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="comment">//<sp/>mcc.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1ae307f8c1646d571684a31b645f817cce" kindref="member">MCCStreamOpen</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">blockSize</ref>);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a6626d6a39cb0f3496ee020758063bda6" kindref="member">MCCStreamClose</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1ab6f2a72416634a42e6c53de72ebbc400" kindref="member">MCCStreamWrite</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dataBlockSize</ref>);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="mcc_8h_1a905b7eaf560841f1a5a453fe0409aec1" kindref="member">MCCStreamRead</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a514a974f382491f12ae32d2c23e1aede" kindref="member">MCCInit</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1ae7191018a4cc75024fe9fc2b9b31c469" kindref="member">MCC_EXI</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exiChannel</ref>,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">timeout</ref>,<sp/><ref refid="mcc_8h_1a3b6e871c7154ec3ec0c0f712d5a6f9a2" kindref="member">MCC_CBSysEvent</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">callbackSysEvent</ref>);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1ab618b83ed3fe601b76a9c0c59161ec9b" kindref="member">MCCExit</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1af13c541325f6900bf06ae5b56c3c57f8" kindref="member">MCCPing</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a54d69ee7b3704bde1a5a8ce16d12f1dc" kindref="member">MCCEnumDevices</ref><sp/>(<ref refid="mcc_8h_1a39b0aa1ff46e500c25047ade97a2c8b5" kindref="member">MCC_CBEnumDevices</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">callbackEnumDevices</ref>);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><ref refid="mcc_8h_1aac64827d0fc66babae02f68256097a3a" kindref="member">MCCGetFreeBlocks</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a73d0b266c0028647ad56cf474f0a5951" kindref="member">MCC_MODE</ref><sp/>mode);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><ref refid="mcc_8h_1a556d167b923cf0baff1a19ac7493d76d" kindref="member">MCCGetLastError</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a7f9250beb823cb5041f464b48b69bc25" kindref="member">MCCGetChannelInfo</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/><ref refid="struct_m_c_c___info" kindref="compound">MCC_Info</ref>*<sp/>info);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a40dc6a8848e38d75251181601b364a4c" kindref="member">MCCGetConnectionStatus</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a7d2da8d7ab2fd9d3b5e14e96bb18f467" kindref="member">MCC_CONNECT</ref>*<sp/>connect);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1aa6dafd31ecb87169b18362b8696e0079" kindref="member">MCCNotify</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">notify</ref>);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="mcc_8h_1adfa3493c78a51f98d506114f658a71ec" kindref="member">MCCSetChannelEventMask</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">event</ref>);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a0ddc1d662c8808bfc77b2defce627691" kindref="member">MCCOpen</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">blockSize</ref>,<sp/><ref refid="mcc_8h_1ac0fc698e94775602ed3532a3f8f38bf6" kindref="member">MCC_CBEvent</ref><sp/>callbackEvent);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a5d7f4ff168c3b368dca3f6a28b68709d" kindref="member">MCCClose</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a340ebb37b1c2d3b5b0b058076aeb4bb2" kindref="member">MCCLock</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1aab3792420ab37404c0dcd8b16b9689e8" kindref="member">MCCUnlock</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1ae46076052d0a308f624a76e8c3e47371" kindref="member">MCCRead</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>offset,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432" kindref="member">MCC_SYNC_STATE</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">async</ref>);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1a5e1e4710b55dc28eb5b3196b6ac5ba18" kindref="member">MCCWrite</ref><sp/>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a391269149b821f29fb2ebd7c6c9cfb7d" kindref="member">MCC_CHANNEL</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chID</ref>,<sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>offset,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><ref refid="____ppc__eabi__init_8cpp_1acfd6273064c5acdcfc39a23a69dd4343" kindref="member">size</ref>,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="mcc_8h_1a8d0c016e4e82375f28fd6897af367432" kindref="member">MCC_SYNC_STATE</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">async</ref>);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mcc_8h_1ab312b6cc076bb22d30ab9af8bacff50e" kindref="member">MCCCheckAsyncDone</ref><sp/>();</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_DOLPHIN_MCC_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/include/dolphin/mcc.h"/>
+  </compounddef>
+</doxygen>

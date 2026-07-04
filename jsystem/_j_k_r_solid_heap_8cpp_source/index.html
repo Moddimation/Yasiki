@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File JKRSolidHeap.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-jkrsolidheapcpp">File JKRSolidHeap.cpp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_2add8750dabb2c81b6f2c3c5af4cfeba/"><strong>JSystem</strong></a> <strong>&gt;</strong> <a href="../dir_e5be38218225624e70ebb9ea7ff5d81f/"><strong>System</strong></a> <strong>&gt;</strong> <a href="../dir_cddf90ee7c92ffd4474a8c27c5ea5882/"><strong>JKernel</strong></a> <strong>&gt;</strong> <a href="../dir_2af99252d1c483de143a7a3f414b45a2/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_j_k_r_solid_heap_8cpp/"><strong>JKRSolidHeap.cpp</strong></a></p>
+<p><a href="../_j_k_r_solid_heap_8cpp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;JKRSolidHeap.h&gt;
+
+JKRSolidHeap*
+JKRSolidHeap::create (size_t size, JKRHeap* parent, BOOL isError)
+{
+    if (parent == Nil)
+    {
+        parent = sRootHeap;
+    }
+
+    const u32 expHeapSize = ALIGN_NEXT (sizeof (JKRSolidHeap), 0x10);
+    const u32 alignedSize = ALIGN_PREV (size, 0x10);
+
+    JKRSolidHeap* heap    = (JKRSolidHeap*)JKRHeap::alloc (alignedSize, 0x10, parent);
+    void*         dataPtr = (char*)heap + 0x80;
+
+    return new (heap) JKRSolidHeap (dataPtr, alignedSize - expHeapSize, parent, isError);
+}
+
+void
+JKRSolidHeap::destroy ()
+{
+    JKRHeap* parent = getParent();
+    if (parent != Nil)
+    {
+        this-&gt;~JKRSolidHeap();
+        JKRHeap::free (this, parent);
+    }
+}
+
+JKRSolidHeap::JKRSolidHeap (void* obj, size_t size, JKRHeap* parent, bool is_error)
+  : JKRHeap (obj, size, parent, is_error),
+    mFreeSize (mSize),
+    mHead (mStart),
+    mTail (mEnd),
+    mIter (Nil)
+{}
+
+JKRSolidHeap::~JKRSolidHeap ()
+{
+    dispose();
+}
+
+s32
+JKRSolidHeap::adjustSize ()
+{
+    JKRHeap* parent = getParent();
+    if (parent != Nil)
+    {
+        lock();
+
+        size_t sizeOld = (u32)mStart - (u32)this;
+        size_t sizeNew = ALIGN_NEXT ((u32)mHead - (u32)mStart, 0x20);
+
+        size_t result  = parent-&gt;resize (this, (size_t)(sizeOld + sizeNew));
+        if (result != -1)
+        {
+            mFreeSize = 0;
+            mSize     = sizeNew;
+            mEnd      = (void*)((u32)mStart + mSize);
+            mHead     = mEnd;
+            mTail     = mEnd;
+        }
+
+        unlock();
+
+        return (s32)(sizeOld + sizeNew);
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+void*
+JKRSolidHeap::alloc (size_t size, int align)
+{
+    void* mem;
+
+    lock();
+    if (size &lt; 4)
+    {
+        size = 4;
+    }
+
+    if (align &gt;= 0)
+    {
+        mem = allocFromHead (size, align &lt; 4 ? 4 : align);
+    }
+    else
+    {
+        mem = allocFromTail (size, align &gt; -4 ? 4 : -align);
+    }
+
+    unlock();
+
+    return mem;
+}
+
+void*
+JKRSolidHeap::allocFromHead (size_t size, int align)
+{
+    size          = ALIGN_NEXT (size, align);
+
+    void* mem     = Nil;
+
+    u32 startNext = ALIGN_NEXT ((u32)mHead, align);
+    u32 sizeNext  = size + (startNext - (u32)mHead);
+
+    if (sizeNext &lt;= mFreeSize)
+    {
+        mHead      = (void*)((u32)mHead + sizeNext);
+        mFreeSize -= sizeNext;
+        mem        = (void*)startNext;
+    }
+    else
+    {
+        if (mErrorFlag == true &amp;&amp; (JKRHeap::mErrorHandler != Nil))
+        {
+            (*mErrorHandler) (this, size, align);
+        }
+    }
+
+    return mem;
+}
+
+void*
+JKRSolidHeap::allocFromTail (size_t size, int align)
+{
+    size          = ALIGN_NEXT (size, align);
+
+    void* mem     = Nil;
+
+    u32 startLast = ALIGN_PREV ((u32)mTail - size, align);
+    u32 sizeLast  = (u32)mTail - startLast;
+
+    if (sizeLast &lt;= mFreeSize)
+    {
+        mTail      = (void*)((u32)mTail - sizeLast);
+        mFreeSize -= sizeLast;
+        mem        = (void*)startLast;
+    }
+    else
+    {
+        if (mErrorFlag == true &amp;&amp; (JKRHeap::mErrorHandler != Nil))
+        {
+            (*mErrorHandler) (this, size, align);
+        }
+    }
+
+    return mem;
+}
+
+void
+JKRSolidHeap::free (void* ptr)
+{
+#pragma unused(ptr)
+}
+
+void
+JKRSolidHeap::freeAll (void)
+{
+    lock();
+
+    JKRHeap::freeAll();
+
+    mFreeSize = mSize;
+    mHead     = mStart;
+    mTail     = mEnd;
+    mIter     = Nil;
+
+    unlock();
+}
+
+void
+JKRSolidHeap::freeTail (void)
+{
+    lock();
+
+    if (mTail != mEnd)
+    {
+        dispose (mTail, mEnd);
+    }
+    mFreeSize = mFreeSize + ((u32)mEnd - (u32)mTail);
+    mTail     = mEnd;
+    for (Iter* s = mIter; s != Nil; s = s-&gt;mHead) { s-&gt;mTail = mEnd; }
+
+    unlock();
+}
+
+size_t
+JKRSolidHeap::resize (void* obj, size_t size)
+{
+#pragma unused(obj)
+#pragma unused(size)
+
+    return (size_t)-1;
+}
+
+size_t
+JKRSolidHeap::getSize (void* obj)
+{
+#pragma unused(obj)
+
+    return (size_t)-1;
+}
+
+BOOL
+JKRSolidHeap::check (void)
+{
+    lock();
+
+    u32  check = mFreeSize + ((u32)mHead - (u32)mStart) + ((u32)mEnd - (u32)mTail);
+    BOOL ok    = true;
+
+    if (check != mSize)
+    {
+        ok = false;
+    }
+
+    unlock();
+
+    return ok;
+}
+
+BOOL
+JKRSolidHeap::dump (void)
+{
+    BOOL ret = dump();
+
+    lock();
+
+#ifdef DEBUG
+
+#endif
+
+    unlock();
+
+    return ret;
+}
+
+size_t
+JKRSolidHeap::getTotalFreeSize (void)
+{
+    return getTotalFreeSize();
+}
+
+u32
+JKRSolidHeap::getHeapType (void)
+{
+    return 'SLID';
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

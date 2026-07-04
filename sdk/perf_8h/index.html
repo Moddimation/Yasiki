@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File perf.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-perfh">File perf.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="./"><strong>perf.h</strong></a></p>
+<p><a href="../perf_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/gx/GXStruct.h&gt;</code></li>
+<li><code>#include &lt;types.h&gt;</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_frame/"><strong>Frame</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_perf_event/"><strong>PerfEvent</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../struct_perf_sample/"><strong>PerfSample</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *(*</td>
+<td style="text-align: left;"><a href="#typedef-perfallocator"><strong>PERFAllocator</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-perfdeallocator"><strong>PERFDeallocator</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#typedef-perfdrawcallback"><strong>PERFDrawCallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../types_8h/#typedef-u8"><strong>u8</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-perfid"><strong>PERFId</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_perf_sample/"><strong>PerfSample</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-perfsample"><strong>PerfSample</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-perftype"><strong>PerfType</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#variable-gamedrawinit"><strong>GameDrawInit</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-perfcurrframe"><strong>PERFCurrFrame</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_perf_event/"><strong>PerfEvent</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-perfevents"><strong>PERFEvents</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_frame/"><strong>Frame</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-perfframes"><strong>PERFFrames</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfdumpscreen"><strong>PERFDumpScreen</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfendframe"><strong>PERFEndFrame</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfeventend"><strong>PERFEventEnd</strong></a> (<a href="./#typedef-perfid"><strong>PERFId</strong></a> id) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfeventstart"><strong>PERFEventStart</strong></a> (<a href="./#typedef-perfid"><strong>PERFId</strong></a> id) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfinit"><strong>PERFInit</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> numSamples, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> numFramesHistory, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> numTypes, <a href="./#typedef-perfallocator"><strong>PERFAllocator</strong></a> allocator, <a href="./#typedef-perfdeallocator"><strong>PERFDeallocator</strong></a> deallocator, <a href="./#typedef-perfdrawcallback"><strong>PERFDrawCallback</strong></a> initDraw) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfpostdraw"><strong>PERFPostDraw</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfpredraw"><strong>PERFPreDraw</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfsetdrawbwbar"><strong>PERFSetDrawBWBar</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> tf) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfsetdrawbwbarkey"><strong>PERFSetDrawBWBarKey</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> tf) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfsetdrawcpubar"><strong>PERFSetDrawCPUBar</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> tf) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfsetdrawrasbar"><strong>PERFSetDrawRASBar</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> tf) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfsetdrawxfbars"><strong>PERFSetDrawXFBars</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> tf) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfsetevent"><strong>PERFSetEvent</strong></a> (<a href="./#typedef-perfid"><strong>PERFId</strong></a> id, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>char</strong></a> * name, <a href="./#enum-perftype"><strong>PerfType</strong></a> type) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfstartautosampling"><strong>PERFStartAutoSampling</strong></a> (<a href="../types_8h/#typedef-f32"><strong>f32</strong></a> msInterval) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfstartframe"><strong>PERFStartFrame</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perfstopautosampling"><strong>PERFStopAutoSampling</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perftoggledrawbwbar"><strong>PERFToggleDrawBWBar</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perftoggledrawbwbarkey"><strong>PERFToggleDrawBWBarKey</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perftoggledrawcpubar"><strong>PERFToggleDrawCPUBar</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perftoggledrawrasbar"><strong>PERFToggleDrawRASBar</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-perftoggledrawxfbars"><strong>PERFToggleDrawXFBars</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-perfallocator">typedef PERFAllocator</h3>
+<pre><code class="language-C++">typedef void *(* PERFAllocator) (u32 size);
+</code></pre>
+<hr>
+
+<h3 id="typedef-perfdeallocator">typedef PERFDeallocator</h3>
+<pre><code class="language-C++">typedef void(* PERFDeallocator) (void *block);
+</code></pre>
+<hr>
+
+<h3 id="typedef-perfdrawcallback">typedef PERFDrawCallback</h3>
+<pre><code class="language-C++">typedef void(* PERFDrawCallback) (void);
+</code></pre>
+<hr>
+
+<h3 id="typedef-perfid">typedef PERFId</h3>
+<pre><code class="language-C++">typedef u8 PERFId;
+</code></pre>
+<hr>
+
+<h3 id="typedef-perfsample">typedef PerfSample</h3>
+<pre><code class="language-C++">typedef struct PerfSample PerfSample;
+</code></pre>
+<hr>
+
+<h3 id="enum-perftype">enum PerfType</h3>
+<pre><code class="language-C++">enum PerfType {
+    PERF_CPU_EVENT,
+    PERF_CPU_GP_EVENT,
+    PERF_GP_EVENT
+};
+</code></pre>
+<hr>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-gamedrawinit">variable GameDrawInit</h3>
+<pre><code class="language-C++">void(* GameDrawInit) ();
+</code></pre>
+<hr>
+
+<h3 id="variable-perfcurrframe">variable PERFCurrFrame</h3>
+<pre><code class="language-C++">u32 PERFCurrFrame;
+</code></pre>
+<hr>
+
+<h3 id="variable-perfevents">variable PERFEvents</h3>
+<pre><code class="language-C++">struct PerfEvent* PERFEvents;
+</code></pre>
+<hr>
+
+<h3 id="variable-perfframes">variable PERFFrames</h3>
+<pre><code class="language-C++">struct Frame* PERFFrames;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-perfdumpscreen">function PERFDumpScreen</h3>
+<pre><code class="language-C++">void PERFDumpScreen () 
+</code></pre>
+<hr>
+
+<h3 id="function-perfendframe">function PERFEndFrame</h3>
+<pre><code class="language-C++">void PERFEndFrame (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfeventend">function PERFEventEnd</h3>
+<pre><code class="language-C++">void PERFEventEnd (
+    PERFId id
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfeventstart">function PERFEventStart</h3>
+<pre><code class="language-C++">void PERFEventStart (
+    PERFId id
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfinit">function PERFInit</h3>
+<pre><code class="language-C++">u32 PERFInit (
+    u32 numSamples,
+    u32 numFramesHistory,
+    u32 numTypes,
+    PERFAllocator allocator,
+    PERFDeallocator deallocator,
+    PERFDrawCallback initDraw
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfpostdraw">function PERFPostDraw</h3>
+<pre><code class="language-C++">void PERFPostDraw () 
+</code></pre>
+<hr>
+
+<h3 id="function-perfpredraw">function PERFPreDraw</h3>
+<pre><code class="language-C++">void PERFPreDraw () 
+</code></pre>
+<hr>
+
+<h3 id="function-perfsetdrawbwbar">function PERFSetDrawBWBar</h3>
+<pre><code class="language-C++">void PERFSetDrawBWBar (
+    int tf
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfsetdrawbwbarkey">function PERFSetDrawBWBarKey</h3>
+<pre><code class="language-C++">void PERFSetDrawBWBarKey (
+    int tf
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfsetdrawcpubar">function PERFSetDrawCPUBar</h3>
+<pre><code class="language-C++">void PERFSetDrawCPUBar (
+    int tf
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfsetdrawrasbar">function PERFSetDrawRASBar</h3>
+<pre><code class="language-C++">void PERFSetDrawRASBar (
+    int tf
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfsetdrawxfbars">function PERFSetDrawXFBars</h3>
+<pre><code class="language-C++">void PERFSetDrawXFBars (
+    int tf
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfsetevent">function PERFSetEvent</h3>
+<pre><code class="language-C++">void PERFSetEvent (
+    PERFId id,
+    char * name,
+    PerfType type
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfstartautosampling">function PERFStartAutoSampling</h3>
+<pre><code class="language-C++">void PERFStartAutoSampling (
+    f32 msInterval
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfstartframe">function PERFStartFrame</h3>
+<pre><code class="language-C++">void PERFStartFrame (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perfstopautosampling">function PERFStopAutoSampling</h3>
+<pre><code class="language-C++">void PERFStopAutoSampling (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-perftoggledrawbwbar">function PERFToggleDrawBWBar</h3>
+<pre><code class="language-C++">void PERFToggleDrawBWBar () 
+</code></pre>
+<hr>
+
+<h3 id="function-perftoggledrawbwbarkey">function PERFToggleDrawBWBarKey</h3>
+<pre><code class="language-C++">void PERFToggleDrawBWBarKey () 
+</code></pre>
+<hr>
+
+<h3 id="function-perftoggledrawcpubar">function PERFToggleDrawCPUBar</h3>
+<pre><code class="language-C++">void PERFToggleDrawCPUBar () 
+</code></pre>
+<hr>
+
+<h3 id="function-perftoggledrawrasbar">function PERFToggleDrawRASBar</h3>
+<pre><code class="language-C++">void PERFToggleDrawRASBar () 
+</code></pre>
+<hr>
+
+<h3 id="function-perftoggledrawxfbars">function PERFToggleDrawXFBars</h3>
+<pre><code class="language-C++">void PERFToggleDrawXFBars () 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/perf.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

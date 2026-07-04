@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File AmcExi2Comm.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-amcexi2commh">File AmcExi2Comm.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_8a5ef61d2a1cd31d2734e76a8046ca80/"><strong>amc</strong></a> <strong>&gt;</strong> <a href="./"><strong>AmcExi2Comm.h</strong></a></p>
+<p><a href="../_amc_exi2_comm_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/amc/AmcTypes.h&gt;</code></li>
+<li><code>#include &lt;dolphin/os.h&gt;</code></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-amcexierror"><strong>AmcExiError</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-exi2_enableinterrupts"><strong>EXI2_EnableInterrupts</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-amcexierror"><strong>AmcExiError</strong></a></td>
+<td style="text-align: left;"><a href="#function-exi2_getstatusreg"><strong>EXI2_GetStatusReg</strong></a> (<a href="../types_8h/#typedef-u16"><strong>u16</strong></a> * pu16StatusReg) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-exi2_init"><strong>EXI2_Init</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-u16"><strong>u16</strong></a> ** inputPendingPtrRef, <a href="../_amc_types_8h/#typedef-exicallback"><strong>EXICallback</strong></a> monitorCallback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-exi2_poll"><strong>EXI2_Poll</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-amcexierror"><strong>AmcExiError</strong></a></td>
+<td style="text-align: left;"><a href="#function-exi2_readn"><strong>EXI2_ReadN</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * bytes, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-exi2_reserve"><strong>EXI2_Reserve</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-exi2_unreserve"><strong>EXI2_Unreserve</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-amcexierror"><strong>AmcExiError</strong></a></td>
+<td style="text-align: left;"><a href="#function-exi2_writen"><strong>EXI2_WriteN</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>const</strong></a> <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * bytes, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="enum-amcexierror">enum AmcExiError</h3>
+<pre><code class="language-C++">enum AmcExiError {
+    AMC_EXI_NO_ERROR = 0,
+    AMC_EXI_UNSELECTED
+};
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-exi2_enableinterrupts">function EXI2_EnableInterrupts</h3>
+<pre><code class="language-C++">void EXI2_EnableInterrupts (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exi2_getstatusreg">function EXI2_GetStatusReg</h3>
+<pre><code class="language-C++">AmcExiError EXI2_GetStatusReg (
+    u16 * pu16StatusReg
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exi2_init">function EXI2_Init</h3>
+<pre><code class="language-C++">void EXI2_Init (
+    volatile  u16 ** inputPendingPtrRef,
+    EXICallback monitorCallback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exi2_poll">function EXI2_Poll</h3>
+<pre><code class="language-C++">int EXI2_Poll (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exi2_readn">function EXI2_ReadN</h3>
+<pre><code class="language-C++">AmcExiError EXI2_ReadN (
+    void * bytes,
+    u32 length
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exi2_reserve">function EXI2_Reserve</h3>
+<pre><code class="language-C++">void EXI2_Reserve (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exi2_unreserve">function EXI2_Unreserve</h3>
+<pre><code class="language-C++">void EXI2_Unreserve (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-exi2_writen">function EXI2_WriteN</h3>
+<pre><code class="language-C++">AmcExiError EXI2_WriteN (
+    const  void * bytes,
+    u32 length
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/amc/AmcExi2Comm.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File CARDWrite.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-cardwritec">File CARDWrite.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_2dfa3b55db09c289c0394a464581d568/"><strong>card</strong></a> <strong>&gt;</strong> <a href="./"><strong>CARDWrite.c</strong></a></p>
+<p><a href="../_c_a_r_d_write_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;dolphin/card.h&gt;</code></li>
+<li><code>#include "CARDPrivate.h"</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardwrite"><strong>CARDWrite</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * buf, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> offset) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-cardwriteasync"><strong>CARDWriteAsync</strong></a> (<a href="../struct_c_a_r_d_file_info/"><strong>CARDFileInfo</strong></a> * fileInfo, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * buf, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a>, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a>) callback) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-erasecallback"><strong>EraseCallback</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-writecallback"><strong>WriteCallback</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> chan, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-offset"><strong>OFFSET</strong></a> (addr, align) <code>((([**u32**](types_8h.md#typedef-u32))(addr) &amp; (([**align**](_c_a_r_d_private_8h.md#define-card_max_mount_step)) - 1)))</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-cardwrite">function CARDWrite</h3>
+<pre><code class="language-C++">s32 CARDWrite (
+    struct  CARDFileInfo * fileInfo,
+    void * buf,
+    s32 length,
+    long offset
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cardwriteasync">function CARDWriteAsync</h3>
+<pre><code class="language-C++">s32 CARDWriteAsync (
+    CARDFileInfo * fileInfo,
+    void * buf,
+    s32 length,
+    long offset,
+    void (*)( long , long ) callback
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-erasecallback">function EraseCallback</h3>
+<pre><code class="language-C++">static void EraseCallback (
+    s32 chan,
+    s32 result
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-writecallback">function WriteCallback</h3>
+<pre><code class="language-C++">static void WriteCallback (
+    s32 chan,
+    s32 result
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-offset">define OFFSET</h3>
+<pre><code class="language-C++">#define OFFSET (
+    addr,
+    align
+) `((( u32 )(addr) &amp; (( align ) - 1)))`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/card/CARDWrite.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

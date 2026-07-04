@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File AXAlloc.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-axallocc">File AXAlloc.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_284807f63fc993a939ff676a07eb86c2/"><strong>ax</strong></a> <strong>&gt;</strong> <a href="../_a_x_alloc_8c/"><strong>AXAlloc.c</strong></a></p>
+<p><a href="../_a_x_alloc_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;AXPrivate.h&quot;
+
+static AXVPB* __AXStackHead[AX_PRIORITY_STACKS];
+static AXVPB* __AXStackTail[AX_PRIORITY_STACKS];
+
+static AXVPB* __AXCallbackStack;
+
+AXVPB*
+__AXGetStackHead (u32 priority)
+{
+    ASSERTLINE (0x3D, priority &lt; AX_PRIORITY_STACKS);
+    return __AXStackHead[priority];
+}
+
+void
+__AXServiceCallbackStack (void)
+{
+    AXVPB* p;
+    int    old;
+
+    for (p = __AXPopCallbackStack(); p; p = __AXPopCallbackStack())
+    {
+        if (p-&gt;callback)
+        {
+            p-&gt;callback (p);
+        }
+        old = OSDisableInterrupts();
+        __AXRemoveFromStack (p);
+        __AXPushFreeStack (p);
+        OSRestoreInterrupts (old);
+    }
+}
+
+void
+__AXInitVoiceStacks (void)
+{
+    u32 i;
+
+    __AXCallbackStack = NULL;
+    for (i = 0; i &lt; AX_PRIORITY_STACKS; i++)
+    {
+        __AXStackHead[i] = __AXStackTail[i] = 0;
+    }
+}
+
+void
+__AXAllocInit (void)
+{
+#ifdef DEBUG
+    OSReport (&quot;Initializing AXAlloc code module¥n&quot;);
+#endif
+    __AXInitVoiceStacks();
+}
+
+void
+__AXAllocQuit (void)
+{
+#ifdef DEBUG
+    OSReport (&quot;Shutting down AXAlloc code module¥n&quot;);
+#endif
+    __AXInitVoiceStacks();
+}
+
+void
+__AXPushFreeStack (AXVPB* p)
+{
+    p-&gt;next = __AXStackHead[0];
+    __AXStackHead[0] = p;
+}
+
+AXVPB*
+__AXPopFreeStack (void)
+{
+    AXVPB* p;
+
+    p = (void*)(u32)&amp;__AXStackHead[0]-&gt;next;
+    if (p)
+    {
+        __AXStackHead[0] = p-&gt;next;
+    }
+    return p;
+}
+
+void
+__AXPushCallbackStack (AXVPB* p)
+{
+    p-&gt;next1 = __AXCallbackStack;
+    __AXCallbackStack = p;
+}
+
+AXVPB*
+__AXPopCallbackStack (void)
+{
+    AXVPB* p;
+
+    p = (void*)(u32)&amp;__AXCallbackStack[0];
+    if (p)
+    {
+        __AXCallbackStack = p-&gt;next1;
+    }
+    return p;
+}
+
+void
+__AXRemoveFromStack (AXVPB* p)
+{
+    u32    i;
+    AXVPB* head;
+    AXVPB* tail;
+
+    ASSERTLINE (0xB5, p-&gt;priority);
+    i = p-&gt;priority;
+    head = __AXStackHead[i];
+    tail = __AXStackTail[i];
+    if (head == tail)
+    {
+        __AXStackHead[i] = __AXStackTail[i] = 0;
+        return;
+    }
+    if (p == head)
+    {
+        __AXStackHead[i] = p-&gt;next;
+        __AXStackHead[i]-&gt;prev = 0;
+        return;
+    }
+    if (p == tail)
+    {
+        __AXStackTail[i] = p-&gt;prev;
+        __AXStackTail[i]-&gt;next = 0;
+        return;
+    }
+    head = p-&gt;prev;
+    tail = p-&gt;next;
+    head-&gt;next = tail;
+    tail-&gt;prev = head;
+}
+
+void
+__AXPushStackHead (AXVPB* p, u32 priority)
+{
+    ASSERTLINE (0xDF, priority);
+    ASSERTLINE (0xE0, priority &lt; AX_PRIORITY_STACKS);
+    p-&gt;next = __AXStackHead[priority];
+    p-&gt;prev = 0;
+    if (p-&gt;next)
+    {
+        __AXStackHead[priority]-&gt;prev = p;
+        __AXStackHead[priority] = p;
+    }
+    else
+    {
+        __AXStackTail[priority] = p;
+        __AXStackHead[priority] = p;
+    }
+    p-&gt;priority = priority;
+}
+
+AXVPB*
+__AXPopStackFromBottom (u32 priority)
+{
+    AXVPB* p;
+
+    ASSERTLINE (0xF9, priority);
+    ASSERTLINE (0xFA, priority &lt; AX_PRIORITY_STACKS);
+    p = NULL;
+    if (__AXStackHead[priority])
+    {
+        if (__AXStackHead[priority] == __AXStackTail[priority])
+        {
+            p = __AXStackHead[priority];
+            __AXStackHead[priority] = __AXStackTail[priority] = 0;
+        }
+        else if (__AXStackTail[priority])
+        {
+            p = __AXStackTail[priority];
+            __AXStackTail[priority] = p-&gt;prev;
+            __AXStackTail[priority]-&gt;next = 0;
+        }
+    }
+    return p;
+}
+
+void
+AXFreeVoice (AXVPB* p)
+{
+    int old;
+
+    ASSERTLINE (0x11C, p);
+    old = OSDisableInterrupts();
+    __AXRemoveFromStack (p);
+    if (p-&gt;pb.state == 1)
+    {
+        p-&gt;depop = 1;
+    }
+    __AXSetPBDefault (p);
+    __AXPushFreeStack (p);
+    OSRestoreInterrupts (old);
+}
+
+AXVPB*
+AXAcquireVoice (u32 priority, void (*callback) (void*), u32 userContext)
+{
+    int    old;
+    AXVPB* p;
+    u32    i;
+
+    ASSERTLINE (0x13D, priority);
+    ASSERTLINE (0x13E, priority &lt; AX_PRIORITY_STACKS);
+
+    old = OSDisableInterrupts();
+    p = __AXPopFreeStack();
+    if (p == 0)
+    {
+        for (i = 1; i &lt; priority; i++)
+        {
+            p = __AXPopStackFromBottom (i);
+            if (p)
+            {
+                if (p-&gt;pb.state == 1)
+                {
+                    p-&gt;depop = 1;
+                }
+                if (p-&gt;callback != 0)
+                {
+                    p-&gt;callback (p);
+                }
+                break;
+            }
+        }
+    }
+    if (p)
+    {
+        __AXPushStackHead (p, priority);
+        p-&gt;callback = callback;
+        p-&gt;userContext = userContext;
+        __AXSetPBDefault (p);
+    }
+    OSRestoreInterrupts (old);
+    return p;
+}
+
+void
+AXSetVoicePriority (AXVPB* p, u32 priority)
+{
+    int old;
+
+    ASSERTLINE (0x17A, p);
+    ASSERTLINE (0x17B, priority);
+    ASSERTLINE (0x17C, priority &lt; AX_PRIORITY_STACKS);
+    old = OSDisableInterrupts();
+    __AXRemoveFromStack (p);
+    __AXPushStackHead (p, priority);
+    OSRestoreInterrupts (old);
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

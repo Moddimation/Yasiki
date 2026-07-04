@@ -1,0 +1,703 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="axfx_8h" kind="file" language="C++">
+    <compoundname>axfx.h</compoundname>
+    <includedby refid="chorus_8c" local="no">chorus.c</includedby>
+    <includedby refid="delay_8c" local="no">delay.c</includedby>
+    <includedby refid="reverb__hi_8c" local="no">reverb_hi.c</includedby>
+    <includedby refid="reverb__std_8c" local="no">reverb_std.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>axfx.h</label>
+        <link refid="axfx_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>chorus.c</label>
+        <link refid="chorus_8c"/>
+      </node>
+      <node id="3">
+        <label>delay.c</label>
+        <link refid="delay_8c"/>
+      </node>
+      <node id="4">
+        <label>reverb_hi.c</label>
+        <link refid="reverb__hi_8c"/>
+      </node>
+      <node id="5">
+        <label>reverb_std.c</label>
+        <link refid="reverb__std_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e" prot="public">AXFX_REVSTD_DELAYLINE</innerclass>
+    <innerclass refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k" prot="public">AXFX_REVSTD_WORK</innerclass>
+    <innerclass refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" prot="public">AXFX_REVERBSTD</innerclass>
+    <innerclass refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" prot="public">AXFX_BUFFERUPDATE</innerclass>
+    <innerclass refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e" prot="public">AXFX_REVHI_DELAYLINE</innerclass>
+    <innerclass refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k" prot="public">AXFX_REVHI_WORK</innerclass>
+    <innerclass refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" prot="public">AXFX_REVERBHI</innerclass>
+    <innerclass refid="struct_a_x_f_x___d_e_l_a_y" prot="public">AXFX_DELAY</innerclass>
+    <innerclass refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o" prot="public">AXFX_CHORUS_SRCINFO</innerclass>
+    <innerclass refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k" prot="public">AXFX_CHORUS_WORK</innerclass>
+    <innerclass refid="struct_a_x_f_x___c_h_o_r_u_s" prot="public">AXFX_CHORUS</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="axfx_8h_1a48a171236aa24113687b5524139c395e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXChorusInit</definition>
+        <argsstring>(struct AXFX_CHORUS *c)</argsstring>
+        <name>AXFXChorusInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref> *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="136" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/chorus.c" bodystart="357" bodyend="397" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="136" declcolumn="6"/>
+        <references refid="_o_s_alloc_8h_1a1509cd51dd69ea89edd880e898358cfb" compoundref="_o_s_alloc_8c" startline="41">__OSCurrHeap</references>
+        <references refid="chorus_8c_1a2892c6cfad9d4635fa64db1b32c0b18b" compoundref="chorus_8c" startline="411" endline="424">AXFXChorusSettings</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a9530ea404a9198ac9dc37106dec8294d" compoundref="axfx_8h" startline="115">AXFX_CHORUS_WORK::currentLast</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1aca9069adcfef95a9aa3dbaabe159a7fb" compoundref="axfx_8h" startline="112">AXFX_CHORUS_WORK::lastLeft</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abeef21e4e1c185c7d3c42de492672ac7" compoundref="axfx_8h" startline="113">AXFX_CHORUS_WORK::lastRight</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a4afd7404a20418db7b42f4d85e6269a8" compoundref="axfx_8h" startline="114">AXFX_CHORUS_WORK::lastSur</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a0460223ce9a22a1e3abf1bc74242839e" compoundref="axfx_8h" startline="116">AXFX_CHORUS_WORK::oldLeft</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a6a926e97abc735e2e47c3b9ea910ea7a" compoundref="axfx_8h" startline="117">AXFX_CHORUS_WORK::oldRight</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a441b73ce10267463d06deabb2d5db2dc" compoundref="axfx_8h" startline="118">AXFX_CHORUS_WORK::oldSur</references>
+        <references refid="_o_s_alloc_8h_1ad06a2706f65f0980d97e3d8124a93bb0" compoundref="_o_s_alloc_8c" startline="180" endline="257">OSAllocFromHeap</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abf133aca76a7c4f7db5f214163d6c74f" compoundref="axfx_8h" startline="124">AXFX_CHORUS_WORK::src</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1af58ecdbe3b27395831fee7130244b3fe" compoundref="axfx_8h" startline="107">AXFX_CHORUS_SRCINFO::target</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a354a4d62fa555413c362a9075cac8e0d" compoundref="axfx_8h" startline="106">AXFX_CHORUS_SRCINFO::trigger</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s_1a67567d127430f146954939a700febc1e" compoundref="axfx_8h" startline="129">AXFX_CHORUS::work</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a97af52bf230ce721a1f29199cbeced86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXChorusShutdown</definition>
+        <argsstring>(struct AXFX_CHORUS *c)</argsstring>
+        <name>AXFXChorusShutdown</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref> *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="137" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/chorus.c" bodystart="400" bodyend="408" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="137" declcolumn="6"/>
+        <references refid="_o_s_alloc_8h_1a1509cd51dd69ea89edd880e898358cfb" compoundref="_o_s_alloc_8c" startline="41">__OSCurrHeap</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1aca9069adcfef95a9aa3dbaabe159a7fb" compoundref="axfx_8h" startline="112">AXFX_CHORUS_WORK::lastLeft</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="_o_s_alloc_8h_1af33a4a7f5dfffb46e62ab7f225aa31a3" compoundref="_o_s_alloc_8c" startline="400" endline="423">OSFreeToHeap</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s_1a67567d127430f146954939a700febc1e" compoundref="axfx_8h" startline="129">AXFX_CHORUS::work</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a2892c6cfad9d4635fa64db1b32c0b18b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXChorusSettings</definition>
+        <argsstring>(struct AXFX_CHORUS *c)</argsstring>
+        <name>AXFXChorusSettings</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref> *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="138" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/chorus.c" bodystart="411" bodyend="424" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="138" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s_1a9b1518a0b5a73003b50a0df4ada8bfa5" compoundref="axfx_8h" startline="130">AXFX_CHORUS::baseDelay</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a9530ea404a9198ac9dc37106dec8294d" compoundref="axfx_8h" startline="115">AXFX_CHORUS_WORK::currentLast</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a584e510f020e30f5e9f431bf64bfb62b" compoundref="axfx_8h" startline="120">AXFX_CHORUS_WORK::currentPosHi</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a2273b424e505636ecc1c3c833ab19664" compoundref="axfx_8h" startline="119">AXFX_CHORUS_WORK::currentPosLo</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s_1a02a08a531451393c26b1c38661c24d01" compoundref="axfx_8h" startline="132">AXFX_CHORUS::period</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a72c1ea120c547feec0538c70234df586" compoundref="axfx_8h" startline="121">AXFX_CHORUS_WORK::pitchOffset</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a38a0efc3bddf3627f929b63a47d8aa1c" compoundref="axfx_8h" startline="123">AXFX_CHORUS_WORK::pitchOffsetPeriod</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abe0f0c6f59045eea5f4a0aa7e5a8f734" compoundref="axfx_8h" startline="122">AXFX_CHORUS_WORK::pitchOffsetPeriodCount</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s_1a6a662d5b99e184e8fdb9ff099b214b2c" compoundref="axfx_8h" startline="131">AXFX_CHORUS::variation</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s_1a67567d127430f146954939a700febc1e" compoundref="axfx_8h" startline="129">AXFX_CHORUS::work</references>
+        <referencedby refid="axfx_8h_1a48a171236aa24113687b5524139c395e" compoundref="chorus_8c" startline="357" endline="397">AXFXChorusInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a0c7c282d22d47db061bb1d7300b9bbc9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void AXFXChorusCallback</definition>
+        <argsstring>(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_CHORUS *chorus)</argsstring>
+        <name>AXFXChorusCallback</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref> *</type>
+          <declname>bufferUpdate</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref> *</type>
+          <declname>chorus</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="139" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/chorus.c" bodystart="427" bodyend="493" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="139" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a9530ea404a9198ac9dc37106dec8294d" compoundref="axfx_8h" startline="115">AXFX_CHORUS_WORK::currentLast</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a584e510f020e30f5e9f431bf64bfb62b" compoundref="axfx_8h" startline="120">AXFX_CHORUS_WORK::currentPosHi</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a2273b424e505636ecc1c3c833ab19664" compoundref="axfx_8h" startline="119">AXFX_CHORUS_WORK::currentPosLo</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a83dd8e3dcdbbd4e0adecc62831408f31" compoundref="axfx_8h" startline="99">AXFX_CHORUS_SRCINFO::dest</references>
+        <references refid="chorus_8c_1ad60c3fee62181a33a6b19b2c1b5409c8">do_src1</references>
+        <references refid="chorus_8c_1a70e0f5269c81922566c81ead83a5e4c5">do_src2</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1aca9069adcfef95a9aa3dbaabe159a7fb" compoundref="axfx_8h" startline="112">AXFX_CHORUS_WORK::lastLeft</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abeef21e4e1c185c7d3c42de492672ac7" compoundref="axfx_8h" startline="113">AXFX_CHORUS_WORK::lastRight</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a4afd7404a20418db7b42f4d85e6269a8" compoundref="axfx_8h" startline="114">AXFX_CHORUS_WORK::lastSur</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a2ffceb85238e98d4092e8814c07e75ae" compoundref="axfx_8h" startline="40">AXFX_BUFFERUPDATE::left</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a2e14d9d5402ff010213edbd011a278b3" compoundref="axfx_8h" startline="101">AXFX_CHORUS_SRCINFO::old</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a0460223ce9a22a1e3abf1bc74242839e" compoundref="axfx_8h" startline="116">AXFX_CHORUS_WORK::oldLeft</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a6a926e97abc735e2e47c3b9ea910ea7a" compoundref="axfx_8h" startline="117">AXFX_CHORUS_WORK::oldRight</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a441b73ce10267463d06deabb2d5db2dc" compoundref="axfx_8h" startline="118">AXFX_CHORUS_WORK::oldSur</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a778ce195a875311df2f38a2c2c7b7f41" compoundref="axfx_8h" startline="105">AXFX_CHORUS_SRCINFO::pitchHi</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a9afc2da4705fe4d9834ec9c22b5f6b20" compoundref="axfx_8h" startline="104">AXFX_CHORUS_SRCINFO::pitchLo</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a72c1ea120c547feec0538c70234df586" compoundref="axfx_8h" startline="121">AXFX_CHORUS_WORK::pitchOffset</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a38a0efc3bddf3627f929b63a47d8aa1c" compoundref="axfx_8h" startline="123">AXFX_CHORUS_WORK::pitchOffsetPeriod</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abe0f0c6f59045eea5f4a0aa7e5a8f734" compoundref="axfx_8h" startline="122">AXFX_CHORUS_WORK::pitchOffsetPeriodCount</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1ada739bdc9ced4863e0a240ceb1f20858" compoundref="axfx_8h" startline="103">AXFX_CHORUS_SRCINFO::posHi</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1aa180e796d74b11d829cdc40889aafff5" compoundref="axfx_8h" startline="102">AXFX_CHORUS_SRCINFO::posLo</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1ac7bb17588a1e6a4c40c792dd6d8cd72a" compoundref="axfx_8h" startline="41">AXFX_BUFFERUPDATE::right</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a882e3f2cca548e465bb37bddbbe26142" compoundref="axfx_8h" startline="100">AXFX_CHORUS_SRCINFO::smpBase</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abf133aca76a7c4f7db5f214163d6c74f" compoundref="axfx_8h" startline="124">AXFX_CHORUS_WORK::src</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a12ddc976ca1e5c394d7a2fb48f63e812" compoundref="axfx_8h" startline="42">AXFX_BUFFERUPDATE::surround</references>
+        <references refid="struct_a_x_f_x___c_h_o_r_u_s_1a67567d127430f146954939a700febc1e" compoundref="axfx_8h" startline="129">AXFX_CHORUS::work</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1ade2888e460e58124ab8c93a78d016e28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void AXFXDelayCallback</definition>
+        <argsstring>(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_DELAY *delay)</argsstring>
+        <name>AXFXDelayCallback</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref> *</type>
+          <declname>bufferUpdate</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref> *</type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="142" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/delay.c" bodystart="7" bodyend="42" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="142" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ad0688aa3689e3b2a65d7373656a566cc" compoundref="axfx_8h" startline="87">AXFX_DELAY::currentFeedback</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a45d1978a036b33f8efd1b3ed4db5beb6" compoundref="axfx_8h" startline="88">AXFX_DELAY::currentOutput</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1acf1c095057a340fdb85b67005c84dd43" compoundref="axfx_8h" startline="86">AXFX_DELAY::currentPos</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ae57fe74898670d3e83ec6c4239d8d02c" compoundref="axfx_8h" startline="85">AXFX_DELAY::currentSize</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a2ffceb85238e98d4092e8814c07e75ae" compoundref="axfx_8h" startline="40">AXFX_BUFFERUPDATE::left</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a727bf51ba3c5fcc1338847c8b6adb3e0" compoundref="axfx_8h" startline="89">AXFX_DELAY::left</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1ac7bb17588a1e6a4c40c792dd6d8cd72a" compoundref="axfx_8h" startline="41">AXFX_BUFFERUPDATE::right</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a32a11971722a06507f8a550201c69d47" compoundref="axfx_8h" startline="90">AXFX_DELAY::right</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ab08f39d44eb249df92af64dc28a60902" compoundref="axfx_8h" startline="91">AXFX_DELAY::sur</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a12ddc976ca1e5c394d7a2fb48f63e812" compoundref="axfx_8h" startline="42">AXFX_BUFFERUPDATE::surround</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a529bf59f8d2c5a92bcecdc25cdb9ce46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXDelaySettings</definition>
+        <argsstring>(struct AXFX_DELAY *delay)</argsstring>
+        <name>AXFXDelaySettings</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref> *</type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="143" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/delay.c" bodystart="45" bodyend="86" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="143" declcolumn="6"/>
+        <references refid="_o_s_alloc_8h_1a1509cd51dd69ea89edd880e898358cfb" compoundref="_o_s_alloc_8c" startline="41">__OSCurrHeap</references>
+        <references refid="delay_8c_1aa8f6d96dece0f276b433befd48f10800" compoundref="delay_8c" startline="102" endline="121">AXFXDelayShutdown</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ad0688aa3689e3b2a65d7373656a566cc" compoundref="axfx_8h" startline="87">AXFX_DELAY::currentFeedback</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a45d1978a036b33f8efd1b3ed4db5beb6" compoundref="axfx_8h" startline="88">AXFX_DELAY::currentOutput</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1acf1c095057a340fdb85b67005c84dd43" compoundref="axfx_8h" startline="86">AXFX_DELAY::currentPos</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ae57fe74898670d3e83ec6c4239d8d02c" compoundref="axfx_8h" startline="85">AXFX_DELAY::currentSize</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1af2b0550751e93839582e96c11d6e4d66" compoundref="axfx_8h" startline="92">AXFX_DELAY::delay</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a90488dcd8dff5b933d14527eb643108d" compoundref="axfx_8h" startline="93">AXFX_DELAY::feedback</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a727bf51ba3c5fcc1338847c8b6adb3e0" compoundref="axfx_8h" startline="89">AXFX_DELAY::left</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="_o_s_alloc_8h_1ad06a2706f65f0980d97e3d8124a93bb0" compoundref="_o_s_alloc_8c" startline="180" endline="257">OSAllocFromHeap</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ae76ec009f715209196c0dea4bf32e52a" compoundref="axfx_8h" startline="94">AXFX_DELAY::output</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a32a11971722a06507f8a550201c69d47" compoundref="axfx_8h" startline="90">AXFX_DELAY::right</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ab08f39d44eb249df92af64dc28a60902" compoundref="axfx_8h" startline="91">AXFX_DELAY::sur</references>
+        <referencedby refid="axfx_8h_1af60b1550b81b996193cdba6e738fa129" compoundref="delay_8c" startline="89" endline="99">AXFXDelayInit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1af60b1550b81b996193cdba6e738fa129" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXDelayInit</definition>
+        <argsstring>(struct AXFX_DELAY *delay)</argsstring>
+        <name>AXFXDelayInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref> *</type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="144" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/delay.c" bodystart="89" bodyend="99" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="144" declcolumn="6"/>
+        <references refid="delay_8c_1a529bf59f8d2c5a92bcecdc25cdb9ce46" compoundref="delay_8c" startline="45" endline="86">AXFXDelaySettings</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a727bf51ba3c5fcc1338847c8b6adb3e0" compoundref="axfx_8h" startline="89">AXFX_DELAY::left</references>
+        <references refid="types_8h_1a070d2ce7b6bb7e5c05602aa8c308d0c4" compoundref="types_8h" startline="43">NULL</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a32a11971722a06507f8a550201c69d47" compoundref="axfx_8h" startline="90">AXFX_DELAY::right</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ab08f39d44eb249df92af64dc28a60902" compoundref="axfx_8h" startline="91">AXFX_DELAY::sur</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1aa8f6d96dece0f276b433befd48f10800" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXDelayShutdown</definition>
+        <argsstring>(struct AXFX_DELAY *delay)</argsstring>
+        <name>AXFXDelayShutdown</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref> *</type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="145" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/delay.c" bodystart="102" bodyend="121" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="145" declcolumn="6"/>
+        <references refid="_o_s_alloc_8h_1a1509cd51dd69ea89edd880e898358cfb" compoundref="_o_s_alloc_8c" startline="41">__OSCurrHeap</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a727bf51ba3c5fcc1338847c8b6adb3e0" compoundref="axfx_8h" startline="89">AXFX_DELAY::left</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="_o_s_alloc_8h_1af33a4a7f5dfffb46e62ab7f225aa31a3" compoundref="_o_s_alloc_8c" startline="400" endline="423">OSFreeToHeap</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1a32a11971722a06507f8a550201c69d47" compoundref="axfx_8h" startline="90">AXFX_DELAY::right</references>
+        <references refid="struct_a_x_f_x___d_e_l_a_y_1ab08f39d44eb249df92af64dc28a60902" compoundref="axfx_8h" startline="91">AXFX_DELAY::sur</references>
+        <referencedby refid="axfx_8h_1a529bf59f8d2c5a92bcecdc25cdb9ce46" compoundref="delay_8c" startline="45" endline="86">AXFXDelaySettings</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a908ce375abc430f66f1b1219d854628d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void DoCrossTalk</definition>
+        <argsstring>(s32 *l, long *r, float cross, float invcross)</argsstring>
+        <name>DoCrossTalk</name>
+        <param>
+          <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref> *</type>
+          <declname>l</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">long</ref> *</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">float</ref></type>
+          <declname>cross</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">float</ref></type>
+          <declname>invcross</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="148" column="6" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="148" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1ab405afdccaf6d38295c2f696af8e4355" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXReverbHiInit</definition>
+        <argsstring>(struct AXFX_REVERBHI *rev)</argsstring>
+        <name>AXFXReverbHiInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref> *</type>
+          <declname>rev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="149" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/reverb_hi.c" bodystart="812" bodyend="828" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="149" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ae60a0e22d39b2bfe238351133c6c35c5" compoundref="axfx_8h" startline="75">AXFX_REVERBHI::coloration</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ad43d9e926c978c552ec261b1ddaa01af" compoundref="axfx_8h" startline="80">AXFX_REVERBHI::crosstalk</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a9e736a35112956adfaa50dc2c703de32" compoundref="axfx_8h" startline="78">AXFX_REVERBHI::damping</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a45e063da715a6314cae941e58e6ab709" compoundref="axfx_8h" startline="76">AXFX_REVERBHI::mix</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1af23d7214bbebdc6f70809cb0efea9ad9" compoundref="axfx_8h" startline="79">AXFX_REVERBHI::preDelay</references>
+        <references refid="reverb__hi_8c_1a80e9c145bb70cb44bb4949745a20d62b" compoundref="reverb__hi_8c" startline="59" endline="125">ReverbHICreate</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ab32f1058b9c20c9054079e8ae1cf1737" compoundref="axfx_8h" startline="73">AXFX_REVERBHI::rv</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1aaeafd234d9295cbb0e0fc8fe9a721cec" compoundref="axfx_8h" startline="74">AXFX_REVERBHI::tempDisableFX</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a28d389b9e3011b7dcb4ba05a2d41d790" compoundref="axfx_8h" startline="77">AXFX_REVERBHI::time</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a1d86369654257c465c6306365fc3ee45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXReverbHiShutdown</definition>
+        <argsstring>(struct AXFX_REVERBHI *rev)</argsstring>
+        <name>AXFXReverbHiShutdown</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref> *</type>
+          <declname>rev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="150" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/reverb_hi.c" bodystart="831" bodyend="839" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="150" declcolumn="6"/>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="reverb__hi_8c_1aa8b29a6a41e466411c33560163687710" compoundref="reverb__hi_8c" startline="790" endline="809">ReverbHIFree</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ab32f1058b9c20c9054079e8ae1cf1737" compoundref="axfx_8h" startline="73">AXFX_REVERBHI::rv</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1abb27e7293295c3b0bcf2374b85878f15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXReverbHiSettings</definition>
+        <argsstring>(struct AXFX_REVERBHI *rev)</argsstring>
+        <name>AXFXReverbHiSettings</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref> *</type>
+          <declname>rev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="151" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/reverb_hi.c" bodystart="842" bodyend="858" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="151" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ae60a0e22d39b2bfe238351133c6c35c5" compoundref="axfx_8h" startline="75">AXFX_REVERBHI::coloration</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ad43d9e926c978c552ec261b1ddaa01af" compoundref="axfx_8h" startline="80">AXFX_REVERBHI::crosstalk</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a9e736a35112956adfaa50dc2c703de32" compoundref="axfx_8h" startline="78">AXFX_REVERBHI::damping</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a45e063da715a6314cae941e58e6ab709" compoundref="axfx_8h" startline="76">AXFX_REVERBHI::mix</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1af23d7214bbebdc6f70809cb0efea9ad9" compoundref="axfx_8h" startline="79">AXFX_REVERBHI::preDelay</references>
+        <references refid="reverb__hi_8c_1aada4c634cc9e6c44c64dba939d625151" compoundref="reverb__hi_8c" startline="128" endline="170">ReverbHIModify</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ab32f1058b9c20c9054079e8ae1cf1737" compoundref="axfx_8h" startline="73">AXFX_REVERBHI::rv</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1aaeafd234d9295cbb0e0fc8fe9a721cec" compoundref="axfx_8h" startline="74">AXFX_REVERBHI::tempDisableFX</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a28d389b9e3011b7dcb4ba05a2d41d790" compoundref="axfx_8h" startline="77">AXFX_REVERBHI::time</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1abf2796cceafbac9da31f23feb7ef06c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void AXFXReverbHiCallback</definition>
+        <argsstring>(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_REVERBHI *reverb)</argsstring>
+        <name>AXFXReverbHiCallback</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref> *</type>
+          <declname>bufferUpdate</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref> *</type>
+          <declname>reverb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="152" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/reverb_hi.c" bodystart="861" bodyend="870" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="152" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a2ffceb85238e98d4092e8814c07e75ae" compoundref="axfx_8h" startline="40">AXFX_BUFFERUPDATE::left</references>
+        <references refid="reverb__hi_8c_1aa1980e6443f878e15f10013b397faf02" compoundref="reverb__hi_8c" startline="764" endline="787">ReverbHICallback</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1ac7bb17588a1e6a4c40c792dd6d8cd72a" compoundref="axfx_8h" startline="41">AXFX_BUFFERUPDATE::right</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ab32f1058b9c20c9054079e8ae1cf1737" compoundref="axfx_8h" startline="73">AXFX_REVERBHI::rv</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a12ddc976ca1e5c394d7a2fb48f63e812" compoundref="axfx_8h" startline="42">AXFX_BUFFERUPDATE::surround</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1aaeafd234d9295cbb0e0fc8fe9a721cec" compoundref="axfx_8h" startline="74">AXFX_REVERBHI::tempDisableFX</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a1f5ca30b02f110fd00360d5e4286b648" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXReverbStdInit</definition>
+        <argsstring>(struct AXFX_REVERBSTD *rev)</argsstring>
+        <name>AXFXReverbStdInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref> *</type>
+          <declname>rev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="155" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/reverb_std.c" bodystart="573" bodyend="588" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="155" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a8d851b4524edb12984504f0be7f9ee7d" compoundref="axfx_8h" startline="31">AXFX_REVERBSTD::coloration</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a94c7ba35e0dde2c42a7ba3b70de4d47f" compoundref="axfx_8h" startline="34">AXFX_REVERBSTD::damping</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1af57cb08d594342295f0142883d107636" compoundref="axfx_8h" startline="32">AXFX_REVERBSTD::mix</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a4485b00e85a543d3669676ee2019a2c1" compoundref="axfx_8h" startline="35">AXFX_REVERBSTD::preDelay</references>
+        <references refid="reverb__std_8c_1abf6b166fec45bde3a146d9e58841ab32" compoundref="reverb__std_8c" startline="57" endline="124">ReverbSTDCreate</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a6b94c79a384b54cbb433f69ea851cf87" compoundref="axfx_8h" startline="29">AXFX_REVERBSTD::rv</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a1b0bdd285d16cda67298e2be1d6d3520" compoundref="axfx_8h" startline="30">AXFX_REVERBSTD::tempDisableFX</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a2d38404cc382b4cc49e75c0dd2776d12" compoundref="axfx_8h" startline="33">AXFX_REVERBSTD::time</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a13d125c5b01bfa5c8dc873fc35624bf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXReverbStdShutdown</definition>
+        <argsstring>(struct AXFX_REVERBSTD *rev)</argsstring>
+        <name>AXFXReverbStdShutdown</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref> *</type>
+          <declname>rev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="156" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/reverb_std.c" bodystart="591" bodyend="599" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="156" declcolumn="6"/>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="reverb__std_8c_1ad417249e57638a687c3ba93be008fc9f" compoundref="reverb__std_8c" startline="551" endline="570">ReverbSTDFree</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a6b94c79a384b54cbb433f69ea851cf87" compoundref="axfx_8h" startline="29">AXFX_REVERBSTD::rv</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1aa2318749e26e6817a23363617f0e6276" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">int</ref></type>
+        <definition>int AXFXReverbStdSettings</definition>
+        <argsstring>(struct AXFX_REVERBSTD *rev)</argsstring>
+        <name>AXFXReverbStdSettings</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref> *</type>
+          <declname>rev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="157" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/reverb_std.c" bodystart="602" bodyend="612" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="157" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a8d851b4524edb12984504f0be7f9ee7d" compoundref="axfx_8h" startline="31">AXFX_REVERBSTD::coloration</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a94c7ba35e0dde2c42a7ba3b70de4d47f" compoundref="axfx_8h" startline="34">AXFX_REVERBSTD::damping</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1af57cb08d594342295f0142883d107636" compoundref="axfx_8h" startline="32">AXFX_REVERBSTD::mix</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a4485b00e85a543d3669676ee2019a2c1" compoundref="axfx_8h" startline="35">AXFX_REVERBSTD::preDelay</references>
+        <references refid="reverb__std_8c_1a3c29a8a5600055971b45b9091321f179" compoundref="reverb__std_8c" startline="127" endline="166">ReverbSTDModify</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a6b94c79a384b54cbb433f69ea851cf87" compoundref="axfx_8h" startline="29">AXFX_REVERBSTD::rv</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a1b0bdd285d16cda67298e2be1d6d3520" compoundref="axfx_8h" startline="30">AXFX_REVERBSTD::tempDisableFX</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a2d38404cc382b4cc49e75c0dd2776d12" compoundref="axfx_8h" startline="33">AXFX_REVERBSTD::time</references>
+      </memberdef>
+      <memberdef kind="function" id="axfx_8h_1a89b6895a26f0530ab565c4e85e5cbece" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void AXFXReverbStdCallback</definition>
+        <argsstring>(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_REVERBSTD *reverb)</argsstring>
+        <name>AXFXReverbStdCallback</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref> *</type>
+          <declname>bufferUpdate</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref> *</type>
+          <declname>reverb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/include/dolphin/axfx.h" line="158" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/axfx/reverb_std.c" bodystart="615" bodyend="624" declfile="decomp/DolphinSDK/include/dolphin/axfx.h" declline="158" declcolumn="6"/>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a2ffceb85238e98d4092e8814c07e75ae" compoundref="axfx_8h" startline="40">AXFX_BUFFERUPDATE::left</references>
+        <references refid="reverb__std_8c_1a54e1a3ac86dc7af8f6710ee2b57dd43e" compoundref="reverb__std_8c" startline="545" endline="548">ReverbSTDCallback</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1ac7bb17588a1e6a4c40c792dd6d8cd72a" compoundref="axfx_8h" startline="41">AXFX_BUFFERUPDATE::right</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a6b94c79a384b54cbb433f69ea851cf87" compoundref="axfx_8h" startline="29">AXFX_REVERBSTD::rv</references>
+        <references refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a12ddc976ca1e5c394d7a2fb48f63e812" compoundref="axfx_8h" startline="42">AXFX_BUFFERUPDATE::surround</references>
+        <references refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a1b0bdd285d16cda67298e2be1d6d3520" compoundref="axfx_8h" startline="30">AXFX_REVERBSTD::tempDisableFX</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_AXFX_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_AXFX_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e" kindref="compound">AXFX_REVSTD_DELAYLINE</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6" refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1a07438e67c5fa2b8193d73eb222361927" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1a07438e67c5fa2b8193d73eb222361927" kindref="member">inPoint</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="7" refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1adf6cff7781b676ddb3dd85276c06f739" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1adf6cff7781b676ddb3dd85276c06f739" kindref="member">outPoint</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="8" refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1add4d726bbf69141c14e57d5de1c53cb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1add4d726bbf69141c14e57d5de1c53cb0" kindref="member">length</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="9" refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1a94b97b4a8c4d9cd810ad13fd29591b9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1a94b97b4a8c4d9cd810ad13fd29591b9e" kindref="member">inputs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="10" refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1a44c8639768e8de05608508471d077e43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e_1a44c8639768e8de05608508471d077e43" kindref="member">lastOutput</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k" kindref="compound">AXFX_REVSTD_WORK</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1a3e04608c81d82937d4cd16ea0c6cb3c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e" kindref="compound">AXFX_REVSTD_DELAYLINE</ref><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1a3e04608c81d82937d4cd16ea0c6cb3c7" kindref="member">AP</ref>[6];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="16" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1a86945283f5393829f04a371c8e5eb24c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_s_t_d___d_e_l_a_y_l_i_n_e" kindref="compound">AXFX_REVSTD_DELAYLINE</ref><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1a86945283f5393829f04a371c8e5eb24c" kindref="member">C</ref>[6];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1a0ee8759f8bf1a64fc12d1e445b526fbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1a0ee8759f8bf1a64fc12d1e445b526fbc" kindref="member">allPassCoeff</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1a2166b53088106e866b9c6466c60ec79d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1a2166b53088106e866b9c6466c60ec79d" kindref="member">combCoef</ref>[6];<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1ab7ff2d6f8a05c8930435f74cc1c414ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1ab7ff2d6f8a05c8930435f74cc1c414ca" kindref="member">lpLastout</ref>[3];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1af12f4227ba1b05f2294ab42a0748451a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1af12f4227ba1b05f2294ab42a0748451a" kindref="member">level</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1aff09982b0063243542562332079f5c36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1aff09982b0063243542562332079f5c36" kindref="member">damping</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1ac94f2a244588efd40f3f77ef031569a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1ac94f2a244588efd40f3f77ef031569a2" kindref="member">preDelayTime</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1abf98c3e174eddc45f5286d915692f416" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1abf98c3e174eddc45f5286d915692f416" kindref="member">preDelayLine</ref>[3];<sp/></highlight></codeline>
+<codeline lineno="24" refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1aac8375c2634de514d7d6bb8b9a9c1f46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k_1aac8375c2634de514d7d6bb8b9a9c1f46" kindref="member">preDelayPtr</ref>[3];<sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29" refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a6b94c79a384b54cbb433f69ea851cf87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_s_t_d___w_o_r_k" kindref="compound">AXFX_REVSTD_WORK</ref><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a6b94c79a384b54cbb433f69ea851cf87" kindref="member">rv</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30" refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a1b0bdd285d16cda67298e2be1d6d3520" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a1b0bdd285d16cda67298e2be1d6d3520" kindref="member">tempDisableFX</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31" refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a8d851b4524edb12984504f0be7f9ee7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a8d851b4524edb12984504f0be7f9ee7d" kindref="member">coloration</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32" refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1af57cb08d594342295f0142883d107636" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1af57cb08d594342295f0142883d107636" kindref="member">mix</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33" refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a2d38404cc382b4cc49e75c0dd2776d12" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a2d38404cc382b4cc49e75c0dd2776d12" kindref="member">time</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34" refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a94c7ba35e0dde2c42a7ba3b70de4d47f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a94c7ba35e0dde2c42a7ba3b70de4d47f" kindref="member">damping</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a4485b00e85a543d3669676ee2019a2c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d_1a4485b00e85a543d3669676ee2019a2c1" kindref="member">preDelay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40" refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a2ffceb85238e98d4092e8814c07e75ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a2ffceb85238e98d4092e8814c07e75ae" kindref="member">left</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1ac7bb17588a1e6a4c40c792dd6d8cd72a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1ac7bb17588a1e6a4c40c792dd6d8cd72a" kindref="member">right</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a12ddc976ca1e5c394d7a2fb48f63e812" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e_1a12ddc976ca1e5c394d7a2fb48f63e812" kindref="member">surround</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>REVHI<sp/>Structs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e" kindref="compound">AXFX_REVHI_DELAYLINE</ref></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49" refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1addc8a55de395101ebc7108ab6a16376d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1addc8a55de395101ebc7108ab6a16376d" kindref="member">inPoint</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1ac72d71bf67ec366d4ef94e0eabbc5523" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1ac72d71bf67ec366d4ef94e0eabbc5523" kindref="member">outPoint</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51" refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1ad8ff34517b44037591c42a930e69ce72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1ad8ff34517b44037591c42a930e69ce72" kindref="member">length</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1ae52124569b9a4638f5b35d4f4a6cb54e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1ae52124569b9a4638f5b35d4f4a6cb54e" kindref="member">inputs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1a153f28d3fbcc1a26b773788517a1d90b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e_1a153f28d3fbcc1a26b773788517a1d90b" kindref="member">lastOutput</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k" kindref="compound">AXFX_REVHI_WORK</ref></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1ac3f268e2e0fd3cdeb99445746c8d3cc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e" kindref="compound">AXFX_REVHI_DELAYLINE</ref><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1ac3f268e2e0fd3cdeb99445746c8d3cc6" kindref="member">AP</ref>[9];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1a0bb97a1ab17d02060d672111d3677f10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_h_i___d_e_l_a_y_l_i_n_e" kindref="compound">AXFX_REVHI_DELAYLINE</ref><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1a0bb97a1ab17d02060d672111d3677f10" kindref="member">C</ref>[9];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1a969498f8301608693ba69d448198b98d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1a969498f8301608693ba69d448198b98d" kindref="member">allPassCoeff</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1ae3cdeca3c4805a56ab2df4fc9cc3a0e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1ae3cdeca3c4805a56ab2df4fc9cc3a0e6" kindref="member">combCoef</ref>[9];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1aa62161f54545306cd32b52f7642fe60c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1aa62161f54545306cd32b52f7642fe60c" kindref="member">lpLastout</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1a8d2f5256e92d8da0d0f299eee371972b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1a8d2f5256e92d8da0d0f299eee371972b" kindref="member">level</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1a9c4dd16476280ed89bf54cc90d3353a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1a9c4dd16476280ed89bf54cc90d3353a8" kindref="member">damping</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1ad7d397cfde6a967e51eeb3cd7bb04791" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1ad7d397cfde6a967e51eeb3cd7bb04791" kindref="member">preDelayTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1af62017bda734fa47e9a592bbde9b1735" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1af62017bda734fa47e9a592bbde9b1735" kindref="member">crosstalk</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1afd24218825d6f21398e6168e0f4837a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1afd24218825d6f21398e6168e0f4837a3" kindref="member">preDelayLine</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1ab4ebf37b2cfefdc900805b257a2ef8de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k_1ab4ebf37b2cfefdc900805b257a2ef8de" kindref="member">preDelayPtr</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ab32f1058b9c20c9054079e8ae1cf1737" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___r_e_v_h_i___w_o_r_k" kindref="compound">AXFX_REVHI_WORK</ref><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ab32f1058b9c20c9054079e8ae1cf1737" kindref="member">rv</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1aaeafd234d9295cbb0e0fc8fe9a721cec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1aaeafd234d9295cbb0e0fc8fe9a721cec" kindref="member">tempDisableFX</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ae60a0e22d39b2bfe238351133c6c35c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ae60a0e22d39b2bfe238351133c6c35c5" kindref="member">coloration</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a45e063da715a6314cae941e58e6ab709" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a45e063da715a6314cae941e58e6ab709" kindref="member">mix</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a28d389b9e3011b7dcb4ba05a2d41d790" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a28d389b9e3011b7dcb4ba05a2d41d790" kindref="member">time</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a9e736a35112956adfaa50dc2c703de32" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1a9e736a35112956adfaa50dc2c703de32" kindref="member">damping</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1af23d7214bbebdc6f70809cb0efea9ad9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1af23d7214bbebdc6f70809cb0efea9ad9" kindref="member">preDelay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ad43d9e926c978c552ec261b1ddaa01af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i_1ad43d9e926c978c552ec261b1ddaa01af" kindref="member">crosstalk</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="struct_a_x_f_x___d_e_l_a_y" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85" refid="struct_a_x_f_x___d_e_l_a_y_1ae57fe74898670d3e83ec6c4239d8d02c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1ae57fe74898670d3e83ec6c4239d8d02c" kindref="member">currentSize</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="struct_a_x_f_x___d_e_l_a_y_1acf1c095057a340fdb85b67005c84dd43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1acf1c095057a340fdb85b67005c84dd43" kindref="member">currentPos</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="struct_a_x_f_x___d_e_l_a_y_1ad0688aa3689e3b2a65d7373656a566cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1ad0688aa3689e3b2a65d7373656a566cc" kindref="member">currentFeedback</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="struct_a_x_f_x___d_e_l_a_y_1a45d1978a036b33f8efd1b3ed4db5beb6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1a45d1978a036b33f8efd1b3ed4db5beb6" kindref="member">currentOutput</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="struct_a_x_f_x___d_e_l_a_y_1a727bf51ba3c5fcc1338847c8b6adb3e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1a727bf51ba3c5fcc1338847c8b6adb3e0" kindref="member">left</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="struct_a_x_f_x___d_e_l_a_y_1a32a11971722a06507f8a550201c69d47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1a32a11971722a06507f8a550201c69d47" kindref="member">right</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="struct_a_x_f_x___d_e_l_a_y_1ab08f39d44eb249df92af64dc28a60902" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1ab08f39d44eb249df92af64dc28a60902" kindref="member">sur</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92" refid="struct_a_x_f_x___d_e_l_a_y_1af2b0550751e93839582e96c11d6e4d66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1af2b0550751e93839582e96c11d6e4d66" kindref="member">delay</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93" refid="struct_a_x_f_x___d_e_l_a_y_1a90488dcd8dff5b933d14527eb643108d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1a90488dcd8dff5b933d14527eb643108d" kindref="member">feedback</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94" refid="struct_a_x_f_x___d_e_l_a_y_1ae76ec009f715209196c0dea4bf32e52a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y_1ae76ec009f715209196c0dea4bf32e52a" kindref="member">output</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o" kindref="compound">AXFX_CHORUS_SRCINFO</ref></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a83dd8e3dcdbbd4e0adecc62831408f31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a83dd8e3dcdbbd4e0adecc62831408f31" kindref="member">dest</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a882e3f2cca548e465bb37bddbbe26142" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a882e3f2cca548e465bb37bddbbe26142" kindref="member">smpBase</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a2e14d9d5402ff010213edbd011a278b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a2e14d9d5402ff010213edbd011a278b3" kindref="member">old</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1aa180e796d74b11d829cdc40889aafff5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1aa180e796d74b11d829cdc40889aafff5" kindref="member">posLo</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1ada739bdc9ced4863e0a240ceb1f20858" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1ada739bdc9ced4863e0a240ceb1f20858" kindref="member">posHi</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a9afc2da4705fe4d9834ec9c22b5f6b20" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a9afc2da4705fe4d9834ec9c22b5f6b20" kindref="member">pitchLo</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="105" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a778ce195a875311df2f38a2c2c7b7f41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a778ce195a875311df2f38a2c2c7b7f41" kindref="member">pitchHi</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a354a4d62fa555413c362a9075cac8e0d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1a354a4d62fa555413c362a9075cac8e0d" kindref="member">trigger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107" refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1af58ecdbe3b27395831fee7130244b3fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o_1af58ecdbe3b27395831fee7130244b3fe" kindref="member">target</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k" kindref="compound">AXFX_CHORUS_WORK</ref></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="112" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1aca9069adcfef95a9aa3dbaabe159a7fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1aca9069adcfef95a9aa3dbaabe159a7fb" kindref="member">lastLeft</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abeef21e4e1c185c7d3c42de492672ac7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abeef21e4e1c185c7d3c42de492672ac7" kindref="member">lastRight</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a4afd7404a20418db7b42f4d85e6269a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a4afd7404a20418db7b42f4d85e6269a8" kindref="member">lastSur</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a9530ea404a9198ac9dc37106dec8294d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a9530ea404a9198ac9dc37106dec8294d" kindref="member">currentLast</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a0460223ce9a22a1e3abf1bc74242839e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a0460223ce9a22a1e3abf1bc74242839e" kindref="member">oldLeft</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a6a926e97abc735e2e47c3b9ea910ea7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a6a926e97abc735e2e47c3b9ea910ea7a" kindref="member">oldRight</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a441b73ce10267463d06deabb2d5db2dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a441b73ce10267463d06deabb2d5db2dc" kindref="member">oldSur</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a2273b424e505636ecc1c3c833ab19664" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a2273b424e505636ecc1c3c833ab19664" kindref="member">currentPosLo</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a584e510f020e30f5e9f431bf64bfb62b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a584e510f020e30f5e9f431bf64bfb62b" kindref="member">currentPosHi</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a72c1ea120c547feec0538c70234df586" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a72c1ea120c547feec0538c70234df586" kindref="member">pitchOffset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abe0f0c6f59045eea5f4a0aa7e5a8f734" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abe0f0c6f59045eea5f4a0aa7e5a8f734" kindref="member">pitchOffsetPeriodCount</ref>;<sp/></highlight></codeline>
+<codeline lineno="123" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a38a0efc3bddf3627f929b63a47d8aa1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1a38a0efc3bddf3627f929b63a47d8aa1c" kindref="member">pitchOffsetPeriod</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="124" refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abf133aca76a7c4f7db5f214163d6c74f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___c_h_o_r_u_s___s_r_c_i_n_f_o" kindref="compound">AXFX_CHORUS_SRCINFO</ref><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k_1abf133aca76a7c4f7db5f214163d6c74f" kindref="member">src</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="struct_a_x_f_x___c_h_o_r_u_s" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref></highlight></codeline>
+<codeline lineno="128"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="129" refid="struct_a_x_f_x___c_h_o_r_u_s_1a67567d127430f146954939a700febc1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_a_x_f_x___c_h_o_r_u_s___w_o_r_k" kindref="compound">AXFX_CHORUS_WORK</ref><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s_1a67567d127430f146954939a700febc1e" kindref="member">work</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130" refid="struct_a_x_f_x___c_h_o_r_u_s_1a9b1518a0b5a73003b50a0df4ada8bfa5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s_1a9b1518a0b5a73003b50a0df4ada8bfa5" kindref="member">baseDelay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="131" refid="struct_a_x_f_x___c_h_o_r_u_s_1a6a662d5b99e184e8fdb9ff099b214b2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s_1a6a662d5b99e184e8fdb9ff099b214b2c" kindref="member">variation</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="132" refid="struct_a_x_f_x___c_h_o_r_u_s_1a02a08a531451393c26b1c38661c24d01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s_1a02a08a531451393c26b1c38661c24d01" kindref="member">period</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="133"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="comment">//<sp/>chorus.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1a48a171236aa24113687b5524139c395e" kindref="member">AXFXChorusInit</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1a97af52bf230ce721a1f29199cbeced86" kindref="member">AXFXChorusShutdown</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1a2892c6cfad9d4635fa64db1b32c0b18b" kindref="member">AXFXChorusSettings</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="axfx_8h_1a0c7c282d22d47db061bb1d7300b9bbc9" kindref="member">AXFXChorusCallback</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bufferUpdate</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___c_h_o_r_u_s" kindref="compound">AXFX_CHORUS</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">chorus</ref>);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="comment">//<sp/>delay.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="axfx_8h_1ade2888e460e58124ab8c93a78d016e28" kindref="member">AXFXDelayCallback</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bufferUpdate</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref>*<sp/>delay);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1a529bf59f8d2c5a92bcecdc25cdb9ce46" kindref="member">AXFXDelaySettings</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref>*<sp/>delay);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1af60b1550b81b996193cdba6e738fa129" kindref="member">AXFXDelayInit</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref>*<sp/>delay);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1aa8f6d96dece0f276b433befd48f10800" kindref="member">AXFXDelayShutdown</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___d_e_l_a_y" kindref="compound">AXFX_DELAY</ref>*<sp/>delay);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="comment">//<sp/>reverb_hi.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="axfx_8h_1a908ce375abc430f66f1b1219d854628d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="axfx_8h_1a908ce375abc430f66f1b1219d854628d" kindref="member">DoCrossTalk</ref><sp/>(<ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref>*<sp/>l,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal">*<sp/>r,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cross</ref>,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">invcross</ref>);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1ab405afdccaf6d38295c2f696af8e4355" kindref="member">AXFXReverbHiInit</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rev</ref>);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1a1d86369654257c465c6306365fc3ee45" kindref="member">AXFXReverbHiShutdown</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rev</ref>);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1abb27e7293295c3b0bcf2374b85878f15" kindref="member">AXFXReverbHiSettings</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rev</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="axfx_8h_1abf2796cceafbac9da31f23feb7ef06c9" kindref="member">AXFXReverbHiCallback</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bufferUpdate</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_h_i" kindref="compound">AXFX_REVERBHI</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reverb</ref>);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="comment">//<sp/>reverb_std.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1a1f5ca30b02f110fd00360d5e4286b648" kindref="member">AXFXReverbStdInit</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rev</ref>);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1a13d125c5b01bfa5c8dc873fc35624bf5" kindref="member">AXFXReverbStdShutdown</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rev</ref>);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="axfx_8h_1aa2318749e26e6817a23363617f0e6276" kindref="member">AXFXReverbStdSettings</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rev</ref>);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="axfx_8h_1a89b6895a26f0530ab565c4e85e5cbece" kindref="member">AXFXReverbStdCallback</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___b_u_f_f_e_r_u_p_d_a_t_e" kindref="compound">AXFX_BUFFERUPDATE</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bufferUpdate</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_a_x_f_x___r_e_v_e_r_b_s_t_d" kindref="compound">AXFX_REVERBSTD</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">reverb</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_DOLPHIN_AXFX_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/include/dolphin/axfx.h"/>
+  </compounddef>
+</doxygen>

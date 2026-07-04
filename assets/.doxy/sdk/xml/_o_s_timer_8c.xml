@@ -1,0 +1,591 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_o_s_timer_8c" kind="file" language="C++">
+    <compoundname>OSTimer.c</compoundname>
+    <includes refid="os_8h" local="no">dolphin/os.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>dolphin/base/PPCArch.h</label>
+        <link refid="_p_p_c_arch_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>dolphin/dvd.h</label>
+        <link refid="dvd_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>dolphin/hw_regs.h</label>
+        <link refid="hw__regs_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dolphin/os.h</label>
+        <link refid="os_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>dolphin/os/OSAlarm.h</label>
+        <link refid="_o_s_alarm_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dolphin/os/OSAlloc.h</label>
+        <link refid="_o_s_alloc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>dolphin/os/OSBootInfo.h</label>
+        <link refid="_o_s_boot_info_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dolphin/os/OSCache.h</label>
+        <link refid="_o_s_cache_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>dolphin/os/OSContext.h</label>
+        <link refid="_o_s_context_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>dolphin/os/OSDC.h</label>
+        <link refid="_o_s_d_c_8h"/>
+      </node>
+      <node id="11">
+        <label>dolphin/os/OSError.h</label>
+        <link refid="_o_s_error_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dolphin/os/OSException.h</label>
+        <link refid="_o_s_exception_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>dolphin/os/OSFont.h</label>
+        <link refid="_o_s_font_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dolphin/os/OSIC.h</label>
+        <link refid="_o_s_i_c_8h"/>
+      </node>
+      <node id="15">
+        <label>dolphin/os/OSInterrupt.h</label>
+        <link refid="_o_s_interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>dolphin/os/OSL2.h</label>
+        <link refid="_o_s_l2_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>dolphin/os/OSLC.h</label>
+        <link refid="_o_s_l_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>dolphin/os/OSMessage.h</label>
+        <link refid="_o_s_message_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>dolphin/os/OSModule.h</label>
+        <link refid="_o_s_module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dolphin/os/OSMutex.h</label>
+        <link refid="_o_s_mutex_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>dolphin/os/OSReset.h</label>
+        <link refid="_o_s_reset_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>dolphin/os/OSResetSW.h</label>
+        <link refid="_o_s_reset_s_w_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>dolphin/os/OSRtc.h</label>
+        <link refid="_o_s_rtc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>dolphin/os/OSSerial.h</label>
+        <link refid="_o_s_serial_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>dolphin/os/OSStopwatch.h</label>
+        <link refid="_o_s_stopwatch_8h"/>
+      </node>
+      <node id="19">
+        <label>dolphin/os/OSThread.h</label>
+        <link refid="_o_s_thread_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>dolphin/os/OSTime.h</label>
+        <link refid="_o_s_time_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>OSTimer.c</label>
+        <link refid="_o_s_timer_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_timer" prot="public">Timer</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_o_s_timer_8c_1add9f9c78c1e642c2a2b9e2f5ebb57a3e" prot="public" static="yes" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">struct</ref> <ref refid="struct_timer" kindref="compound">Timer</ref></type>
+        <definition>struct Timer Timer</definition>
+        <argsstring></argsstring>
+        <name>Timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" line="13" column="19" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_o_s_timer_8c_1a42e74cd0d90fc038c2e98a05c522bf17" prot="public" static="no" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>(*)()</type>
+        <definition>void(*)() OSSetTimerCallback(void(*callback)())</definition>
+        <argsstring>(void(*callback)())</argsstring>
+        <name>OSSetTimerCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" line="15" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_o_s_timer_8c_1ac6277bd73c8c877c31ccacaf55ddc255" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSInitTimer</definition>
+        <argsstring>(u32 time, u16 mode)</argsstring>
+        <name>OSInitTimer</name>
+        <param>
+          <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" line="39" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" bodystart="39" bodyend="61" declfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" declline="16" declcolumn="13"/>
+        <references refid="_o_s_exception_8h_1ad399b2fb16251e2923594a2da6a70057" compoundref="_o_s_8c" startline="356" endline="367">__OSSetExceptionHandler</references>
+        <references refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" compoundref="_o_s_timer_8c" startline="5">Timer::callback</references>
+        <references refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" compoundref="_o_s_timer_8c" startline="6">Timer::currval</references>
+        <references refid="_o_s_timer_8c_1ab2402c647b4866a6ed25a4f6383edd1c">DecrementerExceptionHandler</references>
+        <references refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" compoundref="_o_s_timer_8c" startline="10">Timer::initialized</references>
+        <references refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" compoundref="_o_s_timer_8c" startline="8">Timer::mode</references>
+        <references refid="os_8h_1a20a685e4306d8ca8b53ed6cf1226c86d" compoundref="_o_s_error_8c" startline="21" endline="41">OSPanic</references>
+        <references refid="os_8h_1a31ab617dc142f4562371fd05927d36d7" compoundref="_o_s_error_8c" startline="12" endline="18">OSReport</references>
+        <references refid="struct_timer_1a06d075b99b19be2c22ae6d31a7523251" compoundref="_o_s_timer_8c" startline="7">Timer::startval</references>
+        <references refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" compoundref="_o_s_timer_8c" startline="9">Timer::stopped</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_timer_8c_1a047767e112660ae404ce29ae6e4c8ff2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSStartTimer</definition>
+        <argsstring>(void)</argsstring>
+        <name>OSStartTimer</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" line="64" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" bodystart="64" bodyend="78" declfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" declline="17" declcolumn="13"/>
+        <references refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" compoundref="_o_s_timer_8c" startline="6">Timer::currval</references>
+        <references refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" compoundref="_o_s_timer_8c" startline="10">Timer::initialized</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a20a685e4306d8ca8b53ed6cf1226c86d" compoundref="_o_s_error_8c" startline="21" endline="41">OSPanic</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_p_p_c_arch_8h_1a2e719c9cfc44240ddc3385b3e76bd973">PPCMtdec</references>
+        <references refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" compoundref="_o_s_timer_8c" startline="9">Timer::stopped</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_timer_8c_1ab0adfc59d5547d3455bc53ec83dbcb5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void OSStopTimer</definition>
+        <argsstring>(void)</argsstring>
+        <name>OSStopTimer</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" line="81" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" bodystart="81" bodyend="103" declfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" declline="18" declcolumn="13"/>
+        <references refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" compoundref="_o_s_timer_8c" startline="6">Timer::currval</references>
+        <references refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" compoundref="_o_s_timer_8c" startline="10">Timer::initialized</references>
+        <references refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" compoundref="_o_s_interrupt_8c" startline="55" endline="69">OSDisableInterrupts</references>
+        <references refid="os_8h_1a20a685e4306d8ca8b53ed6cf1226c86d" compoundref="_o_s_error_8c" startline="21" endline="41">OSPanic</references>
+        <references refid="os_8h_1a13cb97f7930c9070941f9a5db774e508">OSRestoreInterrupts</references>
+        <references refid="_p_p_c_arch_8h_1a510a72213abbfdf5aeac8e7389c9fd1d" compoundref="_p_p_c_arch_8c" startline="137" endline="146">PPCMfdec</references>
+        <references refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" compoundref="_o_s_timer_8c" startline="9">Timer::stopped</references>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_timer_8c_1ab2402c647b4866a6ed25a4f6383edd1c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static void DecrementerExceptionHandler</definition>
+        <argsstring>(u8 exception, OSContext *context)</argsstring>
+        <name>DecrementerExceptionHandler</name>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>exception</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_o_s_context" kindref="compound">OSContext</ref> *</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" line="19" column="13" declfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" declline="19" declcolumn="13"/>
+        <referencedby refid="_o_s_timer_8c_1ac6277bd73c8c877c31ccacaf55ddc255" compoundref="_o_s_timer_8c" startline="39" endline="61">OSInitTimer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_timer_8c_1acdeba035e0b1812cc645f4efd5f7f686" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static void DecrementerExceptionCallback</definition>
+        <argsstring>(u8 exception, OSContext *context)</argsstring>
+        <name>DecrementerExceptionCallback</name>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>exception</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_o_s_context" kindref="compound">OSContext</ref> *</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" line="106" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" bodystart="106" bodyend="130"/>
+        <references refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" compoundref="_o_s_timer_8c" startline="5">Timer::callback</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" compoundref="_o_s_timer_8c" startline="8">Timer::mode</references>
+        <references refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784">OSClearContext</references>
+        <references refid="_o_s_context_8h_1a8072567238c7a10b509e478983776129">OSLoadContext</references>
+        <references refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7">OSSetCurrentContext</references>
+        <references refid="_p_p_c_arch_8h_1a2e719c9cfc44240ddc3385b3e76bd973">PPCMtdec</references>
+        <references refid="struct_timer_1a06d075b99b19be2c22ae6d31a7523251" compoundref="_o_s_timer_8c" startline="7">Timer::startval</references>
+        <references refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" compoundref="_o_s_timer_8c" startline="9">Timer::stopped</references>
+        <referencedby refid="_o_s_timer_8c_1ab52712b1cc27d6b72626a5a9ed949a21" compoundref="_o_s_timer_8c" startline="133" endline="160">DecrementerExceptionHandler</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="_o_s_timer_8c_1ab52712b1cc27d6b72626a5a9ed949a21" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>static asm void DecrementerExceptionHandler</definition>
+        <argsstring>(u8 exception, register OSContext *context)</argsstring>
+        <name>DecrementerExceptionHandler</name>
+        <param>
+          <type><ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref></type>
+          <declname>exception</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_o_s_context" kindref="compound">OSContext</ref> *</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" line="133" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/os/OSTimer.c" bodystart="133" bodyend="160"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_timer_8c_1acdeba035e0b1812cc645f4efd5f7f686" compoundref="_o_s_timer_8c" startline="106" endline="130">DecrementerExceptionCallback</references>
+        <references refid="struct_o_s_context_1ad32fbfb762bfb6d52d26679ac62b657b" compoundref="_o_s_context_8h" startline="140">OSContext::gpr</references>
+        <references refid="struct_o_s_context_1a2970d480b740bbf9494fae0fe72671dd" compoundref="_o_s_context_8h" startline="152">OSContext::gqr</references>
+        <references refid="_p_p_c_arch_8h_1ad0dcd3cf8f5838f6c810b9509af41aa4" compoundref="_p_p_c_arch_8h" startline="91">GQR1</references>
+        <references refid="_p_p_c_arch_8h_1a44a527d2bf12c875152e204fc9011a68" compoundref="_p_p_c_arch_8h" startline="92">GQR2</references>
+        <references refid="_p_p_c_arch_8h_1a24dc138a554bfb77c7f8a28b6033e44a" compoundref="_p_p_c_arch_8h" startline="93">GQR3</references>
+        <references refid="_p_p_c_arch_8h_1af028676197c21c9b4ec776dcf96dffc6" compoundref="_p_p_c_arch_8h" startline="94">GQR4</references>
+        <references refid="_p_p_c_arch_8h_1ad4d30c68e6ddf6d3c9980d05cf05bc78" compoundref="_p_p_c_arch_8h" startline="95">GQR5</references>
+        <references refid="_p_p_c_arch_8h_1ab574c987d96c8b5c4f6005a6b59eeb3d" compoundref="_p_p_c_arch_8h" startline="96">GQR6</references>
+        <references refid="_p_p_c_arch_8h_1a007544dd398f238db998ec41f5f4dddb" compoundref="_p_p_c_arch_8h" startline="97">GQR7</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="os_8h" kindref="compound">dolphin/os.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="struct_timer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_timer" kindref="compound">Timer</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5" refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/>(*<ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref>)();<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="6" refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" kindref="member">currval</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="7" refid="struct_timer_1a06d075b99b19be2c22ae6d31a7523251" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/><sp/><ref refid="struct_timer_1a06d075b99b19be2c22ae6d31a7523251" kindref="member">startval</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="8" refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><sp/><ref refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" kindref="member">mode</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="9" refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" kindref="member">stopped</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="10" refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" kindref="member">initialized</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="_o_s_timer_8c_1add9f9c78c1e642c2a2b9e2f5ebb57a3e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_timer" kindref="compound">Timer</ref><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>;<sp/></highlight><highlight class="comment">//<sp/>.bss</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="_o_s_timer_8c_1a42e74cd0d90fc038c2e98a05c522bf17" refkind="member"><highlight class="normal"><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*<ref refid="_o_s_timer_8c_1a42e74cd0d90fc038c2e98a05c522bf17" kindref="member">OSSetTimerCallback</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>(*<ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref>)()))();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_timer_8c_1ac6277bd73c8c877c31ccacaf55ddc255" kindref="member">OSInitTimer</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>time,<sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" kindref="member">mode</ref>);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_timer_8c_1a047767e112660ae404ce29ae6e4c8ff2" kindref="member">OSStartTimer</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_timer_8c_1ab0adfc59d5547d3455bc53ec83dbcb5b" kindref="member">OSStopTimer</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19" refid="_o_s_timer_8c_1ab2402c647b4866a6ed25a4f6383edd1c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_o_s_timer_8c_1ab2402c647b4866a6ed25a4f6383edd1c" kindref="member">DecrementerExceptionHandler</ref><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exception</ref>,<sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref>*<sp/>context);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/>(*<ref refid="_o_s_timer_8c_1a42e74cd0d90fc038c2e98a05c522bf17" kindref="member">OSSetTimerCallback</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>(*<ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref>)()))()</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref><sp/>(*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">prevCallback</ref>)();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" kindref="member">initialized</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="os_8h_1a20a685e4306d8ca8b53ed6cf1226c86d" kindref="member">OSPanic</ref><sp/>(</highlight><highlight class="stringliteral">&quot;OSTimer.c&quot;</highlight><highlight class="normal">,<sp/>127,<sp/></highlight><highlight class="stringliteral">&quot;OSSetTimerCallback():<sp/>timer<sp/>is<sp/>not<sp/>initialized.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" kindref="member">stopped</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">prevCallback</ref><sp/>=<sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref><sp/>=<sp/><ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">prevCallback</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="_o_s_timer_8c_1ac6277bd73c8c877c31ccacaf55ddc255" refkind="member"><highlight class="normal"><ref refid="_o_s_timer_8c_1ac6277bd73c8c877c31ccacaf55ddc255" kindref="member">OSInitTimer</ref><sp/>(<ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref><sp/>time,<sp/><ref refid="types_8h_1a9e6c91d77e24643b888dbd1a1a590054" kindref="member">u16</ref><sp/><ref refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" kindref="member">mode</ref>)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time<sp/>&gt;=<sp/>0x80000000)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="os_8h_1a20a685e4306d8ca8b53ed6cf1226c86d" kindref="member">OSPanic</ref><sp/>(</highlight><highlight class="stringliteral">&quot;OSTimer.c&quot;</highlight><highlight class="normal">,<sp/>0x97,<sp/></highlight><highlight class="stringliteral">&quot;OSInitTimer():<sp/>time<sp/>param<sp/>must<sp/>be<sp/>less<sp/>than<sp/>0x80000000.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" kindref="member">stopped</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" kindref="member">currval</ref><sp/>=<sp/>time;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a06d075b99b19be2c22ae6d31a7523251" kindref="member">startval</ref><sp/>=<sp/>time;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" kindref="member">mode</ref><sp/>=<sp/><ref refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" kindref="member">mode</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" kindref="member">initialized</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_o_s_exception_8h_1ad399b2fb16251e2923594a2da6a70057" kindref="member">__OSSetExceptionHandler</ref><sp/>(8,<sp/>&amp;<ref refid="_o_s_timer_8c_1ab2402c647b4866a6ed25a4f6383edd1c" kindref="member">DecrementerExceptionHandler</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" kindref="member">initialized</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="os_8h_1a31ab617dc142f4562371fd05927d36d7" kindref="member">OSReport</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Timer<sp/>initialized\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="_o_s_timer_8c_1a047767e112660ae404ce29ae6e4c8ff2" refkind="member"><highlight class="normal"><ref refid="_o_s_timer_8c_1a047767e112660ae404ce29ae6e4c8ff2" kindref="member">OSStartTimer</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>enabled;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" kindref="member">initialized</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="os_8h_1a20a685e4306d8ca8b53ed6cf1226c86d" kindref="member">OSPanic</ref><sp/>(</highlight><highlight class="stringliteral">&quot;OSTimer.c&quot;</highlight><highlight class="normal">,<sp/>0xB8,<sp/></highlight><highlight class="stringliteral">&quot;OSStartTimer():<sp/>timer<sp/>is<sp/>not<sp/>initialized.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>enabled<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_p_p_c_arch_8h_1a2e719c9cfc44240ddc3385b3e76bd973" kindref="member">PPCMtdec</ref><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" kindref="member">currval</ref>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" kindref="member">stopped</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(enabled);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="_o_s_timer_8c_1ab0adfc59d5547d3455bc53ec83dbcb5b" refkind="member"><highlight class="normal"><ref refid="_o_s_timer_8c_1ab0adfc59d5547d3455bc53ec83dbcb5b" kindref="member">OSStopTimer</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>enabled;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1af0c32a08f40ff53572681f8cd0be4f6e" kindref="member">initialized</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="os_8h_1a20a685e4306d8ca8b53ed6cf1226c86d" kindref="member">OSPanic</ref><sp/>(</highlight><highlight class="stringliteral">&quot;OSTimer.c&quot;</highlight><highlight class="normal">,<sp/>0xD0,<sp/></highlight><highlight class="stringliteral">&quot;OSStopTimer():<sp/>timer<sp/>is<sp/>not<sp/>initialized.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>enabled<sp/>=<sp/><ref refid="os_8h_1a03265654d01b5c8bf0d048dd3abc8d28" kindref="member">OSDisableInterrupts</ref>();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" kindref="member">stopped</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" kindref="member">stopped</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" kindref="member">currval</ref><sp/>=<sp/><ref refid="_p_p_c_arch_8h_1a510a72213abbfdf5aeac8e7389c9fd1d" kindref="member">PPCMfdec</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" kindref="member">currval</ref><sp/>&amp;<sp/>0x80000000)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a80bdb20721e66bea1531d445fc795d91" kindref="member">currval</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="os_8h_1a13cb97f7930c9070941f9a5db774e508" kindref="member">OSRestoreInterrupts</ref><sp/>(enabled);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="_o_s_timer_8c_1acdeba035e0b1812cc645f4efd5f7f686" refkind="member"><highlight class="normal"><ref refid="_o_s_timer_8c_1acdeba035e0b1812cc645f4efd5f7f686" kindref="member">DecrementerExceptionCallback</ref><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exception</ref>,<sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref>*<sp/>context)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784" kindref="member">OSClearContext</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7" kindref="member">OSSetCurrentContext</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" kindref="member">stopped</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" kindref="member">mode</ref><sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_p_p_c_arch_8h_1a2e719c9cfc44240ddc3385b3e76bd973" kindref="member">PPCMtdec</ref><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a06d075b99b19be2c22ae6d31a7523251" kindref="member">startval</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1a2a0450d59ec2353881cb6ca461a2e34b" kindref="member">mode</ref><sp/>==<sp/>2)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab26cb8d29a882af7df3924a666fcd00e" kindref="member">stopped</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref><sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_timer" kindref="compound">Timer</ref>.<ref refid="struct_timer_1ab642d041a23b8f9e154b16ac0c82121f" kindref="member">callback</ref>();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a82bf22397af84b6f63b511261c610784" kindref="member">OSClearContext</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exceptionContext</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a0cf3992c00d9be25adccc83f470937f7" kindref="member">OSSetCurrentContext</ref><sp/>(context);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_o_s_context_8h_1a8072567238c7a10b509e478983776129" kindref="member">OSLoadContext</ref><sp/>(context);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="_o_s_timer_8c_1ab52712b1cc27d6b72626a5a9ed949a21" refkind="member"><highlight class="normal"><ref refid="_o_s_timer_8c_1ab2402c647b4866a6ed25a4f6383edd1c" kindref="member">DecrementerExceptionHandler</ref><sp/>(<ref refid="types_8h_1aed742c436da53c1080638ce6ef7d13de" kindref="member">u8</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">exception</ref>,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_o_s_context" kindref="compound">OSContext</ref>*<sp/>context)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nofralloc</ref>;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1ad32fbfb762bfb6d52d26679ac62b657b" kindref="member">gpr</ref>[0];</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r1</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1ad32fbfb762bfb6d52d26679ac62b657b" kindref="member">gpr</ref>[1];</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r2</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1ad32fbfb762bfb6d52d26679ac62b657b" kindref="member">gpr</ref>[2];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stmw</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r6</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1ad32fbfb762bfb6d52d26679ac62b657b" kindref="member">gpr</ref>[6];</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mfspr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/><ref refid="_p_p_c_arch_8h_1ad0dcd3cf8f5838f6c810b9509af41aa4" kindref="member">GQR1</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1a2970d480b740bbf9494fae0fe72671dd" kindref="member">gqr</ref>[1];</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mfspr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/><ref refid="_p_p_c_arch_8h_1a44a527d2bf12c875152e204fc9011a68" kindref="member">GQR2</ref>;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1a2970d480b740bbf9494fae0fe72671dd" kindref="member">gqr</ref>[2];</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mfspr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/><ref refid="_p_p_c_arch_8h_1a24dc138a554bfb77c7f8a28b6033e44a" kindref="member">GQR3</ref>;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1a2970d480b740bbf9494fae0fe72671dd" kindref="member">gqr</ref>[3];</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mfspr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/><ref refid="_p_p_c_arch_8h_1af028676197c21c9b4ec776dcf96dffc6" kindref="member">GQR4</ref>;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1a2970d480b740bbf9494fae0fe72671dd" kindref="member">gqr</ref>[4];</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mfspr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/><ref refid="_p_p_c_arch_8h_1ad4d30c68e6ddf6d3c9980d05cf05bc78" kindref="member">GQR5</ref>;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1a2970d480b740bbf9494fae0fe72671dd" kindref="member">gqr</ref>[5];</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mfspr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/><ref refid="_p_p_c_arch_8h_1ab574c987d96c8b5c4f6005a6b59eeb3d" kindref="member">GQR6</ref>;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1a2970d480b740bbf9494fae0fe72671dd" kindref="member">gqr</ref>[6];</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mfspr</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/><ref refid="_p_p_c_arch_8h_1a007544dd398f238db998ec41f5f4dddb" kindref="member">GQR7</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">stw</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">r0</ref>,<sp/>context-&gt;<ref refid="struct_o_s_context_1a2970d480b740bbf9494fae0fe72671dd" kindref="member">gqr</ref>[7];</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/><ref refid="_o_s_timer_8c_1acdeba035e0b1812cc645f4efd5f7f686" kindref="member">DecrementerExceptionCallback</ref>;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/os/OSTimer.c"/>
+  </compounddef>
+</doxygen>

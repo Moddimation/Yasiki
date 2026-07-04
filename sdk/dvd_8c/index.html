@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dvd.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dvdc">File dvd.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_84dd7f8d193350365bcacfbd02904e42/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_099eac09ed7894d1733885fc00e718ed/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_6809de60dbef2d995cf7d874d1fa5b65/"><strong>dvd</strong></a> <strong>&gt;</strong> <a href="./"><strong>dvd.c</strong></a></p>
+<p><a href="../dvd_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;string.h&gt;</code></li>
+<li><code>#include "../os/OSPrivate.h"</code></li>
+<li><code>#include "dvd_private.h"</code></li>
+</ul>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#variable-laststate"><strong>LastState</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-autofinishing"><strong>AutoFinishing</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cancelallsynccomplete"><strong>CancelAllSyncComplete</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*</td>
+<td style="text-align: left;"><a href="#variable-cancelcallback"><strong>CancelCallback</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vu32"><strong>vu32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-cancellasterror"><strong>CancelLastError</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vu32"><strong>vu32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-canceling"><strong>Canceling</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-cancelingcommandblock"><strong>CancelingCommandBlock</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vu32"><strong>vu32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-currcommand"><strong>CurrCommand</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-dvdinitialized"><strong>DVDInitialized</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a></td>
+<td style="text-align: left;"><a href="#variable-dummycommandblock"><strong>DummyCommandBlock</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-fatalerrorflag"><strong>FatalErrorFlag</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-firsttimeinbootrom"><strong>FirstTimeInBootrom</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-lasterror"><strong>LastError</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vs32"><strong>vs32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-numinternalretry"><strong>NumInternalRetry</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-pauseflag"><strong>PauseFlag</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-pausingflag"><strong>PausingFlag</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_o_s_alarm/"><strong>OSAlarm</strong></a></td>
+<td style="text-align: left;"><a href="#variable-resetalarm"><strong>ResetAlarm</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vu32"><strong>vu32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-resetcount"><strong>ResetCount</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-resetrequired"><strong>ResetRequired</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-resultforsynccommand"><strong>ResultForSyncCommand</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-vu32"><strong>vu32</strong></a></td>
+<td style="text-align: left;"><a href="#variable-resumefromhere"><strong>ResumeFromHere</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#variable-autoinvalidation"><strong>autoInvalidation</strong></a>   = <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_o_s_boot_info_8h/#typedef-osbootinfo"><strong>OSBootInfo</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-bootinfo"><strong>bootInfo</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-currid"><strong>currID</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-executing"><strong>executing</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-tmp"><strong>tmp</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdcancel"><strong>DVDCancel</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdcancelall"><strong>DVDCancelAll</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdcancelallasync"><strong>DVDCancelAllAsync</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdcancelasync"><strong>DVDCancelAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdcancelstream"><strong>DVDCancelStream</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdcancelstreamasync"><strong>DVDCancelStreamAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdchangedisk"><strong>DVDChangeDisk</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a> * id) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdchangediskasync"><strong>DVDChangeDiskAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a> * id, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdchangediskasyncforbs"><strong>DVDChangeDiskAsyncForBS</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdcheckdisk"><strong>DVDCheckDisk</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetcommandblockstatus"><strong>DVDGetCommandBlockStatus</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-dvdgetcurrentdiskid"><strong>DVDGetCurrentDiskID</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetdrivestatus"><strong>DVDGetDriveStatus</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetstreamerrorstatus"><strong>DVDGetStreamErrorStatus</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetstreamerrorstatusasync"><strong>DVDGetStreamErrorStatusAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetstreamlength"><strong>DVDGetStreamLength</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetstreamlengthasync"><strong>DVDGetStreamLengthAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetstreamplayaddr"><strong>DVDGetStreamPlayAddr</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetstreamplayaddrasync"><strong>DVDGetStreamPlayAddrAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetstreamstartaddr"><strong>DVDGetStreamStartAddr</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdgetstreamstartaddrasync"><strong>DVDGetStreamStartAddrAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdinit"><strong>DVDInit</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdinquiry"><strong>DVDInquiry</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_d_v_d_drive_info/"><strong>DVDDriveInfo</strong></a> * info) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdinquiryasync"><strong>DVDInquiryAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>struct</strong></a> <a href="../struct_d_v_d_drive_info/"><strong>DVDDriveInfo</strong></a> * info, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdpause"><strong>DVDPause</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdpreparestreamabsasync"><strong>DVDPrepareStreamAbsAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> length, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br><em>0x14</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdreadabsasyncforbs"><strong>DVDReadAbsAsyncForBS</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdreadabsasyncprio"><strong>DVDReadAbsAsyncPrio</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * addr, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> length, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> prio) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdreaddiskid"><strong>DVDReadDiskID</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../struct_d_v_d_disk_i_d/"><strong>DVDDiskID</strong></a> * diskID, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdreset"><strong>DVDReset</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdresetrequired"><strong>DVDResetRequired</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdresume"><strong>DVDResume</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdseekabsasyncprio"><strong>DVDSeekAbsAsyncPrio</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> offset, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>long</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback, <a href="../types_8h/#typedef-s32"><strong>s32</strong></a> prio) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdsetautoinvalidation"><strong>DVDSetAutoInvalidation</strong></a> (<a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a> autoInval) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdstopstreamatend"><strong>DVDStopStreamAtEnd</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-dvdstopstreamatendasync"><strong>DVDStopStreamAtEndAsync</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdaudiobufferconfig"><strong>__DVDAudioBufferConfig</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> enable, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../types_8h/#typedef-s32"><strong>s32</strong></a>, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> *) callback) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-__dvdprepareresetasync"><strong>__DVDPrepareResetAsync</strong></a> (<a href="../dvd_8h/#typedef-dvdcbcallback"><strong>DVDCBCallback</strong></a> cb) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u16"><strong>u16</strong></a> *<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>tmpBuffer</strong></a>[32]</td>
+<td style="text-align: left;"><a href="#function-align"><strong>ALIGN</strong></a> (32) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-alarmhandler"><strong>AlarmHandler</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-categorizeerror"><strong>CategorizeError</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> error) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-checkcancel"><strong>CheckCancel</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> resume) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforcancelallsync"><strong>cbForCancelAllSync</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforcancelstreamsync"><strong>cbForCancelStreamSync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforcancelsync"><strong>cbForCancelSync</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforchangedisksync"><strong>cbForChangeDiskSync</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforgetstreamerrorstatussync"><strong>cbForGetStreamErrorStatusSync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforgetstreamlengthsync"><strong>cbForGetStreamLengthSync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforgetstreamplayaddrsync"><strong>cbForGetStreamPlayAddrSync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforgetstreamstartaddrsync"><strong>cbForGetStreamStartAddrSync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforinquirysync"><strong>cbForInquirySync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstatebusy"><strong>cbForStateBusy</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstatecheckid1"><strong>cbForStateCheckID1</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstatecheckid2"><strong>cbForStateCheckID2</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstatecheckid3"><strong>cbForStateCheckID3</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstatecoverclosed"><strong>cbForStateCoverClosed</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstateerror"><strong>cbForStateError</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstategettingerror"><strong>cbForStateGettingError</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstategotoretry"><strong>cbForStateGoToRetry</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstatemotorstopped"><strong>cbForStateMotorStopped</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstatereadingfst"><strong>cbForStateReadingFST</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforstopstreamatendsync"><strong>cbForStopStreamAtEndSync</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> result, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforunrecoverederror"><strong>cbForUnrecoveredError</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-cbforunrecoverederrorretry"><strong>cbForUnrecoveredErrorRetry</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> intType) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-bool"><strong>BOOL</strong></a></td>
+<td style="text-align: left;"><a href="#function-issuecommand"><strong>issueCommand</strong></a> (<a href="../types_8h/#typedef-s32"><strong>s32</strong></a> prio, <a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statebusy"><strong>stateBusy</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statecheckid"><strong>stateCheckID</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statecheckid2"><strong>stateCheckID2</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statecheckid3"><strong>stateCheckID3</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statecoverclosed"><strong>stateCoverClosed</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statecoverclosed_cmd"><strong>stateCoverClosed_CMD</strong></a> (<a href="../struct_d_v_d_command_block/"><strong>DVDCommandBlock</strong></a> * block) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-stateerror"><strong>stateError</strong></a> (<a href="../types_8h/#typedef-u32"><strong>u32</strong></a> error) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-stategettingerror"><strong>stateGettingError</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-stategotoretry"><strong>stateGoToRetry</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statemotorstopped"><strong>stateMotorStopped</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statereadingfst"><strong>stateReadingFST</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-stateready"><strong>stateReady</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-statetimeout"><strong>stateTimeout</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-error_fatal"><strong>ERROR_FATAL</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-error_retry"><strong>ERROR_RETRY</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-error_retry_internally"><strong>ERROR_RETRY_INTERNALLY</strong></a>  <code>3</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-laststate">variable LastState</h3>
+<pre><code class="language-C++">void(* LastState) (DVDCommandBlock *);
+</code></pre>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-autofinishing">variable AutoFinishing</h3>
+<pre><code class="language-C++">BOOL AutoFinishing;
+</code></pre>
+<hr>
+
+<h3 id="variable-cancelallsynccomplete">variable CancelAllSyncComplete</h3>
+<pre><code class="language-C++">BOOL CancelAllSyncComplete;
+</code></pre>
+<hr>
+
+<h3 id="variable-cancelcallback">variable CancelCallback</h3>
+<pre><code class="language-C++">void(* CancelCallback) (s32, DVDCommandBlock *);
+</code></pre>
+<hr>
+
+<h3 id="variable-cancellasterror">variable CancelLastError</h3>
+<pre><code class="language-C++">vu32 CancelLastError;
+</code></pre>
+<hr>
+
+<h3 id="variable-canceling">variable Canceling</h3>
+<pre><code class="language-C++">vu32 Canceling;
+</code></pre>
+<hr>
+
+<h3 id="variable-cancelingcommandblock">variable CancelingCommandBlock</h3>
+<pre><code class="language-C++">DVDCommandBlock* CancelingCommandBlock;
+</code></pre>
+<hr>
+
+<h3 id="variable-currcommand">variable CurrCommand</h3>
+<pre><code class="language-C++">vu32 CurrCommand;
+</code></pre>
+<hr>
+
+<h3 id="variable-dvdinitialized">variable DVDInitialized</h3>
+<pre><code class="language-C++">BOOL DVDInitialized;
+</code></pre>
+<hr>
+
+<h3 id="variable-dummycommandblock">variable DummyCommandBlock</h3>
+<pre><code class="language-C++">DVDCommandBlock DummyCommandBlock;
+</code></pre>
+<hr>
+
+<h3 id="variable-fatalerrorflag">variable FatalErrorFlag</h3>
+<pre><code class="language-C++">volatile BOOL FatalErrorFlag;
+</code></pre>
+<hr>
+
+<h3 id="variable-firsttimeinbootrom">variable FirstTimeInBootrom</h3>
+<pre><code class="language-C++">BOOL FirstTimeInBootrom;
+</code></pre>
+<hr>
+
+<h3 id="variable-lasterror">variable LastError</h3>
+<pre><code class="language-C++">u32 LastError;
+</code></pre>
+<hr>
+
+<h3 id="variable-numinternalretry">variable NumInternalRetry</h3>
+<pre><code class="language-C++">vs32 NumInternalRetry;
+</code></pre>
+<hr>
+
+<h3 id="variable-pauseflag">variable PauseFlag</h3>
+<pre><code class="language-C++">volatile BOOL PauseFlag;
+</code></pre>
+<hr>
+
+<h3 id="variable-pausingflag">variable PausingFlag</h3>
+<pre><code class="language-C++">volatile BOOL PausingFlag;
+</code></pre>
+<hr>
+
+<h3 id="variable-resetalarm">variable ResetAlarm</h3>
+<pre><code class="language-C++">OSAlarm ResetAlarm;
+</code></pre>
+<hr>
+
+<h3 id="variable-resetcount">variable ResetCount</h3>
+<pre><code class="language-C++">vu32 ResetCount;
+</code></pre>
+<hr>
+
+<h3 id="variable-resetrequired">variable ResetRequired</h3>
+<pre><code class="language-C++">BOOL ResetRequired;
+</code></pre>
+<hr>
+
+<h3 id="variable-resultforsynccommand">variable ResultForSyncCommand</h3>
+<pre><code class="language-C++">s32 ResultForSyncCommand;
+</code></pre>
+<hr>
+
+<h3 id="variable-resumefromhere">variable ResumeFromHere</h3>
+<pre><code class="language-C++">vu32 ResumeFromHere;
+</code></pre>
+<hr>
+
+<h3 id="variable-autoinvalidation">variable autoInvalidation</h3>
+<pre><code class="language-C++">BOOL autoInvalidation;
+</code></pre>
+<hr>
+
+<h3 id="variable-bootinfo">variable bootInfo</h3>
+<pre><code class="language-C++">OSBootInfo* bootInfo;
+</code></pre>
+<hr>
+
+<h3 id="variable-currid">variable currID</h3>
+<pre><code class="language-C++">DVDDiskID* currID;
+</code></pre>
+<hr>
+
+<h3 id="variable-executing">variable executing</h3>
+<pre><code class="language-C++">DVDCommandBlock* executing;
+</code></pre>
+<hr>
+
+<h3 id="variable-tmp">variable tmp</h3>
+<pre><code class="language-C++">void* tmp;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-dvdcancel">function DVDCancel</h3>
+<pre><code class="language-C++">s32 DVDCancel (
+    volatile  DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdcancelall">function DVDCancelAll</h3>
+<pre><code class="language-C++">s32 DVDCancelAll () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdcancelallasync">function DVDCancelAllAsync</h3>
+<pre><code class="language-C++">int DVDCancelAllAsync (
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdcancelasync">function DVDCancelAsync</h3>
+<pre><code class="language-C++">BOOL DVDCancelAsync (
+    DVDCommandBlock * block,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdcancelstream">function DVDCancelStream</h3>
+<pre><code class="language-C++">s32 DVDCancelStream (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdcancelstreamasync">function DVDCancelStreamAsync</h3>
+<pre><code class="language-C++">BOOL DVDCancelStreamAsync (
+    DVDCommandBlock * block,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdchangedisk">function DVDChangeDisk</h3>
+<pre><code class="language-C++">s32 DVDChangeDisk (
+    DVDCommandBlock * block,
+    DVDDiskID * id
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdchangediskasync">function DVDChangeDiskAsync</h3>
+<pre><code class="language-C++">BOOL DVDChangeDiskAsync (
+    DVDCommandBlock * block,
+    DVDDiskID * id,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdchangediskasyncforbs">function DVDChangeDiskAsyncForBS</h3>
+<pre><code class="language-C++">BOOL DVDChangeDiskAsyncForBS (
+    DVDCommandBlock * block,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdcheckdisk">function DVDCheckDisk</h3>
+<pre><code class="language-C++">BOOL DVDCheckDisk () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetcommandblockstatus">function DVDGetCommandBlockStatus</h3>
+<pre><code class="language-C++">s32 DVDGetCommandBlockStatus (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetcurrentdiskid">function DVDGetCurrentDiskID</h3>
+<pre><code class="language-C++">DVDDiskID * DVDGetCurrentDiskID () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetdrivestatus">function DVDGetDriveStatus</h3>
+<pre><code class="language-C++">s32 DVDGetDriveStatus () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetstreamerrorstatus">function DVDGetStreamErrorStatus</h3>
+<pre><code class="language-C++">s32 DVDGetStreamErrorStatus (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetstreamerrorstatusasync">function DVDGetStreamErrorStatusAsync</h3>
+<pre><code class="language-C++">BOOL DVDGetStreamErrorStatusAsync (
+    DVDCommandBlock * block,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetstreamlength">function DVDGetStreamLength</h3>
+<pre><code class="language-C++">s32 DVDGetStreamLength (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetstreamlengthasync">function DVDGetStreamLengthAsync</h3>
+<pre><code class="language-C++">BOOL DVDGetStreamLengthAsync (
+    DVDCommandBlock * block,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetstreamplayaddr">function DVDGetStreamPlayAddr</h3>
+<pre><code class="language-C++">s32 DVDGetStreamPlayAddr (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetstreamplayaddrasync">function DVDGetStreamPlayAddrAsync</h3>
+<pre><code class="language-C++">BOOL DVDGetStreamPlayAddrAsync (
+    DVDCommandBlock * block,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetstreamstartaddr">function DVDGetStreamStartAddr</h3>
+<pre><code class="language-C++">s32 DVDGetStreamStartAddr (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdgetstreamstartaddrasync">function DVDGetStreamStartAddrAsync</h3>
+<pre><code class="language-C++">BOOL DVDGetStreamStartAddrAsync (
+    DVDCommandBlock * block,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdinit">function DVDInit</h3>
+<pre><code class="language-C++">void DVDInit () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdinquiry">function DVDInquiry</h3>
+<pre><code class="language-C++">s32 DVDInquiry (
+    DVDCommandBlock * block,
+    struct  DVDDriveInfo * info
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdinquiryasync">function DVDInquiryAsync</h3>
+<pre><code class="language-C++">BOOL DVDInquiryAsync (
+    DVDCommandBlock * block,
+    struct  DVDDriveInfo * info,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdpause">function DVDPause</h3>
+<pre><code class="language-C++">void DVDPause () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdpreparestreamabsasync">function DVDPrepareStreamAbsAsync</h3>
+<p><em>0x14</em> </p>
+<pre><code class="language-C++">BOOL DVDPrepareStreamAbsAsync (
+    DVDCommandBlock * block,
+    u32 length,
+    u32 offset,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdreadabsasyncforbs">function DVDReadAbsAsyncForBS</h3>
+<pre><code class="language-C++">BOOL DVDReadAbsAsyncForBS (
+    DVDCommandBlock * block,
+    void * addr,
+    s32 length,
+    s32 offset,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdreadabsasyncprio">function DVDReadAbsAsyncPrio</h3>
+<pre><code class="language-C++">BOOL DVDReadAbsAsyncPrio (
+    DVDCommandBlock * block,
+    void * addr,
+    s32 length,
+    s32 offset,
+    void (*)( s32 , DVDCommandBlock *) callback,
+    s32 prio
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdreaddiskid">function DVDReadDiskID</h3>
+<pre><code class="language-C++">BOOL DVDReadDiskID (
+    DVDCommandBlock * block,
+    DVDDiskID * diskID,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdreset">function DVDReset</h3>
+<pre><code class="language-C++">void DVDReset () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdresetrequired">function DVDResetRequired</h3>
+<pre><code class="language-C++">BOOL DVDResetRequired () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdresume">function DVDResume</h3>
+<pre><code class="language-C++">void DVDResume () 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdseekabsasyncprio">function DVDSeekAbsAsyncPrio</h3>
+<pre><code class="language-C++">BOOL DVDSeekAbsAsyncPrio (
+    DVDCommandBlock * block,
+    s32 offset,
+    void (*)( long , DVDCommandBlock *) callback,
+    s32 prio
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdsetautoinvalidation">function DVDSetAutoInvalidation</h3>
+<pre><code class="language-C++">int DVDSetAutoInvalidation (
+    BOOL autoInval
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdstopstreamatend">function DVDStopStreamAtEnd</h3>
+<pre><code class="language-C++">s32 DVDStopStreamAtEnd (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dvdstopstreamatendasync">function DVDStopStreamAtEndAsync</h3>
+<pre><code class="language-C++">BOOL DVDStopStreamAtEndAsync (
+    DVDCommandBlock * block,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdaudiobufferconfig">function __DVDAudioBufferConfig</h3>
+<pre><code class="language-C++">void __DVDAudioBufferConfig (
+    DVDCommandBlock * block,
+    u32 enable,
+    u32 size,
+    void (*)( s32 , DVDCommandBlock *) callback
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-__dvdprepareresetasync">function __DVDPrepareResetAsync</h3>
+<pre><code class="language-C++">void __DVDPrepareResetAsync (
+    DVDCBCallback cb
+) 
+</code></pre>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-align">function ALIGN</h3>
+<pre><code class="language-C++">static u16 * tmpBuffer [32] ALIGN (
+    32
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-alarmhandler">function AlarmHandler</h3>
+<pre><code class="language-C++">static void AlarmHandler () 
+</code></pre>
+<hr>
+
+<h3 id="function-categorizeerror">function CategorizeError</h3>
+<pre><code class="language-C++">static u32 CategorizeError (
+    u32 error
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-checkcancel">function CheckCancel</h3>
+<pre><code class="language-C++">static BOOL CheckCancel (
+    u32 resume
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforcancelallsync">function cbForCancelAllSync</h3>
+<pre><code class="language-C++">static void cbForCancelAllSync () 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforcancelstreamsync">function cbForCancelStreamSync</h3>
+<pre><code class="language-C++">static void cbForCancelStreamSync (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforcancelsync">function cbForCancelSync</h3>
+<pre><code class="language-C++">static void cbForCancelSync () 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforchangedisksync">function cbForChangeDiskSync</h3>
+<pre><code class="language-C++">static void cbForChangeDiskSync () 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforgetstreamerrorstatussync">function cbForGetStreamErrorStatusSync</h3>
+<pre><code class="language-C++">static void cbForGetStreamErrorStatusSync (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforgetstreamlengthsync">function cbForGetStreamLengthSync</h3>
+<pre><code class="language-C++">static void cbForGetStreamLengthSync (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforgetstreamplayaddrsync">function cbForGetStreamPlayAddrSync</h3>
+<pre><code class="language-C++">static void cbForGetStreamPlayAddrSync (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforgetstreamstartaddrsync">function cbForGetStreamStartAddrSync</h3>
+<pre><code class="language-C++">static void cbForGetStreamStartAddrSync (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforinquirysync">function cbForInquirySync</h3>
+<pre><code class="language-C++">static void cbForInquirySync (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstatebusy">function cbForStateBusy</h3>
+<pre><code class="language-C++">static void cbForStateBusy (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstatecheckid1">function cbForStateCheckID1</h3>
+<pre><code class="language-C++">static void cbForStateCheckID1 (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstatecheckid2">function cbForStateCheckID2</h3>
+<pre><code class="language-C++">static void cbForStateCheckID2 (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstatecheckid3">function cbForStateCheckID3</h3>
+<pre><code class="language-C++">static void cbForStateCheckID3 (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstatecoverclosed">function cbForStateCoverClosed</h3>
+<pre><code class="language-C++">static void cbForStateCoverClosed (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstateerror">function cbForStateError</h3>
+<pre><code class="language-C++">static void cbForStateError (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstategettingerror">function cbForStateGettingError</h3>
+<pre><code class="language-C++">static void cbForStateGettingError (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstategotoretry">function cbForStateGoToRetry</h3>
+<pre><code class="language-C++">static void cbForStateGoToRetry (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstatemotorstopped">function cbForStateMotorStopped</h3>
+<pre><code class="language-C++">static void cbForStateMotorStopped (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstatereadingfst">function cbForStateReadingFST</h3>
+<pre><code class="language-C++">static void cbForStateReadingFST (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforstopstreamatendsync">function cbForStopStreamAtEndSync</h3>
+<pre><code class="language-C++">static void cbForStopStreamAtEndSync (
+    s32 result,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforunrecoverederror">function cbForUnrecoveredError</h3>
+<pre><code class="language-C++">static void cbForUnrecoveredError (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-cbforunrecoverederrorretry">function cbForUnrecoveredErrorRetry</h3>
+<pre><code class="language-C++">static void cbForUnrecoveredErrorRetry (
+    u32 intType
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-issuecommand">function issueCommand</h3>
+<pre><code class="language-C++">static BOOL issueCommand (
+    s32 prio,
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-statebusy">function stateBusy</h3>
+<pre><code class="language-C++">static void stateBusy (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-statecheckid">function stateCheckID</h3>
+<pre><code class="language-C++">static void stateCheckID () 
+</code></pre>
+<hr>
+
+<h3 id="function-statecheckid2">function stateCheckID2</h3>
+<pre><code class="language-C++">static void stateCheckID2 (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-statecheckid3">function stateCheckID3</h3>
+<pre><code class="language-C++">static void stateCheckID3 (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-statecoverclosed">function stateCoverClosed</h3>
+<pre><code class="language-C++">static void stateCoverClosed () 
+</code></pre>
+<hr>
+
+<h3 id="function-statecoverclosed_cmd">function stateCoverClosed_CMD</h3>
+<pre><code class="language-C++">static void stateCoverClosed_CMD (
+    DVDCommandBlock * block
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-stateerror">function stateError</h3>
+<pre><code class="language-C++">static void stateError (
+    u32 error
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-stategettingerror">function stateGettingError</h3>
+<pre><code class="language-C++">static void stateGettingError () 
+</code></pre>
+<hr>
+
+<h3 id="function-stategotoretry">function stateGoToRetry</h3>
+<pre><code class="language-C++">static void stateGoToRetry () 
+</code></pre>
+<hr>
+
+<h3 id="function-statemotorstopped">function stateMotorStopped</h3>
+<pre><code class="language-C++">static void stateMotorStopped () 
+</code></pre>
+<hr>
+
+<h3 id="function-statereadingfst">function stateReadingFST</h3>
+<pre><code class="language-C++">static void stateReadingFST () 
+</code></pre>
+<hr>
+
+<h3 id="function-stateready">function stateReady</h3>
+<pre><code class="language-C++">static void stateReady () 
+</code></pre>
+<hr>
+
+<h3 id="function-statetimeout">function stateTimeout</h3>
+<pre><code class="language-C++">static void stateTimeout () 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-error_fatal">define ERROR_FATAL</h3>
+<pre><code class="language-C++">#define ERROR_FATAL `1`
+</code></pre>
+<hr>
+
+<h3 id="define-error_retry">define ERROR_RETRY</h3>
+<pre><code class="language-C++">#define ERROR_RETRY `2`
+</code></pre>
+<hr>
+
+<h3 id="define-error_retry_internally">define ERROR_RETRY_INTERNALLY</h3>
+<pre><code class="language-C++">#define ERROR_RETRY_INTERNALLY `3`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/src/dolphin/dvd/dvd.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

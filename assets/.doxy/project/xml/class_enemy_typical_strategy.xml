@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_enemy_typical_strategy" kind="class" language="C++" prot="public">
+    <compoundname>EnemyTypicalStrategy</compoundname>
+    <basecompoundref refid="class_enemy_strategy_decorator" prot="public" virt="non-virtual">EnemyStrategyDecorator</basecompoundref>
+    <basecompoundref refid="class_koga_1_1_character_event_observer" prot="public" virt="non-virtual">Koga::CharacterEventObserver</basecompoundref>
+    <derivedcompoundref refid="class_a_i_turara" prot="public" virt="non-virtual">AITurara</derivedcompoundref>
+    <includes refid="_enemy_typical_strategy_8h" local="no">EnemyTypicalStrategy.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_enemy_typical_strategy_1aff0f40a21169b4268deaba4d809b36c2" prot="public" static="no" mutable="no">
+        <type><ref refid="class_en_tsuri_strategies" kindref="compound">EnTsuriStrategies</ref></type>
+        <definition>EnTsuriStrategies EnemyTypicalStrategy::mTsuriStrategies</definition>
+        <argsstring></argsstring>
+        <name>mTsuriStrategies</name>
+        <qualifiedname>EnemyTypicalStrategy::mTsuriStrategies</qualifiedname>
+        <briefdescription>
+<para>0x20 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnemyTypicalStrategy.h" line="15" column="23" bodyfile="decomp/Project/sources/Sato/include/EnemyTypicalStrategy.h" bodystart="15" bodyend="-1"/>
+        <referencedby refid="class_enemy_typical_strategy_1aeb9c7c784a4cbbf04865a7a1b0430f85" compoundref="_enemy_typical_strategy_8cpp" startline="8" endline="19">onFishingBegin</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_enemy_typical_strategy_1aa2b68e6537fff2349c204be1143e0622" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual EnemyTypicalStrategy::~EnemyTypicalStrategy</definition>
+        <argsstring>()</argsstring>
+        <name>~EnemyTypicalStrategy</name>
+        <qualifiedname>EnemyTypicalStrategy::~EnemyTypicalStrategy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnemyTypicalStrategy.h" line="11" column="13" bodyfile="decomp/Project/sources/Sato/include/EnemyTypicalStrategy.h" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="class_enemy_typical_strategy_1aeb9c7c784a4cbbf04865a7a1b0430f85" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool EnemyTypicalStrategy::onFishingBegin</definition>
+        <argsstring>(Koga::CharacterEvent *msg)</argsstring>
+        <name>onFishingBegin</name>
+        <qualifiedname>EnemyTypicalStrategy::onFishingBegin</qualifiedname>
+        <reimplements refid="class_koga_1_1_character_event_observer_1a48cf7e23b83cd0711fc9041b48c3993d">onFishingBegin</reimplements>
+        <param>
+          <type><ref refid="class_koga_1_1_character_event" kindref="compound">Koga::CharacterEvent</ref> *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/Project/sources/Sato/include/EnemyTypicalStrategy.h" line="13" column="18" bodyfile="decomp/Project/sources/Sato/src/EnemyTypicalStrategy.cpp" bodystart="8" bodyend="19"/>
+        <references refid="class_en_strategy_container_1aeed873402a9a560ca617814468fb9a6b" compoundref="_en_strategy_8cpp" startline="35" endline="45">EnStrategyContainer::createStrategy</references>
+        <references refid="class_enemy_strategy_1af28acab9860186ec7fb3ea4eda1cef25" compoundref="_enemy_strategy_8h" startline="33">EnemyStrategy::mpUserData</references>
+        <references refid="class_enemy_strategy_1a4182d611d41aafb0b68c7510b63e7a7a" compoundref="_enemy_strategy_8h" startline="32">EnemyStrategy::mpZako</references>
+        <references refid="class_enemy_typical_strategy_1aff0f40a21169b4268deaba4d809b36c2" compoundref="_enemy_typical_strategy_8h" startline="15">mTsuriStrategies</references>
+        <references refid="class_enemy_strategy_1ad98656894b6d463311f732242d497bcc" compoundref="_enemy_strategy_8cpp" startline="67" endline="70">EnemyStrategy::setNextState</references>
+        <references refid="class_enemy_strategy_decorator_1ab0190a46d0f997ceb9f40f8f9221670c" compoundref="_enemy_strategy_8cpp" startline="102" endline="111">EnemyStrategyDecorator::setTsuriStrategy</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8">
+        <label>AITurara</label>
+        <link refid="class_a_i_turara"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>EnemyStrategy</label>
+        <link refid="class_enemy_strategy"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>EnemyStrategyDecorator</label>
+        <link refid="class_enemy_strategy_decorator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EnemyTypicalStrategy</label>
+        <link refid="class_enemy_typical_strategy"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JORReflexible</label>
+      </node>
+      <node id="5">
+        <label>Koga::CharacterEventObserver</label>
+        <link refid="class_koga_1_1_character_event_observer"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Koga::Observer&lt; Msg, Ret &gt;</label>
+        <link refid="class_koga_1_1_observer"/>
+      </node>
+      <node id="6">
+        <label>Koga::Observer&lt; CharacterEvent, bool &gt;</label>
+        <link refid="class_koga_1_1_observer"/>
+        <childnode refid="7" relation="template-instance">
+          <edgelabel>&lt; CharacterEvent, bool &gt;</edgelabel>
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>EnStrategyContainer</label>
+        <link refid="class_en_strategy_container"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mpStrategy</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>EnTsuriStrategies</label>
+        <link refid="class_en_tsuri_strategies"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>EnemyStrategy</label>
+        <link refid="class_enemy_strategy"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>EnemyStrategyDecorator</label>
+        <link refid="class_enemy_strategy_decorator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mpTsuriStrategy</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>EnemyTypicalStrategy</label>
+        <link refid="class_enemy_typical_strategy"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>mTsuriStrategies</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JORReflexible</label>
+      </node>
+      <node id="5">
+        <label>Koga::CharacterEventObserver</label>
+        <link refid="class_koga_1_1_character_event_observer"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Koga::Observer&lt; Msg, Ret &gt;</label>
+        <link refid="class_koga_1_1_observer"/>
+      </node>
+      <node id="6">
+        <label>Koga::Observer&lt; CharacterEvent, bool &gt;</label>
+        <link refid="class_koga_1_1_observer"/>
+        <childnode refid="7" relation="template-instance">
+          <edgelabel>&lt; CharacterEvent, bool &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="decomp/Project/sources/Sato/include/EnemyTypicalStrategy.h" line="8" column="1" bodyfile="decomp/Project/sources/Sato/include/EnemyTypicalStrategy.h" bodystart="9" bodyend="16"/>
+    <listofallmembers>
+      <member refid="class_enemy_strategy_1ae205a40f6f136008cf1f4eeae0efb96f" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>changeState</name></member>
+      <member refid="class_enemy_strategy_1ae4504b90111f6fb9c1d27fc6124e8cea" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>doBehavior</name></member>
+      <member refid="class_enemy_strategy_1ac428d2db90cee100c0acc3a735713263" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>doBehaviorInit</name></member>
+      <member refid="class_enemy_strategy_1ac1f0572627452e344b08ba2c073c8d01" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>EnemyStrategy</name></member>
+      <member refid="class_enemy_strategy_decorator_1a87af0868f174a75e85661ec8662ff601" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>EnemyStrategyDecorator</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a2ef852e8270ec665fc1d9e4b738def20" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>FUN_800ea380</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a9e5ff507e5c60a8690bd235e70f14fe2" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>FUN_800ea44c</name></member>
+      <member refid="class_enemy_strategy_1a9b277ae622207f0ebbc7b7bbed6a873a" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>init</name></member>
+      <member refid="class_enemy_strategy_1a3b8371f205d260e30077c57cfe8fd39b" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>mCurState</name></member>
+      <member refid="class_enemy_strategy_1aa04c3af8289883e35d592e0c510b763a" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>mNextState</name></member>
+      <member refid="class_enemy_strategy_decorator_1a582f3e481c3c9b6c81b4d4fe5621c93f" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>mpTsuriStrategy</name></member>
+      <member refid="class_enemy_strategy_1af28acab9860186ec7fb3ea4eda1cef25" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>mpUserData</name></member>
+      <member refid="class_enemy_strategy_1a4182d611d41aafb0b68c7510b63e7a7a" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>mpZako</name></member>
+      <member refid="class_enemy_strategy_1a06d4ea8e8365789246e29004fe74de72" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>mTimer</name></member>
+      <member refid="class_enemy_strategy_decorator_1a50bf346ab95334e1068843e380861654" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>mTsuriState</name></member>
+      <member refid="class_enemy_typical_strategy_1aff0f40a21169b4268deaba4d809b36c2" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>mTsuriStrategies</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a4a4bbbb128e5b9f38663364616c0dda6" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onCaptureBegin</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a152954932c159cda1e448b3d9ead663c" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onCaptureEnd</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1aa64249104d08e794ccff97cd4a483eda" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onCollideWithPlayer</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a39fe5ccb13ea6afcde49829bcb153ca3" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onEnteredFlashlightBeam</name></member>
+      <member refid="class_enemy_typical_strategy_1aeb9c7c784a4cbbf04865a7a1b0430f85" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onFishingBegin</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a414ce59d031d23eb8312f2d6544338f1" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onHitWithFireBall</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a313750d5124eac526d185f1dfc786b5b" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onHitWithIceBall</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a31fcb0968340c9c6d9ada06190715ca1" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onHitWithWaterBall</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1afeffd0b17cdb629ccea861dca25a90ed" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onPlayerEnteredRoom</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a9242b1775f07b1624cf27cbedee7e0c4" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onPlayerLeftRoom</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1ad8299d7b1fad771a2b4f415796da5630" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onPlayerTapped</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1ae00df1e105528fad373d32b023c1e31c" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onSprayedWithFire</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1ac33ec8c0a31b2a68f038d4a80708ce6a" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onSprayedWithIce</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a40407462db1add1aca6fbe44182b622c" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>onSprayedWithWater</name></member>
+      <member refid="class_enemy_strategy_1a928c150d7eba4fc0b99296718407c62f" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>operator delete</name></member>
+      <member refid="class_enemy_strategy_1a329c2830762e0aa77c3b4f634fd4ce0e" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>operator new</name></member>
+      <member refid="class_koga_1_1_character_event_observer_1a1f881ec0a318cf6159781302e5d0112f" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>receiveMessage</name></member>
+      <member refid="class_enemy_strategy_1ad98656894b6d463311f732242d497bcc" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>setNextState</name></member>
+      <member refid="class_enemy_strategy_decorator_1ab0190a46d0f997ceb9f40f8f9221670c" prot="public" virt="non-virtual"><scope>EnemyTypicalStrategy</scope><name>setTsuriStrategy</name></member>
+      <member refid="class_enemy_strategy_1aa987cf928be56239b32150ce1f992600" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>unkEnemyStrategyFunc01</name></member>
+      <member refid="class_enemy_strategy_1a6bac8e76b28c1c98f6e83340509bf5a8" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>unkEnemyStrategyFunc02</name></member>
+      <member refid="class_enemy_strategy_decorator_1a05b8db6316cf58fb65c99ec76ed9bcf2" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>update</name></member>
+      <member refid="class_enemy_strategy_1ad759854ea39c4827c89acb5ecec27e67" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>~EnemyStrategy</name></member>
+      <member refid="class_enemy_typical_strategy_1aa2b68e6537fff2349c204be1143e0622" prot="public" virt="virtual"><scope>EnemyTypicalStrategy</scope><name>~EnemyTypicalStrategy</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

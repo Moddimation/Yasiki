@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File seq.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-seqh">File seq.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../seq_8h/"><strong>seq.h</strong></a></p>
+<p><a href="../seq_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef _DOLPHIN_SEQ_H_
+#define _DOLPHIN_SEQ_H_
+
+#include &lt;dolphin/syn.h&gt;
+
+typedef struct _SEQTRACK
+{
+    void* sequence;                               
+    u8*   start;                                  
+    u8*   end;                                    
+    u8*   current;                                
+    u8    status;                                 
+    float beatsPerSec;                            
+    u32   defaultTicksPerFrame;                   
+    u32   ticksPerFrame;                          
+    u32   delay;                                  
+    u32   state;                                  
+} SEQTRACK;
+
+typedef struct _SEQSEQUENCE
+{
+    void*           next;                         
+    u32             state;                        
+    u16             nTracks;                      
+    s16             timeFormat;                   
+    u32             tracksRunning;                
+    u32             end;                          
+    struct SYNSYNTH synth;                        
+    void            (*callback[128]) (void*, u8); 
+    SEQTRACK        track[64];                    
+} SEQSEQUENCE;
+
+#define SEQ_ALL_TRACKS -1
+
+// seq.c
+void SEQInit (void);
+void SEQQuit (void);
+void SEQRunAudioFrame (void);
+void SEQAddSequence (SEQSEQUENCE* sequence,
+                     u32*         midiStream,
+                     void*        wt,
+                     u32          aramBase,
+                     u32          priorityVoiceAlloc,
+                     u32          priorityNoteOn,
+                     u32          priorityNoteRelease);
+void SEQRemoveSequence (SEQSEQUENCE* sequence);
+void SEQRegisterControllerCallback (SEQSEQUENCE* sequence,
+                                    u8           controller,
+                                    void         (*callback) (void*, u8));
+void SEQSetState (SEQSEQUENCE* sequence, u32 state);
+u32  SEQGetState (SEQSEQUENCE* sequence);
+void SEQSetTempo (SEQSEQUENCE* sequence, u32 trackIndex, float bpm);
+f32  SEQGetTempo (SEQSEQUENCE* sequence, u32 trackIndex);
+void SEQSetVolume (SEQSEQUENCE* sequence, s32 dB);
+s32  SEQGetVolume (SEQSEQUENCE* sequence);
+
+#endif // _DOLPHIN_SEQ_H_
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

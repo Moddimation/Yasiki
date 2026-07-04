@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_p_e_r_f_private_8h" kind="file" language="C++">
+    <compoundname>PERFPrivate.h</compoundname>
+    <includedby refid="perf_8c" local="yes">perf.c</includedby>
+    <includedby refid="perfdraw_8c" local="yes">perfdraw.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>PERFPrivate.h</label>
+        <link refid="_p_e_r_f_private_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>perf.c</label>
+        <link refid="perf_8c"/>
+      </node>
+      <node id="3">
+        <label>perfdraw.c</label>
+        <link refid="perfdraw_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_p_e_r_f_private_8h_1a151abd76bfed3ae135bb7f86f57d04b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void __PERFDrawInit</definition>
+        <argsstring>(void(*id)())</argsstring>
+        <name>__PERFDrawInit</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref>(*)()</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/perf/PERFPrivate.h" line="9" column="6" bodyfile="decomp/DolphinSDK/src/dolphin/perf/perfdraw.c" bodystart="105" bodyend="121" declfile="decomp/DolphinSDK/src/dolphin/perf/PERFPrivate.h" declline="9" declcolumn="6"/>
+        <references refid="mtx_8h_1a641580965f4a96329779548222144048" compoundref="mtx_8c" startline="15" endline="30">C_MTXIdentity</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="perfdraw_8c_1a630608476eff1b8810594b4247374961" compoundref="perfdraw_8c" startline="64" endline="68">FramePts</references>
+        <references refid="perfdraw_8c_1a379006f2b9e824eacf4857b0e5fe9ce6" compoundref="perfdraw_8c" startline="84">GameDrawInit</references>
+        <references refid="perfdraw_8c_1a7cf42bfe1b81ebab8398bf0fecaf54e1" compoundref="perfdraw_8c" startline="89">mID</references>
+        <references refid="os_8h_1a86a02c5cd51c9719d4741048193bbb54" compoundref="os_8h" startline="53">OS_BUS_CLOCK</references>
+        <references refid="os_8h_1a73ac22d5e2756eb8ebf89a603228206a" compoundref="os_8h" startline="54">OS_CORE_CLOCK</references>
+        <references refid="perfdraw_8c_1a0e684f2a976489ccdf615cbf85599200" compoundref="perf_8c" startline="22">PERFNumEvents</references>
+        <references refid="mtx_8h_1a6a1003bc077c578bac6f1398e624c0df">PSMTXIdentity</references>
+        <referencedby refid="perf_8c_1aafba0293ceca76d47afbdc3148ae53b9" compoundref="perf_8c" startline="212" endline="250">PERFInit</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DOLPHIN_PERF_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DOLPHIN_PERF_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_p_e_r_f_private_8h_1a151abd76bfed3ae135bb7f86f57d04b5" kindref="member">__PERFDrawInit</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>(*</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)());</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_DOLPHIN_PERF_INTERNAL_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/perf/PERFPrivate.h"/>
+  </compounddef>
+</doxygen>

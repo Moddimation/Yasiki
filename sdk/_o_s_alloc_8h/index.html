@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSAlloc.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osalloch">File OSAlloc.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_0c56b33aa00ddb0e63af648508d6e3f4/"><strong>decomp</strong></a> <strong>&gt;</strong> <a href="../dir_7403dcf2df2f5392613493bf2b736904/"><strong>DolphinSDK</strong></a> <strong>&gt;</strong> <a href="../dir_9b186dc3f3e3b6d33b9081cb8e685142/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../dir_47b271ade99b633966c54f819f725c3c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_2e13e6cf1d2e2aa91cbc210fef9f68a3/"><strong>os</strong></a> <strong>&gt;</strong> <a href="./"><strong>OSAlloc.h</strong></a></p>
+<p><a href="../_o_s_alloc_8h_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;types.h&gt;</code></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-osheaphandle"><strong>OSHeapHandle</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>volatile</strong></a> <a href="./#typedef-osheaphandle"><strong>OSHeapHandle</strong></a></td>
+<td style="text-align: left;"><a href="#variable-__oscurrheap"><strong>__OSCurrHeap</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osaddtoheap"><strong>OSAddToHeap</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> heap, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * start, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * end) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osallocfixed"><strong>OSAllocFixed</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * rstart, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * rend) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osallocfromheap"><strong>OSAllocFromHeap</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> heap, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a> size) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-s32"><strong>s32</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscheckheap"><strong>OSCheckHeap</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> heap) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-oscreateheap"><strong>OSCreateHeap</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * start, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * end) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdestroyheap"><strong>OSDestroyHeap</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> heap) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osdumpheap"><strong>OSDumpHeap</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> heap) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osfreetoheap"><strong>OSFreeToHeap</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> heap, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * ptr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-osinitalloc"><strong>OSInitAlloc</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * arenaStart, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * arenaEnd, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> maxHeaps) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../types_8h/#typedef-u32"><strong>u32</strong></a></td>
+<td style="text-align: left;"><a href="#function-osreferentsize"><strong>OSReferentSize</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> * ptr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a></td>
+<td style="text-align: left;"><a href="#function-ossetcurrentheap"><strong>OSSetCurrentHeap</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>int</strong></a> heap) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-osvisitallocated"><strong>OSVisitAllocated</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a>(*)(<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *, <a href="../types_8h/#typedef-u32"><strong>u32</strong></a>) visitor) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osalloc"><strong>OSAlloc</strong></a> (size) <code>[**OSAllocFromHeap**](_o_s_alloc_8h.md#function-osallocfromheap) ([**\_\_OSCurrHeap**](_o_s_alloc_8h.md#variable-__oscurrheap), ([**size**](____ppc__eabi__init_8cpp.md#variable-size)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-osfree"><strong>OSFree</strong></a> (ptr) <code>[**OSFreeToHeap**](_o_s_alloc_8h.md#function-osfreetoheap) ([**\_\_OSCurrHeap**](_o_s_alloc_8h.md#variable-__oscurrheap), ([**ptr**](_c_a_r_d_private_8h.md#define-card_max_mount_step)))</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="typedef-osheaphandle">typedef OSHeapHandle</h3>
+<pre><code class="language-C++">typedef int OSHeapHandle;
+</code></pre>
+<hr>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-__oscurrheap">variable __OSCurrHeap</h3>
+<pre><code class="language-C++">volatile OSHeapHandle __OSCurrHeap;
+</code></pre>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-osaddtoheap">function OSAddToHeap</h3>
+<pre><code class="language-C++">void OSAddToHeap (
+    int heap,
+    void * start,
+    void * end
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osallocfixed">function OSAllocFixed</h3>
+<pre><code class="language-C++">void * OSAllocFixed (
+    void * rstart,
+    void * rend
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osallocfromheap">function OSAllocFromHeap</h3>
+<pre><code class="language-C++">void * OSAllocFromHeap (
+    int heap,
+    u32 size
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oscheckheap">function OSCheckHeap</h3>
+<pre><code class="language-C++">s32 OSCheckHeap (
+    int heap
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-oscreateheap">function OSCreateHeap</h3>
+<pre><code class="language-C++">int OSCreateHeap (
+    void * start,
+    void * end
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osdestroyheap">function OSDestroyHeap</h3>
+<pre><code class="language-C++">void OSDestroyHeap (
+    int heap
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osdumpheap">function OSDumpHeap</h3>
+<pre><code class="language-C++">void OSDumpHeap (
+    int heap
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osfreetoheap">function OSFreeToHeap</h3>
+<pre><code class="language-C++">void OSFreeToHeap (
+    int heap,
+    void * ptr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osinitalloc">function OSInitAlloc</h3>
+<pre><code class="language-C++">void * OSInitAlloc (
+    void * arenaStart,
+    void * arenaEnd,
+    int maxHeaps
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osreferentsize">function OSReferentSize</h3>
+<pre><code class="language-C++">u32 OSReferentSize (
+    void * ptr
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-ossetcurrentheap">function OSSetCurrentHeap</h3>
+<pre><code class="language-C++">int OSSetCurrentHeap (
+    int heap
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-osvisitallocated">function OSVisitAllocated</h3>
+<pre><code class="language-C++">void OSVisitAllocated (
+    void (*)( void *, u32 ) visitor
+) 
+</code></pre>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-osalloc">define OSAlloc</h3>
+<pre><code class="language-C++">#define OSAlloc (
+    size
+) `OSAllocFromHeap ( __OSCurrHeap , ( size ))`
+</code></pre>
+<hr>
+
+<h3 id="define-osfree">define OSFree</h3>
+<pre><code class="language-C++">#define OSFree (
+    ptr
+) `OSFreeToHeap ( __OSCurrHeap , ( ptr ))`
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>decomp/DolphinSDK/include/dolphin/os/OSAlloc.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

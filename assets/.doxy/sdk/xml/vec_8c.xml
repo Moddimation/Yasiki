@@ -1,0 +1,888 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="vec_8c" kind="file" language="C++">
+    <compoundname>vec.c</compoundname>
+    <includes refid="mtx_8h" local="no">dolphin/mtx.h</includes>
+    <includes local="no">cmath</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>dolphin/mtx.h</label>
+        <link refid="mtx_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+      <node id="1">
+        <label>vec.c</label>
+        <link refid="vec_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>cmath</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" prot="public" static="no">
+        <name>qr0</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="6" column="9" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="6" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="vec_8c_1a992cae2361ef3583762ed5cdb46d0415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void C_VECAdd</definition>
+        <argsstring>(Vec *a, Vec *b, Vec *c)</argsstring>
+        <name>C_VECAdd</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="9" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="9" bodyend="17"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a870923c462d4ea14414aeb58a30cab18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>asm void PSVECAdd</definition>
+        <argsstring>(register Vec *a, register Vec *b, register Vec *c)</argsstring>
+        <name>PSVECAdd</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="20" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="20" bodyend="32"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" compoundref="vec_8c" startline="6">qr0</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1abe74cd6e992b61c14324833baed3b908" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void C_VECSubtract</definition>
+        <argsstring>(Vec *a, Vec *b, Vec *c)</argsstring>
+        <name>C_VECSubtract</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="35" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="35" bodyend="43"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a306abd729921f300e0cb40f9fbe29f81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>asm void PSVECSubtract</definition>
+        <argsstring>(register Vec *a, register Vec *b, register Vec *c)</argsstring>
+        <name>PSVECSubtract</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="46" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="46" bodyend="58"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" compoundref="vec_8c" startline="6">qr0</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a4502326454d1f3ec3beee5c205ed360d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void C_VECScale</definition>
+        <argsstring>(Vec *src, Vec *dst, f32 scale)</argsstring>
+        <name>C_VECScale</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>dst</declname>
+        </param>
+        <param>
+          <type><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+          <declname>scale</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="61" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="61" bodyend="68"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" compoundref="_o_s_private_8h" startline="111">src</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a8bf39bc72f6d5606ed199701cca462c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>asm void PSVECScale</definition>
+        <argsstring>(register Vec *src, register Vec *dst, register f32 mult)</argsstring>
+        <name>PSVECScale</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>dst</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+          <declname>mult</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="71" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="71" bodyend="82"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" compoundref="vec_8c" startline="6">qr0</references>
+        <references refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" compoundref="_o_s_private_8h" startline="111">src</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1af167ce0590e79853f1699f3f794a236f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void C_VECNormalize</definition>
+        <argsstring>(Vec *src, Vec *unit)</argsstring>
+        <name>C_VECNormalize</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="85" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="85" bodyend="97"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" compoundref="_o_s_private_8h" startline="111">src</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1aa5c0ccaeadf974c69fe030a9fad3f196" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void PSVECNormalize</definition>
+        <argsstring>(register Vec *vec1, register Vec *dst)</argsstring>
+        <name>PSVECNormalize</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>vec1</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>dst</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="100" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="100" bodyend="133"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" compoundref="vec_8c" startline="6">qr0</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1acc3bbd40be209a571bb50e83ffcaa99c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+        <definition>f32 C_VECSquareMag</definition>
+        <argsstring>(Vec *v)</argsstring>
+        <name>C_VECSquareMag</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="136" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="136" bodyend="142"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a0fb9eaeeef483edafb60874f8b0a5b7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+        <definition>asm f32 PSVECSquareMag</definition>
+        <argsstring>(register Vec *vec1)</argsstring>
+        <name>PSVECSquareMag</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>vec1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>whoops! an extra blr is added by the compiler since 1 is added automatically.</para>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="145" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="145" bodyend="156"/>
+        <references refid="____ppc__eabi__init_8cpp_1ad03e74e669804ade36f4514efadcba4c" compoundref="____ppc__eabi__init_8cpp" startline="59">blr</references>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" compoundref="vec_8c" startline="6">qr0</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a570091694d8d2aec5817d34194cef9b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+        <definition>f32 VECMag</definition>
+        <argsstring>(Vec *v)</argsstring>
+        <name>VECMag</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="159" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="159" bodyend="163"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mtx_8h_1a6837244354b6d82fb33cf6d3784b8e13" compoundref="mtx_8h" startline="56">VECSquareMag</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a1d4a48747e203be1ea550ae556dd12ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+        <definition>f32 C_VECDotProduct</definition>
+        <argsstring>(Vec *a, Vec *b)</argsstring>
+        <name>C_VECDotProduct</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="166" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="166" bodyend="174"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a6073352a41da54f3dba78cd2ab87139b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+        <definition>asm f32 PSVECDotProduct</definition>
+        <argsstring>(register Vec *vec1, register Vec *vec2)</argsstring>
+        <name>PSVECDotProduct</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>vec1</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>vec2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="177" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="177" bodyend="188"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" compoundref="vec_8c" startline="6">qr0</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1afedb2af5b7418f83d572423898091d33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void C_VECCrossProduct</definition>
+        <argsstring>(Vec *a, Vec *b, Vec *axb)</argsstring>
+        <name>C_VECCrossProduct</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>axb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="191" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="191" bodyend="205"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a86de2aa8016f8e243cb5e71b0a431872" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>asm void PSVECCrossProduct</definition>
+        <argsstring>(register Vec *vec1, register Vec *vec2, register Vec *dst)</argsstring>
+        <name>PSVECCrossProduct</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>vec1</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>vec2</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>dst</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="208" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="208" bodyend="226"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" compoundref="vec_8c" startline="6">qr0</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a192eb9846354d40758fb95872d6b721c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void VECHalfAngle</definition>
+        <argsstring>(Vec *a, Vec *b, Vec *half)</argsstring>
+        <name>VECHalfAngle</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>half</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="229" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="229" bodyend="253"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mtx_8h_1a42c6c754fd272ea0a7f3a2b6ed1f1ee5" compoundref="mtx_8h" startline="58">VECAdd</references>
+        <references refid="mtx_8h_1a5c1fe616305e76cf5ec039ed963e69a1" compoundref="mtx_8h" startline="59">VECDotProduct</references>
+        <references refid="mtx_8h_1aeb8b67b5139e6d484f1a76275cfde025" compoundref="mtx_8h" startline="57">VECNormalize</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1adeac6b3051e7988a1425e70422cb4e73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref></type>
+        <definition>void VECReflect</definition>
+        <argsstring>(Vec *src, Vec *normal, Vec *dst)</argsstring>
+        <name>VECReflect</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>normal</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>dst</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="256" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="256" bodyend="276"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" compoundref="_o_s_private_8h" startline="111">src</references>
+        <references refid="mtx_8h_1a5c1fe616305e76cf5ec039ed963e69a1" compoundref="mtx_8h" startline="59">VECDotProduct</references>
+        <references refid="mtx_8h_1aeb8b67b5139e6d484f1a76275cfde025" compoundref="mtx_8h" startline="57">VECNormalize</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1a291c1f2b85223e35e75f8195fbf3d5a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+        <definition>f32 C_VECSquareDistance</definition>
+        <argsstring>(Vec *a, Vec *b)</argsstring>
+        <name>C_VECSquareDistance</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="279" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="279" bodyend="287"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+        <references refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" compoundref="mtx_8h" startline="12">Vec::z</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1aa255ef45bdf572a3b057b5257a859d6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">asm</ref> <ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+        <definition>asm f32 PSVECSquareDistance</definition>
+        <argsstring>(register Vec *vec1, register Vec *vec2)</argsstring>
+        <name>PSVECSquareDistance</name>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>vec1</declname>
+        </param>
+        <param>
+          <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">register</ref> <ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>vec2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="290" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="290" bodyend="303"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" compoundref="vec_8c" startline="6">qr0</references>
+        <references refid="struct_vec_1a2329da04868799450765a987a6517e16" compoundref="mtx_8h" startline="12">Vec::x</references>
+        <references refid="struct_vec_1a48232f97ea29848c051edb006e66310a" compoundref="mtx_8h" startline="12">Vec::y</references>
+      </memberdef>
+      <memberdef kind="function" id="vec_8c_1aef6c9f64944bdc9b8e7449e75880b2c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></type>
+        <definition>f32 VECDistance</definition>
+        <argsstring>(Vec *a, Vec *b)</argsstring>
+        <name>VECDistance</name>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vec" kindref="compound">Vec</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c" line="306" column="1" bodyfile="decomp/DolphinSDK/src/dolphin/mtx/vec.c" bodystart="306" bodyend="309"/>
+        <references refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" compoundref="_c_a_r_d_private_8h" startline="105">CARD_MAX_MOUNT_STEP</references>
+        <references refid="mtx_8h_1a470b9b08c1e1c369f48bfba519e91474" compoundref="mtx_8h" startline="60">VECSquareDistance</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;<ref refid="mtx_8h" kindref="compound">dolphin/mtx.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>defines<sp/>to<sp/>make<sp/>asm<sp/>work</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>qr0<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="mtx_8h_1a992cae2361ef3583762ed5cdb46d0415" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a992cae2361ef3583762ed5cdb46d0415" kindref="member">C_VECAdd</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x57,<sp/>a,<sp/></highlight><highlight class="stringliteral">&quot;VECAdd():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;a&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x58,<sp/>b,<sp/></highlight><highlight class="stringliteral">&quot;VECAdd():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;b&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x59,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECAdd():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;ab&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>-&gt;x<sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>+<sp/>b-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>-&gt;y<sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>+<sp/>b-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>-&gt;z<sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>+<sp/>b-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="vec_8c_1a870923c462d4ea14414aeb58a30cab18" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a870923c462d4ea14414aeb58a30cab18" kindref="member">PSVECAdd</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(a),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(b),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_add</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(a),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(b),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_add</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f7</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f7</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="mtx_8h_1abe74cd6e992b61c14324833baed3b908" refkind="member"><highlight class="normal"><ref refid="vec_8c_1abe74cd6e992b61c14324833baed3b908" kindref="member">C_VECSubtract</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x9C,<sp/>a,<sp/></highlight><highlight class="stringliteral">&quot;VECSubtract():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;a&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x9D,<sp/>b,<sp/></highlight><highlight class="stringliteral">&quot;VECSubtract():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;b&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x9E,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECSubtract():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;a_b&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>-&gt;x<sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>-<sp/>b-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>-&gt;y<sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>-<sp/>b-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>-&gt;z<sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>-<sp/>b-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="vec_8c_1a306abd729921f300e0cb40f9fbe29f81" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a306abd729921f300e0cb40f9fbe29f81" kindref="member">PSVECSubtract</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(a),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(b),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_sub</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(a),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(b),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_sub</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f7</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f7</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c</ref>),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="mtx_8h_1a4502326454d1f3ec3beee5c205ed360d" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a4502326454d1f3ec3beee5c205ed360d" kindref="member">C_VECScale</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>,<sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">scale</ref>)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xE2,<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECScale():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;src&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0xE3,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECScale():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;dst&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>-&gt;x<sp/>=<sp/>(<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;x<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">scale</ref>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>-&gt;y<sp/>=<sp/>(<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;y<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">scale</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>-&gt;z<sp/>=<sp/>(<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;z<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">scale</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="vec_8c_1a8bf39bc72f6d5606ed199701cca462c0" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a8bf39bc72f6d5606ed199701cca462c0" kindref="member">PSVECScale</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mult</ref>)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_merge00</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mult</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mult</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_mul</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_mul</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f7</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f7</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="mtx_8h_1af167ce0590e79853f1699f3f794a236f" refkind="member"><highlight class="normal"><ref refid="vec_8c_1af167ce0590e79853f1699f3f794a236f" kindref="member">C_VECNormalize</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">unit</ref>)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mag</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x127,<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECNormalize():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;src&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x128,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">unit</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECNormalize():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;unit&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mag</ref><sp/>=<sp/>(<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;z<sp/>*<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;z)<sp/>+<sp/>((<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;x<sp/>*<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;x)<sp/>+<sp/>(<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;y<sp/>*<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;y));</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x12D,<sp/>0.0f<sp/>!=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mag</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECNormalize():<sp/><sp/>zero<sp/>magnitude<sp/>vector<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mag</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>1.0f<sp/>/<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqrtf</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mag</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">unit</ref>-&gt;x<sp/>=<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;x<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mag</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">unit</ref>-&gt;y<sp/>=<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;y<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mag</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">unit</ref>-&gt;z<sp/>=<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;z<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">mag</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="vec_8c_1aa5c0ccaeadf974c69fe030a9fad3f196" refkind="member"><highlight class="normal"><ref refid="vec_8c_1aa5c0ccaeadf974c69fe030a9fad3f196" kindref="member">PSVECNormalize</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c_half</ref><sp/><sp/>=<sp/>0.5f;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c_three</ref><sp/>=<sp/>3.0f;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_xy</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_z</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xx_zz</ref>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xx_yy</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqsum</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rsqrt</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork0</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork1</ref>;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">asm</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_xy</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_mul</ref><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xx_yy</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_xy</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_xy</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_z</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_madd</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xx_zz</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_z</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_z</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xx_yy</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_sum0</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqsum</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xx_zz</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_z</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">xx_yy</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_rsqrte</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rsqrt</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqsum</ref>;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fmuls</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork0</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rsqrt</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rsqrt</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fmuls</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork1</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rsqrt</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c_half</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fmuls</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork0</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork0</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqsum</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fsubs</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork0</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">c_three</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork0</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">fmuls</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rsqrt</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork0</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">nwork1</ref>;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_muls0</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_xy</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_xy</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rsqrt</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_xy</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_muls0</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_z</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_z</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">rsqrt</ref>;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">v1_z</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></highlight></codeline>
+<codeline lineno="136" refid="mtx_8h_1acc3bbd40be209a571bb50e83ffcaa99c" refkind="member"><highlight class="normal"><ref refid="vec_8c_1acc3bbd40be209a571bb50e83ffcaa99c" kindref="member">C_VECSquareMag</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>v)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqmag</ref>;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqmag</ref><sp/>=<sp/>v-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>*<sp/>v-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>+<sp/>((v-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>*<sp/>v-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>)<sp/>+<sp/>(v-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>*<sp/>v-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>));</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqmag</ref>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></highlight></codeline>
+<codeline lineno="145" refid="vec_8c_1a0fb9eaeeef483edafb60874f8b0a5b7e" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a0fb9eaeeef483edafb60874f8b0a5b7e" kindref="member">PSVECSquareMag</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_mul</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">lfs</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_madd</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_sum0</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f1</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>;<sp/></highlight><highlight class="comment">//<sp/>return<sp/>square<sp/>mag<sp/>in<sp/>f1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="____ppc__eabi__init_8cpp_1ad03e74e669804ade36f4514efadcba4c" kindref="member">blr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="155"><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></highlight></codeline>
+<codeline lineno="159" refid="mtx_8h_1a570091694d8d2aec5817d34194cef9b6" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a570091694d8d2aec5817d34194cef9b6" kindref="member">VECMag</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>v)</highlight></codeline>
+<codeline lineno="160"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x182,<sp/>v,<sp/></highlight><highlight class="stringliteral">&quot;VECMag():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;v&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqrtf</ref><sp/>(<ref refid="mtx_8h_1a6837244354b6d82fb33cf6d3784b8e13" kindref="member">VECSquareMag</ref><sp/>(v));</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></highlight></codeline>
+<codeline lineno="166" refid="mtx_8h_1a1d4a48747e203be1ea550ae556dd12ba" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a1d4a48747e203be1ea550ae556dd12ba" kindref="member">C_VECDotProduct</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dot</ref>;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x1D1,<sp/>a,<sp/></highlight><highlight class="stringliteral">&quot;VECDotProduct():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;a&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x1D2,<sp/>b,<sp/></highlight><highlight class="stringliteral">&quot;VECDotProduct():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;b&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dot</ref><sp/>=<sp/>(a-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref>)<sp/>+<sp/>((a-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>)<sp/>+<sp/>(a-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>));</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dot</ref>;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></highlight></codeline>
+<codeline lineno="177" refid="vec_8c_1a6073352a41da54f3dba78cd2ab87139b" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a6073352a41da54f3dba78cd2ab87139b" kindref="member">PSVECDotProduct</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_mul</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_madd</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_sum0</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f1</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="mtx_8h_1afedb2af5b7418f83d572423898091d33" refkind="member"><highlight class="normal"><ref refid="vec_8c_1afedb2af5b7418f83d572423898091d33" kindref="member">C_VECCrossProduct</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">axb</ref>)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_vec" kindref="compound">Vec</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vTmp</ref>;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x20F,<sp/>a,<sp/></highlight><highlight class="stringliteral">&quot;VECCrossProduct():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;a&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x210,<sp/>b,<sp/></highlight><highlight class="stringliteral">&quot;VECCrossProduct():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;b&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x211,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">axb</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECCrossProduct():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;axb&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vTmp</ref>.x<sp/>=<sp/>(a-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref>)<sp/>-<sp/>(a-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vTmp</ref>.y<sp/>=<sp/>(a-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>)<sp/>-<sp/>(a-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref>);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vTmp</ref>.z<sp/>=<sp/>(a-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>)<sp/>-<sp/>(a-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>*<sp/>b-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">axb</ref>-&gt;x<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vTmp</ref>.x;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">axb</ref>-&gt;y<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vTmp</ref>.y;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">axb</ref>-&gt;z<sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vTmp</ref>.z;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208" refid="vec_8c_1a86de2aa8016f8e243cb5e71b0a431872" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a86de2aa8016f8e243cb5e71b0a431872" kindref="member">PSVECCrossProduct</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f1</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">lfs</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f0</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_merge10</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f1</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f1</ref>;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">lfs</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_mul</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f1</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_muls0</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f7</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f1</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f0</ref>;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_msub</ref><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f0</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_msub</ref><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f8</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f0</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f7</ref>;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_merge11</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f9</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_merge01</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f10</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f8</ref>;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f9</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>),<sp/>1,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_neg</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f10</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f10</ref>;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_st</ref><sp/><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f10</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229" refid="mtx_8h_1a192eb9846354d40758fb95872d6b721c" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a192eb9846354d40758fb95872d6b721c" kindref="member">VECHalfAngle</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">half</ref>)</highlight></codeline>
+<codeline lineno="230"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_vec" kindref="compound">Vec</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">aTmp</ref>;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_vec" kindref="compound">Vec</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bTmp</ref>;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_vec" kindref="compound">Vec</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">hTmp</ref>;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x27F,<sp/>a,<sp/></highlight><highlight class="stringliteral">&quot;VECHalfAngle():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;a&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x280,<sp/>b,<sp/></highlight><highlight class="stringliteral">&quot;VECHalfAngle():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;b&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x281,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">half</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECHalfAngle():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;half&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">aTmp</ref>.x<sp/>=<sp/>-a-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">aTmp</ref>.y<sp/>=<sp/>-a-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">aTmp</ref>.z<sp/>=<sp/>-a-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref>;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bTmp</ref>.x<sp/>=<sp/>-b-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bTmp</ref>.y<sp/>=<sp/>-b-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bTmp</ref>.z<sp/>=<sp/>-b-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref>;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1aeb8b67b5139e6d484f1a76275cfde025" kindref="member">VECNormalize</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">aTmp</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">aTmp</ref>);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1aeb8b67b5139e6d484f1a76275cfde025" kindref="member">VECNormalize</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bTmp</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bTmp</ref>);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1a42c6c754fd272ea0a7f3a2b6ed1f1ee5" kindref="member">VECAdd</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">aTmp</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">bTmp</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">hTmp</ref>);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mtx_8h_1a5c1fe616305e76cf5ec039ed963e69a1" kindref="member">VECDotProduct</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">hTmp</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">hTmp</ref>)<sp/>&gt;<sp/>0.0f)</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1aeb8b67b5139e6d484f1a76275cfde025" kindref="member">VECNormalize</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">hTmp</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">half</ref>);</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">half</ref><sp/>=<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">hTmp</ref>;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256" refid="mtx_8h_1adeac6b3051e7988a1425e70422cb4e73" refkind="member"><highlight class="normal"><ref refid="vec_8c_1adeac6b3051e7988a1425e70422cb4e73" kindref="member">VECReflect</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">normal</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>)</highlight></codeline>
+<codeline lineno="257"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cosA</ref>;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_vec" kindref="compound">Vec</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_vec" kindref="compound">Vec</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uN</ref>;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x2B7,<sp/><ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECReflect():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;src&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x2B8,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">normal</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECReflect():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;normal&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ASSERTMSGLINE</ref><sp/>(0x2B9,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>,<sp/></highlight><highlight class="stringliteral">&quot;VECReflect():<sp/><sp/>NULL<sp/>VecPtr<sp/>&apos;dst&apos;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>.x<sp/>=<sp/>-<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;x;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>.y<sp/>=<sp/>-<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;y;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>.z<sp/>=<sp/>-<ref refid="_o_s_private_8h_1ab3b4066b211a3d1de8f72e90b2bca8ab" kindref="member">src</ref>-&gt;z;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1aeb8b67b5139e6d484f1a76275cfde025" kindref="member">VECNormalize</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>);</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1aeb8b67b5139e6d484f1a76275cfde025" kindref="member">VECNormalize</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">normal</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uN</ref>);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cosA</ref><sp/><sp/><sp/>=<sp/><ref refid="mtx_8h_1a5c1fe616305e76cf5ec039ed963e69a1" kindref="member">VECDotProduct</ref><sp/>(&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>,<sp/>&amp;<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uN</ref>);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>-&gt;x<sp/>=<sp/>(2.0f<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uN</ref>.x<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cosA</ref>)<sp/>-<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>.x;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>-&gt;y<sp/>=<sp/>(2.0f<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uN</ref>.y<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cosA</ref>)<sp/>-<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>.y;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>-&gt;z<sp/>=<sp/>(2.0f<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uN</ref>.z<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">cosA</ref>)<sp/>-<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">uI</ref>.z;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mtx_8h_1aeb8b67b5139e6d484f1a76275cfde025" kindref="member">VECNormalize</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">dst</ref>);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></highlight></codeline>
+<codeline lineno="279" refid="mtx_8h_1a291c1f2b85223e35e75f8195fbf3d5a7" refkind="member"><highlight class="normal"><ref refid="vec_8c_1a291c1f2b85223e35e75f8195fbf3d5a7" kindref="member">C_VECSquareDistance</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b)</highlight></codeline>
+<codeline lineno="280"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_vec" kindref="compound">Vec</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>-<sp/>b-&gt;<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.y<sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>-<sp/>b-&gt;<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.z<sp/>=<sp/>a-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref><sp/>-<sp/>b-&gt;<ref refid="struct_vec_1a0f0b609a811cdc8e682bbe324cb928fe" kindref="member">z</ref>;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.z<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.z)<sp/>+<sp/>((<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.x<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.x)<sp/>+<sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.y<sp/>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">diff</ref>.y));</highlight></codeline>
+<codeline lineno="287"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight><highlight class="keyword">asm</highlight><highlight class="normal"><sp/><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></highlight></codeline>
+<codeline lineno="290" refid="vec_8c_1aa255ef45bdf572a3b057b5257a859d6c" refkind="member"><highlight class="normal"><ref refid="vec_8c_1aa255ef45bdf572a3b057b5257a859d6c" kindref="member">PSVECSquareDistance</ref><sp/>(</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>)</highlight></codeline>
+<codeline lineno="291"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a48232f97ea29848c051edb006e66310a" kindref="member">y</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_sub</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f3</ref>;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec1</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">psq_l</ref><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>.<ref refid="struct_vec_1a2329da04868799450765a987a6517e16" kindref="member">x</ref><sp/>(<ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">vec2</ref>),<sp/>0,<sp/><ref refid="vec_8c_1a49d23126bf6b631b985ec6ae37e77480" kindref="member">qr0</ref>;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_mul</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f2</ref>;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_sub</ref><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_madd</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f6</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">ps_sum0</ref><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f1</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f5</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>,<sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">f4</ref>;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><ref refid="types_8h_1a5f6906312a689f27d70e9d086649d3fd" kindref="member">f32</ref></highlight></codeline>
+<codeline lineno="306" refid="mtx_8h_1aef6c9f64944bdc9b8e7449e75880b2c4" refkind="member"><highlight class="normal"><ref refid="vec_8c_1aef6c9f64944bdc9b8e7449e75880b2c4" kindref="member">VECDistance</ref><sp/>(<ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>a,<sp/><ref refid="struct_vec" kindref="compound">Vec</ref>*<sp/>b)</highlight></codeline>
+<codeline lineno="307"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">sqrtf</ref><sp/>(<ref refid="mtx_8h_1a470b9b08c1e1c369f48bfba519e91474" kindref="member">VECSquareDistance</ref><sp/>(a,<sp/>b));</highlight></codeline>
+<codeline lineno="309"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="decomp/DolphinSDK/src/dolphin/mtx/vec.c"/>
+  </compounddef>
+</doxygen>

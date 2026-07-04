@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddi.dev/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddi.dev/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File AXAux.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddi.dev/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddi.dev/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-axauxc">File AXAux.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_284807f63fc993a939ff676a07eb86c2/"><strong>ax</strong></a> <strong>&gt;</strong> <a href="../_a_x_aux_8c/"><strong>AXAux.c</strong></a></p>
+<p><a href="../_a_x_aux_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;dolphin/ax.h&gt;
+
+#include &lt;dolphin.h&gt;
+
+#include &quot;AXPrivate.h&quot;
+
+static s32 __AXBufferAuxA[3][480] ALIGN (32);
+static s32 __AXBufferAuxB[3][480] ALIGN (32);
+
+static void  (*__AXCallbackAuxA) (void*, void*);
+static void  (*__AXCallbackAuxB) (void*, void*);
+static void* __AXContextAuxA;
+static void* __AXContextAuxB;
+static s32*  __AXAuxADspWrite;
+static s32*  __AXAuxADspRead;
+static s32*  __AXAuxBDspWrite;
+static s32*  __AXAuxBDspRead;
+static u32   __AXAuxDspWritePosition;
+static u32   __AXAuxDspReadPosition;
+static u32   __AXAuxCpuReadWritePosition;
+
+void
+__AXAuxInit (void)
+{
+    int  i;
+    s32* pA;
+    s32* pB;
+
+#ifdef DEBUG
+    OSReport (&quot;Initializing AXAux code module¥n&quot;);
+#endif
+    __AXCallbackAuxA = NULL;
+    __AXCallbackAuxB = NULL;
+    __AXContextAuxA = 0;
+    __AXContextAuxB = 0;
+    __AXAuxDspWritePosition = 0;
+    __AXAuxDspReadPosition = 1;
+    __AXAuxCpuReadWritePosition = 2;
+    pA = (s32*)&amp;__AXBufferAuxA;
+    pB = (s32*)&amp;__AXBufferAuxB;
+    for (i = 0; i &lt; 0x1E0; i++)
+    {
+        *(pA) = 0;
+        pA += 1;
+        *(pB) = 0;
+        pB += 1;
+    }
+}
+
+void
+__AXAuxQuit (void)
+{
+#ifdef DEBUG
+    OSReport (&quot;Shutting down AXAux code module¥n&quot;);
+#endif
+    __AXCallbackAuxA = NULL;
+    __AXCallbackAuxB = NULL;
+}
+
+void
+__AXGetAuxAInput (u32* p)
+{
+    *p = (u32)&amp;__AXBufferAuxA[__AXAuxDspWritePosition][0];
+}
+
+void
+__AXGetAuxAOutput (u32* p)
+{
+    *p = (u32)&amp;__AXBufferAuxA[__AXAuxDspReadPosition][0];
+}
+
+void
+__AXGetAuxBInput (u32* p)
+{
+    *p = (u32)&amp;__AXBufferAuxB[__AXAuxDspWritePosition][0];
+}
+
+void
+__AXGetAuxBOutput (u32* p)
+{
+    *p = (u32)&amp;__AXBufferAuxB[__AXAuxDspReadPosition][0];
+}
+
+void
+__AXProcessAux (void)
+{
+    struct AX_AUX_DATA auxData;
+
+    __AXAuxADspWrite = &amp;__AXBufferAuxA[__AXAuxDspWritePosition][0];
+    __AXAuxADspRead = &amp;__AXBufferAuxA[__AXAuxDspReadPosition][0];
+    __AXAuxBDspWrite = &amp;__AXBufferAuxB[__AXAuxDspWritePosition][0];
+    __AXAuxBDspRead = &amp;__AXBufferAuxB[__AXAuxDspReadPosition][0];
+    if (__AXCallbackAuxA)
+    {
+        auxData.l = &amp;__AXBufferAuxA[__AXAuxCpuReadWritePosition][0];
+        auxData.r = &amp;__AXBufferAuxA[__AXAuxCpuReadWritePosition][160];
+        auxData.s = &amp;__AXBufferAuxA[__AXAuxCpuReadWritePosition][320];
+        DCInvalidateRange (auxData.l, 0x780);
+        __AXCallbackAuxA (&amp;auxData.l, __AXContextAuxA);
+        DCFlushRangeNoSync (auxData.l, 0x780);
+    }
+    if (__AXCallbackAuxB &amp;&amp; __AXClMode != 4)
+    {
+        auxData.l = &amp;__AXBufferAuxB[__AXAuxCpuReadWritePosition][0];
+        auxData.r = &amp;__AXBufferAuxB[__AXAuxCpuReadWritePosition][160];
+        auxData.s = &amp;__AXBufferAuxB[__AXAuxCpuReadWritePosition][320];
+        DCInvalidateRange (auxData.l, 0x780);
+        __AXCallbackAuxB (&amp;auxData.l, __AXContextAuxB);
+        DCFlushRangeNoSync (auxData.l, 0x780);
+    }
+    __AXAuxDspWritePosition += 1;
+    __AXAuxDspWritePosition %= 3;
+    __AXAuxDspReadPosition += 1;
+    __AXAuxDspReadPosition %= 3;
+    __AXAuxCpuReadWritePosition += 1;
+    __AXAuxCpuReadWritePosition %= 3;
+}
+
+void
+AXRegisterAuxACallback (void (*callback) (void*, void*), void* context)
+{
+    __AXCallbackAuxA = callback;
+    __AXContextAuxA = context;
+}
+
+void
+AXRegisterAuxBCallback (void (*callback) (void*, void*), void* context)
+{
+    __AXCallbackAuxB = callback;
+    __AXContextAuxB = context;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>
