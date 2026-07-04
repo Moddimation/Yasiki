@@ -1,10 +1,10 @@
 # Luigi's Mansion   
 [![Build Status]][actions] [![Code Progress]][progress] [![Functions]][progress] [![Wiki]][wikipage]
 
-> [!NOTE]
+> [!IMPORTANT]
 > A more progressed decomp grew over this one, please use it instead: https://github.com/ThePlayerRolo/lm-decomp
----
 
+OLD NEWS:  <br>
 This decomp project has been stopped due to lost interest and a drama that pushed it. If you feel like contacting me, just contact me on discord. If I should take down this repo, or anyone gained interest in it, or really just anything you feel like asking, you can just tell me.  <br>
 Thanks, moddi out.
 
